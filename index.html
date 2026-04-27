@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SideHustleGuard — Protect Your Hustle</title>
+<meta name="description" content="Free AI-powered legal checker for side hustlers. Know your taxes, licenses, and business structure in 60 seconds.">
+<link rel="canonical" href="https://www.sidehustleguard.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SideHustleGuard — Protect Your Hustle">
+<meta property="og:description" content="Free AI-powered legal checker for side hustlers. Taxes, licenses, structure — in 60 seconds.">
+<meta property="og:url" content="https://www.sidehustleguard.com/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.sidehustleguard.com/#org",
+      "name": "SideHustleGuard",
+      "url": "https://www.sidehustleguard.com/",
+      "email": "richard@sidehustleguard.com",
+      "description": "Free AI-powered legal checker for US side hustlers — taxes, licenses, and business structure."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.sidehustleguard.com/#website",
+      "url": "https://www.sidehustleguard.com/",
+      "name": "SideHustleGuard",
+      "publisher": { "@id": "https://www.sidehustleguard.com/#org" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.sidehustleguard.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "SideHustleGuard Legal Checker",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.sidehustleguard.com/tool",
+      "offers": [
+        { "@type": "Offer", "name": "Free legal check", "price": "0", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Full report", "price": "5", "priceCurrency": "USD" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this actual legal advice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I sell on Etsy — do I really need this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Etsy sellers are self-employed the moment they make their first sale. That means self-employment tax, potential quarterly payments, and state-specific rules most sellers don't know about until they get a surprise bill. A 60-second check can save you from a very bad tax season."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I haven't made any money yet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That's actually the best time to use this. Setting up correctly from day one is much easier than fixing problems later. We'll tell you exactly what to set up now so you're protected before the money starts coming in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What exactly is in the $5 report?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A full breakdown of every issue found, a prioritized action plan, a personalized tax deadline calendar, a deduction checklist specific to your hustle type, and a PDF you can download and share with your CPA. Everything is tailored to your state and income level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you store my information?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1c2b4a;
+  --navy-mid: #243459;
+  --navy-light: #2e4070;
+  --navy-pale: #edf0f7;
+  --gold: #c9973a;
+  --gold-light: #ddb06a;
+  --gold-pale: #fdf5e8;
+  --gold-border: rgba(201,151,58,0.25);
+  --cream: #faf8f4;
+  --cream-dark: #f0ece3;
+  --white: #ffffff;
+  --text: #1c2b4a;
+  --text-muted: #6b7a96;
+  --text-dim: #9aa3b5;
+  --border: rgba(28,43,74,0.09);
+  --green: #276944;
+  --green-pale: #eaf5ef;
+  --red: #b83232;
+  --red-pale: #fdf0f0;
+  --amber: #a86c0a;
+  --amber-pale: #fef6e8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; font-weight: 400; }
+
+/* ── NAV + TICKER FIXED HEADER ── */
+.fixed-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+}
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(250,248,244,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-icon svg { width: 30px; height: 34px; }
+.logo-text { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--navy); letter-spacing: -.01em; }
+.logo-text span { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-link { font-size: 13px; color: var(--text-muted); text-decoration: none; font-weight: 400; transition: color .2s; }
+.nav-link:hover { color: var(--navy); }
+.nav-cta { background: var(--gold); color: var(--white); padding: 9px 22px; border-radius: 100px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: all .15s; }
+.nav-cta:hover { background: var(--gold-light); }
+
+/* ── HERO ── */
+.hero { display: flex; align-items: center; padding: 130px 48px 60px; position: relative; overflow: hidden; }
+.hero-dots { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(28,43,74,0.06) 1px, transparent 1px); background-size: 36px 36px; }
+.hero-glow { position: absolute; top: -60px; right: 8%; width: 440px; height: 440px; border-radius: 50%; background: radial-gradient(circle, rgba(201,151,58,0.09) 0%, transparent 65%); pointer-events: none; }
+.hero-inner { max-width: 1060px; position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; align-items: end; }
+.hero-left { min-width: 0; }
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 28px; } }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-pale); border: 1px solid var(--gold-border); padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 28px; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(44px, 5.5vw, 72px); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; color: var(--navy); margin-bottom: 22px; }
+h1 em { font-style: italic; color: var(--gold); }
+h1 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; font-style: normal; }
+
+.hero-sub { font-size: 17px; color: var(--text-muted); max-width: 480px; margin-bottom: 36px; font-weight: 300; line-height: 1.75; }
+.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 44px; }
+.btn-gold { background: var(--gold); color: var(--white); padding: 14px 30px; border-radius: 100px; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: all .15s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--navy); padding: 14px 30px; border-radius: 100px; font-size: 15px; font-weight: 400; font-family: 'DM Sans', sans-serif; text-decoration: none; border: 1.5px solid rgba(28,43,74,0.18); transition: all .15s; }
+.btn-outline:hover { border-color: var(--navy); }
+.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.stat { border-left: 2px solid var(--gold); padding-left: 14px; }
+.stat-num { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--navy); display: block; line-height: 1.1; }
+.stat-label { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+/* ── HUSTLE PICKER (interactive hero) ── */
+.picker-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 26px 26px 22px; box-shadow: 0 8px 40px rgba(28,43,74,0.06); width: 100%; }
+.picker-step { font-size: 10px; font-weight: 600; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.picker-step::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.picker-q { font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 16px; line-height: 1.3; }
+.picker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.picker-opt { background: var(--cream); border: 1px solid var(--border); border-radius: 11px; padding: 12px 10px; font-size: 12.5px; font-weight: 500; color: var(--navy); text-decoration: none; text-align: center; transition: all .15s; cursor: pointer; line-height: 1.3; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.picker-opt:hover { border-color: var(--gold); background: var(--white); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(201,151,58,0.12); }
+.picker-icon { font-size: 18px; line-height: 1; }
+.picker-foot { font-size: 11px; color: var(--text-dim); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.picker-foot-item { display: inline-flex; align-items: center; gap: 5px; }
+@media(max-width:600px) { .picker-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── TICKER ── */
+.ticker { background: var(--navy); padding: 11px 0; overflow: hidden; }
+.ticker-track { display: flex; animation: scroll 22s linear infinite; white-space: nowrap; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker-item { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; padding: 0 22px; display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.ticker-item.hl { color: var(--gold-light); }
+.ticker-item::after { content: '·'; opacity: .3; }
+
+/* ── TICKER ── */
+.ticker { background: var(--navy); padding: 9px 0; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); }
+.ticker-track { display: flex; animation: scroll 22s linear infinite; white-space: nowrap; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker-item { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; padding: 0 20px; display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.ticker-item.hl { color: var(--gold-light); }
+.ticker-item::after { content: '·'; opacity: .3; }
+
+/* ── SECTIONS ── */
+.section { padding: 90px 48px; }
+.section-inner { max-width: 1060px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
+h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.01em; line-height: 1.15; margin-bottom: 44px; color: var(--navy); }
+h2 em { font-style: italic; color: var(--gold); }
+h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
+
+/* ── STEPS ── */
+.steps { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.step { padding: 30px 22px; border-right: 1px solid var(--border); background: var(--white); transition: background .2s; }
+.step:last-child { border-right: none; }
+.step:hover { background: var(--navy-pale); }
+.step-n { font-size: 10px; font-weight: 600; color: var(--gold); letter-spacing: .1em; margin-bottom: 14px; display: block; }
+.step-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+
+/* ── CHECKS ── */
+.checks-bg { background: var(--navy); padding: 90px 48px; }
+.checks-inner { max-width: 1060px; margin: 0 auto; }
+.checks-bg .section-tag { color: var(--gold-light); }
+.checks-bg h2 { color: var(--white); }
+.checks-bg h2 .outline { -webkit-text-stroke: 1.5px var(--white); }
+.checks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; }
+.check-card { background: var(--navy-mid); padding: 26px 22px; transition: background .2s; }
+.check-card:hover { background: var(--navy-light); }
+.check-num { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold-light); margin-bottom: 10px; display: block; }
+.check-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 7px; }
+.check-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+/* ── PRICING ── */
+.pricing-section { padding: 90px 48px; background: var(--cream); }
+.pricing-inner { max-width: 960px; margin: 0 auto; }
+.pricing-intro { font-size: 16px; color: var(--text-muted); margin-bottom: 44px; font-weight: 300; line-height: 1.7; }
+.pricing-wrap { display: grid; grid-template-columns: 1fr 1.06fr; gap: 18px; align-items: start; }
+.price-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 20px; padding: 34px; position: relative; }
+.price-name { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+.price-amount { font-family: 'Playfair Display', Georgia, serif; font-size: 60px; font-weight: 700; line-height: 1; color: var(--navy); margin-bottom: 4px; }
+.price-period { font-size: 13px; color: var(--text-muted); margin-bottom: 26px; font-weight: 300; }
+.feat-rows { margin-bottom: 26px; }
+.feat-row { display: flex; align-items: flex-start; gap: 11px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.feat-row:last-child { border-bottom: none; }
+.feat-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.feat-icon.yes { background: var(--green-pale); }
+.feat-icon.no { background: var(--cream-dark); }
+.feat-icon svg { width: 9px; height: 9px; }
+.feat-title { font-size: 13px; font-weight: 500; color: var(--navy); line-height: 1.35; }
+.feat-title.dim { color: var(--text-dim); font-weight: 400; }
+.feat-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; font-weight: 300; }
+.feat-sub.dim { color: var(--text-dim); font-style: italic; }
+.btn-free { width: 100%; padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; border: 1.5px solid var(--border); background: transparent; color: var(--navy); cursor: pointer; transition: all .15s; text-decoration: none; display: block; text-align: center; }
+.btn-free:hover { border-color: var(--navy); }
+.price-card.featured { background: var(--navy); border-color: var(--navy); box-shadow: 0 20px 56px rgba(28,43,74,0.15); }
+.value-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--white); padding: 4px 16px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.price-card.featured .price-name { color: rgba(255,255,255,0.38); }
+.price-card.featured .price-amount { color: var(--gold-light); }
+.price-card.featured .price-period { color: rgba(255,255,255,0.38); }
+.price-card.featured .feat-row { border-color: rgba(255,255,255,0.07); }
+.price-card.featured .feat-icon.yes { background: rgba(201,151,58,0.14); }
+.price-card.featured .feat-title { color: var(--white); }
+.price-card.featured .feat-sub { color: rgba(255,255,255,0.42); }
+.btn-paid { width: 100%; padding: 14px; border-radius: 100px; font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; border: none; background: var(--gold); color: var(--white); cursor: pointer; transition: all .15s; text-decoration: none; display: block; text-align: center; letter-spacing: .01em; }
+.btn-paid:hover { background: var(--gold-light); transform: translateY(-1px); }
+/* CPA comparison callout */
+.cpa-compare { margin-top: 22px; background: var(--navy); border-radius: 16px; padding: 28px 36px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+.cpa-col { display: flex; flex-direction: column; gap: 2px; }
+.cpa-col.right { align-items: flex-end; text-align: right; }
+.cpa-lbl { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.32); margin-bottom: 4px; }
+.cpa-price { font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 700; line-height: 1; color: rgba(220,90,80,.65); }
+.cpa-price.gold { color: var(--gold); font-size: 58px; }
+.cpa-note { font-size: 12px; color: rgba(255,255,255,.36); font-weight: 300; margin-top: 5px; line-height: 1.4; }
+.cpa-divider { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cpa-vs-line { width: 1px; height: 28px; background: rgba(255,255,255,.12); }
+.cpa-vs-text { font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.18); }
+
+/* Calendar preview card */
+.cal-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; margin-top: 10px; position: relative; overflow: hidden; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.cal-head-title { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.cal-lock-pill { font-size: 10px; font-weight: 500; color: rgba(28,43,74,.45); background: var(--cream-dark); padding: 3px 10px; border-radius: 100px; }
+.cal-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.cal-row:last-child { border-bottom: none; }
+.cal-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.cal-dot.red { background: var(--red); }
+.cal-dot.amber { background: var(--amber); }
+.cal-dot.green { background: var(--green); }
+.cal-date { font-size: 11px; font-weight: 600; color: var(--navy); min-width: 44px; }
+.cal-desc { font-size: 11px; color: var(--text-muted); font-weight: 300; flex: 1; }
+.cal-tag { font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; background: var(--gold-pale); color: var(--gold); }
+.cal-blurred { filter: blur(3.5px); opacity: .6; user-select: none; pointer-events: none; }
+.cal-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.95)); pointer-events: none; }
+.no-sub { margin-top: 10px; font-size: 11px; color: var(--text-dim); text-align: center; }
+
+/* ── REPORT PREVIEW ── */
+.preview-section { padding: 0 48px 80px; }
+.preview-inner { max-width: 960px; margin: 0 auto; }
+.preview-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 52px; align-items: center; }
+.preview-left .section-tag { margin-bottom: 10px; }
+.preview-left h2 { font-size: clamp(26px, 3.2vw, 38px); margin-bottom: 14px; }
+.preview-left p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 22px; font-weight: 300; }
+.preview-features { list-style: none; }
+.preview-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); padding: 5px 0; font-weight: 300; }
+.preview-features li::before { content: '→'; color: var(--gold); font-size: 12px; flex-shrink: 0; font-weight: 500; }
+
+/* ── REPORT MOCK ── */
+.report-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(28,43,74,0.1);
+  position: relative;
+}
+.report-card::after {
+  content: 'Unlock full report — $5';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 52%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(250,248,244,0.96) 45%);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 22px;
+  font-size: 12px; font-weight: 600; color: var(--gold);
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.rc-header { background: var(--navy); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+.rc-logo { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--white); }
+.rc-logo span { color: var(--gold-light); }
+.rc-badge { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 100px; letter-spacing: .04em; }
+.rc-meta { padding: 14px 20px; background: var(--navy-pale); border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
+.rc-meta-item { }
+.rc-meta-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin-bottom: 2px; }
+.rc-meta-val { font-size: 12px; font-weight: 500; color: var(--navy); }
+.rc-body { padding: 16px 20px; }
+.rc-score-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+.rc-score { background: var(--cream); border-radius: 10px; padding: 10px 8px; text-align: center; border: 1px solid var(--border); }
+.rc-score-val { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; display: block; margin-bottom: 2px; }
+.rc-score-val.red { color: var(--red); }
+.rc-score-val.amber { color: var(--amber); }
+.rc-score-val.green { color: var(--green); }
+.rc-score-lbl { font-size: 9px; color: var(--text-dim); font-weight: 400; letter-spacing: .04em; }
+.rc-section-title { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-dim); margin-bottom: 8px; }
+.rc-issue { display: flex; gap: 9px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.rc-issue:last-child { border-bottom: none; }
+.rc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.rc-dot.r { background: var(--red); } .rc-dot.a { background: var(--amber); } .rc-dot.g { background: var(--green); }
+.rc-issue-title { font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+.rc-issue-desc { font-size: 10px; color: var(--text-muted); line-height: 1.45; font-weight: 300; }
+.rc-blur { filter: blur(2.5px); opacity: .55; pointer-events: none; }
+
+/* ── FAQ ── */
+.faq-bg { background: var(--white); padding: 90px 48px; }
+.faq-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; align-items: start; }
+.faq-left h2 { margin-bottom: 14px; }
+.faq-left p { font-size: 14px; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+.faq-list { }
+.faq-item { border-bottom: 1px solid var(--border); padding: 17px 0; cursor: pointer; }
+.faq-q { font-size: 14px; font-weight: 500; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 16px; line-height: 1.4; }
+.faq-toggle { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold); font-size: 16px; transition: transform .2s, border-color .2s; font-weight: 300; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); border-color: var(--gold); }
+.faq-a { font-size: 13px; color: var(--text-muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height .3s, padding .3s; font-weight: 300; }
+.faq-item.open .faq-a { max-height: 220px; padding-top: 10px; }
+
+/* ── CTA ── */
+.cta-section { padding: 0 48px 80px; }
+.cta-inner { max-width: 1060px; margin: 0 auto; background: var(--navy); border-radius: 22px; padding: 68px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; overflow: hidden; }
+.cta-inner::after { content: ''; position: absolute; right: -70px; top: -70px; width: 280px; height: 280px; border-radius: 50%; background: rgba(201,151,58,0.07); pointer-events: none; }
+.cta-text h2 { color: var(--white); margin-bottom: 8px; font-size: clamp(24px,3.2vw,40px); }
+.cta-text h2 em { color: var(--gold-light); }
+.cta-text p { color: rgba(255,255,255,0.42); font-size: 15px; font-weight: 300; }
+.btn-cta { background: var(--gold); color: var(--white); padding: 16px 34px; border-radius: 100px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: all .15s; white-space: nowrap; flex-shrink: 0; position: relative; z-index: 1; }
+.btn-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ── MERGED BOTTOM BAR ── */
+.bottom-bar {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  padding: 0 48px;
+}
+.bottom-bar-top {
+  display: flex; align-items: center; gap: 28px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.bottom-trust-label { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+.bottom-trust-div { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+.bottom-trust-logos { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.bottom-trust-logo { font-size: 13px; font-weight: 600; opacity: .35; transition: opacity .2s; color: var(--navy); letter-spacing: -.01em; }
+.bottom-trust-logo:hover { opacity: .6; }
+.bottom-trust-logo.etsy { color: #f1641e; font-family: Georgia, serif; font-style: italic; }
+.bottom-trust-logo.fiverr { color: #1dbf73; }
+.bottom-trust-logo.upwork { color: #14a800; }
+.bottom-trust-logo.shopify { color: #96bf48; }
+.bottom-trust-logo.ebay { color: #e53238; }
+.bottom-bar-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; flex-wrap: wrap; gap: 12px;
+}
+.bottom-wordmark {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--navy); letter-spacing: -.01em; text-decoration: none;
+}
+.bottom-wordmark span { color: var(--gold); }
+.bottom-copy { font-size: 11px; color: var(--text-dim); font-weight: 300; }
+.bottom-links { display: flex; gap: 18px; }
+.bottom-links a { font-size: 11px; color: var(--text-dim); text-decoration: none; transition: color .15s; }
+.bottom-links a:hover { color: var(--navy); }
+
+@media(max-width:900px) {
+  nav { padding: 14px 20px; }
+  .nav-link { display: none; }
+  .hero, .section, .pricing-section, .faq-bg, .preview-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .checks-bg { padding-left: 20px; padding-right: 20px; }
+  .trust-strip { padding: 18px 20px; }
+  .bottom-bar { padding: 0 20px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .checks-grid { grid-template-columns: 1fr; }
+  .pricing-wrap { grid-template-columns: 1fr; }
+  .preview-wrap { grid-template-columns: 1fr; }
+  .faq-inner { grid-template-columns: 1fr; gap: 28px; }
+  .cta-inner { padding: 44px 28px; }
+  footer { padding: 26px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- FIXED HEADER: nav + ticker -->
+<div class="fixed-header">
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-icon">
+      <svg width="30" height="34" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="#how-it-works" class="nav-link">How it works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="tool.html" class="nav-cta">Check my hustle →</a>
+  </div>
+</nav>
+
+<!-- TICKER locked inside fixed header -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item hl">Free legal check</span><span class="ticker-item">All 50 states</span><span class="ticker-item hl">Etsy sellers</span><span class="ticker-item">Freelancers</span><span class="ticker-item hl">Plain English</span><span class="ticker-item">60 seconds</span><span class="ticker-item hl">No lawyer needed</span><span class="ticker-item">Instant results</span>
+    <span class="ticker-item hl">Free legal check</span><span class="ticker-item">All 50 states</span><span class="ticker-item hl">Etsy sellers</span><span class="ticker-item">Freelancers</span><span class="ticker-item hl">Plain English</span><span class="ticker-item">60 seconds</span><span class="ticker-item hl">No lawyer needed</span><span class="ticker-item">Instant results</span>
+  </div>
+</div>
+</div><!-- /fixed-header -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Free AI legal checker</div>
+      <h1>Is your hustle<br><em>legally</em> protected?</h1>
+      <p class="hero-sub">Plain-English answers on your taxes, licenses, and structure. Free check, optional $5 full report. No lawyer, no jargon.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">50</span><div class="stat-label">US states covered</div></div>
+        <div class="stat"><span class="stat-num">60s</span><div class="stat-label">To get your report</div></div>
+        <div class="stat"><span class="stat-num">$0</span><div class="stat-label">To get started</div></div>
+      </div>
+    </div>
+
+    <!-- Interactive picker — clicking an option starts the check on tool.html with Q1 pre-selected -->
+    <div class="picker-wrap">
+      <div class="picker-step">Start your check · 60 seconds</div>
+      <div class="picker-q">What kind of hustle do you run?</div>
+      <div class="picker-grid">
+        <a href="tool.html?type=Selling%20digital%20products" class="picker-opt"><span class="picker-icon">💾</span>Digital products</a>
+        <a href="tool.html?type=Selling%20physical%20products" class="picker-opt"><span class="picker-icon">📦</span>Physical products</a>
+        <a href="tool.html?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon">💼</span>Freelance / services</a>
+        <a href="tool.html?type=Content%20creation" class="picker-opt"><span class="picker-icon">🎬</span>Content creation</a>
+        <a href="tool.html?type=Reselling%20or%20flipping" class="picker-opt"><span class="picker-icon">🔄</span>Reselling / flipping</a>
+        <a href="tool.html?type=Renting%20something%20out" class="picker-opt"><span class="picker-icon">🏠</span>Renting / hosting</a>
+        <a href="tool.html?type=Coaching%20or%20teaching" class="picker-opt"><span class="picker-icon">🎓</span>Coaching / teaching</a>
+        <a href="tool.html?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon">🚗</span>Rideshare (Uber/Lyft)</a>
+        <a href="tool.html?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon">🛵</span>Delivery apps</a>
+      </div>
+
+      <div class="picker-foot">
+        <span class="picker-foot-item">⚡ Instant results</span>
+        <span class="picker-foot-item">🔒 No sign-up</span>
+        <span class="picker-foot-item">🇺🇸 All 50 states</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES STRIP -->
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-inner">
+    <span class="section-tag">How it works</span>
+    <h2>Protected in <em>60 seconds</em></h2>
+    <div class="steps">
+      <div class="step"><span class="step-n">01</span><div class="step-title">Tell us your hustle</div><div class="step-desc">Select your type, describe what you do, and pick your state. About 30 seconds total.</div></div>
+      <div class="step"><span class="step-n">02</span><div class="step-title">AI analyzes it</div><div class="step-desc">We check against tax laws, licensing rules, and structure requirements for your specific state.</div></div>
+      <div class="step"><span class="step-n">03</span><div class="step-title">Get your report</div><div class="step-desc">See what's good, what needs attention, and what to fix — in plain English, no jargon.</div></div>
+      <div class="step"><span class="step-n">04</span><div class="step-title">Take action</div><div class="step-desc">Follow your personalized next steps and know exactly what to do to protect yourself.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE CHECK -->
+<div class="checks-bg">
+  <div class="checks-inner">
+    <span class="section-tag">What we check</span>
+    <h2>Everything you actually<br>need to <span class="outline">know</span></h2>
+    <div class="checks-grid">
+      <div class="check-card"><span class="check-num">01</span><div class="check-title">Tax obligations</div><div class="check-desc">Self-employment tax, quarterly payments, 1099 thresholds — exactly what applies to you and when.</div></div>
+      <div class="check-card"><span class="check-num">02</span><div class="check-title">Business structure</div><div class="check-desc">Sole prop, LLC, or S-corp? We explain which fits your income level and why it matters for your situation.</div></div>
+      <div class="check-card"><span class="check-num">03</span><div class="check-title">Licenses & permits</div><div class="check-desc">Some states require licenses even for digital sellers. We check what your specific state needs for your hustle type.</div></div>
+      <div class="check-card"><span class="check-num">04</span><div class="check-title">Sales tax rules</div><div class="check-desc">Does Etsy collect for you? Do you need to file in other states? Broken down without the confusion.</div></div>
+      <div class="check-card"><span class="check-num">05</span><div class="check-title">Deductions you're missing</div><div class="check-desc">Home office, equipment, software — we flag deductions side hustlers commonly leave on the table.</div></div>
+      <div class="check-card"><span class="check-num">06</span><div class="check-title">Deadlines & due dates</div><div class="check-desc">Quarterly tax dates, annual filings — we surface what's coming so you're never caught off guard.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <span class="section-tag">Pricing</span>
+    <h2>Simple, honest <em>pricing</em></h2>
+    <p class="pricing-intro">Start free and see your score. Unlock the complete report for $5 — one payment, no subscription, yours forever.</p>
+    <div class="pricing-wrap">
+
+      <!-- FREE -->
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">always free · no card needed</div>
+        <div class="feat-rows">
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Legal check & overall score</div><div class="feat-sub">See how protected you are</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Top 3 issues flagged</div><div class="feat-sub">Know your biggest risks</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Structure recommendation</div><div class="feat-sub">Sole prop, LLC, or S-corp</div></div></div>
+          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5L6.5 6.5M6.5 2.5L2.5 6.5" stroke="#9aa3b5" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Full issue breakdown</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5L6.5 6.5M6.5 2.5L2.5 6.5" stroke="#9aa3b5" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Personalized action plan</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5L6.5 6.5M6.5 2.5L2.5 6.5" stroke="#9aa3b5" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Tax deadline calendar</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5L6.5 6.5M6.5 2.5L2.5 6.5" stroke="#9aa3b5" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Deduction checklist</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5L6.5 6.5M6.5 2.5L2.5 6.5" stroke="#9aa3b5" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">PDF download</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+        </div>
+        <a href="tool.html" class="btn-free">Get started free</a>
+      </div>
+
+      <!-- PAID -->
+      <div class="price-card featured">
+        <div class="value-badge">Most complete — just $5</div>
+        <div class="price-name">Full report</div>
+        <div class="price-amount">$5</div>
+        <div class="price-period">one-time · no subscription ever</div>
+        <div class="feat-rows">
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Everything in Free</div><div class="feat-sub">Score, top issues, structure rec</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Full breakdown of every issue</div><div class="feat-sub">Plain-English + risk level for each</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Personalized action plan</div><div class="feat-sub">Do this first, then this, then this</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Tax deadline calendar</div><div class="feat-sub">Your specific due dates for the year</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Deduction checklist</div><div class="feat-sub">Every deduction you qualify for</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">PDF download</div><div class="feat-sub">Save it, share it with your CPA</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">All 50 states covered</div><div class="feat-sub">State-specific rules baked in</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">No subscription. Ever.</div><div class="feat-sub">Pay once, yours forever</div></div></div>
+        </div>
+        <a href="tool.html" class="btn-paid">Get full report — $5 →</a>
+      </div>
+    </div>
+
+    <div class="cpa-compare">
+      <div class="cpa-col">
+        <div class="cpa-lbl">CPA hourly rate</div>
+        <div class="cpa-price">$200–500</div>
+        <div class="cpa-note">For the same information,<br>billed by the hour</div>
+      </div>
+      <div class="cpa-divider">
+        <div class="cpa-vs-line"></div>
+        <div class="cpa-vs-text">vs</div>
+        <div class="cpa-vs-line"></div>
+      </div>
+      <div class="cpa-col right">
+        <div class="cpa-lbl">Your full report</div>
+        <div class="cpa-price gold">$5</div>
+        <div class="cpa-note">Same clarity in 60 seconds —<br>formatted &amp; ready to share</div>
+      </div>
+    </div>
+    <p class="no-sub">No subscription. No recurring charges. Pay once, get your report. That's it.</p>
+  </div>
+</section>
+
+<!-- REPORT PREVIEW -->
+<div class="preview-section">
+  <div class="preview-inner">
+    <div class="preview-wrap">
+      <div class="preview-left">
+        <span class="section-tag">What you get</span>
+        <h2>See what's inside the <em>full report</em></h2>
+        <p>A real, personalized document — not a generic checklist. Every section is specific to your hustle type, your state, and your income level.</p>
+        <ul class="preview-features">
+          <li>Color-coded compliance score</li>
+          <li>Every issue explained in plain English</li>
+          <li>Prioritized action plan — do this first</li>
+          <li>Your specific tax deadlines for the year</li>
+          <li>Deductions you're likely leaving behind</li>
+          <li>PDF ready to share with your CPA</li>
+        </ul>
+      </div>
+      <div class="preview-right">
+        <div class="report-card">
+          <div class="rc-header">
+            <div class="rc-logo">SideHustle<span>Guard</span> — Legal Compliance Report</div>
+            <div class="rc-badge">Score: 68/100</div>
+          </div>
+          <div class="rc-meta">
+            <div class="rc-meta-item"><div class="rc-meta-label">Business type</div><div class="rc-meta-val">Digital products / Etsy</div></div>
+            <div class="rc-meta-item"><div class="rc-meta-label">State</div><div class="rc-meta-val">California</div></div>
+            <div class="rc-meta-item"><div class="rc-meta-label">Income</div><div class="rc-meta-val">$5k–$20k / yr</div></div>
+          </div>
+          <div class="rc-body">
+            <div class="rc-score-row">
+              <div class="rc-score"><span class="rc-score-val red">At Risk</span><div class="rc-score-lbl">Tax status</div></div>
+              <div class="rc-score"><span class="rc-score-val amber">Fair</span><div class="rc-score-lbl">Structure</div></div>
+              <div class="rc-score"><span class="rc-score-val green">Good</span><div class="rc-score-lbl">Compliance</div></div>
+            </div>
+            <div class="rc-section-title">Your compliance checklist</div>
+            <div class="rc-issue"><div class="rc-dot r"></div><div><div class="rc-issue-title">Quarterly taxes not set up</div><div class="rc-issue-desc">At $8k/yr you owe quarterly estimated payments. Next due: June 15, 2025.</div></div></div>
+            <div class="rc-issue"><div class="rc-dot a"></div><div><div class="rc-issue-title">LLC formation recommended</div><div class="rc-issue-desc">At your income level, an LLC protects your personal assets and may save on taxes.</div></div></div>
+            <div class="rc-issue rc-blur"><div class="rc-dot g"></div><div><div class="rc-issue-title">Etsy handles your sales tax</div><div class="rc-issue-desc">Marketplace facilitator laws mean you don't need to file separately on Etsy sales.</div></div></div>
+            <div class="rc-issue rc-blur"><div class="rc-dot a"></div><div><div class="rc-issue-title">Home office deduction available</div><div class="rc-issue-desc">You qualify — this could meaningfully reduce your taxable income this year.</div></div></div>
+            <div class="rc-issue rc-blur"><div class="rc-dot r"></div><div><div class="rc-issue-title">Self-employment tax: 15.3%</div><div class="rc-issue-desc">Set aside 30% of every payment. Here's exactly how to calculate your quarterly bill.</div></div></div>
+          </div>
+        </div>
+
+        <!-- Calendar preview -->
+        <div class="cal-card">
+          <div class="cal-head">
+            <span class="cal-head-title">📅 Tax Deadline Calendar</span>
+            <span class="cal-lock-pill">🔒 Full report</span>
+          </div>
+          <div class="cal-row">
+            <div class="cal-dot red"></div>
+            <div class="cal-date">Apr 15</div>
+            <div class="cal-desc">Q1 estimated taxes due</div>
+            <div class="cal-tag">Q1</div>
+          </div>
+          <div class="cal-row cal-blurred">
+            <div class="cal-dot amber"></div>
+            <div class="cal-date">Jun 16</div>
+            <div class="cal-desc">Q2 estimated taxes due</div>
+            <div class="cal-tag">Q2</div>
+          </div>
+          <div class="cal-row cal-blurred">
+            <div class="cal-dot amber"></div>
+            <div class="cal-date">Sep 15</div>
+            <div class="cal-desc">Q3 estimated taxes due + state filing</div>
+            <div class="cal-tag">Q3</div>
+          </div>
+          <div class="cal-row cal-blurred">
+            <div class="cal-dot green"></div>
+            <div class="cal-date">Jan 15</div>
+            <div class="cal-desc">Q4 estimated taxes due</div>
+            <div class="cal-tag">Q4</div>
+          </div>
+          <div class="cal-fade"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-bg" id="faq">
+  <div class="faq-inner">
+    <div class="faq-left">
+      <span class="section-tag">FAQ</span>
+      <h2>Common <em>questions</em></h2>
+      <p>Still not sure? Here are the things people ask before checking their hustle.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Is this actual legal advice? <div class="faq-toggle">+</div></div>
+        <div class="faq-a">No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">I sell on Etsy — do I really need this? <div class="faq-toggle">+</div></div>
+        <div class="faq-a">Yes. Etsy sellers are self-employed the moment they make their first sale. That means self-employment tax, potential quarterly payments, and state-specific rules most sellers don't know about until they get a surprise bill. A 60-second check can save you from a very bad tax season.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What if I haven't made any money yet? <div class="faq-toggle">+</div></div>
+        <div class="faq-a">That's actually the best time to use this. Setting up correctly from day one is much easier than fixing problems later. We'll tell you exactly what to set up now so you're protected before the money starts coming in.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What exactly is in the $5 report? <div class="faq-toggle">+</div></div>
+        <div class="faq-a">A full breakdown of every issue found, a prioritized action plan, a personalized tax deadline calendar, a deduction checklist specific to your hustle type, and a PDF you can download and share with your CPA. Everything is tailored to your state and income level.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do you store my information? <div class="faq-toggle">+</div></div>
+        <div class="faq-a">No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Your hustle deserves<br><em>real protection.</em></h2>
+      <p>Free check. Plain English. 60 seconds.</p>
+    </div>
+    <a href="tool.html" class="btn-cta">Check my hustle now →</a>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <div class="bottom-bar-top">
+    <span class="bottom-trust-label">Trusted by sellers on</span>
+    <div class="bottom-trust-div"></div>
+    <div class="bottom-trust-logos">
+      <span class="bottom-trust-logo etsy">Etsy</span>
+      <span class="bottom-trust-logo fiverr">fiverr</span>
+      <span class="bottom-trust-logo upwork">Upwork</span>
+      <span class="bottom-trust-logo shopify">Shopify</span>
+      <span class="bottom-trust-logo ebay">eBay</span>
+    </div>
+  </div>
+  <div class="bottom-bar-bottom">
+    <a href="/" class="bottom-wordmark">SideHustle<span>Guard</span></a>
+    <div class="bottom-copy">Not legal or tax advice · Educational information only · © 2025 SideHustleGuard</div>
+    <div class="bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="mailto:richard@sidehustleguard.com">Contact</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

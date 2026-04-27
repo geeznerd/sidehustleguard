@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb Host Taxes: What You Actually Owe (Plain English) — SideHustleGuard</title>
+<meta name="description" content="Airbnb hosts face complex tax rules — Schedule E vs Schedule C, the 14-day rule, depreciation. Here's plain-English guidance on what you owe and the deductions most hosts miss.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/airbnb-host-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="Airbnb Host Taxes: What You Actually Owe">
+<meta property="og:description" content="Schedule E vs C, the 14-day rule, depreciation, and the deductions most hosts miss.">
+<meta property="og:url" content="https://www.sidehustleguard.com/airbnb-host-taxes">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content{padding-left:18px;padding-right:18px}h1{font-size:30px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:40px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do Airbnb hosts have to pay taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, generally. Airbnb income is taxable as either rental income (Schedule E) or business income (Schedule C). The exception is the 14-day rule: if you rent your primary home for fewer than 15 days in a year, the income is tax-free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 14-day rule for Airbnb hosts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you rent your primary residence for 14 days or fewer in a calendar year, the rental income is completely tax-free and you don't have to report it. This is called the 'Augusta Rule' or '14-day rule.' You also can't deduct rental expenses in this case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Schedule E or Schedule C — which do Airbnb hosts file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most hosts file Schedule E (passive rental income — no self-employment tax). However, if you provide substantial services like daily cleaning, meals, or concierge service, you must file Schedule C (active business — subject to self-employment tax of 15.3%)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Airbnb send a 1099?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Airbnb sends a 1099-K to hosts who exceed the federal threshold ($5,000 in 2024) or applicable state thresholds. The form goes to both you and the IRS. You're required to report all rental income whether or not you receive a 1099."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Airbnb hosts claim depreciation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The structure of your rental property (not the land) can be depreciated over 27.5 years for residential properties. On a $300,000 building, that's about $10,900 in annual depreciation deductions. Furniture and appliances are depreciated over 5–7 years."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → Airbnb Host Taxes</div>
+  <h1>Airbnb host taxes — <em>what you actually owe</em></h1>
+  <div class="hero-meta">Updated April 2026 · 8 min read</div>
+  <p class="hero-intro">Airbnb tax rules are weirder than most side hustles. Schedule E vs Schedule C, the 14-day rule, depreciation, occupancy taxes — the upside is that hosts who understand the rules pay shockingly little. Here's the plain-English breakdown.</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> Airbnb income is taxable in most cases — but the rules are more favorable than you'd expect. The biggest variables: how many days you rent, whether you provide services, and whether you depreciate the property. A typical host paying tax on every dollar of revenue is leaving thousands on the table.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>The 14-day rule — the best deal in the tax code</h2>
+  <p>If you rent your primary residence for <strong>14 days or fewer</strong> in a calendar year, the rental income is <strong>completely tax-free</strong>. You don't even have to report it. This is sometimes called the "Augusta Rule" because of golf fans who rent their homes during The Masters tournament.</p>
+
+  <div class="callout callout-green">
+    <p><strong>Real example:</strong> You rent your home for $400/night during a 10-day local festival. You earned $4,000 — and owe zero federal tax on it. No reporting, no Schedule E, nothing. You just made $4,000 tax-free.</p>
+  </div>
+
+  <p>Two important catches:</p>
+  <ul>
+    <li>You also <strong>can't deduct rental expenses</strong> for those days. The income is free, but so are the expenses.</li>
+    <li>It must be your <strong>primary residence</strong> — a dedicated rental property doesn't qualify.</li>
+  </ul>
+
+  <p>If you rent for 15+ days, regular rules apply and you must report all rental income — including those first 14 days.</p>
+
+  <h2>Schedule E vs Schedule C — which one applies to you?</h2>
+  <p>This single distinction changes whether you pay 15.3% self-employment tax. Most hosts file <strong>Schedule E</strong> (passive rental). Some must file <strong>Schedule C</strong> (active business).</p>
+
+  <table class="tax-table">
+    <tr><th>Form</th><th>When it applies</th><th>SE tax?</th></tr>
+    <tr><td>Schedule E</td><td>You rent the space, period. No daily services.</td><td>No (saves 15.3%)</td></tr>
+    <tr><td>Schedule C</td><td>You provide substantial services like daily cleaning, meals, concierge, transportation</td><td>Yes (15.3%)</td></tr>
+  </table>
+
+  <p>"Substantial services" is the key phrase. Standard hospitality (clean linens, Wi-Fi, basic supplies, toiletries) does <strong>not</strong> trigger Schedule C. You'd need to be doing things like:</p>
+  <ul>
+    <li>Daily housekeeping during a stay</li>
+    <li>Cooked breakfast or meals (like a B&B)</li>
+    <li>Tour or transportation services</li>
+    <li>On-site concierge / front-desk-type service</li>
+  </ul>
+
+  <p>Most Airbnb hosts file Schedule E. That avoids self-employment tax entirely — a meaningful tax savings (15.3% on net income).</p>
+
+  <h2>What is a 1099-K and when does Airbnb send one?</h2>
+  <p>Airbnb sends a <strong>1099-K</strong> to hosts based on federal and state thresholds:</p>
+  <ul>
+    <li><strong>Federal threshold (2024):</strong> $5,000 in gross payments. (This was $20,000+200 transactions until recently and the IRS keeps changing it — likely dropping to $600 in future years.)</li>
+    <li><strong>State thresholds:</strong> Some states have lower thresholds — Massachusetts and Vermont at $600, others at $1,000–$10,000.</li>
+  </ul>
+  <p>Even if you don't receive a 1099-K, <strong>you must report all rental income</strong>. The form is informational; the tax obligation exists regardless.</p>
+
+  <h2>What can Airbnb hosts deduct?</h2>
+  <p>This is where most hosts leave money on the table. Anything ordinary and necessary for the rental is deductible. Categorize them as either <strong>direct rental expenses</strong> (100% deductible) or <strong>shared expenses</strong> (deductible by the rental-use percentage).</p>
+
+  <h3>Direct expenses — 100% deductible</h3>
+  <ul>
+    <li><strong>Airbnb service fees</strong> — what Airbnb takes from each booking</li>
+    <li><strong>Cleaning fees</strong> if you pay a cleaner</li>
+    <li><strong>Toiletries, soap, paper goods, coffee</strong> for guests</li>
+    <li><strong>Linens, towels, bedding</strong> for the rental</li>
+    <li><strong>Repairs and maintenance</strong> of the rental space</li>
+    <li><strong>Photography</strong> for your listing</li>
+    <li><strong>Smart locks, keypads, security cameras</strong> for the rental</li>
+  </ul>
+
+  <h3>Shared expenses — % based on rental use</h3>
+  <p>If your rental is part of your home (e.g., a guest room or in-law suite), deduct the rental-use percentage of:</p>
+  <ul>
+    <li><strong>Mortgage interest</strong> (the rental portion only)</li>
+    <li><strong>Property taxes</strong> (the rental portion only)</li>
+    <li><strong>Utilities</strong> — electric, gas, water, internet</li>
+    <li><strong>Homeowners insurance</strong> (rental portion)</li>
+    <li><strong>HOA fees</strong> (rental portion)</li>
+  </ul>
+  <p>Rental-use percentage is calculated by either days rented (rental days / total days) or by space (rental sq ft / total sq ft) — pick the one that applies most accurately.</p>
+
+  <h3>Depreciation — the deduction most hosts miss entirely</h3>
+  <p>The biggest deduction available to Airbnb hosts is <strong>depreciation</strong> of the rental property structure. The IRS lets you deduct the cost of the building (not the land) over 27.5 years.</p>
+
+  <div class="callout callout-green">
+    <p><strong>Real example:</strong> You bought your rental property for $400,000 — say $100,000 of that is land value and $300,000 is the building. You can deduct $300,000 / 27.5 = <strong>$10,909 per year</strong> in depreciation. On a property that nets $25,000 in rental income, depreciation alone wipes out 44% of taxable income.</p>
+  </div>
+
+  <p>Furniture, appliances, and equipment are depreciated faster — typically 5–7 years. A $5,000 furniture spend deducts roughly $1,000/year for 5 years.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>The depreciation gotcha:</strong> When you sell the property, the IRS "recaptures" the depreciation — meaning you pay tax on the depreciation you took (currently 25% rate). It's still a tax win because you defer the tax for years and the recapture rate is often lower than your regular income rate. But know it's coming.</p>
+  </div>
+
+  <h2>What about state and local taxes?</h2>
+  <p>Beyond federal income tax, Airbnb hosts may owe:</p>
+  <ul>
+    <li><strong>State income tax</strong> — varies by state (0–13.3%)</li>
+    <li><strong>Occupancy tax / lodging tax / hotel tax</strong> — often 8–17%, charged to guests but you may be responsible for collecting and remitting</li>
+    <li><strong>Sales tax</strong> — some states/cities charge sales tax on short-term rentals</li>
+  </ul>
+  <p>Airbnb collects and remits occupancy taxes automatically in most major US cities. Check your dashboard for a list of which taxes Airbnb handles in your jurisdiction. If they don't handle it, you do.</p>
+
+  <!-- MID-PAGE CTA -->
+  <div class="cta-box">
+    <h3>Not sure where <em>you</em> stand?</h3>
+    <p>Answer 8 questions and get a personalized breakdown of your specific tax situation — free.</p>
+    <a href="/tool.html?type=Renting%20something%20out" class="btn-gold">Check my hosting hustle — free →</a>
+    <div class="cta-note">No sign-up · Plain English · 60 seconds</div>
+  </div>
+
+  <h2>Should Airbnb hosts form an LLC?</h2>
+  <p>For Airbnb specifically, an LLC is more commonly recommended than for most side hustles, and the reason is liability. A guest who slips on your stairs, has a carbon-monoxide incident, or claims emotional distress could sue you personally. Without an LLC, your home, savings, and other assets are exposed.</p>
+  <p>An LLC owning the rental property separates personal and business assets. Combined with proper short-term-rental insurance, it's the standard setup for serious hosts. Discuss with an attorney before transferring property into an LLC — there can be mortgage and property tax implications.</p>
+
+  <h2>Common mistakes Airbnb hosts make</h2>
+
+  <h3>1. Skipping depreciation</h3>
+  <p>Hosts who file their own taxes often don't depreciate the property. That's tens of thousands in lifetime deductions left on the table. If you've been hosting for years and never claimed depreciation, the IRS lets you catch up via Form 3115 — talk to a CPA.</p>
+
+  <h3>2. Filing Schedule C unnecessarily</h3>
+  <p>Some hosts assume "I run an Airbnb business" means Schedule C. Unless you provide substantial services, file Schedule E. The 15.3% self-employment tax savings is real money.</p>
+
+  <h3>3. Not tracking rental days</h3>
+  <p>The 14-day rule and the rental-vs-personal-use percentage both depend on knowing how many days the property was rented. Keep a calendar — Airbnb's own dashboard exports this.</p>
+
+  <h3>4. Mixing personal and rental expenses</h3>
+  <p>If you renovate "the rental" but use the new oven yourself when you stay there, the deduction gets complicated. A separate bank account and clear records solve this.</p>
+
+  <h3>5. Forgetting occupancy taxes</h3>
+  <p>If Airbnb doesn't collect occupancy tax in your area, you're personally on the hook — and it's often 10%+. Cities have started auditing aggressively. Check Airbnb's tax collection page for your specific city.</p>
+
+
+<hr>
+<h2>Frequently asked <em>questions</em></h2>
+  <div class="faq-item">
+    <h3>Do Airbnb hosts have to pay taxes?</h3>
+    <p>Yes, generally. Airbnb income is taxable as either rental income (Schedule E) or business income (Schedule C). The exception is the 14-day rule: if you rent your primary home for fewer than 15 days in a year, the income is tax-free.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What is the 14-day rule for Airbnb hosts?</h3>
+    <p>If you rent your primary residence for 14 days or fewer in a calendar year, the rental income is completely tax-free and you don't have to report it. You also can't deduct rental expenses in this case.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Schedule E or Schedule C — which do Airbnb hosts file?</h3>
+    <p>Most hosts file Schedule E (passive rental income — no self-employment tax). However, if you provide substantial services like daily cleaning, meals, or concierge service, you must file Schedule C (active business — subject to self-employment tax of 15.3%).</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does Airbnb send a 1099?</h3>
+    <p>Airbnb sends a 1099-K to hosts who exceed the federal threshold ($5,000 in 2024) or applicable state thresholds. The form goes to both you and the IRS. You're required to report all rental income whether or not you receive a 1099.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can Airbnb hosts claim depreciation?</h3>
+    <p>Yes. The structure of your rental property (not the land) can be depreciated over 27.5 years for residential properties. On a $300,000 building, that's about $10,900 in annual depreciation deductions. Furniture and appliances are depreciated over 5–7 years.</p>
+  </div>
+
+<hr>
+
+  <h2>The bottom line</h2>
+  <p>Airbnb hosting is one of the more tax-favored side hustles in the US — but only for hosts who actually know the rules. The 14-day rule, depreciation, the choice between Schedule E and C, and the deduction for shared home expenses can dramatically change what you owe. Hosts who file simply ("here's my Airbnb income, here's the tax") almost always overpay.</p>
+  <p>Track every expense. Calculate depreciation. File Schedule E unless you actually provide substantial services. And if you have any liability exposure (most hosts do), seriously consider an LLC.</p>
+
+
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+  <div class="nw-badge">Recommended</div>
+  <div class="nw-body">
+    <div class="nw-context">If you decide to form an LLC for your rental</div>
+    <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+    <div class="nw-desc">For Airbnb hosts specifically: Northwest's registered agent service keeps your home address off the LLC filings and handles state paperwork. Critical for hosts who don't want guests easily looking up their personal residence.</div>
+    <div class="nw-features">
+      <span class="nw-feat">✓ Address privacy on public records</span>
+      <span class="nw-feat">✓ All 50 states</span>
+      <span class="nw-feat">✓ Handles all paperwork</span>
+      <span class="nw-feat">✓ No hidden fees</span>
+    </div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">
+      Form your LLC with Northwest →
+    </a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+<div class="cta-box">
+    <h3>Know exactly where <em>your</em> hosting business stands</h3>
+    <p>Our free checker looks at your specific income, state, property setup, and registration status — then tells you exactly what you owe and what to do next.</p>
+    <a href="/tool.html?type=Renting%20something%20out" class="btn-gold">Get my free Airbnb tax check →</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+</div>
+
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+      <a href="/side-hustle-taxes.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Side Hustle Taxes: What You Actually Owe</div>
+      </a>
+      <a href="/quarterly-taxes-self-employed.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
+      </a>
+      <a href="/freelancer-taxes.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Freelancer Taxes: The Complete Guide</div>
+      </a>
+      <a href="/llc-etsy-seller.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">When to Form an LLC</div>
+      </a>
+  </div>
+</div>
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/freelancer-taxes.html">Freelancer taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>

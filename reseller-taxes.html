@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reseller Taxes (eBay, Poshmark, Mercari): What You Actually Owe — SideHustleGuard</title>
+<meta name="description" content="The 1099-K threshold dropped to $5,000 — most resellers don't realize they're now reporting territory. Here's what you owe and the COGS deduction that cuts the bill.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/reseller-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="Reseller Taxes (eBay, Poshmark, Mercari)">
+<meta property="og:description" content="What resellers owe, the COGS deduction, and what changed with the new 1099-K thresholds.">
+<meta property="og:url" content="https://www.sidehustleguard.com/reseller-taxes">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content{padding-left:18px;padding-right:18px}h1{font-size:30px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:40px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I have to pay taxes on eBay, Poshmark, or Mercari sales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in most cases. If you're reselling for profit, you owe income tax and self-employment tax on the profit (sales minus cost of goods sold and other expenses). The exception is selling personal items at a loss — those sales are not taxable, but the platform may still issue a 1099-K reporting the gross."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 1099-K threshold for resellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The federal 1099-K threshold is $5,000 in gross sales for 2024 (down from $20,000+200 transactions). It may drop to $600 in future years. Some states have lower thresholds. The 1099-K is sent to you and the IRS — you must report the income whether or not you receive one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I owe tax if I sold personal items at a loss?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Selling personal items for less than you paid is considered a personal loss, not a taxable gain. However, you can't deduct the loss either. If you receive a 1099-K for these sales, you'll need to report the income and offset it on Schedule 1 to show no taxable profit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is COGS for resellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cost of Goods Sold (COGS) is what you paid to acquire the items you sold. For resellers, this includes the purchase price, sales tax paid at acquisition, and any costs to prepare the item for sale (cleaning, repairs). COGS reduces your taxable profit — if you bought a jacket for $20 and sold it for $50, your taxable profit is $30, not $50."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is reselling a hobby or a business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS uses several factors: do you operate in a businesslike manner, expect to make a profit, and devote time to the activity? Most active resellers (regular sales, sourcing inventory, tracking expenses) are businesses. Occasional sellers clearing out a closet are hobbyists. Hobbies report income but cannot deduct expenses; businesses can do both."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → Reseller Taxes</div>
+  <h1>Reseller taxes — <em>eBay, Poshmark, Mercari</em></h1>
+  <div class="hero-meta">Updated April 2026 · 7 min read</div>
+  <p class="hero-intro">The 1099-K threshold dropped to $5,000, then keeps shifting. Most resellers had no idea. Here's what you actually owe, the cost-of-goods deduction that's the entire game, and how to handle the 1099-K that just showed up in your mail.</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> If you're reselling for profit, the IRS treats you as a business — that means income tax and self-employment tax on the profit (not the gross). Selling personal stuff at a loss is not taxable, but you'll still get a 1099-K reporting the gross — which you must report and offset to avoid an automatic bill.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>The 1099-K change everyone is confused about</h2>
+  <p>For years, the 1099-K threshold was $20,000 in sales <em>and</em> 200 transactions — meaning most casual resellers never received one. That changed:</p>
+
+  <table class="tax-table">
+    <tr><th>Tax year</th><th>Federal 1099-K threshold</th></tr>
+    <tr><td>2023 and earlier</td><td>$20,000 + 200 transactions</td></tr>
+    <tr><td>2024</td><td>$5,000 (no transaction minimum)</td></tr>
+    <tr><td>2025</td><td>$2,500 (planned)</td></tr>
+    <tr><td>2026+</td><td>$600 (planned, may shift)</td></tr>
+  </table>
+
+  <p>The IRS keeps changing this and Congress keeps debating it. The trend is clear: <strong>the threshold is going down, and more resellers will receive 1099-Ks</strong>. Some states (Massachusetts, Vermont, Virginia) already have $600 thresholds.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Important:</strong> Receiving a 1099-K does not by itself mean you owe tax. It just means the platform reported your gross sales to the IRS. Whether you owe tax depends on whether the sales were profitable — and whether they were business activity or personal-item sales.</p>
+  </div>
+
+  <h2>Hobby vs business — which one are you?</h2>
+  <p>This is the first question to answer because it changes how everything else works.</p>
+
+  <table class="tax-table">
+    <tr><th></th><th>Hobby</th><th>Business</th></tr>
+    <tr><td>Examples</td><td>Cleaning out closet, occasional sales</td><td>Regular sourcing, sales weekly+</td></tr>
+    <tr><td>Income reporting</td><td>Required (line 8z, Schedule 1)</td><td>Required (Schedule C)</td></tr>
+    <tr><td>Expense deductions</td><td>Not allowed</td><td>Fully deductible</td></tr>
+    <tr><td>SE tax (15.3%)</td><td>No</td><td>Yes (on net profit $400+)</td></tr>
+  </table>
+
+  <p>The IRS uses a 9-factor test, but the practical version is: <strong>are you actively trying to make money?</strong> If you source inventory, list regularly, track sales, and treat it as a profit-making activity, you're a business. If you're decluttering and occasionally selling stuff, you're a hobbyist.</p>
+
+  <p>Counterintuitively, <strong>being a business is usually better than being a hobbyist</strong> because hobbyists must report all income but can't deduct any expenses. A reseller who buys a $50 item and sells it for $100 reports $100 as a hobby (taxed on $100) or $100 minus $50 cost as a business (taxed on $50).</p>
+
+  <h2>The COGS deduction — the entire game</h2>
+  <p><strong>Cost of Goods Sold (COGS)</strong> is what you paid to acquire the items you sold. For resellers, COGS is the single biggest deduction — often wiping out 50–80% of gross sales.</p>
+
+  <p>COGS includes:</p>
+  <ul>
+    <li><strong>Purchase price</strong> of the item</li>
+    <li><strong>Sales tax</strong> you paid when buying it</li>
+    <li><strong>Shipping cost to receive it</strong> (if you bought online)</li>
+    <li><strong>Cost to prepare for sale</strong> — cleaning supplies, repair parts, dry cleaning</li>
+  </ul>
+
+  <div class="callout callout-green">
+    <p><strong>Real example:</strong> You source clothing at thrift stores for $4,000 over the year and sell it for $15,000 on Poshmark. Your COGS is $4,000. After listing fees, shipping supplies, and other expenses (~$1,500), your taxable profit is $9,500 — not $15,000. That difference saves roughly $1,400 in combined taxes.</p>
+  </div>
+
+  <h3>How to track COGS</h3>
+  <p>This is the hardest part of reselling for taxes. You need to know what you paid for each item you sell. Three approaches:</p>
+  <ul>
+    <li><strong>Per-item tracking</strong> — best if you have inventory. Spreadsheet listing each SKU with cost, sale price, fees, profit.</li>
+    <li><strong>Tools</strong> — apps like My Reseller Genie, ResellerHub, GoDaddy Bookkeeping handle this automatically.</li>
+    <li><strong>Aggregate tracking</strong> — total purchases and total sales for the year. Less precise but acceptable if you can't reconstruct per-item costs.</li>
+  </ul>
+
+  <h2>Other deductions for resellers</h2>
+  <p>Beyond COGS, common deductions:</p>
+  <ul>
+    <li><strong>Platform fees</strong> — eBay's 13%, Poshmark's 20%, Mercari's 10% (as of 2024). Fully deductible.</li>
+    <li><strong>Payment processing fees</strong> — built into platform fees usually, but standalone (e.g., PayPal direct) is deductible</li>
+    <li><strong>Shipping supplies</strong> — boxes, mailers, tape, labels, tissue paper</li>
+    <li><strong>Postage</strong> if you pay yourself (rather than buyer-paid)</li>
+    <li><strong>Mileage</strong> to source items — thrift store runs, garage sales, estate sales (67¢/mile in 2024)</li>
+    <li><strong>Photography equipment</strong> — lighting, mannequins, backdrops for listings</li>
+    <li><strong>Software / subscriptions</strong> — Vendoo, Posherva, Mercari listing tools</li>
+    <li><strong>Storage</strong> — shelving, bins, dedicated room (home office deduction)</li>
+    <li><strong>Phone</strong> — business-use percentage</li>
+    <li><strong>Internet</strong> — business-use percentage</li>
+  </ul>
+
+  <h2>What about selling personal items at a loss?</h2>
+  <p>If you're selling personal items for less than you paid (most closet-clearing situations), <strong>you don't owe tax</strong>. But if you receive a 1099-K, the IRS still has the gross number and expects you to do something with it.</p>
+
+  <p>The fix: report the 1099-K income on <strong>Schedule 1, Line 8z</strong>, then on <strong>Line 24z</strong> claim an offsetting adjustment for "Form 1099-K personal items sold at a loss." Net effect: $0 taxable income, but the IRS sees you addressed it. Without this, you'll get a CP2000 notice with a tax bill.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Mixed personal + business:</strong> If your account has a mix of personal items (sold at a loss) and resold inventory (sold for profit), you'll need to separate them. Track which items came from your closet vs which were sourced for resale.</p>
+  </div>
+
+  <h2>Sales tax — handled by the platform</h2>
+  <p>Good news: under marketplace facilitator laws, eBay, Poshmark, Mercari, Etsy, Depop, and similar platforms <strong>collect and remit sales tax</strong> on your behalf in all states that require it. You don't need to register for a sales tax permit or file returns for those sales. This is one fewer thing to worry about.</p>
+
+  <!-- MID-PAGE CTA -->
+  <div class="cta-box">
+    <h3>Not sure where <em>you</em> stand?</h3>
+    <p>Answer 8 questions and get a personalized breakdown of your specific tax situation — free.</p>
+    <a href="/tool.html?type=Reselling%20or%20flipping" class="btn-gold">Check my reseller hustle — free →</a>
+    <div class="cta-note">No sign-up · Plain English · 60 seconds</div>
+  </div>
+
+  <h2>Quarterly estimated taxes</h2>
+  <p>If your reseller business will have you owing more than $1,000 in federal tax for the year, the IRS expects quarterly payments. Four deadlines:</p>
+  <ul>
+    <li><strong>April 15</strong> — for income earned Jan–Mar</li>
+    <li><strong>June 15</strong> — for income earned Apr–May</li>
+    <li><strong>September 15</strong> — for income earned Jun–Aug</li>
+    <li><strong>January 15</strong> — for income earned Sep–Dec</li>
+  </ul>
+  <p>Most casual resellers (under $5,000 net profit) won't owe enough to need quarterlies. Above that, set aside 25–30% of your net profit each month and pay quarterly to avoid penalties.</p>
+
+  <h2>Common mistakes resellers make</h2>
+
+  <h3>1. Treating the 1099-K number as taxable income</h3>
+  <p>The 1099-K reports gross sales — including platform fees, shipping costs, refunds, and the cost of items you sold. It is <strong>not</strong> your taxable profit. If you report the full 1099-K amount as income without subtracting COGS and expenses, you'll dramatically overpay.</p>
+
+  <h3>2. Not tracking what items cost</h3>
+  <p>Without records of what you paid for items, the IRS could (in an audit) deny your COGS deduction entirely. Save receipts. Take photos of price tags. Use an app or spreadsheet from day one.</p>
+
+  <h3>3. Mixing personal sales and business inventory</h3>
+  <p>If you started by selling old stuff from your closet and gradually moved into reselling for profit, the IRS treats those differently. Keep them separated mentally and in your records — preferably in different listings or accounts.</p>
+
+  <h3>4. Forgetting mileage to sourcing</h3>
+  <p>Drives to thrift stores, estate sales, and garage sales count as business mileage. At 67¢/mile, even 500 sourcing miles is a $335 deduction.</p>
+
+  <h3>5. Not separating business and personal money</h3>
+  <p>Free business checking accounts (Found, Relay, Mercury) take 30 minutes to open. Run all reselling income and expenses through that account. Tax time becomes 80% easier.</p>
+
+
+<hr>
+<h2>Frequently asked <em>questions</em></h2>
+  <div class="faq-item">
+    <h3>Do I have to pay taxes on eBay, Poshmark, or Mercari sales?</h3>
+    <p>Yes, in most cases. If you're reselling for profit, you owe income tax and self-employment tax on the profit (sales minus cost of goods sold and other expenses). The exception is selling personal items at a loss — those sales are not taxable, but the platform may still issue a 1099-K reporting the gross.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What is the 1099-K threshold for resellers?</h3>
+    <p>The federal 1099-K threshold is $5,000 in gross sales for 2024 (down from $20,000+200 transactions). It may drop to $600 in future years. Some states have lower thresholds. The 1099-K is sent to you and the IRS — you must report the income whether or not you receive one.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Do I owe tax if I sold personal items at a loss?</h3>
+    <p>No. Selling personal items for less than you paid is considered a personal loss, not a taxable gain. However, you can't deduct the loss either. If you receive a 1099-K for these sales, you'll need to report the income and offset it on Schedule 1 to show no taxable profit.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What is COGS for resellers?</h3>
+    <p>Cost of Goods Sold (COGS) is what you paid to acquire the items you sold. For resellers, this includes the purchase price, sales tax paid at acquisition, and any costs to prepare the item for sale (cleaning, repairs). COGS reduces your taxable profit — if you bought a jacket for $20 and sold it for $50, your taxable profit is $30, not $50.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Is reselling a hobby or a business?</h3>
+    <p>The IRS uses several factors: do you operate in a businesslike manner, expect to make a profit, and devote time to the activity? Most active resellers (regular sales, sourcing inventory, tracking expenses) are businesses. Occasional sellers clearing out a closet are hobbyists. Hobbies report income but cannot deduct expenses; businesses can do both.</p>
+  </div>
+
+<hr>
+
+  <h2>The bottom line</h2>
+  <p>Reseller taxes come down to one number: <strong>profit, not gross</strong>. The 1099-K showing on your screen is gross sales — your real taxable income is profit after COGS, fees, shipping, and other expenses, and that number is usually 30–60% of the gross. Resellers who don't track COGS or mix personal sales with business inventory always overpay.</p>
+  <p>Open a separate business account. Track every item's cost. Save platform fee statements. If you're selling personal items at a loss and got a 1099-K, file the offsetting adjustment on Schedule 1 — don't ignore the 1099 hoping it goes away.</p>
+
+
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+  <div class="nw-badge">Recommended</div>
+  <div class="nw-body">
+    <div class="nw-context">If your reselling business is growing into serious volume</div>
+    <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+    <div class="nw-desc">For high-volume resellers thinking about an LLC: Northwest's flat-fee registered agent service keeps your home address off public business filings. Used by tens of thousands of small business owners.</div>
+    <div class="nw-features">
+      <span class="nw-feat">✓ Address privacy on public records</span>
+      <span class="nw-feat">✓ All 50 states</span>
+      <span class="nw-feat">✓ Handles all paperwork</span>
+      <span class="nw-feat">✓ No hidden fees</span>
+    </div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">
+      Form your LLC with Northwest →
+    </a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+<div class="cta-box">
+    <h3>Know exactly where <em>your</em> reselling stands</h3>
+    <p>Our free checker looks at your specific income, state, payment methods, and registration status — then tells you exactly what you owe and what to do next.</p>
+    <a href="/tool.html?type=Reselling%20or%20flipping" class="btn-gold">Get my free reseller tax check →</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+</div>
+
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+      <a href="/etsy-taxes.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Etsy Tax Guide for Sellers</div>
+      </a>
+      <a href="/paypal-1099k-etsy.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">PayPal 1099-K Explained</div>
+      </a>
+      <a href="/quarterly-taxes-self-employed.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
+      </a>
+      <a href="/side-hustle-taxes.html" class="related-card">
+        <div class="related-card-arrow">→</div>
+        <div class="related-card-title">Side Hustle Taxes: What You Actually Owe</div>
+      </a>
+  </div>
+</div>
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/etsy-taxes.html">Etsy taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>

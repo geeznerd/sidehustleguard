@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber & Lyft Taxes: What Every Rideshare Driver Actually Owes — SideHustleGuard</title>
+<meta name="description" content="Uber and Lyft don't withhold taxes. Here's exactly what rideshare drivers owe, how the 1099-K works, and the mileage deduction that cuts your bill.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/uber-lyft-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="Uber & Lyft Taxes: What Every Rideshare Driver Actually Owes">
+<meta property="og:description" content="How the 1099-K works, the mileage deduction that cuts your bill, and what to set aside.">
+<meta property="og:url" content="https://www.sidehustleguard.com/uber-lyft-taxes">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content{padding-left:18px;padding-right:18px}h1{font-size:30px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:40px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do Uber and Lyft drivers have to pay taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Uber and Lyft drivers are independent contractors. Neither platform withholds income tax or self-employment tax. You owe self-employment tax (15.3%) plus federal and state income tax on your net profit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Uber send a 1099 or a W-2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uber sends a 1099-K for trip earnings and a separate 1099-NEC for incentives, bonuses, and referral payments. You do not receive a W-2 because you are an independent contractor, not an employee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Uber and Lyft drivers deduct mileage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Rideshare drivers can deduct business mileage at the IRS standard rate (67¢/mile in 2024, 70¢/mile in 2025). Deductible miles include rides with passengers and miles driven while the app is on waiting for requests. Personal miles are not deductible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should Uber and Lyft drivers set aside for taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set aside 25–30% of your net earnings (after the mileage deduction) for taxes. This covers self-employment tax plus federal and state income tax for most drivers. Once you know your actual tax rate after your first return, you can fine-tune the percentage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do rideshare drivers need to pay quarterly taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you expect to owe more than $1,000 in federal tax for the year. Pay quarterly at IRS.gov/payments by April 15, June 15, September 15, and January 15. Skipping results in underpayment penalties even if you pay in full at filing."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → Uber &amp; Lyft Taxes</div>
+  <h1>Uber &amp; Lyft taxes: <em>what every rideshare driver</em> actually owes</h1>
+  <div class="hero-meta">Updated April 2026 · 8 min read</div>
+  <p class="hero-intro">Uber and Lyft send you a 1099 — not a W-2. That means no withholding, no "employer" paying half your Social Security, and a tax bill that surprises most new drivers. Here's what you actually owe and the deductions that cut it significantly.</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> Rideshare drivers owe self-employment tax (15.3%) plus federal and state income tax on their <em>net profit</em>. The mileage deduction is your biggest lever — deducting every business mile often cuts taxable income by 40–60%. Drivers who don't track miles typically owe 2–3× more than those who do.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>What taxes do Uber and Lyft drivers owe?</h2>
+  <p>As an independent contractor for both platforms, three taxes hit your earnings:</p>
+
+  <table class="tax-table">
+    <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
+    <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security + Medicare (both halves)</td></tr>
+    <tr><td>Federal income tax</td><td>10–22% (most drivers)</td><td>Stacks on top of SE tax</td></tr>
+    <tr><td>State income tax</td><td>0–9%+ depending on state</td><td>Zero in TX, FL, NV; high in CA, NY</td></tr>
+  </table>
+
+  <p>The piece that shocks new drivers is the self-employment tax. As an employee, you'd only see 7.65% taken from your check (your half). As a contractor, you owe the full <strong>15.3%</strong> because you're simultaneously the employer and the employee. The IRS does let you deduct half of it when calculating your income tax, which softens the blow slightly.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Important:</strong> All of this applies to <em>net profit</em> — your rideshare earnings minus your business expenses. Mileage is almost always the largest deduction and can reduce taxable income by 40–60% of gross earnings for drivers who track carefully.</p>
+  </div>
+
+  <h2>The 1099-K vs 1099-NEC — what Uber and Lyft actually send</h2>
+  <p>Uber and Lyft are classified as "marketplace facilitators" by the IRS, so their tax forms work differently than DoorDash or Instacart:</p>
+  <ul>
+    <li><strong>1099-K</strong> — reports your gross trip earnings (what passengers paid) above the reporting threshold. For 2024, the threshold is $5,000; dropping to $2,500 for 2025 and $600 from 2026.</li>
+    <li><strong>1099-NEC</strong> — reports incentive pay: bonuses, quests, referral fees, and driver rewards. Usually a separate form from the same platform.</li>
+  </ul>
+
+  <div class="callout callout-amber">
+    <p><strong>The 1099-K gross earnings trap:</strong> Uber's 1099-K shows the <em>gross fare</em> passengers paid — not your take-home after Uber's service fee (~25%). You report gross earnings and then deduct Uber's service fee as a business expense on Schedule C. If you only report what hit your bank account, you'll underreport and miss the deduction. Uber's annual Tax Summary document breaks this down; download it before you file.</p>
+  </div>
+
+  <h2>The mileage deduction — every mile counts</h2>
+  <p>This is the most important number on the page. The IRS lets rideshare drivers deduct every business mile at the standard rate:</p>
+  <ul>
+    <li><strong>2024:</strong> 67¢ per mile</li>
+    <li><strong>2025:</strong> 70¢ per mile</li>
+  </ul>
+
+  <p>For rideshare, <strong>deductible miles include:</strong></p>
+  <ul>
+    <li>Miles driven with a passenger in the car</li>
+    <li>Miles driven to pick up a passenger after accepting a ride request</li>
+    <li>Miles driven while the app is on and you're waiting for a request (Uber/Lyft online miles)</li>
+  </ul>
+  <p>The Uber and Lyft apps report "online miles," which should capture all of the above. But many drivers find the app undercounts slightly — keep a secondary log (Stride or Everlance are free) to confirm.</p>
+
+  <div class="callout callout-green">
+    <p><strong>Real example:</strong> A driver earns $30,000 gross and drives 22,000 business miles. At 67¢/mile, that's a $14,740 deduction. Net profit: $15,260 (not $30,000). Their total tax drops from ~$8,500 to ~$4,200. The mileage deduction alone saved over $4,000.</p>
+  </div>
+
+  <h3>Standard mileage vs. actual expenses</h3>
+  <p>You can deduct mileage using the standard rate or track actual expenses (gas, insurance, repairs, depreciation) and deduct the business-use percentage. Standard mileage wins for most drivers — it requires only a mileage log and involves less math. Actual expenses may be better if you drive a very fuel-inefficient car or have high insurance costs.</p>
+
+  <h2>Other deductions rideshare drivers miss</h2>
+  <ul>
+    <li><strong>Uber/Lyft service fees</strong> — the platform's cut, shown in your annual Tax Summary</li>
+    <li><strong>Phone — business-use percentage</strong> — if your phone is 60% Uber-related, deduct 60% of the bill</li>
+    <li><strong>Car mount, charger, USB hub</strong> — anything used specifically for rideshare</li>
+    <li><strong>Water, mints, phone charging cables for passengers</strong> — small but legitimate</li>
+    <li><strong>Tolls and parking fees</strong> incurred during rides</li>
+    <li><strong>Car washes</strong> — business-use portion</li>
+    <li><strong>Roadside assistance membership</strong> (AAA) — business portion</li>
+    <li><strong>Health insurance premiums</strong> — if you're self-employed and not covered elsewhere</li>
+    <li><strong>Half of self-employment tax</strong> — the IRS lets you deduct 50% of SE tax from gross income</li>
+  </ul>
+
+  <h2>Quarterly estimated taxes</h2>
+  <p>If you expect to owe <strong>more than $1,000 in federal tax</strong> for the year, pay quarterly. The deadlines:</p>
+  <ul>
+    <li><strong>April 15</strong> — Q1 earnings (Jan–Mar)</li>
+    <li><strong>June 15</strong> — Q2 earnings (Apr–May)</li>
+    <li><strong>September 15</strong> — Q3 earnings (Jun–Aug)</li>
+    <li><strong>January 15</strong> — Q4 earnings (Sep–Dec)</li>
+  </ul>
+  <p>Pay at IRS.gov/payments in about 10 minutes. If rideshare is a side hustle and your W-2 job already withholds enough, you may not need quarterly payments — check IRS Form 1040-ES to estimate.</p>
+
+  <!-- MID-PAGE CTA -->
+  <div class="cta-box">
+    <h3>Not sure where <em>you</em> stand?</h3>
+    <p>Answer 8 questions and get a personalized breakdown of your specific tax situation — free.</p>
+    <a href="/tool.html?type=Freelance%20%2F%20services" class="btn-gold">Check my rideshare hustle — free →</a>
+    <div class="cta-note">No sign-up · Plain English · 60 seconds</div>
+  </div>
+
+  <h2>Common mistakes rideshare drivers make</h2>
+
+  <h3>1. Relying only on the in-app mileage summary</h3>
+  <p>Uber and Lyft's in-app mileage figures are generally reliable, but they occasionally miss miles at the edges of trips or fail to log correctly if the app crashes. A secondary tracker (Stride, Everlance) running in the background costs nothing and covers any gaps.</p>
+
+  <h3>2. Treating gross earnings as taxable income</h3>
+  <p>Your 1099-K shows gross fares — what passengers paid. That's higher than what you actually received. Deduct the platform's service fees on Schedule C. Skipping this means you overpay taxes on income you never kept.</p>
+
+  <h3>3. Not setting money aside during active periods</h3>
+  <p>Rideshare income can spike around holidays and events. Set aside <strong>25–30% of every payment</strong> into a separate savings account as it comes in. A dedicated account named "Tax" makes it impossible to forget.</p>
+
+  <h3>4. Missing the first quarter</h3>
+  <p>Many drivers who start in January miss the April 15 quarterly deadline because they don't realize they owe until filing season. If you drove in Q1, estimate your earnings and pay by April 15.</p>
+
+<hr>
+<h2>Frequently asked <em>questions</em></h2>
+  <div class="faq-item">
+    <h3>Do Uber and Lyft drivers have to pay taxes?</h3>
+    <p>Yes. Both platforms classify drivers as independent contractors. No taxes are withheld. You owe self-employment tax (15.3%) plus federal and state income tax on net profit.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does Uber send a 1099 or a W-2?</h3>
+    <p>Uber sends a 1099-K for trip earnings and a 1099-NEC for incentive payments. No W-2 is issued. You receive both forms digitally through Uber's Tax Summary in the driver dashboard.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can Uber and Lyft drivers deduct mileage?</h3>
+    <p>Yes. Deductible miles include rides with passengers, miles to pick up passengers, and miles driven while the app is on waiting for requests. Use the standard rate: 67¢/mile (2024), 70¢/mile (2025).</p>
+  </div>
+  <div class="faq-item">
+    <h3>How much should rideshare drivers set aside for taxes?</h3>
+    <p>Set aside 25–30% of net earnings (after mileage) to cover self-employment tax plus federal and state income tax. Adjust after your first full tax season.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Do rideshare drivers need to pay quarterly taxes?</h3>
+    <p>Yes, if you expect to owe more than $1,000 in federal tax for the year. Pay at IRS.gov/payments by April 15, June 15, September 15, and January 15.</p>
+  </div>
+
+<hr>
+
+  <h2>The bottom line</h2>
+  <p>Uber and Lyft drivers owe self-employment tax plus income tax on net profit — but the mileage deduction typically cuts taxable income nearly in half. The drivers who get surprised in April are those who didn't track miles, didn't know about the platform fee deduction, or skipped quarterly payments.</p>
+  <p>Install a mileage tracker on day one, download your annual Tax Summary from Uber/Lyft each January, and set aside 25–30% of every payout. That's the whole system. Most rideshare drivers can handle their own taxes without a CPA as long as they stay organized.</p>
+
+<div class="nw-card">
+  <div class="nw-badge">Recommended</div>
+  <div class="nw-body">
+    <div class="nw-context">For high-volume drivers considering an LLC</div>
+    <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+    <div class="nw-desc">Once your rideshare income gets serious, liability protection starts to matter. Northwest forms LLCs in all 50 states with a flat fee, no hidden charges, and keeps your home address off public records.</div>
+    <div class="nw-features">
+      <span class="nw-feat">✓ All 50 states</span>
+      <span class="nw-feat">✓ Keeps your address private</span>
+      <span class="nw-feat">✓ No upsells</span>
+      <span class="nw-feat">✓ Flat fee</span>
+    </div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">Form your LLC with Northwest →</a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+<div class="cta-box">
+  <h3>Know exactly where <em>your</em> driving stands</h3>
+  <p>Our free checker looks at your income, state, mileage situation, and setup — then tells you exactly what you owe and what to do next.</p>
+  <a href="/tool.html?type=Freelance%20%2F%20services" class="btn-gold">Get my free rideshare tax check →</a>
+  <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+</div>
+
+</div>
+
+<div class="content" style="padding-top:0">
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/doordash-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">DoorDash Taxes: What Dashers Owe</div>
+    </a>
+    <a href="/instacart-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Instacart Taxes: Shopper Guide</div>
+    </a>
+    <a href="/self-employment-tax-calculator" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Self-Employment Tax Calculator</div>
+    </a>
+    <a href="/quarterly-taxes-self-employed" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/freelancer-taxes">Freelancer taxes</a>
+    <a href="/side-hustle-taxes">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>

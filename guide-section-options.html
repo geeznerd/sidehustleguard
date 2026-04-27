@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Section — Design Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#e8e4dc;color:var(--navy);padding:40px 32px;display:flex;flex-direction:column;gap:0}
+.option-wrap{margin-bottom:64px}
+.option-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-left:4px}
+
+/* ────────────────────────────────────────────
+   OPTION A — Inline pill links (ultra-minimal)
+   ──────────────────────────────────────────── */
+.opt-a {
+  background: var(--cream);
+  padding: 32px 48px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.opt-a-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.opt-a-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+.opt-a-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt-a-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  transition: all .14s;
+}
+.opt-a-link:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
+
+/* ────────────────────────────────────────────
+   OPTION B — Two-column editorial list
+   ──────────────────────────────────────────── */
+.opt-b {
+  background: var(--cream);
+  padding: 48px 48px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.opt-b-inner { max-width: 1060px; margin: 0 auto; }
+.opt-b-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.opt-b-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+}
+.opt-b-all {
+  font-size: 12px; font-weight: 500; color: var(--dim); text-decoration: none; transition: color .12s;
+}
+.opt-b-all:hover { color: var(--gold); }
+.opt-b-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.opt-b-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  gap: 12px;
+  transition: all .12s;
+}
+.opt-b-item:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--border); }
+.opt-b-item:nth-child(even) { padding-left: 32px; }
+.opt-b-item:nth-last-child(-n+2) { border-bottom: none; }
+.opt-b-text { display: flex; flex-direction: column; gap: 3px; }
+.opt-b-title { font-size: 14px; font-weight: 600; color: var(--navy); transition: color .12s; }
+.opt-b-sub { font-size: 12px; color: var(--dim); font-weight: 300; }
+.opt-b-arrow { font-size: 14px; color: var(--gold); opacity: 0; transition: opacity .12s; flex-shrink: 0; }
+.opt-b-item:hover .opt-b-title { color: var(--gold); }
+.opt-b-item:hover .opt-b-arrow { opacity: 1; }
+
+/* ────────────────────────────────────────────
+   OPTION C — Navy strip, horizontal links
+   ──────────────────────────────────────────── */
+.opt-c {
+  background: var(--navy);
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.opt-c-label {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.35); white-space: nowrap;
+}
+.opt-c-sep { width: 1px; height: 16px; background: rgba(255,255,255,.1); flex-shrink: 0; }
+.opt-c-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt-c-link {
+  font-size: 13px; font-weight: 400; color: rgba(255,255,255,.6);
+  text-decoration: none; padding: 6px 14px;
+  border-radius: 100px; border: 1px solid rgba(255,255,255,.12);
+  transition: all .14s;
+}
+.opt-c-link:hover { color: var(--white); border-color: var(--gold); background: rgba(201,151,58,.12); }
+
+/* ────────────────────────────────────────────
+   OPTION D — Icon tiles, no descriptions
+   ──────────────────────────────────────────── */
+.opt-d {
+  background: var(--cream);
+  padding: 48px 48px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.opt-d-inner { max-width: 1060px; margin: 0 auto; }
+.opt-d-head {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 20px;
+}
+.opt-d-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+}
+.opt-d-all {
+  font-size: 12px; font-weight: 500; color: var(--dim);
+  text-decoration: none; transition: color .12s;
+}
+.opt-d-all:hover { color: var(--gold); }
+.opt-d-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.opt-d-tile {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 14px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all .15s;
+  text-align: center;
+}
+.opt-d-tile:hover { border-color: var(--gold); transform: translateY(-2px); background: var(--gold-pale); }
+.opt-d-icon { font-size: 22px; line-height: 1; }
+.opt-d-title { font-size: 11.5px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<!-- ══ OPTION A ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option A — Inline pills (ultra-minimal strip)</div>
+  <div class="opt-a">
+    <span class="opt-a-label">Free guides</span>
+    <div class="opt-a-sep"></div>
+    <div class="opt-a-links">
+      <a href="#" class="opt-a-link">Uber &amp; Lyft taxes</a>
+      <a href="#" class="opt-a-link">DoorDash taxes</a>
+      <a href="#" class="opt-a-link">YouTube taxes</a>
+      <a href="#" class="opt-a-link">Twitch taxes</a>
+      <a href="#" class="opt-a-link">LLC vs sole prop</a>
+      <a href="#" class="opt-a-link">Tax calculator</a>
+      <a href="#" class="opt-a-link" style="color:var(--gold);border-color:transparent;background:none;padding-left:4px;padding-right:0">See all →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTION B ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option B — Two-column editorial list</div>
+  <div class="opt-b">
+    <div class="opt-b-inner">
+      <div class="opt-b-head">
+        <span class="opt-b-tag">Free tax guides</span>
+        <a href="#" class="opt-b-all">See all guides →</a>
+      </div>
+      <div class="opt-b-grid">
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">Uber &amp; Lyft Taxes</span>
+            <span class="opt-b-sub">What every rideshare driver owes</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">DoorDash Taxes</span>
+            <span class="opt-b-sub">Mileage, 1099s, quarterly payments</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">YouTube Taxes</span>
+            <span class="opt-b-sub">AdSense, brand deals, deductions</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">Twitch Taxes</span>
+            <span class="opt-b-sub">Subs, bits, donations — all taxable</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">LLC vs Sole Proprietor</span>
+            <span class="opt-b-sub">When it's worth the paperwork</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+        <a href="#" class="opt-b-item">
+          <div class="opt-b-text">
+            <span class="opt-b-title">Quarterly Tax Calculator</span>
+            <span class="opt-b-sub">How much to pay each quarter</span>
+          </div>
+          <span class="opt-b-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTION C ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option C — Navy strip (dark, compact)</div>
+  <div class="opt-c">
+    <span class="opt-c-label">Free guides</span>
+    <div class="opt-c-sep"></div>
+    <div class="opt-c-links">
+      <a href="#" class="opt-c-link">Uber &amp; Lyft taxes</a>
+      <a href="#" class="opt-c-link">DoorDash taxes</a>
+      <a href="#" class="opt-c-link">YouTube taxes</a>
+      <a href="#" class="opt-c-link">Twitch taxes</a>
+      <a href="#" class="opt-c-link">LLC vs sole prop</a>
+      <a href="#" class="opt-c-link">Tax calculator</a>
+      <a href="#" class="opt-c-link" style="color:var(--gold-lt);border-color:rgba(201,151,58,.3)">See all →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTION D ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option D — Icon tiles, no descriptions (compact grid)</div>
+  <div class="opt-d">
+    <div class="opt-d-inner">
+      <div class="opt-d-head">
+        <span class="opt-d-tag">Free tax guides</span>
+        <a href="#" class="opt-d-all">See all guides →</a>
+      </div>
+      <div class="opt-d-grid">
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🚗</span>
+          <span class="opt-d-title">Uber &amp; Lyft Taxes</span>
+        </a>
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🍔</span>
+          <span class="opt-d-title">DoorDash Taxes</span>
+        </a>
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🎬</span>
+          <span class="opt-d-title">YouTube Taxes</span>
+        </a>
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🎮</span>
+          <span class="opt-d-title">Twitch Taxes</span>
+        </a>
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🏢</span>
+          <span class="opt-d-title">LLC vs Sole Prop</span>
+        </a>
+        <a href="#" class="opt-d-tile">
+          <span class="opt-d-icon">🧮</span>
+          <span class="opt-d-title">Tax Calculator</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

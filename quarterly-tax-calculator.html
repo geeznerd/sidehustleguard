@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarterly Tax Calculator — What to Pay Each Quarter (Free, 2025) — SideHustleGuard</title>
+<meta name="description" content="Free quarterly estimated tax calculator. Find out exactly how much to pay each quarter, when it's due, and how the safe harbor rule protects you from penalties.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/quarterly-tax-calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="Quarterly Tax Calculator — What to Pay Each Quarter">
+<meta property="og:description" content="Enter your net profit and see exactly how much to pay each quarter and when. Includes safe harbor calculation.">
+<meta property="og:url" content="https://www.sidehustleguard.com/quarterly-tax-calculator">
+<meta property="og:type" content="website">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,48px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
+.calc-wrap{max-width:880px;margin:0 auto;padding:0 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.field{margin-bottom:18px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
+.field-help{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none}
+input[type="number"],select{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+select{padding-left:13px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--gold);background:var(--white)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.results-card{background:var(--navy);color:var(--white);border-radius:16px;padding:28px}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold-lt);text-transform:uppercase;margin-bottom:14px}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.q-item{background:rgba(255,255,255,.06);border-radius:10px;padding:14px}
+.q-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px}
+.q-amt{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold-lt);line-height:1}
+.q-date{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.q-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;margin-top:5px;display:inline-block}
+.q-past{background:rgba(255,255,255,.1);color:rgba(255,255,255,.4)}
+.q-upcoming{background:rgba(201,151,58,.2);color:var(--gold-lt)}
+.q-future{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3)}
+.safe-box{background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.25);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.safe-label{font-size:10px;color:var(--gold-lt);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.safe-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5;font-weight:300}
+.safe-text strong{color:var(--white);font-weight:600}
+.total-row{border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin-top:4px}
+.total-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.total-amt{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold-lt);line-height:1}
+.total-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.bd-row:last-child{border-bottom:none}
+.bd-label{font-size:13px;color:rgba(255,255,255,.65);font-weight:300}
+.bd-amt{font-size:13px;color:var(--white);font-weight:500;font-family:'Playfair Display',serif}
+.btn-cta{display:block;width:100%;background:var(--gold);color:var(--white);border-radius:100px;padding:13px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:16px;transition:background .15s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--gold-lt)}
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--gold)}
+.content h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--navy);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--muted)}
+.callout strong{color:var(--navy)}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.calc-wrap,.content{padding-left:18px;padding-right:18px}h1{font-size:28px}.calc-grid{grid-template-columns:1fr}.q-grid{grid-template-columns:1fr 1fr}}
+.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:20px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate my quarterly estimated tax payment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estimate your annual net profit, apply self-employment tax (15.3%) and federal income tax brackets to find your annual tax liability, then divide by 4 for each quarterly payment. Alternatively, pay 25% of last year's total tax each quarter (the safe harbor method) to avoid underpayment penalties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the safe harbor rule for quarterly taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The safe harbor rule lets you avoid underpayment penalties by paying at least 100% of last year's total tax (or 110% if your AGI exceeded $150,000). Even if your actual tax turns out higher, you won't be penalized as long as you met the safe harbor threshold each quarter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When are quarterly estimated taxes due in 2025?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For 2025 income: April 15, 2025 (Q1), June 16, 2025 (Q2), September 15, 2025 (Q3), and January 15, 2026 (Q4). Pay at IRS.gov/payments using Direct Pay or EFTPS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I miss a quarterly tax payment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll owe an underpayment penalty on the missed or short payment. The penalty rate is based on the federal short-term interest rate plus 3 percentage points, applied to the underpayment amount for each day it was short. It's usually small but adds up — currently around 8% annualized."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to pay quarterly taxes if this is my first year self-employed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you expect to owe more than $1,000 in federal tax for the year. In your first year, you have no prior-year tax to use for safe harbor, so estimate based on what you actually earned each quarter. Even a rough estimate is better than skipping payments entirely."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Free Calculator · 2025</div>
+  <h1>Quarterly tax calculator: <em>what to pay</em> each quarter</h1>
+  <p class="hero-sub">Enter your estimated annual net profit and see exactly how much to pay each quarter — plus the safe harbor amount that protects you from penalties.</p>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-title">Your numbers</div>
+
+      <div class="field">
+        <label class="field-label" for="net-profit">Estimated annual net profit</label>
+        <div class="input-money">
+          <input type="number" id="net-profit" placeholder="0" min="0" max="9999999" value="">
+        </div>
+        <div class="field-help">Your self-employment income minus business expenses</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="other-income">Other income (W-2, interest, etc.)</label>
+        <div class="input-money">
+          <input type="number" id="other-income" placeholder="0" min="0" value="0">
+        </div>
+        <div class="field-help">Leave 0 if self-employment is your only income</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="filing-status">Filing status</label>
+        <select id="filing-status">
+          <option value="single">Single</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="hoh">Head of Household</option>
+          <option value="mfs">Married Filing Separately</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="prior-year-tax">Last year's total federal tax (optional)</label>
+        <div class="input-money">
+          <input type="number" id="prior-year-tax" placeholder="0" min="0" value="0">
+        </div>
+        <div class="field-help">From last year's Form 1040 line 24. Used for safe harbor calculation.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="prior-year-agi">Last year's AGI (for safe harbor threshold)</label>
+        <div class="input-money">
+          <input type="number" id="prior-year-agi" placeholder="0" min="0" value="0">
+        </div>
+        <div class="field-help">From last year's Form 1040 line 11. If over $150k, safe harbor is 110% of prior year tax.</div>
+      </div>
+    </div>
+
+    <div class="results-card" id="results">
+      <div class="results-title">Your quarterly payment plan</div>
+
+      <div class="q-grid" id="q-grid">
+        <div class="q-item">
+          <div class="q-label">Q1 — 2025</div>
+          <div class="q-amt" id="q1-amt">$—</div>
+          <div class="q-date">Due Apr 15, 2025</div>
+          <div class="q-status q-past" id="q1-status">Past due</div>
+        </div>
+        <div class="q-item">
+          <div class="q-label">Q2 — 2025</div>
+          <div class="q-amt" id="q2-amt">$—</div>
+          <div class="q-date">Due Jun 16, 2025</div>
+          <div class="q-status q-past" id="q2-status">Past due</div>
+        </div>
+        <div class="q-item">
+          <div class="q-label">Q3 — 2025</div>
+          <div class="q-amt" id="q3-amt">$—</div>
+          <div class="q-date">Due Sep 15, 2025</div>
+          <div class="q-status q-upcoming" id="q3-status">Upcoming</div>
+        </div>
+        <div class="q-item">
+          <div class="q-label">Q4 — 2025</div>
+          <div class="q-amt" id="q4-amt">$—</div>
+          <div class="q-date">Due Jan 15, 2026</div>
+          <div class="q-status q-future" id="q4-status">Future</div>
+        </div>
+      </div>
+
+      <div class="safe-box" id="safe-box" style="display:none">
+        <div class="safe-label">Safe harbor alternative</div>
+        <div class="safe-text" id="safe-text"></div>
+      </div>
+
+      <div class="breakdown" id="breakdown">
+        <div class="bd-row"><span class="bd-label">Self-employment tax</span><span class="bd-amt" id="res-se">$—</span></div>
+        <div class="bd-row"><span class="bd-label">Federal income tax</span><span class="bd-amt" id="res-fed">$—</span></div>
+        <div class="bd-row"><span class="bd-label">SE tax deduction (saves you)</span><span class="bd-amt" id="res-se-ded">$—</span></div>
+      </div>
+
+      <div class="total-row">
+        <div class="total-label">Annual tax estimate</div>
+        <div class="total-amt" id="res-total">$—</div>
+        <div class="total-sub" id="res-per-q">Enter your net profit above</div>
+      </div>
+
+      <a href="/tool.html" class="btn-cta">Get a full compliance check — free →</a>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>How quarterly estimated taxes work</h2>
+  <p>If you're self-employed and expect to owe more than <strong>$1,000 in federal tax</strong> for the year, the IRS requires you to pay estimated taxes four times a year. This is because there's no employer withholding taxes from your paycheck — you're responsible for making regular payments throughout the year.</p>
+  <p>Skipping quarterly payments doesn't result in a large penalty, but it does result in a compounding underpayment penalty on the amount you should have paid, calculated daily at the federal short-term rate + 3 percentage points (currently around 8% annualized).</p>
+
+  <h2>The safe harbor rule — your protection against penalties</h2>
+  <p>The safest approach to quarterly taxes is using the <strong>safe harbor rule</strong>:</p>
+  <ul>
+    <li><strong>Standard safe harbor:</strong> Pay 100% of last year's total tax in quarterly installments (25% each quarter). Even if you earn much more this year, you won't be penalized.</li>
+    <li><strong>High-income safe harbor:</strong> If your prior year AGI exceeded $150,000, pay <strong>110%</strong> of last year's tax to avoid penalties.</li>
+    <li><strong>Current year safe harbor:</strong> Alternatively, pay at least 90% of your current year's actual tax liability — but this requires estimating accurately throughout the year.</li>
+  </ul>
+
+  <div class="callout callout-green">
+    <p><strong>When safe harbor is most useful:</strong> If your income varies significantly year to year (common for freelancers, creators, and gig workers), the prior-year safe harbor removes the guesswork. You pay based on a number you already know — last year's tax return — not on projections.</p>
+  </div>
+
+  <h2>2025 quarterly tax deadlines</h2>
+  <p>The IRS quarterly deadlines for 2025 tax year payments:</p>
+  <ul>
+    <li><strong>April 15, 2025</strong> — Q1 payment (income earned January–March)</li>
+    <li><strong>June 16, 2025</strong> — Q2 payment (income earned April–May)</li>
+    <li><strong>September 15, 2025</strong> — Q3 payment (income earned June–August)</li>
+    <li><strong>January 15, 2026</strong> — Q4 payment (income earned September–December)</li>
+  </ul>
+  <p>Pay at <strong>IRS.gov/payments</strong> using Direct Pay (free, bank account) or EFTPS (free, but requires registration). Both are instant — you'll receive immediate confirmation.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>California is different:</strong> California's estimated payment schedule is <em>not</em> evenly spread. CA requires 30% by April 15, 40% by June 15, and 30% by January 15 — there's no September installment. If you're a California resident, pay your CA and federal payments on different schedules.</p>
+  </div>
+
+  <h2>How to calculate your quarterly payment (without the calculator)</h2>
+  <ol>
+    <li><strong>Estimate your annual net profit</strong> — gross self-employment income minus business expenses</li>
+    <li><strong>Calculate SE tax:</strong> net profit × 0.9235 × 0.153 (the 0.9235 accounts for the employer deduction)</li>
+    <li><strong>Deduct half of SE tax</strong> from net profit to get adjusted net profit</li>
+    <li><strong>Apply federal income tax brackets</strong> to adjusted net profit plus any other income</li>
+    <li><strong>Add SE tax + income tax</strong> for annual tax liability</li>
+    <li><strong>Divide by 4</strong> for quarterly payment amount</li>
+  </ol>
+  <p>The calculator above does all of this automatically. If your income is irregular, recalculate each quarter based on year-to-date earnings.</p>
+
+  <h2>What to do if you missed a quarterly payment</h2>
+  <p>Pay it immediately. The underpayment penalty accrues daily on the amount that should have been paid. Paying late stops the penalty clock from running — it doesn't eliminate what's already accrued, but it prevents more from adding up. When you file your return, IRS Form 2210 calculates any penalty owed; for small amounts, the IRS often waives it or includes it in your balance due without separate action.</p>
+
+  <h2>Setting up a quarterly tax system that actually works</h2>
+  <p>The simplest system used by thousands of self-employed people:</p>
+  <ol>
+    <li>Open a dedicated savings account labeled "Taxes"</li>
+    <li>Every time you receive a payment, move 25–30% to that account immediately</li>
+    <li>Pay the quarterly estimate from that account by each deadline</li>
+    <li>Any balance remaining after your Q4 payment is yours to keep</li>
+  </ol>
+  <p>If you only set aside money after seeing a large profit, you'll spend it. The automatic transfer on every payment makes the discipline structural rather than willpower-based.</p>
+
+</div>
+
+<div class="content" style="margin-top:0;padding-top:0">
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/self-employment-tax-calculator" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Self-Employment Tax Calculator</div>
+    </a>
+    <a href="/quarterly-taxes-self-employed" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Quarterly Taxes: Complete Guide</div>
+    </a>
+    <a href="/side-hustle-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Side Hustle Taxes: What You Owe</div>
+    </a>
+    <a href="/freelancer-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Freelancer Taxes: Complete Guide</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/self-employment-tax-calculator">SE tax calculator</a>
+    <a href="/side-hustle-taxes">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+<script>
+// 2024 federal income tax brackets
+const BRACKETS = {
+  single:    [{up:11600,r:.10},{up:47150,r:.12},{up:100525,r:.22},{up:191950,r:.24},{up:243725,r:.32},{up:609350,r:.35},{up:Infinity,r:.37}],
+  mfj:       [{up:23200,r:.10},{up:94300,r:.12},{up:201050,r:.22},{up:383900,r:.24},{up:487450,r:.32},{up:731200,r:.35},{up:Infinity,r:.37}],
+  hoh:       [{up:16550,r:.10},{up:63100,r:.12},{up:100500,r:.22},{up:191950,r:.24},{up:243700,r:.32},{up:609350,r:.35},{up:Infinity,r:.37}],
+  mfs:       [{up:11600,r:.10},{up:47150,r:.12},{up:100525,r:.22},{up:191950,r:.24},{up:243725,r:.32},{up:365600,r:.35},{up:Infinity,r:.37}]
+};
+const STD_DED = {single:14600,mfj:29200,hoh:21900,mfs:14600};
+
+function fmt(n){return n<=0?'$0':'$'+Math.round(n).toLocaleString();}
+
+function calcIncomeTax(taxable, status){
+  const brackets = BRACKETS[status];
+  let tax=0,prev=0;
+  for(const b of brackets){
+    if(taxable<=prev) break;
+    tax += (Math.min(taxable,b.up)-prev)*b.r;
+    prev=b.up;
+  }
+  return Math.max(0,tax);
+}
+
+function compute(){
+  const profit = parseFloat(document.getElementById('net-profit').value)||0;
+  const other  = parseFloat(document.getElementById('other-income').value)||0;
+  const status = document.getElementById('filing-status').value;
+  const priorTax = parseFloat(document.getElementById('prior-year-tax').value)||0;
+  const priorAGI = parseFloat(document.getElementById('prior-year-agi').value)||0;
+
+  if(profit<=0){
+    document.getElementById('res-se').textContent='$—';
+    document.getElementById('res-fed').textContent='$—';
+    document.getElementById('res-se-ded').textContent='$—';
+    document.getElementById('res-total').textContent='$—';
+    document.getElementById('res-per-q').textContent='Enter your net profit above';
+    ['q1-amt','q2-amt','q3-amt','q4-amt'].forEach(id=>document.getElementById(id).textContent='$—');
+    document.getElementById('safe-box').style.display='none';
+    return;
+  }
+
+  const seTaxable = profit * 0.9235;
+  const seTax = seTaxable * 0.153;
+  const seDeduction = seTax * 0.5;
+  const agi = profit - seDeduction + other;
+  const stdDed = STD_DED[status];
+  const taxableIncome = Math.max(0, agi - stdDed);
+  const fedTax = calcIncomeTax(taxableIncome, status);
+  const totalTax = seTax + fedTax;
+  const perQ = totalTax / 4;
+
+  document.getElementById('res-se').textContent = fmt(seTax);
+  document.getElementById('res-fed').textContent = fmt(fedTax);
+  document.getElementById('res-se-ded').textContent = '-'+fmt(seDeduction);
+  document.getElementById('res-total').textContent = fmt(totalTax);
+  document.getElementById('res-per-q').textContent = fmt(perQ)+' per quarter recommended';
+
+  ['q1-amt','q2-amt','q3-amt','q4-amt'].forEach(id=>document.getElementById(id).textContent=fmt(perQ));
+
+  // Safe harbor
+  if(priorTax>0){
+    const shMultiplier = priorAGI>150000 ? 1.10 : 1.00;
+    const safeHarborAnnual = priorTax * shMultiplier;
+    const safeHarborQ = safeHarborAnnual / 4;
+    const recommended = Math.min(perQ, safeHarborQ);
+    document.getElementById('safe-box').style.display='block';
+    const pct = priorAGI>150000?'110%':'100%';
+    document.getElementById('safe-text').innerHTML =
+      'Safe harbor payment: <strong>'+fmt(safeHarborQ)+'/quarter</strong> ('+pct+' of last year\'s $'+Math.round(priorTax).toLocaleString()+' tax). '+
+      (safeHarborQ<perQ
+        ? 'Paying the safe harbor amount protects you from underpayment penalties even if your actual tax is higher.'
+        : 'Your estimated payment already meets or exceeds the safe harbor threshold.');
+  } else {
+    document.getElementById('safe-box').style.display='none';
+  }
+}
+
+['net-profit','other-income','filing-status','prior-year-tax','prior-year-agi'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',compute);
+});
+compute();
+</script>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Hustle — SideHustleGuard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1c2b4a; --gold: #c9973a; --gold-lt: #ddb06a;
+  --cream: #faf8f4; --cream-d: #f0ece3; --white: #fff;
+  --muted: #6b7a96; --dim: #9aa3b5; --border: #e2e6ef;
+  --green: #276944; --green-bg: #eaf5ef;
+  --red: #b83232; --red-bg: #fdf0f0;
+  --amber: #a86c0a; --amber-bg: #fef6e8;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); min-height: 100vh; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(250,248,244,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+.logo-icon svg { width: 26px; height: 30px; }
+.logo-text { font-size: 15px; font-weight: 600; color: var(--navy); }
+.logo-text span { color: var(--gold); }
+.nav-back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.nav-back:hover { color: var(--navy); }
+.wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
+.page-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 6px; }
+.page-title em { color: var(--gold); font-style: italic; }
+.page-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; font-weight: 300; }
+.prog-bar { height: 3px; background: var(--cream-d); border-radius: 99px; margin-bottom: 6px; }
+.prog-fill { height: 100%; background: var(--gold); border-radius: 99px; transition: width .4s; width: 0; }
+.prog-label { font-size: 11px; color: var(--dim); text-align: right; margin-bottom: 24px; }
+.card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
+.q-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 8px; }
+.q-title { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 7px; }
+.opt { padding: 9px 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 13px; color: var(--muted); background: var(--cream); cursor: pointer; text-align: center; transition: all .15s; font-family: inherit; }
+.opt:hover { border-color: var(--gold); color: var(--navy); background: var(--white); }
+.opt.sel { background: var(--navy); color: var(--white); border-color: var(--navy); }
+textarea, select, input[type="text"] { width: 100%; border: 1px solid var(--border); border-radius: 9px; padding: 10px 13px; font-size: 14px; font-family: inherit; color: var(--navy); background: var(--cream); outline: none; transition: border .15s; appearance: none; }
+textarea:focus, select:focus, input[type="text"]:focus { border-color: var(--gold); background: var(--white); }
+textarea { resize: vertical; }
+.btn-submit { width: 100%; padding: 14px; background: var(--gold); color: var(--white); border: none; border-radius: 100px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; margin-top: 6px; transition: all .15s; }
+.btn-submit:hover { background: var(--gold-lt); }
+.loading { text-align: center; padding: 60px 20px; }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--cream-d); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
+.loading p { font-size: 13px; color: var(--muted); }
+.hidden { display: none !important; }
+.risk-banner { border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; border-left: 4px solid; }
+.risk-mod { background: var(--amber-bg); border-color: var(--amber); }
+.risk-hi  { background: var(--red-bg);   border-color: var(--red); }
+.risk-lo  { background: var(--green-bg); border-color: var(--green); }
+.risk-lvl { font-size: 10px; font-weight: 600; letter-spacing: .1em; margin-bottom: 4px; }
+.risk-hl  { font-size: 14px; font-weight: 500; line-height: 1.5; }
+.score-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+.score-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 10px; text-align: center; }
+.score-val { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; display: block; margin-bottom: 2px; }
+.sv-red { color: var(--red); } .sv-amber { color: var(--amber); } .sv-green { color: var(--green); }
+.score-name { font-size: 10px; color: var(--dim); }
+.sec-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 8px; }
+.issue-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.issue-row:last-child { border-bottom: none; }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.dr { background: var(--red); } .da { background: var(--amber); } .dg { background: var(--green); }
+.issue-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.issue-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.locked { font-size: 12px; color: var(--dim); font-style: italic; }
+.more-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+.more-dots { display: flex; gap: 4px; }
+.more-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--border); display: block; }
+.more-txt { font-size: 12px; color: var(--dim); }
+.paywall { background: var(--navy); border-radius: 16px; padding: 28px; margin-top: 12px; text-align: center; }
+.pw-icon { font-size: 24px; margin-bottom: 10px; }
+.paywall h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
+.paywall h2 em { font-style: italic; color: var(--gold-lt); }
+.pw-sub { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 20px; line-height: 1.6; font-weight: 300; }
+.pw-feats { list-style: none; margin-bottom: 22px; text-align: left; }
+.pw-feats li { font-size: 13px; color: rgba(255,255,255,.75); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; gap: 8px; font-weight: 300; }
+.pw-feats li:last-child { border-bottom: none; }
+.pw-feats li::before { content: '→'; color: var(--gold-lt); font-size: 11px; flex-shrink: 0; }
+.btn-pay { display: block; background: var(--gold); color: var(--white); border-radius: 100px; padding: 14px 28px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; text-decoration: none; transition: all .15s; margin-bottom: 8px; }
+.btn-pay:hover { background: var(--gold-lt); }
+.pw-note { font-size: 11px; color: rgba(255,255,255,.3); }
+.paid-banner { background: var(--green-bg); border: 1px solid rgba(39,105,68,.2); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: var(--green); font-weight: 500; }
+.insight-box { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 12px; }
+.ins-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 4px; }
+.ins-txt { font-size: 13px; font-weight: 500; line-height: 1.6; }
+.qw-box { background: var(--green-bg); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; }
+.qw-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--green); margin-bottom: 10px; }
+.win-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+.win-num { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.win-txt { font-size: 13px; font-weight: 500; }
+.wins-note { font-size: 12px; color: var(--green); font-weight: 500; margin-top: 10px; }
+.act-row { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.act-row:last-child { border-bottom: none; }
+.act-num { width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.act-pill { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.pw { background: var(--red-bg);   color: var(--red); }
+.pm { background: var(--amber-bg); color: var(--amber); }
+.po { background: var(--cream-d);  color: var(--muted); }
+.act-txt { font-size: 13px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+.dl-row { display: flex; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.dl-row:last-child { border-bottom: none; }
+.dl-date { font-size: 12px; font-weight: 600; min-width: 95px; }
+.dl-r { color: var(--red); } .dl-a { color: var(--amber); } .dl-n { color: var(--navy); }
+.dl-evt { font-size: 13px; color: var(--muted); }
+.bottom-line { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 13px; font-weight: 500; line-height: 1.65; }
+.aff { background: var(--amber-bg); border-top: 2px solid var(--gold); border-radius: 0 0 10px 10px; padding: 16px; margin-top: 12px; }
+.aff-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.aff-body { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 300; }
+.aff-link { font-size: 12px; color: var(--gold); font-weight: 600; }
+.disc { font-size: 11px; color: var(--dim); font-style: italic; line-height: 1.6; margin-top: 16px; padding: 10px 14px; background: var(--cream-d); border-radius: 8px; }
+.btn-reset { width: 100%; padding: 12px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; font-size: 13px; font-family: inherit; cursor: pointer; margin-top: 14px; transition: all .15s; }
+.btn-reset:hover { border-color: var(--navy); color: var(--navy); }
+
+/* Locked / blurred issue cards — drives FOMO better than "X more" */
+.issue-row.locked-row { position: relative; }
+.locked-detail { font-size: 12px; color: var(--muted); line-height: 1.5; filter: blur(4.5px); user-select: none; pointer-events: none; opacity: .7; }
+.locked-detail::selection { background: transparent; }
+.lock-pill { position: absolute; right: 0; top: 10px; font-size: 10px; font-weight: 600; letter-spacing: .05em; color: var(--gold); background: var(--cream); border: 1px solid rgba(201,151,58,.3); padding: 3px 9px; border-radius: 100px; display: inline-flex; align-items: center; gap: 4px; }
+
+/* Locked-section preview row — styled placeholders for action plan, deadlines, etc. */
+.locked-section { background: var(--cream); border: 1px dashed rgba(201,151,58,.4); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+.locked-section-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.locked-section-sub { font-size: 11px; color: var(--dim); }
+.locked-section-icon { color: var(--gold); }
+
+/* Paywall — enhanced */
+.pw-anchor { background: rgba(201,151,58,.1); border: 1px solid rgba(201,151,58,.2); border-radius: 10px; padding: 12px 14px; margin: 0 0 18px; }
+.pw-anchor-line { font-size: 11px; color: rgba(255,255,255,.5); text-decoration: line-through; margin-bottom: 2px; letter-spacing: .02em; }
+.pw-anchor-now { font-size: 13px; color: var(--gold-lt); font-weight: 600; }
+.pw-anchor-now strong { color: var(--white); }
+.pw-price-row { display: flex; align-items: baseline; gap: 6px; justify-content: center; margin-bottom: 4px; }
+.pw-price-currency { font-size: 18px; font-weight: 600; color: rgba(255,255,255,.7); position: relative; top: -16px; }
+.pw-price-big { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; color: var(--white); line-height: 1; }
+.pw-price-once { font-size: 11px; color: rgba(255,255,255,.45); margin-bottom: 18px; letter-spacing: .03em; }
+.pw-trust-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.07); flex-wrap: wrap; }
+.pw-trust-item { font-size: 10px; color: rgba(255,255,255,.5); display: inline-flex; align-items: center; gap: 5px; letter-spacing: .03em; }
+.pw-trust-item svg { width: 11px; height: 11px; }
+.pw-guarantee { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 12px; padding: 10px 14px; background: rgba(255,255,255,.05); border-radius: 8px; line-height: 1.5; font-weight: 300; }
+.pw-guarantee strong { color: var(--white); font-weight: 500; }
+.btn-pay { box-shadow: 0 6px 18px rgba(201,151,58,.35); }
+.btn-pay.loading { opacity: .7; cursor: wait; }
+
+/* Sticky bottom CTA — only shown on the free results screen */
+.sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; background: var(--navy); padding: 12px 18px; z-index: 90; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -10px 30px rgba(28,43,74,.2); transform: translateY(110%); transition: transform .35s ease-out; border-top: 2px solid var(--gold); }
+.sticky-cta.show { transform: translateY(0); }
+.sticky-cta-text { color: var(--white); font-size: 13px; font-weight: 500; line-height: 1.25; flex: 1; min-width: 0; }
+.sticky-cta-text small { display: block; color: rgba(255,255,255,.5); font-size: 10px; font-weight: 300; margin-top: 2px; letter-spacing: .02em; }
+.sticky-cta-btn { background: var(--gold); color: var(--white); padding: 11px 20px; border-radius: 100px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background .15s; }
+.sticky-cta-btn:hover { background: var(--gold-lt); }
+body.has-sticky { padding-bottom: 70px; }
+
+/* Email capture (between LLM done and free results) */
+.email-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 36px 28px 28px; text-align: center; margin-top: 4px; }
+.email-icon { font-size: 30px; line-height: 1; margin-bottom: 14px; }
+.email-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.25; }
+.email-title em { font-style: italic; color: var(--gold); }
+.email-sub { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0 auto 22px; font-weight: 300; max-width: 380px; }
+.email-input { width: 100%; max-width: 360px; margin: 0 auto 10px; display: block; }
+.email-cta { display: block; width: 100%; max-width: 360px; margin: 0 auto; padding: 13px; background: var(--gold); color: var(--white); border: none; border-radius: 100px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; transition: background .15s; }
+.email-cta:hover { background: var(--gold-lt); }
+.email-cta:disabled { opacity: .6; cursor: wait; }
+.email-error { font-size: 12px; color: var(--red); margin-top: 8px; min-height: 16px; }
+.email-trust { font-size: 11px; color: var(--dim); margin-top: 12px; letter-spacing: .02em; }
+.email-skip { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--dim); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 4px 8px; }
+.email-skip:hover { color: var(--muted); }
+
+/* Verifying-payment state */
+.verify-banner { background: var(--amber-bg); border: 1px solid rgba(168,108,10,.25); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--amber); font-weight: 500; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.verify-banner .spinner { width: 16px; height: 16px; border-width: 2px; margin: 0; }
+.recovery-card { background: var(--green-bg); border: 1px solid rgba(39,105,68,.2); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
+.recovery-card-title { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+.recovery-card-body { font-size: 13px; color: var(--navy); font-weight: 300; line-height: 1.6; }
+
+@media(max-width:600px) { nav { padding: 12px 16px; } .wrap { padding: 28px 16px 60px; } .pw-price-big { font-size: 48px; } .sticky-cta { padding: 10px 14px; } .sticky-cta-text { font-size: 12px; } .sticky-cta-btn { padding: 10px 16px; font-size: 12px; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">
+      <svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<div class="wrap">
+  <h1 class="page-title">Check your hustle — <em>free</em></h1>
+  <p class="page-sub">8 quick questions · Plain English results · No sign-up needed</p>
+  <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  <div class="prog-label" id="prog-lbl">Step 1 of 8</div>
+
+  <!-- FORM -->
+  <div id="vform">
+    <div class="card">
+      <div class="q-label">Question 1</div>
+      <div class="q-title">What kind of side hustle is this?</div>
+      <div class="opts">
+        <div class="opt" onclick="pick('type',this,'Selling digital products')">Digital products</div>
+        <div class="opt" onclick="pick('type',this,'Selling physical products')">Physical products</div>
+        <div class="opt" onclick="pick('type',this,'Freelance / services')">Freelance / services</div>
+        <div class="opt" onclick="pick('type',this,'Content creation')">Content creation</div>
+        <div class="opt" onclick="pick('type',this,'Coaching or teaching')">Coaching / teaching</div>
+        <div class="opt" onclick="pick('type',this,'Reselling or flipping')">Reselling / flipping</div>
+        <div class="opt" onclick="pick('type',this,'Renting something out')">Renting out</div>
+        <div class="opt" onclick="pickOther(this)">Other</div>
+      </div>
+      <input type="text" id="type-other" class="hidden" placeholder="Briefly — what kind of hustle?" oninput="onOtherInput(this)" style="margin-top:10px">
+    </div>
+    <div class="card">
+      <div class="q-label">Question 2</div>
+      <div class="q-title">Describe it briefly</div>
+      <textarea id="desc" rows="3" placeholder="e.g. I sell printable worksheets on Etsy for homeschool parents..." oninput="updprog()"></textarea>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 3</div>
+      <div class="q-title">What state are you in?</div>
+      <select id="state" onchange="updprog()">
+        <option value="">Select your state...</option>
+        <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+        <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+        <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+        <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+        <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+        <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+        <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+        <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+        <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+        <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+        <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+        <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+        <option>Wisconsin</option><option>Wyoming</option>
+      </select>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 4</div>
+      <div class="q-title">How much are you making (or expect to make)?</div>
+      <div class="opts">
+        <div class="opt" onclick="pick('income',this,'Under $600/yr')">Under $600/yr</div>
+        <div class="opt" onclick="pick('income',this,'$600–$5,000/yr')">$600–$5k/yr</div>
+        <div class="opt" onclick="pick('income',this,'$5,000–$20,000/yr')">$5k–$20k/yr</div>
+        <div class="opt" onclick="pick('income',this,'Over $20,000/yr')">Over $20k/yr</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 5</div>
+      <div class="q-title">Anything else that applies? (pick all that fit)</div>
+      <div class="opts">
+        <div class="opt" onclick="tog(this,'Have a full-time day job')">Have a day job</div>
+        <div class="opt" onclick="tog(this,'Work from home')">Work from home</div>
+        <div class="opt" onclick="tog(this,'Have helpers or contractors')">Have helpers</div>
+        <div class="opt" onclick="tog(this,'Sell to customers in multiple states')">Multi-state sales</div>
+        <div class="opt" onclick="tog(this,'Not a US citizen')">Not a US citizen</div>
+        <div class="opt" onclick="tog(this,'Use personal name as brand')">Using my own name</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 6</div>
+      <div class="q-title">How do you get paid? (pick all that apply)</div>
+      <div class="opts">
+        <div class="opt" onclick="tog(this,'Etsy marketplace')">Etsy</div>
+        <div class="opt" onclick="tog(this,'PayPal')">PayPal</div>
+        <div class="opt" onclick="tog(this,'Venmo or Cash App')">Venmo / Cash App</div>
+        <div class="opt" onclick="tog(this,'Direct invoice to clients')">Direct invoice</div>
+        <div class="opt" onclick="tog(this,'Cash')">Cash</div>
+        <div class="opt" onclick="tog(this,'Stripe or own website')">Stripe / own site</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 7</div>
+      <div class="q-title">Do you have a separate business bank account?</div>
+      <div class="opts">
+        <div class="opt" onclick="pick('bank',this,'Yes, separate business account')">Yes</div>
+        <div class="opt" onclick="pick('bank',this,'No, using personal account')">No, using personal</div>
+        <div class="opt" onclick="pick('bank',this,'Not sure yet')">Not sure</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q-label">Question 8</div>
+      <div class="q-title">Have you registered your business?</div>
+      <div class="opts">
+        <div class="opt" onclick="pick('reg',this,'Not registered anywhere')">Nothing yet</div>
+        <div class="opt" onclick="pick('reg',this,'Operating as sole proprietor')">Sole proprietor</div>
+        <div class="opt" onclick="pick('reg',this,'Have an LLC')">I have an LLC</div>
+        <div class="opt" onclick="pick('reg',this,'S-Corp or C-Corp')">S/C-Corp</div>
+        <div class="opt" onclick="pick('reg',this,'Not sure')">Not sure</div>
+      </div>
+    </div>
+    <button class="btn-submit" onclick="run()">Check my hustle →</button>
+  </div>
+
+  <!-- LOADING -->
+  <div id="vload" class="hidden">
+    <div class="loading">
+      <div class="spinner"></div>
+      <h3 id="vload-title">Reviewing your situation...</h3>
+      <p id="vload-sub">Checking taxes, licenses, and structure</p>
+    </div>
+  </div>
+
+  <!-- EMAIL GATE — shown between loading and free results -->
+  <div id="vemail" class="hidden">
+    <div class="email-card">
+      <div class="email-icon">📩</div>
+      <div class="email-title">Where should we send your <em>report?</em></div>
+      <div class="email-sub">We'll email your full check now so you can come back to it. Plus a 7-day series with the deductions and deadlines for your specific hustle.</div>
+      <input type="email" id="email-input" class="email-input" placeholder="you@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')submitEmail()">
+      <button class="email-cta" id="email-cta" onclick="submitEmail()">Send me my report →</button>
+      <div class="email-error" id="email-error"></div>
+      <div class="email-trust">Unsubscribe any time · No spam</div>
+      <button class="email-skip" onclick="skipEmail()">Or just show me my results</button>
+    </div>
+  </div>
+
+  <!-- POST-PAYMENT, NO SAVED DATA: ask user to re-enter answers -->
+  <div id="vrecover" class="hidden">
+    <div class="recovery-card">
+      <div class="recovery-card-title">✓ Payment received</div>
+      <div class="recovery-card-body">We don't see your answers from before — please re-enter them below to generate your full report. Your unlock is saved, so you won't pay again.</div>
+    </div>
+    <button class="btn-submit" onclick="goToFormWithSession()">Re-enter my answers →</button>
+  </div>
+
+  <!-- FREE RESULTS -->
+  <div id="vfree" class="hidden">
+    <div id="free-banner" class="risk-banner"></div>
+    <div class="score-row">
+      <div class="score-box"><span class="score-val" id="s-tax">—</span><div class="score-name">Tax status</div></div>
+      <div class="score-box"><span class="score-val" id="s-str">—</span><div class="score-name">Structure</div></div>
+      <div class="score-box"><span class="score-val" id="s-com">—</span><div class="score-name">Compliance</div></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">What we found</div>
+      <div id="free-issues"></div>
+      <div class="more-row">
+        <div class="more-dots"><span></span><span></span><span></span></div>
+        <div class="more-txt" id="more-txt">More issues found — unlock the full report below</div>
+      </div>
+    </div>
+
+    <!-- Locked sections preview — concrete, scannable list of what's missing -->
+    <div class="locked-section">
+      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Personalized action plan</div>
+      <div class="locked-section-sub">6 prioritized steps — what to do this week, this month, ongoing</div>
+    </div>
+    <div class="locked-section">
+      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Tax reality — your numbers</div>
+      <div class="locked-section-sub">Effective tax rate + estimated amount owed for your income</div>
+    </div>
+    <div class="locked-section">
+      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Key deadlines for the year</div>
+      <div class="locked-section-sub">Quarterly payments + filings — your specific dates</div>
+    </div>
+    <div class="locked-section">
+      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Deductions you're missing</div>
+      <div class="locked-section-sub">Specific deductions you qualify for at this income / structure</div>
+    </div>
+    <div class="locked-section">
+      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Downloadable PDF report</div>
+      <div class="locked-section-sub">Save it. Share it with your CPA. Yours forever.</div>
+    </div>
+
+    <div class="paywall">
+      <div class="pw-price-row">
+        <span class="pw-price-currency">$</span><span class="pw-price-big">5</span>
+      </div>
+      <div class="pw-price-once">ONE-TIME · NO SUBSCRIPTION · YOURS FOREVER</div>
+
+      <div class="pw-anchor">
+        <div class="pw-anchor-line">A CPA charges $200–$500/hr for this analysis</div>
+        <div class="pw-anchor-now"><strong>You pay $5.</strong> Same answers. 60 seconds. Personalized to your state and income.</div>
+      </div>
+
+      <h2 id="pw-headline">Unlock your <em>full report</em></h2>
+      <div class="pw-sub" id="pw-sub">Get the complete breakdown — every issue, action plan, deadlines, and PDF.</div>
+
+      <ul class="pw-feats">
+        <li>Full explanation of every issue found</li>
+        <li>Personalized action plan ordered by urgency</li>
+        <li>Tax deadline calendar for the year ahead</li>
+        <li>Deductions you're probably missing</li>
+        <li>Plain-English structure recommendation</li>
+        <li>PDF you can share with your CPA</li>
+      </ul>
+
+      <a id="stripe-btn" href="https://buy.stripe.com/14A5kE4vj0PldqVckWe7m01" class="btn-pay">Unlock my full report — $5 →</a>
+      <div class="pw-note">Pay with Stripe · Instant access after payment</div>
+
+      <div class="pw-trust-row">
+        <span class="pw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</span>
+        <span class="pw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>No subscription</span>
+        <span class="pw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Instant unlock</span>
+      </div>
+    </div>
+
+    <button class="btn-reset" onclick="reset()">Start over</button>
+  </div>
+
+  <!-- STICKY BOTTOM CTA — visible only on free results screen -->
+  <div id="sticky-cta" class="sticky-cta">
+    <div class="sticky-cta-text">
+      Your full report is locked
+      <small id="sticky-cta-sub">5 issues to review · 6-step action plan · PDF</small>
+    </div>
+    <a href="https://buy.stripe.com/14A5kE4vj0PldqVckWe7m01" id="sticky-cta-btn" class="sticky-cta-btn">Unlock $5 →</a>
+  </div>
+
+  <!-- PAID RESULTS -->
+  <div id="vpaid" class="hidden">
+    <div class="paid-banner">✓ Full report unlocked — here's everything we found.</div>
+
+    <!-- Download button -->
+    <button onclick="downloadPDF()" id="pdf-btn" style="width:100%;padding:13px;background:var(--navy);color:var(--white);border:none;border-radius:100px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s" onmouseover="this.style.background='#243459'" onmouseout="this.style.background='var(--navy)'">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M7.5 10l-3-3M7.5 10l3-3M2 13h11" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download PDF report
+    </button>
+    <div id="paid-banner" class="risk-banner"></div>
+    <div class="insight-box">
+      <div class="ins-lbl">What most people in your position don't realize</div>
+      <div class="ins-txt" id="p-insight"></div>
+    </div>
+    <div class="qw-box">
+      <div class="qw-lbl">Fastest way to reduce your risk (under 1 hour)</div>
+      <div id="p-wins"></div>
+      <div class="wins-note" id="p-wins-note"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Full compliance checklist</div>
+      <div id="p-issues"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Tax reality</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:var(--red-bg);border-radius:8px;padding:12px">
+          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:.08em;margin-bottom:4px">EFFECTIVE RATE</div>
+          <div style="font-size:20px;font-weight:700;color:var(--red);font-family:'Playfair Display',serif" id="p-rate">—</div>
+        </div>
+        <div style="background:var(--amber-bg);border-radius:8px;padding:12px">
+          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:.08em;margin-bottom:4px">EST. OWED</div>
+          <div style="font-size:16px;font-weight:700;color:var(--amber);font-family:'Playfair Display',serif" id="p-owed">—</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6" id="p-tax-note"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">What you're doing right</div>
+      <div id="p-working"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">What to do next</div>
+      <div id="p-actions"></div>
+    </div>
+    <div class="card">
+      <div class="sec-lbl">Key deadlines</div>
+      <div id="p-deadlines"></div>
+    </div>
+    <div class="bottom-line" id="p-closing"></div>
+
+    <!-- Northwest Affiliate — bold single placement -->
+    <div style="background:var(--navy);border-radius:16px;overflow:hidden;margin-top:14px">
+      <!-- Gold top accent -->
+      <div style="height:3px;background:var(--gold)"></div>
+      <div style="padding:28px 24px">
+        <!-- Label -->
+        <div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px">Recommended next step</div>
+        <!-- Headline -->
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px">
+          Ready to form your LLC? <span style="color:var(--gold-lt)">Don't overpay.</span>
+        </div>
+        <!-- Body -->
+        <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:18px;font-weight:300">
+          Northwest Registered Agent is the straightforward option — flat fee, no upsells, keeps your personal address off public records, and handles all the paperwork. Used by thousands of small business owners.
+        </div>
+        <!-- Feature pills -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px">
+          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ Address privacy</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ All 50 states</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ Registered agent included</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ No hidden fees</span>
+        </div>
+        <!-- CTA button — full width, gold -->
+        <a href="https://tidd.ly/3QEBTKc" target="_blank" rel="noopener"
+           style="display:block;width:100%;padding:15px;background:var(--gold);color:var(--white);border-radius:100px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;text-align:center;text-decoration:none;transition:all .15s;letter-spacing:.01em"
+           onmouseover="this.style.background='var(--gold-lt)'"
+           onmouseout="this.style.background='var(--gold)'">
+          Form my LLC with Northwest →
+        </a>
+        <div style="font-size:10px;color:rgba(255,255,255,.22);text-align:center;margin-top:10px">
+          Affiliate link — we may earn a commission at no extra cost to you
+        </div>
+      </div>
+    </div>
+    <div class="disc">Educational purposes only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+    <button class="btn-reset" onclick="reset()">Check a different hustle</button>
+  </div>
+</div>
+
+<script>
+const STRIPE = 'https://buy.stripe.com/14A5kE4vj0PldqVckWe7m01';
+const PAY_METHODS = ['Etsy marketplace','PayPal','Venmo or Cash App','Direct invoice to clients','Cash','Stripe or own website'];
+let A = { type:'', income:'', bank:'', reg:'', extras:[] };
+let saved = null;
+let currentSessionId = null;
+
+function pick(k,el,v){
+  el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel'); A[k]=v;
+  // If user picked a non-Other type, hide and clear the custom input
+  if (k === 'type') {
+    const other = id('type-other');
+    if (other) { other.classList.add('hidden'); other.value=''; }
+  }
+  updprog();
+}
+function pickOther(el){
+  el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  const inp = id('type-other');
+  inp.classList.remove('hidden');
+  inp.focus();
+  // If they don't type anything, A.type is just "Other"
+  A.type = inp.value.trim() ? `Other — ${inp.value.trim()}` : 'Other';
+  updprog();
+}
+function onOtherInput(inp){
+  const v = inp.value.trim();
+  A.type = v ? `Other — ${v}` : 'Other';
+  updprog();
+}
+function tog(el,v){ el.classList.toggle('sel'); A.extras=el.classList.contains('sel')?[...A.extras,v]:A.extras.filter(x=>x!==v); }
+function updprog(){
+  let n=0;
+  if(A.type)n++; if(id('desc').value.trim())n++; if(id('state').value)n++; if(A.income)n++;
+  n++; n++; if(A.bank)n++; if(A.reg)n++;
+  id('prog').style.width=Math.round(Math.min(n,8)/8*100)+'%';
+  id('prog-lbl').textContent='Step '+Math.min(n,8)+' of 8';
+}
+function sc(v){ const l=(v||'').toLowerCase(); return l.includes('good')||l.includes('looks')?'sv-green':l.includes('risk')||l.includes('action')?'sv-red':'sv-amber'; }
+function id(x){ return document.getElementById(x); }
+function show(x){
+  ['vform','vload','vfree','vpaid','vrecover','vemail'].forEach(v=>id(v).classList.toggle('hidden',v!==x));
+  // Sticky CTA only shows on free results
+  const sticky = id('sticky-cta');
+  if (sticky) {
+    if (x === 'vfree') { sticky.classList.add('show'); document.body.classList.add('has-sticky'); }
+    else { sticky.classList.remove('show'); document.body.classList.remove('has-sticky'); }
+  }
+}
+function collectAnswers(){
+  return {
+    type: A.type, income: A.income, bank: A.bank, reg: A.reg,
+    extras: A.extras,
+    desc: id('desc').value.trim(),
+    state: id('state').value,
+  };
+}
+
+async function callCheck(answers, sessionId){
+  const body = { answers };
+  if (sessionId) body.session_id = sessionId;
+  const res = await fetch('/api/check', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'API error');
+  return data; // { tier, report }
+}
+
+async function run(){
+  const desc=id('desc').value.trim();
+  if(!A.type&&!desc){ alert('Please answer at least the first two questions.'); return; }
+  id('vload-title').textContent = currentSessionId ? 'Generating your full report…' : 'Reviewing your situation…';
+  id('vload-sub').textContent  = currentSessionId ? 'Verifying payment + building paid report' : 'Checking taxes, licenses, and structure';
+  show('vload');
+
+  const answers = collectAnswers();
+  // Always save answers so a Stripe round-trip can pick them back up
+  localStorage.setItem('shg_answers', JSON.stringify(answers));
+
+  try {
+    const data = await callCheck(answers, currentSessionId);
+    saved = data.report;
+    if (data.tier === 'paid') {
+      renderPaid(saved);
+    } else {
+      // Free path: show email gate before results
+      showEmailGate();
+    }
+  } catch(e){
+    console.error('Error:',e);
+    show('vform');
+    alert('Something went wrong — please try again.');
+  }
+}
+
+function showEmailGate(){
+  // Reset state in case user came back from a prior run
+  const inp = id('email-input'); if (inp) inp.value = '';
+  const err = id('email-error'); if (err) err.textContent = '';
+  const cta = id('email-cta'); if (cta) { cta.disabled = false; cta.textContent = 'Send me my report →'; }
+  show('vemail');
+  setTimeout(() => { if (inp) inp.focus(); }, 100);
+}
+
+async function submitEmail(){
+  const inp = id('email-input');
+  const cta = id('email-cta');
+  const err = id('email-error');
+  err.textContent = '';
+  const email = (inp.value || '').trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    err.textContent = 'Please enter a valid email';
+    inp.focus();
+    return;
+  }
+  cta.disabled = true;
+  cta.textContent = 'Sending…';
+  try {
+    // Best-effort — if Kit hiccups, we still let the user see their report.
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+  } catch(e) {
+    console.warn('Subscribe failed (continuing):', e);
+  }
+  if (saved) renderFree(saved);
+}
+
+function skipEmail(){
+  if (saved) renderFree(saved);
+}
+
+function riskClass(rl){ return {Low:'risk-lo',Moderate:'risk-mod',High:'risk-hi'}[rl]||'risk-mod'; }
+function riskColor(rl){ return {Low:'var(--green)',Moderate:'var(--amber)',High:'var(--red)'}[rl]||'var(--amber)'; }
+function dotClass(s){ return {red:'dr',amber:'da',green:'dg'}[s]||'da'; }
+function pillClass(t){ return {'This week':'pw','This month':'pm','Ongoing':'po'}[t]||'po'; }
+function dlClass(u){ return {red:'dl-r',amber:'dl-a',navy:'dl-n'}[u]||'dl-n'; }
+
+function escapeHTML(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function renderFree(r){
+  const rc=riskClass(r.risk_level), cc=riskColor(r.risk_level);
+  id('free-banner').className='risk-banner '+rc;
+  id('free-banner').innerHTML=`<div class="risk-lvl" style="color:${cc}">OVERALL RISK: ${escapeHTML((r.risk_level||'').toUpperCase())}</div><div class="risk-hl">${escapeHTML(r.opening||'')}</div>`;
+  const setS=(eid,v)=>{ const el=id(eid); el.textContent=v||'—'; el.className='score-val '+sc(v); };
+  setS('s-tax',r.tax_status); setS('s-str',r.structure_status); setS('s-com',r.compliance_status);
+
+  const issues=(r.issues||[]);
+  // Render up to 3 issues. Green issues show full detail (good news).
+  // Red/amber show blurred placeholder text + lock pill.
+  const top=issues.slice(0,3);
+  id('free-issues').innerHTML = top.map(i => {
+    const isLocked = i.status !== 'green';
+    if (isLocked) {
+      // Server returns detail:null for locked items; show plausible-looking blur
+      const fakeBlur = 'This issue affects your tax filings and may expose you to penalties at your income level. The full report explains exactly what to do and when.';
+      return `<div class="issue-row locked-row">
+        <div class="dot ${dotClass(i.status)}"></div>
+        <div style="flex:1;min-width:0">
+          <div class="issue-title">${escapeHTML(i.title)}</div>
+          <div class="locked-detail">${escapeHTML(fakeBlur)}</div>
+          <span class="lock-pill">🔒 Unlock</span>
+        </div>
+      </div>`;
+    }
+    return `<div class="issue-row">
+      <div class="dot ${dotClass(i.status)}"></div>
+      <div><div class="issue-title">${escapeHTML(i.title)}</div>
+        <div class="issue-body">${escapeHTML(i.detail||'')}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const total = r.issues_total || issues.length;
+  const hidden = Math.max(0, total - top.length);
+  id('more-txt').textContent = hidden > 0
+    ? `${hidden} more issue${hidden!==1?'s':''} found — unlock to see ${hidden!==1?'them':'it'}`
+    : 'Full details unlocked in the paid report';
+
+  const subs = {
+    High: `${total} issues found — some need immediate attention.`,
+    Moderate: `${total} items to review for your hustle.`,
+    Low: `You're mostly in good shape — but ${total} items still worth knowing.`,
+  };
+  id('pw-sub').textContent = subs[r.risk_level] || subs.Moderate;
+  id('sticky-cta-sub').textContent = `${total} issue${total!==1?'s':''} · 6-step plan · PDF`;
+
+  show('vfree');
+}
+
+function renderPaid(r){
+  const rc=riskClass(r.risk_level), cc=riskColor(r.risk_level);
+  id('paid-banner').className='risk-banner '+rc;
+  id('paid-banner').innerHTML=`<div class="risk-lvl" style="color:${cc}">OVERALL RISK: ${(r.risk_level||'').toUpperCase()}</div><div class="risk-hl">${r.opening||''}</div>`;
+  id('p-insight').textContent=r.key_insight||'';
+  id('p-wins').innerHTML=(r.quick_wins||[]).map((w,i)=>`<div class="win-row"><div class="win-num">${i+1}</div><div class="win-txt">${w}</div></div>`).join('');
+  id('p-wins-note').textContent=r.quick_wins_note||'';
+  id('p-issues').innerHTML=(r.issues||[]).map(i=>`<div class="issue-row"><div class="dot ${dotClass(i.status)}"></div><div><div class="issue-title">${i.title}</div><div class="issue-body">${i.detail}</div></div></div>`).join('');
+  id('p-rate').textContent=r.tax_rate||'—';
+  id('p-owed').textContent=r.tax_owed_est||'—';
+  id('p-tax-note').textContent=r.tax_note||'';
+  id('p-working').innerHTML=(r.working||[]).map(w=>`<div class="issue-row"><div style="color:var(--green);font-weight:700;font-size:13px;flex-shrink:0">✓</div><div class="issue-body" style="color:var(--navy)">${w}</div></div>`).join('');
+  id('p-actions').innerHTML=(r.action_plan||[]).map((a,i)=>`<div class="act-row"><div class="act-num">${i+1}</div><span class="act-pill ${pillClass(a.timeline)}">${a.timeline}</span><div class="act-txt">${a.step}</div></div>`).join('');
+  id('p-deadlines').innerHTML=(r.deadlines||[]).map(d=>`<div class="dl-row"><div class="dl-date ${dlClass(d.urgency)}">${d.date}</div><div class="dl-evt">${d.event}</div></div>`).join('');
+  id('p-closing').textContent=r.closing||'';
+  id('prog').style.width='100%';
+  id('prog-lbl').textContent='Full report unlocked';
+  show('vpaid');
+}
+
+async function downloadPDF() {
+  if (!saved) return;
+  if (!currentSessionId) {
+    alert('Session expired — please refresh and try again.');
+    return;
+  }
+  const btn = document.getElementById('pdf-btn');
+  btn.textContent = 'Generating PDF...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: currentSessionId, report: saved })
+    });
+    if (!res.ok) throw new Error('PDF generation failed');
+    const blob = await res.blob();
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'sidehustleguard-report.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+    btn.innerHTML = '✓ Downloaded';
+    btn.style.background = 'var(--green)';
+  } catch(e) {
+    console.error(e);
+    btn.textContent = 'Download failed — try again';
+    btn.disabled = false;
+  }
+}
+
+function reset(){
+  A={type:'',income:'',bank:'',reg:'',extras:[]}; saved=null; currentSessionId=null;
+  localStorage.removeItem('shg_answers');
+  localStorage.removeItem('shg_session');
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  id('desc').value=''; id('state').value='';
+  const other = id('type-other'); if (other) { other.value=''; other.classList.add('hidden'); }
+  const emailInp = id('email-input'); if (emailInp) emailInp.value = '';
+  const emailErr = id('email-error'); if (emailErr) emailErr.textContent = '';
+  id('prog').style.width='0'; id('prog-lbl').textContent='Step 1 of 8';
+  history.replaceState({},'',location.pathname);
+  show('vform');
+}
+
+function repopulateForm(answers) {
+  if (!answers || typeof answers !== 'object') return;
+  A = { type: answers.type||'', income: answers.income||'', bank: answers.bank||'', reg: answers.reg||'', extras: Array.isArray(answers.extras)?answers.extras:[] };
+  id('desc').value = answers.desc || '';
+  id('state').value = answers.state || '';
+  // Restore "Other — …" custom input if present
+  if (A.type && A.type.startsWith('Other')) {
+    const other = id('type-other');
+    if (other) {
+      other.classList.remove('hidden');
+      other.value = A.type.replace(/^Other\s*—\s*/, '');
+    }
+  }
+  // Highlight selected single-pick options
+  document.querySelectorAll('.opts').forEach(opts => {
+    opts.querySelectorAll('.opt').forEach(o => {
+      const txt = o.textContent.trim();
+      const matches = (
+        (A.type && (A.type.includes(txt) || txt === 'Other' && A.type === 'Other')) ||
+        (A.income && A.income.includes(txt.replace('/yr','').replace('$','').trim())) ||
+        (A.bank && A.bank.toLowerCase().includes(txt.toLowerCase())) ||
+        (A.reg && A.reg.toLowerCase().includes(txt.toLowerCase())) ||
+        A.extras.some(e => e.toLowerCase().includes(txt.toLowerCase()))
+      );
+      if (matches) o.classList.add('sel');
+    });
+  });
+  updprog();
+}
+
+function goToFormWithSession() {
+  // Keep currentSessionId set; user re-enters answers and clicks "Check my hustle"
+  show('vform');
+}
+
+// Wire up Pay buttons: persist answers + intent before redirecting to Stripe
+function attachPayHandlers() {
+  const onPayClick = (e) => {
+    try {
+      const answers = collectAnswers();
+      // Only persist if we actually have answers (the user is on the free results screen)
+      if (answers.type || answers.desc) {
+        localStorage.setItem('shg_answers', JSON.stringify(answers));
+      }
+    } catch(_) {}
+    // Let the link do its thing
+  };
+  ['stripe-btn','sticky-cta-btn'].forEach(eid => {
+    const el = id(eid);
+    if (el) el.addEventListener('click', onPayClick);
+  });
+}
+
+function preselectFromQuery(params) {
+  const type = params.get('type');
+  if (!type) return;
+  // Find a Q1 option whose onclick string contains this type, and click it
+  const q1 = document.querySelector('.card .opts');
+  if (!q1) return;
+  const opts = q1.querySelectorAll('.opt');
+  for (const o of opts) {
+    const onclick = o.getAttribute('onclick') || '';
+    if (onclick.includes(`'${type}'`)) {
+      o.click();
+      return;
+    }
+  }
+  // No exact match → treat as "Other" with custom text
+  const otherOpt = Array.from(opts).find(o => (o.getAttribute('onclick') || '').includes('pickOther'));
+  if (otherOpt) {
+    otherOpt.click();
+    const inp = id('type-other');
+    if (inp) {
+      inp.value = type;
+      onOtherInput(inp);
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  attachPayHandlers();
+
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get('session_id');
+
+  // Legacy: ?paid=true used to bypass the paywall — strip it, send to form
+  if (params.get('paid') === 'true' && !sessionId) {
+    history.replaceState({}, '', location.pathname);
+    show('vform');
+    return;
+  }
+
+  if (sessionId) {
+    currentSessionId = sessionId;
+    // Validate format quickly to avoid hitting the API with junk
+    if (!/^cs_(test|live)_[A-Za-z0-9_]+$/.test(sessionId)) {
+      history.replaceState({}, '', location.pathname);
+      show('vform');
+      return;
+    }
+
+    const savedAns = localStorage.getItem('shg_answers');
+    if (!savedAns) {
+      // We have payment but no answers (different device / cleared cache).
+      // Show the recovery panel; their session_id will be reused on submit.
+      localStorage.setItem('shg_session', sessionId);
+      show('vrecover');
+      return;
+    }
+
+    try {
+      const answers = JSON.parse(savedAns);
+      repopulateForm(answers);
+      id('vload-title').textContent = 'Verifying payment + generating report…';
+      id('vload-sub').textContent = 'This takes a few seconds';
+      show('vload');
+      const data = await callCheck(answers, sessionId);
+      if (data.tier !== 'paid') {
+        // Stripe didn't validate — show free + a banner explaining
+        saved = data.report;
+        renderFree(saved);
+        alert("We couldn't verify your payment. If you just paid, please refresh in a moment. Otherwise, contact richard@sidehustleguard.com.");
+        return;
+      }
+      saved = data.report;
+      renderPaid(saved);
+      // Keep session_id & answers around so refresh still works (paid users can revisit)
+    } catch(e) {
+      console.error('Paid flow failed:', e);
+      show('vform');
+      alert('Something went wrong — please re-submit your answers. Your unlock is saved.');
+    }
+    return;
+  }
+
+  // Restore session_id from localStorage if user came back without query string
+  const stashedSession = localStorage.getItem('shg_session');
+  if (stashedSession && /^cs_(test|live)_[A-Za-z0-9_]+$/.test(stashedSession)) {
+    currentSessionId = stashedSession;
+  }
+
+  show('vform');
+  preselectFromQuery(params);
+});
+</script>
+</body>
+</html>

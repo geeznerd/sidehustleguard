@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Employment Tax Calculator (Free, 2025) — SideHustleGuard</title>
+<meta name="description" content="Free self-employment tax calculator. Estimate your SE tax, federal income tax, and total taxes owed in seconds. Updated for 2024–2025 IRS rates.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/self-employment-tax-calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="Self-Employment Tax Calculator (2025)">
+<meta property="og:description" content="Estimate your SE tax, federal income tax, and total taxes in seconds. Free.">
+<meta property="og:url" content="https://www.sidehustleguard.com/self-employment-tax-calculator">
+<meta property="og:type" content="website">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
+
+/* Calculator */
+.calc-wrap{max-width:880px;margin:0 auto;padding:0 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.field{margin-bottom:18px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
+.field-help{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none}
+input[type="number"],input[type="text"],select{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+select{padding-left:13px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--gold);background:var(--white)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+.results-card{background:var(--navy);color:var(--white);border-radius:16px;padding:28px;border:1px solid var(--navy)}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold-lt);text-transform:uppercase;margin-bottom:8px}
+.total-row{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.total-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.total-amt{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;line-height:1;color:var(--gold-lt)}
+.total-amt .currency{font-size:20px;font-weight:600;color:rgba(255,255,255,.7);position:relative;top:-12px;margin-right:2px}
+.total-pct{font-size:12px;color:rgba(255,255,255,.45);margin-top:6px;font-weight:300}
+.breakdown{margin-top:14px}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.bd-row:last-child{border-bottom:none}
+.bd-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:300}
+.bd-amt{font-size:14px;color:var(--white);font-weight:500;font-family:'Playfair Display',serif}
+.bd-sub{font-size:11px;color:rgba(255,255,255,.35);font-weight:300}
+
+.set-aside-box{background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.25);border-radius:10px;padding:14px 16px;margin-top:18px}
+.set-aside-label{font-size:10px;color:var(--gold-lt);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.set-aside-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5;font-weight:300}
+.set-aside-text strong{color:var(--white);font-weight:600}
+
+.btn-cta{display:block;width:100%;background:var(--gold);color:var(--white);border-radius:100px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:18px;transition:background .15s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--gold-lt)}
+
+/* Content section */
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--gold)}
+.content h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--navy);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+
+@media(max-width:800px){.calc-grid{grid-template-columns:1fr}.hero,.calc-wrap,.content,nav,footer{padding-left:18px;padding-right:18px}h1{font-size:30px}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Self-Employment Tax Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "url": "https://www.sidehustleguard.com/self-employment-tax-calculator",
+  "description": "Free self-employment tax calculator. Estimate SE tax, federal income tax, and total taxes for self-employed workers in the United States.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is self-employment tax calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Self-employment tax is 15.3% of your net self-employment earnings (12.4% Social Security + 2.9% Medicare). For 2024, you only pay Social Security tax on the first $168,600 of earnings. To calculate: multiply net earnings by 92.35% (the SE tax base), then by 15.3%. Half of the SE tax you pay is deductible from your income tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to pay self-employment tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if your net self-employment earnings are $400 or more in a year. Self-employment tax covers Social Security and Medicare contributions for self-employed individuals. There is no exemption based on age, having a day job, or being part-time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I set aside for self-employment taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A safe rule for most self-employed workers is to set aside 25–30% of every payment you receive. This covers federal income tax (typically 10–22% bracket), self-employment tax (15.3%), and most state taxes. Adjust based on your specific bracket and state."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reduce my self-employment tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Track all business expenses (every deduction lowers net earnings, which directly lowers SE tax). At higher income levels (typically $60,000+ net), an S-corporation election can reduce SE tax by paying yourself a reasonable salary and taking the rest as distributions. Half of SE tax is also deductible from your income tax."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Free · 2024–2025 IRS rates</div>
+  <h1>Self-employment <em>tax calculator</em></h1>
+  <p class="hero-sub">Get an instant estimate of your self-employment tax, federal income tax, and total taxes owed. Just enter your numbers — no sign-up.</p>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-grid">
+
+    <!-- INPUTS -->
+    <div class="calc-card">
+      <div class="calc-title">Your numbers</div>
+
+      <div class="field">
+        <label class="field-label" for="gross">Gross self-employment income</label>
+        <div class="input-money">
+          <input type="number" id="gross" inputmode="decimal" placeholder="50000" oninput="recalc()">
+        </div>
+        <div class="field-help">Total income before expenses (1099 amounts, gross sales, etc.)</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="expenses">Business expenses</label>
+        <div class="input-money">
+          <input type="number" id="expenses" inputmode="decimal" placeholder="10000" oninput="recalc()">
+        </div>
+        <div class="field-help">Mileage, supplies, software, home office, fees — anything deductible</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="status">Filing status</label>
+        <select id="status" onchange="recalc()">
+          <option value="single">Single</option>
+          <option value="mfj">Married filing jointly</option>
+          <option value="hoh">Head of household</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="other">Other income (optional)</label>
+        <div class="input-money">
+          <input type="number" id="other" inputmode="decimal" placeholder="0" oninput="recalc()">
+        </div>
+        <div class="field-help">W-2 wages or other taxable income — affects your tax bracket</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="state">State income tax rate (optional)</label>
+        <select id="state" onchange="recalc()">
+          <option value="0">No state income tax</option>
+          <option value="3">Low (~3%) — AZ, IN, MI, NC, ND, PA</option>
+          <option value="5" selected>Medium (~5%) — most states</option>
+          <option value="7">Higher (~7%) — MN, NY, OR</option>
+          <option value="10">Highest (~10%+) — CA, HI, NJ</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-card">
+      <div class="results-title">Your estimate</div>
+
+      <div class="total-row">
+        <div class="total-label">Total estimated tax</div>
+        <div class="total-amt"><span class="currency">$</span><span id="r-total">0</span></div>
+        <div class="total-pct"><span id="r-pct">0%</span> effective rate · <span id="r-net">$0</span> kept after tax</div>
+      </div>
+
+      <div class="breakdown">
+        <div class="bd-row">
+          <div>
+            <div class="bd-label">Self-employment tax</div>
+            <div class="bd-sub">15.3% on net earnings × 92.35%</div>
+          </div>
+          <div class="bd-amt">$<span id="r-se">0</span></div>
+        </div>
+        <div class="bd-row">
+          <div>
+            <div class="bd-label">Federal income tax</div>
+            <div class="bd-sub">2024 brackets · standard deduction applied</div>
+          </div>
+          <div class="bd-amt">$<span id="r-fed">0</span></div>
+        </div>
+        <div class="bd-row">
+          <div>
+            <div class="bd-label">State income tax</div>
+            <div class="bd-sub">Estimate based on rate selected</div>
+          </div>
+          <div class="bd-amt">$<span id="r-state">0</span></div>
+        </div>
+      </div>
+
+      <div class="set-aside-box">
+        <div class="set-aside-label">Set-aside guidance</div>
+        <div class="set-aside-text">Set aside <strong><span id="r-setaside">25%</span> of every payment</strong> in a separate account. Pay quarterly (Apr 15 / Jun 15 / Sep 15 / Jan 15) to avoid penalties.</div>
+      </div>
+
+      <a href="/tool.html" class="btn-cta">Get a personalized check — free →</a>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <h2>How is <em>self-employment tax</em> calculated?</h2>
+  <p>Self-employment (SE) tax is 15.3% of your net earnings — but it's not applied to your gross income. The IRS uses a slightly counterintuitive formula:</p>
+  <ol>
+    <li><strong>Start with net earnings.</strong> Gross income minus business expenses.</li>
+    <li><strong>Multiply by 92.35%.</strong> This is the "SE tax base." (The math reflects that as a self-employed person, you can't deduct the employer half of FICA before applying SE tax to the same money.)</li>
+    <li><strong>Multiply by 15.3%.</strong> That's your SE tax. (Or 2.9% Medicare-only on amounts above the Social Security wage base of $168,600 for 2024.)</li>
+  </ol>
+
+  <div class="callout callout-green">
+    <p><strong>The 50% SE tax deduction:</strong> Half of the SE tax you pay is deductible from your income tax. The calculator above already accounts for this — it's why your federal tax estimate is lower than a simple bracket multiplication would suggest.</p>
+  </div>
+
+  <h2>2024 federal income tax brackets</h2>
+  <p>The federal income tax piece uses progressive brackets. Each "slice" of income is taxed at the bracket rate:</p>
+
+  <table class="tax-table">
+    <tr><th>Rate</th><th>Single</th><th>Married filing jointly</th></tr>
+    <tr><td>10%</td><td>$0–$11,600</td><td>$0–$23,200</td></tr>
+    <tr><td>12%</td><td>$11,600–$47,150</td><td>$23,200–$94,300</td></tr>
+    <tr><td>22%</td><td>$47,150–$100,525</td><td>$94,300–$201,050</td></tr>
+    <tr><td>24%</td><td>$100,525–$191,950</td><td>$201,050–$383,900</td></tr>
+    <tr><td>32%</td><td>$191,950–$243,725</td><td>$383,900–$487,450</td></tr>
+    <tr><td>35%</td><td>$243,725–$609,350</td><td>$487,450–$731,200</td></tr>
+    <tr><td>37%</td><td>$609,350+</td><td>$731,200+</td></tr>
+  </table>
+
+  <p>Most self-employed workers fall in the 12% or 22% bracket. The standard deduction ($14,600 single / $29,200 MFJ for 2024) is subtracted before brackets are applied.</p>
+
+  <h2>Common ways to reduce <em>self-employment tax</em></h2>
+
+  <h3>1. Track every deduction</h3>
+  <p>Every dollar of legitimate business expense lowers your net earnings and directly lowers SE tax. Common deductions self-employed people miss: home office, business mileage, software subscriptions, phone (business-use portion), internet, professional services, banking fees.</p>
+
+  <h3>2. Consider an S-corp at higher incomes</h3>
+  <p>Once your net self-employment income exceeds roughly $60,000–80,000, an S-corporation election can save real money on SE tax. You pay yourself a "reasonable salary" (subject to FICA) and take the remaining profit as distributions (not subject to FICA). The savings need to outweigh the added complexity (payroll, separate tax return), but at higher incomes the math is favorable.</p>
+
+  <h3>3. Use retirement accounts</h3>
+  <p>SEP-IRA, Solo 401(k), and similar retirement accounts let you contribute pre-tax dollars from self-employment earnings. The contribution lowers your taxable income (income tax savings) but does <em>not</em> reduce SE tax — it's still calculated on pre-retirement-contribution earnings.</p>
+
+  <h3>4. Maximize the qualified business income (QBI) deduction</h3>
+  <p>If your net business income qualifies, you may deduct up to 20% of it under the QBI deduction (Section 199A). Phases out at higher incomes for certain professions. This applies to income tax, not SE tax.</p>
+
+  <h2>Quarterly estimated taxes</h2>
+  <p>If you'll owe more than $1,000 in federal tax for the year, the IRS expects you to pay quarterly. Skipping these results in underpayment penalties. The four deadlines:</p>
+  <ul>
+    <li><strong>April 15</strong> — for income earned Jan–Mar</li>
+    <li><strong>June 15</strong> — for income earned Apr–May</li>
+    <li><strong>September 15</strong> — for income earned Jun–Aug</li>
+    <li><strong>January 15</strong> — for income earned Sep–Dec</li>
+  </ul>
+  <p>You can pay at <strong>IRS.gov/payments</strong> in about 10 minutes. The simplest approach: take your estimated annual tax and divide by 4.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>This calculator is an estimate.</strong> Real tax outcomes depend on credits, deductions, retirement contributions, dependents, and other factors not captured here. For a personalized analysis specific to your hustle, state, and situation, run the free SideHustleGuard check below.</p>
+  </div>
+
+  <h2>Frequently asked <em>questions</em></h2>
+
+  <h3>Do I have to pay self-employment tax?</h3>
+  <p>Yes, if your net self-employment earnings are $400 or more in a year. SE tax covers Social Security and Medicare for self-employed people. There's no exemption based on age, having a day job, or being part-time.</p>
+
+  <h3>How much should I set aside for self-employment taxes?</h3>
+  <p>For most self-employed workers, set aside <strong>25–30% of every payment</strong> in a separate account. This covers federal income tax (typically 10–22%), SE tax (15.3%), and most state taxes. Higher earners or high-tax states should aim closer to 35%.</p>
+
+  <h3>Is half my SE tax really deductible?</h3>
+  <p>Yes. Half of the SE tax you pay is deductible "above the line" from your gross income, lowering your federal income tax. This is the IRS's way of acknowledging that as a self-employed person, you're paying both the employee and employer halves of FICA.</p>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/quarterly-taxes-self-employed.html">Quarterly taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+<script>
+// 2024 federal brackets (used as 2025 approximation pending Treasury inflation adjustments)
+const BRACKETS = {
+  single: [
+    [11600,  0.10], [47150, 0.12], [100525,0.22], [191950,0.24],
+    [243725, 0.32], [609350,0.35], [Infinity,0.37]
+  ],
+  mfj: [
+    [23200,  0.10], [94300, 0.12], [201050,0.22], [383900,0.24],
+    [487450, 0.32], [731200,0.35], [Infinity,0.37]
+  ],
+  hoh: [
+    [16550,  0.10], [63100, 0.12], [100500,0.22], [191950,0.24],
+    [243700, 0.32], [609350,0.35], [Infinity,0.37]
+  ],
+};
+const STD_DED = { single: 14600, mfj: 29200, hoh: 21900 };
+const SS_WAGE_BASE = 168600; // 2024
+
+function fmt(n){
+  if (!isFinite(n)) n = 0;
+  return Math.round(n).toLocaleString();
+}
+
+function calcFederal(taxable, status){
+  if (taxable <= 0) return 0;
+  let tax = 0;
+  let prev = 0;
+  for (const [cap, rate] of BRACKETS[status]){
+    if (taxable <= cap){
+      tax += (taxable - prev) * rate;
+      return tax;
+    }
+    tax += (cap - prev) * rate;
+    prev = cap;
+  }
+  return tax;
+}
+
+function recalc(){
+  const gross = parseFloat(document.getElementById('gross').value) || 0;
+  const exp   = parseFloat(document.getElementById('expenses').value) || 0;
+  const other = parseFloat(document.getElementById('other').value) || 0;
+  const status = document.getElementById('status').value;
+  const stateRate = (parseFloat(document.getElementById('state').value) || 0) / 100;
+
+  const netSE = Math.max(0, gross - exp);
+
+  // SE tax: 15.3% on netSE * 92.35%, with SS portion capped at SS_WAGE_BASE
+  const seBase = netSE * 0.9235;
+  const ssBase = Math.min(seBase, SS_WAGE_BASE);
+  const seTax = ssBase * 0.124 + seBase * 0.029;
+  const seDeduction = seTax / 2; // half of SE tax is deductible from income
+
+  // Federal income tax: (netSE - seDeduction + other - std_deduction)
+  const fedTaxable = Math.max(0, netSE - seDeduction + other - STD_DED[status]);
+  const fedTax = calcFederal(fedTaxable, status);
+
+  // State tax: simple flat estimate on (netSE + other)
+  const stateTax = Math.max(0, (netSE + other)) * stateRate;
+
+  const total = seTax + fedTax + stateTax;
+  const grossPlusOther = gross + other;
+  const effRate = grossPlusOther > 0 ? (total / grossPlusOther) * 100 : 0;
+  const kept = grossPlusOther - total - exp;
+
+  // Set-aside recommendation
+  const sePctOfNet = netSE > 0 ? Math.round((total / Math.max(1, netSE)) * 100) : 25;
+  const setAside = Math.min(40, Math.max(20, sePctOfNet));
+
+  document.getElementById('r-total').textContent = fmt(total);
+  document.getElementById('r-pct').textContent   = effRate.toFixed(1) + '%';
+  document.getElementById('r-net').textContent   = '$' + fmt(kept);
+  document.getElementById('r-se').textContent    = fmt(seTax);
+  document.getElementById('r-fed').textContent   = fmt(fedTax);
+  document.getElementById('r-state').textContent = fmt(stateTax);
+  document.getElementById('r-setaside').textContent = setAside + '%';
+}
+recalc();
+</script>
+
+</body>
+</html>
