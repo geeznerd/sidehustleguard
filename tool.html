@@ -86,10 +86,10 @@ textarea { resize: vertical; }
 .btn-pay:hover { background: var(--gold-lt); }
 .pw-note { font-size: 11px; color: rgba(255,255,255,.3); }
 .paid-banner { background: var(--green-bg); border: 1px solid rgba(39,105,68,.2); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: var(--green); font-weight: 500; }
-.insight-box { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 12px; }
+.insight-box { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; }
 .ins-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 4px; }
 .ins-txt { font-size: 13px; font-weight: 500; line-height: 1.6; }
-.qw-box { background: var(--green-bg); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; }
+.qw-box { background: var(--green-bg); border-left: 3px solid var(--green); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
 .qw-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--green); margin-bottom: 10px; }
 .win-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
 .win-num { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -108,7 +108,7 @@ textarea { resize: vertical; }
 .dl-date { font-size: 12px; font-weight: 600; min-width: 95px; }
 .dl-r { color: var(--red); } .dl-a { color: var(--amber); } .dl-n { color: var(--navy); }
 .dl-evt { font-size: 13px; color: var(--muted); }
-.bottom-line { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 13px; font-weight: 500; line-height: 1.65; }
+.bottom-line { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 8px; padding: 14px 16px; font-size: 13px; font-weight: 500; line-height: 1.65; }
 .aff { background: var(--amber-bg); border-top: 2px solid var(--gold); border-radius: 0 0 10px 10px; padding: 16px; margin-top: 12px; }
 .aff-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
 .aff-body { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 300; }
@@ -719,36 +719,166 @@ function renderPaid(r){
   show('vpaid');
 }
 
-async function downloadPDF() {
+function downloadPDF() {
   if (!saved) return;
-  if (!currentSessionId) {
-    alert('Session expired — please refresh and try again.');
-    return;
-  }
-  const btn = document.getElementById('pdf-btn');
-  btn.textContent = 'Generating PDF...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('/api/pdf', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session_id: currentSessionId, report: saved })
-    });
-    if (!res.ok) throw new Error('PDF generation failed');
-    const blob = await res.blob();
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'sidehustleguard-report.pdf';
-    a.click();
-    URL.revokeObjectURL(url);
-    btn.innerHTML = '✓ Downloaded';
-    btn.style.background = 'var(--green)';
-  } catch(e) {
-    console.error(e);
-    btn.textContent = 'Download failed — try again';
-    btn.disabled = false;
-  }
+  const r = saved;
+  const win = window.open('', '_blank');
+  win.document.write(buildPrintHTML(r));
+  win.document.close();
+  win.onload = () => { win.focus(); win.print(); };
+}
+
+function buildPrintHTML(r) {
+  const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const riskColor = {Low:'#276944',Moderate:'#a86c0a',High:'#b83232'};
+  const riskBg    = {Low:'#eaf5ef',Moderate:'#fef6e8',High:'#fdf0f0'};
+  const dotCls    = {red:'#b83232',amber:'#a86c0a',green:'#276944'};
+  const tlColor   = {'This week':'#b83232','This month':'#a86c0a','Ongoing':'#1c2b4a'};
+  const tlBg      = {'This week':'#fdf0f0','This month':'#fef6e8','Ongoing':'#edf0f7'};
+  const dlColor   = {red:'#b83232',amber:'#a86c0a',navy:'#1c2b4a'};
+  const rc = riskColor[r.risk_level]||'#a86c0a';
+  const rb = riskBg[r.risk_level]||'#fef6e8';
+
+  const issues = (r.issues||[]).map(i=>`
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e2e6ef">
+      <div style="width:7px;height:7px;border-radius:50%;background:${dotCls[i.status]||'#a86c0a'};flex-shrink:0;margin-top:5px"></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;color:#1c2b4a">${esc(i.title)}</div>
+      <div style="font-size:12px;color:#6b7a96;line-height:1.5">${esc(i.detail)}</div></div>
+    </div>`).join('');
+
+  const wins = (r.quick_wins||[]).map((w,i)=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:5px 0">
+      <div style="width:20px;height:20px;border-radius:50%;background:#c9973a;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <div style="font-size:13px;font-weight:500;color:#1c2b4a">${esc(w)}</div>
+    </div>`).join('');
+
+  const working = (r.working||[]).map(w=>`
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #e2e6ef">
+      <div style="color:#276944;font-weight:700;font-size:14px;flex-shrink:0;line-height:1.4">•</div>
+      <div style="font-size:13px;color:#1c2b4a;line-height:1.5">${esc(w)}</div>
+    </div>`).join('');
+
+  const actions = (r.action_plan||[]).map((a,i)=>`
+    <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid #e2e6ef">
+      <div style="width:20px;height:20px;border-radius:50%;background:#1c2b4a;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;background:${tlBg[a.timeline]||'#edf0f7'};color:${tlColor[a.timeline]||'#1c2b4a'}">${esc(a.timeline)}</span>
+      <div style="font-size:13px;color:#1c2b4a;line-height:1.5">${esc(a.step)}</div>
+    </div>`).join('');
+
+  const deadlines = (r.deadlines||[]).map(d=>`
+    <div style="display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e6ef">
+      <div style="font-size:12px;font-weight:600;min-width:95px;color:${dlColor[d.urgency]||'#1c2b4a'}">${esc(d.date)}</div>
+      <div style="font-size:13px;color:#6b7a96">${esc(d.event)}</div>
+    </div>`).join('');
+
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>SideHustleGuard Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;color:#1c2b4a;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{max-width:720px;margin:0 auto;padding:0}
+.hdr{background:#1c2b4a;padding:18px 36px;display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.hdr-wordmark{font-size:16px;font-weight:700;color:#fff}
+.hdr-wordmark span{color:#c9973a}
+.hdr-badge{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 12px}
+.strip{background:#f0ece3;border-bottom:1px solid #e2e6ef;padding:10px 36px;display:flex;gap:32px}
+.strip-item{display:flex;flex-direction:column;gap:3px}
+.strip-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:#6b7a96;text-transform:uppercase}
+.strip-val{font-size:13px;font-weight:600}
+.gold-bar{height:3px;background:#c9973a}
+.body{padding:28px 36px 40px}
+.sec-head{font-size:9px;font-weight:600;letter-spacing:.12em;color:#c9973a;text-transform:uppercase;margin-bottom:6px;margin-top:22px;padding-bottom:6px;border-bottom:1px solid #e2e6ef}
+.sec-head:first-child{margin-top:0}
+.card{background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:16px;margin-bottom:12px}
+.risk-card{border-left:4px solid ${rc};background:${rb};border-radius:10px;padding:14px 18px;margin-bottom:16px}
+.risk-lvl{font-size:9px;font-weight:600;letter-spacing:.1em;color:${rc};margin-bottom:4px;text-transform:uppercase}
+.risk-hl{font-size:13px;font-weight:500;line-height:1.5;color:#1c2b4a}
+.insight{background:#f0ece3;border-left:3px solid #c9973a;border-radius:8px;padding:12px 16px;margin-bottom:12px}
+.ins-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;color:#c9973a;margin-bottom:4px;text-transform:uppercase}
+.ins-txt{font-size:13px;font-weight:500;line-height:1.6;color:#1c2b4a}
+.qw{background:#eaf5ef;border-left:3px solid #276944;border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.qw-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;color:#276944;margin-bottom:10px;text-transform:uppercase}
+.wins-note{font-size:12px;color:#276944;font-weight:500;margin-top:10px}
+.tax-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.tax-box{border-radius:8px;padding:14px}
+.tax-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;color:#9aa3b5;margin-bottom:6px;text-transform:uppercase}
+.tax-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700}
+.tax-note-txt{font-size:12px;color:#6b7a96;line-height:1.6;margin-top:10px}
+.closing{background:#f0ece3;border-left:3px solid #c9973a;border-radius:8px;padding:14px 16px;font-size:13px;font-weight:500;line-height:1.65;color:#1c2b4a;margin-bottom:12px}
+.nw{background:#1c2b4a;border-radius:14px;overflow:hidden;margin-bottom:12px}
+.nw-accent{height:3px;background:#c9973a}
+.nw-body{padding:22px 24px}
+.nw-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:8px}
+.nw-head{font-family:'Playfair Display',serif;font-size:19px;color:#fff;line-height:1.2;margin-bottom:8px}
+.nw-head span{color:#ddb06a}
+.nw-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:14px}
+.nw-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.nw-pill{font-size:10px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:3px 10px;border-radius:100px}
+.nw-btn{display:block;padding:13px;background:#c9973a;color:#fff;border-radius:100px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;text-align:center;text-decoration:none}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.22);text-align:center;margin-top:8px}
+.disc{font-size:10px;color:#9aa3b5;font-style:italic;line-height:1.6;padding:10px 14px;background:#f0ece3;border-radius:8px;margin-top:4px}
+@media print{
+  body{font-size:11px}
+  .page{max-width:100%}
+  .hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:0;size:letter}
+}
+</style></head><body>
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-logo">
+      <svg width="24" height="28" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="hdr-wordmark">SideHustle<span>Guard</span></div>
+    </div>
+    <div class="hdr-badge">Compliance &amp; Tax Report</div>
+  </div>
+  <div class="gold-bar"></div>
+  <div class="strip">
+    <div class="strip-item"><div class="strip-label">Overall Risk</div><div class="strip-val" style="color:${rc}">${esc(r.risk_level||'Moderate').toUpperCase()}</div></div>
+    <div class="strip-item"><div class="strip-label">Report Type</div><div class="strip-val">Tax &amp; Compliance</div></div>
+    <div class="strip-item"><div class="strip-label">Classification</div><div class="strip-val">${esc(r.client||'Your Report')}</div></div>
+  </div>
+  <div class="body">
+    <div class="risk-card">
+      <div class="risk-lvl">Overall Risk: ${esc(r.risk_level||'Moderate')}</div>
+      <div class="risk-hl">${esc(r.opening||'')}</div>
+    </div>
+    <div class="sec-head">What most people in your position don't realize</div>
+    <div class="insight"><div class="ins-lbl">Key insight</div><div class="ins-txt">${esc(r.key_insight||'')}</div></div>
+    <div class="sec-head">Fastest way to reduce your risk (under 1 hour)</div>
+    <div class="qw"><div class="qw-lbl">Quick wins</div>${wins}${r.quick_wins_note?`<div class="wins-note">${esc(r.quick_wins_note)}</div>`:''}</div>
+    <div class="sec-head">Full compliance checklist</div>
+    <div class="card" style="padding:4px 14px">${issues}</div>
+    <div class="sec-head">Tax reality</div>
+    <div class="tax-grid">
+      <div class="tax-box" style="background:#fdf0f0"><div class="tax-lbl">Effective Rate</div><div class="tax-val" style="color:#b83232">${esc(r.tax_rate||'—')}</div></div>
+      <div class="tax-box" style="background:#fef6e8"><div class="tax-lbl">Est. Tax Owed</div><div class="tax-val" style="color:#a86c0a;font-size:22px">${esc(r.tax_owed_est||'—')}</div></div>
+    </div>
+    ${r.tax_note?`<div class="tax-note-txt">${esc(r.tax_note)}</div>`:''}
+    <div class="sec-head">What you're doing right</div>
+    <div class="card" style="padding:4px 14px">${working}</div>
+    <div class="sec-head">What to do next</div>
+    <div class="card" style="padding:4px 14px">${actions}</div>
+    ${r.deadlines&&r.deadlines.length?`<div class="sec-head">Key deadlines</div><div class="card" style="padding:4px 14px">${deadlines}</div>`:''}
+    <div class="sec-head">Bottom line</div>
+    <div class="closing">${esc(r.closing||'')}</div>
+    <div class="nw">
+      <div class="nw-accent"></div>
+      <div class="nw-body">
+        <div class="nw-label">Recommended next step</div>
+        <div class="nw-head">Ready to form your LLC? <span>Don't overpay.</span></div>
+        <div class="nw-desc">Northwest Registered Agent is the straightforward option — flat fee, no upsells, keeps your personal address off public records, and handles all the paperwork.</div>
+        <div class="nw-pills"><span class="nw-pill">✓ Address privacy</span><span class="nw-pill">✓ All 50 states</span><span class="nw-pill">✓ Registered agent included</span><span class="nw-pill">✓ No hidden fees</span></div>
+        <a href="https://tidd.ly/3QEBTKc" class="nw-btn">Form my LLC with Northwest →</a>
+        <div class="nw-disc">Affiliate link — we may earn a commission at no extra cost to you</div>
+      </div>
+    </div>
+    <div class="disc">Educational purposes only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+  </div>
+</div>
+</body></html>`;
 }
 
 function reset(){
