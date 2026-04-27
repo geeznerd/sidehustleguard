@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaskRabbit Taxes: What Taskers Actually Owe — SideHustleGuard</title>
+<meta name="description" content="TaskRabbit Taskers are independent contractors. Here's the full tax picture — SE tax, 1099s, what you can deduct, and how to handle tools and mileage.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/taskrabbit-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="TaskRabbit Taxes: What Taskers Actually Owe">
+<meta property="og:description" content="TaskRabbit Taskers are independent contractors. Here's the full tax picture — SE tax, 1099s, what you can deduct, and how to handle tools and mileage.">
+<meta property="og:url" content="https://www.sidehustleguard.com/taskrabbit-taxes">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does TaskRabbit send me a 1099?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TaskRabbit uses Stripe Express to process payments. Stripe sends a 1099-K when your gross payments exceed $2,500 in 2025. Even if your earnings fall below that threshold, you are still legally required to report all income on your tax return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much self-employment tax do TaskRabbit Taskers pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TaskRabbit Taskers owe 15.3% self-employment tax on net profit (after deductions). This covers Social Security (12.4%) and Medicare (2.9%). You can deduct half of the SE tax when calculating your adjusted gross income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I deduct tools I bought for TaskRabbit jobs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tools and equipment used for TaskRabbit tasks — drills, levels, cleaning equipment, and similar items — are deductible business expenses. For expensive tools (over roughly $500), you can use Section 179 to deduct the full cost in the year of purchase rather than depreciating over multiple years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is mileage deductible for TaskRabbit Taskers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Driving to and from task locations is a deductible business expense. The standard mileage rate is 70 cents per mile in 2025. Keep a log of date, starting point, destination, and miles driven for each task."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to pay quarterly taxes as a TaskRabbit Tasker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you expect to owe $1,000 or more in federal taxes for the year, you are required to make quarterly estimated tax payments. The due dates are April 15, June 15, September 15, and January 15. Failing to pay can result in an underpayment penalty."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link nav-guides">Guides</a>
+    <a href="/tool.html" class="nav-cta">Free Check →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">SideHustleGuard</a> &rsaquo; TaskRabbit Taxes
+  </div>
+  <h1>TaskRabbit taxes: <em>what every Tasker</em> actually owes</h1>
+  <div class="hero-meta">Updated April 2026 &nbsp;&middot;&nbsp; 7 min read</div>
+  <p class="hero-intro">TaskRabbit takes a 15&ndash;30% service fee from every task. The IRS takes its share too &mdash; and TaskRabbit doesn't withhold anything. Here's exactly what you owe as an independent Tasker and the deductions that reduce it.</p>
+  <div class="answer-box">
+    All TaskRabbit income is self-employment income. You owe 15.3% SE tax plus federal and state income tax on net profit. TaskRabbit issues a 1099-K when gross payments exceed $2,500 in 2025. Even without a 1099, you must report all income.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>What taxes Taskers owe</h2>
+  <p>As an independent contractor on TaskRabbit, you are running a business in the eyes of the IRS. No employer withholds taxes on your behalf, so you are responsible for calculating and paying everything yourself. That means three separate layers of tax on your net profit.</p>
+
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>Tax</th>
+        <th>Rate</th>
+        <th>What it covers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Self-employment (SE) tax</td>
+        <td>15.3%</td>
+        <td>Social Security (12.4%) + Medicare (2.9%) — replaces payroll tax</td>
+      </tr>
+      <tr>
+        <td>Federal income tax</td>
+        <td>10%–37% (marginal)</td>
+        <td>Applied to taxable income after standard deduction ($15,000 single in 2025)</td>
+      </tr>
+      <tr>
+        <td>State income tax</td>
+        <td>0%–13.3%</td>
+        <td>Varies by state — nine states have no income tax</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The SE tax applies to <strong>net profit</strong> — your gross TaskRabbit earnings minus deductible business expenses. The lower your net profit, the lower your SE tax bill. This is why deductions matter so much for Taskers.</p>
+
+  <p>One piece of good news: you can deduct <strong>half of the SE tax</strong> you pay when calculating your adjusted gross income. It doesn't eliminate the tax, but it does reduce the income tax you owe on top of it.</p>
+
+  <h2>Does TaskRabbit <em>send a 1099?</em></h2>
+  <p>TaskRabbit processes all payouts through Stripe Express. When your gross payments through the platform exceed <strong>$2,500 in calendar year 2025</strong>, Stripe sends you a 1099-K. You'll receive it in your Stripe Express dashboard and by mail by January 31 of the following year.</p>
+
+  <p>This $2,500 threshold is specific to 2025 — the IRS has been phasing down the 1099-K threshold toward $600. Check for updates each tax year.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Important:</strong> Even if you earn under $2,500 and receive no 1099, you are still legally required to report every dollar of TaskRabbit income on your tax return. The IRS expects you to self-report all self-employment income, regardless of whether a form was issued.</p>
+  </div>
+
+  <p>TaskRabbit itself does not issue a 1099-NEC. The 1099-K comes from Stripe as the payment processor. If you completed fewer tasks and stayed under the threshold, keep your own records of every payment received throughout the year.</p>
+
+  <h2>TaskRabbit's <em>fee structure</em> — and why it matters for taxes</h2>
+  <p>When you complete a task, TaskRabbit charges the client a "Trust &amp; Support" fee and takes a <strong>15% service fee from your earnings</strong> on top. So if a client pays $100, you keep roughly $85 before any expenses.</p>
+
+  <p>The good news: the service fees TaskRabbit deducts from your pay are considered a business expense. You can deduct them on Schedule C, which reduces your net profit and therefore your SE tax. In practice, your 1099-K will show gross payments before TaskRabbit's fee is taken — so you need to track what you actually received versus what was deducted.</p>
+
+  <div class="callout callout-navy">
+    <p><strong>Tip:</strong> Your Stripe Express dashboard shows a full transaction history. Download it at year-end to reconcile gross income, TaskRabbit fees deducted, and net deposits to your bank account.</p>
+  </div>
+
+  <h2>Top deductions for <em>Taskers</em></h2>
+  <p>The IRS allows you to deduct any ordinary and necessary business expense. For TaskRabbit Taskers, these add up fast — especially if you do hands-on work that requires tools, supplies, or frequent driving.</p>
+
+  <h3>Tools and equipment</h3>
+  <p>Drills, levels, screwdrivers, cleaning equipment, vacuums, ladders — any tool or piece of equipment you use to complete tasks is deductible. Keep your receipts. If a tool has mixed personal and business use, deduct the business-use percentage only.</p>
+
+  <h3>Mileage driving to and from task locations</h3>
+  <p>The standard mileage rate is <strong>70 cents per mile</strong> in 2025. Every mile you drive to get to a task location and every mile you drive away counts as a deductible business mile. Keep a log with the date, starting address, destination, and total miles for each trip. Apps like MileIQ or Everlance automate this tracking.</p>
+
+  <h3>TaskRabbit service fees</h3>
+  <p>The 15% platform fee TaskRabbit takes from each task is a deductible business expense. It's a cost of operating on the platform — treat it the same way you'd treat a merchant processing fee.</p>
+
+  <h3>Phone</h3>
+  <p>You use your phone to communicate with clients, manage your TaskRabbit app, navigate to locations, and look up job information. Deduct the percentage of your phone bill and phone purchase that's used for business. If you use your phone 60% for TaskRabbit work, deduct 60% of the cost.</p>
+
+  <h3>Protective gear and safety equipment</h3>
+  <p>Gloves, masks, safety goggles, knee pads, work boots — any protective equipment you wear on jobs is a deductible business supply. These are small-dollar items that add up over the course of a year.</p>
+
+  <h3>Supplies used on jobs</h3>
+  <p>Cleaning products, mounting hardware, zip ties, batteries, light bulbs — consumable supplies you purchase specifically for tasks are fully deductible in the year you buy them.</p>
+
+  <h3>Parking and tolls</h3>
+  <p>Parking fees and road tolls incurred while traveling to or from task locations are deductible business expenses on top of the mileage deduction. Keep receipts or bank/card records.</p>
+
+  <h3>Background check fee</h3>
+  <p>TaskRabbit requires a background check to get started on the platform. That fee is deductible as a business startup or operating cost.</p>
+
+  <h2>Section 179 for <em>expensive tools</em></h2>
+  <p>If you buy a piece of equipment that costs more than roughly $500 &mdash; a high-end drill, a professional-grade pressure washer, a commercial vacuum &mdash; you have two options for deducting it:</p>
+
+  <ol>
+    <li><strong>Depreciate it over several years</strong> (the default for capital equipment)</li>
+    <li><strong>Deduct the full cost in the year of purchase</strong> using the Section 179 deduction</li>
+  </ol>
+
+  <p>For most Taskers, the Section 179 election makes more sense. You get the full tax benefit immediately rather than spreading it across 5–7 years. The Section 179 limit is well over $1 million, so unless you're buying a fleet of equipment, you'll never hit the cap.</p>
+
+  <div class="callout callout-green">
+    <p><strong>Example:</strong> You buy a $600 drill in March. With Section 179, you deduct the full $600 this year. At a 20% combined tax rate, that's $120 in actual tax savings in your pocket now instead of $17–24/year spread over 5–7 years.</p>
+  </div>
+
+  <h2>Quarterly estimated taxes</h2>
+  <p>Because TaskRabbit doesn't withhold anything from your pay, you're responsible for paying taxes yourself throughout the year. If you expect to owe $1,000 or more in federal taxes for the year, the IRS requires you to make quarterly estimated payments.</p>
+
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>Quarter</th>
+        <th>Income period</th>
+        <th>Due date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Q1</td>
+        <td>January – March</td>
+        <td>April 15</td>
+      </tr>
+      <tr>
+        <td>Q2</td>
+        <td>April – May</td>
+        <td>June 15</td>
+      </tr>
+      <tr>
+        <td>Q3</td>
+        <td>June – August</td>
+        <td>September 15</td>
+      </tr>
+      <tr>
+        <td>Q4</td>
+        <td>September – December</td>
+        <td>January 15</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>A common rule of thumb: set aside <strong>25–30% of every TaskRabbit payment</strong> you receive into a separate savings account earmarked for taxes. That covers SE tax plus federal income tax for most Taskers in middle income brackets. Adjust up if you're in a high-income state.</p>
+
+  <p>Pay online at <strong>IRS.gov/payments</strong> using Direct Pay or EFTPS. Both are free.</p>
+
+  <h2>Do multiple task categories require <em>separate returns?</em></h2>
+  <p>No. If you do handyman tasks, furniture assembly, cleaning, moving help, and painting on TaskRabbit, it all goes on a single Schedule C. You are one self-employed individual running one business &mdash; the platform through which you work. You do not need to separate income or expenses by task type, and you do not file multiple Schedule C forms for different categories of work on the same platform.</p>
+
+  <p>If you also do gig work on a separate platform &mdash; say, DoorDash deliveries on the side &mdash; that would typically go on its own Schedule C since it is a distinct type of business activity. But all TaskRabbit income and expenses roll up together.</p>
+
+  <div class="nw-card">
+    <span class="nw-badge">AFFILIATE PARTNER</span>
+    <div class="nw-body">
+      <div class="nw-context">Thinking about forming an LLC?</div>
+      <div class="nw-title">Protect your hustle with <em>Northwest Registered Agent</em></div>
+      <div class="nw-desc">If your side hustle is generating real income, an LLC separates your personal assets from business liability. Northwest handles the paperwork in all 50 states — no hidden fees, no upsells.</div>
+      <div class="nw-features"><span class="nw-feat">$39 + state fees</span><span class="nw-feat">All 50 states</span><span class="nw-feat">Registered agent included</span><span class="nw-feat">No hidden fees</span></div>
+      <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">Form your LLC with Northwest →</a>
+      <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Know exactly where <em>your hustle</em> stands</h3>
+    <p>Our free checker looks at your specific income, state, and situation — then tells you exactly what you owe and what to do next.</p>
+    <a href="/tool.html" class="btn-gold">Get my free tax check →</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+  <hr>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Does TaskRabbit send me a 1099?</h3>
+  <p>TaskRabbit uses Stripe Express to process payments. Stripe sends a 1099-K when your gross payments exceed $2,500 in 2025. Even if your earnings fall below that threshold, you are still legally required to report all income on your tax return.</p>
+
+  <h3>How much self-employment tax do Taskers pay?</h3>
+  <p>Taskers owe 15.3% SE tax on net profit — that's 12.4% for Social Security and 2.9% for Medicare. You can deduct half of the SE tax you pay when calculating your adjusted gross income, which slightly reduces the income tax on top.</p>
+
+  <h3>Can I deduct tools I bought for TaskRabbit jobs?</h3>
+  <p>Yes. Tools and equipment used for TaskRabbit tasks are deductible business expenses. For items over roughly $500, you can use Section 179 to deduct the full cost in the year of purchase instead of depreciating it over multiple years.</p>
+
+  <h3>Is mileage deductible for Taskers?</h3>
+  <p>Yes. Driving to and from task locations is deductible at 70 cents per mile in 2025. Keep a log of date, starting point, destination, and miles driven for each trip.</p>
+
+  <h3>Do I need to pay quarterly taxes?</h3>
+  <p>If you expect to owe $1,000 or more in federal taxes for the year, the IRS requires quarterly estimated payments. Due dates are April 15, June 15, September 15, and January 15.</p>
+
+</div>
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/freelancer-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Freelancer taxes: the complete guide</div>
+    </a>
+    <a href="/side-hustle-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Side hustle taxes: what you owe</div>
+    </a>
+    <a href="/self-employment-tax-calculator.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Self-employment tax calculator</div>
+    </a>
+    <a href="/quarterly-taxes-self-employed.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Quarterly taxes for the self-employed</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/freelancer-taxes.html">Freelancer taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patreon Taxes: What Every Creator Actually Owes — SideHustleGuard</title>
+<meta name="description" content="Patreon income is fully taxable as self-employment income. Here's when Patreon sends a 1099, what you can deduct, and how to handle membership revenue.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/patreon-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Open Graph -->
+<meta property="og:title" content="Patreon Taxes: What Every Creator Actually Owes">
+<meta property="og:description" content="Patreon income is fully taxable as self-employment income. Here's when Patreon sends a 1099, what you can deduct, and how to handle membership revenue.">
+<meta property="og:url" content="https://www.sidehustleguard.com/patreon-taxes">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do Patreon creators have to pay taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Patreon pays creators as independent contractors, which means all patron pledge income is self-employment income. You owe self-employment tax (15.3%) plus federal and state income tax on your net profit. Patreon does not withhold any taxes — you're responsible for reporting and paying everything yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Patreon send a 1099?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Patreon issues a 1099-K when your gross payments exceed $2,500 for the 2025 tax year. Patreon uses Stripe and PayPal for payment processing. Even if you earn below that threshold and don't receive a 1099-K, you are legally required to report all Patreon income on your tax return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my taxable income the gross amount patrons pay or what I receive after Patreon's fees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your taxable income is the gross amount your patrons pay — not the net amount you receive after Patreon's platform fee. However, Patreon's fee (5–12% depending on your plan) is fully deductible as a business expense on Schedule C, which nets out to the same tax result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Patreon be classified as a hobby instead of a business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS can classify a Patreon as a hobby if you don't consistently pursue it for profit. Hobby income is still taxable, but hobby losses and expenses are not deductible. To establish business status, maintain a regular posting schedule, actively promote your page, track income and expenses, and treat it like a business. Earning a profit in at least 3 of 5 years is a strong indicator the IRS looks for."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to report Patreon income if I also have YouTube or sponsorship income?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All creator income — Patreon, YouTube AdSense, brand sponsorships, merchandise sales, affiliate commissions — is reported together on the same Schedule C as one creator business. You don't file separate tax forms for each platform; they all flow into your combined self-employment income and profit calculation."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link nav-guides">Guides</a>
+    <a href="/tool.html" class="nav-cta">Free Check →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → Patreon Taxes</div>
+  <h1>Patreon taxes: <em>what every creator</em> actually owes</h1>
+  <div class="hero-meta">Updated April 2026 · 8 min read</div>
+  <p class="hero-intro">Patreon pays you as an independent contractor, not an employee. Every dollar your patrons pledge is self-employment income — and Patreon doesn't withhold a cent in taxes. Here's how it works and what you can legally deduct.</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> All Patreon income is taxable self-employment income. You owe 15.3% SE tax plus federal and state income tax on your net profit after deductions. The 1099-K threshold for 2025 is $2,500 in gross payments. Even below that threshold, you're legally required to report every dollar earned.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>What taxes do Patreon creators actually owe?</h2>
+  <p>When patrons pledge to your page, that money is self-employment income — the same category as freelance work, consulting, or any independent contractor income. Three types of tax apply:</p>
+
+  <table class="tax-table">
+    <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
+    <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security + Medicare for self-employed people</td></tr>
+    <tr><td>Federal income tax</td><td>10–22% (most creators)</td><td>Stacks on top of SE tax; based on total income</td></tr>
+    <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>9 states have no income tax; most have 3–6%</td></tr>
+  </table>
+
+  <p>On top of all three taxes, remember that <strong>Patreon takes a platform fee of 5–12%</strong> before you ever see the money. That fee is deductible as a business expense, which reduces your taxable profit — but your gross income for tax purposes is the full amount your patrons pay, not your take-home after fees.</p>
+
+  <p>The self-employment tax catches most first-time creators off guard. In a regular job, your employer pays half of Social Security and Medicare (7.65%) and you pay the other half through paycheck withholding. When you're self-employed, there's no employer — so you pay the full 15.3% yourself. The silver lining is that you can deduct half of the SE tax you pay on your federal income tax return, which partially offsets the hit.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Net profit is what matters.</strong> Taxes apply to your net profit — gross Patreon income minus legitimate business expenses. A creator who earns $18,000 from Patreon but has $6,000 in equipment, software, and platform fees pays taxes on $12,000, not $18,000. Tracking every deductible expense is how you lower your bill legally.</p>
+  </div>
+
+  <h2>Does Patreon send a 1099?</h2>
+  <p>Patreon uses <strong>Stripe and PayPal</strong> to process payments, which means you'll receive a <strong>1099-K</strong> when your gross payments cross the reporting threshold. For the <strong>2025 tax year, that threshold is $2,500</strong> in gross patron payments.</p>
+
+  <p>The 1099-K reflects total patron payments before Patreon's platform fee is deducted. If your patrons collectively paid $10,000 and Patreon kept $1,000 in fees, your 1099-K shows $10,000. You then deduct the $1,000 platform fee as a business expense on Schedule C — the tax math comes out the same as if you'd reported $9,000 with no deduction.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Below the threshold? Still taxable.</strong> If you earned $1,800 from Patreon in a year, you won't get a 1099-K — but the IRS still expects you to report it. The $2,500 threshold is a reporting trigger for Patreon, not a tax exemption for you. Self-reporting all income regardless of whether a form was issued is a legal requirement.</p>
+  </div>
+
+  <h3>Hobby vs. business — why it matters for the 1099</h3>
+  <p>There's an important distinction the IRS makes between a Patreon run as a legitimate business and one that qualifies as a hobby. Both types of income are taxable. But only business income allows you to deduct expenses that exceed your revenue (a loss). Hobby losses cannot be deducted. If your Patreon is in its early days and you're spending more than you earn, the hobby vs. business question directly affects whether those losses help you at tax time.</p>
+
+  <h2>Patreon's fee structure and your taxes</h2>
+  <p>Patreon offers three pricing tiers, each with a different platform fee:</p>
+
+  <table class="tax-table">
+    <tr><th>Patreon plan</th><th>Platform fee</th><th>Tax treatment</th></tr>
+    <tr><td>Lite</td><td>8% of patron payments</td><td>Fully deductible as a business expense</td></tr>
+    <tr><td>Pro</td><td>12% of patron payments</td><td>Fully deductible as a business expense</td></tr>
+    <tr><td>Premium</td><td>5% of patron payments</td><td>Fully deductible as a business expense</td></tr>
+  </table>
+
+  <p>Regardless of which plan you use, the mechanics are the same for taxes: <strong>your gross income is what patrons paid, and the platform fee is a deductible expense</strong>. Don't try to report only your net payout as income — the 1099-K will show the gross amount, and reporting less than that triggers a discrepancy with what Patreon reported to the IRS.</p>
+
+  <p>Payment processing fees (Stripe's cut, typically around 2.9% + 30¢ per transaction) are also deductible as a separate line item under business expenses — they're taken by the payment processor before Patreon even counts them against your balance.</p>
+
+  <!-- MID-PAGE CTA -->
+  <div class="cta-box">
+    <h3>Know exactly where <em>your hustle</em> stands</h3>
+    <p>Our free checker looks at your specific income, state, and situation — then tells you exactly what you owe and what to do next.</p>
+    <a href="/tool.html" class="btn-gold">Get my free tax check →</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+  <h2>Top deductions for Patreon creators</h2>
+  <p>The deductions available to Patreon creators depend on what kind of content you make — but the categories below cover the vast majority of creator niches:</p>
+
+  <h3>Equipment</h3>
+  <p>Any equipment you use to create content is deductible — cameras, lenses, microphones, audio interfaces, lighting rigs, drawing tablets, instruments, mechanical keyboards, monitors, and so on. You can deduct equipment either by expensing it in full the year you buy it (Section 179) or depreciating it over several years. For most small creators, expensing it immediately is simpler and more beneficial.</p>
+
+  <h3>Software and subscriptions</h3>
+  <p>Video editing software, photo editing tools, digital audio workstations, design apps, streaming software, 3D rendering programs, project management tools, cloud storage subscriptions, and reference or stock asset libraries are all deductible if you use them for your Patreon content. Keep a simple list of what you subscribe to and why it's business-related.</p>
+
+  <h3>Home office</h3>
+  <p>If you have a dedicated space in your home used <strong>regularly and exclusively</strong> for creating content — a recording studio, a dedicated desk setup, a photography space — that area qualifies for the home office deduction. The exclusive use requirement is strict: a desk in your living room that you also use for personal browsing doesn't qualify. A dedicated room or clearly defined creative workspace does.</p>
+
+  <p>Use either the simplified method ($5 per square foot, up to 300 sq ft) or the actual expense method (a percentage of rent, utilities, and insurance based on the space's share of total home square footage). For creators in high-rent cities, the actual expense method can be a meaningful deduction.</p>
+
+  <h3>Internet service</h3>
+  <p>Your internet bill is deductible — but only the business-use portion. A creator who uses the internet roughly 40% for business and 60% personal can deduct 40% of their monthly bill. If you upload large video files, run live streams, or work online for hours every day, a higher percentage is defensible. The key is being consistent and reasonable year over year.</p>
+
+  <h3>Patreon platform fees and payment processing</h3>
+  <p>As covered above, Patreon's platform fee (5–12%) and any payment processing fees charged by Stripe or PayPal are deductible business expenses. These should be reported separately from each other on Schedule C under "commissions and fees" or "other expenses."</p>
+
+  <h3>Props, costumes, and content supplies</h3>
+  <p>Physical items you buy specifically to create content — props for photography, costumes for video, craft supplies for tutorials, art supplies for illustration content, miniatures for tabletop gaming channels — are deductible. Items that have a dual personal/business use (like clothing) are generally not deductible unless they're clearly costumes or uniforms not suitable for everyday wear.</p>
+
+  <h3>Education and research</h3>
+  <p>Courses, books, workshops, or conference fees directly related to your content niche are deductible. A photographer taking a lighting masterclass, a musician buying music theory books, or a game designer attending an industry conference — all legitimate. The link between the education and your content business should be direct and documentable.</p>
+
+  <h2>Hobby vs. business — the full picture</h2>
+
+  <div class="callout callout-amber">
+    <p><strong>Watch out for hobby classification.</strong> If you're not consistently trying to generate profit, the IRS may classify your Patreon as a hobby rather than a business. Hobby income is still taxable, but hobby expenses are not deductible. Active promotion, a regular posting schedule, treating it like a business (separate accounts, tracked expenses), and showing genuine profit intent all help establish business status. Earning a profit in at least 3 of 5 years is a strong indicator the IRS looks for.</p>
+  </div>
+
+  <p>In practice, most consistently active Patreon creators qualify as businesses — they're promoting their work, building an audience, and earning income with a legitimate profit motive. The hobby classification tends to apply to occasional or very passive creators who aren't actively trying to grow. If you're posting regularly and growing your patron count, you're almost certainly operating a business.</p>
+
+  <p>The practical step: open a separate bank account for your creator income and expenses. Mixing creator and personal finances in one account makes it harder to demonstrate business intent to the IRS, and harder for you to track deductions at tax time. Many free business checking accounts exist (Mercury, Relay, Found) — there's no cost to separating them.</p>
+
+  <h2>Quarterly estimated taxes</h2>
+  <p>If you expect to owe more than <strong>$1,000 in federal taxes for the year</strong>, the IRS requires quarterly estimated payments. Unlike a salaried employee who has taxes withheld automatically, you have to do this yourself. The deadlines are:</p>
+
+  <ul>
+    <li><strong>April 15</strong> — covers income earned January through March</li>
+    <li><strong>June 15</strong> — covers income earned April through May</li>
+    <li><strong>September 15</strong> — covers income earned June through August</li>
+    <li><strong>January 15</strong> — covers income earned September through December</li>
+  </ul>
+
+  <p>Pay at <strong>IRS.gov/payments</strong> via bank transfer (free) or card (small fee). Missing quarterly payments doesn't cause you to owe more in total — but you'll incur underpayment penalties that compound throughout the year.</p>
+
+  <p>A practical approach: set aside <strong>25–30% of every Patreon payout</strong> in a dedicated savings account and make quarterly payments from it. If your income grows significantly mid-year, increase your set-aside rate. If your income is irregular or seasonal, estimate conservatively and adjust each quarter based on actual year-to-date earnings.</p>
+
+  <h2>Multiple income streams — one Schedule C</h2>
+  <p>Most Patreon creators don't earn income from Patreon alone. YouTube AdSense, brand sponsorships, merchandise, affiliate links, course sales, Twitch subscriptions, and speaking fees are all common additions. The good news is that all of this creator income goes on the <strong>same Schedule C</strong> — you don't file separate forms for each platform.</p>
+
+  <p>Your Schedule C covers your creator business as a whole. Total income is all payments from all platforms combined. Total deductions are all business expenses regardless of which platform they relate to. The resulting net profit is your self-employment income. This means one camera can be a deduction against Patreon, YouTube, and sponsorship income simultaneously — you don't need to split it.</p>
+
+  <div class="callout callout-navy">
+    <p><strong>Keep records by platform.</strong> Even though everything consolidates on one Schedule C, you'll want to know how much each platform paid you separately — both because your 1099-K from Patreon will only show Patreon income, and because it helps you understand which revenue streams are actually performing. A simple spreadsheet with monthly totals by platform takes five minutes a month and saves hours at tax time.</p>
+  </div>
+
+<hr>
+<h2>Frequently asked <em>questions</em></h2>
+  <div class="faq-item">
+    <h3>Do Patreon creators have to pay taxes?</h3>
+    <p>Yes. Patreon pays creators as independent contractors, which means all patron pledge income is self-employment income. You owe self-employment tax (15.3%) plus federal and state income tax on your net profit. Patreon does not withhold any taxes — you're responsible for reporting and paying everything yourself.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Does Patreon send a 1099?</h3>
+    <p>Patreon issues a 1099-K when your gross payments exceed $2,500 for the 2025 tax year. Patreon uses Stripe and PayPal for payment processing. Even if you earn below that threshold and don't receive a 1099-K, you are legally required to report all Patreon income on your tax return.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Is my taxable income the gross amount patrons pay or what I receive after Patreon's fees?</h3>
+    <p>Your taxable income is the gross amount your patrons pay — not the net amount you receive after Patreon's platform fee. However, Patreon's fee (5–12% depending on your plan) is fully deductible as a business expense on Schedule C, which nets out to the same tax result.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can Patreon be classified as a hobby instead of a business?</h3>
+    <p>The IRS can classify a Patreon as a hobby if you don't consistently pursue it for profit. Hobby income is still taxable, but hobby losses and expenses are not deductible. To establish business status, maintain a regular posting schedule, actively promote your page, track income and expenses, and treat it like a business. Earning a profit in at least 3 of 5 years is a strong indicator the IRS looks for.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Do I need to report Patreon income if I also have YouTube or sponsorship income?</h3>
+    <p>Yes. All creator income — Patreon, YouTube AdSense, brand sponsorships, merchandise sales, affiliate commissions — is reported together on the same Schedule C as one creator business. You don't file separate tax forms for each platform; they all flow into your combined self-employment income and profit calculation.</p>
+  </div>
+
+<hr>
+
+  <h2>The bottom line</h2>
+  <p>Every dollar your patrons pledge is self-employment income — 15.3% SE tax plus federal and state income tax on your net profit. Patreon's 1099-K reports the gross amount (before their fee), and that's what you report as income. The platform fee, payment processing fees, equipment, software, home office, and business-related supplies all reduce your taxable profit before any tax applies.</p>
+  <p>The creators who end up with surprise tax bills in April are usually the ones who didn't set aside money throughout the year, didn't track deductions, or didn't pay quarterly. The fix is simple: treat your Patreon like a business from day one — separate account, tracked expenses, quarterly payments — and tax season becomes an administrative task rather than a financial shock.</p>
+
+<!-- CTA Box -->
+<div class="cta-box">
+  <h3>Know exactly where <em>your hustle</em> stands</h3>
+  <p>Our free checker looks at your specific income, state, and situation — then tells you exactly what you owe and what to do next.</p>
+  <a href="/tool.html" class="btn-gold">Get my free tax check →</a>
+  <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+</div>
+
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+  <span class="nw-badge">AFFILIATE PARTNER</span>
+  <div class="nw-body">
+    <div class="nw-context">Thinking about forming an LLC?</div>
+    <div class="nw-title">Protect your hustle with <em>Northwest Registered Agent</em></div>
+    <div class="nw-desc">If your side hustle is generating real income, an LLC separates your personal assets from business liability. Northwest handles the paperwork in all 50 states — no hidden fees, no upsells.</div>
+    <div class="nw-features"><span class="nw-feat">$39 + state fees</span><span class="nw-feat">All 50 states</span><span class="nw-feat">Registered agent included</span><span class="nw-feat">No hidden fees</span></div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">Form your LLC with Northwest →</a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/youtube-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">YouTube Taxes: What Creators Owe</div>
+    </a>
+    <a href="/twitch-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Twitch Taxes: The Complete Guide</div>
+    </a>
+    <a href="/tiktok-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">TikTok Taxes: What Creators Owe</div>
+    </a>
+    <a href="/freelancer-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Freelancer Taxes: The Complete Guide</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/freelancer-taxes.html">Freelancer taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>

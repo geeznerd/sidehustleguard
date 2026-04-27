@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercari Taxes: What Sellers Actually Owe — SideHustleGuard</title>
+  <meta name="description" content="Mercari sellers owe taxes on profits, not gross sales. Here's the 1099-K threshold, how COGS works, and when you're a casual seller vs. a reseller business.">
+  <link rel="canonical" href="https://www.sidehustleguard.com/mercari-taxes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+:root{--navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--gold-pale:#fdf5e8;--cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;--muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,0.09);--green:#276944;--green-bg:#eaf5ef;--red:#b83232;--amber:#a86c0a;--amber-bg:#fef6e8}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Mercari send a 1099 to sellers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Mercari issues a 1099-K directly to sellers who receive $2,500 or more in gross payments during 2025. The form reports your total gross sales before fees are deducted. Even if you earn below the threshold, any taxable profit must still be reported on your tax return."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I owe taxes if I sell personal items on Mercari at a loss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. If you sell a personal item for less than you originally paid for it, there is no taxable gain — you actually sold at a loss. You cannot deduct that loss either, since personal items are not business assets. Tax is only owed when you sell something for more than your original cost basis (what you paid for it)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 2025 Mercari 1099-K threshold?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 2025 threshold for Mercari to issue a 1099-K is $2,500 in gross payments. This is down from the $5,000 threshold that applied in 2024 and the $20,000 threshold from prior years. The IRS has been phasing the threshold down toward the original $600 level established in the American Rescue Plan Act."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate my taxable profit from Mercari sales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your taxable profit equals your selling price minus your original cost of the item (COGS), minus Mercari's selling fee, minus any shipping costs you paid. For example: sold for $80, original cost $20, Mercari fee $8.80, shipping $5 — taxable profit is approximately $46.20. Keep receipts for everything you purchased to resell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do Mercari resellers need to pay quarterly estimated taxes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, if you expect to owe $1,000 or more in federal tax for the year from your reselling income. Since Mercari withholds nothing, you are responsible for making quarterly estimated payments by April 15, June 16, September 15, and January 15 of the following year. Underpaying can result in an IRS underpayment penalty."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link nav-guides">Guides</a>
+    <a href="/tool.html" class="nav-cta">Free Check →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">SideHustleGuard</a> &rsaquo; Mercari Taxes
+  </div>
+  <h1>Mercari taxes: <em>what sellers</em> actually owe</h1>
+  <div class="hero-meta">Updated April 2026 &middot; 7 min read</div>
+  <p class="hero-intro">Mercari lowered its selling fees in 2023, but the IRS didn't lower your tax bill. Whether you flip thrift finds or clear out your closet, here's what you owe, what you don't, and how to avoid getting surprised at tax time.</p>
+  <div class="answer-box">
+    Mercari sellers owe tax only on profit, not gross sales. The 1099-K threshold for 2025 is $2,500 in gross payments — but even below that, all taxable profits must be reported. If you're selling personal items for less than you paid, there's no tax owed on those sales.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Casual seller vs. <em>reseller business</em></h2>
+  <p>The single most important question on your Mercari taxes is whether you're clearing out your closet or running a business. The IRS treats these two activities very differently — and the distinction changes both what you owe and what you can deduct.</p>
+
+  <h3>Casual sellers: cleaning out the house</h3>
+  <p>If you're selling items you already owned — old clothes, electronics, furniture, toys — you're a casual seller. Here's what matters:</p>
+  <ul>
+    <li><strong>Sold for less than you paid (a loss):</strong> No tax owed. You can't deduct the loss either — personal losses on personal property aren't deductible — but you don't owe anything.</li>
+    <li><strong>Sold for more than you paid (a gain):</strong> The profit is a capital gain and is taxable. Example: you bought a collectible for $50 years ago and sold it on Mercari for $200. The $150 gain is taxable income.</li>
+  </ul>
+  <p>Most people selling secondhand clothes and household items are selling at a loss relative to what they originally paid — meaning most casual Mercari sellers end up with no tax liability. But you need to be able to show your original cost if the IRS ever asks.</p>
+
+  <h3>Resellers: buying to sell for profit</h3>
+  <p>If you regularly buy items specifically to resell on Mercari — thrift store flips, wholesale lots, estate sale finds — that's a business. Your profit is <strong>self-employment income</strong>, taxed at 15.3% SE tax plus your federal and state income tax rate. The upside: you get to deduct all legitimate business expenses, which can significantly reduce what you owe.</p>
+  <p>Signs the IRS considers you a reseller business rather than a casual seller:</p>
+  <ul>
+    <li>You buy items with the intent to resell them (not just clearing out personal belongings)</li>
+    <li>You sell regularly and frequently, not just occasional cleanouts</li>
+    <li>You track inventory and treat it like a business</li>
+    <li>You earn consistent income from your selling activity</li>
+  </ul>
+
+  <h2>Does Mercari <em>send a 1099-K</em>?</h2>
+  <p>Yes. Unlike some platforms that relied on third-party payment processors, Mercari issues its own 1099-K forms directly to qualifying sellers. For 2025, the threshold is <strong>$2,500 in gross payments</strong> received through the platform.</p>
+  <p>Important: the 1099-K reports your gross sales — the full amount buyers paid you — before Mercari's selling fee is deducted. If buyers paid you a total of $4,000 but Mercari took $440 in fees, your 1099-K says $4,000. You report that $4,000 and then deduct the $440 fee (and other expenses) to arrive at your taxable profit.</p>
+
+  <div class="callout callout-navy">
+    <p><strong>Below $2,500?</strong> Still report your profits. The 1099-K threshold only determines when Mercari sends you paperwork — it has no bearing on when income becomes taxable. If you made $800 in profit on Mercari and never got a 1099-K, those profits are still taxable income you're required to report.</p>
+  </div>
+
+  <h2>The 1099-K threshold: <em>how it changed</em></h2>
+  <p>The 1099-K threshold has been in flux for several years as the IRS phases it down from the old $20,000 level. Here's where it stands:</p>
+
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>Tax Year</th>
+        <th>Gross Payment Threshold</th>
+        <th>Transaction Requirement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2022</td>
+        <td>$20,000</td>
+        <td>AND 200+ transactions</td>
+      </tr>
+      <tr>
+        <td>2023</td>
+        <td>$20,000</td>
+        <td>AND 200+ transactions</td>
+      </tr>
+      <tr>
+        <td>2024</td>
+        <td>$5,000</td>
+        <td>No transaction minimum</td>
+      </tr>
+      <tr>
+        <td>2025 (current)</td>
+        <td>$2,500</td>
+        <td>No transaction minimum</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The IRS originally passed legislation targeting a $600 threshold and has been stepping down toward it. Whether they reach $600 for 2026 remains to be seen, but the direction is clear: expect to receive a 1099-K at lower and lower sales volumes in coming years.</p>
+
+  <h2>How to calculate <em>your taxable profit</em></h2>
+  <p>Tax is owed on profit, not revenue. That's the most important thing to understand as a Mercari seller. Here's how the math works with a concrete example:</p>
+
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sale price (what buyer paid)</td>
+        <td>$80.00</td>
+        <td>This is your gross income for this sale</td>
+      </tr>
+      <tr>
+        <td>Cost of goods sold (COGS)</td>
+        <td>&minus;$20.00</td>
+        <td>What you originally paid for the item</td>
+      </tr>
+      <tr>
+        <td>Mercari selling fee (~11%)</td>
+        <td>&minus;$8.80</td>
+        <td>Deductible business expense</td>
+      </tr>
+      <tr>
+        <td>Shipping cost</td>
+        <td>&minus;$5.00</td>
+        <td>If you paid shipping, it's deductible</td>
+      </tr>
+      <tr>
+        <td><strong>Taxable profit</strong></td>
+        <td><strong>$46.20</strong></td>
+        <td>This is what you actually owe tax on</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The more complete your records, the more accurately you can calculate your true profit — and the less tax you'll pay. Sellers who don't track their costs end up reporting their full gross sales as income, which can mean a dramatically higher tax bill than they actually owe.</p>
+  <p><strong>Keep receipts for every item you purchase to resell.</strong> A simple spreadsheet or app tracking purchase price, sale price, fees, and shipping for each item is all you need. At tax time, add it all up for Schedule C.</p>
+
+  <h2>COGS and deductions <em>for resellers</em></h2>
+  <p>If you're running a reselling operation, here's every expense that reduces your taxable profit:</p>
+
+  <h3>Cost of goods sold (COGS)</h3>
+  <p>The most significant deduction for most resellers. This is what you paid to acquire the items you sold. It includes the purchase price plus any sales tax you paid at the time of purchase. You can only deduct COGS for items you actually sold in that tax year — inventory you bought but haven't sold yet is not deductible until it sells.</p>
+
+  <h3>Mercari's selling fee</h3>
+  <p>Mercari's standard selling fee is approximately 10–11% for most categories (Mercari revised its fee structure; check current rates on their site). This fee is a deductible business expense. It comes out automatically before your payout, but your gross income includes it — so you claim it as a deduction on Schedule C.</p>
+
+  <h3>Shipping costs</h3>
+  <p>If you pay for shipping out of your own pocket (rather than charging the buyer), that cost is fully deductible. Even if Mercari facilitates the label purchase, track what you paid. Shipping supplies you buy — boxes, poly mailers, bubble wrap, tape — are also deductible.</p>
+
+  <h3>Packaging materials</h3>
+  <p>Boxes, poly mailers, tissue paper, packing peanuts, tape, labels, thank-you cards — all deductible as business expenses. If you buy packaging in bulk, deduct the cost in the year of purchase.</p>
+
+  <h3>Mileage</h3>
+  <p>Every mile you drive to source inventory counts. That includes trips to thrift stores, garage sales, estate sales, storage units, and the post office. The 2025 IRS standard mileage rate is <strong>70 cents per mile</strong>. Keep a mileage log (even a simple notes app entry each trip) with the date, destination, and purpose. At the end of the year, multiply total miles by $0.70.</p>
+
+  <h3>Storage space</h3>
+  <p>If you rent a storage unit to hold inventory, that cost is deductible. If you use a portion of your home for business inventory storage, you may also be able to take a home office/storage deduction — though the same exclusive-use rules apply as with a home office.</p>
+
+  <h3>Photography equipment and props</h3>
+  <p>Good listing photos sell items faster. If you've invested in a ring light, backdrop, camera, or photography props specifically for your Mercari listings, those are deductible business expenses. If you use your phone camera for both personal and business photos, only the business-use portion is deductible.</p>
+
+  <div class="callout callout-green">
+    <p><strong>The personal property rule:</strong> Items you're selling from your own life — clothes you wore, electronics you used, furniture from your home — are personal property. If you sell them for less than you originally paid, there is no tax owed on that sale. You can't deduct the loss (personal losses aren't deductible), but you also owe nothing. This covers the vast majority of casual Mercari sellers. You only owe tax if you sell a personal item for more than its original purchase price.</p>
+  </div>
+
+  <h2>Quarterly estimated taxes <em>for active resellers</em></h2>
+  <p>Mercari withholds nothing from your payouts. If you're earning consistent profit from reselling, you're responsible for paying taxes throughout the year through quarterly estimated payments.</p>
+  <p>You need to make quarterly payments if you expect to owe <strong>$1,000 or more</strong> in federal income tax for the year from your self-employment income. The 2025 payment deadlines are:</p>
+  <ul>
+    <li><strong>Q1 (Jan–Mar):</strong> Due April 15, 2025</li>
+    <li><strong>Q2 (Apr–May):</strong> Due June 16, 2025</li>
+    <li><strong>Q3 (Jun–Aug):</strong> Due September 15, 2025</li>
+    <li><strong>Q4 (Sep–Dec):</strong> Due January 15, 2026</li>
+  </ul>
+  <p>A practical approach: after each Mercari payout, estimate your net profit on that batch of sales and set aside 25–30% for taxes. Pay quarterly through the IRS Direct Pay portal using Form 1040-ES. If your reselling is seasonal — heavy in summer, light in winter — adjust your payments accordingly rather than paying equal amounts each quarter.</p>
+
+  <h2>Should you form an LLC?</h2>
+  <p>If Mercari reselling is a significant or growing source of income for you, it's worth thinking about business structure. A sole proprietorship (which is what you are by default as a self-employed reseller) means your personal assets are on the line if something goes wrong — a customer dispute, a liability claim, or a business debt.</p>
+  <p>An LLC separates your personal finances from your business. It doesn't eliminate your tax obligations, but it does provide a liability shield. If your reselling generates several thousand dollars a year or more, the cost of forming an LLC is modest compared to the protection it offers.</p>
+
+  <hr>
+
+  <div class="cta-box">
+    <h3>Know exactly where <em>your hustle</em> stands</h3>
+    <p>Our free checker looks at your specific income, state, and situation — then tells you exactly what you owe and what to do next.</p>
+    <a href="/tool.html" class="btn-gold">Get my free tax check →</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+  <div class="nw-card">
+    <span class="nw-badge">AFFILIATE PARTNER</span>
+    <div class="nw-body">
+      <div class="nw-context">Thinking about forming an LLC?</div>
+      <div class="nw-title">Protect your hustle with <em>Northwest Registered Agent</em></div>
+      <div class="nw-desc">If your side hustle is generating real income, an LLC separates your personal assets from business liability. Northwest handles the paperwork in all 50 states — no hidden fees, no upsells.</div>
+      <div class="nw-features"><span class="nw-feat">$39 + state fees</span><span class="nw-feat">All 50 states</span><span class="nw-feat">Registered agent included</span><span class="nw-feat">No hidden fees</span></div>
+      <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">Form your LLC with Northwest →</a>
+      <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/reseller-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Reseller Taxes: The Complete Guide</div>
+    </a>
+    <a href="/ebay-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">eBay Taxes: What Sellers Actually Owe</div>
+    </a>
+    <a href="/poshmark-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Poshmark Taxes: What Sellers Actually Owe</div>
+    </a>
+    <a href="/side-hustle-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Side Hustle Taxes: Everything You Need to Know</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/freelancer-taxes.html">Freelancer taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>
