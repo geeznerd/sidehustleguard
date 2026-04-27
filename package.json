@@ -2,6 +2,9 @@
   "name": "sidehustleguard",
   "version": "1.0.0",
   "dependencies": {
-    "pdfkit": "^0.15.0"
+    "@fontsource-variable/dm-sans": "^5.2.8",
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
+    "pdfkit": "^0.15.2"
   }
 }
