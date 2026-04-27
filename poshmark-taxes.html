@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poshmark Taxes: What Resellers Actually Owe (2024–2025) — SideHustleGuard</title>
+<meta name="description" content="Poshmark takes 20% on sales over $15. You're taxed on what you receive — not the listing price. Here's how COGS, 1099-K thresholds, and the personal property rule work.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/poshmark-taxes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Open Graph -->
+<meta property="og:title" content="Poshmark Taxes: What Resellers Actually Owe (2024–2025)">
+<meta property="og:description" content="Poshmark takes 20% on sales over $15. You're taxed on what you receive — not the listing price. Here's how COGS, 1099-K thresholds, and the personal property rule work.">
+<meta property="og:url" content="https://www.sidehustleguard.com/poshmark-taxes">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content{padding-left:18px;padding-right:18px}h1{font-size:30px}}
+
+/* Northwest affiliate card */
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+/* Related guides */
+.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:40px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-decoration:none;transition:all .15s;display:block}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I have to pay taxes if I'm just selling my old clothes on Poshmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you sell personal items for less than you paid, there's no tax. If you sell for more than you paid, it's a taxable capital gain. Most people selling used clothes at below-purchase prices owe nothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Poshmark's 20% fee deductible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — if you're running a resale business. It's a deductible cost of doing business on Schedule C. It's already excluded from your 1099-K but you should document it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I don't have receipts for items I bought to resell on Poshmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need documentation of your cost basis. Without receipts, the IRS can assume $0 cost, making your entire payout taxable. Start keeping records immediately — even a simple spreadsheet noting the item, purchase price, and date works."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I deduct shipping supplies on Poshmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — poly mailers, boxes, tape, tissue paper, and thank-you cards are all deductible business expenses. Poshmark provides prepaid shipping labels, so you don't deduct shipping costs themselves — just the physical supplies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I form an LLC for my Poshmark business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An LLC protects personal assets if your business grows but doesn't change your federal tax rate. Most Poshmark sellers operate fine as sole proprietors until revenue exceeds $50–60k, at which point an S-corp election may offer tax savings worth the added complexity."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides.html" class="nav-link">Guides</a>
+    <a href="/tool.html" class="nav-cta">Check my hustle — free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → Poshmark Taxes</div>
+  <h1>Poshmark taxes: <em>what resellers</em> actually owe</h1>
+  <div class="hero-meta">Updated April 2026 · 8 min read</div>
+  <p class="hero-intro">Poshmark already takes its cut — 20% on sales over $15, flat $2.95 under $15. The IRS takes theirs next. The good news is you're only taxed on profit, not on what Poshmark deposited. Understanding cost of goods sold is what separates people who owe a lot from those who owe almost nothing.</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> You owe tax on profit, not on gross sales. Profit = what Poshmark paid you minus what you originally paid for the item. If you paid $40 for something and sold it for $60 (netting $48 after Poshmark's fee), your taxable profit is roughly $8 — not $60, not $48. Keep receipts for everything you buy to resell.
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Do you owe taxes on Poshmark sales?</h2>
+  <p>Whether you owe tax — and how much — depends on <strong>why</strong> you're selling. The IRS treats two types of Poshmark sellers very differently:</p>
+
+  <h3>Scenario 1: Selling personal items you already owned</h3>
+  <p>If you're clearing out your closet and selling clothes, shoes, or handbags that you bought for personal use, the tax rules are:</p>
+  <ul>
+    <li><strong>Sold for less than you paid:</strong> No tax. This is a personal loss and the IRS does not allow you to deduct it — but you also don't owe anything.</li>
+    <li><strong>Sold for more than you paid:</strong> This is a taxable capital gain. The gain equals the sale price minus your original purchase price. Most people selling used personal items at below-purchase prices owe nothing, but if you sell a rare handbag for a significant profit over what you paid, that gain is taxable.</li>
+  </ul>
+
+  <h3>Scenario 2: Running a resale business (buying to resell)</h3>
+  <p>If you regularly buy items at thrift stores, liquidation sales, or retail to resell on Poshmark for a profit, you're running a business. That means:</p>
+  <ul>
+    <li>Income is reported on <strong>Schedule C</strong> as self-employment income</li>
+    <li>You owe <strong>self-employment tax (15.3%)</strong> plus federal and state income tax on your net profit</li>
+    <li>You can deduct your cost of goods sold, Poshmark's fees, and other business expenses</li>
+    <li>Losses can be deducted against other income (if you qualify as a business, not a hobby)</li>
+  </ul>
+
+  <div class="callout callout-amber">
+    <p><strong>The line between "personal sales" and "business" is blurry.</strong> The IRS looks at frequency, intent, and profit motive. If you're sourcing items specifically to resell and doing it regularly, you're a business — even without formal paperwork, even without an LLC, even if it's just a side hustle on evenings and weekends.</p>
+  </div>
+
+  <h2>The 1099-K: when does Poshmark send one?</h2>
+  <p>Poshmark is required to send you a 1099-K when your gross sales exceed the federal threshold for the year. The threshold has been changing:</p>
+
+  <table class="tax-table">
+    <tr><th>Tax year</th><th>1099-K threshold</th><th>What it covers</th></tr>
+    <tr><td>2023</td><td>$20,000 (old rule)</td><td>Gross sales through Poshmark</td></tr>
+    <tr><td>2024</td><td>$5,000</td><td>Gross sales — transitional threshold</td></tr>
+    <tr><td>2025</td><td>$2,500</td><td>Gross sales — continuing phase-down</td></tr>
+    <tr><td>2026 and beyond</td><td>$600 (planned)</td><td>Original ARPA provision</td></tr>
+  </table>
+
+  <div class="callout callout-amber">
+    <p><strong>Critical nuance:</strong> The 1099-K is based on <strong>gross sales</strong> — the listing price the buyer paid — not what Poshmark deposited into your account. Your actual payout is lower by Poshmark's fee. You account for that fee as a deductible expense on Schedule C. Do not report the 1099-K total as your income and leave it at that — you'll overpay significantly.</p>
+  </div>
+
+  <p>If you sell below the 1099-K threshold, Poshmark won't send a form — but you still owe tax on any profit. The threshold is a reporting trigger for Poshmark, not an exemption for you.</p>
+
+  <h2>How the Poshmark fee affects your taxes</h2>
+  <p>Poshmark's fee structure is straightforward: 20% on sales over $15, flat $2.95 on sales $15 and under. That fee is a real business expense — and it significantly reduces your taxable profit.</p>
+
+  <p>Here's how the math works for a typical sale:</p>
+
+  <table class="tax-table">
+    <tr><th>Line item</th><th>Amount</th><th>Notes</th></tr>
+    <tr><td>Listing price (what buyer pays)</td><td>$100.00</td><td>Also the gross sales figure on 1099-K</td></tr>
+    <tr><td>Poshmark fee (20%)</td><td>−$20.00</td><td>Deductible business expense on Schedule C</td></tr>
+    <tr><td>What you receive</td><td>$80.00</td><td>Your actual payout</td></tr>
+    <tr><td>Cost of goods sold (COGS)</td><td>−$50.00</td><td>What you originally paid for the item</td></tr>
+    <tr><td>Taxable profit</td><td>$30.00</td><td>This is what you owe tax on</td></tr>
+  </table>
+
+  <p>Notice: you are <strong>not</strong> taxed on the $20 Poshmark kept. You are <strong>not</strong> taxed on the full $80 payout. You are taxed only on the $30 profit — and if you have other deductible expenses (supplies, mileage, subscriptions), that number shrinks further.</p>
+
+  <div class="callout callout-green">
+    <p><strong>Practical tip:</strong> Even though the 1099-K shows $100 in gross sales, you report $100 as income on Schedule C and then deduct the $20 Poshmark fee plus your $50 COGS separately. This is the correct way — your net taxable profit ends up at $30 either way, but the line-item approach creates a clean audit trail.</p>
+  </div>
+
+  <h2>Cost of goods sold — tracking what you paid</h2>
+  <p>Cost of goods sold (COGS) is the most powerful deduction for Poshmark resellers. Every dollar you spent acquiring items you sell reduces your taxable profit by one dollar.</p>
+
+  <h3>What counts as COGS</h3>
+  <ul>
+    <li><strong>Thrift store purchase price</strong> — keep every receipt, or photograph the tag before washing the item</li>
+    <li><strong>Retail or department store receipts</strong> — especially for NWT (new with tags) items</li>
+    <li><strong>Wholesale or liquidation invoices</strong> — if you buy in bulk</li>
+    <li><strong>Estate sale or garage sale purchases</strong> — written notes with date, location, and price work if no receipt exists</li>
+  </ul>
+
+  <h3>What happens without receipts</h3>
+  <p>If you cannot document what you paid for an item, the IRS can assume your cost was <strong>$0</strong>. That means your entire payout becomes taxable profit. A $50 payout on something you paid $45 for suddenly becomes a $50 taxable gain instead of a $5 gain. The difference in tax is real money.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Start tracking now, even if you've sold things without tracking.</strong> Going forward, photograph every receipt at point of purchase and sync it to a folder labeled by month. Apps like Seller Ledger are built specifically for resellers. A Google Sheets spreadsheet with columns for Item, Purchase Date, Purchase Price, Sale Date, and Sale Price works just as well.</p>
+  </div>
+
+  <h2>Other deductions for Poshmark sellers</h2>
+  <p>Beyond COGS and Poshmark's fee, active resellers can deduct several other legitimate business expenses:</p>
+
+  <ul>
+    <li><strong>Shipping supplies:</strong> Poly mailers, padded envelopes, boxes, packing tape, tissue paper. Note: Poshmark provides prepaid shipping labels — you do not deduct shipping costs, only the physical supplies you purchase.</li>
+    <li><strong>Thank-you cards and inserts:</strong> Branded packaging materials you buy to include with orders</li>
+    <li><strong>Photography setup:</strong> Lightbox, photography backdrop, ring light, or photo editing software used for listing photos</li>
+    <li><strong>Poshmark Pro Tools subscription:</strong> The monthly subscription fee is a deductible business expense</li>
+    <li><strong>Mileage to thrift stores and sourcing trips:</strong> Every mile you drive specifically to source inventory is deductible at the standard IRS rate (70¢/mile in 2025)</li>
+    <li><strong>Phone — business-use percentage:</strong> The portion of your phone and plan used for Poshmark (listing, communicating with buyers, managing offers)</li>
+    <li><strong>Storage and organization supplies:</strong> Shelving, bins, and hanging racks used to store your Poshmark inventory</li>
+  </ul>
+
+  <!-- MID-PAGE CTA -->
+  <div class="cta-box">
+    <h3>Not sure what <em>your</em> Poshmark profit looks like after taxes?</h3>
+    <p>Answer 8 questions and get a personalized breakdown of your specific tax situation — free.</p>
+    <a href="/tool.html?type=Reselling" class="btn-gold">Check my reseller hustle — free →</a>
+    <div class="cta-note">No sign-up · Plain English · 60 seconds</div>
+  </div>
+
+  <h2>Hobby vs. business — why it matters for Poshmark sellers</h2>
+  <p>The IRS distinction between a hobby and a business has major tax consequences. If the IRS classifies your Poshmark activity as a <strong>hobby</strong>, you cannot deduct losses against other income. If it's a <strong>business</strong>, you can.</p>
+
+  <h3>Hobby classification</h3>
+  <ul>
+    <li>You must still report hobby income as taxable income</li>
+    <li>You <strong>cannot</strong> deduct hobby expenses that exceed your hobby income — no deductible losses</li>
+    <li>You owe income tax on gross profit but cannot offset losses from bad resale years</li>
+  </ul>
+
+  <h3>Business classification</h3>
+  <ul>
+    <li>You deduct all legitimate expenses including COGS, supplies, mileage, and subscriptions</li>
+    <li>If expenses exceed income (a loss year), you can deduct that loss against wages or other income</li>
+    <li>You pay self-employment tax on net profit — which is the trade-off for the added flexibility</li>
+  </ul>
+
+  <h3>How the IRS decides</h3>
+  <p>The IRS applies a facts-and-circumstances test. Key factors they consider:</p>
+  <ul>
+    <li><strong>Do you depend on this income?</strong> Even part-time counts if you're treating it professionally</li>
+    <li><strong>Do you profit in 3 of 5 consecutive years?</strong> (The "safe harbor" presumption)</li>
+    <li><strong>Do you spend significant, regular time on it?</strong> Consistent sourcing, listing, and fulfillment activity counts</li>
+    <li><strong>Do you keep records like a business?</strong> Tracking COGS, maintaining inventory records, and filing Schedule C all signal business intent</li>
+    <li><strong>Do you depend on the expertise?</strong> Knowing which brands resell well, pricing strategically, and improving your methods are signals of a business</li>
+  </ul>
+
+  <div class="callout callout-green">
+    <p><strong>Most active Poshmark resellers qualify as a business.</strong> If you're consistently sourcing inventory, maintaining listings, and managing buyer interactions — even a few hours a week — the IRS is likely to treat it as a business activity. File Schedule C, keep your records clean, and you're on solid ground.</p>
+  </div>
+
+<hr>
+<h2>Frequently asked <em>questions</em></h2>
+
+  <div class="faq-item">
+    <h3>Do I have to pay taxes if I'm just selling my old clothes on Poshmark?</h3>
+    <p>If you sell personal items for less than you paid, there's no tax owed — it's a personal loss and the IRS doesn't tax that. If you sell for more than you paid (rare for used clothing), that gain is technically a taxable capital gain. Most people selling used clothes from their closet at below-purchase prices owe nothing and don't need to report anything.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Is Poshmark's 20% fee deductible?</h3>
+    <p>Yes — if you're running a resale business, Poshmark's fee is a fully deductible cost of doing business on Schedule C. It's already excluded from what you receive in your bank account, but for proper tax reporting, you show it as a gross income item on Schedule C and then deduct it as a selling expense so your records match the 1099-K Poshmark sends.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What if I don't have receipts for items I bought to resell?</h3>
+    <p>You need documentation of your cost basis for every item sold. Without receipts, the IRS can legally assume your cost was $0, making your entire payout taxable. Going forward, photograph every receipt or price tag at the point of purchase. For the past, try to reconstruct costs using bank records, credit card statements, or PayPal history.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Can I deduct shipping supplies on Poshmark?</h3>
+    <p>Yes — poly mailers, boxes, tape, tissue paper, and thank-you cards are all deductible business expenses. Poshmark provides prepaid shipping labels as part of their service, so you don't deduct the actual shipping cost (you never paid it), but the physical packaging supplies you purchase are 100% deductible.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Should I form an LLC for my Poshmark business?</h3>
+    <p>An LLC protects your personal assets if something goes wrong in your business, but it doesn't change your federal tax rate on its own. Most Poshmark sellers operate perfectly well as sole proprietors filing Schedule C until revenue consistently exceeds $50,000–$60,000, at which point an S-corp election can reduce self-employment tax enough to offset the added complexity and filing costs.</p>
+  </div>
+
+<hr>
+
+  <h2>The bottom line</h2>
+  <p>Poshmark taxes come down to one thing: <strong>tracking what you paid for every item you sell</strong>. Without that, the IRS taxes you on your full payout rather than your actual profit. With accurate cost records, most active resellers find their taxable profit is a fraction of their gross sales — and deductible expenses (the 20% platform fee, supplies, mileage, subscriptions) shrink it further.</p>
+  <p>Get a COGS tracking system in place today — a spreadsheet works fine. Save every receipt. If you're earning meaningful money from reselling, file Schedule C and treat it like the business it is. The records you keep this year are the ones that protect you if the IRS ever asks questions.</p>
+
+
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+  <div class="nw-badge">Recommended</div>
+  <div class="nw-body">
+    <div class="nw-context">If your Poshmark business is growing and you're thinking about an LLC</div>
+    <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+    <div class="nw-desc">For resellers thinking about liability protection or tax flexibility, Northwest is the no-upsell registered agent service. Flat fee, keeps your home address off public records, and handles all the formation paperwork so you can focus on sourcing.</div>
+    <div class="nw-features">
+      <span class="nw-feat">✓ Keeps your address private</span>
+      <span class="nw-feat">✓ All 50 states</span>
+      <span class="nw-feat">✓ Handles all paperwork</span>
+      <span class="nw-feat">✓ No hidden fees</span>
+    </div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener">
+      Form your LLC with Northwest →
+    </a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+<div class="cta-box">
+  <h3>Know exactly where <em>your</em> resale business stands</h3>
+  <p>Our free checker looks at your specific income, state, expenses, and setup — then tells you exactly what you owe and what to do next.</p>
+  <a href="/tool.html?type=Reselling" class="btn-gold">Get my free Poshmark tax check →</a>
+  <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+</div>
+
+</div>
+
+
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/reseller-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Reseller Taxes: The Complete Guide</div>
+    </a>
+    <a href="/ebay-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">eBay Taxes</div>
+    </a>
+    <a href="/etsy-taxes.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Etsy Taxes</div>
+    </a>
+    <a href="/quarterly-taxes-self-employed.html" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool.html">Free checker</a>
+    <a href="/reseller-taxes.html">Reseller taxes</a>
+    <a href="/side-hustle-taxes.html">Side hustle taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+</body>
+</html>
