@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Filing Affiliate — Design Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#e8e4dc;color:var(--navy);padding:40px 32px;display:flex;flex-direction:column;gap:0}
+.option-wrap{margin-bottom:64px;max-width:800px;margin-left:auto;margin-right:auto}
+.option-wrap:last-child{margin-bottom:0}
+.option-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-left:4px}
+.context-note{font-size:12px;color:var(--muted);margin-bottom:12px;padding-left:4px;font-weight:300}
+
+/* ── Shared article page context ── */
+.article-ctx{background:var(--cream);padding:28px 48px 0;border-top:1px solid var(--border)}
+.article-ctx-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.article-ctx-hr{border:none;border-top:1px solid var(--border);margin:0}
+.article-body-pad{background:var(--cream);padding:0 48px 40px}
+
+/* ────────────────────────────────────────────
+   OPTION A — Side-by-side cards
+   ──────────────────────────────────────────── */
+.filing-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin:32px 0}
+
+.filing-card{border-radius:16px;padding:26px 28px;text-decoration:none;display:flex;flex-direction:column;gap:0;transition:all .15s;border:1.5px solid transparent}
+.filing-card.primary{background:var(--navy)}
+.filing-card.secondary{background:var(--white);border-color:var(--border)}
+.filing-card:hover{transform:translateY(-2px)}
+.filing-card.secondary:hover{border-color:var(--gold)}
+
+.fc-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:14px;width:fit-content}
+.fc-badge.best{background:rgba(201,151,58,.18);color:var(--gold-lt)}
+.fc-badge.budget{background:var(--green-bg);color:var(--green);font-size:9px}
+
+.fc-logo{font-size:15px;font-weight:700;margin-bottom:4px}
+.fc-logo.light{color:var(--white)}
+.fc-logo.dark{color:var(--navy)}
+.fc-logo span.tt{color:var(--gold-lt)}
+.fc-logo span.ft{color:#c0392b}
+
+.fc-sub{font-size:12px;font-weight:300;margin-bottom:16px;line-height:1.5}
+.fc-sub.light{color:rgba(255,255,255,.5)}
+.fc-sub.dark{color:var(--muted)}
+
+.fc-features{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.fc-feat{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:300;line-height:1.4}
+.fc-feat.light{color:rgba(255,255,255,.65)}
+.fc-feat.dark{color:var(--muted)}
+.fc-check{width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.fc-check.gold{background:rgba(201,151,58,.2)}
+.fc-check.green{background:var(--green-bg)}
+.fc-check svg{width:8px;height:8px}
+
+.fc-cta{display:block;text-align:center;padding:11px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;margin-top:auto;transition:all .15s}
+.fc-cta.gold{background:var(--gold);color:var(--white)}
+.fc-cta.gold:hover{background:var(--gold-lt)}
+.fc-cta.outline{background:transparent;border:1.5px solid var(--border);color:var(--navy)}
+.fc-cta.outline:hover{border-color:var(--gold);color:var(--gold)}
+
+.fc-note{font-size:10px;text-align:center;margin-top:8px}
+.fc-note.light{color:rgba(255,255,255,.25)}
+.fc-note.dark{color:var(--dim)}
+
+/* ────────────────────────────────────────────
+   OPTION B — Single combined card
+   ──────────────────────────────────────────── */
+.combo-card{background:var(--navy);border-radius:16px;padding:28px 32px;margin:32px 0}
+.combo-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.combo-left{flex:1}
+.combo-tag{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.combo-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:6px}
+.combo-title em{font-style:italic;color:var(--gold-lt)}
+.combo-desc{font-size:13px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.55}
+.combo-cta-wrap{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
+.combo-btn{display:inline-block;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s}
+.combo-btn.gold{background:var(--gold);color:var(--white)}
+.combo-btn.gold:hover{background:var(--gold-lt)}
+.combo-btn-note{font-size:10px;color:rgba(255,255,255,.3);text-align:right}
+
+.combo-picks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.combo-pick{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;text-decoration:none;display:flex;align-items:center;gap:14px;transition:all .14s}
+.combo-pick:hover{background:rgba(255,255,255,.08);border-color:rgba(201,151,58,.3)}
+.combo-pick-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:700}
+.combo-pick-icon.tt{background:rgba(45,130,210,.15);color:#4a9fd4}
+.combo-pick-icon.ft{background:rgba(192,57,43,.12);color:#e74c3c}
+.combo-pick-body{flex:1}
+.combo-pick-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.combo-pick-desc{font-size:11px;color:rgba(255,255,255,.38);font-weight:300}
+.combo-pick-badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0}
+.combo-pick-badge.top{background:rgba(201,151,58,.18);color:var(--gold-lt)}
+.combo-pick-badge.free{background:var(--green-bg);color:var(--green)}
+
+/* ────────────────────────────────────────────
+   OPTION C — Inline text recommendation (minimal)
+   ──────────────────────────────────────────── */
+.inline-rec{background:var(--cream-d);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:16px 20px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.inline-rec-text{font-size:14px;color:var(--navy);line-height:1.55;font-weight:300}
+.inline-rec-text strong{font-weight:600;color:var(--navy)}
+.inline-rec-links{display:flex;gap:8px;flex-shrink:0}
+.inline-link{font-size:12px;font-weight:600;text-decoration:none;padding:7px 16px;border-radius:100px;white-space:nowrap;transition:all .14s}
+.inline-link.gold{background:var(--gold);color:var(--white)}
+.inline-link.gold:hover{background:var(--gold-lt)}
+.inline-link.ghost{background:transparent;border:1.5px solid var(--border);color:var(--navy)}
+.inline-link.ghost:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- ══ OPTION A ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option A — Side-by-side cards</div>
+  <p class="context-note">Goes at the bottom of each article page, above the related guides. TurboTax leads, FreeTaxUSA as the budget pick.</p>
+  <div class="article-ctx">
+    <div class="article-ctx-label">Article content above...</div>
+  </div>
+  <div class="article-body-pad">
+    <div class="filing-grid">
+      <!-- TurboTax -->
+      <a href="#" class="filing-card primary">
+        <div class="fc-badge best">⭐ Most popular</div>
+        <div class="fc-logo light">Intuit <span class="tt">TurboTax</span></div>
+        <div class="fc-sub light">Built for self-employed income &amp; 1099s</div>
+        <div class="fc-features">
+          <div class="fc-feat light"><div class="fc-check gold"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Guides you through every self-employment deduction</div>
+          <div class="fc-feat light"><div class="fc-check gold"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Handles Schedule C, mileage, home office</div>
+          <div class="fc-feat light"><div class="fc-check gold"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Imports 1099s from DoorDash, Etsy, PayPal</div>
+        </div>
+        <div class="fc-cta gold">Start for free →</div>
+        <div class="fc-note light">Pay only when you file</div>
+      </a>
+      <!-- FreeTaxUSA -->
+      <a href="#" class="filing-card secondary">
+        <div class="fc-badge budget">💚 Free federal</div>
+        <div class="fc-logo dark"><span class="ft">Free</span>TaxUSA</div>
+        <div class="fc-sub dark">Federal filing always free — solid self-employed support</div>
+        <div class="fc-features">
+          <div class="fc-feat dark"><div class="fc-check green"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Federal return always $0</div>
+          <div class="fc-feat dark"><div class="fc-check green"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Handles Schedule C &amp; self-employment tax</div>
+          <div class="fc-feat dark"><div class="fc-check green"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4L3 6L7 2" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>State return ~$15</div>
+        </div>
+        <div class="fc-cta outline">File free →</div>
+        <div class="fc-note dark">Best if you want to minimize filing costs</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTION B ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option B — Single combined navy card</div>
+  <p class="context-note">Matches the existing Northwest affiliate card style. Compact, feels like part of the page rather than an ad.</p>
+  <div class="article-ctx">
+    <div class="article-ctx-label">Article content above...</div>
+  </div>
+  <div class="article-body-pad">
+    <div class="combo-card">
+      <div class="combo-top">
+        <div class="combo-left">
+          <div class="combo-tag">Ready to file?</div>
+          <div class="combo-title">File your <em>self-employed</em> taxes right</div>
+          <div class="combo-desc">These two options cover 95% of side hustlers — one for maximum guidance, one for minimum cost.</div>
+        </div>
+      </div>
+      <div class="combo-picks">
+        <a href="#" class="combo-pick">
+          <div class="combo-pick-icon tt">T</div>
+          <div class="combo-pick-body">
+            <div class="combo-pick-name">TurboTax Self-Employed</div>
+            <div class="combo-pick-desc">Best guidance, 1099 imports, deduction finder</div>
+          </div>
+          <div class="combo-pick-badge top">Top pick</div>
+        </a>
+        <a href="#" class="combo-pick">
+          <div class="combo-pick-icon ft">F</div>
+          <div class="combo-pick-body">
+            <div class="combo-pick-name">FreeTaxUSA</div>
+            <div class="combo-pick-desc">Federal free, handles Schedule C, ~$15 state</div>
+          </div>
+          <div class="combo-pick-badge free">Free federal</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTION C ══ -->
+<div class="option-wrap">
+  <div class="option-label">Option C — Inline callout (ultra-minimal)</div>
+  <p class="context-note">Lives inline within the article body — less intrusive, feels like a recommendation rather than an ad. Works well mid-article too.</p>
+  <div class="article-ctx">
+    <div class="article-ctx-label">Article content above...</div>
+  </div>
+  <div class="article-body-pad">
+    <div class="inline-rec">
+      <div class="inline-rec-text"><strong>Ready to file?</strong> TurboTax Self-Employed walks you through every 1099 deduction. Prefer free? FreeTaxUSA files federal for $0.</div>
+      <div class="inline-rec-links">
+        <a href="#" class="inline-link gold">TurboTax →</a>
+        <a href="#" class="inline-link ghost">FreeTaxUSA →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
