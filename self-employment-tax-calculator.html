@@ -128,7 +128,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
       "name": "How is self-employment tax calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Self-employment tax is 15.3% of your net self-employment earnings (12.4% Social Security + 2.9% Medicare). For 2024, you only pay Social Security tax on the first $168,600 of earnings. To calculate: multiply net earnings by 92.35% (the SE tax base), then by 15.3%. Half of the SE tax you pay is deductible from your income tax."
+        "text": "Self-employment tax is 15.3% of your net self-employment earnings (12.4% Social Security + 2.9% Medicare). For 2024, you only pay Social Security tax on the first $176,100 of earnings. To calculate: multiply net earnings by 92.35% (the SE tax base), then by 15.3%. Half of the SE tax you pay is deductible from your income tax."
       }
     },
     {
@@ -254,7 +254,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <div class="bd-row">
           <div>
             <div class="bd-label">Federal income tax</div>
-            <div class="bd-sub">2024 brackets · standard deduction applied</div>
+            <div class="bd-sub">2025 brackets · standard deduction applied</div>
           </div>
           <div class="bd-amt">$<span id="r-fed">0</span></div>
         </div>
@@ -283,28 +283,28 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <ol>
     <li><strong>Start with net earnings.</strong> Gross income minus business expenses.</li>
     <li><strong>Multiply by 92.35%.</strong> This is the "SE tax base." (The math reflects that as a self-employed person, you can't deduct the employer half of FICA before applying SE tax to the same money.)</li>
-    <li><strong>Multiply by 15.3%.</strong> That's your SE tax. (Or 2.9% Medicare-only on amounts above the Social Security wage base of $168,600 for 2024.)</li>
+    <li><strong>Multiply by 15.3%.</strong> That's your SE tax. (Or 2.9% Medicare-only on amounts above the Social Security wage base of $176,100 for 2024.)</li>
   </ol>
 
   <div class="callout callout-green">
     <p><strong>The 50% SE tax deduction:</strong> Half of the SE tax you pay is deductible from your income tax. The calculator above already accounts for this — it's why your federal tax estimate is lower than a simple bracket multiplication would suggest.</p>
   </div>
 
-  <h2>2024 federal income tax brackets</h2>
+  <h2>2025 federal income tax brackets</h2>
   <p>The federal income tax piece uses progressive brackets. Each "slice" of income is taxed at the bracket rate:</p>
 
   <table class="tax-table">
     <tr><th>Rate</th><th>Single</th><th>Married filing jointly</th></tr>
-    <tr><td>10%</td><td>$0–$11,600</td><td>$0–$23,200</td></tr>
-    <tr><td>12%</td><td>$11,600–$47,150</td><td>$23,200–$94,300</td></tr>
-    <tr><td>22%</td><td>$47,150–$100,525</td><td>$94,300–$201,050</td></tr>
-    <tr><td>24%</td><td>$100,525–$191,950</td><td>$201,050–$383,900</td></tr>
-    <tr><td>32%</td><td>$191,950–$243,725</td><td>$383,900–$487,450</td></tr>
-    <tr><td>35%</td><td>$243,725–$609,350</td><td>$487,450–$731,200</td></tr>
-    <tr><td>37%</td><td>$609,350+</td><td>$731,200+</td></tr>
+    <tr><td>10%</td><td>$0–$11,925</td><td>$0–$23,850</td></tr>
+    <tr><td>12%</td><td>$11,925–$48,475</td><td>$23,850–$96,950</td></tr>
+    <tr><td>22%</td><td>$48,475–$103,350</td><td>$96,950–$206,700</td></tr>
+    <tr><td>24%</td><td>$103,350–$197,300</td><td>$206,700–$394,600</td></tr>
+    <tr><td>32%</td><td>$197,300–$250,525</td><td>$394,600–$501,050</td></tr>
+    <tr><td>35%</td><td>$250,525–$626,350</td><td>$501,050–$751,600</td></tr>
+    <tr><td>37%</td><td>$626,350+</td><td>$751,600+</td></tr>
   </table>
 
-  <p>Most self-employed workers fall in the 12% or 22% bracket. The standard deduction ($14,600 single / $29,200 MFJ for 2024) is subtracted before brackets are applied.</p>
+  <p>Most self-employed workers fall in the 12% or 22% bracket. The standard deduction ($15,000 single / $30,000 MFJ for 2025) is subtracted before brackets are applied.</p>
 
   <h2>Common ways to reduce <em>self-employment tax</em></h2>
 
@@ -358,23 +358,23 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </footer>
 
 <script>
-// 2024 federal brackets (used as 2025 approximation pending Treasury inflation adjustments)
+// 2025 federal brackets
 const BRACKETS = {
   single: [
-    [11600,  0.10], [47150, 0.12], [100525,0.22], [191950,0.24],
-    [243725, 0.32], [609350,0.35], [Infinity,0.37]
+    [11925,  0.10], [48475, 0.12], [103350,0.22], [197300,0.24],
+    [250525, 0.32], [626350,0.35], [Infinity,0.37]
   ],
   mfj: [
-    [23200,  0.10], [94300, 0.12], [201050,0.22], [383900,0.24],
-    [487450, 0.32], [731200,0.35], [Infinity,0.37]
+    [23850,  0.10], [96950, 0.12], [206700,0.22], [394600,0.24],
+    [501050, 0.32], [751600,0.35], [Infinity,0.37]
   ],
   hoh: [
-    [16550,  0.10], [63100, 0.12], [100500,0.22], [191950,0.24],
-    [243700, 0.32], [609350,0.35], [Infinity,0.37]
+    [17000,  0.10], [64850, 0.12], [103350,0.22], [197300,0.24],
+    [250500, 0.32], [626350,0.35], [Infinity,0.37]
   ],
 };
-const STD_DED = { single: 14600, mfj: 29200, hoh: 21900 };
-const SS_WAGE_BASE = 168600; // 2024
+const STD_DED = { single: 15000, mfj: 30000, hoh: 22500 };
+const SS_WAGE_BASE = 176100; // 2025
 
 function fmt(n){
   if (!isFinite(n)) n = 0;
