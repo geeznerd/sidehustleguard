@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px; height: 630px; overflow: hidden;
+  background: #1c2b4a;
+  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  display: flex; align-items: stretch;
+}
+.left {
+  width: 56px;
+  background: #c9973a;
+  flex-shrink: 0;
+}
+.main {
+  flex: 1;
+  padding: 64px 72px 64px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.top { display: flex; align-items: center; gap: 14px; }
+.shield svg { width: 38px; height: 44px; }
+.wordmark { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -.3px; }
+.wordmark span { color: #c9973a; }
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; }
+.headline {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 62px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.5px;
+  margin-bottom: 22px;
+}
+.headline em { color: #c9973a; font-style: italic; }
+.sub {
+  font-size: 22px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pill {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 7px 16px;
+  border-radius: 100px;
+  letter-spacing: .02em;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="left"></div>
+<div class="main">
+  <div class="top">
+    <div class="shield">
+      <svg viewBox="0 0 36 40" fill="none">
+        <path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-width="2"/>
+        <path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wordmark">SideHustle<span>Guard</span></div>
+  </div>
+  <div class="body">
+    <div class="headline">Is your hustle<br>legally <em>protected?</em></div>
+    <div class="sub">Free tax &amp; compliance check for US side hustlers.<br>60 seconds. Plain English. No sign-up.</div>
+  </div>
+  <div class="pills">
+    <span class="pill">Taxes</span>
+    <span class="pill">Licenses</span>
+    <span class="pill">Business structure</span>
+    <span class="pill">Free check</span>
+    <span class="pill">sidehustleguard.com</span>
+  </div>
+</div>
+</body>
+</html>
