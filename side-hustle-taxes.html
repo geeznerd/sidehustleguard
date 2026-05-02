@@ -89,6 +89,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -224,13 +228,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="how-much-should-i-set-aside">How much should I set aside?</h2>
   <p>The safe rule for most side hustlers: <strong>set aside 30% of every payment you receive</strong>. Here's why that works:</p>
 
-  <table class="income-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="income-table">
     <tr><th>Annual net profit</th><th>SE Tax (15.3%)</th><th>Federal income tax (est.)</th><th>Total owed (est.)</th></tr>
     <tr><td>$5,000</td><td>$765</td><td>$500–$600</td><td>~$1,300–$1,400</td></tr>
     <tr><td>$10,000</td><td>$1,413</td><td>$1,000–$1,200</td><td>~$2,400–$2,600</td></tr>
     <tr><td>$20,000</td><td>$2,825</td><td>$2,200–$2,800</td><td>~$5,000–$5,600</td></tr>
     <tr><td>$40,000</td><td>$5,650</td><td>$4,400–$5,500</td><td>~$10,000–$11,200</td></tr>
-  </table>
+  </table></div>
 
   <p>State income tax adds another 0–9.3% depending on where you live. California, New York, and New Jersey have the highest effective rates for self-employed individuals.</p>
 
@@ -369,7 +373,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/etsy-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/self-employment-tax-calculator" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">SE Tax Calculator</div></a>
+      <a href="/llc-vs-sole-proprietor" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
+    </div>
         <div class="related-card-title">Do Etsy Sellers Have to Pay Taxes?</div>
       </a>
       <a href="/llc-etsy-seller" class="related-card">

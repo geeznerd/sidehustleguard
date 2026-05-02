@@ -162,6 +162,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 @media(max-width:440px){
   .no-tax-grid{grid-template-columns:repeat(2,1fr)}
 }
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -350,7 +354,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <p>Sorted alphabetically. The "Notable Rule" column calls out anything self-employed workers specifically need to know — SDI obligations, city taxes, alternative minimum taxes, or quirks that catch freelancers off guard. Use the <a href="/self-employment-tax-calculator">SE Tax Calculator</a> to run your specific numbers.</p>
 
   <div class="state-table-wrap">
-    <table class="state-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="state-table">
       <thead>
         <tr>
           <th>State</th>
@@ -751,7 +755,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <p>Quick reference for a freelancer with $60,000 in net SE profit:</p>
 
   <div class="state-table-wrap" style="margin-top:20px">
-    <table class="state-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="state-table">
       <thead>
         <tr>
           <th>State scenario</th>

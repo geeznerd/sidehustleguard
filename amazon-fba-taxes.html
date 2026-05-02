@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,12 +240,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="income-tax-on-fba-profits-how-it-works">Income tax on FBA profits — <em>how it works</em></h2>
   <p>Amazon FBA income is self-employment income. That means two layers of tax apply before the federal and state income tax brackets even enter the picture:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Applied to</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Social Security + Medicare (both halves)</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most sellers)</td><td>Net profit added to all other income</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>Varies — 9 states have no income tax</td></tr>
-  </table>
+  </table></div>
 
   <p>The critical number is <strong>net profit</strong> — not your gross Amazon sales. Net profit equals revenue minus COGS, FBA fees, storage fees, advertising, and all other ordinary business expenses.</p>
 
@@ -249,14 +253,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <p><strong>Real example:</strong> $80,000 gross sales — $45,000 COGS — $15,000 FBA fulfillment and referral fees — $5,000 advertising = <strong>$15,000 taxable profit</strong>. At a 30% effective rate (SE tax + federal), that's roughly $4,500 in taxes — not $24,000 on the gross sales figure.</p>
   </div>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Item</th><th>Amount</th><th>Notes</th></tr>
     <tr><td>Gross Amazon sales</td><td>$80,000</td><td>What shows on your 1099-K</td></tr>
     <tr><td>Cost of Goods Sold (COGS)</td><td>-$45,000</td><td>Cost of units that actually sold</td></tr>
     <tr><td>FBA fulfillment + referral fees</td><td>-$15,000</td><td>Amazon deducts before depositing</td></tr>
     <tr><td>Advertising (Sponsored Products)</td><td>-$5,000</td><td>Charged separately to your account</td></tr>
     <tr><td><strong>Taxable net profit</strong></td><td><strong>$15,000</strong></td><td>What you actually owe tax on</td></tr>
-  </table>
+  </table></div>
 
   <p>You report this on <strong>Schedule C</strong> attached to your personal Form 1040. The net profit flows into your adjusted gross income alongside any W-2 wages or other income you have.</p>
 
@@ -274,14 +278,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="amazons-1099-k-what-it-shows-and-what-it-doesnt">Amazon's 1099-K — <em>what it shows and what it doesn't</em></h2>
   <p>Amazon issues a <strong>1099-K</strong> to sellers who exceed the annual reporting threshold. The thresholds have been in flux:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>1099-K threshold</th><th>What changed</th></tr>
     <tr><td>2023</td><td>$20,000 and 200 transactions</td><td>IRS delayed lower threshold again</td></tr>
     <tr><td>2024</td><td>$5,000 (any number of transactions)</td><td>Transition year, phased rollout</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500</strong></td><td>Continued phase-in</td></tr>
     <tr><td>2025</td><td>$2,500</td><td>Further reduction</td></tr>
     <tr><td>2026 and beyond</td><td>$600</td><td>Original ARPA threshold finally in effect</td></tr>
-  </table>
+  </table></div>
 
   <p>The most important thing to understand about the 1099-K: <strong>it shows your gross sales, not your profit</strong>. If you had $80,000 in gross sales, that's what appears on the form. The IRS also receives a copy. You then subtract COGS and all legitimate business expenses on Schedule C to arrive at the taxable net figure.</p>
 
@@ -297,14 +301,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h3>How COGS works in practice</h3>
   <p>Suppose you buy 100 units at $5 each. Total spend: $500. You sell 70 of those units at $15 each. Here's how the math works:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Item</th><th>Units</th><th>Amount</th></tr>
     <tr><td>Units purchased</td><td>100</td><td>$500 total cost</td></tr>
     <tr><td>Units sold this year</td><td>70</td><td>$1,050 revenue (70 × $15)</td></tr>
     <tr><td>COGS deducted this year</td><td>70</td><td>$350 (70 × $5)</td></tr>
     <tr><td>Units remaining (inventory asset)</td><td>30</td><td>$150 — deducted when they sell</td></tr>
     <tr><td><strong>Gross profit this year</strong></td><td></td><td><strong>$700 ($1,050 − $350)</strong></td></tr>
-  </table>
+  </table></div>
 
   <p>The 30 unsold units sit on your balance sheet as inventory. When they sell — even in a future tax year — you deduct them at that point. This is called <strong>matching revenue to expenses</strong>.</p>
 
@@ -457,7 +461,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/reseller-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/llc-vs-sole-proprietor" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
+    </div>
         <div class="related-card-title">Reseller Taxes</div>
       </a>
       <a href="/ebay-taxes" class="related-card">

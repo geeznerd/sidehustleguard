@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,12 +240,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-grubhub-drivers-owe">What taxes do Grubhub drivers owe?</h2>
   <p>As an independent contractor, you're running a one-person business. That means you're on the hook for both the employee and employer share of payroll taxes — plus income tax on top. Here's the full picture:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security (12.4%) + Medicare (2.9%)</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most drivers)</td><td>Based on total household income</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>9 states have no income tax</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>The SE tax surprise:</strong> Self-employment tax is what catches new drivers off guard. When you work a regular job, your employer pays half of Social Security and Medicare (7.65%) and you pay the other half through paycheck withholding — and you never see the employer half. As a Grubhub driver, you pay both halves: the full 15.3%. That's the biggest single difference between W-2 income and gig income.</p>
@@ -262,12 +266,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="the-mileage-deduction-your-biggest-break">The mileage deduction — your biggest break</h2>
   <p>The IRS standard mileage rate lets you deduct a fixed amount for every business mile you drive. For most Grubhub drivers, this is the single largest deduction by a wide margin:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>IRS standard mileage rate</th></tr>
     <tr><td>2024</td><td>67 cents per mile</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>70 cents per mile</strong></td></tr>
     <tr><td>2025</td><td>70 cents per mile</td></tr>
-  </table>
+  </table></div>
 
   <h3>Which miles count?</h3>
   <ul>
@@ -412,7 +416,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/doordash-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/uber-eats-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Uber Eats Taxes Guide</div></a>
+    </div>
         <div class="related-card-title">DoorDash Taxes: What Every Dasher Owes</div>
       </a>
       <a href="/uber-lyft-taxes" class="related-card">

@@ -103,6 +103,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -305,7 +309,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="how-much-does-forming-an-llc-cost">How much does forming an LLC cost?</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>State</th><th>Filing fee</th><th>Annual fee</th></tr>
     <tr><td>Wyoming</td><td>$100</td><td>$60/yr min</td></tr>
     <tr><td>Delaware</td><td>$90</td><td>$300/yr franchise tax</td></tr>
@@ -313,7 +317,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>California</td><td>$70</td><td>$800/yr minimum franchise tax</td></tr>
     <tr><td>Texas</td><td>$300</td><td>No annual fee for most small LLCs</td></tr>
     <tr><td>New York</td><td>$200</td><td>$9/yr + biennial report</td></tr>
-  </table>
+  </table></div>
 
   <p>In addition to state fees, you'll need a <strong>registered agent</strong> — a person or service with a physical address in your state who receives legal documents on behalf of your LLC. You can be your own registered agent (using your home address) or use a service. Northwest Registered Agent charges a flat fee and uses their address — keeping yours private.</p>
 
@@ -405,7 +409,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/self-employment-tax-calculator" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/side-hustle-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Side Hustle Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">Self-Employment Tax Calculator</div>
     </a>
     <a href="/side-hustle-taxes" class="related-card">

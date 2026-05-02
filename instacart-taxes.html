@@ -96,6 +96,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -230,22 +234,22 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="employee-vs-independent-contractor-which-are-you">Employee vs. independent contractor — which are you?</h2>
   <p>Instacart has two types of shoppers, and they're taxed differently:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Shopper type</th><th>Tax treatment</th><th>Form received</th></tr>
     <tr><td>Full-service shopper</td><td>Independent contractor — pays SE tax</td><td>1099-NEC (if $600+)</td></tr>
     <tr><td>In-store shopper</td><td>Instacart employee — taxes withheld</td><td>W-2</td></tr>
-  </table>
+  </table></div>
 
   <p>This guide is for <strong>full-service shoppers</strong> — the ones who shop and deliver using their own car. If you're an in-store shopper, Instacart withholds taxes from your paycheck and you file like any employee.</p>
 
   <h2 id="what-taxes-do-full-service-instacart-shoppers-owe">What taxes do full-service Instacart shoppers owe?</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Social Security + Medicare (both halves)</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most shoppers)</td><td>Based on total income</td></tr>
     <tr><td>State income tax</td><td>0–9%+ depending on state</td><td>9 states have no income tax</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="does-instacart-send-a-1099">Does Instacart send a 1099?</h2>
   <p>Yes. Instacart sends a <strong>1099-NEC</strong> to full-service shoppers who earn <strong>$600 or more</strong> in a calendar year. You'll receive it digitally through the Instacart Shopper app in late January — check under Earnings → Tax Forms. If you earned under $600, Instacart doesn't file a 1099, but you're still required to report all income on your tax return.</p>
@@ -397,6 +401,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
       <div class="related-card-arrow">→</div>
       <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
     </a>
+      <a href="/grubhub-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Grubhub Taxes Guide</div></a>
   </div>
 </div>
 </div>

@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,7 +240,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="tiktoks-income-streams-and-how-each-is-taxed">TikTok's income streams — and how each is taxed</h2>
   <p>TikTok has expanded well beyond simple creator payouts. Here's a complete breakdown of every income stream and how the IRS treats each one:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Income stream</th><th>Tax treatment</th><th>Form you may receive</th></tr>
     <tr><td>Creator Rewards Program (formerly Creator Fund)</td><td>Ordinary income / SE income</td><td>1099-MISC or 1099-NEC</td></tr>
     <tr><td>LIVE gifts (diamonds converted to cash)</td><td>Ordinary income</td><td>1099-MISC (if over threshold)</td></tr>
@@ -245,7 +249,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>TikTok Shop product sales (seller)</td><td>E-commerce income, Schedule C</td><td>1099-K from TikTok Shop</td></tr>
     <tr><td>Brand deals / sponsorships (paid outside TikTok)</td><td>SE income, Schedule C</td><td>1099-NEC from brand (if $600+)</td></tr>
     <tr><td>Tips via third-party (Cash App, Venmo, PayPal)</td><td>SE income — NOT on TikTok 1099</td><td>1099-K from payment platform</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>Important:</strong> Third-party tips sent through Venmo, Cash App, or PayPal are reported by those platforms on their own 1099-Ks — they will not appear on any form TikTok issues. You need to track these separately and combine them on your Schedule C.</p>
@@ -417,7 +421,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/youtube-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/substack-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Substack Taxes Guide</div></a>
+    </div>
         <div class="related-card-title">YouTube Taxes: AdSense, Memberships &amp; More</div>
       </a>
       <a href="/twitch-taxes" class="related-card">

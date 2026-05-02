@@ -96,6 +96,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -229,13 +233,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="what-taxes-do-texas-self-employed-workers-actually-owe">What taxes do Texas self-employed workers actually owe?</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Federal SE tax</td><td>15.3% of net profit × 0.9235</td><td>Social Security + Medicare — federal only</td></tr>
     <tr><td>Federal income tax</td><td>10–37% depending on income</td><td>Standard deductions and brackets apply</td></tr>
     <tr><td>Texas state income tax</td><td><strong>0%</strong></td><td>Texas has no personal income tax</td></tr>
     <tr><td>Texas franchise tax</td><td>0% for most small businesses</td><td>Only if annual revenue exceeds $2.47M</td></tr>
-  </table>
+  </table></div>
 
   <p>That's the whole picture. Texas self-employed workers file a federal Form 1040 with Schedule C and Schedule SE — and that's it. No state return, no state estimated payments, no state revenue agency to deal with.</p>
 
@@ -263,7 +267,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="federal-income-tax-for-texas-self-employed-workers">Federal income tax for Texas self-employed workers</h2>
   <p>After calculating SE tax, your federal income tax is based on your adjusted gross income (net profit minus the SE deduction, minus the standard deduction):</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>2025 federal bracket (single)</th><th>Tax rate</th></tr>
     <tr><td>$0 – $11,600</td><td>10%</td></tr>
     <tr><td>$11,601 – $47,150</td><td>12%</td></tr>
@@ -272,13 +276,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>$191,951 – $243,725</td><td>32%</td></tr>
     <tr><td>$243,726 – $609,350</td><td>35%</td></tr>
     <tr><td>Over $609,350</td><td>37%</td></tr>
-  </table>
+  </table></div>
 
   <p>Most Texas freelancers earning $30,000–80,000 in net profit end up in the 12–22% federal brackets for income tax, plus 15.3% SE tax — for an effective combined rate of roughly 22–30%.</p>
 
   <h2 id="real-example-texas-freelancer-60000-net-profit">Real example: Texas freelancer, $60,000 net profit</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax</th><th>Calculation</th><th>Amount</th></tr>
     <tr><td>Federal SE tax</td><td>$60,000 × 0.9235 × 15.3%</td><td>$8,478</td></tr>
     <tr><td>SE deduction (saves you)</td><td>$8,478 × 50%</td><td>−$4,239</td></tr>
@@ -287,7 +291,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>Federal income tax</td><td>10%/12% brackets</td><td>~$4,786</td></tr>
     <tr><td>Texas state income tax</td><td>No state income tax</td><td>$0</td></tr>
     <tr><td><strong>Total tax</strong></td><td></td><td><strong>~$13,264</strong></td></tr>
-  </table>
+  </table></div>
 
   <p>Effective rate: <strong>22.1%</strong> of net profit. With $8,000–12,000 in business deductions (home office, equipment, software), effective rate drops to 17–20%.</p>
 
@@ -381,7 +385,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/california-self-employment-tax" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/new-york-self-employment-tax" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">New York SE Tax</div></a>
+    </div>
       <div class="related-card-title">California Self-Employment Tax</div>
     </a>
     <a href="/new-york-self-employment-tax" class="related-card">

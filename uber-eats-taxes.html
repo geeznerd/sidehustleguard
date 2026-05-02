@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,12 +240,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-uber-eats-drivers-owe">What taxes do Uber Eats drivers owe?</h2>
   <p>As an independent contractor, you're responsible for paying your own taxes — Uber withholds nothing. Three separate taxes apply to your net profit:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security and Medicare — both halves</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most drivers)</td><td>Based on total taxable income for the year</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>9 states have no state income tax</td></tr>
-  </table>
+  </table></div>
 
   <p>These taxes apply to your <strong>net profit</strong> — not your gross earnings. Net profit is what you earned minus your business deductions, primarily mileage. A driver who grossed $18,000 but drove 16,000 business miles has a net profit of roughly $6,800 — dramatically lower than their gross.</p>
 
@@ -319,12 +323,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="uber-eats-vs-doordash-vs-grubhub-same-taxes-different-1099s">Uber Eats vs DoorDash vs Grubhub — same taxes, different 1099s</h2>
   <p>All three gig delivery platforms treat you as an independent contractor. The tax treatment on your return is identical — Schedule C, self-employment tax, mileage deduction. The difference is in which 1099 form each sends.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Platform</th><th>1099 type sent</th><th>Threshold</th><th>Notes</th></tr>
     <tr><td>Uber Eats</td><td>1099-K + 1099-NEC</td><td>$5,000 (2024) / $2,500 (2025) for 1099-K; $600 for 1099-NEC</td><td>Two forms possible</td></tr>
     <tr><td>DoorDash</td><td>1099-NEC</td><td>$600</td><td>Via Stripe Express</td></tr>
     <tr><td>Grubhub</td><td>1099-NEC</td><td>$600</td><td>Via Stripe Express</td></tr>
-  </table>
+  </table></div>
 
   <p>If you drive for multiple platforms — sometimes called "multi-apping" — you <strong>combine all income and expenses on a single Schedule C</strong>. You don't file a separate Schedule C per platform. Add up all gross earnings from every 1099, then deduct your total business miles and other expenses. The IRS sees one self-employment business, not three separate ones.</p>
 
@@ -428,7 +432,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/doordash-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/grubhub-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Grubhub Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">DoorDash Taxes</div>
     </a>
     <a href="/grubhub-taxes" class="related-card">

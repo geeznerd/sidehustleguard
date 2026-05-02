@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -230,20 +234,20 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="the-full-new-york-self-employment-tax-picture">The full New York self-employment tax picture</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Applies to</th></tr>
     <tr><td>Federal SE tax</td><td>15.3% of net profit × 0.9235</td><td>All NY self-employed workers</td></tr>
     <tr><td>Federal income tax</td><td>10–37% depending on income</td><td>All NY self-employed workers</td></tr>
     <tr><td>NY state income tax</td><td>4%–10.9% depending on income</td><td>All NY state residents</td></tr>
     <tr><td>NYC city income tax</td><td>3.078%–3.876%</td><td>NYC residents (5 boroughs) only</td></tr>
     <tr><td>MCTMT</td><td>0.34% of net SE earnings</td><td>Metro area residents earning $50,000+ SE income</td></tr>
-  </table>
+  </table></div>
 
   <p>NYC residents who are self-employed face some of the highest combined tax rates of any metropolitan area in the US. Understanding each layer is essential to setting aside the right amount — most people are surprised by how quickly the combined percentage adds up.</p>
 
   <h2 id="new-york-state-income-tax-brackets-2025">New York state income tax brackets (2025)</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Taxable income (single)</th><th>NY state rate</th></tr>
     <tr><td>$0 – $17,150</td><td>4%</td></tr>
     <tr><td>$17,151 – $23,600</td><td>4.5%</td></tr>
@@ -254,20 +258,20 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>$2,155,351 – $5,000,000</td><td>9.65%</td></tr>
     <tr><td>$5,000,001 – $25,000,000</td><td>10.3%</td></tr>
     <tr><td>Over $25,000,000</td><td>10.9%</td></tr>
-  </table>
+  </table></div>
 
   <p>Most New York freelancers earning $30,000–160,000 in taxable income land in the <strong>5.85%</strong> bracket for state income tax. That's on top of federal taxes.</p>
 
   <h2 id="nyc-city-income-tax-an-extra-layer-for-city-residents">NYC city income tax — an extra layer for city residents</h2>
   <p>If you live in any of the five boroughs (Manhattan, Brooklyn, Queens, the Bronx, Staten Island), you pay <strong>New York City income tax</strong> in addition to NY state tax:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>NYC taxable income (single)</th><th>NYC tax rate</th></tr>
     <tr><td>$0 – $12,000</td><td>3.078%</td></tr>
     <tr><td>$12,001 – $25,000</td><td>3.762%</td></tr>
     <tr><td>$25,001 – $50,000</td><td>3.819%</td></tr>
     <tr><td>Over $50,000</td><td>3.876%</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>Commuters are exempt:</strong> The NYC income tax applies to <em>residents</em> of NYC, not to people who commute into the city to work. If you live in New Jersey, Long Island, Connecticut, or Westchester and your client is in Manhattan, you do not owe NYC income tax. Only where you live matters for city tax purposes.</p>
@@ -290,7 +294,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="real-example-nyc-freelancer-60000-net-profit">Real example: NYC freelancer, $60,000 net profit</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax</th><th>Calculation</th><th>Amount</th></tr>
     <tr><td>Federal SE tax</td><td>$60,000 × 0.9235 × 15.3%</td><td>$8,478</td></tr>
     <tr><td>SE deduction</td><td>$8,478 × 50%</td><td>−$4,239</td></tr>
@@ -300,7 +304,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>NYC city income tax</td><td>~3.8% on NYC taxable income</td><td>~$1,750</td></tr>
     <tr><td>MCTMT</td><td>$60,000 × 0.34% (if $50k+ SE income)</td><td>~$204</td></tr>
     <tr><td><strong>Total tax (NYC resident)</strong></td><td></td><td><strong>~$18,018</strong></td></tr>
-  </table>
+  </table></div>
 
   <p>Effective rate for an NYC resident: <strong>~30%</strong> of net profit. With $8,000–12,000 in legitimate deductions, that drops to 25–27%. A similar earner in Texas would pay roughly $13,000–13,500 total — a $4,500–5,000 annual difference purely from geography.</p>
 
@@ -391,7 +395,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/california-self-employment-tax" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/texas-self-employment-tax" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Texas SE Tax Guide</div></a>
+    </div>
       <div class="related-card-title">California Self-Employment Tax</div>
     </a>
     <a href="/texas-self-employment-tax" class="related-card">

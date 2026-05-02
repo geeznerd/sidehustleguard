@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -231,12 +235,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-uber-and-lyft-drivers-owe">What taxes do Uber and Lyft drivers owe?</h2>
   <p>As an independent contractor for both platforms, three taxes hit your earnings:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security + Medicare (both halves)</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most drivers)</td><td>Stacks on top of SE tax</td></tr>
     <tr><td>State income tax</td><td>0–9%+ depending on state</td><td>Zero in TX, FL, NV; high in CA, NY</td></tr>
-  </table>
+  </table></div>
 
   <p>The piece that shocks new drivers is the self-employment tax. As an employee, you'd only see 7.65% taken from your check (your half). As a contractor, you owe the full <strong>15.3%</strong> because you're simultaneously the employer and the employee. The IRS does let you deduct half of it when calculating your income tax, which softens the blow slightly.</p>
 
@@ -405,6 +409,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
       <div class="related-card-arrow">→</div>
       <div class="related-card-title">Quarterly Taxes for the Self-Employed</div>
     </a>
+      <a href="/amazon-flex-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Amazon Flex Taxes</div></a>
   </div>
 </div>
 </div>

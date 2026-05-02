@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -246,11 +250,11 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="schedule-e-vs-schedule-c-which-one-applies-to-you">Schedule E vs Schedule C — which one applies to you?</h2>
   <p>This single distinction changes whether you pay 15.3% self-employment tax. Most hosts file <strong>Schedule E</strong> (passive rental). Some must file <strong>Schedule C</strong> (active business).</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Form</th><th>When it applies</th><th>SE tax?</th></tr>
     <tr><td>Schedule E</td><td>You rent the space, period. No daily services.</td><td>No (saves 15.3%)</td></tr>
     <tr><td>Schedule C</td><td>You provide substantial services like daily cleaning, meals, concierge, transportation</td><td>Yes (15.3%)</td></tr>
-  </table>
+  </table></div>
 
   <p>"Substantial services" is the key phrase. Standard hospitality (clean linens, Wi-Fi, basic supplies, toiletries) does <strong>not</strong> trigger Schedule C. You'd need to be doing things like:</p>
   <ul>
@@ -418,7 +422,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/side-hustle-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/self-employment-tax-calculator" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">SE Tax Calculator</div></a>
+      <a href="/llc-vs-sole-proprietor" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
+    </div>
         <div class="related-card-title">Side Hustle Taxes: What You Actually Owe</div>
       </a>
       <a href="/quarterly-taxes-self-employed" class="related-card">

@@ -96,6 +96,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -229,7 +233,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="all-twitch-revenue-streams-and-how-each-is-taxed">All Twitch revenue streams — and how each is taxed</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Revenue stream</th><th>Taxable?</th><th>Form / reporting</th></tr>
     <tr><td>Subscriptions (Tier 1/2/3)</td><td>Yes</td><td>Included in Twitch 1099-NEC</td></tr>
     <tr><td>Bits (cheer)</td><td>Yes</td><td>Included in Twitch 1099-NEC</td></tr>
@@ -239,7 +243,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>PayPal / direct donations</td><td>Yes</td><td>Self-report; may get 1099-K from PayPal</td></tr>
     <tr><td>Sponsorships</td><td>Yes</td><td>1099-NEC from sponsor if $600+</td></tr>
     <tr><td>Merchandise sales</td><td>Yes</td><td>Separate 1099 from merch platform</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>Donations and tips are NOT gifts:</strong> The IRS treats viewer donations and tips as payment for entertainment services — not personal gifts. Even $5 tips from 200 viewers add up to $1,000 of taxable income. Track every payment platform you use, not just Twitch payouts.</p>
@@ -254,12 +258,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
   <h2 id="what-taxes-does-a-twitch-streamer-owe">What taxes does a Twitch streamer owe?</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Full Social Security + Medicare — both halves</td></tr>
     <tr><td>Federal income tax</td><td>10–37% depending on income</td><td>Stacks with any W-2 income</td></tr>
     <tr><td>State income tax</td><td>0–13.3%</td><td>Varies by state</td></tr>
-  </table>
+  </table></div>
 
   <h2 id="streaming-equipment-deductions">Streaming equipment deductions</h2>
   <p>This is where streamers recover the most in deductions. Equipment used for streaming is a legitimate business expense:</p>
@@ -401,6 +405,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
       <div class="related-card-arrow">→</div>
       <div class="related-card-title">LLC vs Sole Proprietor</div>
     </a>
+      <a href="/patreon-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Patreon Taxes Guide</div></a>
   </div>
 </div>
 </div>

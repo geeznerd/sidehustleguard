@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,12 +240,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-etsy-sellers-actually-owe">What taxes do Etsy sellers actually owe?</h2>
   <p>There are three layers of tax most Etsy sellers face:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Who owes it</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Anyone with $400+ in net profit</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most sellers)</td><td>Based on total income</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>Varies — some states have none</td></tr>
-  </table>
+  </table></div>
 
   <p>Add those up and you're looking at an effective rate of <strong>25–35%</strong> on your Etsy net profit. The number that surprises people most is the self-employment tax — it applies before income tax, and most first-time sellers don't budget for it.</p>
 
@@ -390,7 +394,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/llc-etsy-seller" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/paypal-1099k-etsy" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Etsy & PayPal 1099-K</div></a>
+      <a href="/etsy-home-office-deduction" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Etsy Home Office Deduction</div></a>
+    </div>
         <div class="related-card-title">Do I Need an LLC for My Etsy Shop?</div>
       </a>
       <a href="/side-hustle-taxes" class="related-card">

@@ -88,7 +88,11 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
-  </style>
+  
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -260,7 +264,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="the-1099-k-threshold-how-it-changed">The 1099-K threshold: <em>how it changed</em></h2>
   <p>The 1099-K threshold has been in flux for several years as the IRS phases it down from the old $20,000 level. Here's where it stands:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Tax Year</th>
@@ -290,14 +294,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>No transaction minimum</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>The IRS originally passed legislation targeting a $600 threshold and has been stepping down toward it. Whether they reach $600 for 2026 remains to be seen, but the direction is clear: expect to receive a 1099-K at lower and lower sales volumes in coming years.</p>
 
   <h2 id="how-to-calculate-your-taxable-profit">How to calculate <em>your taxable profit</em></h2>
   <p>Tax is owed on profit, not revenue. That's the most important thing to understand as a Mercari seller. Here's how the math works with a concrete example:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Item</th>
@@ -332,7 +336,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>This is what you actually owe tax on</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>The more complete your records, the more accurately you can calculate your true profit — and the less tax you'll pay. Sellers who don't track their costs end up reporting their full gross sales as income, which can mean a dramatically higher tax bill than they actually owe.</p>
   <p><strong>Keep receipts for every item you purchase to resell.</strong> A simple spreadsheet or app tracking purchase price, sale price, fees, and shipping for each item is all you need. At tax time, add it all up for Schedule C.</p>
@@ -407,7 +411,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/reseller-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/poshmark-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Poshmark Taxes Guide</div></a>
+      <a href="/ebay-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">eBay Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">Reseller Taxes: The Complete Guide</div>
     </a>
     <a href="/ebay-taxes" class="related-card">

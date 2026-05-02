@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -231,12 +235,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-onlyfans-creators-actually-owe">What taxes do OnlyFans creators actually owe?</h2>
   <p>OnlyFans pays you in full — no withholding, no employer-side taxes covered. You're a contractor, not an employee. Three taxes apply:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Who owes it</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Anyone with $400+ in net profit</td></tr>
     <tr><td>Federal income tax</td><td>10–37% (bracket-based)</td><td>Based on total income</td></tr>
     <tr><td>State income tax</td><td>0–13.3% depending on state</td><td>Varies — 9 states have none</td></tr>
-  </table>
+  </table></div>
 
   <p>For most creators, the combined effective tax rate lands at <strong>25–40%</strong> of <em>net profit</em>. The number that surprises new creators is the self-employment tax — 15.3% comes off the top before income tax, because you're paying both halves of Social Security and Medicare.</p>
 
@@ -430,7 +434,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/freelancer-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/tiktok-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">TikTok Taxes Guide</div></a>
+      <a href="/self-employment-tax-calculator" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">SE Tax Calculator</div></a>
+    </div>
         <div class="related-card-title">Freelancer Taxes: The Complete Guide</div>
       </a>
       <a href="/quarterly-taxes-self-employed" class="related-card">

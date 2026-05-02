@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -266,14 +270,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="the-1099-k-when-does-ebay-send-one">The 1099-K: when does eBay send one?</h2>
   <p>eBay is required to send you (and the IRS) a <strong>1099-K</strong> once your sales exceed the federal reporting threshold. That threshold has been changing rapidly:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>Federal 1099-K threshold</th></tr>
     <tr><td>2023</td><td>$20,000 and 200 transactions (old rule)</td></tr>
     <tr><td>2024</td><td>$5,000 in gross sales</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500</strong> in gross sales</td></tr>
     <tr><td>2025</td><td>$2,500 in gross sales</td></tr>
     <tr><td>2026 onward</td><td>$600 in gross sales</td></tr>
-  </table>
+  </table></div>
 
   <p>A critical point: <strong>eBay's 1099-K reports gross sales — not your profit.</strong> If you sold $10,000 worth of items that cost you $8,000 to acquire, the 1099-K will say $10,000. You then subtract your Cost of Goods Sold (COGS) on Schedule C to show the IRS your actual taxable profit.</p>
 
@@ -403,7 +407,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/reseller-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/poshmark-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Poshmark Taxes Guide</div></a>
+    </div>
         <div class="related-card-title">Reseller Taxes: The Complete Guide</div>
       </a>
       <a href="/etsy-taxes" class="related-card">

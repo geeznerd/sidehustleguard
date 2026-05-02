@@ -98,6 +98,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -232,12 +236,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-rover-sitters-actually-owe">What taxes do Rover sitters actually owe?</h2>
   <p>Because Rover treats you as an independent contractor rather than an employee, you're running a self-employed business — even if you only board a few dogs on weekends. That status means three different taxes apply to your earnings:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Who owes it</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Anyone with $400+ in net self-employment profit</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most sitters)</td><td>Based on your total income across all sources</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>Varies — 9 states have no income tax at all</td></tr>
-  </table>
+  </table></div>
 
   <p>The self-employment tax (15.3%) is the one that surprises most first-year sitters. When you work a regular job, your employer pays half of Social Security and Medicare — you only see the other half deducted from your paycheck. As a self-employed sitter, you owe <strong>both halves</strong>, which is where the 15.3% comes from. The silver lining: you can deduct half of what you pay in SE tax on your federal return, which partially offsets the hit.</p>
 
@@ -393,7 +397,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/doordash-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/taskrabbit-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">TaskRabbit Taxes Guide</div></a>
+      <a href="/self-employment-tax-calculator" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">SE Tax Calculator</div></a>
+    </div>
       <div class="related-card-title">DoorDash Taxes: What Every Dasher Owes</div>
     </a>
     <a href="/instacart-taxes" class="related-card">

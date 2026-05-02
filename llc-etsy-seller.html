@@ -103,6 +103,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -281,14 +285,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="what-does-an-llc-actually-cost">What does an LLC actually cost?</h2>
   <p>This varies significantly by state. Here are the costs for the most common states for Etsy sellers:</p>
-  <table class="cost-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="cost-table">
     <tr><th>State</th><th>Formation fee</th><th>Annual fee</th><th>Notes</th></tr>
     <tr><td>California</td><td>$70</td><td>$800 minimum</td><td>High annual cost — biggest consideration</td></tr>
     <tr><td>Texas</td><td>$300</td><td>$0</td><td>No annual fee after formation</td></tr>
     <tr><td>Florida</td><td>$125</td><td>$138/yr</td><td>Reasonable ongoing cost</td></tr>
     <tr><td>New York</td><td>$200</td><td>$25/yr + publication</td><td>Publication requirement adds ~$1,000 one-time</td></tr>
     <tr><td>Wyoming</td><td>$100</td><td>$60/yr</td><td>Popular for low-cost formation</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>California sellers:</strong> The $800 annual franchise tax is real and unavoidable. For sellers making under $10,000/yr, this is a significant cost relative to income. At $20,000+/yr it starts to make more sense.</p>
@@ -359,7 +363,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/etsy-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/llc-vs-sole-proprietor" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
+    </div>
         <div class="related-card-title">Do Etsy Sellers Have to Pay Taxes?</div>
       </a>
       <a href="/side-hustle-taxes" class="related-card">

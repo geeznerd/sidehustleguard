@@ -145,6 +145,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -233,7 +237,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-taskers-owe">What taxes Taskers owe</h2>
   <p>As an independent contractor on TaskRabbit, you are running a business in the eyes of the IRS. No employer withholds taxes on your behalf, so you are responsible for calculating and paying everything yourself. That means three separate layers of tax on your net profit.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Tax</th>
@@ -258,7 +262,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>Varies by state — nine states have no income tax</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>The SE tax applies to <strong>net profit</strong> — your gross TaskRabbit earnings minus deductible business expenses. The lower your net profit, the lower your SE tax bill. This is why deductions matter so much for Taskers.</p>
 
@@ -335,7 +339,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="quarterly-estimated-taxes">Quarterly estimated taxes</h2>
   <p>Because TaskRabbit doesn't withhold anything from your pay, you're responsible for paying taxes yourself throughout the year. If you expect to owe $1,000 or more in federal taxes for the year, the IRS requires you to make quarterly estimated payments.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Quarter</th>
@@ -365,7 +369,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>January 15</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>A common rule of thumb: set aside <strong>25–30% of every TaskRabbit payment</strong> you receive into a separate savings account earmarked for taxes. That covers SE tax plus federal income tax for most Taskers in middle income brackets. Adjust up if you're in a high-income state.</p>
 
@@ -420,7 +424,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/freelancer-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/rover-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Rover Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">Freelancer taxes: the complete guide</div>
     </a>
     <a href="/side-hustle-taxes" class="related-card">

@@ -98,6 +98,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -232,12 +236,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-patreon-creators-actually-owe">What taxes do Patreon creators actually owe?</h2>
   <p>When patrons pledge to your page, that money is self-employment income — the same category as freelance work, consulting, or any independent contractor income. Three types of tax apply:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Covers Social Security + Medicare for self-employed people</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most creators)</td><td>Stacks on top of SE tax; based on total income</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>9 states have no income tax; most have 3–6%</td></tr>
-  </table>
+  </table></div>
 
   <p>On top of all three taxes, remember that <strong>Patreon takes a platform fee of 5–12%</strong> before you ever see the money. That fee is deductible as a business expense, which reduces your taxable profit — but your gross income for tax purposes is the full amount your patrons pay, not your take-home after fees.</p>
 
@@ -269,12 +273,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="patreons-fee-structure-and-your-taxes">Patreon's fee structure and your taxes</h2>
   <p>Patreon offers three pricing tiers, each with a different platform fee:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Patreon plan</th><th>Platform fee</th><th>Tax treatment</th></tr>
     <tr><td>Lite</td><td>8% of patron payments</td><td>Fully deductible as a business expense</td></tr>
     <tr><td>Pro</td><td>12% of patron payments</td><td>Fully deductible as a business expense</td></tr>
     <tr><td>Premium</td><td>5% of patron payments</td><td>Fully deductible as a business expense</td></tr>
-  </table>
+  </table></div>
 
   <p>Regardless of which plan you use, the mechanics are the same for taxes: <strong>your gross income is what patrons paid, and the platform fee is a deductible expense</strong>. Don't try to report only your net payout as income — the 1099-K will show the gross amount, and reporting less than that triggers a discrepancy with what Patreon reported to the IRS.</p>
 
@@ -403,7 +407,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/youtube-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/substack-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Substack Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">YouTube Taxes: What Creators Owe</div>
     </a>
     <a href="/twitch-taxes" class="related-card">

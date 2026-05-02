@@ -88,7 +88,11 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
-  </style>
+  
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -225,7 +229,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <p>The moment a reader pays for your newsletter, that money is self-employment income in the eyes of the IRS. Unlike a W-2 job where an employer withholds taxes, Substack sends you the full payout (minus their 10% cut) and leaves the tax math entirely to you.</p>
   <p>You're on the hook for three layers of tax:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Tax Type</th>
@@ -250,7 +254,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>Varies by state. Nine states have no income tax. California tops out at 13.3%.</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p><strong>A rough rule of thumb:</strong> set aside 25–30% of every Substack payout for taxes if you're in a moderate income bracket. If you're already in a high-income W-2 job and your newsletter adds on top, that number can climb higher.</p>
   <p>The good news: you only owe SE tax on your <strong>net profit</strong> — revenue minus deductible business expenses. Every legitimate deduction you claim reduces both your SE tax and your income tax, so tracking expenses carefully is worth real money.</p>
@@ -379,7 +383,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/patreon-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/fiverr-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Fiverr Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">Patreon Taxes: What Creators Actually Owe</div>
     </a>
     <a href="/youtube-taxes" class="related-card">

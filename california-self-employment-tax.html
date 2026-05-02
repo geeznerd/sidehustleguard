@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -230,21 +234,21 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="the-full-california-self-employment-tax-picture">The full California self-employment tax picture</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Who collects it</th></tr>
     <tr><td>Federal SE tax</td><td>15.3% of net profit × 0.9235</td><td>IRS</td></tr>
     <tr><td>Federal income tax</td><td>10–37% depending on income</td><td>IRS</td></tr>
     <tr><td>California income tax</td><td>1%–13.3% depending on income</td><td>California FTB</td></tr>
     <tr><td>California SDI (optional)</td><td>~0.9% if you opt in voluntarily</td><td>California EDD</td></tr>
     <tr><td>CA LLC franchise tax</td><td>$800/year minimum (if you have an LLC)</td><td>California FTB</td></tr>
-  </table>
+  </table></div>
 
   <p>The combined effective rate for most California self-employed people earning $50,000–100,000 in net profit is <strong>35–45%</strong> after deductions. That's not marginal — that's the realistic chunk that leaves your account between federal and state taxes.</p>
 
   <h2 id="california-income-tax-brackets-2025">California income tax brackets (2025)</h2>
   <p>California has nine income tax brackets, plus a Mental Health Services surcharge at the top:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Taxable income (single)</th><th>CA income tax rate</th></tr>
     <tr><td>$0 – $10,412</td><td>1%</td></tr>
     <tr><td>$10,413 – $24,684</td><td>2%</td></tr>
@@ -256,7 +260,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>$418,962 – $698,274</td><td>11.3%</td></tr>
     <tr><td>$698,275 – $1,000,000</td><td>12.3%</td></tr>
     <tr><td>Over $1,000,000</td><td>13.3% (includes 1% surcharge)</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>California doesn't conform to the federal SE deduction:</strong> Federally, you deduct half of SE tax from your gross income before applying income tax brackets. California does not allow this deduction on your state return — which means your California taxable income is slightly higher than your federal taxable income.</p>
@@ -272,13 +276,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="californias-quarterly-payment-schedule-its-different">California's quarterly payment schedule — it's different</h2>
   <p>This is the most common mistake California freelancers make. California's estimated tax schedule is <strong>not</strong> four equal payments. The FTB requires:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Installment</th><th>Due date</th><th>% of estimated CA tax</th></tr>
     <tr><td>1st installment</td><td>April 15</td><td>30%</td></tr>
     <tr><td>2nd installment</td><td>June 15</td><td>40%</td></tr>
     <tr><td>3rd installment</td><td>No payment due</td><td>0%</td></tr>
     <tr><td>4th installment</td><td>January 15</td><td>30%</td></tr>
-  </table>
+  </table></div>
 
   <p>If you only pay federal quarterly on the federal schedule (25% each quarter), you may be underpaying California in Q1 and Q2 — and overpaying Q3 (when no California payment is due). Pay federal and California on their respective schedules separately.</p>
 
@@ -290,14 +294,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <p>If you have an LLC in California, you owe the FTB a <strong>minimum $800 franchise tax</strong> every year — even if your LLC made zero profit. This is due by the 15th day of the 4th month after your LLC's fiscal year ends (April 15 for calendar-year LLCs).</p>
   <p>There's also an additional LLC fee if your gross receipts exceed $250,000:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Gross receipts</th><th>Additional LLC fee</th></tr>
     <tr><td>Under $250,000</td><td>$0 (just the $800 minimum)</td></tr>
     <tr><td>$250,000 – $499,999</td><td>$900</td></tr>
     <tr><td>$500,000 – $999,999</td><td>$2,500</td></tr>
     <tr><td>$1,000,000 – $4,999,999</td><td>$6,000</td></tr>
     <tr><td>$5,000,000+</td><td>$11,790</td></tr>
-  </table>
+  </table></div>
 
   <p>For California side hustlers earning under $250,000, the cost is just the $800 minimum per year. This is significantly higher than the annual LLC cost in most other states — something to factor into the LLC vs. sole proprietor decision if you're based in CA.</p>
 
@@ -312,7 +316,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="real-example-california-freelancer-60000-net-profit">Real example: California freelancer, $60,000 net profit</h2>
   <p>Let's see what a single California freelancer earning $60,000 in net profit actually owes:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax</th><th>Calculation</th><th>Amount</th></tr>
     <tr><td>Federal SE tax</td><td>$60,000 × 0.9235 × 15.3%</td><td>$8,478</td></tr>
     <tr><td>SE deduction (saves)</td><td>$8,478 × 50%</td><td>−$4,239</td></tr>
@@ -322,7 +326,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>CA taxable income</td><td>$60,000 − $5,202 (CA std ded)</td><td>~$54,798</td></tr>
     <tr><td>CA income tax</td><td>1–8% brackets</td><td>~$2,800</td></tr>
     <tr><td><strong>Total tax</strong></td><td></td><td><strong>~$16,064</strong></td></tr>
-  </table>
+  </table></div>
 
   <p>That's an effective rate of about <strong>26.8%</strong> of net profit — before any business deductions. With $10,000–15,000 in legitimate deductions (home office, equipment, software), the effective rate drops to 20–24%.</p>
 
@@ -395,7 +399,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/new-york-self-employment-tax" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/texas-self-employment-tax" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Texas SE Tax Guide</div></a>
+    </div>
       <div class="related-card-title">New York Self-Employment Tax</div>
     </a>
     <a href="/texas-self-employment-tax" class="related-card">

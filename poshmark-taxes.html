@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -266,14 +270,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="the-1099-k-when-does-poshmark-send-one">The 1099-K: when does Poshmark send one?</h2>
   <p>Poshmark is required to send you a 1099-K when your gross sales exceed the federal threshold for the year. The threshold has been changing:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>1099-K threshold</th><th>What it covers</th></tr>
     <tr><td>2023</td><td>$20,000 (old rule)</td><td>Gross sales through Poshmark</td></tr>
     <tr><td>2024</td><td>$5,000</td><td>Gross sales — transitional threshold</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500</strong></td><td>Continued phase-in toward $600</td></tr>
     <tr><td>2025</td><td>$2,500</td><td>Gross sales — continuing phase-down</td></tr>
     <tr><td>2026 and beyond</td><td>$600 (planned)</td><td>Original ARPA provision</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>Critical nuance:</strong> The 1099-K is based on <strong>gross sales</strong> — the listing price the buyer paid — not what Poshmark deposited into your account. Your actual payout is lower by Poshmark's fee. You account for that fee as a deductible expense on Schedule C. Do not report the 1099-K total as your income and leave it at that — you'll overpay significantly.</p>
@@ -286,14 +290,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <p>Here's how the math works for a typical sale:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Line item</th><th>Amount</th><th>Notes</th></tr>
     <tr><td>Listing price (what buyer pays)</td><td>$100.00</td><td>Also the gross sales figure on 1099-K</td></tr>
     <tr><td>Poshmark fee (20%)</td><td>−$20.00</td><td>Deductible business expense on Schedule C</td></tr>
     <tr><td>What you receive</td><td>$80.00</td><td>Your actual payout</td></tr>
     <tr><td>Cost of goods sold (COGS)</td><td>−$50.00</td><td>What you originally paid for the item</td></tr>
     <tr><td>Taxable profit</td><td>$30.00</td><td>This is what you owe tax on</td></tr>
-  </table>
+  </table></div>
 
   <p>Notice: you are <strong>not</strong> taxed on the $20 Poshmark kept. You are <strong>not</strong> taxed on the full $80 payout. You are taxed only on the $30 profit — and if you have other deductible expenses (supplies, mileage, subscriptions), that number shrinks further.</p>
 
@@ -440,7 +444,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/reseller-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/ebay-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">eBay Taxes Guide</div></a>
+      <a href="/mercari-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Mercari Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">Reseller Taxes: The Complete Guide</div>
     </a>
     <a href="/ebay-taxes" class="related-card">

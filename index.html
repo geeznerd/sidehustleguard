@@ -230,32 +230,6 @@ h1 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; font-s
 .picker-foot { font-size: 11px; color: var(--text-dim); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .picker-foot-item { display: inline-flex; align-items: center; gap: 5px; }
 @media(max-width:600px) { .picker-grid { grid-template-columns: repeat(2, 1fr); } }
-@media(max-width:640px) {
-  .checks-bg { padding-left: 0; padding-right: 0; overflow: hidden; }
-  .checks-inner { padding-left: 20px; padding-right: 20px; }
-  .checks-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding: 0 20px 4px;
-    margin: 0 -20px;
-    width: calc(100% + 40px);
-    background: transparent;
-    border-radius: 0;
-  }
-  .checks-grid::-webkit-scrollbar { display: none; }
-  .check-card {
-    flex-shrink: 0;
-    min-width: min(82vw, 300px);
-    border-radius: 14px;
-    scroll-snap-align: start;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .checks-dots { display: flex; }
-}
 
 /* ── TICKER ── */
 .ticker { background: var(--navy); padding: 11px 0; overflow: hidden; }
@@ -501,6 +475,33 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
   .faq-inner { grid-template-columns: 1fr; gap: 28px; }
   .cta-inner { padding: 44px 28px; }
   footer { padding: 26px 20px; }
+}
+/* ── MOBILE SWIPE CAROUSEL — must come after the 900px block to win the cascade ── */
+@media(max-width:640px) {
+  .checks-bg { padding-left: 0; padding-right: 0; overflow: hidden; }
+  .checks-inner { padding-left: 20px; padding-right: 20px; }
+  .checks-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding: 0 20px 4px;
+    margin: 0 -20px;
+    width: calc(100% + 40px);
+    background: transparent;
+    border-radius: 0;
+  }
+  .checks-grid::-webkit-scrollbar { display: none; }
+  .check-card {
+    flex-shrink: 0;
+    min-width: min(85vw, 300px);
+    border-radius: 14px;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .checks-dots { display: flex; }
 }
 </style>
 </head>

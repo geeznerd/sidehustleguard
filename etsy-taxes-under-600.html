@@ -129,6 +129,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 .footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
 .footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:28px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -211,12 +215,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 
   <h2 id="what-the-600-rule-actually-means">What the $600 rule actually means</h2>
 <p>Form 1099-K is a reporting document that payment platforms (Etsy, PayPal, Stripe) send to both you and the IRS when you exceed a certain threshold in payments. The threshold has changed frequently:</p>
-<table><tr><th>Year</th><th>1099-K threshold</th></tr>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table><tr><th>Year</th><th>1099-K threshold</th></tr>
 <tr><td>2022 and before</td><td>$20,000 in gross sales + 200 transactions</td></tr>
 <tr><td>2023 (transitional)</td><td>$20,000 (IRS delayed the $600 rule)</td></tr>
 <tr><td>2024</td><td>$5,000</td></tr>
 <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500</strong></td></tr>
-<tr><td>2025 and beyond</td><td>$2,500 (phasing toward $600)</td></tr></table>
+<tr><td>2025 and beyond</td><td>$2,500 (phasing toward $600)</td></tr></table></div>
 <p>The key point: <strong>this threshold only affects whether you receive a form — not whether you owe tax.</strong> If you made $400 net profit selling on Etsy and received zero forms, you still owe self-employment tax on that $400.</p>
 
   <h2 id="when-do-you-actually-owe-tax-on-etsy-income">When do you actually owe tax on Etsy income?</h2>
@@ -302,6 +306,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
       <a href="/llc-etsy-seller" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Do I Need an LLC for My Etsy Shop?</div></a>
       <a href="/etsy-schedule-c" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">How to Fill Out Schedule C for Etsy</div></a>
       <a href="/side-hustle-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Side Hustle Taxes: What You Owe</div></a>
+      <a href="/paypal-1099k-etsy" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Etsy & PayPal 1099-K</div></a>
     </div>
   </div>
 </div>

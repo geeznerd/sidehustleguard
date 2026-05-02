@@ -102,6 +102,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -236,12 +240,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="what-taxes-do-upwork-freelancers-owe">What taxes do Upwork freelancers owe?</h2>
   <p>As an independent contractor on Upwork, three layers of tax apply to your net profit:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Who owes it</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Anyone with $400+ in net self-employment profit</td></tr>
     <tr><td>Federal income tax</td><td>10–22% (most freelancers)</td><td>Based on total taxable income</td></tr>
     <tr><td>State income tax</td><td>0–9.3% depending on state</td><td>Varies — 9 states have no income tax</td></tr>
-  </table>
+  </table></div>
 
   <p>The self-employment tax trips up most new freelancers. As an employee, your employer pays half of Social Security and Medicare (7.65%) and you pay the other half through payroll withholding. As a self-employed freelancer, <strong>you pay both halves</strong> — that's the 15.3%. You can deduct half of it on your federal return, but you still owe the full amount up front.</p>
 
@@ -259,22 +263,22 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="upworks-service-fee-what-it-is-and-how-its-taxed">Upwork's service fee — what it is and how it's taxed</h2>
   <p>Upwork charges freelancers a sliding service fee based on your lifetime billings with each individual client:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Lifetime billings with client</th><th>Upwork service fee</th></tr>
     <tr><td>First $500</td><td>20%</td></tr>
     <tr><td>$500.01 – $10,000</td><td>10%</td></tr>
     <tr><td>Over $10,000</td><td>5%</td></tr>
-  </table>
+  </table></div>
 
   <p>Here's the key tax point that confuses most Upwork freelancers: <strong>Upwork deducts the fee before paying you.</strong> Your 1099-K reflects only what was deposited into your account — not what your client paid.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Scenario</th><th>Amount</th></tr>
     <tr><td>Client pays Upwork</td><td>$1,000</td></tr>
     <tr><td>Upwork service fee (20%)</td><td>−$200</td></tr>
     <tr><td>You receive</td><td>$800</td></tr>
     <tr><td>Your taxable income</td><td>$800 (not $1,000)</td></tr>
-  </table>
+  </table></div>
 
   <div class="callout callout-amber">
     <p><strong>Do not deduct the service fee again.</strong> Because the 1099-K already excludes the fee, claiming it as a deduction would double-count the reduction. Your taxable income is simply what Upwork deposited — your job is to subtract your other legitimate business expenses from there.</p>
@@ -283,13 +287,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="does-upwork-send-a-1099">Does Upwork send a 1099?</h2>
   <p>Yes — Upwork issues a <strong>1099-K</strong> for payments processed through the platform. The reporting thresholds have changed significantly in recent years:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>1099-K threshold</th></tr>
     <tr><td>2024</td><td>$5,000+</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500+</strong></td></tr>
     <tr><td>2025</td><td>$2,500+</td></tr>
     <tr><td>2026 and beyond</td><td>$600+</td></tr>
-  </table>
+  </table></div>
 
   <p>Even if you earn below the threshold and don't receive a 1099-K, <strong>all income is taxable.</strong> The threshold only determines Upwork's paperwork obligation to the IRS — not yours. You report every dollar regardless.</p>
   <p>Access your 1099-K through Upwork's tax center in January. If the number on your 1099-K doesn't match your records, your Upwork earnings dashboard is the authoritative source. Discrepancies can happen if payments were processed across calendar years or if you had a dispute refund.</p>
@@ -423,7 +427,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/freelancer-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/fiverr-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Fiverr Taxes Guide</div></a>
+    </div>
         <div class="related-card-title">Freelancer Taxes: The Complete Guide</div>
       </a>
       <a href="/fiverr-taxes" class="related-card">

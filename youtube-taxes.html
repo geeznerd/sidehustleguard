@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -230,7 +234,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="all-the-ways-youtube-creators-earn-and-owe-taxes">All the ways YouTube creators earn — and owe taxes</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Revenue stream</th><th>Taxable?</th><th>Who pays / form</th></tr>
     <tr><td>AdSense (YouTube Partner Program)</td><td>Yes</td><td>Google sends 1099-MISC ($600+)</td></tr>
     <tr><td>Brand deals / sponsorships</td><td>Yes</td><td>Each brand sends 1099-NEC ($600+)</td></tr>
@@ -238,7 +242,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <tr><td>Super Chats &amp; Super Thanks</td><td>Yes</td><td>Included in Google's 1099</td></tr>
     <tr><td>Merchandise sales</td><td>Yes</td><td>Merch platform sends its own 1099</td></tr>
     <tr><td>Gifted products (PR boxes)</td><td>Generally yes if valuable</td><td>No form issued; self-report</td></tr>
-  </table>
+  </table></div>
 
   <p>Every dollar from YouTube is self-employment income. Google pays AdSense, channel memberships, and fan funding through one account — you'll get a single 1099 from Google covering all of those. Brand deals come separately from each brand as 1099-NEC forms.</p>
 
@@ -255,12 +259,12 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
   <h2 id="what-taxes-does-a-youtube-creator-owe">What taxes does a YouTube creator owe?</h2>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax type</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Self-employment tax</td><td>15.3% of net profit</td><td>Social Security + Medicare (both halves)</td></tr>
     <tr><td>Federal income tax</td><td>10–37% depending on total income</td><td>Stacks with any W-2 income</td></tr>
     <tr><td>State income tax</td><td>0–13.3%</td><td>Varies by state; highest in CA</td></tr>
-  </table>
+  </table></div>
 
   <p>Creators who also have a W-2 job should note: YouTube income stacks on top of their salary. If you're already in the 22% federal bracket from your day job, every dollar from YouTube is taxed at 22% federal plus 15.3% SE tax — an effective rate of ~37% on YouTube income before state tax. Set aside accordingly.</p>
 
@@ -424,6 +428,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
       <div class="related-card-arrow">→</div>
       <div class="related-card-title">LLC vs Sole Proprietor</div>
     </a>
+      <a href="/tiktok-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">TikTok Taxes Guide</div></a>
+      <a href="/patreon-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Patreon Taxes Guide</div></a>
   </div>
 </div>
 </div>

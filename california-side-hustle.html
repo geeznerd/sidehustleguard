@@ -86,6 +86,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -216,13 +220,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <h2 id="californias-tax-rates-for-self-employed-individuals">California's tax rates for self-employed individuals</h2>
 
-  <table class="rate-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="rate-table">
     <tr><th>Tax</th><th>Rate</th><th>Notes</th></tr>
     <tr><td>Federal SE tax</td><td>15.3%</td><td>On net profit — applies in all states</td></tr>
     <tr><td>Federal income tax</td><td>10–22%</td><td>Based on total taxable income</td></tr>
     <tr><td>CA state income tax</td><td>1–9.3%</td><td>Progressive — most side hustlers pay 4–6%</td></tr>
     <tr><td>CA SDI (disability)</td><td>1.1%</td><td>Applies to self-employed who opt in</td></tr>
-  </table>
+  </table></div>
 
   <p>California's top marginal rate is 13.3%, but most side hustlers with moderate income fall into the 4–6% bracket for state purposes. Still — stacked on top of federal obligations, the total is significant.</p>
 
@@ -337,7 +341,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/side-hustle-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/california-self-employment-tax" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">California SE Tax Guide</div></a>
+      <a href="/new-york-self-employment-tax" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">New York SE Tax</div></a>
+    </div>
         <div class="related-card-title">Side Hustle Taxes: What You Actually Owe</div>
       </a>
       <a href="/etsy-taxes" class="related-card">

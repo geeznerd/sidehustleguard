@@ -145,6 +145,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -233,7 +237,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="how-pinterest-creators-earn-mdash-and-how-each-type-is-taxed">How Pinterest creators earn &mdash; <em>and how each type is taxed</em></h2>
   <p>Pinterest monetization comes from several distinct income streams, and understanding which party sends your 1099 is key to staying organized at tax time. The IRS taxes all of these the same way &mdash; as self-employment income &mdash; but the reporting paperwork differs by source.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Income type</th>
@@ -268,7 +272,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>$2,500 gross in 2025</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>The most important thing to understand: <strong>Pinterest itself is not your primary tax document source.</strong> Most of your income flows through third parties, and you may receive five or more 1099s in a single year from different networks and brands.</p>
 
@@ -339,7 +343,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   <p>If you expect to owe $1,000 or more in federal taxes, make quarterly estimated payments to avoid an underpayment penalty:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <thead>
       <tr>
         <th>Quarter</th>
@@ -369,7 +373,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <td>January 15</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p>A practical rule of thumb: set aside <strong>25&ndash;30% of every payment</strong> you receive &mdash; from any affiliate network or brand &mdash; immediately upon receipt. Keep it in a dedicated savings account and pay quarterly from that reserve. You'll likely have some left over after April, which becomes your buffer for the next year.</p>
 
@@ -426,7 +430,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
     <a href="/youtube-taxes" class="related-card">
-      <div class="related-card-arrow">→</div>
+      <div class="related-card-arrow">→
+      <a href="/tiktok-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">TikTok Taxes Guide</div></a>
+      <a href="/etsy-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Etsy Taxes Guide</div></a>
+    </div>
       <div class="related-card-title">YouTube creator taxes explained</div>
     </a>
     <a href="/tiktok-taxes" class="related-card">

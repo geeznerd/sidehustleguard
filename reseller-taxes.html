@@ -97,6 +97,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px}
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+
+@media(max-width:640px){.toc-box ol{columns:1!important}}
+
+@media(max-width:500px){.related-grid{grid-template-columns:1fr!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -231,14 +235,14 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="the-1099-k-change-everyone-is-confused-about">The 1099-K change everyone is confused about</h2>
   <p>For years, the 1099-K threshold was $20,000 in sales <em>and</em> 200 transactions — meaning most casual resellers never received one. That changed:</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th>Tax year</th><th>Federal 1099-K threshold</th></tr>
     <tr><td>2023 and earlier</td><td>$20,000 + 200 transactions</td></tr>
     <tr><td>2024</td><td>$5,000 (no transaction minimum)</td></tr>
     <tr><td><strong>2025 (current)</strong></td><td><strong>$2,500</strong> (no transaction minimum)</td></tr>
     <tr><td>2025</td><td>$2,500 (planned)</td></tr>
     <tr><td>2026+</td><td>$600 (planned, may shift)</td></tr>
-  </table>
+  </table></div>
 
   <p>The IRS keeps changing this and Congress keeps debating it. The trend is clear: <strong>the threshold is going down, and more resellers will receive 1099-Ks</strong>. The federal threshold dropped to $2,500 for 2025. Some states (Massachusetts, Vermont, Virginia) already apply $600.</p>
 
@@ -256,13 +260,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <h2 id="hobby-vs-business-which-one-are-you">Hobby vs business — which one are you?</h2>
   <p>This is the first question to answer because it changes how everything else works.</p>
 
-  <table class="tax-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
     <tr><th></th><th>Hobby</th><th>Business</th></tr>
     <tr><td>Examples</td><td>Cleaning out closet, occasional sales</td><td>Regular sourcing, sales weekly+</td></tr>
     <tr><td>Income reporting</td><td>Required (line 8z, Schedule 1)</td><td>Required (Schedule C)</td></tr>
     <tr><td>Expense deductions</td><td>Not allowed</td><td>Fully deductible</td></tr>
     <tr><td>SE tax (15.3%)</td><td>No</td><td>Yes (on net profit $400+)</td></tr>
-  </table>
+  </table></div>
 
   <p>The IRS uses a 9-factor test, but the practical version is: <strong>are you actively trying to make money?</strong> If you source inventory, list regularly, track sales, and treat it as a profit-making activity, you're a business. If you're decluttering and occasionally selling stuff, you're a hobbyist.</p>
 
@@ -418,7 +422,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="related-label">Related guides</div>
   <div class="related-grid">
       <a href="/etsy-taxes" class="related-card">
-        <div class="related-card-arrow">→</div>
+        <div class="related-card-arrow">→
+      <a href="/ebay-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">eBay Taxes Guide</div></a>
+      <a href="/poshmark-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Poshmark Taxes Guide</div></a>
+    </div>
         <div class="related-card-title">Etsy Tax Guide for Sellers</div>
       </a>
       <a href="/paypal-1099k-etsy" class="related-card">
