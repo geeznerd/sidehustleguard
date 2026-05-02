@@ -99,7 +99,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 
-@media(max-width:640px){.toc-box ol{columns:1!important}}
+.toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 
 @media(max-width:500px){.related-grid{grid-template-columns:1fr!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:10px 12px}.related-card-arrow{margin-bottom:2px}}
 </style>
