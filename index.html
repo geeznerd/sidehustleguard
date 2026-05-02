@@ -343,13 +343,10 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
 .cal-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.95)); pointer-events: none; }
 .no-sub { margin-top: 10px; font-size: 11px; color: var(--text-dim); text-align: center; }
 
-/* ── REPORT PREVIEW ── */
-.preview-section { padding: 0 48px 80px; }
-.preview-inner { max-width: 960px; margin: 0 auto; }
-.preview-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 52px; align-items: center; }
-.preview-left .section-tag { margin-bottom: 10px; }
-.preview-left h2 { font-size: clamp(26px, 3.2vw, 38px); margin-bottom: 14px; }
-.preview-left p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 22px; font-weight: 300; }
+/* ── REPORT PREVIEW (now inline inside pricing section) ── */
+.preview-inline { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; margin-top: 48px; padding-top: 44px; border-top: 1px solid var(--border); }
+.preview-inline-text .section-tag { margin-bottom: 10px; }
+.preview-inline-text p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; font-weight: 300; }
 .preview-features { list-style: none; }
 .preview-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); padding: 5px 0; font-weight: 300; }
 .preview-features li::before { content: '→'; color: var(--gold); font-size: 12px; flex-shrink: 0; font-weight: 500; }
@@ -436,8 +433,8 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
 .bottom-trust-label { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
 .bottom-trust-div { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
 .bottom-trust-logos { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-.bottom-trust-logo { font-size: 13px; font-weight: 600; opacity: .35; transition: opacity .2s; color: var(--navy); letter-spacing: -.01em; }
-.bottom-trust-logo:hover { opacity: .6; }
+.bottom-trust-logo { font-size: 13px; font-weight: 600; opacity: .78; transition: opacity .2s; color: var(--navy); letter-spacing: -.01em; }
+.bottom-trust-logo:hover { opacity: 1; }
 .bottom-trust-logo.etsy { color: #f1641e; font-family: Georgia, serif; font-style: italic; }
 .bottom-trust-logo.fiverr { color: #1dbf73; }
 .bottom-trust-logo.upwork { color: #14a800; }
@@ -471,7 +468,7 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
   .steps { grid-template-columns: 1fr 1fr; }
   .checks-grid { grid-template-columns: repeat(2,1fr); }
   .pricing-wrap { grid-template-columns: 1fr; }
-  .preview-wrap { grid-template-columns: 1fr; }
+  .preview-inline { grid-template-columns: 1fr; }
   .faq-inner { grid-template-columns: 1fr; gap: 28px; }
   .cta-inner { padding: 44px 28px; }
   footer { padding: 26px 20px; }
@@ -589,10 +586,10 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
     <span class="section-tag">How it works</span>
     <h2>Protected in <em>60 seconds</em></h2>
     <div class="steps">
-      <div class="step"><span class="step-n">01</span><div class="step-title">Tell us your hustle</div><div class="step-desc">Select your type, describe what you do, and pick your state. About 30 seconds total.</div></div>
-      <div class="step"><span class="step-n">02</span><div class="step-title">AI analyzes it</div><div class="step-desc">We check against tax laws, licensing rules, and structure requirements for your specific state.</div></div>
-      <div class="step"><span class="step-n">03</span><div class="step-title">Get your report</div><div class="step-desc">See what's good, what needs attention, and what to fix — in plain English, no jargon.</div></div>
-      <div class="step"><span class="step-n">04</span><div class="step-title">Take action</div><div class="step-desc">Follow your personalized next steps and know exactly what to do to protect yourself.</div></div>
+      <div class="step"><span class="step-n">01</span><div class="step-title">Tell us your hustle</div><div class="step-desc">Pick your hustle type, state, and income range. No account or sign-up — takes about 30 seconds.</div></div>
+      <div class="step"><span class="step-n">02</span><div class="step-title">AI analyzes it</div><div class="step-desc">We run your situation against tax law, licensing rules, and structure requirements for your specific state — not generic advice.</div></div>
+      <div class="step"><span class="step-n">03</span><div class="step-title">Get your score</div><div class="step-desc">You get a color-coded compliance score (0–100), your top 3 risk areas, and a plain-English explanation of each issue found.</div></div>
+      <div class="step"><span class="step-n">04</span><div class="step-title">Unlock your plan</div><div class="step-desc">The $5 full report adds a step-by-step action plan, your personalized tax deadline calendar, and a deduction checklist — ready to share with your CPA.</div></div>
     </div>
   </div>
 </section>
@@ -700,19 +697,14 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
       </div>
     </div>
     <p class="no-sub">No subscription. No recurring charges. Pay once, get your report. That's it.</p>
-  </div>
-</section>
 
-<!-- REPORT PREVIEW -->
-<div class="preview-section">
-  <div class="preview-inner">
-    <div class="preview-wrap">
-      <div class="preview-left">
-        <span class="section-tag">What you get</span>
-        <h2>See what's inside the <em>full report</em></h2>
-        <p>A real, personalized document — not a generic checklist. Every section is specific to your hustle type, your state, and your income level.</p>
+    <!-- REPORT PREVIEW — merged into pricing section -->
+    <div class="preview-inline">
+      <div class="preview-inline-text">
+        <span class="section-tag">What's inside the full report</span>
+        <p>A real, personalized document — not a generic checklist. Every section is tailored to your hustle type, your state, and your income level.</p>
         <ul class="preview-features">
-          <li>Color-coded compliance score</li>
+          <li>Color-coded compliance score (0–100)</li>
           <li>Every issue explained in plain English</li>
           <li>Prioritized action plan — do this first</li>
           <li>Your specific tax deadlines for the year</li>
@@ -720,7 +712,7 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
           <li>PDF ready to share with your CPA</li>
         </ul>
       </div>
-      <div class="preview-right">
+      <div>
         <div class="report-card">
           <div class="rc-header">
             <div class="rc-logo">SideHustle<span>Guard</span> — Legal Compliance Report</div>
@@ -745,8 +737,6 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
             <div class="rc-issue rc-blur"><div class="rc-dot r"></div><div><div class="rc-issue-title">Self-employment tax: 15.3%</div><div class="rc-issue-desc">Set aside 30% of every payment. Here's exactly how to calculate your quarterly bill.</div></div></div>
           </div>
         </div>
-
-        <!-- Calendar preview -->
         <div class="cal-card">
           <div class="cal-head">
             <span class="cal-head-title">📅 Tax Deadline Calendar</span>
@@ -778,11 +768,10 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
           </div>
           <div class="cal-fade"></div>
         </div>
-
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- FAQ -->
 <div class="faq-bg" id="faq">
@@ -834,7 +823,7 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
   <div class="cta-inner">
     <div class="cta-text">
       <h2>Your hustle deserves<br><em>real protection.</em></h2>
-      <p>Free check. Plain English. 60 seconds.</p>
+      <p>Most side hustlers find 2–3 issues they didn't know about. Check yours free — takes 60 seconds.</p>
     </div>
     <a href="/tool" class="btn-cta">Check my hustle now →</a>
   </div>
