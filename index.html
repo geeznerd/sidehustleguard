@@ -478,16 +478,18 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
 }
 /* ── MOBILE SWIPE CAROUSEL — must come after the 900px block to win the cascade ── */
 @media(max-width:640px) {
-  .checks-bg { padding-left: 0; padding-right: 0; overflow: hidden; }
-  .checks-inner { padding-left: 20px; padding-right: 20px; }
+  .checks-bg { padding-left: 0; padding-right: 0; overflow: visible; }
+  .checks-inner { padding-left: 20px; padding-right: 20px; overflow: visible; }
   .checks-grid {
     display: flex;
+    align-items: flex-start;   /* cards are independent heights, not stretched */
     overflow-x: auto;
+    overflow-y: visible;       /* don't clip card content vertically */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    gap: 12px;
-    padding: 0 20px 4px;
+    gap: 14px;
+    padding: 4px 20px 20px;   /* extra bottom so shadow/border shows */
     margin: 0 -20px;
     width: calc(100% + 40px);
     background: transparent;
@@ -496,12 +498,14 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
   .checks-grid::-webkit-scrollbar { display: none; }
   .check-card {
     flex-shrink: 0;
-    min-width: min(85vw, 300px);
+    width: min(88vw, 320px);   /* wider cards — text wraps less, less vertical height */
+    min-width: 0;
     border-radius: 14px;
     scroll-snap-align: start;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 24px 20px;        /* slightly tighter padding so more text fits */
   }
-  .checks-dots { display: flex; }
+  .checks-dots { display: flex; margin-top: 8px; }
 }
 </style>
 </head>
