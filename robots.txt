@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /og-image
+Disallow: /guide-section-options
+Disallow: /tax-affiliate-options
 
 Sitemap: https://www.sidehustleguard.com/sitemap.xml
