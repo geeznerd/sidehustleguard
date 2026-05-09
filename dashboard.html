@@ -241,6 +241,13 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 
 /* ── UX REFINEMENTS ──────────────────────────────────────────────────────── */
 
+/* CA $800 info tooltip */
+.ca-tip-wrap{position:relative;display:inline-flex;align-items:center}
+.ca-tip-ico{font-size:12px;color:var(--dim);cursor:default;line-height:1;user-select:none}
+.ca-tip-box{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:220px;background:var(--navy);color:rgba(255,255,255,.85);font-size:11px;font-weight:300;line-height:1.55;padding:9px 11px;border-radius:8px;box-shadow:0 4px 18px rgba(28,43,74,.22);pointer-events:none;opacity:0;transition:opacity .15s;z-index:50;white-space:normal}
+.ca-tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--navy)}
+.ca-tip-wrap:hover .ca-tip-box{opacity:1}
+
 /* Guard Rate chip — zero-state (no payment entered yet) */
 .stat-chip.zero-state{border-style:dashed;border-color:var(--dim);background:var(--cream)}
 .stat-chip.zero-state .sc-lbl{color:var(--dim)}
@@ -662,9 +669,13 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
             </div>
           </div>
           <div style="margin-top:13px;padding:10px 12px;background:var(--cream);border-radius:8px;border:1px solid var(--border)">
-            <div style="font-size:11px;color:var(--muted)">
-              <span style="font-weight:600;color:var(--navy)">CA $800 franchise tax: </span>
+            <div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-weight:600;color:var(--navy)">CA $800 franchise tax:</span>
               <span :style="state === 'CA' ? 'color:var(--amber);font-weight:600' : 'color:var(--dim)'" x-text="state === 'CA' ? 'Applied (you are in CA)' : 'Not applied — change state in profile to CA to include'"></span>
+              <span class="ca-tip-wrap">
+                <span class="ca-tip-ico">ⓘ</span>
+                <span class="ca-tip-box">California requires a minimum $800 annual franchise tax for all S-Corps, regardless of profit or revenue.</span>
+              </span>
             </div>
           </div>
         </div>
