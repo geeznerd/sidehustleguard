@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Guard Dashboard — Audit Risk + Tax Guard + S-Corp Simulator | SideHustleGuard</title>
+<meta name="description" content="Three free side hustle tax tools in one dashboard. Check your audit risk, calculate how much to set aside from each payment, and find out if an S-Corp saves you money — all updated live.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/dashboard">
+<meta property="og:title" content="Tax Guard Dashboard — All Three Side Hustle Tax Tools in One Place">
+<meta property="og:description" content="Enter your income once and get instant results across audit risk, tax set-aside, and S-Corp savings tools.">
+<meta property="og:url" content="https://www.sidehustleguard.com/dashboard">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.sidehustleguard.com/images/og/dashboard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/dashboard.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"SideHustleGuard Tax Guard Dashboard","url":"https://www.sidehustleguard.com/dashboard","description":"Unified tax dashboard: audit risk estimator, tax set-aside calculator, and S-Corp savings simulator for side hustlers.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.sidehustleguard.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.sidehustleguard.com/guides"},{"@type":"ListItem","position":3,"name":"Tax Guard Dashboard","item":"https://www.sidehustleguard.com/dashboard"}]}}
+</script>
+
+<style>
+[x-cloak]{display:none!important}
+:root{
+  --navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--gold-pale:#fdf5e8;
+  --cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;
+  --muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,.09);
+  --green:#276944;--green-bg:#eaf5ef;--red:#b83232;--red-bg:#fdf1f1;
+  --amber:#a86c0a;--amber-bg:#fef6e8;
+  --sb:220px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;font-size:15px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:11px 28px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon svg{width:22px;height:26px}
+.logo-text{font-size:14px;font-weight:600;color:var(--white)}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--white)}
+.nav-cta{background:var(--gold);color:var(--white);padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none}
+.nav-cta:hover{background:var(--gold-lt)}
+
+/* LAYOUT */
+.db-wrap{display:grid;grid-template-columns:var(--sb) 1fr;min-height:calc(100vh - 50px)}
+
+/* SIDEBAR */
+.sidebar{background:var(--navy);border-right:1px solid rgba(255,255,255,.07);position:sticky;top:50px;height:calc(100vh - 50px);overflow-y:auto;display:flex;flex-direction:column;padding:20px 0}
+.sb-sec{padding:0 14px;margin-bottom:18px}
+.sb-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);padding:0 8px;margin-bottom:8px}
+.sb-link{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;text-decoration:none;color:rgba(255,255,255,.58);font-size:13px;transition:all .15s}
+.sb-link svg{width:15px;height:15px;flex-shrink:0}
+.sb-link:hover{background:rgba(255,255,255,.07);color:var(--white)}
+.sb-div{border:none;border-top:1px solid rgba(255,255,255,.07);margin:4px 14px 12px}
+.sb-btn{margin:12px 14px 0;padding:11px 14px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;width:calc(100% - 28px);transition:background .15s}
+.sb-btn:hover{background:var(--gold-lt)}
+.sb-spacer{flex:1}
+.sb-disc{padding:14px 20px 6px;font-size:10px;color:rgba(255,255,255,.22);line-height:1.6}
+
+/* MAIN */
+.main{padding:24px 28px;display:flex;flex-direction:column;gap:18px;max-width:900px;width:100%}
+
+/* PROFILE CARD */
+.profile-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px 26px}
+.card-eye{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.card-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.card-title em{color:var(--gold);font-style:italic}
+.profile-row{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:14px;align-items:end}
+
+/* FIELDS */
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld-lbl{font-size:12px;font-weight:500;color:var(--navy)}
+.fld-help{font-size:10px;color:var(--dim);font-weight:300;margin-top:2px}
+.inp-wrap{position:relative}
+.inp-wrap.dollar::before{content:'$';position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none}
+input[type="number"],input[type="email"],select{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+.inp-wrap.dollar input{padding-left:22px}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px}
+input:focus,select:focus{border-color:var(--gold);background:var(--white)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* TOGGLE */
+.tog-fld{display:flex;flex-direction:column;gap:4px}
+.tog-row{display:flex;align-items:center;gap:8px;padding:8px 0}
+.tog{position:relative;display:inline-block;width:38px;height:21px;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0}
+.t-sl{position:absolute;cursor:pointer;inset:0;background:var(--dim);border-radius:21px;transition:.2s}
+.t-sl:before{position:absolute;content:"";height:15px;width:15px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.2s}
+.tog input:checked+.t-sl{background:var(--gold)}
+.tog input:checked+.t-sl:before{transform:translateX(17px)}
+.tog-note{font-size:12px;color:var(--muted)}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat-chip{background:var(--white);border:1.5px solid var(--border);border-radius:13px;padding:16px 18px;text-align:center}
+.stat-chip.c-green{border-color:var(--green);background:var(--green-bg)}
+.stat-chip.c-amber{border-color:var(--gold);background:var(--gold-pale)}
+.stat-chip.c-red{border-color:var(--red);background:var(--red-bg)}
+.sc-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-chip.c-green .sc-lbl{color:var(--green)}
+.stat-chip.c-amber .sc-lbl{color:var(--amber)}
+.stat-chip.c-red .sc-lbl{color:var(--red)}
+.sc-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);line-height:1}
+.stat-chip.c-green .sc-val{color:var(--green)}
+.stat-chip.c-amber .sc-val{color:var(--amber)}
+.stat-chip.c-red .sc-val{color:var(--red)}
+.sc-sub{font-size:11px;color:var(--muted);margin-top:4px;font-weight:300}
+
+/* ALERTS */
+.alerts-stack{display:flex;flex-direction:column;gap:8px}
+.alert{display:flex;align-items:flex-start;gap:9px;padding:11px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.alert.a-amber{background:var(--amber-bg);border:1px solid rgba(168,108,10,.25);color:var(--amber)}
+.alert.a-red{background:var(--red-bg);border:1px solid rgba(184,50,50,.25);color:var(--red)}
+.alert.a-green{background:var(--green-bg);border:1px solid rgba(39,105,68,.25);color:var(--green)}
+.alert-ico{font-size:14px;flex-shrink:0;line-height:1.5}
+
+/* TOOL CARDS */
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.tc-header{padding:17px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.tc-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy)}
+.tc-title em{color:var(--gold);font-style:italic}
+.tc-link{font-size:12px;color:var(--gold);text-decoration:none;font-weight:500}
+.tc-link:hover{text-decoration:underline}
+.tc-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.tc-inputs{padding:20px 24px;border-right:1px solid var(--border)}
+.tc-results{padding:20px 20px;background:var(--cream);display:flex;flex-direction:column;gap:12px}
+
+/* INPUT GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
+.fdiv{border:none;border-top:1px solid var(--border);margin:13px 0}
+
+/* RESULT BOXES */
+.rbox{padding:14px 16px;border-radius:11px;border:1px solid var(--border);background:var(--white)}
+.rbox.navy{background:var(--navy);border-color:var(--navy)}
+.r-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.navy .r-lbl{color:rgba(255,255,255,.45)}
+.r-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1}
+.navy .r-val{color:var(--gold-lt)}
+.r-sub{font-size:11px;color:var(--muted);font-weight:300;margin-top:3px}
+.navy .r-sub{color:rgba(255,255,255,.4)}
+.r-val.v-green{color:var(--green)}
+.r-val.v-red{color:var(--red)}
+.r-val.v-amber{color:var(--amber)}
+
+/* BREAKDOWN ROWS */
+.bd-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(28,43,74,.06);font-size:12px}
+.bd-row:last-child{border-bottom:none}
+.bd-lbl{color:var(--muted);font-weight:300}
+.bd-val{color:var(--navy);font-weight:500}
+.navy .bd-lbl{color:rgba(255,255,255,.38)}
+.navy .bd-val{color:rgba(255,255,255,.82)}
+
+/* GUARD BAR */
+.gbar-wrap{margin:8px 0 4px}
+.gbar-lbls{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.35);margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+.gbar{height:7px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
+.gbar-fill{height:100%;background:var(--gold);border-radius:100px;transition:width .4s}
+
+/* RISK BADGE */
+.rbadge{display:inline-block;padding:4px 11px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.rbadge.low{background:var(--green-bg);color:var(--green)}
+.rbadge.medium{background:var(--amber-bg);color:var(--amber)}
+.rbadge.high{background:var(--red-bg);color:var(--red)}
+
+/* FLAGS */
+.flags{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.flag-item{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:var(--muted);line-height:1.45}
+.fdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.fdot.high{background:var(--red)}.fdot.medium{background:var(--amber)}.fdot.low{background:var(--green)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(28,43,74,.65);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:var(--white);border-radius:18px;padding:34px;max-width:400px;width:100%;box-shadow:0 8px 40px rgba(28,43,74,.25)}
+.modal-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:22px;font-weight:300;line-height:1.6}
+.modal-btn{width:100%;padding:12px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:4px}
+.modal-btn:hover{background:var(--gold-lt)}
+.modal-cancel{margin-top:10px;width:100%;background:none;border:none;color:var(--muted);font-size:13px;font-family:inherit;cursor:pointer;padding:5px}
+.modal-cancel:hover{color:var(--navy)}
+.modal-err{font-size:12px;color:var(--red);margin-top:5px}
+
+/* PRINT REPORT */
+.print-report{display:none}
+
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  nav,.sidebar,.modal-ov,footer{display:none!important}
+  .db-wrap,.main{display:block!important;padding:0!important}
+  .profile-card,.stats-row,.alerts-stack,.tool-card{display:none!important}
+  .print-report{display:block!important;font-family:'DM Sans',sans-serif;color:#1c2b4a;font-size:12px;line-height:1.6;padding:32px 40px}
+  .pr-head{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;border-bottom:2.5px solid #1c2b4a;margin-bottom:22px}
+  .pr-logo{font-size:18px;font-weight:700;color:#1c2b4a}
+  .pr-logo span{color:#c9973a}
+  .pr-meta{font-size:11px;color:#6b7a96;text-align:right;line-height:1.7}
+  .pr-title{font-size:14px;font-weight:700;margin-bottom:3px;color:#1c2b4a}
+  .pr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:0}
+  .pr-card{border:1px solid #e0ddd6;border-radius:8px;padding:14px 16px;break-inside:avoid}
+  .pr-card-eye{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:8px}
+  .pr-card-val{font-size:22px;font-weight:700;color:#1c2b4a;line-height:1;margin-bottom:3px}
+  .pr-card-sub{font-size:10px;color:#6b7a96;margin-bottom:10px}
+  .pr-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0ece3;font-size:11px}
+  .pr-row:last-child{border-bottom:none}
+  .pr-rlbl{color:#9aa3b5}
+  .pr-rval{font-weight:600}
+  .pr-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .pr-badge.low{background:#eaf5ef;color:#276944}
+  .pr-badge.medium{background:#fef6e8;color:#a86c0a}
+  .pr-badge.high{background:#fdf1f1;color:#b83232}
+  .pr-highlight{background:#fdf5e8;border:1px solid rgba(201,151,58,.4);border-radius:6px;padding:10px 14px;margin:10px 0}
+  .pr-h-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#a86c0a;margin-bottom:2px;font-weight:600}
+  .pr-h-val{font-size:20px;font-weight:700;color:#1c2b4a}
+  .pr-h-sub{font-size:10px;color:#a86c0a;margin-top:1px}
+  .pr-section-title{font-size:13px;font-weight:700;color:#1c2b4a;margin:20px 0 12px;padding-bottom:5px;border-bottom:1px solid #e0ddd6}
+  .pr-footer{border-top:1px solid #e0ddd6;margin-top:28px;padding-top:10px;font-size:10px;color:#9aa3b5;text-align:center}
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .db-wrap{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .profile-row{grid-template-columns:1fr 1fr}
+  .stats-row{grid-template-columns:1fr}
+  .tc-body{grid-template-columns:1fr}
+  .tc-inputs{border-right:none;border-bottom:1px solid var(--border)}
+  .g2,.g3{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body x-data="dashboard()">
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">
+    <span class="logo-icon">
+      <svg viewBox="0 0 26 30" fill="none"><path d="M13 1L2 5.5V14C2 21 7.5 27 13 29C18.5 27 24 21 24 14V5.5L13 1Z" fill="#c9973a" stroke="#c9973a" stroke-width="1" stroke-linejoin="round"/><path d="M8.5 14.5L11.5 17.5L17.5 11" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/guides" class="nav-link">Tools</a>
+    <a href="/tool" class="nav-link">Free Checker</a>
+    <a href="/guides" class="nav-cta">All Guides →</a>
+  </div>
+</nav>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="db-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-sec">
+      <div class="sb-lbl">Dashboard</div>
+      <a href="#section-profile" class="sb-link">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/></svg>
+        Your Profile
+      </a>
+    </div>
+    <hr class="sb-div">
+    <div class="sb-sec">
+      <div class="sb-lbl">Tools</div>
+      <a href="#section-audit" class="sb-link">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2L3 5V10C3 15 6.5 18.5 10 20C13.5 18.5 17 15 17 10V5L10 2Z" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Audit Shield
+      </a>
+      <a href="#section-guard" class="sb-link">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 9h14M7 4V3M13 4V3"/><path d="M7 13h2M11 13h2"/></svg>
+        Tax Guard
+      </a>
+      <a href="#section-scorp" class="sb-link">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="11" width="5" height="7" rx="1"/><rect x="7.5" y="7" width="5" height="11" rx="1"/><rect x="13" y="3" width="5" height="15" rx="1"/></svg>
+        S-Corp Sim
+      </a>
+    </div>
+    <div class="sb-spacer"></div>
+    <hr class="sb-div">
+    <button class="sb-btn" @click="requestReport()">📄 Download Guard Report</button>
+    <div class="sb-disc">Educational estimates only — not tax advice. Consult a licensed CPA before making decisions.</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- PROFILE -->
+    <section class="profile-card" id="section-profile">
+      <div class="card-eye">Shared Profile</div>
+      <div class="card-title">Enter once — <em>all three tools update live</em></div>
+      <div class="profile-row">
+        <div class="fld">
+          <label class="fld-lbl">Annual Net Income / Profit</label>
+          <div class="inp-wrap dollar">
+            <input type="number" x-model.number="annualIncome" min="0" placeholder="75000">
+          </div>
+          <div class="fld-help">Expected net self-employment income this year</div>
+        </div>
+        <div class="fld">
+          <label class="fld-lbl">State</label>
+          <div class="inp-wrap">
+            <select x-model="state">
+              <option value="CA">California</option>
+              <option value="TX">Texas (no state tax)</option>
+              <option value="FL">Florida (no state tax)</option>
+              <option value="NY">New York</option>
+              <option value="WA">Washington (no state tax)</option>
+              <option value="NV">Nevada (no state tax)</option>
+              <option value="OR">Oregon</option>
+              <option value="CO">Colorado</option>
+              <option value="AZ">Arizona</option>
+              <option value="IL">Illinois</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="NJ">New Jersey</option>
+              <option value="MA">Massachusetts</option>
+              <option value="GA">Georgia</option>
+              <option value="NC">North Carolina</option>
+              <option value="VA">Virginia</option>
+              <option value="MN">Minnesota</option>
+              <option value="none">Other / No State Tax</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="fld-lbl">Filing Status</label>
+          <div class="inp-wrap">
+            <select x-model="filingStatus">
+              <option value="single">Single</option>
+              <option value="mfj">Married filing jointly</option>
+              <option value="hoh">Head of household</option>
+            </select>
+          </div>
+        </div>
+        <div class="tog-fld">
+          <div class="fld-lbl">Self-Employed</div>
+          <div class="tog-row">
+            <label class="tog">
+              <input type="checkbox" x-model="isSE">
+              <span class="t-sl"></span>
+            </label>
+            <span class="tog-note" x-text="isSE ? 'SE tax on' : 'SE tax off'"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY STATS -->
+    <div class="stats-row">
+      <div class="stat-chip" :class="auditChipClass">
+        <div class="sc-lbl">Audit Risk</div>
+        <div class="sc-val" x-text="auditRiskLabel"></div>
+        <div class="sc-sub" x-text="'Score ' + auditResult.score + ' / 20'"></div>
+      </div>
+      <div class="stat-chip">
+        <div class="sc-lbl">Guard Rate (Per Payment)</div>
+        <div class="sc-val" x-text="tgPayment > 0 ? guardResult.guardPct.toFixed(0) + '%' : '—'"></div>
+        <div class="sc-sub" x-text="tgPayment > 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
+      </div>
+      <div class="stat-chip" :class="scorpChipClass">
+        <div class="sc-lbl">S-Corp Advantage</div>
+        <div class="sc-val" x-text="scorpResult.savings >= 0 ? '+' + fmtD(scorpResult.savings) : fmtD(scorpResult.savings)"></div>
+        <div class="sc-sub" x-text="scorpResult.savings >= 500 ? 'saved per year vs sole prop' : scorpResult.savings >= 0 ? 'marginal advantage' : 'sole prop is better at this income'"></div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <template x-if="alerts.length > 0">
+      <div class="alerts-stack">
+        <template x-for="(a, i) in alerts" :key="i">
+          <div class="alert" :class="'a-' + a.type">
+            <span class="alert-ico" x-text="a.icon"></span>
+            <span x-text="a.text"></span>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <!-- ── AUDIT SHIELD ──────────────────────────────────────────────────── -->
+    <div class="tool-card" id="section-audit">
+      <div class="tc-header">
+        <div class="tc-title">🛡️ <em>Audit</em> Shield Estimator</div>
+        <a href="/audit-risk-estimator" class="tc-link">Full 4-step tool →</a>
+      </div>
+      <div class="tc-body">
+        <div class="tc-inputs">
+          <div class="g2">
+            <div class="fld">
+              <label class="fld-lbl">Business Type</label>
+              <select x-model="bizType">
+                <option value="ecommerce">E-commerce / Etsy / reselling</option>
+                <option value="consulting">Consulting / freelancing</option>
+                <option value="content">Content creator</option>
+                <option value="gig">Gig / delivery work</option>
+                <option value="cash">Cash-based services</option>
+                <option value="rental">Short-term rental</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Loss History (3 yrs)</label>
+              <select x-model="lossHistory">
+                <option value="profitable">Profitable each year</option>
+                <option value="loss-1-2">Lost money 1–2 years</option>
+                <option value="loss-3plus">Lost money 3+ years</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Gross Revenue</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="auditRevenue" min="0" placeholder="80000">
+              </div>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Total Expenses</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="auditExpenses" min="0" placeholder="20000">
+              </div>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Business Banking</label>
+              <select x-model="bankAccount">
+                <option value="dedicated">Dedicated business account</option>
+                <option value="mixed">Mostly personal, some business</option>
+                <option value="personal">Personal account only</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Record Keeping</label>
+              <select x-model="recordKeeping">
+                <option value="organized">Organized (software/receipts)</option>
+                <option value="basic">Basic (some gaps)</option>
+                <option value="minimal">Minimal or none</option>
+              </select>
+            </div>
+          </div>
+          <hr class="fdiv">
+          <div class="g3">
+            <div class="fld">
+              <label class="fld-lbl">Vehicle Use</label>
+              <select x-model="vehicle">
+                <option value="none">No vehicle deduction</option>
+                <option value="partial">Partial business use</option>
+                <option value="full">100% business use</option>
+              </select>
+            </div>
+            <div class="fld" x-show="vehicle !== 'none'">
+              <label class="fld-lbl">Mileage Log?</label>
+              <select x-model="mileageLog">
+                <option value="yes">Yes — I log every trip</option>
+                <option value="no">No mileage log</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Other Deductions</label>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-top:5px">
+                <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
+                  <input type="checkbox" x-model="homeOffice" style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0"> Home office
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
+                  <input type="checkbox" x-model="meals" style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0"> Business meals
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tc-results">
+          <div class="rbox">
+            <div class="r-lbl">Risk Level</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:5px">
+              <span class="rbadge" :class="auditRisk" x-text="auditRiskLabel"></span>
+              <span style="font-size:13px;color:var(--muted)" x-text="'Score: ' + auditResult.score + ' / 20'"></span>
+            </div>
+          </div>
+          <div>
+            <div class="r-lbl">Top Flags</div>
+            <template x-if="auditResult.flags.length === 0">
+              <p style="font-size:12px;color:var(--green);margin-top:7px">✓ No significant red flags with your current answers.</p>
+            </template>
+            <ul class="flags" x-show="auditResult.flags.length > 0">
+              <template x-for="(f, i) in auditResult.flags.slice(0, 5)" :key="i">
+                <li class="flag-item">
+                  <span class="fdot" :class="f.severity"></span>
+                  <span x-text="f.text" style="flex:1"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+          <div style="margin-top:auto;padding-top:4px">
+            <a href="/audit-risk-estimator" style="font-size:12px;color:var(--gold);text-decoration:none">Get the full checklist with actionable tips →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAX GUARD ─────────────────────────────────────────────────────── -->
+    <div class="tool-card" id="section-guard">
+      <div class="tc-header">
+        <div class="tc-title">💰 <em>Tax</em> Guard Calculator</div>
+        <a href="/tax-guard-calculator" class="tc-link">Full tool + receipt →</a>
+      </div>
+      <div class="tc-body">
+        <div class="tc-inputs">
+          <div class="fld" style="max-width:260px">
+            <label class="fld-lbl" style="font-size:13px;font-weight:600">Payment Received</label>
+            <div class="inp-wrap dollar">
+              <input type="number" x-model.number="tgPayment" min="0" placeholder="1500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 22px">
+            </div>
+            <div class="fld-help">Enter any single payment to see how much to move to savings</div>
+          </div>
+          <hr class="fdiv">
+          <div style="font-size:12px;color:var(--muted);line-height:1.8">
+            <p style="font-weight:600;color:var(--navy);margin-bottom:4px">Rates from your profile:</p>
+            <p>Annual income: <strong x-text="'$' + fmt(annualIncome)"></strong></p>
+            <p>State: <strong x-text="state === 'none' ? 'No state tax' : state"></strong></p>
+            <p>Filing: <strong x-text="filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'Married filing jointly' : 'Head of household'"></strong></p>
+            <p x-show="isSE" style="color:var(--amber)">+ SE tax (15.3%) applies</p>
+          </div>
+        </div>
+        <div class="tc-results">
+          <template x-if="tgPayment > 0">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="rbox navy">
+                <div class="r-lbl">Guard Amount — Set This Aside</div>
+                <div class="r-val" x-text="'$' + fmt(guardResult.totalGuard)" style="font-size:34px;color:var(--gold-lt)"></div>
+                <div class="r-sub" x-text="guardResult.guardPct.toFixed(1) + '% of payment'"></div>
+                <div class="gbar-wrap">
+                  <div class="gbar-lbls"><span>Tax reserve</span><span>Take-home</span></div>
+                  <div class="gbar"><div class="gbar-fill" :style="'width:' + Math.min(100, guardResult.guardPct).toFixed(1) + '%'"></div></div>
+                </div>
+                <div style="margin-top:10px">
+                  <div class="bd-row" x-show="isSE">
+                    <span class="bd-lbl">SE Tax (15.3%)</span>
+                    <span class="bd-val" x-text="'$' + fmt(guardResult.seTax)"></span>
+                  </div>
+                  <div class="bd-row">
+                    <span class="bd-lbl">Federal Income Tax</span>
+                    <span class="bd-val" x-text="'$' + fmt(guardResult.fedTax)"></span>
+                  </div>
+                  <div class="bd-row" x-show="guardResult.stateTax > 0">
+                    <span class="bd-lbl" x-text="(state === 'none' ? 'State' : state) + ' Income Tax'"></span>
+                    <span class="bd-val" x-text="'$' + fmt(guardResult.stateTax)"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="rbox">
+                <div class="r-lbl">Your Take-Home</div>
+                <div class="r-val v-green" x-text="'$' + fmt(guardResult.takehome)"></div>
+              </div>
+            </div>
+          </template>
+          <template x-if="!(tgPayment > 0)">
+            <div style="text-align:center;padding:48px 16px;color:var(--dim)">
+              <div style="font-size:36px;margin-bottom:10px">💰</div>
+              <div style="font-size:13px">Enter a payment to see your tax reserve</div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── S-CORP SIMULATOR ───────────────────────────────────────────────── -->
+    <div class="tool-card" id="section-scorp">
+      <div class="tc-header">
+        <div class="tc-title">🏢 <em>S-Corp</em> Structure Simulator</div>
+        <a href="/scorp-savings-calculator" class="tc-link">Full tool + breakeven chart →</a>
+      </div>
+      <div class="tc-body">
+        <div class="tc-inputs">
+          <div class="g2">
+            <div class="fld">
+              <label class="fld-lbl">Reasonable Salary / yr</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="scSalary" min="0" placeholder="45000">
+              </div>
+              <div class="fld-help">W-2 salary you'd pay yourself</div>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Net Profit (from profile)</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="annualIncome" min="0">
+              </div>
+              <div class="fld-help">Linked to Your Profile above</div>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Payroll Software / yr</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="scPayroll" min="0" placeholder="600">
+              </div>
+              <div class="fld-help">Gusto, Rippling, etc.</div>
+            </div>
+            <div class="fld">
+              <label class="fld-lbl">Additional Acctg Fees / yr</label>
+              <div class="inp-wrap dollar">
+                <input type="number" x-model.number="scAccounting" min="0" placeholder="1000">
+              </div>
+              <div class="fld-help">Above your current CPA cost</div>
+            </div>
+          </div>
+          <div style="margin-top:13px;padding:10px 12px;background:var(--cream);border-radius:8px;border:1px solid var(--border)">
+            <div style="font-size:11px;color:var(--muted)">
+              <span style="font-weight:600;color:var(--navy)">CA $800 franchise tax: </span>
+              <span :style="state === 'CA' ? 'color:var(--amber);font-weight:600' : 'color:var(--dim)'" x-text="state === 'CA' ? 'Applied (you are in CA)' : 'Not applied — change state in profile to CA to include'"></span>
+            </div>
+          </div>
+        </div>
+        <div class="tc-results">
+          <div class="rbox">
+            <div class="r-lbl">Sole Proprietor Total Tax</div>
+            <div class="r-val" x-text="fmtD(scorpResult.spTotal)"></div>
+            <div style="margin-top:8px">
+              <div class="bd-row"><span class="bd-lbl">SE Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spSeTax)"></span></div>
+              <div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spFedTax)"></span></div>
+            </div>
+          </div>
+          <div class="rbox">
+            <div class="r-lbl">S-Corp Total Tax + Overhead</div>
+            <div class="r-val" x-text="fmtD(scorpResult.scTotal)"></div>
+            <div style="margin-top:8px">
+              <div class="bd-row"><span class="bd-lbl">FICA on Salary</span><span class="bd-val" x-text="fmtD(scorpResult.scFica)"></span></div>
+              <div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.scFedTax)"></span></div>
+              <div class="bd-row"><span class="bd-lbl">Overhead (payroll, acctg, CA)</span><span class="bd-val" x-text="fmtD(scorpResult.scOverhead)"></span></div>
+            </div>
+          </div>
+          <div class="rbox">
+            <div class="r-lbl" x-text="scorpResult.savings >= 0 ? '✓ S-Corp Saves You' : '✗ Sole Prop Is Better By'"></div>
+            <div class="r-val" :class="scorpResult.savings >= 500 ? 'v-green' : scorpResult.savings >= 0 ? '' : 'v-red'" x-text="fmtD(Math.abs(scorpResult.savings)) + '/yr'"></div>
+            <div class="r-sub" x-text="'S-Corp breakeven: ~' + fmtD(scorpResult.breakeven) + ' profit/yr'"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;color:var(--dim);text-align:center;padding:6px 0 12px">Educational estimates only — not tax advice. Consult a licensed CPA before making structural decisions.</p>
+
+  </main>
+</div><!-- /db-wrap -->
+
+<!-- EMAIL MODAL -->
+<div class="modal-ov" x-show="showModal" x-cloak @click.self="showModal = false">
+  <div class="modal-box" @click.stop>
+    <div class="modal-title">Get Your Guard Report</div>
+    <div class="modal-sub">Enter your email and we'll open your printable Tax Guard Report — a clean, professional summary of all three tool results you can save as a PDF.</div>
+    <div class="fld">
+      <label class="fld-lbl">Email Address</label>
+      <div class="inp-wrap">
+        <input type="email" x-model="reportEmail" placeholder="you@example.com" @keydown.enter="submitReport()" style="padding:10px 12px">
+      </div>
+      <div class="modal-err" x-show="emailError" x-text="emailError"></div>
+    </div>
+    <button class="modal-btn" @click="submitReport()">Open My Guard Report →</button>
+    <button class="modal-cancel" @click="showModal = false">Cancel</button>
+    <p style="font-size:10px;color:var(--dim);text-align:center;margin-top:8px">No spam. We use this to send you tax deadline reminders.</p>
+  </div>
+</div>
+
+<!-- PRINT REPORT (screen: hidden, print: shown) -->
+<div class="print-report">
+  <div class="pr-head">
+    <div>
+      <div class="pr-logo">SideHustle<span>Guard</span></div>
+      <div style="font-size:11px;color:#6b7a96;margin-top:3px">Tax Guard Dashboard Report</div>
+    </div>
+    <div class="pr-meta">
+      <div class="pr-title">Guard Report</div>
+      <div x-text="reportDate"></div>
+      <div x-text="'Annual income: $' + fmt(annualIncome) + ' · ' + (state === 'none' ? 'No state tax' : state) + ' · ' + (filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'MFJ' : 'HOH')"></div>
+    </div>
+  </div>
+
+  <!-- Summary grid -->
+  <div class="pr-grid">
+    <div class="pr-card">
+      <div class="pr-card-eye">Audit Risk</div>
+      <div style="margin-bottom:6px"><span class="pr-badge" :class="auditRisk" x-text="auditRiskLabel"></span></div>
+      <div class="pr-card-sub" x-text="'Risk score: ' + auditResult.score + ' / 20'"></div>
+      <template x-for="(f, i) in auditResult.flags.slice(0,3)" :key="i">
+        <div class="pr-row"><span class="pr-rlbl" x-text="f.text.substring(0,50) + (f.text.length > 50 ? '…' : '')"></span></div>
+      </template>
+    </div>
+    <div class="pr-card">
+      <div class="pr-card-eye">Tax Guard (Per Payment)</div>
+      <div class="pr-card-val" x-text="tgPayment > 0 ? '$' + fmt(guardResult.totalGuard) : '—'"></div>
+      <div class="pr-card-sub" x-text="tgPayment > 0 ? 'Reserve on a $' + fmt(tgPayment) + ' payment (' + guardResult.guardPct.toFixed(1) + '%)' : 'No payment entered'"></div>
+      <template x-if="tgPayment > 0">
+        <div>
+          <div class="pr-row" x-show="isSE"><span class="pr-rlbl">SE Tax</span><span class="pr-rval" x-text="'$' + fmt(guardResult.seTax)"></span></div>
+          <div class="pr-row"><span class="pr-rlbl">Federal</span><span class="pr-rval" x-text="'$' + fmt(guardResult.fedTax)"></span></div>
+          <div class="pr-row" x-show="guardResult.stateTax > 0"><span class="pr-rlbl" x-text="state + ' State'"></span><span class="pr-rval" x-text="'$' + fmt(guardResult.stateTax)"></span></div>
+          <div class="pr-row"><span class="pr-rlbl">Take-home</span><span class="pr-rval" x-text="'$' + fmt(guardResult.takehome)"></span></div>
+        </div>
+      </template>
+    </div>
+    <div class="pr-card">
+      <div class="pr-card-eye">S-Corp vs Sole Prop</div>
+      <div class="pr-card-val" x-text="(scorpResult.savings >= 0 ? '+' : '') + '$' + fmt(Math.abs(scorpResult.savings))"></div>
+      <div class="pr-card-sub" x-text="scorpResult.savings >= 0 ? 'S-Corp saves per year' : 'Sole prop is better at this income'"></div>
+      <div class="pr-row"><span class="pr-rlbl">Sole Prop Total</span><span class="pr-rval" x-text="fmtD(scorpResult.spTotal)"></span></div>
+      <div class="pr-row"><span class="pr-rlbl">S-Corp Total</span><span class="pr-rval" x-text="fmtD(scorpResult.scTotal)"></span></div>
+      <div class="pr-row"><span class="pr-rlbl">Breakeven</span><span class="pr-rval" x-text="'~' + fmtD(scorpResult.breakeven)"></span></div>
+    </div>
+  </div>
+
+  <!-- Audit detail -->
+  <div class="pr-section-title">Audit Shield — Full Flag List</div>
+  <template x-if="auditResult.flags.length === 0">
+    <p style="font-size:12px;color:#276944">No significant red flags detected based on your inputs.</p>
+  </template>
+  <template x-for="(f, i) in auditResult.flags" :key="i">
+    <div class="pr-row">
+      <span class="pr-rlbl" x-text="(f.severity === 'high' ? '⚠ ' : f.severity === 'medium' ? '• ' : '◦ ') + f.text"></span>
+    </div>
+  </template>
+
+  <div class="pr-footer">
+    SideHustleGuard.com — Educational estimates only — not legal or tax advice — Consult a licensed CPA before making decisions.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--navy);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <span style="font-size:14px;font-weight:600;color:var(--white)">SideHustle<span style="color:var(--gold)">Guard</span></span>
+  <div style="display:flex;gap:20px;flex-wrap:wrap">
+    <a href="/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Home</a>
+    <a href="/tool" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Free Checker</a>
+    <a href="/guides" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">All Tools</a>
+    <a href="/quarterly-taxes-self-employed" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Quarterly Taxes</a>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,.25)">Educational information only — not tax advice.</div>
+</footer>
+
+<script>
+// ─── 2025 Tax data ──────────────────────────────────────────────────────────
+const FED_BKT = {
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+const STD_DED = {single:15000,mfj:30000,hoh:22500};
+const CA_BKT = [[10756,.01],[25499,.02],[40245,.04],[55866,.06],[70606,.08],[360659,.093],[432787,.103],[721314,.113],[1000000,.123],[Infinity,.133]];
+const CA_STD = {single:5540,mfj:11080,hoh:6926};
+const SS_BASE = 176100;
+const STATE_R = {
+  none:0,AK:0,FL:0,NV:0,NH:0,SD:0,TN:0,TX:0,WA:0,WY:0,
+  PA:.0307,IN:.0305,MI:.0425,CO:.044,IL:.0495,UT:.0465,AZ:.025,
+  CA:null,NY:'brk',NJ:'brk',OR:'brk',MN:'brk',
+  AL:.04,AR:.055,CT:.065,DC:.07,DE:.055,GA:.055,HI:.09,
+  IA:.05,ID:.058,KS:.057,KY:.045,LA:.04,MA:.05,MD:.0575,
+  ME:.0715,MO:.053,MS:.04,MT:.0675,NC:.0475,ND:.02,
+  NE:.065,NM:.059,OH:.04,OK:.0475,RI:.0599,SC:.065,
+  VA:.0575,VT:.076,WI:.065,WV:.0512
+};
+const BKT_STATES = {
+  NY:[[17150,.04],[23600,.045],[27900,.0525],[161550,.0585],[323200,.0625],[2155350,.0685],[Infinity,.109]],
+  NJ:[[20000,.014],[35000,.0175],[40000,.035],[75000,.05526],[500000,.0637],[Infinity,.1075]],
+  OR:[[10200,.0475],[25500,.0675],[125000,.0875],[Infinity,.099]],
+  MN:[[30070,.0535],[98760,.068],[183340,.0785],[Infinity,.0985]]
+};
+
+function progressive(taxable, bkts) {
+  if (taxable <= 0) return 0;
+  let tax = 0, prev = 0;
+  for (const [cap, r] of bkts) {
+    if (taxable <= cap) { tax += (taxable - prev) * r; return tax; }
+    tax += (cap - prev) * r; prev = cap;
+  }
+  return tax;
+}
+function marginal(income, bkts) {
+  for (const [cap, r] of bkts) if (income <= cap) return r;
+  return bkts[bkts.length - 1][1];
+}
+function fedMarginal(income, isSE, status) {
+  const std = STD_DED[status] || 15000;
+  const seDeduct = isSE ? (income * .9235 * .153 / 2) : 0;
+  return marginal(Math.max(0, income - seDeduct - std), FED_BKT[status] || FED_BKT.single);
+}
+function caMargin(income, status) {
+  const std = CA_STD[status] || CA_STD.single;
+  let bkts = CA_BKT;
+  if (status === 'mfj') bkts = CA_BKT.map(([c,r]) => [c === Infinity ? Infinity : c*2, r]);
+  else if (status === 'hoh') bkts = CA_BKT.map(([c,r]) => [c === Infinity ? Infinity : c*1.5, r]);
+  return marginal(Math.max(0, income - std), bkts);
+}
+function stateOnPayment(payment, income, code, status) {
+  const sr = STATE_R[code];
+  if (sr === 0 || sr === undefined) return 0;
+  if (sr === null) return payment * caMargin(income, status);
+  if (sr === 'brk') return payment * marginal(income, BKT_STATES[code] || []);
+  return payment * sr;
+}
+function calcGuard({payment, annual, isSE, status, stateCode}) {
+  if (!payment) return {payment:0, totalGuard:0, takehome:0, guardPct:0, seTax:0, fedTax:0, stateTax:0};
+  const seTax = isSE ? payment * .9235 * .153 : 0;
+  const fedTax = payment * fedMarginal(annual, isSE, status);
+  const stateTax = stateOnPayment(payment, annual, stateCode, status);
+  const totalGuard = seTax + fedTax + stateTax;
+  return {payment, totalGuard, takehome: Math.max(0, payment - totalGuard), guardPct: (totalGuard / payment) * 100, seTax, fedTax, stateTax};
+}
+function fedProg(taxable) { return progressive(Math.max(0, taxable), FED_BKT.single); }
+function calcSETax(p) { const b = p * .9235; return Math.min(b, SS_BASE) * .124 + b * .029; }
+function soleProp(profit) {
+  const seTax = calcSETax(Math.max(0, profit));
+  const taxable = Math.max(0, profit - seTax/2 - 15000);
+  return {seTax, fedTax: fedProg(taxable), total: seTax + fedProg(taxable)};
+}
+function sCorp(profit, salary, caOn, payroll, acct) {
+  salary = Math.min(salary, profit);
+  const empFica = salary * .0765, totalFica = salary * .153;
+  const fedTax = fedProg(Math.max(0, profit - empFica - 15000));
+  const overhead = (caOn ? 800 : 0) + payroll + acct;
+  return {totalFica, fedTax, overhead, total: totalFica + fedTax + overhead};
+}
+function breakeven(salFrac, caOn, payroll, acct) {
+  let lo = 0, hi = 500000;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const sp = soleProp(mid), sc = sCorp(mid, mid * salFrac, caOn, payroll, acct);
+    if (sc.total < sp.total) hi = mid; else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+function auditScore({bizType,revenue,expenses,vehicle,mileageLog,homeOffice,meals,lossHistory,bankAccount,recordKeeping}) {
+  let score = 0;
+  const flags = [];
+  const ratio = revenue > 0 ? Math.min(expenses / revenue, 1) : 0;
+  if (bizType === 'gig') { score+=2; flags.push({text:'Gig/delivery work — higher Schedule C scrutiny', severity:'medium'}); }
+  else if (bizType === 'cash') { score+=3; flags.push({text:'Cash-based services — among the most-examined business types', severity:'high'}); }
+  else if (bizType === 'rental') { score+=1; flags.push({text:'Short-term rental — deduction scrutiny applies', severity:'low'}); }
+  else if (bizType) { score+=1; flags.push({text:'Schedule C filer — standard self-employment scrutiny applies', severity:'low'}); }
+  if (ratio > .8) { score+=4; flags.push({text:`Expense ratio ${Math.round(ratio*100)}% — very high, well above industry averages`, severity:'high'}); }
+  else if (ratio > .6) { score+=3; flags.push({text:`Expense ratio ${Math.round(ratio*100)}% — above average, may draw scrutiny`, severity:'medium'}); }
+  else if (ratio > .4) { score+=1; flags.push({text:'Moderate expense ratio — track all deductions carefully', severity:'low'}); }
+  if (vehicle === 'full') { score+=3; flags.push({text:'100% business vehicle claimed — one of the most-audited deductions', severity:'high'}); }
+  else if (vehicle === 'partial') { flags.push({text:'Partial vehicle use — document the business/personal split', severity:'low'}); }
+  if (vehicle !== 'none' && mileageLog === 'no') { score+=2; flags.push({text:'No mileage log — vehicle deduction without contemporaneous records', severity:'high'}); }
+  if (homeOffice) { score+=1; flags.push({text:'Home office — requires exclusive and regular business use', severity:'low'}); }
+  if (meals) { score+=1; flags.push({text:'Business meals claimed — documentation required per expense', severity:'low'}); }
+  if (lossHistory === 'loss-3plus') { score+=5; flags.push({text:'Net loss 3+ consecutive years — hobby loss rule (Section 183) risk', severity:'high'}); }
+  else if (lossHistory === 'loss-1-2') { score+=2; flags.push({text:'Net loss 1–2 of last 3 years — document profit motive now', severity:'medium'}); }
+  if (bankAccount === 'personal') { score+=2; flags.push({text:'No dedicated business account — significant audit red flag', severity:'high'}); }
+  else if (bankAccount === 'mixed') { score+=1; flags.push({text:'Mixed personal/business banking — move toward full separation', severity:'medium'}); }
+  if (recordKeeping === 'minimal') { score+=3; flags.push({text:'Minimal records — cannot substantiate deductions if audited', severity:'high'}); }
+  else if (recordKeeping === 'basic') { score+=1; flags.push({text:'Basic record keeping — some gaps that could create issues', severity:'medium'}); }
+  return {score, flags};
+}
+function fmt(n) { return Math.round(Math.max(0, isFinite(n) ? n : 0)).toLocaleString(); }
+function fmtD(n) { return '$' + fmt(n); }
+
+// ─── Alpine component ─────────────────────────────────────────────────────
+document.addEventListener('alpine:init', () => {
+  Alpine.data('dashboard', () => ({
+    // Shared profile
+    annualIncome: 75000,
+    state: 'CA',
+    filingStatus: 'single',
+    isSE: true,
+    // Audit inputs
+    bizType: 'ecommerce',
+    auditRevenue: 80000,
+    auditExpenses: 20000,
+    vehicle: 'none',
+    mileageLog: 'yes',
+    homeOffice: false,
+    meals: false,
+    lossHistory: 'profitable',
+    bankAccount: 'dedicated',
+    recordKeeping: 'organized',
+    // Guard
+    tgPayment: 0,
+    // S-Corp
+    scSalary: 45000,
+    scPayroll: 600,
+    scAccounting: 1000,
+    // UI
+    showModal: false,
+    reportEmail: '',
+    emailError: '',
+
+    get auditResult() {
+      return auditScore({
+        bizType: this.bizType, revenue: this.auditRevenue, expenses: this.auditExpenses,
+        vehicle: this.vehicle, mileageLog: this.mileageLog, homeOffice: this.homeOffice,
+        meals: this.meals, lossHistory: this.lossHistory, bankAccount: this.bankAccount,
+        recordKeeping: this.recordKeeping
+      });
+    },
+    get auditRisk() { const s = this.auditResult.score; return s <= 4 ? 'low' : s <= 9 ? 'medium' : 'high'; },
+    get auditRiskLabel() { return this.auditRisk === 'low' ? 'LOW RISK' : this.auditRisk === 'medium' ? 'MEDIUM RISK' : 'HIGH RISK'; },
+    get auditChipClass() { return this.auditRisk === 'high' ? 'c-red' : this.auditRisk === 'medium' ? 'c-amber' : 'c-green'; },
+
+    get guardResult() {
+      return calcGuard({payment: this.tgPayment, annual: this.annualIncome, isSE: this.isSE, status: this.filingStatus, stateCode: this.state});
+    },
+
+    get scorpResult() {
+      const profit = Math.max(0, this.annualIncome);
+      const salary = Math.max(0, this.scSalary);
+      const caOn = this.state === 'CA';
+      const sp = soleProp(profit);
+      const sc = sCorp(profit, salary, caOn, this.scPayroll, this.scAccounting);
+      const savings = sp.total - sc.total;
+      const salFrac = profit > 0 ? Math.min(1, Math.max(.01, salary / profit)) : .5;
+      const be = breakeven(salFrac, caOn, this.scPayroll, this.scAccounting);
+      return {spSeTax: sp.seTax, spFedTax: sp.fedTax, spTotal: sp.total, scFica: sc.totalFica, scFedTax: sc.fedTax, scOverhead: sc.overhead, scTotal: sc.total, savings, breakeven: be};
+    },
+    get scorpChipClass() { return this.scorpResult.savings >= 500 ? 'c-green' : this.scorpResult.savings < -500 ? 'c-amber' : ''; },
+
+    get alerts() {
+      const a = [];
+      const profit = this.annualIncome;
+      const ar = this.auditResult;
+      const sr = this.scorpResult;
+      const gr = this.guardResult;
+      if (ar.score > 9) a.push({type:'red', icon:'⚠️', text:`High audit risk (score ${ar.score}/20) — review the flagged items in Audit Shield below and address them before you file.`});
+      else if (ar.score > 4) a.push({type:'amber', icon:'⚡', text:`Moderate audit risk (score ${ar.score}/20). A few items to address — see Audit Shield below.`});
+      if (profit >= sr.breakeven && sr.savings > 500) a.push({type:'green', icon:'✓', text:`At $${fmt(profit)} profit, an S-Corp could save you ${fmtD(sr.savings)}/year. See the Structure Simulator below.`});
+      else if (profit >= 50000 && profit < sr.breakeven) a.push({type:'amber', icon:'💡', text:`You're ${fmtD(sr.breakeven - profit)} below the S-Corp breakeven (~${fmtD(sr.breakeven)}). Worth watching as your income grows.`});
+      if (gr.payment > 0 && gr.guardPct > 42) a.push({type:'amber', icon:'📊', text:`Your effective rate is ${gr.guardPct.toFixed(0)}% on this payment — review deductions to potentially lower your taxable income.`});
+      return a;
+    },
+
+    get reportDate() { return new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}); },
+
+    requestReport() { this.showModal = true; this.reportEmail = ''; this.emailError = ''; },
+    submitReport() {
+      if (!this.reportEmail || !this.reportEmail.includes('@')) { this.emailError = 'Please enter a valid email address.'; return; }
+      this.emailError = '';
+      try { localStorage.setItem('shg_report_email', this.reportEmail); } catch(e) {}
+      this.showModal = false;
+      setTimeout(() => window.print(), 150);
+    },
+
+    fmt, fmtD
+  }));
+});
+</script>
+</body>
+</html>
