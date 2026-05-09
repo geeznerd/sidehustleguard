@@ -4,15 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Tax & Legal Guides for Side Hustlers — SideHustleGuard</title>
-<meta name="description" content="Free plain-English tax and legal guides for gig workers, creators, Etsy sellers, freelancers, and self-employed side hustlers. No jargon, no upsells.">
+<meta name="description" content="45 free plain-English tax guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers. Calculators, audit risk checker, S-Corp simulator, and more.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.sidehustleguard.com/guides">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <meta property="og:title" content="Free Tax & Legal Guides for Side Hustlers">
-<meta property="og:description" content="Plain-English guides for gig workers, creators, Etsy sellers, and freelancers. No jargon, no upsells.">
+<meta property="og:description" content="45 free guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers. No jargon, no upsells.">
 <meta property="og:url" content="https://www.sidehustleguard.com/guides">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://www.sidehustleguard.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.sidehustleguard.com/og-image.png">
 <style>
 :root {
   --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
@@ -81,6 +86,15 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .footer-logo span{color:var(--gold)}
 .footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
 .footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+/* Tool cards — distinct from guide cards */
+.tool-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1.5px solid rgba(201,151,58,.3);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s;position:relative}
+.tool-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,151,58,0.13)}
+.tool-badge{position:absolute;top:12px;right:14px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);border-radius:100px;padding:2px 7px}
+.tool-card .article-title{color:var(--navy)}
+.tool-card:hover .article-title{color:var(--gold)}
+.tool-card .article-arrow{color:var(--gold);opacity:0}
+.tool-card:hover .article-arrow{opacity:1}
+
 @media(max-width:760px){
   nav,footer{padding:13px 18px}
   .hero{padding:48px 18px 36px}
@@ -93,6 +107,32 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   .nav-right{gap:12px}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Tax & Legal Guides for Side Hustlers",
+  "description": "45 free plain-English tax guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers.",
+  "url": "https://www.sidehustleguard.com/guides",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SideHustleGuard",
+    "url": "https://www.sidehustleguard.com"
+  },
+  "hasPart": [
+    {"@type":"WebPage","name":"Audit Risk Estimator","url":"https://www.sidehustleguard.com/audit-risk-estimator"},
+    {"@type":"WebPage","name":"Tax Guard Calculator","url":"https://www.sidehustleguard.com/tax-guard-calculator"},
+    {"@type":"WebPage","name":"S-Corp vs Sole Prop Savings Calculator","url":"https://www.sidehustleguard.com/scorp-savings-calculator"},
+    {"@type":"WebPage","name":"Self-Employment Tax Calculator","url":"https://www.sidehustleguard.com/self-employment-tax-calculator"},
+    {"@type":"WebPage","name":"Quarterly Tax Calculator","url":"https://www.sidehustleguard.com/quarterly-tax-calculator"},
+    {"@type":"WebPage","name":"DoorDash Taxes","url":"https://www.sidehustleguard.com/doordash-taxes"},
+    {"@type":"WebPage","name":"Etsy Taxes","url":"https://www.sidehustleguard.com/etsy-taxes"},
+    {"@type":"WebPage","name":"Freelancer Taxes","url":"https://www.sidehustleguard.com/freelancer-taxes"},
+    {"@type":"WebPage","name":"Side Hustle Taxes","url":"https://www.sidehustleguard.com/side-hustle-taxes"},
+    {"@type":"WebPage","name":"California Self-Employment Tax","url":"https://www.sidehustleguard.com/california-self-employment-tax"}
+  ]
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -133,10 +173,71 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="hero">
   <div class="hero-tag">Free tax guides</div>
   <h1>Plain-English guides for <em>every side hustle</em></h1>
-  <p class="hero-sub">42 free guides covering gig work, creator income, Etsy, e-commerce, rentals, and state-specific rules — no jargon, no upsells.</p>
+  <p class="hero-sub">45 free guides and interactive tools covering gig work, creator income, Etsy, e-commerce, freelancing, state taxes, and more — no jargon, no upsells.</p>
 </div>
 
 <div class="content">
+
+  <!-- Interactive Tools — featured first -->
+  <div class="cat-section">
+    <div class="cat-head">
+      <span class="cat-title">Interactive Tools</span>
+      <span class="cat-count">6 free tools</span>
+    </div>
+    <div class="article-grid">
+      <a href="/audit-risk-estimator" class="article-card tool-card">
+        <span class="article-icon">🛡️</span>
+        <div class="article-body">
+          <span class="article-title">Audit Risk Estimator</span>
+          <span class="article-sub">Score your IRS audit risk in 60 seconds — with a safety checklist</span>
+        </div>
+        <span class="tool-badge">New</span>
+        <span class="article-arrow">→</span>
+      </a>
+      <a href="/tax-guard-calculator" class="article-card tool-card">
+        <span class="article-icon">⚡</span>
+        <div class="article-body">
+          <span class="article-title">Tax Guard Calculator</span>
+          <span class="article-sub">Enter any payment — see the exact dollar amount to move to savings</span>
+        </div>
+        <span class="tool-badge">New</span>
+        <span class="article-arrow">→</span>
+      </a>
+      <a href="/scorp-savings-calculator" class="article-card tool-card">
+        <span class="article-icon">📊</span>
+        <div class="article-body">
+          <span class="article-title">S-Corp vs Sole Prop Simulator</span>
+          <span class="article-sub">See exactly when an S-Corp saves more than it costs</span>
+        </div>
+        <span class="tool-badge">New</span>
+        <span class="article-arrow">→</span>
+      </a>
+      <a href="/self-employment-tax-calculator" class="article-card tool-card">
+        <span class="article-icon">🧮</span>
+        <div class="article-body">
+          <span class="article-title">Self-Employment Tax Calculator</span>
+          <span class="article-sub">Instant SE tax estimate — federal + state, 2025 rates</span>
+        </div>
+        <span class="article-arrow">→</span>
+      </a>
+      <a href="/quarterly-tax-calculator" class="article-card tool-card">
+        <span class="article-icon">📅</span>
+        <div class="article-body">
+          <span class="article-title">Quarterly Tax Calculator</span>
+          <span class="article-sub">How much to set aside and pay each quarter</span>
+        </div>
+        <span class="article-arrow">→</span>
+      </a>
+      <a href="/tax-checklist" class="article-card tool-card">
+        <span class="article-icon">✅</span>
+        <div class="article-body">
+          <span class="article-title">Tax Deduction Checklist</span>
+          <span class="article-sub">Every deduction by hustle type — free and printable</span>
+        </div>
+        <span class="article-arrow">→</span>
+      </a>
+    </div>
+  </div>
 
   <!-- Gig Work & Delivery -->
   <div class="cat-section">
@@ -464,40 +565,6 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <div class="article-body">
           <span class="article-title">LLC vs Sole Proprietor</span>
           <span class="article-sub">The real differences, when an LLC saves money, and when it's just paperwork</span>
-        </div>
-        <span class="article-arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Calculators & Tools -->
-  <div class="cat-section">
-    <div class="cat-head">
-      <span class="cat-title">Calculators &amp; Tools</span>
-      <span class="cat-count">3 guides</span>
-    </div>
-    <div class="article-grid">
-      <a href="/self-employment-tax-calculator" class="article-card">
-        <span class="article-icon">🧮</span>
-        <div class="article-body">
-          <span class="article-title">Self-Employment Tax Calculator</span>
-          <span class="article-sub">Instant SE tax estimate based on your net profit</span>
-        </div>
-        <span class="article-arrow">→</span>
-      </a>
-      <a href="/quarterly-tax-calculator" class="article-card">
-        <span class="article-icon">📊</span>
-        <div class="article-body">
-          <span class="article-title">Quarterly Tax Calculator</span>
-          <span class="article-sub">How much to set aside and pay each quarter</span>
-        </div>
-        <span class="article-arrow">→</span>
-      </a>
-      <a href="/tax-checklist" class="article-card">
-        <span class="article-icon">✅</span>
-        <div class="article-body">
-          <span class="article-title">Tax Deduction Checklist (Free, Printable)</span>
-          <span class="article-sub">Every deduction by hustle type — don't miss one</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
