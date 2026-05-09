@@ -86,6 +86,19 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .footer-logo span{color:var(--gold)}
 .footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
 .footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+/* Dashboard featured card */
+.dashboard-feature-card{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--navy);border-radius:14px;padding:24px 28px;text-decoration:none;margin-bottom:10px;transition:all .14s;border:1.5px solid transparent}
+.dashboard-feature-card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(28,43,74,.18)}
+.dfc-left{display:flex;flex-direction:column;gap:7px}
+.dfc-eye{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.dfc-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.15}
+.dfc-title em{font-style:italic;color:var(--gold-lt)}
+.dfc-sub{font-size:13px;color:rgba(255,255,255,.55);font-weight:300;line-height:1.6;max-width:520px}
+.dfc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.dfc-tags span{font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:3px 10px;white-space:nowrap}
+.dfc-right{font-size:13px;font-weight:600;color:var(--gold);white-space:nowrap;flex-shrink:0}
+@media(max-width:760px){.dashboard-feature-card{flex-direction:column;align-items:flex-start}.dfc-right{display:none}}
+
 /* Tool cards — distinct from guide cards */
 .tool-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1.5px solid rgba(201,151,58,.3);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s;position:relative}
 .tool-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,151,58,0.13)}
@@ -182,9 +195,23 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="cat-section">
     <div class="cat-head">
       <span class="cat-title">Interactive Tools</span>
-      <span class="cat-count">6 free tools</span>
+      <span class="cat-count">7 free tools</span>
     </div>
-    <div class="article-grid">
+    <!-- Dashboard — featured full-width card -->
+    <a href="/dashboard" class="dashboard-feature-card">
+      <div class="dfc-left">
+        <div class="dfc-eye">All three tools · one page</div>
+        <div class="dfc-title">Tax Guard <em>Dashboard</em></div>
+        <div class="dfc-sub">Enter your income once — audit risk, tax set-aside, and S-Corp savings all update live. Download a clean PDF report.</div>
+        <div class="dfc-tags">
+          <span>🛡️ Audit Shield</span>
+          <span>💰 Tax Guard</span>
+          <span>🏢 S-Corp Sim</span>
+        </div>
+      </div>
+      <div class="dfc-right">Open Dashboard →</div>
+    </a>
+    <div class="article-grid" style="margin-top:10px">
       <a href="/audit-risk-estimator" class="article-card tool-card">
         <span class="article-icon">🛡️</span>
         <div class="article-body">

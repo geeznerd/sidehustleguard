@@ -74,16 +74,18 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .card-eye{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
 .card-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.2}
 .card-title em{color:var(--gold);font-style:italic}
-.profile-row{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:14px;align-items:end}
+.profile-row{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:14px;align-items:start}
 
 /* FIELDS */
 .fld{display:flex;flex-direction:column;gap:4px}
 .fld-lbl{font-size:12px;font-weight:500;color:var(--navy)}
 .fld-help{font-size:10px;color:var(--dim);font-weight:300;margin-top:2px}
 .inp-wrap{position:relative}
-.inp-wrap.dollar::before{content:'$';position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none}
+.inp-wrap.dollar::before{content:'$';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none;user-select:none}
 input[type="number"],input[type="text"],input[type="email"],select{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
-.inp-wrap.dollar input{padding-left:22px}
+.inp-wrap.dollar input{padding-left:28px}
+input[type="text"]:hover:not(:focus),input[type="number"]:hover:not(:focus),select:hover:not(:focus){border-color:rgba(28,43,74,.22)}
+.inp-wrap:focus-within{border-radius:8px;box-shadow:0 0 0 2.5px rgba(59,130,246,.28)}
 select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px}
 input:focus,select:focus{border-color:var(--gold);background:var(--white)}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
@@ -128,7 +130,8 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* TOOL CARDS */
 .tool-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden}
 .tc-header{padding:17px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.tc-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy)}
+.tc-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px;line-height:1.2}
+.tc-icon{display:flex;align-items:center;font-style:normal;line-height:1;flex-shrink:0}
 .tc-title em{color:var(--gold);font-style:italic}
 .tc-link{font-size:12px;color:var(--gold);text-decoration:none;font-weight:500}
 .tc-link:hover{text-decoration:underline}
@@ -155,12 +158,12 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .r-val.v-amber{color:var(--amber)}
 
 /* BREAKDOWN ROWS */
-.bd-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(28,43,74,.06);font-size:12px}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(28,43,74,.06);font-size:12px}
 .bd-row:last-child{border-bottom:none}
-.bd-lbl{color:var(--muted);font-weight:300}
-.bd-val{color:var(--navy);font-weight:500}
+.bd-lbl{color:var(--muted);font-weight:300;line-height:1.4}
+.bd-val{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:8px}
 .navy .bd-lbl{color:rgba(255,255,255,.38)}
-.navy .bd-val{color:rgba(255,255,255,.82)}
+.navy .bd-val{color:rgba(255,255,255,.9)}
 
 /* GUARD BAR */
 .gbar-wrap{margin:8px 0 4px}
@@ -173,6 +176,16 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .rbadge.low{background:var(--green-bg);color:var(--green)}
 .rbadge.medium{background:var(--amber-bg);color:var(--amber)}
 .rbadge.high{background:var(--red-bg);color:var(--red)}
+
+/* AUDIT SCORE BAR */
+.score-bar-wrap{margin-top:10px}
+.score-bar-track{height:5px;background:var(--cream-d);border-radius:100px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:100px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.score-bar-fill.low{background:var(--green)}
+.score-bar-fill.medium{background:var(--gold)}
+.score-bar-fill.high{background:var(--red)}
+.score-bar-ticks{display:flex;justify-content:space-between;margin-top:4px}
+.score-bar-ticks span{font-size:9px;color:var(--dim);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
 
 /* FLAGS */
 .flags{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:8px}
@@ -242,8 +255,10 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .g2>.fld select,.g3>.fld select{width:100%;min-width:0}
 
 /* S-Corp final result row — extra breathing room */
-.rbox.rbox-final{padding:18px 16px 20px;border-top:2px solid var(--border);margin-top:2px}
+.rbox.rbox-final{padding:18px 16px 20px;border-top:2px solid var(--border);margin-top:2px;text-align:center}
 .rbox.rbox-final .r-val{font-size:34px}
+.rbox.rbox-win{background:#f0fdf4;border:2px solid rgba(39,105,68,.3)}
+.rbox.rbox-lose{background:var(--red-bg);border:2px solid rgba(184,50,50,.22)}
 
 /* Mobile */
 @media(max-width:768px){
@@ -253,6 +268,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   .stats-row{grid-template-columns:1fr}
   .tc-body{grid-template-columns:1fr}
   .tc-inputs{border-right:none;border-bottom:1px solid var(--border)}
+  .tc-results{gap:1.5rem}
   .g2,.g3{grid-template-columns:1fr}
 }
 </style>
@@ -383,7 +399,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
       </div>
       <div class="stat-chip" :class="tgPayment > 0 ? '' : 'zero-state'">
         <div class="sc-lbl">Guard Rate (Per Payment)</div>
-        <div class="sc-val" x-text="tgPayment > 0 ? guardResult.guardPct.toFixed(0) + '%' : '—'"></div>
+        <div class="sc-val" x-text="tgPayment > 0 ? guardResult.guardPct.toFixed(0) + '%' : '--%'"></div>
         <div class="sc-sub" x-text="tgPayment > 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
       </div>
       <div class="stat-chip" :class="scorpChipClass">
@@ -408,7 +424,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
     <!-- ── AUDIT SHIELD ──────────────────────────────────────────────────── -->
     <div class="tool-card" id="section-audit">
       <div class="tc-header">
-        <div class="tc-title">🛡️ <em>Audit</em> Shield Estimator</div>
+        <div class="tc-title"><span class="tc-icon">🛡️</span><span><em>Audit</em> Shield Estimator</span></div>
         <a href="/audit-risk-estimator" class="tc-link">Full 4-step tool →</a>
       </div>
       <div class="tc-body">
@@ -503,6 +519,12 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
               <span class="rbadge" :class="auditRisk" x-text="auditRiskLabel"></span>
               <span style="font-size:13px;color:var(--muted)" x-text="'Score: ' + auditResult.score + ' / 20'"></span>
             </div>
+            <div class="score-bar-wrap">
+              <div class="score-bar-track">
+                <div class="score-bar-fill" :class="auditRisk" :style="'width:' + (auditResult.score / 20 * 100).toFixed(1) + '%'"></div>
+              </div>
+              <div class="score-bar-ticks"><span>Low (1–5)</span><span>Medium (6–12)</span><span>High (13+)</span></div>
+            </div>
           </div>
           <div>
             <div class="r-lbl">Top Flags</div>
@@ -528,7 +550,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
     <!-- ── TAX GUARD ─────────────────────────────────────────────────────── -->
     <div class="tool-card" id="section-guard">
       <div class="tc-header">
-        <div class="tc-title">💰 <em>Tax</em> Guard Calculator</div>
+        <div class="tc-title"><span class="tc-icon">💰</span><span><em>Tax</em> Guard Calculator</span></div>
         <a href="/tax-guard-calculator" class="tc-link">Full tool + receipt →</a>
       </div>
       <div class="tc-body">
@@ -538,7 +560,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
             <div class="inp-wrap dollar">
               <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
                 x-effect="fmtInp($el, tgPayment)" @input="maskInp($event, 'tgPayment')"
-                placeholder="1,500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 22px">
+                placeholder="1,500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 28px">
             </div>
             <div class="fld-help">Enter any single payment to see how much to move to savings</div>
           </div>
@@ -596,7 +618,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
     <!-- ── S-CORP SIMULATOR ───────────────────────────────────────────────── -->
     <div class="tool-card" id="section-scorp">
       <div class="tc-header">
-        <div class="tc-title">🏢 <em>S-Corp</em> Structure Simulator</div>
+        <div class="tc-title"><span class="tc-icon">🏢</span><span><em>S-Corp</em> Structure Simulator</span></div>
         <a href="/scorp-savings-calculator" class="tc-link">Full tool + breakeven chart →</a>
       </div>
       <div class="tc-body">
@@ -664,7 +686,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
               <div class="bd-row"><span class="bd-lbl">Overhead (payroll, acctg, CA)</span><span class="bd-val" x-text="fmtD(scorpResult.scOverhead)"></span></div>
             </div>
           </div>
-          <div class="rbox rbox-final">
+          <div class="rbox rbox-final" :class="scorpResult.savings >= 500 ? 'rbox-win' : scorpResult.savings < -500 ? 'rbox-lose' : ''">
             <div class="r-lbl" x-text="scorpResult.savings >= 0 ? '✓ S-Corp Saves You' : '✗ Sole Prop Is Better By'"></div>
             <div class="r-val" :class="scorpResult.savings >= 500 ? 'v-green' : scorpResult.savings >= 0 ? '' : 'v-red'" x-text="fmtD(Math.abs(scorpResult.savings)) + '/yr'"></div>
             <div class="r-sub" x-text="'S-Corp breakeven: ~' + fmtD(scorpResult.breakeven) + ' profit/yr'"></div>
