@@ -18,6 +18,8 @@
 <meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/dashboard.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 <script type="application/ld+json">
@@ -328,7 +330,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
     </div>
     <div class="sb-spacer"></div>
     <hr class="sb-div">
-    <button class="sb-btn" @click="requestReport()">📄 Download Guard Report</button>
+    <button class="sb-btn" @click="requestReport()" :disabled="pdfBusy" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Guard Report'"></button>
     <div class="sb-disc">Educational estimates only — not tax advice. Consult a licensed CPA before making decisions.</div>
   </aside>
 
@@ -715,7 +717,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 <div class="modal-ov" x-show="showModal" x-cloak @click.self="showModal = false">
   <div class="modal-box" @click.stop>
     <div class="modal-title">Get Your Guard Report</div>
-    <div class="modal-sub">Enter your email and we'll open your printable Tax Guard Report — a clean, professional summary of all three tool results you can save as a PDF.</div>
+    <div class="modal-sub">Enter your email and we'll generate your Guard Report as a downloadable PDF — a clean summary of your audit risk, tax rate, and S-Corp savings.</div>
     <div class="fld">
       <label class="fld-lbl">Email Address</label>
       <div class="inp-wrap">
@@ -951,6 +953,7 @@ document.addEventListener('alpine:init', () => {
     showModal: false,
     reportEmail: '',
     emailError: '',
+    pdfBusy: false,
 
     get auditResult() {
       return auditScore({
@@ -1003,7 +1006,95 @@ document.addEventListener('alpine:init', () => {
       this.emailError = '';
       try { localStorage.setItem('shg_report_email', this.reportEmail); } catch(e) {}
       this.showModal = false;
-      setTimeout(() => window.print(), 150);
+      setTimeout(() => this.generatePDF(), 100);
+    },
+
+    async generatePDF() {
+      this.pdfBusy = true;
+      await new Promise(r => setTimeout(r, 60));
+
+      // ── helpers (local copies so template code is self-contained) ──
+      const _fmt  = n => Number(n).toLocaleString('en-US');
+      const _fmtD = n => '$' + _fmt(Math.round(n));
+      const filingMap = { single: 'Single', mfj: 'Married Filing Jointly', hoh: 'Head of Household' };
+      const riskColors = { low:'#276944', medium:'#a86c0a', high:'#b83232' };
+      const riskBg     = { low:'#eaf5ef', medium:'#fef6e8', high:'#fdf1f1' };
+
+      // ── populate template IDs with current Alpine state ──
+      document.getElementById('pdft-date').textContent     = this.reportDate;
+      document.getElementById('pdft-income').textContent   = '$' + _fmt(this.annualIncome);
+      document.getElementById('pdft-state').textContent    = this.state === 'none' ? 'No state tax' : this.state;
+      document.getElementById('pdft-filing').textContent   = filingMap[this.filingStatus] || this.filingStatus;
+      document.getElementById('pdft-se').textContent       = this.isSE ? 'Yes' : 'No';
+
+      // Audit
+      const ar = this.auditResult;
+      document.getElementById('pdft-risk-badge').innerHTML =
+        `<span style="display:inline-block;padding:3px 11px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:${riskBg[this.auditRisk]};color:${riskColors[this.auditRisk]}">${this.auditRiskLabel}</span>`;
+      document.getElementById('pdft-risk-score').textContent = `Score: ${ar.score} / 20`;
+      const flagsEl = document.getElementById('pdft-risk-flags');
+      flagsEl.innerHTML = ar.flags.length
+        ? ar.flags.slice(0,4).map(f => `<div style="padding:2px 0;border-bottom:1px solid #f0ece3"><span style="color:${riskColors[f.severity]||'#9aa3b5'};margin-right:5px">${f.severity==='high'?'⚠':'•'}</span>${f.text}</div>`).join('')
+        : '<div style="color:#276944">✓ No significant red flags</div>';
+
+      // Guard
+      const gr = this.guardResult;
+      if (this.tgPayment > 0) {
+        document.getElementById('pdft-guard-pct').textContent  = gr.guardPct.toFixed(0) + '%';
+        document.getElementById('pdft-guard-amt').textContent  = _fmtD(gr.totalGuard) + ' reserved';
+        document.getElementById('pdft-guard-sub').textContent  = 'on a ' + _fmtD(this.tgPayment) + ' payment';
+        let bkd = '';
+        if (this.isSE)         bkd += `<div>SE Tax (15.3%)<span style="float:right">${_fmtD(gr.seTax)}</span></div>`;
+        bkd += `<div>Federal<span style="float:right">${_fmtD(gr.fedTax)}</span></div>`;
+        if (gr.stateTax > 0)   bkd += `<div>${this.state} State<span style="float:right">${_fmtD(gr.stateTax)}</span></div>`;
+        bkd += `<div style="color:#ddb06a;font-weight:600">Take-home<span style="float:right">${_fmtD(gr.takehome)}</span></div>`;
+        document.getElementById('pdft-guard-breakdown').innerHTML = bkd;
+      } else {
+        document.getElementById('pdft-guard-pct').textContent  = '--%';
+        document.getElementById('pdft-guard-amt').textContent  = 'No payment entered';
+        document.getElementById('pdft-guard-sub').textContent  = 'Enter a payment on the dashboard to calculate';
+        document.getElementById('pdft-guard-breakdown').innerHTML = '';
+      }
+
+      // S-Corp
+      const sr = this.scorpResult;
+      const scorpCard = document.getElementById('pdft-scorp-card');
+      const scorpVal  = document.getElementById('pdft-scorp-val');
+      if (sr.savings >= 500) {
+        scorpCard.style.background = '#f0fdf4'; scorpCard.style.border = '2px solid rgba(39,105,68,.3)';
+        scorpVal.style.color = '#276944';
+      } else if (sr.savings < -500) {
+        scorpCard.style.background = '#fdf1f1'; scorpCard.style.border = '1px solid rgba(184,50,50,.2)';
+        scorpVal.style.color = '#b83232';
+      } else {
+        scorpCard.style.background = '#faf8f4'; scorpCard.style.border = '1px solid rgba(28,43,74,.09)';
+        scorpVal.style.color = '#1c2b4a';
+      }
+      scorpVal.textContent = (sr.savings >= 0 ? '+' : '') + _fmtD(Math.abs(sr.savings)) + '/yr';
+      document.getElementById('pdft-scorp-sub').textContent = sr.savings >= 0 ? 'S-Corp saves per year vs sole prop' : 'Sole prop is better at this income level';
+      document.getElementById('pdft-scorp-rows').innerHTML =
+        `<div>Sole Prop Total<span style="float:right">${_fmtD(sr.spTotal)}</span></div>` +
+        `<div>S-Corp Total<span style="float:right">${_fmtD(sr.scTotal)}</span></div>` +
+        `<div>Breakeven<span style="float:right">~${_fmtD(sr.breakeven)}</span></div>`;
+
+      // ── render → PDF ──
+      try {
+        const tpl = document.getElementById('pdf-report-template');
+        const canvas = await html2canvas(tpl, {
+          scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          width: 794, scrollX: 0, scrollY: -window.scrollY
+        });
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        const pw = pdf.internal.pageSize.getWidth();
+        const ph = (canvas.height * pw) / canvas.width;
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pw, ph);
+        pdf.save('SideHustle_Guard_Report.pdf');
+      } catch(err) {
+        console.error('PDF error:', err);
+        alert('PDF generation failed — please try again.');
+      }
+      this.pdfBusy = false;
     },
 
     fmt, fmtD,
@@ -1026,5 +1117,79 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 </script>
+
+<!-- ── PDF REPORT TEMPLATE (off-screen, populated by generatePDF()) ─────── -->
+<div id="pdf-report-template" style="position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;font-family:'DM Sans',Arial,sans-serif;color:#1c2b4a;padding:48px 52px;box-sizing:border-box;font-size:13px;line-height:1.6">
+
+  <!-- Header -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:2.5px solid #1c2b4a;margin-bottom:28px">
+    <div>
+      <div style="font-size:21px;font-weight:700;color:#1c2b4a;letter-spacing:-.01em">SideHustle<span style="color:#c9973a">Guard</span></div>
+      <div style="font-size:11px;color:#6b7a96;margin-top:3px;font-weight:300">Tax Guard Dashboard Report</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:12px;font-weight:600;color:#1c2b4a">Guard Report</div>
+      <div id="pdft-date" style="font-size:11px;color:#6b7a96;margin-top:2px"></div>
+    </div>
+  </div>
+
+  <!-- Business Snapshot -->
+  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Business Snapshot</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
+    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Annual Income</div>
+      <div id="pdft-income" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+    </div>
+    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">State</div>
+      <div id="pdft-state" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+    </div>
+    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Filing Status</div>
+      <div id="pdft-filing" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+    </div>
+    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">SE Tax</div>
+      <div id="pdft-se" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+    </div>
+  </div>
+
+  <!-- Result Cards -->
+  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Your Results</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
+
+    <!-- Audit Risk -->
+    <div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#faf8f4">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🛡️ Audit Risk</div>
+      <div id="pdft-risk-badge" style="margin-bottom:6px"></div>
+      <div id="pdft-risk-score" style="font-size:11px;color:#6b7a96;margin-bottom:10px"></div>
+      <div id="pdft-risk-flags" style="font-size:10px;color:#6b7a96;line-height:1.65"></div>
+    </div>
+
+    <!-- Tax Guard -->
+    <div style="border:1px solid #1c2b4a;border-radius:10px;padding:16px 18px;background:#1c2b4a">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">💰 Tax Guard Rate</div>
+      <div id="pdft-guard-pct" style="font-size:28px;font-weight:700;color:#ddb06a;line-height:1;margin-bottom:3px"></div>
+      <div id="pdft-guard-amt" style="font-size:13px;font-weight:600;color:#ffffff;margin-bottom:2px"></div>
+      <div id="pdft-guard-sub" style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:10px"></div>
+      <div id="pdft-guard-breakdown" style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.8;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"></div>
+    </div>
+
+    <!-- S-Corp -->
+    <div id="pdft-scorp-card" style="border-radius:10px;padding:16px 18px">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🏢 S-Corp vs Sole Prop</div>
+      <div id="pdft-scorp-val" style="font-size:24px;font-weight:700;line-height:1;margin-bottom:4px"></div>
+      <div id="pdft-scorp-sub" style="font-size:10px;color:#6b7a96;margin-bottom:10px"></div>
+      <div id="pdft-scorp-rows" style="font-size:10px;color:#6b7a96;line-height:1.8;border-top:1px solid rgba(28,43,74,.08);padding-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div style="border-top:1px solid rgba(28,43,74,.09);padding-top:14px;font-size:10px;color:#9aa3b5;text-align:center;line-height:1.7">
+    Educational estimates only — not legal or tax advice. Figures are based on 2025 federal rates and may not reflect your exact situation.<br>
+    Consult a licensed CPA or tax attorney before making any business structure or tax decisions. &nbsp;·&nbsp; SideHustleGuard.com
+  </div>
+
+</div>
 </body>
 </html>
