@@ -139,7 +139,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .tc-link:hover{text-decoration:underline}
 .tc-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .tc-inputs{padding:20px 24px;border-right:1px solid var(--border)}
-.tc-results{padding:20px 20px;background:var(--cream);display:flex;flex-direction:column;gap:12px}
+.tc-results{padding:20px 20px;background:var(--cream-d);display:flex;flex-direction:column;gap:12px}
 
 /* INPUT GRIDS */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
@@ -147,7 +147,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .fdiv{border:none;border-top:1px solid var(--border);margin:13px 0}
 
 /* RESULT BOXES */
-.rbox{padding:14px 16px;border-radius:11px;border:1px solid var(--border);background:var(--white)}
+.rbox{padding:14px 16px;border-radius:11px;border:1px solid var(--border);background:var(--white);box-shadow:0 1px 4px rgba(28,43,74,.06)}
 .rbox.navy{background:var(--navy);border-color:var(--navy)}
 .r-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .navy .r-lbl{color:rgba(255,255,255,.45)}
@@ -269,16 +269,46 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .rbox.rbox-win{background:#f0fdf4;border:2px solid rgba(39,105,68,.3)}
 .rbox.rbox-lose{background:var(--red-bg);border:2px solid rgba(184,50,50,.22)}
 
+/* NORTHWEST AFFILIATE CARD */
+.nw-card{background:var(--navy);border-radius:14px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:3px 9px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1;min-width:0}
+.nw-context{font-size:10px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px}
+.nw-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt)}
+.nw-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:13px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.nw-feat{font-size:10px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:3px 9px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.22);margin-top:8px}
+
+/* MOBILE BOTTOM BAR */
+.mobile-bar{display:none}
+
 /* Mobile */
 @media(max-width:768px){
   .db-wrap{grid-template-columns:1fr}
   .sidebar{display:none}
+  .main{padding:16px 14px 88px}
   .profile-row{grid-template-columns:1fr 1fr}
   .stats-row{grid-template-columns:1fr}
   .tc-body{grid-template-columns:1fr}
   .tc-inputs{border-right:none;border-bottom:1px solid var(--border)}
   .tc-results{gap:1.5rem}
   .g2,.g3{grid-template-columns:1fr}
+  .nav-link:not(.nav-cta){display:none}
+  .nw-card{flex-direction:column;gap:12px}
+  .nw-badge{align-self:flex-start}
+  .mobile-bar{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid rgba(255,255,255,.1);padding:10px 16px;z-index:300;gap:10px;align-items:center}
+  .mobile-bar-btn{flex:1;padding:11px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .15s}
+  .mobile-bar-btn:hover{background:var(--gold-lt)}
+  .mobile-bar-btn:disabled{opacity:.6;cursor:wait}
+  .mobile-bar-disc{font-size:10px;color:rgba(255,255,255,.3);line-height:1.4;flex-shrink:0;max-width:100px}
+}
+@media(max-width:480px){
+  .profile-row{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -708,6 +738,24 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
       </div>
     </div>
 
+    <!-- Northwest Registered Agent — Affiliate -->
+    <div class="nw-card">
+      <div class="nw-badge">Recommended</div>
+      <div class="nw-body">
+        <div class="nw-context" x-text="scorpResult.savings >= 500 ? 'Your S-Corp savings are significant — here\'s how to get started' : 'Thinking about forming an LLC or S-Corp?'"></div>
+        <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+        <div class="nw-desc">Flat-fee LLC formation, keeps your home address off public records, and handles all state paperwork. No upsells, no annual surprises.</div>
+        <div class="nw-features">
+          <span class="nw-feat">✓ Address privacy</span>
+          <span class="nw-feat">✓ All 50 states</span>
+          <span class="nw-feat">✓ Handles all paperwork</span>
+          <span class="nw-feat">✓ No hidden fees</span>
+        </div>
+        <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener sponsored">Form your LLC with Northwest →</a>
+        <div class="nw-disc">Affiliate link — we earn a small commission if you form through this link, at no extra cost to you.</div>
+      </div>
+    </div>
+
     <p style="font-size:11px;color:var(--dim);text-align:center;padding:6px 0 12px">Educational estimates only — not tax advice. Consult a licensed CPA before making structural decisions.</p>
 
   </main>
@@ -792,6 +840,12 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   <div class="pr-footer">
     SideHustleGuard.com — Educational estimates only — not legal or tax advice — Consult a licensed CPA before making decisions.
   </div>
+</div>
+
+<!-- MOBILE STICKY BAR (hidden on desktop via CSS) -->
+<div class="mobile-bar">
+  <div class="mobile-bar-disc">All three tools · live results</div>
+  <button class="mobile-bar-btn" @click="requestReport()" :disabled="pdfBusy" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Report'"></button>
 </div>
 
 <!-- FOOTER -->
