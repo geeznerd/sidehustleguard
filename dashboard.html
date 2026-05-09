@@ -82,22 +82,24 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .fld-help{font-size:10px;color:var(--dim);font-weight:300;margin-top:2px}
 .inp-wrap{position:relative}
 .inp-wrap.dollar::before{content:'$';position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none}
-input[type="number"],input[type="email"],select{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+input[type="number"],input[type="text"],input[type="email"],select{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
 .inp-wrap.dollar input{padding-left:22px}
 select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px}
 input:focus,select:focus{border-color:var(--gold);background:var(--white)}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 
 /* TOGGLE */
 .tog-fld{display:flex;flex-direction:column;gap:4px}
-.tog-row{display:flex;align-items:center;gap:8px;padding:8px 0}
+.tog-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--cream);transition:border-color .15s}
+.tog-row:has(input:checked){border-color:rgba(201,151,58,.35)}
 .tog{position:relative;display:inline-block;width:38px;height:21px;flex-shrink:0}
 .tog input{opacity:0;width:0;height:0}
 .t-sl{position:absolute;cursor:pointer;inset:0;background:var(--dim);border-radius:21px;transition:.2s}
 .t-sl:before{position:absolute;content:"";height:15px;width:15px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.2s}
 .tog input:checked+.t-sl{background:var(--gold)}
 .tog input:checked+.t-sl:before{transform:translateX(17px)}
-.tog-note{font-size:12px;color:var(--muted)}
+.tog-note{font-size:13px;color:var(--muted)}
 
 /* STATS ROW */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -224,6 +226,25 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
   .pr-footer{border-top:1px solid #e0ddd6;margin-top:28px;padding-top:10px;font-size:10px;color:#9aa3b5;text-align:center}
 }
 
+/* ── UX REFINEMENTS ──────────────────────────────────────────────────────── */
+
+/* Guard Rate chip — zero-state (no payment entered yet) */
+.stat-chip.zero-state{border-style:dashed;border-color:var(--dim);background:var(--cream)}
+.stat-chip.zero-state .sc-lbl{color:var(--dim)}
+.stat-chip.zero-state .sc-val{color:var(--dim);font-size:22px;letter-spacing:.04em}
+.stat-chip.zero-state .sc-sub{color:var(--dim)}
+
+/* S-Corp advantage value — heavier visual weight in green chip */
+.stat-chip.c-green .sc-val{font-size:30px;letter-spacing:-.02em}
+
+/* Prevent long option text from blowing out grid columns */
+.g2>.fld,.g3>.fld{min-width:0}
+.g2>.fld select,.g3>.fld select{width:100%;min-width:0}
+
+/* S-Corp final result row — extra breathing room */
+.rbox.rbox-final{padding:18px 16px 20px;border-top:2px solid var(--border);margin-top:2px}
+.rbox.rbox-final .r-val{font-size:34px}
+
 /* Mobile */
 @media(max-width:768px){
   .db-wrap{grid-template-columns:1fr}
@@ -299,7 +320,9 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
         <div class="fld">
           <label class="fld-lbl">Annual Net Income / Profit</label>
           <div class="inp-wrap dollar">
-            <input type="number" x-model.number="annualIncome" min="0" placeholder="75000">
+            <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+              x-effect="fmtInp($el, annualIncome)" @input="maskInp($event, 'annualIncome')"
+              placeholder="75,000">
           </div>
           <div class="fld-help">Expected net self-employment income this year</div>
         </div>
@@ -358,7 +381,7 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
         <div class="sc-val" x-text="auditRiskLabel"></div>
         <div class="sc-sub" x-text="'Score ' + auditResult.score + ' / 20'"></div>
       </div>
-      <div class="stat-chip">
+      <div class="stat-chip" :class="tgPayment > 0 ? '' : 'zero-state'">
         <div class="sc-lbl">Guard Rate (Per Payment)</div>
         <div class="sc-val" x-text="tgPayment > 0 ? guardResult.guardPct.toFixed(0) + '%' : '—'"></div>
         <div class="sc-sub" x-text="tgPayment > 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
@@ -413,13 +436,17 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
             <div class="fld">
               <label class="fld-lbl">Gross Revenue</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="auditRevenue" min="0" placeholder="80000">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, auditRevenue)" @input="maskInp($event, 'auditRevenue')"
+                  placeholder="80,000">
               </div>
             </div>
             <div class="fld">
               <label class="fld-lbl">Total Expenses</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="auditExpenses" min="0" placeholder="20000">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, auditExpenses)" @input="maskInp($event, 'auditExpenses')"
+                  placeholder="20,000">
               </div>
             </div>
             <div class="fld">
@@ -509,7 +536,9 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
           <div class="fld" style="max-width:260px">
             <label class="fld-lbl" style="font-size:13px;font-weight:600">Payment Received</label>
             <div class="inp-wrap dollar">
-              <input type="number" x-model.number="tgPayment" min="0" placeholder="1500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 22px">
+              <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                x-effect="fmtInp($el, tgPayment)" @input="maskInp($event, 'tgPayment')"
+                placeholder="1,500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 22px">
             </div>
             <div class="fld-help">Enter any single payment to see how much to move to savings</div>
           </div>
@@ -576,28 +605,36 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
             <div class="fld">
               <label class="fld-lbl">Reasonable Salary / yr</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="scSalary" min="0" placeholder="45000">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, scSalary)" @input="maskInp($event, 'scSalary')"
+                  placeholder="45,000">
               </div>
               <div class="fld-help">W-2 salary you'd pay yourself</div>
             </div>
             <div class="fld">
               <label class="fld-lbl">Net Profit (from profile)</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="annualIncome" min="0">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, annualIncome)" @input="maskInp($event, 'annualIncome')"
+                  placeholder="75,000">
               </div>
               <div class="fld-help">Linked to Your Profile above</div>
             </div>
             <div class="fld">
               <label class="fld-lbl">Payroll Software / yr</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="scPayroll" min="0" placeholder="600">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, scPayroll)" @input="maskInp($event, 'scPayroll')"
+                  placeholder="600">
               </div>
               <div class="fld-help">Gusto, Rippling, etc.</div>
             </div>
             <div class="fld">
               <label class="fld-lbl">Additional Acctg Fees / yr</label>
               <div class="inp-wrap dollar">
-                <input type="number" x-model.number="scAccounting" min="0" placeholder="1000">
+                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
+                  x-effect="fmtInp($el, scAccounting)" @input="maskInp($event, 'scAccounting')"
+                  placeholder="1,000">
               </div>
               <div class="fld-help">Above your current CPA cost</div>
             </div>
@@ -627,7 +664,7 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
               <div class="bd-row"><span class="bd-lbl">Overhead (payroll, acctg, CA)</span><span class="bd-val" x-text="fmtD(scorpResult.scOverhead)"></span></div>
             </div>
           </div>
-          <div class="rbox">
+          <div class="rbox rbox-final">
             <div class="r-lbl" x-text="scorpResult.savings >= 0 ? '✓ S-Corp Saves You' : '✗ Sole Prop Is Better By'"></div>
             <div class="r-val" :class="scorpResult.savings >= 500 ? 'v-green' : scorpResult.savings >= 0 ? '' : 'v-red'" x-text="fmtD(Math.abs(scorpResult.savings)) + '/yr'"></div>
             <div class="r-sub" x-text="'S-Corp breakeven: ~' + fmtD(scorpResult.breakeven) + ' profit/yr'"></div>
@@ -936,7 +973,23 @@ document.addEventListener('alpine:init', () => {
       setTimeout(() => window.print(), 150);
     },
 
-    fmt, fmtD
+    fmt, fmtD,
+
+    // Currency input masking — preserves cursor position across re-formatting
+    maskInp(e, f) {
+      const el = e.target;
+      const fromRight = el.value.length - (el.selectionStart || 0);
+      const num = parseInt(el.value.replace(/[^0-9]/g, ''), 10) || 0;
+      this[f] = num;
+      const s = num > 0 ? num.toLocaleString() : '';
+      el.value = s;
+      const p = Math.max(0, s.length - fromRight);
+      try { el.setSelectionRange(p, p); } catch(_) {}
+    },
+    // Reactive format display — only updates DOM when the field isn't focused
+    fmtInp(el, val) {
+      if (!el.matches(':focus')) el.value = val > 0 ? Number(val).toLocaleString() : '';
+    }
   }));
 });
 </script>
