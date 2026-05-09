@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S-Corp vs Sole Proprietor Calculator — When Does an S-Corp Save You Money? | SideHustleGuard</title>
+<meta name="description" content="Free S-Corp savings calculator. Enter your net profit and salary to see exactly when an S-Corp saves you more than it costs — including California's $800 franchise tax.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/scorp-savings-calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="S-Corp vs Sole Proprietor Savings Calculator (2025)">
+<meta property="og:description" content="Free S-Corp savings calculator. Enter your net profit and salary to see exactly when an S-Corp saves you more than it costs — including California's $800 franchise tax.">
+<meta property="og:url" content="https://www.sidehustleguard.com/scorp-savings-calculator">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.sidehustleguard.com/images/og/scorp-savings-calculator.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/scorp-savings-calculator.png">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+
+/* Hero */
+.hero{padding:60px 48px 32px;max-width:960px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.2vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
+
+/* Calculator wrapper */
+.calc-wrap{max-width:960px;margin:0 auto;padding:0 48px 32px}
+
+/* Inputs card */
+.inputs-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:24px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.inputs-grid-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px;align-items:start}
+.field{margin:0}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
+.field-help{font-size:11px;color:var(--dim);margin-top:5px;font-weight:300;line-height:1.5}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none}
+input[type="number"]{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+input[type="number"]:focus{border-color:var(--gold);background:var(--white)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* CA toggle */
+.toggle-row{display:flex;align-items:center;gap:10px;padding:12px 0;margin-top:4px}
+.toggle-label{font-size:13px;font-weight:500;color:var(--navy)}
+.toggle-sub{font-size:11px;color:var(--dim);font-weight:300;margin-top:3px}
+.toggle-switch{position:relative;display:inline-block;width:40px;height:22px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--dim);border-radius:22px;transition:.2s}
+.toggle-slider:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.2s}
+.toggle-switch input:checked + .toggle-slider{background:var(--gold)}
+.toggle-switch input:checked + .toggle-slider:before{transform:translateX(18px)}
+
+/* Three-column comparison */
+.comparison-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-bottom:24px}
+.comp-card{padding:28px 24px;background:var(--white)}
+.comp-card.left{border-radius:16px 0 0 16px;border-right:1px solid var(--border)}
+.comp-card.right{border-radius:0 16px 16px 0;border-left:1px solid var(--border)}
+.comp-center{background:var(--navy);color:var(--white);padding:28px 24px;min-width:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.comp-header{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.comp-center .comp-header{color:rgba(255,255,255,.5);margin-bottom:16px}
+.comp-total-label{font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.comp-total{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--navy);line-height:1}
+.comp-total-sub{font-size:12px;color:var(--muted);font-weight:300;margin-top:6px}
+.comp-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--border)}
+.comp-row:last-of-type{border-bottom:none}
+.comp-row-label{font-size:13px;color:var(--muted);font-weight:300}
+.comp-row-amt{font-size:13px;color:var(--navy);font-weight:500}
+.comp-row-sub{font-size:10px;color:var(--dim);margin-top:1px;font-weight:300}
+.comp-sub-items{padding-left:12px;margin-top:4px}
+.comp-sub-item{display:flex;justify-content:space-between;padding:3px 0;font-size:11px;color:var(--dim)}
+.comp-divider{border:none;border-top:2px solid var(--border);margin:14px 0 10px}
+.comp-bold-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 0}
+.comp-bold-label{font-size:13px;font-weight:600;color:var(--navy)}
+.comp-bold-amt{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy)}
+.dash{color:var(--dim);font-size:13px}
+
+/* Savings center card */
+.savings-big{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;line-height:1;color:var(--gold-lt);margin-bottom:6px}
+.savings-big.negative{color:#e07070}
+.savings-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.4;margin-bottom:16px}
+.savings-breakeven{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;padding:12px 14px;background:rgba(255,255,255,.07);border-radius:8px;margin-top:4px}
+.savings-breakeven strong{color:rgba(255,255,255,.8)}
+.not-worth-it{font-size:15px;font-weight:600;color:#e07070;margin-bottom:8px}
+
+/* Key stats row */
+.key-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat-chip{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.stat-chip-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.stat-chip-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1;color:var(--navy)}
+.stat-chip-val.green{color:var(--green)}
+.stat-chip-val.red{color:var(--red)}
+.stat-chip-sub{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300}
+
+/* Breakeven scale */
+.scale-wrap{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:32px}
+.scale-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.scale-bar-container{position:relative;height:28px;border-radius:100px;overflow:hidden;margin-bottom:12px}
+.scale-bar-red{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,#fce8e8,#f5c5c5);transition:width .4s ease}
+.scale-bar-green{position:absolute;top:0;height:100%;background:linear-gradient(90deg,#c5f0d8,#9ae3be);transition:all .4s ease}
+.scale-marker{position:absolute;top:-4px;width:4px;height:36px;background:var(--gold);border-radius:2px;transition:left .4s ease;z-index:2}
+.scale-marker::after{content:attr(data-label);position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:var(--navy);white-space:nowrap;background:var(--gold-pale);padding:2px 6px;border-radius:4px;border:1px solid rgba(201,151,58,.3)}
+.scale-labels{display:flex;justify-content:space-between;margin-top:24px;padding:0 0}
+.scale-lbl{font-size:10px;color:var(--dim);font-weight:400}
+.scale-legend{display:flex;gap:20px;margin-top:10px}
+.scale-leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.scale-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* CTA button */
+.btn-cta{display:block;width:100%;background:var(--gold);color:var(--white);border-radius:100px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:18px;transition:background .15s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--gold-lt)}
+
+/* Content section */
+.content{max-width:760px;margin:12px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--gold)}
+.content h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--navy);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+
+/* Responsive */
+@media(max-width:900px){
+  .inputs-grid,.inputs-grid-bottom{grid-template-columns:1fr 1fr}
+  .key-stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .hero,.calc-wrap,.content,nav,footer{padding-left:18px;padding-right:18px}
+  h1{font-size:28px}
+  .nav-link{display:none}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+  .inputs-grid,.inputs-grid-bottom{grid-template-columns:1fr}
+  .inputs-card{padding:20px}
+  .comparison-grid{grid-template-columns:1fr;border-radius:16px}
+  .comp-card.left{border-radius:16px 16px 0 0;border-right:none;border-bottom:1px solid var(--border)}
+  .comp-center{border-radius:0;order:-1}
+  .comp-card.right{border-radius:0 0 16px 16px;border-left:none;border-top:1px solid var(--border)}
+  .key-stats{grid-template-columns:1fr 1fr}
+  .scale-wrap{padding:18px 16px}
+}
+@media(max-width:420px){
+  .key-stats{grid-template-columns:1fr}
+  .stat-chip-val{font-size:22px}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "S-Corp vs Sole Proprietor Savings Simulator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "url": "https://www.sidehustleguard.com/scorp-savings-calculator",
+  "description": "Free S-Corp savings calculator. Enter your net profit and salary to see exactly when an S-Corp saves you more than it costs, including California's $800 franchise tax.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "At what income level does an S-Corp make sense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most states, an S-Corp election makes financial sense once net self-employment profit exceeds $50,000–$60,000 per year. In California, the $800 minimum franchise tax and higher overhead push the breakeven closer to $70,000–$80,000 in annual net profit. The exact number depends on your reasonable salary and the cost of payroll software and accounting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a 'reasonable salary' for an S-Corp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS requires S-Corp owner-employees to pay themselves a 'reasonable salary' before taking distributions. The IRS looks at comparable salaries in the same industry and role. Most tax professionals suggest 40–60% of net profit as a starting benchmark, but the right number depends on your specific services and market rates. An S-Corp that pays an unreasonably low salary is a common IRS audit trigger."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to run an S-Corp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main ongoing costs for an S-Corp include: payroll processing software ($500–$1,200/year via Gusto, Rippling, etc.), additional CPA fees for the Form 1120-S corporate return ($800–$2,000/year), and California's $800 minimum franchise tax for CA-based businesses. Total overhead typically runs $1,800–$4,000 per year before any state-specific fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I elect S-Corp status at any time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To elect S-Corp status for a given tax year, you must file IRS Form 2553 by March 15 of that year (or within 75 days of forming your entity). Late election relief is available in some circumstances. You first need an LLC or corporation formed in your state — the S-Corp is a federal tax election, not a separate entity type. Many self-employed workers form a single-member LLC and then elect S-Corp treatment for federal tax purposes."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.sidehustleguard.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://www.sidehustleguard.com/guides"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "S-Corp vs Sole Proprietor Calculator",
+      "item": "https://www.sidehustleguard.com/scorp-savings-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides" class="nav-link">Guides</a>
+    <a href="/tool" class="nav-cta">Free Check →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Free · 2025 IRS rates</div>
+  <h1>S-Corp vs Sole Prop <em>savings simulator</em></h1>
+  <p class="hero-sub">See exactly how much an S-Corp election would save — or cost — at your income level. Includes California's $800 franchise tax and all overhead.</p>
+</div>
+
+<div class="calc-wrap">
+
+  <!-- INPUTS -->
+  <div class="inputs-card">
+    <div class="calc-title">Your numbers</div>
+    <div class="inputs-grid">
+      <div class="field">
+        <label class="field-label" for="profit">Net annual profit (after expenses, before taxes)</label>
+        <div class="input-money">
+          <input type="number" id="profit" inputmode="decimal" placeholder="80000" value="80000" oninput="recalc()">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="salary">Reasonable S-Corp salary</label>
+        <div class="input-money">
+          <input type="number" id="salary" inputmode="decimal" placeholder="45000" value="45000" oninput="recalc()">
+        </div>
+        <div class="field-help">IRS requires a "reasonable" salary — typically 40–60% of net profit. Example: $80k profit → $35–48k salary.</div>
+      </div>
+      <div class="field">
+        <label class="field-label">California (+$800 franchise tax)</label>
+        <div class="toggle-row" style="margin-top:8px">
+          <label class="toggle-switch">
+            <input type="checkbox" id="caToggle" checked onchange="recalc()">
+            <span class="toggle-slider"></span>
+          </label>
+          <div>
+            <div class="toggle-label">California</div>
+            <div class="toggle-sub">+$800 min. franchise tax/yr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inputs-grid-bottom">
+      <div class="field">
+        <label class="field-label" for="payroll">Payroll processing costs / year</label>
+        <div class="input-money">
+          <input type="number" id="payroll" inputmode="decimal" placeholder="600" value="600" oninput="recalc()">
+        </div>
+        <div class="field-help">Gusto, Rippling, etc. Typically $500–$1,200/yr</div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="accounting">Extra accounting for S-Corp return</label>
+        <div class="input-money">
+          <input type="number" id="accounting" inputmode="decimal" placeholder="1000" value="1000" oninput="recalc()">
+        </div>
+        <div class="field-help">CPA fees for Form 1120-S. Typically $800–$2,000/yr</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY STATS ROW -->
+  <div class="key-stats">
+    <div class="stat-chip">
+      <div class="stat-chip-label">SE tax savings</div>
+      <div class="stat-chip-val green" id="s-se-savings">$0</div>
+      <div class="stat-chip-sub">before overhead</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-chip-label">S-Corp annual overhead</div>
+      <div class="stat-chip-val red" id="s-overhead">$0</div>
+      <div class="stat-chip-sub">franchise + payroll + CPA</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-chip-label">Net annual advantage</div>
+      <div class="stat-chip-val" id="s-net-adv">$0</div>
+      <div class="stat-chip-sub" id="s-net-adv-sub">—</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-chip-label">S-Corp worth it above</div>
+      <div class="stat-chip-val" id="s-breakeven-stat">—</div>
+      <div class="stat-chip-sub">annual profit</div>
+    </div>
+  </div>
+
+  <!-- THREE-COLUMN COMPARISON -->
+  <div class="comparison-grid">
+
+    <!-- LEFT: Sole Prop -->
+    <div class="comp-card left">
+      <div class="comp-header">Sole Proprietor</div>
+      <div class="comp-row">
+        <div>
+          <div class="comp-row-label">Self-employment tax</div>
+          <div class="comp-row-sub">15.3% on net earnings × 92.35%</div>
+        </div>
+        <div class="comp-row-amt" id="sp-se-tax">$0</div>
+      </div>
+      <div class="comp-row">
+        <div>
+          <div class="comp-row-label">Federal income tax</div>
+          <div class="comp-row-sub">After SE deduction + std. deduction</div>
+        </div>
+        <div class="comp-row-amt" id="sp-fed-tax">$0</div>
+      </div>
+      <div class="comp-row">
+        <div><div class="comp-row-label">S-Corp overhead</div></div>
+        <div class="dash">—</div>
+      </div>
+      <hr class="comp-divider">
+      <div class="comp-bold-row">
+        <div class="comp-bold-label">Total annual taxes</div>
+        <div class="comp-bold-amt" id="sp-total">$0</div>
+      </div>
+    </div>
+
+    <!-- CENTER: Savings -->
+    <div class="comp-center">
+      <div class="comp-header">Annual difference</div>
+      <div class="savings-big" id="center-savings">$0</div>
+      <div class="savings-label" id="center-label">enter your numbers</div>
+      <div class="savings-breakeven" id="center-breakeven">
+        <strong>Breakeven:</strong> calculating...
+      </div>
+    </div>
+
+    <!-- RIGHT: S-Corp -->
+    <div class="comp-card right">
+      <div class="comp-header">S-Corporation</div>
+      <div class="comp-row">
+        <div>
+          <div class="comp-row-label">FICA on salary</div>
+          <div class="comp-row-sub">Employee + employer (15.3%)</div>
+        </div>
+        <div class="comp-row-amt" id="sc-fica">$0</div>
+      </div>
+      <div class="comp-row">
+        <div>
+          <div class="comp-row-label">Federal income tax</div>
+          <div class="comp-row-sub">On salary + distributions</div>
+        </div>
+        <div class="comp-row-amt" id="sc-fed-tax">$0</div>
+      </div>
+      <div class="comp-row" style="flex-direction:column;align-items:flex-start;gap:4px">
+        <div style="display:flex;justify-content:space-between;width:100%">
+          <div class="comp-row-label">S-Corp overhead</div>
+          <div class="comp-row-amt" id="sc-overhead-total">$0</div>
+        </div>
+        <div class="comp-sub-items" id="sc-sub-items" style="width:100%">
+          <div class="comp-sub-item"><span id="sc-ca-label">CA franchise tax</span><span id="sc-ca-amt">$800</span></div>
+          <div class="comp-sub-item"><span>Payroll software</span><span id="sc-payroll-amt">$600</span></div>
+          <div class="comp-sub-item"><span>Accounting (1120-S)</span><span id="sc-acct-amt">$1,000</span></div>
+        </div>
+      </div>
+      <hr class="comp-divider">
+      <div class="comp-bold-row">
+        <div class="comp-bold-label">Total annual cost</div>
+        <div class="comp-bold-amt" id="sc-total">$0</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BREAKEVEN SCALE -->
+  <div class="scale-wrap">
+    <div class="scale-title">Profit level comparison — Sole Prop vs S-Corp</div>
+    <div class="scale-bar-container" id="scale-bar-container">
+      <div class="scale-bar-red" id="scale-red" style="width:100%"></div>
+      <div class="scale-bar-green" id="scale-green" style="left:100%;width:0%"></div>
+      <div class="scale-marker" id="scale-marker" data-label="Your profit" style="left:50%"></div>
+    </div>
+    <div class="scale-labels">
+      <span class="scale-lbl">$20k</span>
+      <span class="scale-lbl">$40k</span>
+      <span class="scale-lbl">$60k</span>
+      <span class="scale-lbl">$80k</span>
+      <span class="scale-lbl">$100k</span>
+      <span class="scale-lbl">$120k</span>
+      <span class="scale-lbl">$150k</span>
+    </div>
+    <div class="scale-legend">
+      <div class="scale-leg-item"><div class="scale-leg-dot" style="background:#f5c5c5"></div>Sole Prop better</div>
+      <div class="scale-leg-item"><div class="scale-leg-dot" style="background:#9ae3be"></div>S-Corp better</div>
+      <div class="scale-leg-item"><div class="scale-leg-dot" style="background:var(--gold)"></div>Your current profit</div>
+    </div>
+    <div style="margin-top:14px;font-size:12px;color:var(--muted);font-weight:300" id="scale-note">Assumes salary remains at the same percentage of profit as entered above.</div>
+  </div>
+
+  <div style="text-align:center;padding-bottom:8px">
+    <a href="/tool" class="btn-cta" style="max-width:420px;display:inline-block">Get a personalized tax analysis — free →</a>
+  </div>
+
+</div><!-- /calc-wrap -->
+
+<div class="content">
+
+  <h2>When does an S-Corp actually <em>make sense?</em></h2>
+  <p>The math behind an S-Corp election is straightforward: you save SE tax on the portion of your profit taken as distributions instead of salary, but you take on real overhead costs to do it. The question is whether the tax savings exceed those costs.</p>
+  <p>As a sole proprietor, every dollar of net profit is subject to self-employment tax (15.3% up to the Social Security wage base). With an S-Corp, only your W-2 salary goes through FICA — distributions bypass it entirely. On $80,000 profit with a $45,000 salary, for example, you'd pay FICA on $45k instead of the full $80k, potentially saving $3,000–$5,000 in SE tax depending on the exact numbers.</p>
+  <p><strong>The general rule:</strong> S-Corp typically makes financial sense at roughly $60,000–$80,000 in net profit in California (or $50,000+ in states with no franchise tax). Below that level, the overhead eats the savings. Above $100,000–$120,000, the savings are usually significant enough to make the added complexity worthwhile.</p>
+  <p>The breakeven point shifts based on your reasonable salary assumption. A lower salary means more distributions and more SE tax savings, but the IRS scrutinizes very low salaries — and if they reclassify distributions as wages, you'd owe back taxes and penalties.</p>
+
+  <h2>The "reasonable salary" rule and how the <em>IRS views it</em></h2>
+  <p>The IRS requires that S-Corp shareholder-employees receive a "reasonable" salary before taking distributions. There is no specific formula — the IRS looks at what someone in your role and industry would earn as an employee. Comparable salary data, your specific duties, and how much time you devote to the business all factor in.</p>
+  <p>The 40–60% of net profit benchmark that many tax professionals use is a starting heuristic, not an IRS standard. A web designer billing $90,000 who could hire a comparable employee for $55,000 should probably pay themselves closer to $55,000 — not 40% of $90k.</p>
+  <p>The IRS has audited and won cases where S-Corp owners paid themselves $0 in salary while taking all profit as distributions. A good CPA will document your salary decision and keep it aligned with market rates. The SE tax savings are real, but only if your salary is defensible.</p>
+
+  <h2>S-Corp costs you need to <em>budget for</em></h2>
+  <p>Before running the numbers, make sure you're accounting for the full overhead picture:</p>
+  <ul>
+    <li><strong>California $800 minimum franchise tax</strong> — due every year regardless of income. If you're in CA, this is unavoidable and must be paid even in years with a loss.</li>
+    <li><strong>Payroll software</strong> — you must run payroll to pay yourself a W-2 salary. Services like Gusto or Rippling typically run $500–$1,200/year for a single employee.</li>
+    <li><strong>Separate corporate tax return (Form 1120-S)</strong> — your CPA will charge more to file an S-Corp return than a Schedule C. Budget $800–$2,000/year in additional accounting fees.</li>
+    <li><strong>Bookkeeping</strong> — S-Corps require cleaner books than a Schedule C. If you're not doing it yourself, factor in bookkeeping costs.</li>
+    <li><strong>State registration and annual fees</strong> — if you haven't already formed an LLC or corporation, add state formation fees (typically $70–$150). Annual report fees vary by state.</li>
+  </ul>
+
+  <div class="callout callout-amber">
+    <p><strong>Important note:</strong> This calculator focuses on SE tax savings vs. overhead costs. S-Corps also have income tax implications including the QBI (qualified business income) deduction interaction, which can partially offset or amplify the savings depending on your situation. Consult a CPA before making this decision — the right answer varies meaningfully based on your state, industry, and specific income composition.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool">Free checker</a>
+    <a href="/self-employment-tax-calculator">SE Tax Calculator</a>
+    <a href="/quarterly-taxes-self-employed">Quarterly taxes</a>
+    <a href="/guides">Guides</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions about S-Corp elections.</div>
+</footer>
+
+<script>
+// 2025 federal brackets
+const BRACKETS_SINGLE = [
+  [11925,  0.10], [48475, 0.12], [103350, 0.22], [197300, 0.24],
+  [250525, 0.32], [626350, 0.35], [Infinity, 0.37]
+];
+const STD_DED_SINGLE = 15000;
+const SS_WAGE_BASE = 176100;
+
+function calcFederal(taxable) {
+  if (taxable <= 0) return 0;
+  let tax = 0, prev = 0;
+  for (const [cap, rate] of BRACKETS_SINGLE) {
+    if (taxable <= cap) { tax += (taxable - prev) * rate; return tax; }
+    tax += (cap - prev) * rate;
+    prev = cap;
+  }
+  return tax;
+}
+
+function calcSETax(netSE) {
+  const seBase = netSE * 0.9235;
+  const ssBase = Math.min(seBase, SS_WAGE_BASE);
+  return ssBase * 0.124 + seBase * 0.029;
+}
+
+function calcSoleProp(profit) {
+  const seTax = calcSETax(Math.max(0, profit));
+  const seDeduction = seTax / 2;
+  const taxable = Math.max(0, profit - seDeduction - STD_DED_SINGLE);
+  const fedTax = calcFederal(taxable);
+  return { seTax, fedTax, total: seTax + fedTax };
+}
+
+function calcSCorp(profit, salary, caOn, payrollCost, acctCost) {
+  salary = Math.min(salary, profit); // salary can't exceed profit
+  const employerFICA = salary * 0.0765;
+  const totalFICA = salary * 0.153;
+
+  // Income tax base: profit - employer FICA (corp deduction) - std deduction
+  const taxable = Math.max(0, (profit - employerFICA) - STD_DED_SINGLE);
+  const fedTax = calcFederal(taxable);
+
+  const caFranchise = caOn ? 800 : 0;
+  const overhead = caFranchise + payrollCost + acctCost;
+
+  return {
+    totalFICA,
+    fedTax,
+    overhead,
+    caFranchise,
+    payrollCost,
+    acctCost,
+    total: totalFICA + fedTax + overhead
+  };
+}
+
+function calcBreakeven(salaryFraction, caOn, payrollCost, acctCost) {
+  // Binary search for the profit level where S-Corp total = Sole Prop total
+  let lo = 0, hi = 500000;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const salary = mid * salaryFraction;
+    const sp = calcSoleProp(mid);
+    const sc = calcSCorp(mid, salary, caOn, payrollCost, acctCost);
+    if (sc.total < sp.total) hi = mid; else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+function fmt(n) {
+  if (!isFinite(n) || isNaN(n)) n = 0;
+  return '$' + Math.round(Math.abs(n)).toLocaleString();
+}
+function fmtRaw(n) {
+  if (!isFinite(n) || isNaN(n)) n = 0;
+  return Math.round(n).toLocaleString();
+}
+
+function recalc() {
+  const profit    = parseFloat(document.getElementById('profit').value)     || 0;
+  const salary    = parseFloat(document.getElementById('salary').value)      || 0;
+  const caOn      = document.getElementById('caToggle').checked;
+  const payroll   = parseFloat(document.getElementById('payroll').value)     || 0;
+  const acct      = parseFloat(document.getElementById('accounting').value)  || 0;
+
+  const sp = calcSoleProp(profit);
+  const sc = calcSCorp(profit, salary, caOn, payroll, acct);
+
+  const annualSavings = sp.total - sc.total;
+  const seSavings = sp.seTax - sc.totalFICA; // gross SE tax difference
+  const salaryFraction = profit > 0 ? Math.min(1, Math.max(0.01, salary / profit)) : 0.5;
+  const breakeven = calcBreakeven(salaryFraction, caOn, payroll, acct);
+
+  // --- Left card (Sole Prop) ---
+  document.getElementById('sp-se-tax').textContent = fmt(sp.seTax);
+  document.getElementById('sp-fed-tax').textContent = fmt(sp.fedTax);
+  document.getElementById('sp-total').textContent = fmt(sp.total);
+
+  // --- Right card (S-Corp) ---
+  document.getElementById('sc-fica').textContent = fmt(sc.totalFICA);
+  document.getElementById('sc-fed-tax').textContent = fmt(sc.fedTax);
+  document.getElementById('sc-overhead-total').textContent = fmt(sc.overhead);
+  document.getElementById('sc-ca-label').textContent = caOn ? 'CA franchise tax' : 'CA franchise tax';
+  document.getElementById('sc-ca-amt').textContent = caOn ? '$800' : '$0';
+  document.getElementById('sc-payroll-amt').textContent = fmt(payroll);
+  document.getElementById('sc-acct-amt').textContent = fmt(acct);
+  document.getElementById('sc-total').textContent = fmt(sc.total);
+
+  // --- Center card ---
+  const centerSavingsEl = document.getElementById('center-savings');
+  const centerLabelEl   = document.getElementById('center-label');
+  const centerBreakEl   = document.getElementById('center-breakeven');
+
+  if (annualSavings > 0) {
+    centerSavingsEl.textContent = fmt(annualSavings);
+    centerSavingsEl.className = 'savings-big';
+    centerLabelEl.textContent = 'saved per year with S-Corp';
+    centerBreakEl.innerHTML = '<strong>S-Corp pays off at ~' + fmt(breakeven) + ' profit</strong>';
+  } else {
+    centerSavingsEl.textContent = fmt(Math.abs(annualSavings));
+    centerSavingsEl.className = 'savings-big negative';
+    centerLabelEl.innerHTML = '<span class="not-worth-it">S-Corp not worth it yet</span>Sole Prop saves more at this income level';
+    centerBreakEl.innerHTML = '<strong>S-Corp worth it above ~' + fmt(breakeven) + ' profit</strong>';
+  }
+
+  // --- Key stats ---
+  const netAdv = document.getElementById('s-net-adv');
+  const netAdvSub = document.getElementById('s-net-adv-sub');
+  document.getElementById('s-se-savings').textContent = fmt(Math.max(0, seSavings));
+  document.getElementById('s-overhead').textContent   = fmt(sc.overhead);
+  netAdv.textContent = fmt(annualSavings);
+  if (annualSavings > 0) {
+    netAdv.className = 'stat-chip-val green';
+    netAdvSub.textContent = 'S-Corp wins';
+  } else {
+    netAdv.className = 'stat-chip-val red';
+    netAdvSub.textContent = 'Sole Prop wins';
+  }
+  document.getElementById('s-breakeven-stat').textContent = fmt(breakeven) + '/yr';
+
+  // --- Breakeven scale ---
+  // Scale: $20k to $150k, positions map linearly
+  const SCALE_MIN = 20000;
+  const SCALE_MAX = 150000;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  const bePos = clamp((breakeven - SCALE_MIN) / (SCALE_MAX - SCALE_MIN) * 100, 0, 100);
+  const profitPos = clamp((profit - SCALE_MIN) / (SCALE_MAX - SCALE_MIN) * 100, 1, 99);
+
+  document.getElementById('scale-red').style.width   = bePos + '%';
+  const greenEl = document.getElementById('scale-green');
+  greenEl.style.left  = bePos + '%';
+  greenEl.style.width = (100 - bePos) + '%';
+
+  const marker = document.getElementById('scale-marker');
+  marker.style.left = profitPos + '%';
+  marker.setAttribute('data-label', fmt(profit));
+
+  document.getElementById('scale-note').textContent =
+    'Breakeven at ~' + fmt(breakeven) + ' profit. ' +
+    (profit >= breakeven
+      ? 'At your current profit, S-Corp is advantageous.'
+      : 'At your current profit, Sole Prop is better.');
+}
+
+// Run on load
+recalc();
+</script>
+
+</body>
+</html>

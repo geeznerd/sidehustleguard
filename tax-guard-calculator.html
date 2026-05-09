@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Guard Calculator — How Much to Set Aside From Every Payment | SideHustleGuard</title>
+<meta name="description" content="Enter any freelance payment and instantly see the exact dollar amount to move to your tax savings account. Updated for 2025 federal and California tax rates.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.sidehustleguard.com/tax-guard-calculator">
+<meta property="og:title" content="Tax Guard Calculator — How Much to Set Aside From Every Payment">
+<meta property="og:description" content="Enter any freelance payment and instantly see the exact dollar amount to move to your tax savings account. Updated for 2025 federal and California tax rates.">
+<meta property="og:url" content="https://www.sidehustleguard.com/tax-guard-calculator">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.sidehustleguard.com/images/og/tax-guard-calculator.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/tax-guard-calculator.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
+
+/* Calculator */
+.calc-wrap{max-width:880px;margin:0 auto;padding:0 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.field{margin-bottom:18px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
+.field-help{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none}
+input[type="number"],input[type="text"],select{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+select{padding-left:13px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--gold);background:var(--white)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* Payment field — larger/more prominent */
+.field-payment input{font-size:22px;font-weight:600;padding:14px 13px 14px 32px;color:var(--navy)}
+.input-money.input-lg::before{font-size:18px;color:var(--navy);font-weight:500}
+
+/* SE toggle */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:18px}
+.toggle-label-wrap{font-size:13px;font-weight:500;color:var(--navy)}
+.toggle-sub{font-size:11px;color:var(--dim);font-weight:300;margin-top:2px}
+.toggle{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--border);border-radius:24px;transition:.2s;border:1px solid rgba(28,43,74,.15)}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:2px;bottom:2px;background:var(--white);border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.toggle input:checked + .slider{background:var(--gold)}
+.toggle input:checked + .slider:before{transform:translateX(20px)}
+
+/* Results card */
+.results-card{background:var(--navy);color:var(--white);border-radius:16px;padding:28px;border:1px solid var(--navy)}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold-lt);text-transform:uppercase;margin-bottom:8px}
+
+.guard-amount-section{padding:20px 0 18px;border-bottom:1px solid rgba(255,255,255,.1)}
+.guard-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.guard-amount{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;line-height:1;color:var(--gold-lt)}
+.guard-amount .currency{font-size:22px;font-weight:600;color:rgba(255,255,255,.65);position:relative;top:-16px;margin-right:3px}
+.guard-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;font-weight:300;letter-spacing:.02em}
+
+.takehome-section{padding:16px 0 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.takehome-label{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.takehome-amount{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1;color:var(--white)}
+.takehome-amount .currency{font-size:15px;font-weight:500;color:rgba(255,255,255,.55);position:relative;top:-10px;margin-right:2px}
+
+/* Bar */
+.tax-bar-wrap{margin:18px 0 6px}
+.tax-bar-label{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+.tax-bar{height:10px;background:rgba(255,255,255,.12);border-radius:100px;overflow:hidden}
+.tax-bar-fill{height:100%;background:var(--gold);border-radius:100px;transition:width .3s ease}
+
+.breakdown{margin-top:16px}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.bd-row:last-child{border-bottom:none;padding-top:10px;margin-top:2px}
+.bd-row.bd-total{border-top:1px solid rgba(255,255,255,.15);border-bottom:none}
+.bd-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:300}
+.bd-amt{font-size:13px;color:var(--white);font-weight:500;font-family:'Playfair Display',serif}
+.bd-row.bd-total .bd-label{font-size:13px;color:var(--gold-lt);font-weight:600}
+.bd-row.bd-total .bd-amt{font-size:15px;color:var(--gold-lt);font-weight:700}
+.bd-sub{font-size:11px;color:rgba(255,255,255,.3);font-weight:300}
+.bd-hidden{display:none}
+
+.btn-download{display:block;width:100%;background:transparent;color:var(--gold-lt);border:1px solid rgba(201,151,58,.4);border-radius:100px;padding:12px;font-size:13px;font-weight:600;font-family:inherit;text-align:center;margin-top:20px;transition:all .15s;cursor:pointer}
+.btn-download:hover{background:rgba(201,151,58,.1);border-color:rgba(201,151,58,.7)}
+
+.btn-cta{display:block;width:100%;background:var(--gold);color:var(--white);border-radius:100px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:12px;transition:background .15s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--gold-lt)}
+
+.empty-state{text-align:center;padding:32px 0}
+.empty-state-icon{font-size:32px;margin-bottom:10px;opacity:.35}
+.empty-state-text{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.6}
+
+/* Content section */
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--gold)}
+.content h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--navy);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+
+@media(max-width:800px){
+  .calc-grid{grid-template-columns:1fr}
+  .hero,.calc-wrap,.content,nav,footer{padding-left:18px;padding-right:18px}
+  h1{font-size:30px}
+  .nav-link{display:none}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+  .guard-amount{font-size:42px}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tax Guard Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "url": "https://www.sidehustleguard.com/tax-guard-calculator",
+  "description": "Enter any freelance payment and instantly see the exact dollar amount to move to your tax savings account. Updated for 2025 federal and California tax rates.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should I set aside from every freelance payment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most freelancers should set aside 25–35% of every payment. The exact percentage depends on your filing status, total annual income, state, and whether you're self-employed. Self-employed workers in the 22% federal bracket with California state taxes should typically set aside 35–40% to cover federal SE tax (15.3%), federal income tax (22% marginal), and California state income tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I set aside based on my marginal tax rate or average rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set aside based on your marginal (bracket) rate, not your average rate. Each additional dollar of freelance income is taxed at your highest applicable bracket. Using your average rate will leave you short when you file. The Tax Guard Calculator uses your marginal rate applied to each new payment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do I pay quarterly estimated taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The four federal estimated tax deadlines are: April 15 (Q1, income earned January–March), June 15 (Q2, April–May), September 15 (Q3, June–August), and January 15 of the following year (Q4, September–December). If you set aside money from every payment in a separate account, your quarterly payments become straightforward transfers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is California's combined tax rate for self-employed freelancers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "California freelancers face the highest combined tax burden in the US. A single filer earning $80,000 in self-employment income faces approximately: 14.1% in SE tax (15.3% × 92.35%), 22% federal marginal income tax, and up to 9.3% California state income tax — for a combined marginal rate of around 40–42% on additional income."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.sidehustleguard.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://www.sidehustleguard.com/guides"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tax Guard Calculator",
+      "item": "https://www.sidehustleguard.com/tax-guard-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides" class="nav-link">Guides</a>
+    <a href="/tool" class="nav-cta">Free Check →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Per-payment · 2025 rates · All 50 states</div>
+  <h1>Tax Guard <em>Calculator</em></h1>
+  <p class="hero-sub">Just got paid? Enter the amount and see the exact dollar figure to move to your tax savings account — right now, before you spend it.</p>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-grid">
+
+    <!-- INPUTS -->
+    <div class="calc-card">
+      <div class="calc-title">This payment</div>
+
+      <div class="field field-payment">
+        <label class="field-label" for="payment">Payment I just received</label>
+        <div class="input-money input-lg">
+          <input type="number" id="payment" inputmode="decimal" placeholder="2500" oninput="recalc()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="annual">Estimated annual gross income (total this year)</label>
+        <div class="input-money">
+          <input type="number" id="annual" inputmode="decimal" placeholder="75000" oninput="recalc()">
+        </div>
+        <div class="field-help">Used to estimate your tax bracket. Include all income sources.</div>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-label-wrap">
+          <div>Self-employed / freelancer</div>
+          <div class="toggle-sub">Include 15.3% SE tax (SS + Medicare)</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="se-toggle" checked onchange="recalc()">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="status">Filing status</label>
+        <select id="status" onchange="recalc()">
+          <option value="single">Single</option>
+          <option value="mfj">Married filing jointly</option>
+          <option value="hoh">Head of household</option>
+        </select>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="field-label" for="state">State</label>
+        <select id="state" onchange="recalc()">
+          <option value="none">No state income tax</option>
+          <option value="AK">Alaska — no state tax</option>
+          <option value="AL">Alabama (~4% effective)</option>
+          <option value="AR">Arkansas (~5.5% effective)</option>
+          <option value="AZ">Arizona — 2.5% flat</option>
+          <option value="CA">California — actual progressive brackets</option>
+          <option value="CO">Colorado — 4.4% flat</option>
+          <option value="CT">Connecticut (~6.5% effective)</option>
+          <option value="DC">Washington DC (~7% effective)</option>
+          <option value="DE">Delaware (~5.5% effective)</option>
+          <option value="FL">Florida — no state tax</option>
+          <option value="GA">Georgia (~5.5% effective)</option>
+          <option value="HI">Hawaii (~9% effective)</option>
+          <option value="IA">Iowa (~5% effective)</option>
+          <option value="ID">Idaho (~5.8% effective)</option>
+          <option value="IL">Illinois — 4.95% flat</option>
+          <option value="IN">Indiana — 3.05% flat</option>
+          <option value="KS">Kansas (~5.7% effective)</option>
+          <option value="KY">Kentucky (~4.5% effective)</option>
+          <option value="LA">Louisiana (~4% effective)</option>
+          <option value="MA">Massachusetts (~5% effective)</option>
+          <option value="MD">Maryland (~5.75% effective)</option>
+          <option value="ME">Maine (~7.15% effective)</option>
+          <option value="MI">Michigan — 4.25% flat</option>
+          <option value="MN">Minnesota — up to 9.85%</option>
+          <option value="MO">Missouri (~5.3% effective)</option>
+          <option value="MS">Mississippi (~4% effective)</option>
+          <option value="MT">Montana (~6.75% effective)</option>
+          <option value="NC">North Carolina (~4.75% effective)</option>
+          <option value="ND">North Dakota (~2% effective)</option>
+          <option value="NE">Nebraska (~6.5% effective)</option>
+          <option value="NH">New Hampshire — no state tax</option>
+          <option value="NJ">New Jersey — up to 10.75%</option>
+          <option value="NM">New Mexico (~5.9% effective)</option>
+          <option value="NV">Nevada — no state tax</option>
+          <option value="NY">New York — up to 10.9%</option>
+          <option value="OH">Ohio (~4% effective)</option>
+          <option value="OK">Oklahoma (~4.75% effective)</option>
+          <option value="OR">Oregon — up to 9.9%</option>
+          <option value="PA">Pennsylvania — 3.07% flat</option>
+          <option value="RI">Rhode Island (~5.99% effective)</option>
+          <option value="SC">South Carolina (~6.5% effective)</option>
+          <option value="SD">South Dakota — no state tax</option>
+          <option value="TN">Tennessee — no state tax</option>
+          <option value="TX">Texas — no state tax</option>
+          <option value="UT">Utah — 4.65% flat</option>
+          <option value="VA">Virginia (~5.75% effective)</option>
+          <option value="VT">Vermont (~7.6% effective)</option>
+          <option value="WA">Washington — no state tax</option>
+          <option value="WI">Wisconsin (~6.5% effective)</option>
+          <option value="WV">West Virginia (~5.12% effective)</option>
+          <option value="WY">Wyoming — no state tax</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-card">
+      <div class="results-title">Tax Guard</div>
+
+      <div id="empty-state" class="empty-state">
+        <div class="empty-state-icon">🛡</div>
+        <div class="empty-state-text">Enter a payment amount on the left<br>to see your guard amount instantly.</div>
+      </div>
+
+      <div id="results-body" style="display:none">
+
+        <div class="guard-amount-section">
+          <div class="guard-label">The Guard Amount</div>
+          <div class="guard-amount"><span class="currency">$</span><span id="r-guard">0</span></div>
+          <div class="guard-sub">Move this to your tax savings account now</div>
+        </div>
+
+        <div class="takehome-section">
+          <div class="takehome-label">Your take-home</div>
+          <div class="takehome-amount"><span class="currency">$</span><span id="r-takehome">0</span></div>
+        </div>
+
+        <div class="tax-bar-wrap">
+          <div class="tax-bar-label">
+            <span>Tax reserve (<span id="r-pct">0</span>%)</span>
+            <span>Keep (<span id="r-keep-pct">100</span>%)</span>
+          </div>
+          <div class="tax-bar">
+            <div class="tax-bar-fill" id="tax-bar-fill" style="width:0%"></div>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <div class="bd-row" id="row-se">
+            <div class="bd-label">SE tax (15.3%)</div>
+            <div class="bd-amt">$<span id="r-se">0</span></div>
+          </div>
+          <div class="bd-row">
+            <div class="bd-label">Federal income tax</div>
+            <div class="bd-amt">$<span id="r-fed">0</span></div>
+          </div>
+          <div class="bd-row" id="row-state">
+            <div class="bd-label">State income tax (<span id="r-state-name">—</span>)</div>
+            <div class="bd-amt">$<span id="r-state">0</span></div>
+          </div>
+          <div class="bd-row bd-total">
+            <div class="bd-label">Total to reserve</div>
+            <div class="bd-amt">$<span id="r-total">0</span></div>
+          </div>
+        </div>
+
+        <button class="btn-download" onclick="downloadReceipt()">Download Receipt (.txt)</button>
+        <a href="/tool" class="btn-cta">Get a personalized check — free →</a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>How much should you set aside from every <em>freelance payment</em>?</h2>
+  <p>Most financial advice tells freelancers to "save 25–30% for taxes" — and then leaves it at that. The problem is that number lives in your head but not in your bank account. The discipline that actually works is simpler: every time a payment hits, immediately move a fixed dollar amount into a dedicated tax savings account before you do anything else.</p>
+  <p>This is the "pay your taxes first" system, and it's the single habit that separates freelancers who scramble at tax time from those who write the check without stress. The exact percentage that's right for you depends on your income level, filing status, state, and whether you're fully self-employed — which is exactly what the calculator above computes.</p>
+  <p>A few guidelines that hold for most situations: <strong>if you're self-employed and earn above $50,000 per year, plan on reserving at least 30%</strong> of each payment. If you're in California, New York, New Jersey, or Oregon, bump that to 35–40%. If you're a W-2 employee receiving occasional 1099 side income, 20–25% is often sufficient since your employer already handles half of your FICA taxes.</p>
+
+  <h2>Why the <em>marginal rate</em> matters (not the average)</h2>
+  <p>Here's the mistake many freelancers make: they look at last year's effective tax rate — say, 18% — and set that aside from every new payment. The problem is that freelance income is almost always your <strong>highest-dollar income</strong>. It sits on top of your W-2 wages, investment income, or prior freelance earnings, which means it's taxed at your highest bracket, not your average one.</p>
+  <p>If you earn $60,000 from a day job and then invoice a client for $5,000, that $5,000 is entirely in the 22% federal bracket (plus any state and SE obligations). Your overall effective rate might be 14%, but every dollar of that $5,000 freelance payment is taxed at 22% federal, plus SE tax on top. Setting aside 14% means you'll come up short.</p>
+  <p><strong>Always reserve based on your marginal rate</strong> — the rate at which the next dollar you earn is taxed. The Tax Guard Calculator uses your estimated annual income to identify your bracket and applies the marginal rate to each new payment, so the reserve amount is accurate rather than optimistic.</p>
+
+  <h2>California freelancers: your rate is <em>higher than you think</em></h2>
+  <p>California imposes some of the highest state income taxes in the country, using a progressive bracket system that peaks at 13.3% for income over $1,000,000. But even at more common freelance income levels, the combined federal, state, and SE tax burden in California is significant.</p>
+  <p>Consider a single freelancer with $80,000 in annual self-employment income in California:</p>
+  <ul>
+    <li><strong>SE tax:</strong> ~$11,304 (15.3% × 92.35% × $80,000)</li>
+    <li><strong>Federal income tax:</strong> ~$9,200 (22% marginal, after deductions)</li>
+    <li><strong>California state tax:</strong> ~$4,600 (effective rate ~5.75% on this income after CA standard deduction)</li>
+    <li><strong>Combined burden:</strong> ~$25,100 — roughly 31% of gross</li>
+  </ul>
+  <p>And that's at $80,000. At $120,000, California's 9.3% bracket kicks in, pushing total combined effective rates toward 38–40%. Many California freelancers significantly underpay quarterly estimates because they're using national "set aside 25–30%" guidance that doesn't account for California's progressive brackets. The calculator above uses California's actual 2025 bracket thresholds to give you an accurate number.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Quarterly estimated tax deadlines:</strong> Q1 April 15 · Q2 June 15 · Q3 September 15 · Q4 January 15. If you've been setting aside from every payment, your quarterly payment is just a transfer from your savings account to the IRS. Pay at IRS.gov/payments — it takes about 10 minutes.</p>
+  </div>
+
+  <div class="callout callout-green">
+    <p><strong>This calculator provides educational estimates only.</strong> Actual tax liability depends on deductions, credits, retirement contributions, and other factors. Consult a licensed CPA or tax professional for personalized advice.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool">Free checker</a>
+    <a href="/quarterly-taxes-self-employed">Quarterly taxes</a>
+    <a href="/self-employment-tax-calculator">SE tax calculator</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+<script>
+// ─── 2025 Federal brackets ───────────────────────────────────────────────────
+const FED_BRACKETS = {
+  single: [
+    [11925, 0.10],[48475, 0.12],[103350,0.22],[197300,0.24],
+    [250525,0.32],[626350,0.35],[Infinity,0.37]
+  ],
+  mfj: [
+    [23850, 0.10],[96950, 0.12],[206700,0.22],[394600,0.24],
+    [501050,0.32],[751600,0.35],[Infinity,0.37]
+  ],
+  hoh: [
+    [17000, 0.10],[64850, 0.12],[103350,0.22],[197300,0.24],
+    [250500,0.32],[626350,0.35],[Infinity,0.37]
+  ]
+};
+const STD_DED = { single:15000, mfj:30000, hoh:22500 };
+
+// ─── California 2025 brackets (Single) ───────────────────────────────────────
+// For MFJ: multiply thresholds × 2
+const CA_BRACKETS_SINGLE = [
+  [10756,  0.01],
+  [25499,  0.02],
+  [40245,  0.04],
+  [55866,  0.06],
+  [70606,  0.08],
+  [360659, 0.093],
+  [432787, 0.103],
+  [721314, 0.113],
+  [1000000,0.123],
+  [Infinity,0.133]
+];
+const CA_STD_DED = { single:5540, mfj:11080, hoh:6926 };
+
+// ─── State flat/effective rates ──────────────────────────────────────────────
+// null = CA progressive; 0 = no tax
+const STATE_RATES = {
+  none:0, AK:0, FL:0, NV:0, NH:0, SD:0, TN:0, TX:0, WA:0, WY:0,
+  PA:0.0307, IN:0.0305, MI:0.0425, CO:0.044, IL:0.0495, UT:0.0465,
+  AZ:0.025,
+  // Bracket states — simplified effective rate lookup by income tier
+  CA: null, // special handling
+  NY: 'bracket', NJ:'bracket', OR:'bracket', MN:'bracket',
+  // Remaining states — flat effective rate approximations
+  AL:0.04, AR:0.055, CT:0.065, DC:0.07, DE:0.055, GA:0.055, HI:0.09,
+  IA:0.05, ID:0.058, KS:0.057, KY:0.045, LA:0.04, MA:0.05, MD:0.0575,
+  ME:0.0715, MO:0.053, MS:0.04, MT:0.0675, NC:0.0475, ND:0.02,
+  NE:0.065, NM:0.059, OH:0.04, OK:0.0475, RI:0.0599, SC:0.065,
+  VA:0.0575, VT:0.076, WI:0.065, WV:0.0512
+};
+
+// Bracket state marginal rates by income tier (single)
+const BRACKET_STATE_RATES = {
+  NY:[
+    [17150,0.04],[23600,0.045],[27900,0.0525],[161550,0.0585],
+    [323200,0.0625],[2155350,0.0685],[5000000,0.0965],[25000000,0.103],[Infinity,0.109]
+  ],
+  NJ:[
+    [20000,0.014],[35000,0.0175],[40000,0.035],[75000,0.05526],
+    [500000,0.0637],[1000000,0.0897],[Infinity,0.1075]
+  ],
+  OR:[
+    [10200,0.0475],[25500,0.0675],[125000,0.0875],[Infinity,0.099]
+  ],
+  MN:[
+    [30070,0.0535],[98760,0.068],[183340,0.0785],[Infinity,0.0985]
+  ]
+};
+
+function calcProgressive(taxable, brackets){
+  if(taxable<=0) return 0;
+  let tax=0, prev=0;
+  for(const [cap,rate] of brackets){
+    if(taxable<=cap){ tax+=(taxable-prev)*rate; return tax; }
+    tax+=(cap-prev)*rate;
+    prev=cap;
+  }
+  return tax;
+}
+
+function getMarginalRate(income, brackets){
+  let prev=0;
+  for(const [cap,rate] of brackets){
+    if(income<=cap) return rate;
+    prev=cap;
+  }
+  return brackets[brackets.length-1][1];
+}
+
+function calcCAEffectiveRate(annualIncome, status){
+  const stdDed = CA_STD_DED[status] || CA_STD_DED.single;
+  const taxable = Math.max(0, annualIncome - stdDed);
+  if(taxable<=0) return 0;
+  // Adjust brackets for MFJ: multiply thresholds × 2
+  let brackets = CA_BRACKETS_SINGLE;
+  if(status==='mfj'){
+    brackets = CA_BRACKETS_SINGLE.map(([cap,rate]) =>
+      [cap===Infinity ? Infinity : cap*2, rate]
+    );
+  } else if(status==='hoh'){
+    // HOH — use 1.5× single thresholds as approximation
+    brackets = CA_BRACKETS_SINGLE.map(([cap,rate]) =>
+      [cap===Infinity ? Infinity : cap*1.5, rate]
+    );
+  }
+  const totalTax = calcProgressive(taxable, brackets);
+  return totalTax / annualIncome; // effective rate on gross income
+}
+
+function getCAMarginalRate(annualIncome, status){
+  const stdDed = CA_STD_DED[status] || CA_STD_DED.single;
+  const taxable = Math.max(0, annualIncome - stdDed);
+  let brackets = CA_BRACKETS_SINGLE;
+  if(status==='mfj'){
+    brackets = CA_BRACKETS_SINGLE.map(([cap,rate]) =>
+      [cap===Infinity ? Infinity : cap*2, rate]
+    );
+  } else if(status==='hoh'){
+    brackets = CA_BRACKETS_SINGLE.map(([cap,rate]) =>
+      [cap===Infinity ? Infinity : cap*1.5, rate]
+    );
+  }
+  return getMarginalRate(taxable, brackets);
+}
+
+function getFedMarginalRate(annualIncome, isSeToggled, status){
+  const stdDed = STD_DED[status];
+  // Approximate SE deduction on annual income if SE toggle on
+  let seDeduction = 0;
+  if(isSeToggled){
+    const seBase = annualIncome * 0.9235;
+    const seTax = seBase * 0.153;
+    seDeduction = seTax / 2;
+  }
+  const taxable = Math.max(0, annualIncome - seDeduction - stdDed);
+  return getMarginalRate(taxable, FED_BRACKETS[status]);
+}
+
+function fmt(n){
+  if(!isFinite(n)) n=0;
+  return Math.round(Math.max(0,n)).toLocaleString();
+}
+
+// ─── State display name map ───────────────────────────────────────────────────
+const STATE_NAMES = {
+  none:'No state tax',AK:'AK',FL:'FL',NV:'NV',NH:'NH',SD:'SD',TN:'TN',TX:'TX',WA:'WA',WY:'WY',
+  PA:'PA',IN:'IN',MI:'MI',CO:'CO',IL:'IL',UT:'UT',AZ:'AZ',CA:'CA',NY:'NY',NJ:'NJ',OR:'OR',
+  MN:'MN',AL:'AL',AR:'AR',CT:'CT',DC:'DC',DE:'DE',GA:'GA',HI:'HI',IA:'IA',ID:'ID',KS:'KS',
+  KY:'KY',LA:'LA',MA:'MA',MD:'MD',ME:'ME',MO:'MO',MS:'MS',MT:'MT',NC:'NC',ND:'ND',NE:'NE',
+  NM:'NM',OH:'OH',OK:'OK',RI:'RI',SC:'SC',VA:'VA',VT:'VT',WI:'WI',WV:'WV'
+};
+
+let lastCalc = {};
+
+function recalc(){
+  const payment = parseFloat(document.getElementById('payment').value) || 0;
+  const annual  = parseFloat(document.getElementById('annual').value)  || 0;
+  const isSE    = document.getElementById('se-toggle').checked;
+  const status  = document.getElementById('status').value;
+  const stateCode = document.getElementById('state').value;
+
+  if(payment<=0){
+    document.getElementById('empty-state').style.display='block';
+    document.getElementById('results-body').style.display='none';
+    return;
+  }
+  document.getElementById('empty-state').style.display='none';
+  document.getElementById('results-body').style.display='block';
+
+  // ── SE tax on this payment ──────────────────────────────────────────────────
+  let seTax = 0;
+  if(isSE){
+    const seBase = payment * 0.9235;
+    seTax = seBase * 0.153;
+  }
+
+  // ── Federal marginal rate on this payment ───────────────────────────────────
+  const fedMarginal = getFedMarginalRate(annual, isSE, status);
+  const fedTax = payment * fedMarginal;
+
+  // ── State tax on this payment ───────────────────────────────────────────────
+  let stateTax = 0;
+  let stateRateUsed = 0;
+  const sr = STATE_RATES[stateCode];
+  if(sr === null){
+    // California progressive
+    stateRateUsed = getCAMarginalRate(annual, status);
+    stateTax = payment * stateRateUsed;
+  } else if(sr === 'bracket'){
+    // NY, NJ, OR, MN — use marginal rate lookup
+    const brk = BRACKET_STATE_RATES[stateCode];
+    stateRateUsed = getMarginalRate(annual, brk);
+    stateTax = payment * stateRateUsed;
+  } else if(typeof sr === 'number'){
+    stateRateUsed = sr;
+    stateTax = payment * sr;
+  }
+
+  const totalGuard = seTax + fedTax + stateTax;
+  const takehome   = Math.max(0, payment - totalGuard);
+  const guardPct   = payment > 0 ? (totalGuard / payment) * 100 : 0;
+  const keepPct    = 100 - guardPct;
+
+  // Update DOM
+  document.getElementById('r-guard').textContent    = fmt(totalGuard);
+  document.getElementById('r-takehome').textContent = fmt(takehome);
+  document.getElementById('r-pct').textContent      = guardPct.toFixed(1);
+  document.getElementById('r-keep-pct').textContent = keepPct.toFixed(1);
+  document.getElementById('tax-bar-fill').style.width = Math.min(100, guardPct).toFixed(1) + '%';
+
+  // SE row visibility
+  document.getElementById('row-se').style.display = isSE ? 'flex' : 'none';
+  document.getElementById('r-se').textContent  = fmt(seTax);
+  document.getElementById('r-fed').textContent = fmt(fedTax);
+
+  // State row
+  const stateDisplay = STATE_NAMES[stateCode] || stateCode;
+  document.getElementById('r-state-name').textContent = stateDisplay;
+  document.getElementById('r-state').textContent = fmt(stateTax);
+  document.getElementById('row-state').style.display = stateTax > 0 ? 'flex' : 'none';
+
+  document.getElementById('r-total').textContent = fmt(totalGuard);
+
+  // Save for receipt
+  lastCalc = {
+    payment, annual, isSE, status, stateCode, stateDisplay,
+    seTax, fedTax, stateTax, totalGuard, takehome
+  };
+}
+
+function downloadReceipt(){
+  if(!lastCalc.payment) return;
+  const c = lastCalc;
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const timeStr = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  const filingMap = {single:'Single',mfj:'Married filing jointly',hoh:'Head of household'};
+
+  const seRow = c.isSE
+    ? `  SE Tax (15.3%):         $${fmt(c.seTax)}\n`
+    : '';
+  const stateRow = c.stateTax > 0
+    ? `  ${c.stateDisplay} state income: $${fmt(c.stateTax)}\n`
+    : `  State income tax:       $0 (no state tax)\n`;
+
+  const txt = `TAX GUARD RECEIPT
+Generated: ${dateStr} at ${timeStr}
+========================
+Payment received:        $${fmt(c.payment)}
+State:                   ${c.stateDisplay}
+Filing status:           ${filingMap[c.status]}
+Self-employed:           ${c.isSE ? 'Yes' : 'No'}
+Est. annual income:      $${fmt(c.annual)}
+
+RESERVE THIS AMOUNT:     $${fmt(c.totalGuard)}
+
+Breakdown:
+${seRow}  Federal income:          $${fmt(c.fedTax)}
+${stateRow}  TOTAL to reserve:        $${fmt(c.totalGuard)}
+
+Your take-home:          $${fmt(c.takehome)}
+
+Quarterly estimated tax due dates:
+  Q1: April 15
+  Q2: June 15
+  Q3: September 15
+  Q4: January 15 (following year)
+
+Pay at IRS.gov/payments.
+
+========================
+SideHustleGuard.com
+Educational estimate only — not tax advice.
+Consult a licensed CPA for your situation.
+`;
+
+  const blob = new Blob([txt], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tax-guard-receipt.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+recalc();
+</script>
+
+</body>
+</html>
