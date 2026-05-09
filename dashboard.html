@@ -1001,11 +1001,18 @@ document.addEventListener('alpine:init', () => {
     get reportDate() { return new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}); },
 
     requestReport() { this.showModal = true; this.reportEmail = ''; this.emailError = ''; },
-    submitReport() {
+    async submitReport() {
       if (!this.reportEmail || !this.reportEmail.includes('@')) { this.emailError = 'Please enter a valid email address.'; return; }
       this.emailError = '';
-      try { localStorage.setItem('shg_report_email', this.reportEmail); } catch(e) {}
       this.showModal = false;
+      // Best-effort Kit subscribe — mirrors /api/subscribe call in tool.html
+      try {
+        await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: this.reportEmail.trim().toLowerCase() })
+        });
+      } catch(e) { console.warn('Subscribe failed (continuing):', e); }
       setTimeout(() => this.generatePDF(), 100);
     },
 
