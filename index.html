@@ -55,14 +55,6 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is this actual legal advice?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "I sell on Etsy — do I really need this?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -87,10 +79,26 @@
         },
         {
           "@type": "Question",
-          "name": "Do you store my information?",
+          "name": "How does SideHustleGuard know what applies to me?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone."
+            "text": "You answer 5–7 questions about your hustle type, your state, and roughly how much you earn. SideHustleGuard uses those answers to apply the actual rules for your specific situation — not generic advice. That's why two people with different hustles in different states get completely different results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the free check actually free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because showing you your score is how we prove this works. The free check gives you your compliance score and your top 3 issues — real results, no card required. If those results surface issues you want to fix (most do), the $5 full report has the complete breakdown, action plan, and PDF. No subscription, no surprise charges."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this actual legal advice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney."
           }
         },
         {
@@ -103,18 +111,10 @@
         },
         {
           "@type": "Question",
-          "name": "What's the difference between a W-2 and a 1099?",
+          "name": "Do you store my information?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A W-2 means your employer withheld taxes all year — you likely owe nothing extra. A 1099 means nothing was withheld — you owe self-employment tax (15.3%) plus income tax entirely on your own. Side hustlers owe SE tax on any net profit over $400, even if they never received a 1099."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "When do I have to start paying quarterly taxes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "When you expect to owe $1,000 or more in federal taxes from self-employment income for the year. Due dates are April 15, June 15, September 15, and January 15. Missing a payment doesn't cause an immediate penalty, but you may owe an underpayment penalty at year-end if you paid less than 90% of your tax owed for the year."
+            "text": "No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone."
           }
         }
       ]
@@ -404,6 +404,7 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
 .faq-list { }
 .faq-item { border-bottom: 1px solid var(--border); padding: 17px 0; cursor: pointer; }
 .faq-q { font-size: 14px; font-weight: 500; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 16px; line-height: 1.4; }
+button.faq-q { width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 0; font-family: inherit; }
 .faq-toggle { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold); font-size: 16px; transition: transform .2s, border-color .2s; font-weight: 300; }
 .faq-item.open .faq-toggle { transform: rotate(45deg); border-color: var(--gold); }
 .faq-a { font-size: 13px; color: var(--text-muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height .3s, padding .3s; font-weight: 300; }
@@ -833,37 +834,37 @@ h2 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; }
       <p>Still not sure? Here are the things people ask before checking their hustle.</p>
     </div>
     <div class="faq-list">
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Is this actual legal advice? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">I sell on Etsy — do I really need this? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-1">Yes. Etsy sellers are self-employed the moment they make their first sale. That means self-employment tax, potential quarterly payments, and state-specific rules most sellers don't know about until they get a surprise bill. A 60-second check can save you from a very bad tax season.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">I sell on Etsy — do I really need this? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">Yes. Etsy sellers are self-employed the moment they make their first sale. That means self-employment tax, potential quarterly payments, and state-specific rules most sellers don't know about until they get a surprise bill. A 60-second check can save you from a very bad tax season.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">What if I haven't made any money yet? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-2">That's actually the best time to use this. Setting up correctly from day one is much easier than fixing problems later. We'll tell you exactly what to set up now so you're protected before the money starts coming in.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">What if I haven't made any money yet? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">That's actually the best time to use this. Setting up correctly from day one is much easier than fixing problems later. We'll tell you exactly what to set up now so you're protected before the money starts coming in.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">What exactly is in the $5 report? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-3">The $5 report is a complete, personalized compliance document — not a generic checklist. It covers every issue found, includes a prioritized action plan, a tax deadline calendar for your year, a deduction checklist specific to your hustle type, and a downloadable PDF to share with your CPA. Everything is tailored to your state and income level.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">What exactly is in the $5 report? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">The $5 report is a complete, personalized compliance document — not a generic checklist. It covers every issue found, includes a prioritized action plan, a tax deadline calendar for your year, a deduction checklist specific to your hustle type, and a downloadable PDF to share with your CPA. Everything is tailored to your state and income level.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">How does SideHustleGuard know what applies to me? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-4">You answer 5–7 questions about your hustle type, your state, and roughly how much you earn. SideHustleGuard uses those answers to apply the actual rules for your specific situation — not generic advice. That's why two people with different hustles in different states get completely different results.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Do you store my information? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Why is the free check actually free? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-5">Because showing you your score is how we prove this works. The free check gives you your compliance score and your top 3 issues — real results, no card required. If those results surface issues you want to fix (most do), the $5 full report has the complete breakdown, action plan, and PDF. No subscription, no surprise charges.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Do I need a business license for my side hustle? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">It depends on your state and hustle type. Most purely digital side hustles don't require a federal license, but many states and cities require a general business license or home occupation permit regardless of what you sell. Physical product sellers and service providers who work on-site almost always need one. The checker flags your specific requirements based on your state and hustle type in 60 seconds.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-6" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Is this actual legal advice? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-6">No — and that's intentional. SideHustleGuard provides general educational information, not legal or tax advice. Think of it as a knowledgeable friend explaining your situation in plain English. For complex situations, always consult a licensed CPA or attorney.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">What's the difference between a W-2 and a 1099? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">A W-2 means your employer withheld taxes all year — you likely owe nothing extra. A 1099 means nothing was withheld — you owe self-employment tax (15.3%) plus income tax entirely on your own. Side hustlers owe SE tax on any net profit over $400, even if they never received a 1099.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-7" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Do I need a business license for my side hustle? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-7">It depends on your state and hustle type. Most purely digital side hustles don't require a federal license, but many states and cities require a general business license or home occupation permit regardless of what you sell. Physical product sellers and service providers who work on-site almost always need one. The checker flags your specific requirements based on your state and hustle type in 60 seconds.</div>
       </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">When do I have to start paying quarterly taxes? <div class="faq-toggle">+</div></div>
-        <div class="faq-a">When you expect to owe $1,000 or more in federal taxes from self-employment income. Due dates are April 15, June 15, September 15, and January 15. Missing a payment doesn't cause an immediate penalty, but you may owe an underpayment penalty at year-end if you paid less than 90% of your tax owed for the year.</div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-8" onclick="var p=this.closest('.faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Do you store my information? <div class="faq-toggle" aria-hidden="true">+</div></button>
+        <div class="faq-a" id="faq-a-8">No. We don't store any personally identifiable information. Your answers are used only to generate your report and are not saved, sold, or shared with anyone.</div>
       </div>
     </div>
   </div>
