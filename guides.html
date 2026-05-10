@@ -160,6 +160,21 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   .article-grid.article-grid-2 > .article-card,
   .article-grid.article-grid-2 > .tool-card{flex:0 0 100%}
 }
+
+/* STR hub callout card */
+.str-hub-card{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);border-radius:10px;padding:13px 18px;text-decoration:none;color:var(--navy);font-size:14px;margin-bottom:20px;transition:border-color .14s}
+.str-hub-card:hover{border-color:var(--gold)}
+.str-hub-card strong{font-weight:600}
+.str-hub-card-cta{color:var(--gold);font-weight:500;white-space:nowrap;flex-shrink:0;font-size:13px}
+@media(max-width:480px){.str-hub-card{flex-direction:column;gap:6px}.str-hub-card-cta{align-self:flex-end}}
+
+/* STR filter chips */
+.str-filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.chip{padding:8px 16px;border-radius:100px;border:1.5px solid var(--border);background:var(--cream-d);color:var(--navy);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:border-color .14s,background .14s,color .14s}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip--active{background:var(--gold);color:var(--white);border-color:var(--gold)}
+.chip:focus-visible{outline:2px solid rgba(201,151,58,.5);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.chip{transition:none}}
 </style>
 <script type="application/ld+json">
 {
@@ -416,6 +431,16 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <div class="cat-head">
       <h2 class="cat-title">Short-Term Rentals</h2>
       <span class="cat-count">1 guide</span>
+    </div>
+    <a href="/short-term-rentals" class="str-hub-card">
+      <span>📖 <strong>New to STR taxes?</strong> Platforms, tax strategy, the 14-day rule, the STR loophole, and state rules — all in one place.</span>
+      <span class="str-hub-card-cta">Complete STR guide →</span>
+    </a>
+    <div class="str-filter-chips" id="str-filter-chips" role="group" aria-label="Filter by rental type">
+      <button class="chip chip--active" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="platform" aria-pressed="false">Platforms</button>
+      <button class="chip" data-filter="topic" aria-pressed="false">Topics</button>
+      <button class="chip" data-filter="state" aria-pressed="false">State Rules</button>
     </div>
     <div class="article-grid">
       <a href="/airbnb-host-taxes" class="article-card">
@@ -820,6 +845,43 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
   clearBtn.addEventListener('click', clearSearch);
   showAllBtn.addEventListener('click', clearSearch);
+})();
+
+/* STR filter chips — hidden until section has ≥ 6 cards */
+(function(){
+  var chips = document.getElementById('str-filter-chips');
+  if (!chips) return;
+  var section = chips.closest('.cat-section');
+  var cards = section ? Array.from(section.querySelectorAll('.article-card')) : [];
+  /* Hide chip row when < 6 cards; it renders but stays invisible so layout isn't affected */
+  if (cards.length < 6) { chips.style.display = 'none'; return; }
+  var btns = Array.from(chips.querySelectorAll('.chip'));
+  function apply(type) {
+    cards.forEach(function(c) {
+      c.style.display = (type === 'all' || c.dataset.rentalType === type) ? '' : 'none';
+    });
+    /* Re-trigger search if a query is active */
+    var si = document.getElementById('guide-search');
+    if (si && si.value) si.dispatchEvent(new Event('input'));
+  }
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) {
+        var on = b === btn;
+        b.classList.toggle('chip--active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      apply(btn.dataset.filter);
+    });
+    btn.addEventListener('keydown', function(e) {
+      var idx = btns.indexOf(btn);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault(); btns[(idx + 1) % btns.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault(); btns[(idx - 1 + btns.length) % btns.length].focus();
+      }
+    });
+  });
 })();
 </script>
 </body>

@@ -43,6 +43,7 @@ const PRIORITY_OVERRIDES = {
   'quarterly-tax-calculator':   '0.9',
   'state-tax-rates':            '0.9',
   'tax-checklist':              '0.9',
+  'short-term-rentals':         '0.9',
   'privacy':                    '0.3',
   'terms':                      '0.3',
 };
