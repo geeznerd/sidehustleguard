@@ -171,6 +171,13 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; font-weight: 400; }
 
+/* ── SKIP LINK ── */
+.skip-link { position: absolute; top: -100%; left: 8px; background: var(--gold); color: var(--white); padding: 8px 18px; border-radius: 4px; font-weight: 600; font-size: 14px; z-index: 9999; text-decoration: none; white-space: nowrap; }
+.skip-link:focus { top: 8px; }
+
+/* ── FOCUS VISIBLE ── */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
 /* ── NAV + TICKER FIXED HEADER ── */
 .fixed-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -232,17 +239,10 @@ h1 .outline { -webkit-text-stroke: 1.5px var(--navy); color: transparent; font-s
 @media(max-width:600px) { .picker-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* ── TICKER ── */
-.ticker { background: var(--navy); padding: 11px 0; overflow: hidden; }
-.ticker-track { display: flex; animation: scroll 22s linear infinite; white-space: nowrap; }
-@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-.ticker-item { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; padding: 0 22px; display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.ticker-item.hl { color: var(--gold-light); }
-.ticker-item::after { content: '·'; opacity: .3; }
-
-/* ── TICKER ── */
 .ticker { background: var(--navy); padding: 9px 0; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); }
 .ticker-track { display: flex; animation: scroll 22s linear infinite; white-space: nowrap; }
 @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker:hover .ticker-track { animation-play-state: paused; }
 .ticker-item { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; padding: 0 20px; display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .ticker-item.hl { color: var(--gold-light); }
 .ticker-item::after { content: '·'; opacity: .3; }
@@ -506,16 +506,26 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
   }
   .checks-dots { display: flex; margin-top: 8px; }
 }
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- FIXED HEADER: nav + ticker -->
 <div class="fixed-header">
 <nav>
   <a href="/" class="nav-logo">
     <div class="logo-icon">
-      <svg width="30" height="34" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg aria-hidden="true" width="30" height="34" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <span class="logo-text">SideHustle<span>Guard</span></span>
   </a>
@@ -529,7 +539,7 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
 </nav>
 
 <!-- TICKER locked inside fixed header -->
-<div class="ticker">
+<div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item hl">Free legal check</span><span class="ticker-item">All 50 states</span><span class="ticker-item hl">Etsy sellers</span><span class="ticker-item">Freelancers</span><span class="ticker-item hl">Plain English</span><span class="ticker-item">60 seconds</span><span class="ticker-item hl">No lawyer needed</span><span class="ticker-item">Instant results</span>
     <span class="ticker-item hl">Free legal check</span><span class="ticker-item">All 50 states</span><span class="ticker-item hl">Etsy sellers</span><span class="ticker-item">Freelancers</span><span class="ticker-item hl">Plain English</span><span class="ticker-item">60 seconds</span><span class="ticker-item hl">No lawyer needed</span><span class="ticker-item">Instant results</span>
@@ -538,9 +548,9 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
 </div><!-- /fixed-header -->
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-glow"></div>
+<section class="hero" id="main-content">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-badge">Free tax &amp; legal checker — all 50 states</div>
@@ -561,15 +571,15 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
       <div class="picker-step">Start your check · 60 seconds</div>
       <div class="picker-q">What kind of hustle do you run?</div>
       <div class="picker-grid">
-        <a href="/tool?type=Selling%20digital%20products" class="picker-opt"><span class="picker-icon">💾</span>Digital products</a>
-        <a href="/tool?type=Selling%20physical%20products" class="picker-opt"><span class="picker-icon">📦</span>Physical products</a>
-        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon">💼</span>Freelance / services</a>
-        <a href="/tool?type=Content%20creation" class="picker-opt"><span class="picker-icon">🎬</span>Content creation</a>
-        <a href="/tool?type=Reselling%20or%20flipping" class="picker-opt"><span class="picker-icon">🔄</span>Reselling / flipping</a>
-        <a href="/tool?type=Renting%20something%20out" class="picker-opt"><span class="picker-icon">🏠</span>Renting / hosting</a>
-        <a href="/tool?type=Coaching%20or%20teaching" class="picker-opt" title="Coaching, tutoring &amp; teaching"><span class="picker-icon">🎓</span>Coaching</a>
-        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt" title="Uber, Lyft &amp; rideshare apps"><span class="picker-icon">🚗</span>Rideshare</a>
-        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon">🛵</span>Delivery apps</a>
+        <a href="/tool?type=Selling%20digital%20products" class="picker-opt"><span class="picker-icon" aria-hidden="true">💾</span>Digital products</a>
+        <a href="/tool?type=Selling%20physical%20products" class="picker-opt"><span class="picker-icon" aria-hidden="true">📦</span>Physical products</a>
+        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon" aria-hidden="true">💼</span>Freelance / services</a>
+        <a href="/tool?type=Content%20creation" class="picker-opt"><span class="picker-icon" aria-hidden="true">🎬</span>Content creation</a>
+        <a href="/tool?type=Reselling%20or%20flipping" class="picker-opt"><span class="picker-icon" aria-hidden="true">🔄</span>Reselling / flipping</a>
+        <a href="/tool?type=Renting%20something%20out" class="picker-opt"><span class="picker-icon" aria-hidden="true">🏠</span>Renting / hosting</a>
+        <a href="/tool?type=Coaching%20or%20teaching" class="picker-opt" title="Coaching, tutoring &amp; teaching"><span class="picker-icon" aria-hidden="true">🎓</span>Coaching</a>
+        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt" title="Uber, Lyft &amp; rideshare apps"><span class="picker-icon" aria-hidden="true">🚗</span>Rideshare</a>
+        <a href="/tool?type=Freelance%20%2F%20services" class="picker-opt"><span class="picker-icon" aria-hidden="true">🛵</span>Delivery apps</a>
       </div>
 
       <div class="picker-foot">
@@ -652,14 +662,14 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
         <div class="price-amount">$0</div>
         <div class="price-period">always free · no card needed</div>
         <div class="feat-rows">
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Legal check & overall score</div><div class="feat-sub">See how protected you are</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Top 3 issues flagged</div><div class="feat-sub">Know your biggest risks</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Structure recommendation</div><div class="feat-sub">Sole prop, LLC, or S-corp</div></div></div>
-          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Full issue breakdown</div><div class="feat-sub dim">Unlock with full report</div></div></div>
-          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Personalized action plan</div><div class="feat-sub dim">Unlock with full report</div></div></div>
-          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Tax deadline calendar</div><div class="feat-sub dim">Unlock with full report</div></div></div>
-          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Deduction checklist</div><div class="feat-sub dim">Unlock with full report</div></div></div>
-          <div class="feat-row"><div class="feat-icon no"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">PDF download</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Legal check & overall score</div><div class="feat-sub">See how protected you are</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Top 3 issues flagged</div><div class="feat-sub">Know your biggest risks</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#276944" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Structure recommendation</div><div class="feat-sub">Sole prop, LLC, or S-corp</div></div></div>
+          <div class="feat-row"><div class="feat-icon no" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Full issue breakdown</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Personalized action plan</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Tax deadline calendar</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">Deduction checklist</div><div class="feat-sub dim">Unlock with full report</div></div></div>
+          <div class="feat-row"><div class="feat-icon no" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><rect x="2" y="4.5" width="5" height="3.5" rx="0.8" stroke="#9aa3b5" stroke-width="1.2"/><path d="M3 4.5V3A1.5 1.5 0 0 0 6 3V4.5" stroke="#9aa3b5" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><div class="feat-title dim">PDF download</div><div class="feat-sub dim">Unlock with full report</div></div></div>
         </div>
         <a href="/tool" class="btn-free">Get started free →</a>
       </div>
@@ -671,14 +681,14 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
         <div class="price-amount">$5</div>
         <div class="price-period">one-time · no subscription ever</div>
         <div class="feat-rows">
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Everything in Free</div><div class="feat-sub">Score, top issues, structure rec</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Full breakdown of every issue</div><div class="feat-sub">Plain-English + risk level for each</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Personalized action plan</div><div class="feat-sub">Do this first, then this, then this</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Tax deadline calendar</div><div class="feat-sub">Your specific due dates for the year</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Deduction checklist</div><div class="feat-sub">Every deduction you qualify for</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">PDF download</div><div class="feat-sub">Save it, share it with your CPA</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">All 50 states covered</div><div class="feat-sub">State-specific rules baked in</div></div></div>
-          <div class="feat-row"><div class="feat-icon yes"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">No subscription. Ever.</div><div class="feat-sub">Pay once, yours forever</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Everything in Free</div><div class="feat-sub">Score, top issues, structure rec</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Full breakdown of every issue</div><div class="feat-sub">Plain-English + risk level for each</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Personalized action plan</div><div class="feat-sub">Do this first, then this, then this</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Tax deadline calendar</div><div class="feat-sub">Your specific due dates for the year</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">Deduction checklist</div><div class="feat-sub">Every deduction you qualify for</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">PDF download</div><div class="feat-sub">Save it, share it with your CPA</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">All 50 states covered</div><div class="feat-sub">State-specific rules baked in</div></div></div>
+          <div class="feat-row"><div class="feat-icon yes" aria-hidden="true"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feat-title">No subscription. Ever.</div><div class="feat-sub">Pay once, yours forever</div></div></div>
         </div>
         <a href="/tool" class="btn-paid">Get full report — $5 →</a>
       </div>
