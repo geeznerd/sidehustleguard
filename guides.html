@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Tax & Legal Guides for Side Hustlers — SideHustleGuard</title>
-<meta name="description" content="45 free plain-English tax guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers. Calculators, audit risk checker, S-Corp simulator, and more.">
+<meta name="description" content="46 free resources for side hustlers — 7 interactive tax tools and 39 plain-English guides covering gig work, Etsy, freelancing, state taxes, and more. No jargon, no upsells.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.sidehustleguard.com/guides">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <meta property="og:title" content="Free Tax & Legal Guides for Side Hustlers">
-<meta property="og:description" content="45 free guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers. No jargon, no upsells.">
+<meta property="og:description" content="46 free resources — 7 interactive tax tools and 39 plain-English guides for gig workers, Etsy sellers, freelancers, and self-employed side hustlers. No jargon, no upsells.">
 <meta property="og:url" content="https://www.sidehustleguard.com/guides">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.sidehustleguard.com/og-image.png">
@@ -125,7 +125,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Free Tax & Legal Guides for Side Hustlers",
-  "description": "45 free plain-English tax guides and interactive tools for gig workers, Etsy sellers, freelancers, and self-employed side hustlers.",
+  "description": "46 free resources — 7 interactive tax tools and 39 plain-English guides for gig workers, Etsy sellers, freelancers, and self-employed side hustlers.",
   "url": "https://www.sidehustleguard.com/guides",
   "publisher": {
     "@type": "Organization",
@@ -186,7 +186,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="hero">
   <div class="hero-tag">Free tax guides</div>
   <h1>Plain-English guides for <em>every side hustle</em></h1>
-  <p class="hero-sub">45 free guides and interactive tools covering gig work, creator income, Etsy, e-commerce, freelancing, state taxes, and more — no jargon, no upsells.</p>
+  <p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, state taxes, and more — no jargon, no upsells.</p>
 </div>
 
 <div class="content">
@@ -651,7 +651,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- CTA -->
   <div class="cta-strip">
     <h2>Not sure what <em>you</em> owe?</h2>
-    <p>Answer 5 quick questions and get a personalized breakdown — taxes, licenses, and business structure for your exact hustle.</p>
+    <p>Answer 8 quick questions and get a personalized breakdown — taxes, licenses, and business structure for your exact hustle.</p>
     <a href="/tool" class="btn-gold">Check my hustle — free</a>
     <p class="cta-note">Free • No account required • Takes 60 seconds</p>
   </div>
@@ -670,5 +670,19 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   </div>
 </footer>
 
+<script>
+/* Auto-count tools and guides so hero copy stays accurate as cards are added/removed.
+   Tools  = .tool-card elements + .dashboard-feature-card elements
+   Guides = .article-card elements that are NOT .tool-card */
+(function(){
+  var tools  = document.querySelectorAll('.tool-card').length
+              + document.querySelectorAll('.dashboard-feature-card').length;
+  var guides = document.querySelectorAll('.article-card:not(.tool-card)').length;
+  var tc = document.getElementById('js-tools-count');
+  var gc = document.getElementById('js-guides-count');
+  if(tc) tc.textContent = tools;
+  if(gc) gc.textContent = guides;
+})();
+</script>
 </body>
 </html>
