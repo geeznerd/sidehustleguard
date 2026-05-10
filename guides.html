@@ -45,7 +45,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .hero-tag{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
 h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:580px;margin:0 auto}
+.hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:580px;margin:0 auto;text-wrap:balance}
 
 /* Content */
 .content{max-width:1060px;margin:0 auto;padding:24px 48px 80px}
@@ -70,9 +70,9 @@ h1 em{font-style:italic;color:var(--gold)}
 .article-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 20px rgba(28,43,74,0.07)}
 .article-icon{font-size:24px;line-height:1;flex-shrink:0;margin-top:2px}
 .article-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-.article-title{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s}
+.article-title{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s;text-wrap:balance}
 .article-card:hover .article-title{color:var(--gold)}
-.article-sub{font-size:12px;color:var(--dim);font-weight:300;line-height:1.4}
+.article-sub{font-size:12px;color:var(--dim);font-weight:300;line-height:1.4;text-wrap:pretty}
 .article-arrow{font-size:13px;color:var(--gold);opacity:0;flex-shrink:0;transition:opacity .12s;align-self:center}
 .article-card:hover .article-arrow{opacity:1}
 
@@ -204,7 +204,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="hero">
   <div class="hero-tag">Free tax guides</div>
   <h1>Plain-English guides for <em>every side hustle</em></h1>
-  <p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, state taxes, and more — no jargon, no upsells.</p>
+  <p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, and state taxes — no jargon, no upsells.</p>
 </div>
 
 <div class="content">
@@ -234,7 +234,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">🛡️</span>
         <div class="article-body">
           <span class="article-title">Audit Risk Estimator</span>
-          <span class="article-sub">Score your IRS audit risk in 60 seconds — with a safety checklist</span>
+          <span class="article-sub">Your IRS audit risk score with a safety checklist</span>
         </div>
         <span class="tool-badge">New</span>
         <span class="article-arrow">→</span>
@@ -243,7 +243,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">⚡</span>
         <div class="article-body">
           <span class="article-title">Tax Guard Calculator</span>
-          <span class="article-sub">Enter any payment — see the exact dollar amount to move to savings</span>
+          <span class="article-sub">How much to set aside from every client payment</span>
         </div>
         <span class="tool-badge">New</span>
         <span class="article-arrow">→</span>
@@ -327,7 +327,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">🛒</span>
         <div class="article-body">
           <span class="article-title">Instacart Taxes</span>
-          <span class="article-sub">Full-service vs in-store shopper rules</span>
+          <span class="article-sub">Tax rules for in-store and full-service shoppers</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -335,7 +335,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">📦</span>
         <div class="article-body">
           <span class="article-title">Amazon Flex Taxes</span>
-          <span class="article-sub">1099-NEC, mileage, and deductions for Flex drivers</span>
+          <span class="article-sub">Mileage, deductions, and the 1099-NEC explained</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -475,7 +475,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">📋</span>
         <div class="article-body">
           <span class="article-title">Etsy Schedule C</span>
-          <span class="article-sub">Step-by-step filing guide for sellers</span>
+          <span class="article-sub">Complete filing guide for Etsy sellers</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -515,7 +515,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">📫</span>
         <div class="article-body">
           <span class="article-title">Amazon FBA Taxes</span>
-          <span class="article-sub">Inventory, COGS, FBA fees, and 1099-K</span>
+          <span class="article-sub">Inventory, FBA fees, COGS, and 1099-K filing</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -531,7 +531,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">🏷️</span>
         <div class="article-body">
           <span class="article-title">Mercari Taxes</span>
-          <span class="article-sub">Casual seller vs reseller, COGS, and the $2,500 threshold</span>
+          <span class="article-sub">Casual vs reseller, COGS, and the $2,500 limit</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -549,7 +549,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">🏡</span>
         <div class="article-body">
           <span class="article-title">Airbnb Host Taxes</span>
-          <span class="article-sub">What hosts owe, what they can deduct, and how the 14-day rule works</span>
+          <span class="article-sub">Deductions, taxes owed, and the 14-day rule</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
@@ -609,7 +609,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
         <span class="article-icon">⚖️</span>
         <div class="article-body">
           <span class="article-title">LLC vs Sole Proprietor</span>
-          <span class="article-sub">The real differences, when an LLC saves money, and when it's just paperwork</span>
+          <span class="article-sub">Key differences and when it's worth the paperwork</span>
         </div>
         <span class="article-arrow">→</span>
       </a>
