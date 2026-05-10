@@ -1,7 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
-    { "src": "^/_[^/].*", "status": 404 }
+  "headers": [
+    {
+      "source": "/_:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    }
   ]
 }
