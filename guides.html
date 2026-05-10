@@ -114,6 +114,26 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .tool-card .article-arrow{color:var(--gold);opacity:0}
 .tool-card:hover .article-arrow{opacity:1}
 
+/* Search bar */
+.guide-search-form{margin-bottom:28px}
+.guide-search-wrap{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0 14px;transition:box-shadow .15s}
+.guide-search-wrap:focus-within{box-shadow:0 0 0 2.5px rgba(59,130,246,.28)}
+.guide-search-icon{font-size:15px;color:var(--dim);flex-shrink:0;line-height:1;user-select:none}
+.guide-search-input{flex:1;border:none;background:transparent;font-family:inherit;font-size:14px;color:var(--navy);padding:13px 0;outline:none}
+.guide-search-input::placeholder{color:var(--dim)}
+.guide-search-clear{background:none;border:none;cursor:pointer;font-size:18px;color:var(--dim);padding:4px 0 4px 4px;line-height:1;display:none;flex-shrink:0;transition:color .15s}
+.guide-search-clear:hover{color:var(--gold)}
+.guide-search-clear:focus-visible{outline:2px solid rgba(59,130,246,.6);border-radius:4px}
+/* Screen-reader live region */
+.guide-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* No-results state */
+.guide-no-results{display:none;text-align:center;padding:52px 24px 24px}
+.guide-no-results-msg{font-size:16px;color:var(--muted);font-weight:300;margin-bottom:18px}
+.guide-no-results-msg strong{color:var(--navy);font-weight:600}
+.guide-no-results-btn{background:none;border:1.5px solid var(--border);color:var(--navy);padding:9px 22px;border-radius:100px;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;transition:all .15s}
+.guide-no-results-btn:hover{border-color:var(--gold);color:var(--gold)}
+.guide-no-results-btn:focus-visible{outline:2px solid rgba(59,130,246,.6);outline-offset:2px}
+
 @media(max-width:760px){
   nav,footer{padding:13px 18px}
   .hero{padding:48px 18px 36px}
@@ -208,6 +228,35 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 
 <div class="content">
+
+  <!-- Search / filter -->
+  <form class="guide-search-form" role="search" onsubmit="return false">
+    <div class="guide-search-wrap">
+      <span class="guide-search-icon" aria-hidden="true">🔍</span>
+      <input
+        id="guide-search"
+        class="guide-search-input"
+        type="search"
+        placeholder="Search guides and tools…"
+        aria-label="Search guides and tools"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button
+        id="guide-search-clear"
+        class="guide-search-clear"
+        type="button"
+        aria-label="Clear search"
+      >×</button>
+    </div>
+  </form>
+  <span id="guide-search-sr" class="guide-sr-only" aria-live="polite" aria-atomic="true"></span>
+
+  <!-- No-results state -->
+  <div class="guide-no-results" id="guide-no-results">
+    <p class="guide-no-results-msg">No guides match <strong id="guide-no-results-term"></strong></p>
+    <button class="guide-no-results-btn" id="guide-show-all">Show all guides</button>
+  </div>
 
   <!-- Interactive Tools — featured first -->
   <div class="cat-section">
@@ -700,6 +749,83 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   var gc = document.getElementById('js-guides-count');
   if(tc) tc.textContent = tools;
   if(gc) gc.textContent = guides;
+})();
+
+/* Guide search / filter — vanilla JS, no dependencies */
+(function(){
+  var searchInput  = document.getElementById('guide-search');
+  var clearBtn     = document.getElementById('guide-search-clear');
+  var noResults    = document.getElementById('guide-no-results');
+  var noResultsTerm= document.getElementById('guide-no-results-term');
+  var showAllBtn   = document.getElementById('guide-show-all');
+  var srRegion     = document.getElementById('guide-search-sr');
+  var sections     = document.querySelectorAll('.cat-section');
+
+  /* Collect searchable text from a card element */
+  function cardText(card) {
+    var parts = [];
+    var sel = ['.article-title','.article-sub','.dfc-title','.dfc-sub','.dfc-eye'];
+    sel.forEach(function(s){
+      var el = card.querySelector(s);
+      if(el) parts.push(el.textContent);
+    });
+    return parts.join(' ').toLowerCase();
+  }
+
+  function runFilter(raw) {
+    var q = raw.trim().toLowerCase();
+
+    /* Show/hide clear button */
+    clearBtn.style.display = q ? 'block' : 'none';
+
+    var totalVisible = 0;
+
+    sections.forEach(function(section){
+      var cards = section.querySelectorAll(
+        '.article-card, .tool-card, .dashboard-feature-card'
+      );
+      var sectionCount = 0;
+
+      cards.forEach(function(card){
+        var match = !q || cardText(card).includes(q);
+        card.style.display = match ? '' : 'none';
+        if(match) sectionCount++;
+      });
+
+      /* Hide the whole section (including its heading) when nothing matches */
+      section.style.display = sectionCount ? '' : 'none';
+      totalVisible += sectionCount;
+    });
+
+    /* No-results state */
+    var empty = q && totalVisible === 0;
+    noResults.style.display = empty ? 'block' : 'none';
+    if(empty) noResultsTerm.textContent = '“' + q + '”';
+
+    /* Screen-reader announcement */
+    if(srRegion){
+      srRegion.textContent = q
+        ? (totalVisible
+            ? totalVisible + ' result' + (totalVisible !== 1 ? 's' : '')
+            : 'No results for ' + q)
+        : '';
+    }
+  }
+
+  function clearSearch() {
+    searchInput.value = '';
+    runFilter('');
+    searchInput.focus();
+  }
+
+  searchInput.addEventListener('input', function(){ runFilter(this.value); });
+
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') clearSearch();
+  });
+
+  clearBtn.addEventListener('click', clearSearch);
+  showAllBtn.addEventListener('click', clearSearch);
 })();
 </script>
 </body>
