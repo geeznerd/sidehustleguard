@@ -14,9 +14,10 @@
   {{ARTICLE_CARD_SUBTITLE}} One-line subtitle (≤ 70 chars)
 -->
 <a href="/{{SLUG}}" class="article-card">
-  <div class="article-icon">{{ARTICLE_ICON_EMOJI}}</div>
-  <div class="article-text">
-    <div class="article-title">{{ARTICLE_CARD_TITLE}}</div>
-    <div class="article-sub">{{ARTICLE_CARD_SUBTITLE}}</div>
+  <span class="article-icon" aria-hidden="true">{{ARTICLE_ICON_EMOJI}}</span>
+  <div class="article-body">
+    <span class="article-title">{{ARTICLE_CARD_TITLE}}</span>
+    <span class="article-sub">{{ARTICLE_CARD_SUBTITLE}}</span>
   </div>
+  <span class="article-arrow" aria-hidden="true">→</span>
 </a>
