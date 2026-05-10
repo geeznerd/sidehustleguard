@@ -1,0 +1,22 @@
+<!--
+  ARTICLE CARD SNIPPET — paste into the correct .cat-section in guides.html
+
+  CHECKLIST:
+  1. Replace all 4 {{PLACEHOLDERS}} below
+  2. Increment the <span class="cat-count"> number in the parent .cat-section
+  3. Confirm {slug}.html exists at the project root before deploying
+  4. Remove the noindex meta from {slug}.html when ready to go live
+
+  PLACEHOLDERS:
+  {{SLUG}}                  e.g.  airbnb-host-taxes
+  {{ARTICLE_ICON_EMOJI}}    Single emoji for the card icon, e.g.  🏠
+  {{ARTICLE_CARD_TITLE}}    Short card title (≤ 45 chars), e.g.  Airbnb Host Taxes
+  {{ARTICLE_CARD_SUBTITLE}} One-line subtitle (≤ 70 chars)
+-->
+<a href="/{{SLUG}}" class="article-card">
+  <div class="article-icon">{{ARTICLE_ICON_EMOJI}}</div>
+  <div class="article-text">
+    <div class="article-title">{{ARTICLE_CARD_TITLE}}</div>
+    <div class="article-sub">{{ARTICLE_CARD_SUBTITLE}}</div>
+  </div>
+</a>

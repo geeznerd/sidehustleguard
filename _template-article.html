@@ -1,0 +1,451 @@
+<!--
+╔══════════════════════════════════════════════════════════════════════╗
+║  HOW TO USE THIS TEMPLATE                                            ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  QUICK START                                                         ║
+║  1. Copy to {slug}.html at the project root — NOT _{slug}.html       ║
+║     (underscore prefix stays on template files only)                 ║
+║  2. Find+replace every {{PLACEHOLDER}} — full reference below        ║
+║  3. Write content between the H2 scaffold comments                   ║
+║  4. Build the TOC list to match your actual H2 ids                   ║
+║  5. Remove the <meta name="robots" content="noindex,nofollow">       ║
+║     tag on line ~16 — that is the go-live switch                     ║
+║  6. Add the card snippet (see _template-article-card.html) to the    ║
+║     correct section in guides.html and increment the cat-count       ║
+║  7. Drop OG images at /images/og/{slug}.png + .webp (1200×630 px)   ║
+║                                                                      ║
+║  SLUG RULE                                                           ║
+║  • Filename IS the slug: my-guide.html → /my-guide                   ║
+║  • Lowercase, hyphens only, no spaces, no trailing slash             ║
+║    (Vercel cleanUrls:true strips the .html automatically)            ║
+║                                                                      ║
+║  PLACEHOLDER REFERENCE                                               ║
+║  {{SLUG}}               e.g.  airbnb-host-taxes                      ║
+║  {{TITLE}}              Full page title (used in <title>, og:title,  ║
+║                         Article JSON-LD headline)                    ║
+║  {{META_DESCRIPTION}}   150–160 chars (<meta>, og:description,       ║
+║                         Article JSON-LD description)                 ║
+║  {{H1}}                 H1 text — wrap italic words in <em>…</em>    ║
+║  {{BREADCRUMB_LABEL}}   Short breadcrumb label, e.g. "Airbnb Taxes"  ║
+║  {{LAST_UPDATED_ISO}}   ISO date, e.g.  2026-05-01                   ║
+║  {{LAST_UPDATED_HUMAN}} Human date, e.g. "May 2026"                  ║
+║  {{READ_TIME}}          e.g.  8 min read                             ║
+║  {{HERO_INTRO}}         1–2 sentence lead paragraph (.hero-intro)    ║
+║  {{ANSWER_BOX}}         Direct-answer text inside .answer-box        ║
+║  {{NW_CONTEXT}}         Short label above NW card title              ║
+║                         e.g. "If you decide to form an LLC"          ║
+║  {{NW_DESC}}            1–2 sentences tailored to the article topic  ║
+║  {{TOOL_CTA_LINK}}      /tool query string, e.g. /tool?type=rental   ║
+║  {{TOOL_CTA_TEXT_MID}}  Mid-page CTA button label                    ║
+║  {{TOOL_CTA_TEXT_BTM}}  Bottom CTA button label                      ║
+║  {{IRS_RESOURCE_URL}}   IRS.gov URL for the bottom resource link     ║
+║  {{IRS_RESOURCE_LABEL}} Display text for that IRS link               ║
+╚══════════════════════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — SideHustleGuard</title>
+<!-- NOINDEX: remove this line when the article is ready to go live -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:image" content="https://www.sidehustleguard.com/images/og/{{SLUG}}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/{{SLUG}}.png">
+<meta name="description" content="{{META_DESCRIPTION}}">
+<link rel="canonical" href="https://www.sidehustleguard.com/{{SLUG}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{META_DESCRIPTION}}">
+<meta property="og:url" content="https://www.sidehustleguard.com/{{SLUG}}">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
+  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:26px;height:30px}
+.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
+.logo-text span{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--navy)}
+.hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.breadcrumb a:hover{color:var(--navy)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
+.article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
+.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.content{max-width:800px;margin:0 auto;padding:0 48px 80px}
+h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
+p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--navy);font-weight:600}
+ul,ol{padding-left:20px;margin-bottom:14px}
+li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--navy);font-weight:600}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
+.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:first-child{font-weight:500;color:var(--navy)}
+.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--gold-lt)}
+.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
+.footer-logo span{color:var(--gold)}
+.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:12px 14px;white-space:nowrap}.nav-right{gap:12px}}
+.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-body{flex:1}
+.nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
+.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
+.nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-card-arrow{font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0}
+.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+@media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
+.toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
+@media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "FAQ question 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Answer 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "FAQ question 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Answer 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "FAQ question 3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Answer 3."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{TITLE}}",
+  "description": "{{META_DESCRIPTION}}",
+  "url": "https://www.sidehustleguard.com/{{SLUG}}",
+  "datePublished": "{{LAST_UPDATED_ISO}}",
+  "dateModified": "{{LAST_UPDATED_ISO}}",
+  "author": {
+    "@type": "Organization",
+    "name": "SideHustleGuard",
+    "url": "https://www.sidehustleguard.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SideHustleGuard",
+    "url": "https://www.sidehustleguard.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.sidehustleguard.com/og-image.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.sidehustleguard.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://www.sidehustleguard.com/guides"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{TITLE}}",
+      "item": "https://www.sidehustleguard.com/{{SLUG}}"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="logo-text">SideHustle<span>Guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="/#how-it-works" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/guides" class="nav-link nav-guides">Guides</a>
+    <a href="/tool" class="nav-cta">Check my hustle — free →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="/">SideHustleGuard</a> → {{BREADCRUMB_LABEL}}</div>
+  <h1>{{H1}}</h1>
+  <div class="hero-meta"><time datetime="{{LAST_UPDATED_ISO}}">Updated {{LAST_UPDATED_HUMAN}} · {{READ_TIME}}</time></div>
+  <p class="article-disc">Educational information only — not legal or tax advice. Consult a CPA for your situation.</p>
+  <p class="hero-intro">{{HERO_INTRO}}</p>
+  <div class="answer-box">
+    ⚠️ <strong>The direct answer:</strong> {{ANSWER_BOX}}
+  </div>
+</div>
+
+<div class="content">
+<picture><source srcset="/images/og/{{SLUG}}.webp" type="image/webp"><img src="/images/og/{{SLUG}}.png" alt="{{TITLE}}" width="1200" height="630" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" loading="lazy"></picture>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTENT SCAFFOLD — write your H2 sections here
+     ─────────────────────────────────────────────────────────────
+     PATTERN REFERENCE:
+
+     H2 (with anchor id matching TOC):
+       <h2 id="section-slug">Section title — <em>italic phrase</em></h2>
+
+     H3:
+       <h3>Subsection title</h3>
+
+     Body paragraph:
+       <p>Text with <strong>bolded terms</strong> inline.</p>
+
+     Unordered list:
+       <ul>
+         <li><strong>Term</strong> — description</li>
+       </ul>
+
+     Ordered list:
+       <ol>
+         <li>Step one</li>
+       </ol>
+
+     Callout — amber (warning/watch-out):
+       <div class="callout callout-amber">
+         <p><strong>Watch out:</strong> Text here.</p>
+       </div>
+
+     Callout — green (tip/example):
+       <div class="callout callout-green">
+         <p><strong>Real example:</strong> Text here.</p>
+       </div>
+
+     Callout — navy (neutral info):
+       <div class="callout callout-navy">
+         <p><strong>Note:</strong> Text here.</p>
+       </div>
+
+     Comparison table (wrap in overflow div for mobile):
+       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em">
+       <table class="tax-table">
+         <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+         <tr><td>Row data</td><td>Row data</td><td>Row data</td></tr>
+       </table></div>
+
+     Horizontal rule (section break before FAQ):
+       <hr>
+
+     FAQ item (matches JSON-LD FAQPage above):
+       <div class="faq-item">
+         <h3>Question text?</h3>
+         <p>Answer text.</p>
+       </div>
+     ═══════════════════════════════════════════════════════════════ -->
+
+  <h2 id="section-one">First section — <em>headline phrase</em></h2>
+  <p>Replace this paragraph with your content.</p>
+
+  <h2 id="section-two">Second section</h2>
+  <p>Replace this paragraph with your content.</p>
+
+  <!-- Add more H2 sections as needed. -->
+
+<!-- ─────────────────────────────────────────────────────────────
+     TOC BOX — paste inside .content, AFTER the opening picture
+     and BEFORE the first H2 (or after your first 2-3 H2s).
+     Update the <li> list to match your actual H2 ids above.
+     ───────────────────────────────────────────────────────────── -->
+<div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
+  <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
+    <li><a href="#section-one" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>First section</a></li>
+    <li><a href="#section-two" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Second section</a></li>
+    <!-- Add one <li> per H2 -->
+  </ol>
+</div>
+
+  <!-- MID-PAGE CTA — place roughly halfway through the content -->
+  <div class="cta-box">
+    <h3>Not sure where <em>you</em> stand?</h3>
+    <p>Answer 8 questions and get a personalized breakdown of your specific situation — free.</p>
+    <a href="{{TOOL_CTA_LINK}}" class="btn-gold">{{TOOL_CTA_TEXT_MID}}</a>
+    <div class="cta-note">No sign-up · Plain English · 60 seconds</div>
+  </div>
+
+  <!-- Continue content H2s below the mid-page CTA -->
+
+<hr>
+<h2 id="frequently-asked-questions">Frequently asked <em>questions</em></h2>
+  <!-- Mirror the questions from JSON-LD FAQPage above -->
+  <div class="faq-item">
+    <h3>FAQ question 1?</h3>
+    <p>Answer 1.</p>
+  </div>
+  <div class="faq-item">
+    <h3>FAQ question 2?</h3>
+    <p>Answer 2.</p>
+  </div>
+  <div class="faq-item">
+    <h3>FAQ question 3?</h3>
+    <p>Answer 3.</p>
+  </div>
+
+<hr>
+
+  <h2 id="the-bottom-line">The bottom line</h2>
+  <p>Write your closing summary paragraph here.</p>
+
+
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+  <div class="nw-badge">Recommended</div>
+  <div class="nw-body">
+    <div class="nw-context">{{NW_CONTEXT}}</div>
+    <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+    <div class="nw-desc">{{NW_DESC}}</div>
+    <div class="nw-features">
+      <span class="nw-feat">✓ Address privacy on public records</span>
+      <span class="nw-feat">✓ All 50 states</span>
+      <span class="nw-feat">✓ Handles all paperwork</span>
+      <span class="nw-feat">✓ No hidden fees</span>
+    </div>
+    <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener sponsored">
+      Form your LLC with Northwest →
+    </a>
+    <div class="nw-disc">Affiliate link — we may earn a commission if you form an LLC through this link, at no extra cost to you.</div>
+  </div>
+</div>
+
+<div class="cta-box">
+    <h3>Know exactly where <em>you</em> stand</h3>
+    <p>Our free checker looks at your specific income, state, and setup — then tells you exactly what you owe and what to do next.</p>
+    <a href="{{TOOL_CTA_LINK}}" class="btn-gold">{{TOOL_CTA_TEXT_BTM}}</a>
+    <div class="cta-note">Free · No sign-up · 60 seconds · Plain English results</div>
+  </div>
+
+</div>
+
+
+<!-- RELATED SECTION — swap in 4–6 relevant article slugs + titles -->
+<div class="related-section">
+  <div class="related-label">Related guides</div>
+  <div class="related-grid">
+    <a href="/airbnb-host-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Airbnb Host Taxes</div>
+    </a>
+    <a href="/freelancer-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Freelancer Taxes</div>
+    </a>
+    <a href="/llc-vs-sole-proprietor" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">LLC vs Sole Proprietor</div>
+    </a>
+    <a href="/quarterly-taxes-self-employed" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Quarterly Taxes</div>
+    </a>
+    <a href="/side-hustle-taxes" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">Side Hustle Taxes</div>
+    </a>
+    <a href="/guides" class="related-card">
+      <div class="related-card-arrow">→</div>
+      <div class="related-card-title">All Guides</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SideHustle<span>Guard</span></span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tool">Free checker</a>
+    <a href="/guides">Guides</a>
+    <a href="/freelancer-taxes">Freelancer taxes</a>
+  </div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+</footer>
+
+<p style="font-size:13px;color:#6b7a96;margin-top:24px">📎 Official resource: <a href="{{IRS_RESOURCE_URL}}" target="_blank" rel="noopener noreferrer" style="color:#1c2b4a;text-decoration:underline">{{IRS_RESOURCE_LABEL}}</a> (IRS.gov)</p>
+</body>
+</html>
