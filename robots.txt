@@ -4,5 +4,6 @@ Disallow: /api/
 Disallow: /og-image
 Disallow: /guide-section-options
 Disallow: /tax-affiliate-options
+Disallow: /_template-article*
 
 Sitemap: https://www.sidehustleguard.com/sitemap.xml
