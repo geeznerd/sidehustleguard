@@ -46,6 +46,9 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
 h1 .h1-em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:580px;margin:0 auto;text-wrap:balance}
+.hero-cta-ghost{display:inline-block;margin-top:22px;padding:9px 22px;border:1.5px solid rgba(28,43,74,.18);border-radius:100px;font-size:13px;font-weight:500;color:var(--navy);text-decoration:none;transition:all .15s}
+.hero-cta-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-cta-ghost:focus-visible{outline:2px solid rgba(59,130,246,.6);outline-offset:2px}
 
 /* Content */
 .content{max-width:1060px;margin:0 auto;padding:24px 48px 80px}
@@ -225,6 +228,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <div class="hero-tag">Free tax guides</div>
   <h1>Plain-English guides for <span class="h1-em">every side hustle</span></h1>
   <p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, and state taxes — no jargon, no upsells.</p>
+  <a href="/dashboard" class="hero-cta-ghost">Try the dashboard →</a>
 </div>
 
 <div class="content">
