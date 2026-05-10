@@ -1,59 +1,61 @@
 # Short-Term Rental Content — Launch Checklist
 
 Updated: 2026-05-10
-Latest commit: 9656097
+Latest commit: (pending)
 
-All 27 scaffold files are noindex, placeholder-free, and carry the correct
-4-level breadcrumb: SideHustleGuard → Guides → Short-Term Rentals → [Title].
-
-Remove `<meta name="robots" content="noindex, nofollow">` from each file as
-body copy is completed, then re-run `node generate-sitemap.js`.
+All 27 scaffold files are live and indexed. Hub page live at /short-term-rentals.
+guides.html STR section shows 28 cards. Sitemap at 79 URLs.
 
 ---
 
 ## Platform Guides (8 files)
-*Add cards to guides.html `id="short-term-rentals"` section when live*
 
 - [x] **airbnb-host-taxes.html** — LIVE (body copy complete, indexed)
-- [ ] **vrbo-host-taxes.html** — TODO body copy · 8 min read
-- [ ] **booking-com-host-taxes.html** — TODO body copy · 8 min read
-- [ ] **turo-host-taxes.html** — TODO body copy · 8 min read
-- [ ] **hipcamp-host-taxes.html** — TODO body copy · 8 min read
-- [ ] **rv-rental-host-taxes.html** — TODO body copy · 8 min read
-- [ ] **furnished-finder-taxes.html** — TODO body copy · 8 min read
-- [ ] **neighbor-storage-host-taxes.html** — TODO body copy · 8 min read
+- [x] **vrbo-host-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **booking-com-host-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **turo-host-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **hipcamp-host-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **rv-rental-host-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **furnished-finder-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **neighbor-storage-host-taxes.html** — LIVE (indexed 2026-05-10)
 
 ---
 
-## STR Tax Strategy Guides (11 files)
-*Add cards to guides.html `id="short-term-rentals"` section when live*
+## STR Tax Strategy Guides (12 files)
 
-- [ ] **airbnb-14-day-rule.html** — scaffold complete (FAQs written) · 8 min read
-- [ ] **schedule-c-vs-schedule-e-str.html** — TODO body copy · 8 min read
-- [ ] **short-term-rental-loophole.html** — TODO body copy · 8 min read
-- [ ] **cost-segregation-str.html** — TODO body copy · 8 min read
-- [ ] **lodging-tax-by-state.html** — TODO body copy · 8 min read
-- [ ] **airbnb-self-employment-tax.html** — TODO body copy · 8 min read
-- [ ] **airbnb-deductions-checklist.html** — TODO body copy · 8 min read
-- [ ] **mixed-use-rental-taxes.html** — TODO body copy · 8 min read
-- [ ] **house-hacking-taxes.html** — TODO body copy · 8 min read
-- [ ] **str-business-structure.html** — TODO body copy · 8 min read
-- [ ] **airbnb-1099-k.html** — TODO body copy · 8 min read
-- [ ] **quarterly-taxes-for-airbnb-hosts.html** — TODO body copy · 8 min read
+- [x] **airbnb-14-day-rule.html** — LIVE (indexed 2026-05-10)
+- [x] **schedule-c-vs-schedule-e-str.html** — LIVE (indexed 2026-05-10)
+- [x] **short-term-rental-loophole.html** — LIVE (indexed 2026-05-10)
+- [x] **cost-segregation-str.html** — LIVE (indexed 2026-05-10)
+- [x] **lodging-tax-by-state.html** — LIVE (body copy complete + 50-state table, indexed 2026-05-10)
+- [x] **airbnb-self-employment-tax.html** — LIVE (indexed 2026-05-10)
+- [x] **airbnb-deductions-checklist.html** — LIVE (indexed 2026-05-10)
+- [x] **mixed-use-rental-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **house-hacking-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **str-business-structure.html** — LIVE (indexed 2026-05-10)
+- [x] **airbnb-1099-k.html** — LIVE (indexed 2026-05-10)
+- [x] **quarterly-taxes-for-airbnb-hosts.html** — LIVE (indexed 2026-05-10)
 
 ---
 
 ## STR State Rule Guides (8 files)
-*Add cards to guides.html `id="short-term-rentals"` section when live*
 
-- [ ] **california-short-term-rental-rules.html** — scaffold drafted (Prompt 4) · 10 min read
-- [ ] **new-york-short-term-rental-rules.html** — TODO body copy · 10 min read
-- [ ] **florida-short-term-rental-taxes.html** — TODO body copy · 10 min read
-- [ ] **hawaii-short-term-rental-rules.html** — TODO body copy · 10 min read
-- [ ] **texas-short-term-rental-taxes.html** — TODO body copy · 10 min read
-- [ ] **colorado-short-term-rental-taxes.html** — TODO body copy · 10 min read
-- [ ] **tennessee-short-term-rental-taxes.html** — TODO body copy · 10 min read
-- [ ] **arizona-short-term-rental-taxes.html** — TODO body copy · 10 min read
+- [x] **california-short-term-rental-rules.html** — LIVE (indexed 2026-05-10)
+- [x] **new-york-short-term-rental-rules.html** — LIVE (indexed 2026-05-10)
+- [x] **florida-short-term-rental-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **hawaii-short-term-rental-rules.html** — LIVE (indexed 2026-05-10)
+- [x] **texas-short-term-rental-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **colorado-short-term-rental-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **tennessee-short-term-rental-taxes.html** — LIVE (indexed 2026-05-10)
+- [x] **arizona-short-term-rental-taxes.html** — LIVE (indexed 2026-05-10)
+
+---
+
+## STR Hub Page
+
+- [x] **short-term-rentals.html** — LIVE (indexed, 52nd URL, committed 46f182f)
+  - H1: Short-Term Rental Taxes: The Complete Playbook
+  - Decision tree, 28-card grid, FAQ, CTA
 
 ---
 
@@ -70,8 +72,10 @@ body copy is completed, then re-run `node generate-sitemap.js`.
 ---
 
 ## guides.html Short-Term Rentals section
-`id="short-term-rentals"` section is live with 1 card (Airbnb Host Taxes).
-Add article cards here as each scaffold goes live. Increment `<span class="cat-count">` with each addition.
+
+`id="short-term-rentals"` section live with 28 cards + hub card link.
+Filter chips active (all / platforms / topics / state rules).
+Count badge: `28 guides`.
 
 ---
 
@@ -86,7 +90,7 @@ Add article cards here as each scaffold goes live. Increment `<span class="cat-c
 
 ---
 
-## OG images needed (27 total)
+## OG images needed (27 total — not yet created)
 
 Platform guides:
 - `/images/og/vrbo-host-taxes.png` + `.webp`
@@ -123,59 +127,53 @@ State guides:
 
 ---
 
-## STR hub page (deferred)
-
-- [ ] **short-term-rentals.html** — build when first batch of scaffold pages go live
-  - H1: Short-Term Rental Taxes: The Complete Playbook
-  - 3 card groups: Platform Guides, Tax Strategy, State Rules
-  - Add to sitemap after launch
-
----
-
 ## Scaffold audit (2026-05-10)
 
 | File | Exists | noindex | No placeholders | Breadcrumb |
 |---|---|---|---|---|
-| airbnb-14-day-rule | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| vrbo-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| booking-com-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| turo-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| hipcamp-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| rv-rental-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| furnished-finder-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| neighbor-storage-host-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| schedule-c-vs-schedule-e-str | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| short-term-rental-loophole | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| cost-segregation-str | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| lodging-tax-by-state | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| airbnb-self-employment-tax | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| airbnb-deductions-checklist | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| mixed-use-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| house-hacking-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| str-business-structure | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| airbnb-1099-k | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| quarterly-taxes-for-airbnb-hosts | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| california-short-term-rental-rules | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| new-york-short-term-rental-rules | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| florida-short-term-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| hawaii-short-term-rental-rules | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| texas-short-term-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| colorado-short-term-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| tennessee-short-term-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
-| arizona-short-term-rental-taxes | ✅ | ✅ | ✅ | ✅ Short-Term Rentals |
+| airbnb-14-day-rule | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| vrbo-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| booking-com-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| turo-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| hipcamp-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| rv-rental-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| furnished-finder-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| neighbor-storage-host-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| schedule-c-vs-schedule-e-str | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| short-term-rental-loophole | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| cost-segregation-str | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| lodging-tax-by-state | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| airbnb-self-employment-tax | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| airbnb-deductions-checklist | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| mixed-use-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| house-hacking-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| str-business-structure | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| airbnb-1099-k | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| quarterly-taxes-for-airbnb-hosts | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| california-short-term-rental-rules | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| new-york-short-term-rental-rules | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| florida-short-term-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| hawaii-short-term-rental-rules | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| texas-short-term-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| colorado-short-term-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| tennessee-short-term-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
+| arizona-short-term-rental-taxes | ✅ | ✅ removed | ✅ | ✅ Short-Term Rentals |
 
 ---
 
 ## Infrastructure done
 
-- [x] guides.html: `id="short-term-rentals"` section created (1 card: Airbnb)
+- [x] guides.html: `id="short-term-rentals"` section — 28 cards live, filter chips active
+- [x] guides.html: meta description + OG description updated (74 resources / 67 guides)
 - [x] guides.html: Gig Work & Delivery count corrected to 8
 - [x] guides.html: section `id` attrs on all sections including new STR section
 - [x] robots.txt: `Disallow: /_template-article*`
 - [x] vercel.json: `^/_[^/].*` → 404 (blocks all `/_*` routes)
-- [x] sitemap.xml: script-generated, noindex files excluded (51 live URLs)
+- [x] sitemap.xml: 79 live URLs (script-generated, noindex files excluded)
 - [x] generate-sitemap.js: re-run after each noindex removal
 - [x] 39 existing live articles: 4-level JSON-LD breadcrumbs
 - [x] airbnb-host-taxes.html: internal links to /airbnb-14-day-rule, /schedule-c-vs-schedule-e-str, /short-term-rental-loophole
 - [x] airbnb-host-taxes.html: breadcrumb updated to Short-Term Rentals section
-- [x] All 27 scaffolds: placeholder-free, noindex, correct breadcrumbs, read times set
+- [x] All 27 scaffolds: placeholder-free, noindex removed, correct breadcrumbs, read times corrected
+- [x] lodging-tax-by-state.html: full body copy + 50-state tax rate table (16 verified + 34 estimated with † caveat)
+- [x] short-term-rentals.html: hub page live (decision tree, 28-card grid, FAQ)

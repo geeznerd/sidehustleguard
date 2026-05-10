@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Airbnb Lodging Tax by State — What Airbnb Collects vs What You Owe — SideHustleGuard</title>
-<!-- NOINDEX: remove this line when the article is ready to go live -->
-<meta name="robots" content="noindex, nofollow">
+<title>STR Lodging Tax by State — What Hosts Owe in Every State — SideHustleGuard</title>
+<meta name="robots" content="index, follow">
 <meta property="og:image" content="https://www.sidehustleguard.com/images/og/lodging-tax-by-state.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/lodging-tax-by-state.png">
-<meta name="description" content="Airbnb collects and remits occupancy taxes in most U.S. states — but not all. Here's where hosts are still responsible for collecting and remitting lodging tax directly with local authorities.">
+<meta name="description" content="State-by-state lodging and occupancy tax rates for short-term rental hosts, plus what Airbnb and Vrbo collect automatically — and where you're still on the hook.">
 <link rel="canonical" href="https://www.sidehustleguard.com/lodging-tax-by-state">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<meta property="og:title" content="Airbnb Lodging Tax by State — What Airbnb Collects vs What You Owe">
-<meta property="og:description" content="Airbnb collects and remits occupancy taxes in most U.S. states — but not all. Here's where hosts are still responsible for collecting and remitting lodging tax directly with local authorities.">
+<meta property="og:title" content="STR Lodging Tax by State — What Hosts Owe in Every State">
+<meta property="og:description" content="State-by-state lodging and occupancy tax rates for short-term rental hosts, plus what Airbnb and Vrbo collect automatically — and where you're still on the hook.">
 <meta property="og:url" content="https://www.sidehustleguard.com/lodging-tax-by-state">
 <meta property="og:type" content="article">
 <style>
@@ -59,11 +58,15 @@ li strong{color:var(--navy);font-weight:600}
 .callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
 .callout p{margin-bottom:0;font-size:14px}
 .callout strong{color:var(--navy)}
-.tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
-.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
-.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table-wrap{overflow-x:auto;margin:24px 0}
+.tax-table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:11px;letter-spacing:.05em;white-space:nowrap}
+.tax-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300;vertical-align:top}
 .tax-table tr:last-child td{border-bottom:none}
 .tax-table td:first-child{font-weight:500;color:var(--navy)}
+.tax-table tr:nth-child(even) td{background:rgba(240,236,227,0.35)}
+.tax-table .est{opacity:0.8}
+.table-note{font-size:11px;color:var(--dim);margin-top:8px;font-style:italic}
 .cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
 .cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
 .cta-box h3 em{font-style:italic;color:var(--gold-lt)}
@@ -138,11 +141,11 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Airbnb Lodging Tax by State — What Airbnb Collects vs What You Owe",
-  "description": "Airbnb collects and remits occupancy taxes in most U.S. states — but not all. Here's where hosts are still responsible for collecting and remitting lodging tax directly with local authorities.",
+  "headline": "STR Lodging Tax by State — What Hosts Owe in Every State",
+  "description": "State-by-state lodging and occupancy tax rates for short-term rental hosts, plus what Airbnb and Vrbo collect automatically — and where you're still on the hook.",
   "url": "https://www.sidehustleguard.com/lodging-tax-by-state",
   "datePublished": "2026-05-01",
-  "dateModified": "2026-05-01",
+  "dateModified": "2026-05-10",
   "author": {"@type": "Organization", "name": "SideHustleGuard", "url": "https://www.sidehustleguard.com"},
   "publisher": {"@type": "Organization", "name": "SideHustleGuard", "url": "https://www.sidehustleguard.com", "logo": {"@type": "ImageObject", "url": "https://www.sidehustleguard.com/og-image.png"}}
 }
@@ -155,7 +158,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sidehustleguard.com"},
     {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://www.sidehustleguard.com/guides"},
     {"@type": "ListItem", "position": 3, "name": "Short-Term Rentals", "item": "https://www.sidehustleguard.com/guides#short-term-rentals"},
-    {"@type": "ListItem", "position": 4, "name": "Airbnb Lodging Tax by State — What Airbnb Collects vs What You Owe", "item": "https://www.sidehustleguard.com/lodging-tax-by-state"}
+    {"@type": "ListItem", "position": 4, "name": "STR Lodging Tax by State — What Hosts Owe in Every State", "item": "https://www.sidehustleguard.com/lodging-tax-by-state"}
   ]
 }
 </script>
@@ -178,36 +181,30 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
 <div class="hero">
   <div class="breadcrumb"><a href="/">SideHustleGuard</a> → <a href="/guides">Guides</a> → <a href="/guides#short-term-rentals">Short-Term Rentals</a> → Lodging Tax by State</div>
-  <h1>Airbnb lodging tax by state — <em>what Airbnb collects for you and what you still owe</em></h1>
-  <div class="hero-meta"><time datetime="2026-05-01">Updated May 2026 · 5 min read</time></div>
-  <p class="article-disc">Educational information only — not legal or tax advice. Consult a CPA for your situation.</p>
-  <p class="hero-intro">Airbnb handles occupancy taxes automatically in most of the country — but hosts who assume full coverage and skip registration in uncovered jurisdictions can find themselves personally liable for years of back taxes, interest, and penalties. This guide covers where Airbnb collects for you, where it doesn't, and what to do in both cases before your first booking.</p>
+  <h1>STR lodging tax by state — <em>what you owe in all 50 states</em></h1>
+  <div class="hero-meta"><time datetime="2026-05-10">Updated May 2026 · 14 min read</time></div>
+  <p class="article-disc">Educational information only — not legal or tax advice. Tax rates change; verify current rates with your state revenue department before remitting.</p>
+  <p class="hero-intro">Airbnb handles occupancy taxes automatically in most of the country — but hosts who assume full coverage and skip registration in uncovered jurisdictions can find themselves personally liable for years of back taxes, interest, and penalties. This guide covers what lodging tax is, where platforms collect for you, where they don't, and what every state charges at the state level.</p>
   <div class="answer-box">
-    ⚠️ <strong>The direct answer:</strong> Airbnb automatically collects and remits state and local occupancy taxes in most U.S. jurisdictions — but "most" isn't "all." In states and localities without a platform tax collection agreement, you are responsible for collecting lodging tax from guests, registering with the tax authority, and filing returns yourself. Failing to do so can result in back taxes, interest, and penalties.
+    ⚠️ <strong>The direct answer:</strong> Airbnb automatically collects and remits state and local occupancy taxes in most U.S. jurisdictions — but "most" isn't "all." In states and localities without a platform collection agreement, you are responsible for collecting lodging tax from guests, registering with the tax authority, and filing returns yourself. State-level rates range from 0% (Alaska, Nevada — local only) to 15% (Connecticut). Local city and county taxes stack on top and can add 5–12% more.
   </div>
 </div>
 
 <div class="content">
-<!-- ⚠️ OG IMAGE NEEDED: /images/og/lodging-tax-by-state.png + .webp (1200×630) before going live -->
-<picture><source srcset="/images/og/airbnb-host-taxes.webp" type="image/webp"><img src="/images/og/airbnb-host-taxes.png" alt="Airbnb lodging tax by state — what Airbnb collects vs what you owe" width="1200" height="630" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" loading="lazy"></picture>
+<!-- OG IMAGE: /images/og/lodging-tax-by-state.png + .webp (1200×630) -->
+<picture><source srcset="/images/og/airbnb-host-taxes.webp" type="image/webp"><img src="/images/og/airbnb-host-taxes.png" alt="STR lodging tax by state — what short-term rental hosts owe" width="1200" height="630" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" loading="lazy"></picture>
 
 <div style="background:var(--cream-d);border-radius:10px;padding:20px 24px;margin:0 0 36px">
   <div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px">Key questions this guide answers</div>
   <ul style="margin:0;padding-left:18px">
-    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">Does Airbnb automatically pay my lodging taxes for me?</li>
+    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What is lodging tax and who actually pays it?</li>
     <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">Which states does Airbnb collect occupancy tax in?</li>
-    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What is occupancy tax and how much is it typically?</li>
-    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">How do I register to collect and remit lodging tax in my jurisdiction?</li>
+    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What are the lodging tax rates in all 50 states?</li>
+    <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">How do I register to collect and remit lodging tax?</li>
     <li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">Does Vrbo collect lodging taxes the same way Airbnb does?</li>
     <li style="font-size:14px;color:var(--muted);margin-bottom:0;font-weight:300">What happens if I didn't collect lodging tax and should have?</li>
   </ul>
 </div>
-
-  <h2 id="what-is-lodging-tax">What is lodging tax (occupancy tax)?</h2>
-  <!-- TODO: Cover the basics: state/local taxes on short-term rental of accommodations, also called hotel tax, transient occupancy tax (TOT), or room tax. Collected by the host from guests at booking and remitted to the tax authority. Typical rates: 5–15% of booking value, varying widely by jurisdiction. Separate from income tax — these are consumption taxes, not taxes on host income. Note that lodging tax is charged to and paid by the guest; the host is the collector and remitter. -->
-
-  <h2 id="what-airbnb-collects-for-you">What Airbnb collects and remits automatically</h2>
-  <!-- TODO: Explain that Airbnb has tax collection agreements with most (but not all) U.S. states, many counties, and some cities. Where agreements exist, Airbnb automatically adds tax to the guest's bill, collects it, and remits to the authority. Host does not need to register or file in those jurisdictions. How to check: Airbnb's Help Center has a "Local tax collection" page listing every jurisdiction covered. If your jurisdiction is listed, you're covered. Callout-green: "If Airbnb collects and remits your local occupancy tax, you'll see it as a separate line item in guest receipts and it will appear in your transaction history as a passthrough amount." -->
 
 <div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:44px 0 36px">
   <div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
@@ -215,6 +212,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <li><a href="#what-is-lodging-tax" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What is lodging tax?</a></li>
     <li><a href="#what-airbnb-collects-for-you" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What Airbnb collects automatically</a></li>
     <li><a href="#where-you-still-owe" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Where you're still responsible</a></li>
+    <li><a href="#state-lodging-tax-table" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>50-state rate table</a></li>
     <li><a href="#how-to-register-and-remit" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How to register and remit</a></li>
     <li><a href="#vrbo-and-other-platforms" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Vrbo and other platforms</a></li>
     <li><a href="#frequently-asked-questions" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Frequently asked questions</a></li>
@@ -222,11 +220,494 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   </ol>
 </div>
 
+  <h2 id="what-is-lodging-tax">What is lodging tax (and who actually pays it)?</h2>
+
+  <p>Lodging tax goes by a lot of names — occupancy tax, hotel tax, transient occupancy tax (TOT), room tax, bed tax — but they all refer to the same thing: a consumption tax charged to guests when they stay somewhere for a short period. The guest pays it. The host collects it and passes it to the government.</p>
+
+  <p>This is <strong>not a tax on your rental income</strong> — that's a different conversation (Schedule E, Schedule C, depreciation). Lodging tax is a tax on the transaction. Think of yourself as the government's tax collector for this one. Your job is to add it to the guest's bill, set it aside, and remit it on schedule.</p>
+
+  <p>Most states define "short-term" as stays under 30 days — but there are exceptions. Maine uses a 28-day threshold. Florida taxes stays up to 6 months. New Hampshire exempts stays of 185 consecutive days or more. The short-stay threshold for your state is noted in the table below.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Important:</strong> Lodging tax is separate from and in addition to your state and federal income tax on rental profits. You still owe income tax on what you earn. You also owe lodging tax on what the guest pays. They are completely independent obligations.</p>
+  </div>
+
+  <h2 id="what-airbnb-collects-for-you">What Airbnb collects and remits automatically</h2>
+
+  <p>Airbnb has collection agreements with most U.S. states and a large number of individual counties and cities. When an agreement exists, Airbnb automatically adds the occupancy tax to the guest's checkout price, collects it, and remits it directly to the authority on your behalf. You don't register, you don't file, and you don't see the money. It flows through the platform as a passthrough.</p>
+
+  <p>You'll see it in your transaction history as a separate line item labeled "occupancy taxes" — it's not part of your payout. If Airbnb's 1099-K later shows this amount in gross receipts, you subtract it before reporting rental income; it was never your money.</p>
+
+  <div class="callout callout-green">
+    <p><strong>How to check your jurisdiction:</strong> Go to Airbnb Help Center → search "local tax collection" → look for your state and city in the covered jurisdictions list. If it's listed, you're covered for platform bookings. If it's not listed, you're responsible. This list updates as Airbnb adds new agreements — check it at the start of each calendar year.</p>
+  </div>
+
+  <p>Platform coverage is not a guarantee for every local tax. Airbnb might collect your state lodging tax but not your city's supplemental tourism tax. Check both levels.</p>
+
   <h2 id="where-you-still-owe">Where you're still responsible</h2>
-  <!-- TODO: Cover jurisdictions not covered by Airbnb's collection agreements: some rural counties, certain city taxes even in states where state tax is covered, jurisdictions that opted out, and direct bookings entirely. For these, you must: (1) register as a lodging operator with the local tax authority, (2) collect the tax from guests (add it to your nightly rate), (3) file periodic returns (monthly or quarterly), and (4) remit the tax collected. Failing to do so makes you personally liable for uncollected taxes plus penalties and interest. -->
+
+  <p>Even where Airbnb collects state and county lodging tax, you may still owe taxes that fall outside the agreement. The four most common gaps:</p>
+
+  <ul>
+    <li><strong>Uncovered counties or cities.</strong> A state may be covered, but not every municipality within it. Rural counties in particular are often not on Airbnb's list. A single county-level tax you missed can create years of back-tax liability.</li>
+    <li><strong>City tourism or convention taxes.</strong> Many cities layer a separate municipal tax on top of state rates. Chicago adds 4.5%. Nashville adds up to 6%. These are separate from state lodging tax and may not be covered by the same agreement.</li>
+    <li><strong>Direct bookings.</strong> Airbnb's collection only covers Airbnb transactions. Email reservations, your own website, repeat guests who pay you directly — all of these are entirely your responsibility, regardless of platform coverage.</li>
+    <li><strong>Opted-out jurisdictions.</strong> Some localities have specifically declined platform collection agreements and require hosts to register directly. California is the best example: there is no statewide lodging tax, and each city's TOT is the host's direct responsibility in uncovered cities.</li>
+  </ul>
+
+  <div class="callout callout-navy">
+    <p><strong>If you're unsure:</strong> Contact your county assessor or city revenue department before your first booking. Ask specifically: "Does Airbnb collect and remit transient occupancy tax for bookings in [your city/county]?" Get it in writing or save the web page. Regulators rarely pursue good-faith hosts who register promptly.</p>
+  </div>
+
+  <h2 id="state-lodging-tax-table">50-state lodging tax reference — <em>what hosts owe at the state level</em></h2>
+
+  <div class="callout callout-amber" style="margin-bottom:16px">
+    <p><strong>Before you rely on this table:</strong> Rates shown are state-level only. Local city and county taxes stack on top — sometimes significantly. Rows marked <strong>†</strong> are estimated from state tax codes as of early 2026; verify current rates at your state revenue department before remitting. Rows without † reflect rates provided to SideHustleGuard in May 2026 and are more recently confirmed. Tax rates change — always check official sources before filing. This table does not constitute tax advice.</p>
+  </div>
+
+  <div class="tax-table-wrap">
+  <table class="tax-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>State Sales Tax</th>
+        <th>Lodging / Occupancy Tax</th>
+        <th>Total State-Level</th>
+        <th>Short-Stay Threshold</th>
+        <th>Key Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alabama</td>
+        <td>—</td>
+        <td>4.0%</td>
+        <td>4.0%</td>
+        <td>30 days</td>
+        <td>Local lodging taxes common in resort areas</td>
+      </tr>
+      <tr class="est">
+        <td>Alaska †</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Local only</td>
+        <td>Varies</td>
+        <td>No statewide tax; local borough/municipality taxes apply (e.g., Anchorage ~12%)</td>
+      </tr>
+      <tr>
+        <td>Arizona</td>
+        <td>—</td>
+        <td>5.5%</td>
+        <td>5.5%</td>
+        <td>30 days</td>
+        <td>Cities add TPT surcharges; see <a href="/arizona-short-term-rental-taxes" style="color:var(--navy)">AZ guide</a></td>
+      </tr>
+      <tr>
+        <td>Arkansas</td>
+        <td>6.5%</td>
+        <td>2.0%</td>
+        <td>8.5%</td>
+        <td>30 days</td>
+        <td>Both taxes apply; local rates may add more</td>
+      </tr>
+      <tr>
+        <td>California</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Local (TOT) only</td>
+        <td>30 days</td>
+        <td>No statewide lodging tax; each city sets its own TOT (typically 10–15%); see <a href="/california-short-term-rental-rules" style="color:var(--navy)">CA guide</a></td>
+      </tr>
+      <tr>
+        <td>Colorado</td>
+        <td>2.9%</td>
+        <td>—</td>
+        <td>2.9%</td>
+        <td>30 days</td>
+        <td>State rate is low; ski resort towns add 4–8% local; see <a href="/colorado-short-term-rental-taxes" style="color:var(--navy)">CO guide</a></td>
+      </tr>
+      <tr>
+        <td>Connecticut</td>
+        <td>—</td>
+        <td>15.0%</td>
+        <td>15.0%</td>
+        <td>30 days</td>
+        <td>Highest statewide lodging tax rate in the U.S.</td>
+      </tr>
+      <tr>
+        <td>Delaware</td>
+        <td>—</td>
+        <td>8.0%</td>
+        <td>8.0%</td>
+        <td>90 days</td>
+        <td>No general sales tax; 8% lodging tax applies</td>
+      </tr>
+      <tr class="est">
+        <td>Dist. of Columbia †</td>
+        <td>—</td>
+        <td>14.95%</td>
+        <td>14.95%</td>
+        <td>90 days</td>
+        <td>Hotel occupancy tax; no general sales tax on lodging</td>
+      </tr>
+      <tr>
+        <td>Florida</td>
+        <td>6.0%</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>6 months (182 days)</td>
+        <td>County Tourist Development Tax adds 2–6%; see <a href="/florida-short-term-rental-taxes" style="color:var(--navy)">FL guide</a></td>
+      </tr>
+      <tr>
+        <td>Georgia</td>
+        <td>4.0%</td>
+        <td>$5/night flat fee</td>
+        <td>4.0% + $5/night</td>
+        <td>30 days</td>
+        <td>Flat nightly fee applies statewide; local hotel/motel taxes stack on top</td>
+      </tr>
+      <tr>
+        <td>Hawaii</td>
+        <td>4.0% (GET)</td>
+        <td>10.25% (TAT)</td>
+        <td>14.25%</td>
+        <td>180 days</td>
+        <td>Oahu adds 3% OTAT (total 17.25% on Oahu); strict registration required; see <a href="/hawaii-short-term-rental-rules" style="color:var(--navy)">HI guide</a></td>
+      </tr>
+      <tr>
+        <td>Idaho</td>
+        <td>6.0%</td>
+        <td>2.0%</td>
+        <td>8.0%</td>
+        <td>30 days</td>
+        <td>Both sales and travel/convention tax apply</td>
+      </tr>
+      <tr>
+        <td>Illinois</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>6.0%</td>
+        <td>30 days</td>
+        <td>Chicago adds 4.5% + hotel accommodation tax; combined Chicago rate can exceed 17%</td>
+      </tr>
+      <tr class="est">
+        <td>Indiana †</td>
+        <td>7.0%</td>
+        <td>—</td>
+        <td>7.0%</td>
+        <td>30 days</td>
+        <td>General sales tax applies to accommodations; local innkeeper's taxes add more in most counties</td>
+      </tr>
+      <tr class="est">
+        <td>Iowa †</td>
+        <td>6.0%</td>
+        <td>5.0%</td>
+        <td>11.0%</td>
+        <td>30 days</td>
+        <td>State sales tax + separate hotel/motel tax both apply; verify current combined rate</td>
+      </tr>
+      <tr class="est">
+        <td>Kansas †</td>
+        <td>6.5%</td>
+        <td>—</td>
+        <td>6.5%</td>
+        <td>28 days</td>
+        <td>Sales tax applies; local transient guest taxes may also apply in some cities</td>
+      </tr>
+      <tr class="est">
+        <td>Kentucky †</td>
+        <td>6.0%</td>
+        <td>1.5%</td>
+        <td>7.5%</td>
+        <td>30 days</td>
+        <td>Both sales and transient room tax apply</td>
+      </tr>
+      <tr class="est">
+        <td>Louisiana †</td>
+        <td>4.45%</td>
+        <td>—</td>
+        <td>4.45%</td>
+        <td>30 days</td>
+        <td>New Orleans adds significant local STR taxes; verify city-level requirements</td>
+      </tr>
+      <tr>
+        <td>Maine</td>
+        <td>—</td>
+        <td>9.0%</td>
+        <td>9.0%</td>
+        <td><strong>28 days</strong></td>
+        <td>Threshold is 28 days, not the typical 30; applies to all rental types including rooms</td>
+      </tr>
+      <tr class="est">
+        <td>Maryland †</td>
+        <td>6.0%</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>90 days</td>
+        <td>Sales tax applies; individual counties add hotel rental tax (up to 7%); 90-day continuous-stay exemption</td>
+      </tr>
+      <tr class="est">
+        <td>Massachusetts †</td>
+        <td>—</td>
+        <td>5.7%</td>
+        <td>5.7%</td>
+        <td>31 days</td>
+        <td>Local option adds up to 6%; STRs in certain communities also pay a 3% community impact fee</td>
+      </tr>
+      <tr class="est">
+        <td>Michigan †</td>
+        <td>6.0%</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>30 days</td>
+        <td>Use tax applies to hotel/motel accommodations; no separate statewide lodging tax</td>
+      </tr>
+      <tr class="est">
+        <td>Minnesota †</td>
+        <td>6.875%</td>
+        <td>—</td>
+        <td>6.875%</td>
+        <td>30 days</td>
+        <td>Minneapolis and other areas add local lodging taxes; verify city requirements</td>
+      </tr>
+      <tr class="est">
+        <td>Mississippi †</td>
+        <td>7.0%</td>
+        <td>—</td>
+        <td>7.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies to short-term accommodations</td>
+      </tr>
+      <tr class="est">
+        <td>Missouri †</td>
+        <td>4.225%</td>
+        <td>—</td>
+        <td>4.225%</td>
+        <td>31 days</td>
+        <td>State sales tax applies; 31-day continuous-stay exemption; local taxes add more in major cities</td>
+      </tr>
+      <tr class="est">
+        <td>Montana †</td>
+        <td>—</td>
+        <td>4.0%</td>
+        <td>4.0%</td>
+        <td>30 days</td>
+        <td>No general sales tax; lodging facility use tax only; Airbnb collects in most jurisdictions</td>
+      </tr>
+      <tr class="est">
+        <td>Nebraska †</td>
+        <td>5.5%</td>
+        <td>—</td>
+        <td>5.5%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; some cities add a local lodging tax</td>
+      </tr>
+      <tr class="est">
+        <td>Nevada †</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Local only</td>
+        <td>30 days</td>
+        <td>All lodging taxes administered at county level; Clark County (Las Vegas) total ~12%; Washoe County (Reno) varies</td>
+      </tr>
+      <tr class="est">
+        <td>New Hampshire †</td>
+        <td>—</td>
+        <td>8.5%</td>
+        <td>8.5%</td>
+        <td>185 days</td>
+        <td>No general sales tax; meals and rooms tax only; 185 consecutive days or more is exempt</td>
+      </tr>
+      <tr class="est">
+        <td>New Jersey †</td>
+        <td>6.625%</td>
+        <td>5.0%</td>
+        <td>11.625%</td>
+        <td>90 days</td>
+        <td>Both sales and hotel occupancy fee apply; highest combined state rate outside CT and DC</td>
+      </tr>
+      <tr class="est">
+        <td>New Mexico †</td>
+        <td>GRT varies</td>
+        <td>—</td>
+        <td>~7–9%</td>
+        <td>30 days</td>
+        <td>Uses Gross Receipts Tax (GRT) system; combined state + local rate varies by municipality, typically 7–9%</td>
+      </tr>
+      <tr>
+        <td>New York</td>
+        <td>4.0%</td>
+        <td>—</td>
+        <td>4.0% + NYC surcharges</td>
+        <td>30 days</td>
+        <td>NYC adds 5.875% hotel tax + Jacob Javits Center fee + MCTD; total NYC rate exceeds 14%; see <a href="/new-york-short-term-rental-rules" style="color:var(--navy)">NY guide</a></td>
+      </tr>
+      <tr class="est">
+        <td>North Carolina †</td>
+        <td>4.75%</td>
+        <td>—</td>
+        <td>4.75%</td>
+        <td>90 days</td>
+        <td>Counties add occupancy tax (up to 6%); 90-day continuous-stay exemption in most jurisdictions</td>
+      </tr>
+      <tr class="est">
+        <td>North Dakota †</td>
+        <td>5.0%</td>
+        <td>—</td>
+        <td>5.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies to lodging; no additional statewide lodging tax</td>
+      </tr>
+      <tr class="est">
+        <td>Ohio †</td>
+        <td>5.75%</td>
+        <td>—</td>
+        <td>5.75%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; county hotel tax adds 3–8% depending on county</td>
+      </tr>
+      <tr class="est">
+        <td>Oklahoma †</td>
+        <td>4.5%</td>
+        <td>4.5%</td>
+        <td>9.0%</td>
+        <td>30 days</td>
+        <td>Both sales and hotel/motel gross receipts tax apply</td>
+      </tr>
+      <tr>
+        <td>Oregon</td>
+        <td>—</td>
+        <td>1.8%</td>
+        <td>1.8%</td>
+        <td>30 days</td>
+        <td>No general sales tax; low statewide rate but Portland and coastal cities add significant local taxes</td>
+      </tr>
+      <tr class="est">
+        <td>Pennsylvania †</td>
+        <td>6.0%</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; Philadelphia adds 8.5% hotel tax; Allegheny County adds 7%</td>
+      </tr>
+      <tr class="est">
+        <td>Rhode Island †</td>
+        <td>7.0%</td>
+        <td>5.0%</td>
+        <td>12.0%</td>
+        <td>30 days</td>
+        <td>Both sales and hotel occupancy tax apply statewide</td>
+      </tr>
+      <tr class="est">
+        <td>South Carolina †</td>
+        <td>7.0%</td>
+        <td>—</td>
+        <td>7.0%</td>
+        <td>90 days</td>
+        <td>Accommodations tax included in sales tax; municipalities add local accommodation taxes; 90-day exemption</td>
+      </tr>
+      <tr class="est">
+        <td>South Dakota †</td>
+        <td>4.5%</td>
+        <td>1.5%</td>
+        <td>6.0%</td>
+        <td>28 days</td>
+        <td>Sales tax + tourism tax; 28-day threshold</td>
+      </tr>
+      <tr class="est">
+        <td>Tennessee †</td>
+        <td>7.0%</td>
+        <td>—</td>
+        <td>7.0%</td>
+        <td>90 days</td>
+        <td>Sales tax applies; Nashville/Davidson County adds up to 6% local; see <a href="/tennessee-short-term-rental-taxes" style="color:var(--navy)">TN guide</a></td>
+      </tr>
+      <tr>
+        <td>Texas</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>6.0%</td>
+        <td>30 days</td>
+        <td>Cities add up to 9% local hotel tax; total combined rate can exceed 15% in major cities; see <a href="/texas-short-term-rental-taxes" style="color:var(--navy)">TX guide</a></td>
+      </tr>
+      <tr class="est">
+        <td>Utah †</td>
+        <td>4.85%</td>
+        <td>0.32%</td>
+        <td>~5.17%</td>
+        <td>30 days</td>
+        <td>Resort communities and Salt Lake City add local transient room taxes</td>
+      </tr>
+      <tr class="est">
+        <td>Vermont †</td>
+        <td>—</td>
+        <td>9.0%</td>
+        <td>9.0%</td>
+        <td>30 days</td>
+        <td>Meals and rooms tax; no general sales tax; ski resort towns have no additional local rate</td>
+      </tr>
+      <tr class="est">
+        <td>Virginia †</td>
+        <td>5.3%</td>
+        <td>—</td>
+        <td>5.3%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; localities add transient occupancy tax (typically 2–7%); Northern VA higher</td>
+      </tr>
+      <tr class="est">
+        <td>Washington †</td>
+        <td>6.5%</td>
+        <td>Varies</td>
+        <td>6.5%+</td>
+        <td>30 days</td>
+        <td>Convention center financing tax adds 2–3% in many areas; Seattle combined rate can exceed 15%</td>
+      </tr>
+      <tr class="est">
+        <td>West Virginia †</td>
+        <td>6.0%</td>
+        <td>—</td>
+        <td>6.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies to hotel/motel accommodations</td>
+      </tr>
+      <tr class="est">
+        <td>Wisconsin †</td>
+        <td>5.0%</td>
+        <td>—</td>
+        <td>5.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; Milwaukee and other counties add a county hotel tax</td>
+      </tr>
+      <tr class="est">
+        <td>Wyoming †</td>
+        <td>4.0%</td>
+        <td>—</td>
+        <td>4.0%</td>
+        <td>30 days</td>
+        <td>Sales tax applies; lowest combined state lodging tax in the contiguous U.S.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="table-note"><strong>†</strong> Rate estimated from state tax code as of early 2026. Verify current rate with your state's department of revenue before remitting. All other rows reflect rates confirmed May 2026. This table shows <em>state-level</em> rates only — local city and county taxes stack on top and are not shown here.</p>
+
+  <div class="callout callout-navy" style="margin-top:24px">
+    <p><strong>Local taxes can double or triple the state rate.</strong> In California, the state rate is 0% — but Los Angeles has a 14% TOT and Long Beach has a 13% TOT. In New York, the state rate is 4% — but New York City's combined rate exceeds 14%. Always look up both the state rate AND your specific city and county before setting guest pricing.</p>
+  </div>
 
   <h2 id="how-to-register-and-remit">How to register and remit if it's your responsibility</h2>
-  <!-- TODO: General steps: (1) Find your jurisdiction's lodging tax registration form — usually through the state revenue department or county assessor website. (2) Register as a transient occupancy operator or lodging provider. (3) Add the tax rate to guest invoices. (4) File returns on the required schedule (often monthly for new registrants). (5) Remit collected taxes by the due date. Callout-navy: suggest checking with the state's department of revenue and the county assessor before your first booking to confirm coverage. -->
+
+  <p>If your jurisdiction isn't covered by Airbnb's collection agreement — or you have direct bookings — here's how to get compliant before your first guest checks in.</p>
+
+  <ol>
+    <li><strong>Check Airbnb's covered list first.</strong> Go to Airbnb Help Center → "Local tax collection" and search your state and city. If you're covered for the specific tax type (state, county, city), you may not need to register separately for that tax. If your city or county isn't listed, proceed to step 2.</li>
+    <li><strong>Find your registration form.</strong> Search "[your state] short-term rental lodging tax registration" or go directly to your state revenue department's website. For local TOT, search "[your city] transient occupancy tax registration." Most states have an online registration portal.</li>
+    <li><strong>Register as a transient lodging operator.</strong> You'll typically need your property address, Airbnb listing URL, estimated annual revenue, and business entity information (sole proprietor, LLC, etc.). Registration is usually free and takes 10–20 minutes online.</li>
+    <li><strong>Set up collection.</strong> Once registered, you'll receive a tax certificate number. For direct bookings, add the lodging tax rate to your guest invoices as a separate line item. For Airbnb bookings in uncovered jurisdictions, you can add it to your nightly price or set a custom tax rate in your Airbnb settings under "Taxes."</li>
+    <li><strong>File returns on schedule.</strong> Most jurisdictions require monthly or quarterly filing. Newer registrants are often placed on monthly filing for the first year. Set calendar reminders — penalties for late filing often exceed the tax owed.</li>
+    <li><strong>Remit on time.</strong> File the return even in months when you had no bookings — some jurisdictions require a zero return. Keep a simple spreadsheet of each booking date, amount, tax collected, and platform for documentation.</li>
+  </ol>
 
   <!-- MID-PAGE CTA -->
   <div class="cta-box">
@@ -237,7 +718,18 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   </div>
 
   <h2 id="vrbo-and-other-platforms">Vrbo, Booking.com, and other platforms</h2>
-  <!-- TODO: Note that Vrbo (Expedia-owned) also has collection agreements with many jurisdictions, but they don't always match Airbnb's coverage exactly. Booking.com's coverage depends on Merchant Model vs Agency Model (link to booking-com-host-taxes article). Furnished Finder does NOT process payments at all — zero lodging tax collection. If you list on multiple platforms, each booking's coverage depends on which platform processed it. Direct bookings are always the host's responsibility. -->
+
+  <p><strong>Vrbo</strong> (owned by Expedia) collects and remits lodging taxes in many jurisdictions, but its coverage is narrower than Airbnb's. Vrbo expanded its collection program significantly in recent years, but there are still states and counties where Vrbo does not collect on your behalf. If you list on both Airbnb and Vrbo, check each platform's coverage separately — a tax Airbnb covers may not be covered by Vrbo for the same property in the same location.</p>
+
+  <p><strong>Booking.com</strong> operates in two models. In the Merchant model (where Booking.com processes the guest's payment), they typically collect and remit applicable taxes. In the Agency model (where the guest pays you directly at check-in), tax collection is entirely your responsibility. Confirm which model applies to your Booking.com listing in your account settings.</p>
+
+  <p><strong>Furnished Finder</strong> does not process payments at all — all bookings are direct pay. Every lodging tax obligation for Furnished Finder listings is 100% the host's responsibility, regardless of your state or city.</p>
+
+  <p><strong>Direct bookings</strong> (your own website, email reservations, social media, repeat guests) are always your responsibility, regardless of what any platform covers for other bookings. If you're taking direct bookings without collecting lodging tax in a covered jurisdiction, you're exposed.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>Multi-platform hosts:</strong> Your compliance requirement is per <em>booking source</em>, not per property. A single rental property could have Airbnb collecting state tax, Vrbo not collecting city tax, and all direct bookings 100% on you. Track each booking source's coverage separately.</p>
+  </div>
 
 <hr>
 <h2 id="frequently-asked-questions">Frequently asked <em>questions</em></h2>
@@ -265,14 +757,17 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <hr>
 
   <h2 id="the-bottom-line">The bottom line</h2>
-  <!-- TODO: Summarize: check Airbnb's collection list before your first booking in any new jurisdiction. Never assume coverage. If your area isn't covered, register early — lodging tax compliance is a local obligation that predates your first guest. Penalties for non-compliance can exceed the taxes themselves. -->
+
+  <p>Lodging tax compliance is the least glamorous part of running an STR — but it's one of the easiest ways to end up with a tax problem that has nothing to do with your rental income. Before your first guest: check Airbnb's collection list for your specific jurisdiction, check it at the city and county level (not just the state), and register proactively for any gaps. The penalties for non-compliance routinely exceed the taxes themselves.</p>
+
+  <p>If you're on multiple platforms, treat each booking source independently. And if you ever take direct bookings — even once, for a repeat guest — treat that as a separate compliance obligation from day one. The state table above gives you a starting point for every state; your city and county requirements are where you'll need to dig deeper before your first return.</p>
 
 <div class="nw-card">
   <div class="nw-badge">Recommended</div>
   <div class="nw-body">
     <div class="nw-context">If your STR is registered under an LLC, lodging tax registration may need to match the entity name</div>
     <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
-    <div class="nw-desc">When registering for lodging tax permits, the business entity on the application must match your ownership structure. If you plan to form an LLC for your rental, Northwest handles formation in all 50 states and can serve as your registered agent.</div>
+    <div class="nw-desc">When registering for lodging tax permits, the business entity on the application must match your ownership structure. If you plan to form an LLC for your rental, Northwest handles formation in all 50 states and can serve as your registered agent — keeping your home address off public filings.</div>
     <div class="nw-features">
       <span class="nw-feat">✓ Address privacy on public records</span>
       <span class="nw-feat">✓ All 50 states</span>
@@ -300,8 +795,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <a href="/vrbo-host-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Vrbo Host Taxes</div></a>
     <a href="/booking-com-host-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Booking.com Host Taxes</div></a>
     <a href="/airbnb-1099-k" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Airbnb 1099-K</div></a>
-    <a href="/side-hustle-taxes" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Side Hustle Taxes</div></a>
-    <a href="/quarterly-taxes-self-employed" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Quarterly Taxes</div></a>
+    <a href="/short-term-rentals" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">STR Tax Hub</div></a>
+    <a href="/airbnb-deductions-checklist" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">STR Deductions Checklist</div></a>
   </div>
 </div>
 
@@ -311,9 +806,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <a href="/">Home</a>
     <a href="/tool">Free checker</a>
     <a href="/guides">Guides</a>
-    <a href="/airbnb-host-taxes">Airbnb host taxes</a>
+    <a href="/short-term-rentals">STR Tax Hub</a>
   </div>
-  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+  <div class="footer-disc">Educational information only — not legal or tax advice. Tax rates change; verify current rates with your state revenue department. Consult a licensed CPA or attorney before making decisions.</div>
 </footer>
 
 <p style="font-size:13px;color:#6b7a96;margin-top:24px">📎 Official resource: <a href="https://www.irs.gov/publications/p527" target="_blank" rel="noopener noreferrer" style="color:#1c2b4a;text-decoration:underline">IRS Publication 527 (residential rental property)</a> (IRS.gov)</p>
