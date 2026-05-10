@@ -44,7 +44,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .hero{padding:64px 48px 48px;max-width:860px;margin:0 auto;text-align:center}
 .hero-tag{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
-h1 em{font-style:italic;color:var(--gold)}
+h1 .h1-em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:580px;margin:0 auto;text-wrap:balance}
 
 /* Content */
@@ -85,7 +85,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .cta-strip p{color:rgba(255,255,255,.55);font-size:14px;font-weight:300;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto}
 .btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
 .btn-gold:hover{background:var(--gold-lt)}
-.cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+.cta-note{font-size:11px;color:rgba(255,255,255,.50);margin-top:10px}
 
 footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
@@ -203,7 +203,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 
 <div class="hero">
   <div class="hero-tag">Free tax guides</div>
-  <h1>Plain-English guides for <em>every side hustle</em></h1>
+  <h1>Plain-English guides for <span class="h1-em">every side hustle</span></h1>
   <p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, and state taxes — no jargon, no upsells.</p>
 </div>
 
@@ -212,7 +212,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Interactive Tools — featured first -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Interactive Tools</span>
+      <h2 class="cat-title">Interactive Tools</h2>
       <span class="cat-count">7 free tools</span>
     </div>
     <!-- Dashboard — featured full-width card -->
@@ -231,55 +231,55 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     </a>
     <div class="article-grid" style="margin-top:10px">
       <a href="/audit-risk-estimator" class="article-card tool-card">
-        <span class="article-icon">🛡️</span>
+        <span class="article-icon" aria-hidden="true">🛡️</span>
         <div class="article-body">
           <span class="article-title">Audit Risk Estimator</span>
           <span class="article-sub">Your IRS audit risk score with a safety checklist</span>
         </div>
         <span class="tool-badge">New</span>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/tax-guard-calculator" class="article-card tool-card">
-        <span class="article-icon">⚡</span>
+        <span class="article-icon" aria-hidden="true">⚡</span>
         <div class="article-body">
           <span class="article-title">Tax Guard Calculator</span>
           <span class="article-sub">How much to set aside from every client payment</span>
         </div>
         <span class="tool-badge">New</span>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/scorp-savings-calculator" class="article-card tool-card">
-        <span class="article-icon">📊</span>
+        <span class="article-icon" aria-hidden="true">📊</span>
         <div class="article-body">
           <span class="article-title">S-Corp vs Sole Prop Simulator</span>
           <span class="article-sub">See exactly when an S-Corp saves more than it costs</span>
         </div>
         <span class="tool-badge">New</span>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/self-employment-tax-calculator" class="article-card tool-card">
-        <span class="article-icon">🧮</span>
+        <span class="article-icon" aria-hidden="true">🧮</span>
         <div class="article-body">
           <span class="article-title">Self-Employment Tax Calculator</span>
           <span class="article-sub">Instant SE tax estimate — federal + state, 2025 rates</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/quarterly-tax-calculator" class="article-card tool-card">
-        <span class="article-icon">📅</span>
+        <span class="article-icon" aria-hidden="true">📅</span>
         <div class="article-body">
           <span class="article-title">Quarterly Tax Calculator</span>
           <span class="article-sub">How much to set aside and pay each quarter</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/tax-checklist" class="article-card tool-card">
-        <span class="article-icon">✅</span>
+        <span class="article-icon" aria-hidden="true">✅</span>
         <div class="article-body">
           <span class="article-title">Tax Deduction Checklist</span>
           <span class="article-sub">Every deduction by hustle type — free and printable</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -287,73 +287,73 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Gig Work & Delivery -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Gig Work &amp; Delivery</span>
+      <h2 class="cat-title">Gig Work &amp; Delivery</h2>
       <span class="cat-count">8 guides</span>
     </div>
     <div class="article-grid">
       <a href="/uber-lyft-taxes" class="article-card">
-        <span class="article-icon">🚗</span>
+        <span class="article-icon" aria-hidden="true">🚗</span>
         <div class="article-body">
           <span class="article-title">Uber &amp; Lyft Taxes</span>
           <span class="article-sub">What every rideshare driver actually owes</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/doordash-taxes" class="article-card">
-        <span class="article-icon">🛵</span>
+        <span class="article-icon" aria-hidden="true">🛵</span>
         <div class="article-body">
           <span class="article-title">DoorDash Taxes</span>
           <span class="article-sub">Mileage, 1099s, and quarterly payments</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/uber-eats-taxes" class="article-card">
-        <span class="article-icon">🍔</span>
+        <span class="article-icon" aria-hidden="true">🍔</span>
         <div class="article-body">
           <span class="article-title">Uber Eats Taxes</span>
           <span class="article-sub">Food delivery taxes, 1099s, and mileage</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/grubhub-taxes" class="article-card">
-        <span class="article-icon">🥡</span>
+        <span class="article-icon" aria-hidden="true">🥡</span>
         <div class="article-body">
           <span class="article-title">Grubhub Taxes</span>
           <span class="article-sub">Mileage deduction guide for delivery drivers</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/instacart-taxes" class="article-card">
-        <span class="article-icon">🛒</span>
+        <span class="article-icon" aria-hidden="true">🛒</span>
         <div class="article-body">
           <span class="article-title">Instacart Taxes</span>
           <span class="article-sub">Tax rules for in-store and full-service shoppers</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/amazon-flex-taxes" class="article-card">
-        <span class="article-icon">📦</span>
+        <span class="article-icon" aria-hidden="true">📦</span>
         <div class="article-body">
           <span class="article-title">Amazon Flex Taxes</span>
           <span class="article-sub">Mileage, deductions, and the 1099-NEC explained</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/taskrabbit-taxes" class="article-card">
-        <span class="article-icon">🔧</span>
+        <span class="article-icon" aria-hidden="true">🔧</span>
         <div class="article-body">
           <span class="article-title">TaskRabbit Taxes</span>
           <span class="article-sub">Service fees, tools, mileage, and quarterly payments</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/rover-taxes" class="article-card">
-        <span class="article-icon">🐾</span>
+        <span class="article-icon" aria-hidden="true">🐾</span>
         <div class="article-body">
           <span class="article-title">Rover Taxes</span>
           <span class="article-sub">Pet sitting, dog walking, and home boarding deductions</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -361,73 +361,73 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Creator Economy -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Creator Economy</span>
+      <h2 class="cat-title">Creator Economy</h2>
       <span class="cat-count">8 guides</span>
     </div>
     <div class="article-grid">
       <a href="/youtube-taxes" class="article-card">
-        <span class="article-icon">🎬</span>
+        <span class="article-icon" aria-hidden="true">🎬</span>
         <div class="article-body">
           <span class="article-title">YouTube Taxes</span>
           <span class="article-sub">AdSense, brand deals, memberships, merch</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/twitch-taxes" class="article-card">
-        <span class="article-icon">🎮</span>
+        <span class="article-icon" aria-hidden="true">🎮</span>
         <div class="article-body">
           <span class="article-title">Twitch Taxes</span>
           <span class="article-sub">Subs, bits, donations — all of it is taxable</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/tiktok-taxes" class="article-card">
-        <span class="article-icon">📱</span>
+        <span class="article-icon" aria-hidden="true">📱</span>
         <div class="article-body">
           <span class="article-title">TikTok Taxes</span>
           <span class="article-sub">Creator Fund, TikTok Shop, and LIVE gifts</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/onlyfans-taxes" class="article-card">
-        <span class="article-icon">💌</span>
+        <span class="article-icon" aria-hidden="true">💌</span>
         <div class="article-body">
           <span class="article-title">OnlyFans Taxes</span>
           <span class="article-sub">What creators owe and how to pay less</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/fiverr-taxes" class="article-card">
-        <span class="article-icon">💼</span>
+        <span class="article-icon" aria-hidden="true">💼</span>
         <div class="article-body">
           <span class="article-title">Fiverr Taxes</span>
           <span class="article-sub">Tax on what you receive, not what clients pay</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/patreon-taxes" class="article-card">
-        <span class="article-icon">🎨</span>
+        <span class="article-icon" aria-hidden="true">🎨</span>
         <div class="article-body">
           <span class="article-title">Patreon Taxes</span>
           <span class="article-sub">Membership income, platform fees, and deductions</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/substack-taxes" class="article-card">
-        <span class="article-icon">✉️</span>
+        <span class="article-icon" aria-hidden="true">✉️</span>
         <div class="article-body">
           <span class="article-title">Substack Taxes</span>
           <span class="article-sub">Newsletter income, Substack's 10% fee, and deductions</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/pinterest-taxes" class="article-card">
-        <span class="article-icon">📌</span>
+        <span class="article-icon" aria-hidden="true">📌</span>
         <div class="article-body">
           <span class="article-title">Pinterest Taxes</span>
           <span class="article-sub">Affiliate commissions, sponsored pins, and 1099s</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -435,105 +435,105 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Etsy & Resellers -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Etsy, E-commerce &amp; Resellers</span>
+      <h2 class="cat-title">Etsy, E-commerce &amp; Resellers</h2>
       <span class="cat-count">12 guides</span>
     </div>
     <div class="article-grid">
       <a href="/etsy-taxes" class="article-card">
-        <span class="article-icon">🛍️</span>
+        <span class="article-icon" aria-hidden="true">🛍️</span>
         <div class="article-body">
           <span class="article-title">Etsy Taxes</span>
           <span class="article-sub">The complete Etsy seller tax guide</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/etsy-taxes-under-600" class="article-card">
-        <span class="article-icon">💵</span>
+        <span class="article-icon" aria-hidden="true">💵</span>
         <div class="article-body">
           <span class="article-title">Etsy Taxes Under $600</span>
           <span class="article-sub">You still owe tax even below the 1099 threshold</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/paypal-1099k-etsy" class="article-card">
-        <span class="article-icon">📬</span>
+        <span class="article-icon" aria-hidden="true">📬</span>
         <div class="article-body">
           <span class="article-title">PayPal &amp; 1099-K on Etsy</span>
           <span class="article-sub">New $600 threshold rules explained</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/etsy-home-office-deduction" class="article-card">
-        <span class="article-icon">🏠</span>
+        <span class="article-icon" aria-hidden="true">🏠</span>
         <div class="article-body">
           <span class="article-title">Etsy Home Office Deduction</span>
           <span class="article-sub">How to claim your workspace correctly</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/etsy-schedule-c" class="article-card">
-        <span class="article-icon">📋</span>
+        <span class="article-icon" aria-hidden="true">📋</span>
         <div class="article-body">
           <span class="article-title">Etsy Schedule C</span>
           <span class="article-sub">Complete filing guide for Etsy sellers</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/llc-etsy-seller" class="article-card">
-        <span class="article-icon">🏢</span>
+        <span class="article-icon" aria-hidden="true">🏢</span>
         <div class="article-body">
           <span class="article-title">LLC for Etsy Sellers</span>
           <span class="article-sub">When it's actually worth the paperwork</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/reseller-taxes" class="article-card">
-        <span class="article-icon">📦</span>
+        <span class="article-icon" aria-hidden="true">📦</span>
         <div class="article-body">
           <span class="article-title">Reseller Taxes</span>
           <span class="article-sub">General guide for all reselling platforms</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/ebay-taxes" class="article-card">
-        <span class="article-icon">🏷️</span>
+        <span class="article-icon" aria-hidden="true">🏷️</span>
         <div class="article-body">
           <span class="article-title">eBay Taxes</span>
           <span class="article-sub">COGS, 1099-K thresholds, casual vs business seller</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/poshmark-taxes" class="article-card">
-        <span class="article-icon">👗</span>
+        <span class="article-icon" aria-hidden="true">👗</span>
         <div class="article-body">
           <span class="article-title">Poshmark Taxes</span>
           <span class="article-sub">Fees, COGS, and the personal property rule</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/amazon-fba-taxes" class="article-card">
-        <span class="article-icon">📫</span>
+        <span class="article-icon" aria-hidden="true">📫</span>
         <div class="article-body">
           <span class="article-title">Amazon FBA Taxes</span>
           <span class="article-sub">Inventory, FBA fees, COGS, and 1099-K filing</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/shopify-taxes" class="article-card">
-        <span class="article-icon">🛒</span>
+        <span class="article-icon" aria-hidden="true">🛒</span>
         <div class="article-body">
           <span class="article-title">Shopify Taxes</span>
           <span class="article-sub">Income tax and sales tax — what owners owe</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/mercari-taxes" class="article-card">
-        <span class="article-icon">🏷️</span>
+        <span class="article-icon" aria-hidden="true">🏷️</span>
         <div class="article-body">
           <span class="article-title">Mercari Taxes</span>
           <span class="article-sub">Casual vs reseller, COGS, and the $2,500 limit</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -541,17 +541,17 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Short-Term Rentals -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Short-Term Rentals</span>
+      <h2 class="cat-title">Short-Term Rentals</h2>
       <span class="cat-count">1 guide</span>
     </div>
     <div class="article-grid-solo">
       <a href="/airbnb-host-taxes" class="article-card">
-        <span class="article-icon">🏡</span>
+        <span class="article-icon" aria-hidden="true">🏡</span>
         <div class="article-body">
           <span class="article-title">Airbnb Host Taxes</span>
           <span class="article-sub">Deductions, taxes owed, and the 14-day rule</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -559,41 +559,41 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Freelance & General -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Freelance &amp; General</span>
+      <h2 class="cat-title">Freelance &amp; General</h2>
       <span class="cat-count">4 guides</span>
     </div>
     <div class="article-grid article-grid-2">
       <a href="/side-hustle-taxes" class="article-card">
-        <span class="article-icon">💰</span>
+        <span class="article-icon" aria-hidden="true">💰</span>
         <div class="article-body">
           <span class="article-title">Side Hustle Taxes</span>
           <span class="article-sub">The complete overview — start here</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/freelancer-taxes" class="article-card">
-        <span class="article-icon">🧾</span>
+        <span class="article-icon" aria-hidden="true">🧾</span>
         <div class="article-body">
           <span class="article-title">Freelancer Taxes</span>
           <span class="article-sub">1099s, deductions, and quarterly payments</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/upwork-taxes" class="article-card">
-        <span class="article-icon">💻</span>
+        <span class="article-icon" aria-hidden="true">💻</span>
         <div class="article-body">
           <span class="article-title">Upwork Taxes</span>
           <span class="article-sub">Service fees, 1099-K, and freelancer deductions</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/quarterly-taxes-self-employed" class="article-card">
-        <span class="article-icon">📅</span>
+        <span class="article-icon" aria-hidden="true">📅</span>
         <div class="article-body">
           <span class="article-title">Quarterly Taxes (Self-Employed)</span>
           <span class="article-sub">When to pay and how much each quarter</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -601,17 +601,17 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- Business Structure -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">Business Structure</span>
+      <h2 class="cat-title">Business Structure</h2>
       <span class="cat-count">1 guide</span>
     </div>
     <div class="article-grid-solo">
       <a href="/llc-vs-sole-proprietor" class="article-card">
-        <span class="article-icon">⚖️</span>
+        <span class="article-icon" aria-hidden="true">⚖️</span>
         <div class="article-body">
           <span class="article-title">LLC vs Sole Proprietor</span>
           <span class="article-sub">Key differences and when it's worth the paperwork</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
@@ -619,49 +619,49 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   <!-- State-Specific -->
   <div class="cat-section">
     <div class="cat-head">
-      <span class="cat-title">State-Specific Guides</span>
+      <h2 class="cat-title">State-Specific Guides</h2>
       <span class="cat-count">5 guides</span>
     </div>
     <div class="article-grid">
       <a href="/california-self-employment-tax" class="article-card">
-        <span class="article-icon">🌴</span>
+        <span class="article-icon" aria-hidden="true">🌴</span>
         <div class="article-body">
           <span class="article-title">California Self-Employment Tax</span>
           <span class="article-sub">CA income tax, quarterly schedule, LLC fees</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/california-side-hustle" class="article-card">
-        <span class="article-icon">🌊</span>
+        <span class="article-icon" aria-hidden="true">🌊</span>
         <div class="article-body">
           <span class="article-title">California Side Hustle Rules</span>
           <span class="article-sub">Licenses, AB5 contractor rules, and CA requirements</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/texas-self-employment-tax" class="article-card">
-        <span class="article-icon">🤠</span>
+        <span class="article-icon" aria-hidden="true">🤠</span>
         <div class="article-body">
           <span class="article-title">Texas Self-Employment Tax</span>
           <span class="article-sub">No income tax — here's what you still owe</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/new-york-self-employment-tax" class="article-card">
-        <span class="article-icon">🗽</span>
+        <span class="article-icon" aria-hidden="true">🗽</span>
         <div class="article-body">
           <span class="article-title">New York Self-Employment Tax</span>
           <span class="article-sub">NY state + NYC city tax + MCTMT explained</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
       <a href="/state-tax-rates" class="article-card">
-        <span class="article-icon">🗺️</span>
+        <span class="article-icon" aria-hidden="true">🗺️</span>
         <div class="article-body">
           <span class="article-title">2025 State Tax Rates (All 50 States)</span>
           <span class="article-sub">Complete rate table for gig workers &amp; freelancers</span>
         </div>
-        <span class="article-arrow">→</span>
+        <span class="article-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
