@@ -8,6 +8,8 @@ from openpyxl.formatting.rule import CellIsRule, FormulaRule
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.workbook.defined_name import DefinedName
+from openpyxl.chart import BarChart, Reference
+from openpyxl.chart.label import DataLabelList
 
 # ── COLORS ──
 NAVY      = "FF1C2B4A"
@@ -908,9 +910,300 @@ for q, a in faqs:
     row += 2  # spacer
 
 # ════════════════════════════════════════════════════════════════════
+# SHEET 8 — DASHBOARD
+# (created LAST in code but moved to position 2 via _sheets reorder below)
+# ════════════════════════════════════════════════════════════════════
+ws = wb.create_sheet("Dashboard")
+ws.sheet_view.showGridLines = False
+ws.sheet_view.zoomScale = 110
+
+ws.column_dimensions["A"].width = 2
+for col, w in zip("BCDEFGHIJ", [20, 20, 20, 20, 2, 20, 20, 20, 20]):
+    ws.column_dimensions[col].width = w
+
+ws.row_dimensions[2].height = 36
+cell(ws, "B2", "Dashboard", font=Font(name="Calibri", size=24, bold=True, color=NAVY), align=A_LEFT)
+ws.merge_cells("B2:J2")
+cell(ws, "B3", "One screen — where you stand right now. All values update as you fill in the other tabs.",
+     font=F_MUTED, align=A_LEFT)
+ws.merge_cells("B3:J3")
+
+# ── KPI ROW 1 ──
+def kpi_card(row, col_start, label, formula, fmt, value_color=NAVY, fill_color=CREAM):
+    end_col_letter = get_column_letter(openpyxl.utils.column_index_from_string(col_start) + 1)
+    # Label cell
+    lbl = ws[f"{col_start}{row}"]
+    lbl.value = label
+    lbl.font = F_KPI_LBL
+    lbl.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    lbl.fill = fill(fill_color)
+    lbl.border = Border(
+        left=Side(style="thin", color=BORDER),
+        right=Side(style="thin", color=BORDER),
+        top=Side(style="thin", color=BORDER),
+        bottom=Side(style=None)
+    )
+    # Make label cell span 2 cols
+    ws.merge_cells(start_row=row, start_column=openpyxl.utils.column_index_from_string(col_start),
+                   end_row=row, end_column=openpyxl.utils.column_index_from_string(col_start)+1)
+    # Value cell
+    val = ws[f"{col_start}{row+1}"]
+    val.value = formula
+    val.font = Font(name="Calibri", size=22, bold=True, color=value_color)
+    val.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    val.fill = fill(fill_color)
+    val.number_format = fmt
+    val.border = Border(
+        left=Side(style="thin", color=BORDER),
+        right=Side(style="thin", color=BORDER),
+        top=Side(style=None),
+        bottom=Side(style="thin", color=BORDER)
+    )
+    ws.merge_cells(start_row=row+1, start_column=openpyxl.utils.column_index_from_string(col_start),
+                   end_row=row+1, end_column=openpyxl.utils.column_index_from_string(col_start)+1)
+    ws.row_dimensions[row].height = 24
+    ws.row_dimensions[row+1].height = 40
+
+# Row 1: Annual totals
+ws.row_dimensions[5].height = 24
+cell(ws, "B5", "ANNUAL TAX PICTURE", font=Font(name="Calibri", size=11, bold=True, color=GOLD), align=A_LEFT)
+ws.merge_cells("B5:J5")
+
+kpi_card(6, "B", "TOTAL SE TAX",          "=SETax",        '"$"#,##0', value_color=NAVY)
+kpi_card(6, "D", "FEDERAL INCOME TAX",    "=FedIncomeTax", '"$"#,##0', value_color=NAVY)
+kpi_card(6, "G", "STATE TAX",             "='Tax Calculator'!$C$20", '"$"#,##0', value_color=NAVY)
+kpi_card(6, "I", "TOTAL ANNUAL OWED",     "=SETax+FedIncomeTax+'Tax Calculator'!$C$20", '"$"#,##0', value_color="FFC9973A", fill_color=GOLD_PALE)
+
+# Row 2: Payment progress
+ws.row_dimensions[9].height = 12
+ws.row_dimensions[10].height = 24
+cell(ws, "B10", "WHERE YOU STAND TODAY", font=Font(name="Calibri", size=11, bold=True, color=GOLD), align=A_LEFT)
+ws.merge_cells("B10:J10")
+
+kpi_card(11, "B", "FED PAID YTD",         "=FedPaidYTD",   '"$"#,##0')
+kpi_card(11, "D", "STATE PAID YTD",       "=StatePaidYTD", '"$"#,##0')
+kpi_card(11, "G", "FEDERAL TARGET (annual)", "=NetFedOwed", '"$"#,##0')
+kpi_card(11, "I", "REMAINING FEDERAL",    "=MAX(NetFedOwed-FedPaidYTD,0)", '"$"#,##0', value_color="FFB83232", fill_color=RED_BG)
+
+# Row 3: Safe harbor + next deadline
+ws.row_dimensions[14].height = 12
+ws.row_dimensions[15].height = 24
+cell(ws, "B15", "SAFETY & NEXT DEADLINE", font=Font(name="Calibri", size=11, bold=True, color=GOLD), align=A_LEFT)
+ws.merge_cells("B15:J15")
+
+# Safe harbor status card (spans 4 cols)
+ws.row_dimensions[16].height = 24
+cell(ws, "B16", "PENALTY-SAFE STATUS", font=F_KPI_LBL, fillc=fill(CREAM), align=Alignment(horizontal="left", vertical="center", indent=1),
+     border=Border(left=Side(style="thin",color=BORDER), right=Side(style="thin",color=BORDER), top=Side(style="thin",color=BORDER)))
+ws.merge_cells("B16:E16")
+ws.row_dimensions[17].height = 44
+sh_val = ws["B17"]
+sh_val.value = '=IF(OR(\'Safe Harbor\'!$C$8>=\'Safe Harbor\'!$C$7,\'Safe Harbor\'!$C$14>=\'Safe Harbor\'!$C$13),"✓ Penalty-safe","⚠ Not yet penalty-safe")'
+sh_val.font = Font(name="Calibri", size=16, bold=True, color=NAVY)
+sh_val.alignment = Alignment(horizontal="left", vertical="center", indent=1, wrap_text=True)
+sh_val.fill = fill(CREAM)
+sh_val.border = Border(left=Side(style="thin",color=BORDER), right=Side(style="thin",color=BORDER), bottom=Side(style="thin",color=BORDER))
+ws.merge_cells("B17:E17")
+ws.conditional_formatting.add("B17",
+    FormulaRule(formula=['ISNUMBER(SEARCH("safe",B17))'], fill=fill(GREEN_BG), font=Font(name="Calibri", size=16, bold=True, color=GREEN)))
+ws.conditional_formatting.add("B17",
+    FormulaRule(formula=['ISNUMBER(SEARCH("Not yet",B17))'], fill=fill(AMBER_BG), font=Font(name="Calibri", size=16, bold=True, color=AMBER)))
+
+# Next deadline card (spans 4 cols)
+cell(ws, "G16", "NEXT QUARTERLY DEADLINE", font=F_KPI_LBL, fillc=fill(CREAM), align=Alignment(horizontal="left", vertical="center", indent=1),
+     border=Border(left=Side(style="thin",color=BORDER), right=Side(style="thin",color=BORDER), top=Side(style="thin",color=BORDER)))
+ws.merge_cells("G16:J16")
+nd_val = ws["G17"]
+# Computes the next upcoming Q deadline by comparing TODAY() to the four dates
+nd_val.value = (
+    '=IF(TODAY()<=DATE(TaxYear,4,15),"Q1 — April 15, "&TEXT(DATE(TaxYear,4,15)-TODAY(),"0")&" days away",'
+    'IF(TODAY()<=DATE(TaxYear,6,15),"Q2 — June 15, "&TEXT(DATE(TaxYear,6,15)-TODAY(),"0")&" days away",'
+    'IF(TODAY()<=DATE(TaxYear,9,15),"Q3 — September 15, "&TEXT(DATE(TaxYear,9,15)-TODAY(),"0")&" days away",'
+    'IF(TODAY()<=DATE(TaxYear+1,1,15),"Q4 — January 15 (next year), "&TEXT(DATE(TaxYear+1,1,15)-TODAY(),"0")&" days away",'
+    '"All quarterly deadlines passed for "&TaxYear))))'
+)
+nd_val.font = Font(name="Calibri", size=14, bold=True, color=NAVY)
+nd_val.alignment = Alignment(horizontal="left", vertical="center", indent=1, wrap_text=True)
+nd_val.fill = fill(CREAM)
+nd_val.border = Border(left=Side(style="thin",color=BORDER), right=Side(style="thin",color=BORDER), bottom=Side(style="thin",color=BORDER))
+ws.merge_cells("G17:J17")
+
+# ── CHART: Quarterly target vs paid ──
+ws.row_dimensions[19].height = 12
+ws.row_dimensions[20].height = 24
+cell(ws, "B20", "QUARTERLY PROGRESS — FEDERAL", font=Font(name="Calibri", size=11, bold=True, color=GOLD), align=A_LEFT)
+ws.merge_cells("B20:J20")
+
+# Hidden data block for the chart (rows 22-26, cols B-D)
+ws.row_dimensions[22].height = 18
+cell(ws, "B22", "Quarter", font=F_BODY, align=A_LEFT)
+cell(ws, "C22", "Target $", font=F_BODY, align=A_RIGHT)
+cell(ws, "D22", "Paid $",   font=F_BODY, align=A_RIGHT)
+for i, q in enumerate(["Q1","Q2","Q3","Q4"]):
+    r = 23 + i
+    ws.row_dimensions[r].height = 18
+    cell(ws, f"B{r}", q, font=F_BODY, align=A_LEFT)
+    c = ws[f"C{r}"]; c.value = f"='Quarterly Payments'!$D${7+i}"; c.font = F_BODY; c.alignment = A_RIGHT; c.number_format = '"$"#,##0'
+    c = ws[f"D{r}"]; c.value = f"='Quarterly Payments'!$F${7+i}"; c.font = F_BODY; c.alignment = A_RIGHT; c.number_format = '"$"#,##0'
+
+# Create chart
+chart = BarChart()
+chart.type = "col"
+chart.style = 11
+chart.title = "Federal — Target vs Paid by Quarter"
+chart.y_axis.title = "Dollars"
+chart.x_axis.title = "Quarter"
+chart.height = 8
+chart.width = 18
+
+target_data = Reference(ws, min_col=3, min_row=22, max_col=3, max_row=26)
+paid_data   = Reference(ws, min_col=4, min_row=22, max_col=4, max_row=26)
+cats        = Reference(ws, min_col=2, min_row=23, max_col=2, max_row=26)
+chart.add_data(target_data, titles_from_data=True)
+chart.add_data(paid_data,   titles_from_data=True)
+chart.set_categories(cats)
+chart.dataLabels = DataLabelList(showVal=False)
+
+# Colors — series 1 (target) navy, series 2 (paid) gold
+from openpyxl.chart.shapes import GraphicalProperties
+from openpyxl.drawing.fill import ColorChoice
+chart.series[0].graphicalProperties = GraphicalProperties(solidFill="1C2B4A")
+chart.series[1].graphicalProperties = GraphicalProperties(solidFill="C9973A")
+
+ws.add_chart(chart, "F22")
+
+# Hide the data feed rows from view by setting white-on-white isn't reliable; we just keep them — they look like a tiny table.
+
+# Footer note
+ws.row_dimensions[40].height = 40
+note = ("Everything on this Dashboard is calculated from the Setup, Income Forecast, and Quarterly Payments tabs. "
+        "If a number looks wrong, the source is on those tabs — not here.")
+cell(ws, "B40", note, font=F_MUTED, align=A_LEFT_T)
+ws.merge_cells("B40:J40")
+
+# ════════════════════════════════════════════════════════════════════
+# SHEET 9 — EXAMPLES
+# ════════════════════════════════════════════════════════════════════
+ws = wb.create_sheet("Examples")
+ws.sheet_view.showGridLines = False
+ws.sheet_view.zoomScale = 110
+
+ws.column_dimensions["A"].width = 2
+ws.column_dimensions["B"].width = 38
+ws.column_dimensions["C"].width = 18
+ws.column_dimensions["D"].width = 18
+ws.column_dimensions["E"].width = 18
+
+ws.row_dimensions[2].height = 32
+cell(ws, "B2", "Worked Examples", font=Font(name="Calibri", size=22, bold=True, color=NAVY), align=A_LEFT)
+ws.merge_cells("B2:E2")
+cell(ws, "B3", "Three real scenarios showing exactly what numbers go where. Compare to your own situation, then plug yours into the Setup tab.",
+     font=F_MUTED, align=A_LEFT)
+ws.merge_cells("B3:E3")
+
+# Headers for the 3-column comparison
+ws.row_dimensions[5].height = 28
+cell(ws, "B5", "", font=F_TH, fillc=fill(NAVY))
+cell(ws, "C5", "DoorDash full-timer", font=F_TH, fillc=fill(NAVY), align=A_CTR)
+cell(ws, "D5", "Freelancer + W-2 day job", font=F_TH, fillc=fill(NAVY), align=A_CTR)
+cell(ws, "E5", "Etsy seller", font=F_TH, fillc=fill(NAVY), align=A_CTR)
+
+# Row 6: Profile description
+ws.row_dimensions[6].height = 68
+cell(ws, "B6", "Situation", font=F_H2, align=A_LEFT_T)
+cell(ws, "C6", "Single, lives in CA, Dashes full time. Tracked 22,000 business miles. Gross earnings $58,000 minus $15,400 mileage deduction = $42,600 net.", font=F_BODY, align=A_LEFT_T, fillc=fill(CREAM))
+cell(ws, "D6", "MFJ, NY, $48K W-2 day job with $5,400 federal withholding + $60K net freelance design work on the side.", font=F_BODY, align=A_LEFT_T, fillc=fill(CREAM))
+cell(ws, "E6", "Single, TX (no state tax), Etsy print shop. $25,000 net profit after COGS and home office deduction.", font=F_BODY, align=A_LEFT_T, fillc=fill(CREAM))
+
+# Helper to add a row
+def ex_row(r, label, c_val, d_val, e_val, fmt=None, height=22, is_total=False):
+    cell(ws, f"B{r}", label, font=(F_TOTAL if is_total else F_BODY), align=A_LEFT, border=box(),
+         fillc=fill(GOLD_PALE if is_total else None) if is_total else None)
+    for col, v in zip("CDE", [c_val, d_val, e_val]):
+        c = ws[f"{col}{r}"]
+        c.value = v
+        c.font = F_TOTAL if is_total else F_BODY
+        c.alignment = A_RIGHT
+        c.border = box()
+        if is_total:
+            c.fill = fill(GOLD_PALE)
+        if fmt:
+            c.number_format = fmt
+    ws.row_dimensions[r].height = height
+
+# Section A: Setup inputs
+ws.row_dimensions[8].height = 24
+cell(ws, "B8", "Setup tab inputs", font=F_H1, align=A_LEFT)
+ws.merge_cells("B8:E8")
+
+ex_row(9,  "Filing status",                          "Single", "MFJ", "Single")
+ex_row(10, "State",                                  "CA",     "NY",  "TX")
+ex_row(11, "State flat estimated tax rate",          0.06,     0.05,  0.0,    fmt="0.0%")
+ex_row(12, "Net SE income (annual)",                 42600,    60000, 25000,  fmt='"$"#,##0')
+ex_row(13, "W-2 income",                             0,        48000, 0,      fmt='"$"#,##0')
+ex_row(14, "Federal tax withheld from W-2",          0,        5400,  0,      fmt='"$"#,##0')
+ex_row(15, "Last year's total federal tax",          3200,     8900,  1800,   fmt='"$"#,##0')
+ex_row(16, "Last year's AGI",                        38000,    98000, 24000,  fmt='"$"#,##0')
+
+# Section B: What the calculator returns
+ws.row_dimensions[18].height = 24
+cell(ws, "B18", "What the Tax Calculator returns", font=F_H1, align=A_LEFT)
+ws.merge_cells("B18:E18")
+
+ex_row(19, "Net SE income × 92.35% (SE base)",       39341,    55410, 23088,  fmt='"$"#,##0')
+ex_row(20, "Social Security (12.4%)",                4878,     6871,  2863,   fmt='"$"#,##0')
+ex_row(21, "Medicare (2.9%)",                        1141,     1607,  669,    fmt='"$"#,##0')
+ex_row(22, "Total SE tax",                           6019,     8478,  3532,   fmt='"$"#,##0', is_total=True)
+ex_row(23, "AGI (W-2 + net SE − ½ SE tax)",          39591,    103761, 23234, fmt='"$"#,##0')
+ex_row(24, "Standard deduction",                     15750,    31500, 15750,  fmt='"$"#,##0')
+ex_row(25, "Taxable income",                         23841,    72261, 7484,   fmt='"$"#,##0')
+ex_row(26, "Federal income tax (bracket calc)",      2622,     8195,  748,    fmt='"$"#,##0', is_total=True)
+ex_row(27, "State income tax",                       1430,     3613,  0,      fmt='"$"#,##0', is_total=True)
+
+# Section C: Quarterly payments
+ws.row_dimensions[29].height = 24
+cell(ws, "B29", "What you'd pay each quarter", font=F_H1, align=A_LEFT)
+ws.merge_cells("B29:E29")
+
+ex_row(30, "Total federal owed (SE + income tax)",   8641,     16673, 4280,   fmt='"$"#,##0')
+ex_row(31, "Less: W-2 federal withholding",          0,        -5400, 0,      fmt='"$"#,##0')
+ex_row(32, "Net federal owed (quarterly target ÷ 4)", 8641,    11273, 4280,   fmt='"$"#,##0', is_total=True)
+ex_row(33, "Each federal quarterly payment",          2160,    2818,  1070,   fmt='"$"#,##0', is_total=True)
+ex_row(34, "Each state quarterly payment",            358,     903,   0,      fmt='"$"#,##0', is_total=True)
+
+# Section D: Safe harbor target
+ws.row_dimensions[36].height = 24
+cell(ws, "B36", "Safe Harbor target (whichever is lower wins)", font=F_H1, align=A_LEFT)
+ws.merge_cells("B36:E36")
+
+ex_row(37, "100% of last year's tax (110% if AGI > $150K)", 3200, 8900, 1800,  fmt='"$"#,##0')
+ex_row(38, "90% of this year's projected tax",       7777,     15006, 3852,   fmt='"$"#,##0')
+ex_row(39, "Easier safe harbor — total to pay across 4 quarters", 3200, 8900, 1800, fmt='"$"#,##0', is_total=True)
+ex_row(40, "= safe-harbor quarterly amount",          800,     2225,  450,    fmt='"$"#,##0', is_total=True)
+
+# Footer note
+ws.row_dimensions[42].height = 70
+note = ("Notice the difference: paying TRUE this-year tax is the conservative play (more cash out now, no April surprise). "
+        "Paying SAFE-HARBOR is the minimum to avoid the penalty (lower quarterly checks, but you'll owe a balance in April). "
+        "Both are valid. Most people pick safe-harbor for cash-flow reasons. The Quarterly Payments tab targets the TRUE number; "
+        "drop it down to the safe-harbor number if cash is tight.")
+cell(ws, "B42", note, font=F_BODY, align=A_LEFT_T)
+ws.merge_cells("B42:E42")
+
+# ════════════════════════════════════════════════════════════════════
+# REORDER TABS — put Dashboard right after Start Here, Examples before IRS Reference
+# ════════════════════════════════════════════════════════════════════
+desired_order = [
+    "Start Here", "Dashboard", "Setup", "Income Forecast", "Tax Calculator",
+    "Quarterly Payments", "Safe Harbor", "Examples", "IRS Reference"
+]
+wb._sheets = [wb[s] for s in desired_order]
+
+# ════════════════════════════════════════════════════════════════════
 # SAVE
 # ════════════════════════════════════════════════════════════════════
 out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "quarterly-tax-system-2026.xlsx")
 wb.save(out_path)
 print(f"Saved: {out_path}")
 print(f"Size: {os.path.getsize(out_path)/1024:.1f} KB")
+print(f"Sheets ({len(wb.sheetnames)}): {wb.sheetnames}")
