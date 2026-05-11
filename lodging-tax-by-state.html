@@ -116,6 +116,22 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 @media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
+
+.email-strip{background:var(--navy);border-radius:14px;padding:28px 32px;margin:36px 0}
+.email-strip-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.email-strip-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.25}
+.email-strip-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px;font-weight:300;line-height:1.6}
+.email-strip-row{display:flex;gap:10px;flex-wrap:wrap}
+.email-strip-inp{flex:1;min-width:200px;border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:11px 18px;font-size:13px;font-family:inherit;color:var(--white);background:rgba(255,255,255,.08);outline:none;transition:border .15s}
+.email-strip-inp::placeholder{color:rgba(255,255,255,.3)}
+.email-strip-inp:focus{border-color:rgba(201,151,58,.6)}
+.email-strip-btn{background:var(--gold);color:var(--white);border:none;border-radius:100px;padding:11px 22px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.email-strip-btn:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.email-strip-trust{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.email-strip-msg{font-size:12px;margin-top:8px;min-height:16px}
+.email-strip-msg.ok{color:#86efac}
+.email-strip-msg.err{color:#fca5a5}
+@media(max-width:560px){.email-strip{padding:20px 18px}}
 </style>
 <script type="application/ld+json">
 {
@@ -744,6 +760,18 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     <p><strong>Multi-platform hosts:</strong> Your compliance requirement is per <em>booking source</em>, not per property. A single rental property could have Airbnb collecting state tax, Vrbo not collecting city tax, and all direct bookings 100% on you. Track each booking source's coverage separately.</p>
   </div>
 
+
+  <div class="email-strip">
+    <div class="email-strip-eyebrow">Free download</div>
+    <div class="email-strip-title">Get the 2026 STR Tax Deadline Checklist</div>
+    <div class="email-strip-sub">Every state lodging tax rate, Airbnb/Vrbo collection status, and quarterly remittance deadline — one printable PDF. Free.</div>
+    <div class="email-strip-row">
+      <input type="email" id="es-email-ltx" class="email-strip-inp" placeholder="your@email.com" autocomplete="email">
+      <button class="email-strip-btn" onclick="esSubmit('es-email-ltx','es-msg-ltx',this)">Send me the checklist →</button>
+    </div>
+    <div id="es-msg-ltx" class="email-strip-msg"></div>
+    <div class="email-strip-trust">No spam. Unsubscribe anytime. ~2 emails/month max.</div>
+  </div>
   <div class="product-card">
     <div class="product-card-icon" aria-hidden="true">📊</div>
     <div class="product-card-body">
@@ -845,5 +873,33 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </footer>
 
 <p style="font-size:13px;color:#6b7a96;margin-top:24px">📎 Official resource: <a href="https://www.irs.gov/publications/p527" target="_blank" rel="noopener noreferrer" style="color:#1c2b4a;text-decoration:underline">IRS Publication 527 (residential rental property)</a> (IRS.gov)</p>
+<script>
+async function esSubmit(inpId, msgId, btn) {
+  var inp = document.getElementById(inpId);
+  var msg = document.getElementById(msgId);
+  var email = inp.value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.className = 'email-strip-msg err'; return;
+  }
+  var orig = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    var r = await fetch('/api/subscribe', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email: email.toLowerCase()})
+    });
+    if (r.ok) {
+      msg.textContent = '\u2713 Check your inbox — checklist on its way!';
+      msg.className = 'email-strip-msg ok';
+      inp.value = ''; btn.textContent = 'Sent \u2713';
+    } else { throw new Error(); }
+  } catch(e) {
+    msg.textContent = 'Something went wrong — try again.';
+    msg.className = 'email-strip-msg err';
+    btn.disabled = false; btn.textContent = orig;
+  }
+}
+</script>
 </body>
 </html>
