@@ -53,7 +53,7 @@ def product_card_html(audience):
       <span>✓ Schedule C line 9 ready</span>
     </div>
     <div class="product-card-cta-row">
-      <a href="{GUMROAD_URL}" class="product-card-btn" target="_blank" rel="noopener">Get the tracker — $9 →</a>
+      <a href="{GUMROAD_URL}" class="product-card-btn" target="_blank" rel="noopener">Get the tracker — $7 →</a>
       <span class="product-card-meta">Instant download · Excel &amp; Google Sheets</span>
     </div>
   </div>

@@ -16,9 +16,9 @@ mileage-tracker
 
 ## Price
 ```
-9
+7
 ```
-(USD. Suggested. You can also enable "pay what you want" with a $9 minimum if you want to test higher conversions.)
+(USD. Suggested. You can also enable "pay what you want" with a $7 minimum if you want to test higher conversions.)
 
 ---
 
@@ -59,7 +59,7 @@ If you drive for more than one platform, this tracker handles all of them in one
 
 **Why this beats the apps**
 
-Stride, MileIQ, Everlance, and the rest are great until they aren't. They cost $5–$10 per month forever, eat your phone battery, occasionally miss trips, and lock your data inside their cloud. This is a one-time $9, your data lives in your own Drive or hard drive, and you can audit and edit every formula yourself.
+Stride, MileIQ, Everlance, and the rest are great until they aren't. They cost $5–$10 per month forever, eat your phone battery, occasionally miss trips, and lock your data inside their cloud. This is a one-time $7, your data lives in your own Drive or hard drive, and you can audit and edit every formula yourself.
 
 **What's actually in the file (6 tabs)**
 
