@@ -4,12 +4,10 @@ Outputs: quarterly-tax-system-2026.xlsx in the same directory.
 """
 import openpyxl, os
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from openpyxl.formatting.rule import CellIsRule, FormulaRule
+from openpyxl.formatting.rule import CellIsRule, FormulaRule, DataBarRule
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.workbook.defined_name import DefinedName
-from openpyxl.chart import BarChart, Reference
-from openpyxl.chart.label import DataLabelList
 
 # ── COLORS ──
 NAVY      = "FF1C2B4A"
@@ -1028,58 +1026,99 @@ nd_val.fill = fill(CREAM)
 nd_val.border = Border(left=Side(style="thin",color=BORDER), right=Side(style="thin",color=BORDER), bottom=Side(style="thin",color=BORDER))
 ws.merge_cells("G17:J17")
 
-# ── CHART: Quarterly target vs paid ──
+# ── PROGRESS TABLE: Quarterly target vs paid (cell-based, renders everywhere) ──
 ws.row_dimensions[19].height = 12
 ws.row_dimensions[20].height = 24
 cell(ws, "B20", "QUARTERLY PROGRESS — FEDERAL", font=Font(name="Calibri", size=11, bold=True, color=GOLD), align=A_LEFT)
 ws.merge_cells("B20:J20")
 
-# Hidden data block for the chart (rows 22-26, cols B-D)
-ws.row_dimensions[22].height = 18
-cell(ws, "B22", "Quarter", font=F_BODY, align=A_LEFT)
-cell(ws, "C22", "Target $", font=F_BODY, align=A_RIGHT)
-cell(ws, "D22", "Paid $",   font=F_BODY, align=A_RIGHT)
-for i, q in enumerate(["Q1","Q2","Q3","Q4"]):
+# Widen column J so the progress bar has room to breathe
+ws.column_dimensions["G"].width = 14
+ws.column_dimensions["H"].width = 14
+ws.column_dimensions["I"].width = 14
+ws.column_dimensions["J"].width = 14
+
+# Header row
+ws.row_dimensions[22].height = 26
+headers_prog = [("B","Quarter"),("C","Due date"),("D","Target $"),("E","Paid $"),
+                ("G","Remaining"),("H","% paid"),("I","Progress"),("J","Status")]
+for col, h in headers_prog:
+    c = ws[f"{col}22"]
+    c.value = h
+    c.font = F_TH
+    c.fill = fill(NAVY)
+    c.alignment = A_CTR
+    c.border = box(NAVY)
+# Merge progress column across I:J for a wider visual bar
+ws.merge_cells("I22:J22")
+
+# 4 data rows — Q1 through Q4
+prog_due = ["April 15","June 15","September 15","January 15"]
+for i, (q, dd) in enumerate(zip(["Q1","Q2","Q3","Q4"], prog_due)):
     r = 23 + i
-    ws.row_dimensions[r].height = 18
-    cell(ws, f"B{r}", q, font=F_BODY, align=A_LEFT)
-    c = ws[f"C{r}"]; c.value = f"='Quarterly Payments'!$D${7+i}"; c.font = F_BODY; c.alignment = A_RIGHT; c.number_format = '"$"#,##0'
-    c = ws[f"D{r}"]; c.value = f"='Quarterly Payments'!$F${7+i}"; c.font = F_BODY; c.alignment = A_RIGHT; c.number_format = '"$"#,##0'
+    ws.row_dimensions[r].height = 26
+    # Quarter
+    cc = ws[f"B{r}"]; cc.value = q; cc.font = F_TOTAL; cc.alignment = A_CTR; cc.border = box()
+    cc.fill = fill(CREAM)
+    # Due date
+    cc = ws[f"C{r}"]; cc.value = dd; cc.font = F_BODY; cc.alignment = A_CTR; cc.border = box()
+    # Target $
+    cc = ws[f"D{r}"]; cc.value = f"='Quarterly Payments'!$D${7+i}"; cc.font = F_BODY; cc.alignment = A_RIGHT; cc.border = box(); cc.number_format = '"$"#,##0'
+    # Paid $
+    cc = ws[f"E{r}"]; cc.value = f"='Quarterly Payments'!$F${7+i}"; cc.font = F_BODY; cc.alignment = A_RIGHT; cc.border = box(); cc.number_format = '"$"#,##0'
+    # Remaining
+    cc = ws[f"G{r}"]; cc.value = f"=MAX(D{r}-E{r},0)"; cc.font = F_BODY; cc.alignment = A_RIGHT; cc.border = box(); cc.number_format = '"$"#,##0'
+    # % paid
+    cc = ws[f"H{r}"]; cc.value = f"=IFERROR(E{r}/D{r},0)"; cc.font = F_TOTAL; cc.alignment = A_CTR; cc.border = box(); cc.number_format = '0%'
+    # Progress bar (text-based REPT, monospace-feel)
+    # 20 segments total, █ for filled, ░ for empty. Works in every spreadsheet app.
+    cc = ws[f"I{r}"]
+    cc.value = (f'=IF(D{r}=0,REPT("░",20),'
+                f'REPT("█",MIN(20,ROUND(E{r}/D{r}*20,0)))&REPT("░",MAX(0,20-ROUND(E{r}/D{r}*20,0))))')
+    cc.font = Font(name="Consolas", size=11, bold=True, color=GOLD)
+    cc.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    cc.border = box()
+    ws.merge_cells(f"I{r}:J{r}")
 
-# Create chart
-chart = BarChart()
-chart.type = "col"
-chart.style = 11
-chart.title = "Federal — Target vs Paid by Quarter"
-chart.y_axis.title = "Dollars"
-chart.x_axis.title = "Quarter"
-chart.height = 8
-chart.width = 18
+# Conditional formatting: tint the Paid cell green if >= target, amber if partial, red if 0
+for i in range(4):
+    r = 23 + i
+    # Green when fully paid
+    ws.conditional_formatting.add(f"E{r}",
+        FormulaRule(formula=[f'AND(E{r}>=D{r},D{r}>0)'], fill=fill(GREEN_BG), font=Font(name="Calibri", size=11, bold=True, color=GREEN)))
+    # Amber when partial
+    ws.conditional_formatting.add(f"E{r}",
+        FormulaRule(formula=[f'AND(E{r}>0,E{r}<D{r})'], fill=fill(AMBER_BG), font=Font(name="Calibri", size=11, bold=True, color=AMBER)))
+    # Color the % paid cell too
+    ws.conditional_formatting.add(f"H{r}",
+        FormulaRule(formula=[f'H{r}>=1'], fill=fill(GREEN_BG), font=Font(name="Calibri", size=12, bold=True, color=GREEN)))
+    ws.conditional_formatting.add(f"H{r}",
+        FormulaRule(formula=[f'AND(H{r}>0,H{r}<1)'], fill=fill(AMBER_BG), font=Font(name="Calibri", size=12, bold=True, color=AMBER)))
 
-target_data = Reference(ws, min_col=3, min_row=22, max_col=3, max_row=26)
-paid_data   = Reference(ws, min_col=4, min_row=22, max_col=4, max_row=26)
-cats        = Reference(ws, min_col=2, min_row=23, max_col=2, max_row=26)
-chart.add_data(target_data, titles_from_data=True)
-chart.add_data(paid_data,   titles_from_data=True)
-chart.set_categories(cats)
-chart.dataLabels = DataLabelList(showVal=False)
-
-# Colors — series 1 (target) navy, series 2 (paid) gold
-from openpyxl.chart.shapes import GraphicalProperties
-from openpyxl.drawing.fill import ColorChoice
-chart.series[0].graphicalProperties = GraphicalProperties(solidFill="1C2B4A")
-chart.series[1].graphicalProperties = GraphicalProperties(solidFill="C9973A")
-
-ws.add_chart(chart, "F22")
-
-# Hide the data feed rows from view by setting white-on-white isn't reliable; we just keep them — they look like a tiny table.
+# Totals row
+total_row = 27
+ws.row_dimensions[total_row].height = 30
+cc = ws[f"B{total_row}"]; cc.value = "Annual total"; cc.font = F_TOTAL; cc.fill = fill(GOLD_PALE); cc.alignment = A_LEFT; cc.border = box(GOLD)
+ws.merge_cells(f"B{total_row}:C{total_row}")
+cc = ws[f"D{total_row}"]; cc.value = f"=SUM(D23:D26)"; cc.font = F_TOTAL; cc.fill = fill(GOLD_PALE); cc.alignment = A_RIGHT; cc.border = box(GOLD); cc.number_format = '"$"#,##0'
+cc = ws[f"E{total_row}"]; cc.value = f"=SUM(E23:E26)"; cc.font = F_TOTAL; cc.fill = fill(GOLD_PALE); cc.alignment = A_RIGHT; cc.border = box(GOLD); cc.number_format = '"$"#,##0'
+cc = ws[f"G{total_row}"]; cc.value = f"=MAX(D{total_row}-E{total_row},0)"; cc.font = F_TOTAL; cc.fill = fill(GOLD_PALE); cc.alignment = A_RIGHT; cc.border = box(GOLD); cc.number_format = '"$"#,##0'
+cc = ws[f"H{total_row}"]; cc.value = f"=IFERROR(E{total_row}/D{total_row},0)"; cc.font = F_TOTAL; cc.fill = fill(GOLD_PALE); cc.alignment = A_CTR; cc.border = box(GOLD); cc.number_format = '0%'
+cc = ws[f"I{total_row}"]
+cc.value = (f'=IF(D{total_row}=0,REPT("░",20),'
+            f'REPT("█",MIN(20,ROUND(E{total_row}/D{total_row}*20,0)))&REPT("░",MAX(0,20-ROUND(E{total_row}/D{total_row}*20,0))))')
+cc.font = Font(name="Consolas", size=11, bold=True, color=GOLD)
+cc.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+cc.fill = fill(GOLD_PALE)
+cc.border = box(GOLD)
+ws.merge_cells(f"I{total_row}:J{total_row}")
 
 # Footer note
-ws.row_dimensions[40].height = 40
+ws.row_dimensions[30].height = 40
 note = ("Everything on this Dashboard is calculated from the Setup, Income Forecast, and Quarterly Payments tabs. "
         "If a number looks wrong, the source is on those tabs — not here.")
-cell(ws, "B40", note, font=F_MUTED, align=A_LEFT_T)
-ws.merge_cells("B40:J40")
+cell(ws, "B30", note, font=F_MUTED, align=A_LEFT_T)
+ws.merge_cells("B30:J30")
 
 # ════════════════════════════════════════════════════════════════════
 # SHEET 9 — EXAMPLES
