@@ -19,8 +19,8 @@ GIG_PAGES = [
     ("rover-taxes.html",       "Rover sitters & walkers"),
 ]
 
-# Gumroad URL placeholder — replace after the listing goes live
-GUMROAD_URL = "https://sidehustleguard.gumroad.com/l/MILEAGE_PENDING"
+# Live Gumroad URL
+GUMROAD_URL = "https://sidehustleguard.gumroad.com/l/fbkkdf"
 
 PRODUCT_CARD_CSS = """
 .product-card{background:var(--cream-d);border:1.5px solid rgba(201,151,58,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
