@@ -181,9 +181,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(
 /* ── NAV + TICKER FIXED HEADER ── */
 .fixed-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  transition: transform .3s ease;
 }
-.fixed-header--hidden { transform: translateY(-110%); }
 nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 48px;
@@ -916,6 +914,5 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
   </div>
 </div>
 
-<script>(function(){var l=0,h=document.querySelector(".fixed-header");window.addEventListener("scroll",function(){var y=window.scrollY||window.pageYOffset;h.classList.toggle("fixed-header--hidden",y>l&&y>80);l=y},{passive:true})})()</script>
 </body>
 </html>

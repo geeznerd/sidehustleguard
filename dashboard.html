@@ -43,7 +43,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);
 
 /* NAV */
 nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:11px 28px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav--hidden{transform:translateY(-110%)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon svg{width:22px;height:26px}
 .logo-text{font-size:14px;font-weight:600;color:var(--white)}
 .logo-text span{color:var(--gold)}
@@ -1275,6 +1275,5 @@ document.addEventListener('alpine:init', () => {
   </div>
 
 </div>
-<script>(function(){var l=0,n=document.querySelector("nav");window.addEventListener("scroll",function(){var y=window.scrollY||window.pageYOffset;n.classList.toggle("nav--hidden",y>l&&y>80);l=y},{passive:true})})()</script>
 </body>
 </html>
