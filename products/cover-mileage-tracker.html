@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mileage Tracker — Gumroad Cover</title>
+<!--
+  HOW TO USE:
+  1. Open this file in Chrome or Safari.
+  2. Set browser zoom to 100%.
+  3. Take a screenshot of just the .cover div (in Chrome DevTools → device mode → set to 1280×720 → capture full-size screenshot).
+     OR just screenshot the area and crop to 1280×720.
+  4. Save as `cover-mileage-tracker.jpg` and upload to Gumroad.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:'DM Sans',sans-serif}
+  .cover{
+    width:1280px;height:720px;
+    background:#1c2b4a;
+    position:relative;overflow:hidden;
+    padding:80px 96px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    color:#fff;
+  }
+  /* dot grid */
+  .cover::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1.2px, transparent 1.2px);
+    background-size:32px 32px;
+    pointer-events:none;
+  }
+  /* gold glow */
+  .cover::after{
+    content:"";position:absolute;
+    right:-180px;bottom:-180px;
+    width:540px;height:540px;border-radius:50%;
+    background:radial-gradient(circle, rgba(201,151,58,0.18) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  .top{position:relative;z-index:1;display:flex;align-items:center;gap:14px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(201,151,58,0.16);
+    color:#ddb06a;
+    padding:7px 16px;border-radius:100px;
+    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid rgba(201,151,58,0.35);
+  }
+  .badge::before{content:"";width:7px;height:7px;background:#c9973a;border-radius:50%}
+  .main{position:relative;z-index:1;max-width:880px}
+  h1{
+    font-family:'Playfair Display',serif;
+    font-size:96px;font-weight:700;line-height:1.04;
+    letter-spacing:-0.02em;
+    margin-bottom:28px;
+  }
+  h1 em{font-style:italic;color:#ddb06a}
+  .sub{
+    font-size:24px;font-weight:300;color:rgba(255,255,255,0.7);
+    line-height:1.5;max-width:780px;
+  }
+  .bottom{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+  .features{display:flex;gap:10px;flex-wrap:wrap}
+  .feat{
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:8px 16px;border-radius:100px;
+    font-size:13px;font-weight:500;color:rgba(255,255,255,0.78);
+  }
+  .feat strong{color:#fff;font-weight:600}
+  .brand{
+    display:flex;align-items:center;gap:12px;
+    font-size:18px;font-weight:600;color:rgba(255,255,255,0.9);
+    letter-spacing:-0.01em;
+  }
+  .brand span{color:#c9973a}
+  .shield{width:34px;height:38px;display:block}
+  .price-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#c9973a;color:#fff;
+    padding:14px 26px;border-radius:100px;
+    font-size:20px;font-weight:700;
+    box-shadow:0 8px 32px rgba(201,151,58,0.4);
+    margin-top:20px;
+  }
+  .price-tag .sm{font-size:13px;font-weight:500;opacity:0.85}
+</style>
+</head>
+<body>
+<div class="cover">
+
+  <div class="top">
+    <div class="badge">Mileage Tracker · 2026</div>
+  </div>
+
+  <div class="main">
+    <h1>Every gig mile,<br>tracked <em>and deducted</em>.</h1>
+    <div class="sub">A pre-built Excel + Google Sheets tracker for DoorDash, Uber, Lyft, Grubhub, Instacart, Amazon Flex, TaskRabbit, and Rover drivers. Auto-calculates your IRS deduction. Ready for Schedule C.</div>
+    <div class="price-tag">$9 · Instant download</div>
+  </div>
+
+  <div class="bottom">
+    <div class="features">
+      <div class="feat"><strong>✓</strong> IRS-compliant log</div>
+      <div class="feat"><strong>✓</strong> Auto-calc deduction</div>
+      <div class="feat"><strong>✓</strong> Multi-platform</div>
+      <div class="feat"><strong>✓</strong> Year-end summary</div>
+    </div>
+    <div class="brand">
+      <svg class="shield" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1L1 5v9c0 7.5 5.2 13.5 12 15 6.8-1.5 12-7.5 12-15V5L13 1z" stroke="#c9973a" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M7.5 14.5l3.5 3.5 7-7" stroke="#c9973a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      SideHustle<span>Guard</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
