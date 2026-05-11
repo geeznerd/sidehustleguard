@@ -107,6 +107,21 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
+
+.product-card{background:var(--cream-d);border:1.5px solid rgba(201,151,58,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
+.product-card-icon{font-size:32px;line-height:1;flex-shrink:0;margin-top:2px}
+.product-card-body{flex:1;min-width:0}
+.product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.product-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.25}
+.product-card-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300}
+.product-card-feats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.product-card-feats span{font-size:11px;color:var(--muted);background:var(--white);border:1px solid var(--border);padding:3px 10px;border-radius:100px}
+.product-card-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.product-card-btn{display:inline-block;background:var(--gold);color:var(--white);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap}
+.product-card-btn:hover{background:var(--gold-lt)}
+.product-card-meta{font-size:11px;color:var(--dim)}
+@media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
+
 </style>
 <script type="application/ld+json">
 {
@@ -349,6 +364,25 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
   </div>
 
 <hr>
+<div class="product-card" data-product="quarterly-tax-system">
+  <div class="product-card-icon" aria-hidden="true">📅</div>
+  <div class="product-card-body">
+    <div class="product-card-eyebrow">Quarterly tax tool · spreadsheet</div>
+    <div class="product-card-title">Quarterly Tax System 2026</div>
+    <div class="product-card-desc">Built for New York self-employed. Tells you exactly what to send the IRS (and your state) for Q1, Q2, Q3, Q4 — and whether you've hit safe harbor so the underpayment penalty never lands on you. Excel + Google Sheets.</div>
+    <div class="product-card-feats">
+      <span>✓ SE tax + federal + state, calculated</span>
+      <span>✓ Q1–Q4 due dates &amp; targets</span>
+      <span>✓ Safe-harbor check (both rules)</span>
+      <span>✓ Payment log w/ on-track status</span>
+      <span>✓ Penalty-free year, every year</span>
+    </div>
+    <div class="product-card-cta-row">
+      <a href="https://sidehustleguard.gumroad.com/l/QUARTERLY_PENDING" class="product-card-btn" target="_blank" rel="noopener">Get the system — $17 →</a>
+      <span class="product-card-meta">Instant download · Excel &amp; Google Sheets</span>
+    </div>
+  </div>
+</div>
 <h2 id="frequently-asked-questions">Frequently asked <em>questions</em></h2>
   <div class="faq-item">
     <h3>What is the self-employment tax rate in New York?</h3>
