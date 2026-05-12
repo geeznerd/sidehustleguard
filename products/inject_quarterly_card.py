@@ -118,14 +118,23 @@ def patch_file(path, audience):
 
     # 3. If Mileage Tracker card exists, insert AFTER it.
     #    Otherwise, insert right before the FAQ h2.
+    # NOTE: the product-card structure has THREE trailing </div> tags
+    # (cta-row close, body close, product-card outer close). The original
+    # pattern matched only TWO, which made the new card render as a flex
+    # child of the previous one. Match all three.
     mileage_pattern = re.compile(
-        r'(<div class="product-card" data-product="gig-driver-mileage-tracker">.*?</div>\s*</div>)',
+        r'<div class="product-card" data-product="gig-driver-mileage-tracker">.*?</div>\s*</div>\s*</div>',
         re.DOTALL
     )
-    if mileage_pattern.search(content):
-        content = mileage_pattern.sub(r"\1\n" + card, content, count=1)
+    m = mileage_pattern.search(content)
+    if m:
+        # Use string slicing — avoids re.sub interpreting backslash
+        # sequences inside `card` as group references.
+        content = content[:m.end()] + "\n" + card + content[m.end():]
     else:
-        content = faq_pattern.sub(card + r"\1", content, count=1)
+        fm = faq_pattern.search(content)
+        if fm:
+            content = content[:fm.start()] + card + content[fm.start():]
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
