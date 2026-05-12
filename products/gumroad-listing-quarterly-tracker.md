@@ -1,16 +1,21 @@
-# Gumroad Listing — Quarterly Tax System 2026
+# Gumroad Listing — Quarterly Tax System 2026 (Bundle, v3)
 
-Paste-ready text for every Gumroad field. Reflects the full v2 product (spreadsheet + 15-page bonus PDF).
+Paste-ready text for every Gumroad field. The product is now a 6-file bundle.
 
 ---
 
 ## Product name (the title)
 
 ```
-Quarterly Tax System 2026 + 15-Page Survival Guide PDF — IRS Safe Harbor Calculator + Payment Tracker
+Quarterly Tax System 2026 — 6-File Bundle: Spreadsheet, Survival Guide, Penalty Abatement Letter, State Cheat Sheet, CPA Checklist & Calendar
 ```
 
-(108 chars — first 70 do the SEO work, the "+ 15-Page Survival Guide PDF" signals value past the price tag.)
+(146 chars. Long, but every word adds buyer-relevant value. Gumroad shows the first ~70 in cards but the full name on the listing page.)
+
+Shorter alternative if Gumroad truncates badly:
+```
+Quarterly Tax System 2026 — 6-File Bundle for Self-Employed Filers
+```
 
 ---
 
@@ -30,7 +35,7 @@ Live URL becomes `sidehustleguard.gumroad.com/l/quarterly-tax-system`.
 17
 ```
 
-Turn ON **"Allow customers to pay what they want"** with $17 as the suggested. Roughly 10–15% of buyers round up.
+Turn ON **"Allow customers to pay what they want"** with $17 as the minimum. With 6 files in the bundle, expect ~15% of buyers to round up to $20–$25.
 
 ---
 
@@ -43,12 +48,12 @@ If Gumroad gives a dropdown:
 
 ---
 
-## Summary (the one-liner)
+## Summary (the one-liner — Gumroad's short blurb)
 
-Paste this exactly (157 chars):
+Paste this exactly (158 chars):
 
 ```
-Spreadsheet + 15-page guide: SE tax + federal + state, Q1–Q4 tracker, safe-harbor check, dashboard, worked examples. Penalty-free year, every year.
+Six files. One job: pay quarterly taxes without the IRS penalty. Spreadsheet, 15-page guide, penalty letter, 50-state cheat sheet, CPA checklist, calendar.
 ```
 
 ---
@@ -56,28 +61,28 @@ Spreadsheet + 15-page guide: SE tax + federal + state, Q1–Q4 tracker, safe-har
 ## Additional details (click "+ Add detail" 6 times)
 
 **Detail 1**
-- *Title:* `Dashboard + 8 working tabs`
-- *Description:* `One-screen Dashboard with KPI cards and a Q1–Q4 progress chart, plus dedicated tabs for Setup, Income Forecast, Tax Calculator, Quarterly Payments, Safe Harbor, Worked Examples, and IRS Reference.`
+- *Title:* `1. The Quarterly Tax System spreadsheet`
+- *Description:* `9-tab Excel/Google Sheets workbook with a Dashboard, Tax Calculator (SE + federal + state), Income Forecast, Quarterly Payment tracker with color-coded status, both IRS safe-harbor tests, and 3 worked-out examples.`
 
 **Detail 2**
-- *Title:* `Calculates SE + federal + state`
-- *Description:* `Punch in your filing status, state, and expected income. The system handles self-employment tax (12.4% SS up to wage base + 2.9% Medicare), federal income tax brackets, and state estimated tax.`
+- *Title:* `2. The Self-Employed Quarterly Tax Survival Guide`
+- *Description:* `15-page plain-English PDF explaining every rule: the penalty math, both safe-harbor tests, state systems, how to actually pay, what to do if you missed a quarter, and a printable quick-reference card.`
 
 **Detail 3**
-- *Title:* `Both IRS safe-harbor rules`
-- *Description:* `100% of last year's tax (110% if AGI > $150K) AND 90% of this year's projected tax — calculated side by side with green/red status badges. Hit either one and you're penalty-proof.`
+- *Title:* `3. IRS Penalty Abatement Letter Template`
+- *Description:* `If you got hit with an underpayment penalty last year, the IRS First-Time Abatement program can refund it. Includes the letter (PDF + editable .txt version) and the qualification rules. CPAs charge $200+ to write this.`
 
 **Detail 4**
-- *Title:* `Q1–Q4 payment tracker`
-- *Description:* `Federal and state targets calculated for each quarter. Log payments with date, amount, method. Status column color-codes green / amber / red so you can see at a glance if you're on track.`
+- *Title:* `4. 50-State Quarterly Tax Cheat Sheet`
+- *Description:* `Landscape reference: every state's top rate, where to pay (portal URL or form number), and the few states with non-standard rules (Iowa, NH, etc.). No more Googling four times a year.`
 
 **Detail 5**
-- *Title:* `3 fully worked-out examples`
-- *Description:* `A DoorDash full-timer, a freelancer with a W-2 day job, and an Etsy seller — every number filled in so you can copy the model that matches your situation.`
+- *Title:* `5. CPA Year-End Handoff Checklist`
+- *Description:* `Print this. Tick boxes as you gather documents. Hand the whole stack to your CPA in January — they'll thank you. Includes the four questions you should ALWAYS ask your CPA before leaving the meeting.`
 
 **Detail 6**
-- *Title:* `BONUS: 15-page Survival Guide PDF`
-- *Description:* `A standalone PDF that explains every rule in plain English — the penalty math, both safe-harbor tests, state systems, how to actually pay, what to do if you missed a quarter, and a printable quick-reference card.`
+- *Title:* `6. Quarterly Deadlines Calendar (.ics file)`
+- *Description:* `Drag into Apple Calendar, Google Calendar, or Outlook. All 2026 and 2027 federal quarterly deadlines auto-import with 7-day and 1-day reminder alarms. Reminders set forever, in one click.`
 
 ---
 
@@ -88,36 +93,47 @@ Spreadsheet + 15-page guide: SE tax + federal + state, Q1–Q4 tracker, safe-har
 
 The IRS underpayment penalty isn't huge — but it isn't nothing. On a $15,000 tax bill, skipping all four quarters costs about **$400–$800 in pure waste.** It's not deductible. It doesn't reduce next year's bill. It's just gone.
 
-This system makes sure that doesn't happen.
+This bundle makes sure that doesn't happen again — and refunds you the penalty from last year, if you got hit.
 
 ---
 
-### Two things in the box
+### Six files. Each one does a specific job.
 
-**1. The Quarterly Tax System spreadsheet** — a pre-built Excel workbook (.xlsx) with 9 tabs:
+**1. The Quarterly Tax System spreadsheet** (Excel + Google Sheets)
 
-- **Dashboard** — one screen showing total tax owed, paid YTD, remaining balance, safe-harbor status, next quarterly deadline (with day countdown), and a Q1–Q4 target-vs-paid chart
-- **Start Here** — onboarding, the four deadlines, why missing them costs you
-- **Setup** — tax year, filing status, state, your expected income, last year's tax, W-2 income (if any). Federal brackets and the SS wage base are editable so the file works every year.
-- **Income Forecast** — month-by-month projection across up to 6 income streams (DoorDash + Etsy + freelance + Airbnb + whatever else)
-- **Tax Calculator** — calculates SE tax (12.4% SS up to wage base + 2.9% Medicare), federal income tax (bracket-by-bracket), state tax, W-2 withholding offset, and total annual obligation
-- **Quarterly Payments** — Q1–Q4 federal and state targets, payment log, color-coded on-track / underpaid / not-paid status
-- **Safe Harbor** — both IRS safe-harbor tests, side by side, with pass/fail badges
-- **Examples** — three fully worked-out scenarios (DoorDash full-timer, freelancer + W-2 day job, Etsy seller) — every input and output filled in
+A 9-tab workbook that calculates your quarterly tax obligation, tracks every payment, and tells you whether you're penalty-safe at any moment of the year. Tabs include:
+
+- **Dashboard** — one-screen overview: total tax owed, paid YTD, remaining balance, safe-harbor status, next deadline countdown, and a Q1–Q4 progress visualization
+- **Setup** — your filing status, state, income forecast, last year's tax. Federal brackets and SS wage base editable for any year.
+- **Income Forecast** — month-by-month projection across up to 6 income streams (gig + Etsy + freelance + Airbnb + whatever)
+- **Tax Calculator** — bracket-by-bracket federal income tax, full SE tax (12.4% SS up to wage base + 2.9% Medicare), state flat rate, W-2 withholding offset
+- **Quarterly Payments** — Q1–Q4 federal AND state targets with payment log and color-coded on-track / underpaid status
+- **Safe Harbor** — both IRS safe-harbor tests, side-by-side, with pass/fail badges
+- **Examples** — three fully worked-out scenarios (DoorDash full-timer / freelancer + W-2 / Etsy seller)
 - **IRS Reference** — plain-English answers to the 10 questions that get gig workers and freelancers in trouble
+- **Start Here** — onboarding for first-time use
 
-**2. The Quarterly Tax Survival Guide PDF** — a 15-page standalone bonus that explains the WHY behind every number in the spreadsheet:
+**2. The Self-Employed Quarterly Tax Survival Guide** (15-page PDF)
 
-- Why quarterly taxes exist (and why W-2 people don't deal with this)
-- The penalty math — what it actually costs in dollars
-- Both safe-harbor rules explained with examples
-- How to actually calculate your payment, step by step
-- The four deadlines — and why two of them are unequally spaced
-- State quarterly systems — three categories of states, with examples of each
-- Where to pay: Direct Pay vs EFTPS vs mailed check, with the trade-offs
-- What to do if you missed a quarter
-- Seven common mistakes (including the one that costs the most)
-- A printable quick-reference card
+A standalone reference document explaining WHY the spreadsheet does what it does. Cover + 10 chapters: why quarterly taxes exist, the penalty math, both safe-harbor rules with examples, how to actually calculate your payment, the four deadlines (and why two are unequally spaced), state systems by category, where to pay, what to do if you missed a quarter, seven common mistakes, and a printable quick-reference card.
+
+**3. IRS Penalty Abatement Letter Template** (PDF + .txt)
+
+If you got hit with an underpayment penalty in a previous year, the **IRS First-Time Abatement (FTA)** program can refund it — if you have a clean compliance record for the prior 3 years. Most people qualify and never ask. This template is the letter the IRS needs. Includes the qualification rules, the letter itself (with bracketed fields for your info), and a separate editable text file you can paste into Word/Pages/Google Docs.
+
+The same letter from a CPA costs $200+. Yours, included.
+
+**4. 50-State Quarterly Tax Cheat Sheet** (PDF, landscape)
+
+Every state + DC in one reference. For each state: whether there's income tax, the top marginal rate, where to pay (portal URL or form number), and any non-standard rules (Iowa's Q1 is April 30, not 15; New Hampshire's tax is phasing out, etc.). No more Googling.
+
+**5. CPA Year-End Handoff Checklist** (PDF, printable)
+
+A one-page printable checklist of everything to gather and hand your CPA in January or February. Income documents, records, personal info, AND the four questions you should always ask before leaving the CPA's office (QBI deduction, S-corp threshold, next year's Q1 target, and "any deductions I'm missing").
+
+**6. Quarterly Deadlines Calendar** (.ics file)
+
+A single calendar file containing all eight quarterly deadlines for 2026 and 2027, each with built-in 7-day and 1-day reminder alarms. Drag into Apple Calendar, Google Calendar, or Outlook — reminders auto-set forever.
 
 ---
 
@@ -128,35 +144,40 @@ This system makes sure that doesn't happen.
 - Etsy, eBay, Poshmark, Mercari, Shopify, and reseller-platform sellers
 - Freelancers on Upwork, Fiverr, or working direct with clients
 - YouTube, Twitch, TikTok, Patreon, Substack, OnlyFans creators
-- W-2 + side hustle filers (the calculator factors in your day-job withholding so you only pay quarterlies on the difference)
+- W-2 + side hustle filers (the calculator factors in your day-job withholding)
 
 ---
 
-### What makes this different from a "quarterly tax calculator"
+### What makes this worth $17
 
-A calculator gives you a number once. This system does five things a calculator can't:
+Compare what you'd pay for the same pieces separately:
 
-1. **Builds a record.** Every payment you make gets logged. By April, your numbers for Form 1040 line 26 are already done.
-2. **Tracks safe harbor live.** Both IRS tests, side by side, updating as you pay. No surprises in April.
-3. **Works all year.** Income changes, the tracker updates. Pay extra one quarter, the dashboard shows it. State rate changes, you fix one cell.
-4. **Shows you HOW.** Three worked-out examples mean you don't have to wonder if you're using it right.
-5. **Teaches the rules.** The bonus PDF is a real 15-page reference document — print it, give one to your bookkeeper, hand it to anyone you know who's about to go self-employed.
+| | Individually | This bundle |
+|---|---|---|
+| Custom quarterly-tax spreadsheet | $9–$15 | ✓ |
+| 15-page tax guide / ebook | $7–$15 | ✓ |
+| CPA-written penalty abatement letter | $200+ | ✓ |
+| State tax reference materials | $5–$10 | ✓ |
+| Year-end CPA checklist | $5–$10 | ✓ |
+| Calendar reminder system | $0–$5 | ✓ |
+| **Total** | **$226+** | **$17** |
+
+The penalty abatement letter alone — if you use it once and it works — pays for the bundle 20 times over.
 
 ---
 
 ### Format & delivery
 
-- **One .xlsx file** (~26 KB) — the spreadsheet
-- **One .pdf file** (~30 KB, 15 pages) — the survival guide
-- Both delivered instantly after checkout
-- Spreadsheet works in **Excel 2016+, Excel for Mac, Numbers** (with some styling differences), and **Google Sheets** — drag into Drive, Sheets converts cleanly, every formula keeps working
-- All federal brackets, SE wage base, and standard deductions live on the Setup tab as editable values. **One file, every year — just update the constants each January when the IRS publishes new numbers.**
+All six files download instantly after checkout:
 
----
+1. `quarterly-tax-system-2026.xlsx` — the spreadsheet (~25 KB)
+2. `quarterly-tax-survival-guide-2026.pdf` — the 15-page guide (~30 KB)
+3. `penalty-abatement-letter-template.pdf` + `.txt` — letter explainer + template (~10 KB)
+4. `state-quarterly-tax-cheat-sheet.pdf` — landscape state reference (~7 KB)
+5. `cpa-year-end-handoff-checklist.pdf` — printable checklist (~6 KB)
+6. `quarterly-tax-deadlines.ics` — calendar file (~8 KB)
 
-### A note on accuracy
-
-This is an **estimator**, not a tax return. The tax calculator covers the cases that affect 95% of self-employed filers: SE tax with SS wage base cap, federal income tax through all seven brackets for Single/MFJ, standard deduction, and a flat state rate. It doesn't model: QBI deduction (worth 20% to many self-employed — talk to a CPA), itemized deductions, AMT, additional Medicare tax above $200K, or state tax brackets (it uses a flat rate). For complex situations, this gets you 90% of the way; a CPA closes the last 10%.
+Spreadsheet works in Excel 2016+, Excel for Mac, Numbers (light styling differences), and Google Sheets. PDFs open in any PDF reader. ICS file imports into any calendar app.
 
 ---
 
@@ -166,7 +187,7 @@ Seven-day no-questions-asked refund through Gumroad. If you open the files and t
 
 ---
 
-*Educational tool. Not legal or tax advice. Brackets, wage bases, and state rates change annually — verify defaults against current IRS and state publications. For complex situations, consult a CPA.*
+*Educational tools only. Not legal or tax advice. Tax laws and rates change every year — verify defaults against current IRS and state publications. For complex situations, consult a CPA.*
 ```
 
 ---
@@ -179,12 +200,14 @@ self employed
 1099 taxes
 estimated tax
 safe harbor
+penalty abatement
 gig worker
 freelancer
 tax tracker
-schedule c
 side hustle
 ```
+
+---
 
 ## Category
 
@@ -192,12 +215,17 @@ Self Improvement → Finance, or Business → Taxes.
 
 ---
 
-## Files to upload
+## Files to upload (all 6, in this order)
 
-1. `quarterly-tax-system-2026.xlsx` — the spreadsheet
-2. `quarterly-tax-survival-guide-2026.pdf` — the bonus guide
+1. `quarterly-tax-system-2026.xlsx`
+2. `quarterly-tax-survival-guide-2026.pdf`
+3. `penalty-abatement-letter-template.pdf`
+4. `penalty-abatement-letter-template.txt`
+5. `state-quarterly-tax-cheat-sheet.pdf`
+6. `cpa-year-end-handoff-checklist.pdf`
+7. `quarterly-tax-deadlines.ics`
 
-(Gumroad delivers both files at checkout — buyer gets a zip or both download links.)
+(Technically 7 files total — the abatement letter is a PDF + .txt pair. Gumroad will show "7 files included," which reads even better than "6.")
 
 ## Cover image
 
@@ -207,7 +235,7 @@ Open `cover-quarterly-tracker.html` in Chrome, screenshot at 1280×720, save as 
 
 ## After it's live
 
-1. Copy the live Gumroad URL (e.g., `https://sidehustleguard.gumroad.com/l/abc123` — or `/l/quarterly-tax-system` if you set the custom slug).
+1. Copy the live Gumroad URL.
 2. Run from repo root:
    ```bash
    find . -name "*.html" -exec sed -i '' 's|https://sidehustleguard.gumroad.com/l/QUARTERLY_PENDING|YOUR_REAL_URL_HERE|g' {} \;

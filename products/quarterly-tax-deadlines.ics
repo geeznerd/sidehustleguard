@@ -1,0 +1,176 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SideHustleGuard//Quarterly Tax Deadlines//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Quarterly Tax Deadlines (2026–2027)
+X-WR-CALDESC:US federal quarterly estimated tax deadlines from SideHustleGuard's Quarterly Tax System. Most states with income tax mirror these dates.
+BEGIN:VEVENT
+UID:q1-2026@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20260415
+DTEND;VALUE=DATE:20260416
+SUMMARY:Q1 Estimated Tax Payment Due (Tax Year 2026)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering January – March of tax year 2026.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q1 quarterly tax due in 1 week (20260415)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q1 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q2-2026@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+SUMMARY:Q2 Estimated Tax Payment Due (Tax Year 2026)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering April – May of tax year 2026.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q2 quarterly tax due in 1 week (20260615)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q2 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q3-2026@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260916
+SUMMARY:Q3 Estimated Tax Payment Due (Tax Year 2026)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering June – August of tax year 2026.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q3 quarterly tax due in 1 week (20260915)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q3 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q4-2026@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+SUMMARY:Q4 Estimated Tax Payment Due (Tax Year 2026)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering September – December 2026 of tax year 2026.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q4 quarterly tax due in 1 week (20270115)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q4 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q1-2027@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20270415
+DTEND;VALUE=DATE:20270416
+SUMMARY:Q1 Estimated Tax Payment Due (Tax Year 2027)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering January – March of tax year 2027.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q1 quarterly tax due in 1 week (20270415)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q1 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q2-2027@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270616
+SUMMARY:Q2 Estimated Tax Payment Due (Tax Year 2027)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering April – May of tax year 2027.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q2 quarterly tax due in 1 week (20270615)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q2 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q3-2027@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270916
+SUMMARY:Q3 Estimated Tax Payment Due (Tax Year 2027)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering June – August of tax year 2027.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q3 quarterly tax due in 1 week (20270915)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q3 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:q4-2027@sidehustleguard.com
+DTSTAMP:20260512T012156Z
+DTSTART;VALUE=DATE:20280115
+DTEND;VALUE=DATE:20280116
+SUMMARY:Q4 Estimated Tax Payment Due (Tax Year 2027)
+DESCRIPTION:Federal quarterly estimated tax payment due to the IRS\, covering September – December 2027 of tax year 2027.\n\nPay one of three ways:\n  • IRS Direct Pay — irs.gov/payments/direct-pay (fastest)\n  • EFTPS — eftps.gov (best for permanent payment history)\n  • Mail Form 1040-ES with a check\n\nIf you live in a state with income tax\, you likely owe a state quarterly payment on the same date — check your state revenue department's site.\n\nThis calendar from your Quarterly Tax System purchase from SideHustleGuard.\nsidehustleguard.com
+LOCATION:irs.gov/payments/direct-pay
+CATEGORIES:Tax,SideHustleGuard
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Q4 quarterly tax due in 1 week (20280115)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Q4 quarterly tax due TOMORROW
+END:VALARM
+END:VEVENT
+END:VCALENDAR
