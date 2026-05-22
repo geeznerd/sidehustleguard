@@ -1,31 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Side Hustle Dashboard — Audit Risk + Tax Guard + S-Corp Simulator | SideHustleGuard</title>
-<meta name="description" content="Three free side hustle tax tools in one dashboard. Check your audit risk, calculate how much to set aside from each payment, and find out if an S-Corp saves you money — all updated live.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.sidehustleguard.com/dashboard">
-<meta property="og:title" content="Side Hustle Dashboard — All Three Side Hustle Tax Tools in One Place">
-<meta property="og:description" content="Enter your income once and get instant results across audit risk, tax set-aside, and S-Corp savings tools.">
-<meta property="og:url" content="https://www.sidehustleguard.com/dashboard">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://www.sidehustleguard.com/images/og/dashboard.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/dashboard.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta content="Three free side hustle tax tools in one dashboard. Check your audit risk, calculate how much to set aside from each payment, and find out if an S-Corp saves you money — all updated live." name="description"/>
+<meta content="noindex, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/dashboard" rel="canonical"/>
+<meta content="Side Hustle Dashboard — All Three Side Hustle Tax Tools in One Place" property="og:title"/>
+<meta content="Enter your income once and get instant results across audit risk, tax set-aside, and S-Corp savings tools." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/dashboard" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.sidehustleguard.com/images/og/dashboard.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.sidehustleguard.com/images/og/dashboard.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-
+<script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"SideHustleGuard Side Hustle Dashboard","url":"https://www.sidehustleguard.com/dashboard","description":"Unified tax dashboard: audit risk estimator, tax set-aside calculator, and S-Corp savings simulator for side hustlers.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.sidehustleguard.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.sidehustleguard.com/guides"},{"@type":"ListItem","position":3,"name":"Side Hustle Dashboard","item":"https://www.sidehustleguard.com/dashboard"}]}}
 </script>
-
 <style>
 [x-cloak]{display:none!important}
 :root{
@@ -330,559 +329,519 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 }
 </style>
 </head>
-
 <body x-data="dashboard()">
-
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo">
-    <span class="logo-icon">
-      <svg viewBox="0 0 26 30" fill="none"><path d="M13 1L2 5.5V14C2 21 7.5 27 13 29C18.5 27 24 21 24 14V5.5L13 1Z" fill="#c9973a" stroke="#c9973a" stroke-width="1" stroke-linejoin="round"/><path d="M8.5 14.5L11.5 17.5L17.5 11" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </span>
-    <span class="logo-text">SideHustle<span>Guard</span></span>
-  </a>
-  <div class="nav-links">
-    <a href="/guides" class="nav-link">Tools</a>
-    <a href="/tool" class="nav-link">Free Checker</a>
-    <a href="/guides" class="nav-cta">All Guides →</a>
-  </div>
+<a class="logo" href="/">
+<span class="logo-icon">
+<svg fill="none" viewbox="0 0 26 30"><path d="M13 1L2 5.5V14C2 21 7.5 27 13 29C18.5 27 24 21 24 14V5.5L13 1Z" fill="#c9973a" stroke="#c9973a" stroke-linejoin="round" stroke-width="1"></path><path d="M8.5 14.5L11.5 17.5L17.5 11" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+</span>
+<span class="logo-text">SideHustle<span>Guard</span></span>
+</a>
+<div class="nav-links">
+<a class="nav-link" href="/guides">Tools</a>
+<a class="nav-link" href="/tool">Free Checker</a>
+<a class="nav-cta" href="/guides">All Guides →</a>
+</div>
 </nav>
-
 <!-- DASHBOARD LAYOUT -->
 <div class="db-wrap">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sb-sec">
-      <div class="sb-lbl">Dashboard</div>
-      <a href="#section-profile" class="sb-link">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/></svg>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="sb-sec">
+<div class="sb-lbl">Dashboard</div>
+<a class="sb-link" href="#section-profile">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 20 20"><circle cx="10" cy="7" r="3"></circle><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"></path></svg>
         Your Profile
       </a>
-    </div>
-    <hr class="sb-div">
-    <div class="sb-sec">
-      <div class="sb-lbl">Tools</div>
-      <a href="#section-audit" class="sb-link">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2L3 5V10C3 15 6.5 18.5 10 20C13.5 18.5 17 15 17 10V5L10 2Z" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<hr class="sb-div"/>
+<div class="sb-sec">
+<div class="sb-lbl">Tools</div>
+<a class="sb-link" href="#section-audit">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 20 20"><path d="M10 2L3 5V10C3 15 6.5 18.5 10 20C13.5 18.5 17 15 17 10V5L10 2Z" stroke-linejoin="round"></path><path d="M7 10l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         Audit Shield
       </a>
-      <a href="#section-guard" class="sb-link">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 9h14M7 4V3M13 4V3"/><path d="M7 13h2M11 13h2"/></svg>
+<a class="sb-link" href="#section-guard">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 20 20"><rect height="12" rx="2" width="14" x="3" y="4"></rect><path d="M3 9h14M7 4V3M13 4V3"></path><path d="M7 13h2M11 13h2"></path></svg>
         Tax Guard
       </a>
-      <a href="#section-scorp" class="sb-link">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="11" width="5" height="7" rx="1"/><rect x="7.5" y="7" width="5" height="11" rx="1"/><rect x="13" y="3" width="5" height="15" rx="1"/></svg>
+<a class="sb-link" href="#section-scorp">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 20 20"><rect height="7" rx="1" width="5" x="2" y="11"></rect><rect height="11" rx="1" width="5" x="7.5" y="7"></rect><rect height="15" rx="1" width="5" x="13" y="3"></rect></svg>
         S-Corp Sim
       </a>
-    </div>
-    <div class="sb-spacer"></div>
-    <hr class="sb-div">
-    <button class="sb-btn" @click="requestReport()" :disabled="pdfBusy" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Guard Report'"></button>
-    <div class="sb-disc">Educational estimates only — not tax advice. Consult a licensed CPA before making decisions.</div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- PROFILE -->
-    <section class="profile-card" id="section-profile">
-      <div class="card-eye">Shared Profile</div>
-      <div class="card-title">Enter once — <em>all three tools update live</em></div>
-      <div class="profile-row">
-        <div class="fld">
-          <label class="fld-lbl">Annual Net Income / Profit</label>
-          <div class="inp-wrap dollar">
-            <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-              x-effect="fmtInp($el, annualIncome)" @input="maskInp($event, 'annualIncome')"
-              placeholder="75,000">
-          </div>
-          <div class="fld-help">Expected net self-employment income this year</div>
-        </div>
-        <div class="fld">
-          <label class="fld-lbl">State</label>
-          <div class="inp-wrap">
-            <select x-model="state">
-              <option value="CA">California</option>
-              <option value="TX">Texas (no state tax)</option>
-              <option value="FL">Florida (no state tax)</option>
-              <option value="NY">New York</option>
-              <option value="WA">Washington (no state tax)</option>
-              <option value="NV">Nevada (no state tax)</option>
-              <option value="OR">Oregon</option>
-              <option value="CO">Colorado</option>
-              <option value="AZ">Arizona</option>
-              <option value="IL">Illinois</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="NJ">New Jersey</option>
-              <option value="MA">Massachusetts</option>
-              <option value="GA">Georgia</option>
-              <option value="NC">North Carolina</option>
-              <option value="VA">Virginia</option>
-              <option value="MN">Minnesota</option>
-              <option value="none">Other / No State Tax</option>
-            </select>
-          </div>
-        </div>
-        <div class="fld">
-          <label class="fld-lbl">Filing Status</label>
-          <div class="inp-wrap">
-            <select x-model="filingStatus">
-              <option value="single">Single</option>
-              <option value="mfj">Married filing jointly</option>
-              <option value="hoh">Head of household</option>
-            </select>
-          </div>
-        </div>
-        <div class="tog-fld">
-          <div class="fld-lbl">Self-Employed</div>
-          <div class="tog-row">
-            <label class="tog">
-              <input type="checkbox" x-model="isSE">
-              <span class="t-sl"></span>
-            </label>
-            <span class="tog-note" x-text="isSE ? 'SE tax on' : 'SE tax off'"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SUMMARY STATS -->
-    <div class="stats-row">
-      <div class="stat-chip" :class="auditChipClass">
-        <div class="sc-lbl">Audit Risk</div>
-        <div class="sc-val" x-text="auditRiskLabel"></div>
-        <div class="sc-sub" x-text="'Score ' + auditResult.score + ' / 20'"></div>
-      </div>
-      <div class="stat-chip" :class="tgPayment > 0 ? '' : 'zero-state'">
-        <div class="sc-lbl">Guard Rate (Per Payment)</div>
-        <div class="sc-val" x-text="tgPayment > 0 ? guardResult.guardPct.toFixed(0) + '%' : '--%'"></div>
-        <div class="sc-sub" x-text="tgPayment > 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
-      </div>
-      <div class="stat-chip" :class="scorpChipClass">
-        <div class="sc-lbl">S-Corp Advantage</div>
-        <div class="sc-val" x-text="scorpResult.savings >= 0 ? '+' + fmtD(scorpResult.savings) : fmtD(scorpResult.savings)"></div>
-        <div class="sc-sub" x-text="scorpResult.savings >= 500 ? 'saved per year vs sole prop' : scorpResult.savings >= 0 ? 'marginal advantage' : 'sole prop is better at this income'"></div>
-      </div>
-    </div>
-
-    <!-- ALERTS -->
-    <template x-if="alerts.length > 0">
-      <div class="alerts-stack">
-        <template x-for="(a, i) in alerts" :key="i">
-          <div class="alert" :class="'a-' + a.type">
-            <span class="alert-ico" x-text="a.icon"></span>
-            <span x-text="a.text"></span>
-          </div>
-        </template>
-      </div>
-    </template>
-
-    <!-- ── TOOL CARDS (3-col on ≥1200px, stacked on mobile) ─────────────── -->
-    <div class="tools-grid">
-
-    <!-- ── AUDIT SHIELD ──────────────────────────────────────────────────── -->
-    <div class="tool-card" id="section-audit">
-      <div class="tc-header">
-        <div class="tc-title"><span class="tc-icon">🛡️</span><span><em>Audit</em> Shield Estimator</span></div>
-        <a href="/audit-risk-estimator" class="tc-link">Full 4-step tool →</a>
-      </div>
-      <div class="tc-body">
-        <div class="tc-inputs">
-          <div class="g2">
-            <div class="fld">
-              <label class="fld-lbl">Business Type</label>
-              <select x-model="bizType">
-                <option value="ecommerce">E-commerce / Etsy / reselling</option>
-                <option value="consulting">Consulting / freelancing</option>
-                <option value="content">Content creator</option>
-                <option value="gig">Gig / delivery work</option>
-                <option value="cash">Cash-based services</option>
-                <option value="rental">Short-term rental</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Loss History (3 yrs)</label>
-              <select x-model="lossHistory">
-                <option value="profitable">Profitable each year</option>
-                <option value="loss-1-2">Lost money 1–2 years</option>
-                <option value="loss-3plus">Lost money 3+ years</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Gross Revenue</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, auditRevenue)" @input="maskInp($event, 'auditRevenue')"
-                  placeholder="80,000">
-              </div>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Total Expenses</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, auditExpenses)" @input="maskInp($event, 'auditExpenses')"
-                  placeholder="20,000">
-              </div>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Business Banking</label>
-              <select x-model="bankAccount">
-                <option value="dedicated">Dedicated business account</option>
-                <option value="mixed">Mostly personal, some business</option>
-                <option value="personal">Personal account only</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Record Keeping</label>
-              <select x-model="recordKeeping">
-                <option value="organized">Organized (software/receipts)</option>
-                <option value="basic">Basic (some gaps)</option>
-                <option value="minimal">Minimal or none</option>
-              </select>
-            </div>
-          </div>
-          <hr class="fdiv">
-          <div class="g3">
-            <div class="fld">
-              <label class="fld-lbl">Vehicle Use</label>
-              <select x-model="vehicle">
-                <option value="none">No vehicle deduction</option>
-                <option value="partial">Partial business use</option>
-                <option value="full">100% business use</option>
-              </select>
-            </div>
-            <div class="fld" x-show="vehicle !== 'none'">
-              <label class="fld-lbl">Mileage Log?</label>
-              <select x-model="mileageLog">
-                <option value="yes">Yes — I log every trip</option>
-                <option value="no">No mileage log</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Other Deductions</label>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:5px">
-                <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
-                  <input type="checkbox" x-model="homeOffice" style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0"> Home office
-                </label>
-                <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
-                  <input type="checkbox" x-model="meals" style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0"> Business meals
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tc-results">
-          <div class="rbox">
-            <div class="r-lbl">Risk Level</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:5px">
-              <span class="rbadge" :class="auditRisk" x-text="auditRiskLabel"></span>
-              <span style="font-size:13px;color:var(--muted)" x-text="'Score: ' + auditResult.score + ' / 20'"></span>
-            </div>
-            <div class="score-bar-wrap">
-              <div class="score-bar-track">
-                <div class="score-bar-fill" :class="auditRisk" :style="'width:' + (auditResult.score / 20 * 100).toFixed(1) + '%'"></div>
-              </div>
-              <div class="score-bar-ticks"><span>Low (1–5)</span><span>Medium (6–12)</span><span>High (13+)</span></div>
-            </div>
-          </div>
-          <div>
-            <div class="r-lbl">Top Flags</div>
-            <template x-if="auditResult.flags.length === 0">
-              <p style="font-size:12px;color:var(--green);margin-top:7px">✓ No significant red flags with your current answers.</p>
-            </template>
-            <ul class="flags" x-show="auditResult.flags.length > 0">
-              <template x-for="(f, i) in auditResult.flags.slice(0, 5)" :key="i">
-                <li class="flag-item">
-                  <span class="fdot" :class="f.severity"></span>
-                  <span x-text="f.text" style="flex:1"></span>
-                </li>
-              </template>
-            </ul>
-          </div>
-          <div style="margin-top:auto;padding-top:4px">
-            <a href="/audit-risk-estimator" style="font-size:12px;color:var(--gold);text-decoration:none">Get the full checklist with actionable tips →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── TAX GUARD ─────────────────────────────────────────────────────── -->
-    <div class="tool-card" id="section-guard">
-      <div class="tc-header">
-        <div class="tc-title"><span class="tc-icon">💰</span><span><em>Tax</em> Guard Calculator</span></div>
-        <a href="/tax-guard-calculator" class="tc-link">Full tool + receipt →</a>
-      </div>
-      <div class="tc-body">
-        <div class="tc-inputs">
-          <div class="fld" style="max-width:260px">
-            <label class="fld-lbl" style="font-size:13px;font-weight:600">Payment Received</label>
-            <div class="inp-wrap dollar">
-              <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                x-effect="fmtInp($el, tgPayment)" @input="maskInp($event, 'tgPayment')"
-                placeholder="1,500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 28px">
-            </div>
-            <div class="fld-help">Enter any single payment to see how much to move to savings</div>
-          </div>
-          <hr class="fdiv">
-          <div style="font-size:12px;color:var(--muted);line-height:1.8">
-            <p style="font-weight:600;color:var(--navy);margin-bottom:4px">Rates from your profile:</p>
-            <p>Annual income: <strong x-text="'$' + fmt(annualIncome)"></strong></p>
-            <p>State: <strong x-text="state === 'none' ? 'No state tax' : state"></strong></p>
-            <p>Filing: <strong x-text="filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'Married filing jointly' : 'Head of household'"></strong></p>
-            <p x-show="isSE" style="color:var(--amber)">+ SE tax (15.3%) applies</p>
-          </div>
-        </div>
-        <div class="tc-results">
-          <template x-if="tgPayment > 0">
-            <div style="display:flex;flex-direction:column;gap:12px">
-              <div class="rbox navy">
-                <div class="r-lbl">Guard Amount — Set This Aside</div>
-                <div class="r-val" x-text="'$' + fmt(guardResult.totalGuard)" style="font-size:34px;color:var(--gold-lt)"></div>
-                <div class="r-sub" x-text="guardResult.guardPct.toFixed(1) + '% of payment'"></div>
-                <div class="gbar-wrap">
-                  <div class="gbar-lbls"><span>Tax reserve</span><span>Take-home</span></div>
-                  <div class="gbar"><div class="gbar-fill" :style="'width:' + Math.min(100, guardResult.guardPct).toFixed(1) + '%'"></div></div>
-                </div>
-                <div style="margin-top:10px">
-                  <div class="bd-row" x-show="isSE">
-                    <span class="bd-lbl">SE Tax (15.3%)</span>
-                    <span class="bd-val" x-text="'$' + fmt(guardResult.seTax)"></span>
-                  </div>
-                  <div class="bd-row">
-                    <span class="bd-lbl">Federal Income Tax</span>
-                    <span class="bd-val" x-text="'$' + fmt(guardResult.fedTax)"></span>
-                  </div>
-                  <div class="bd-row" x-show="guardResult.stateTax > 0">
-                    <span class="bd-lbl" x-text="(state === 'none' ? 'State' : state) + ' Income Tax'"></span>
-                    <span class="bd-val" x-text="'$' + fmt(guardResult.stateTax)"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="rbox">
-                <div class="r-lbl">Your Take-Home</div>
-                <div class="r-val v-green" x-text="'$' + fmt(guardResult.takehome)"></div>
-              </div>
-            </div>
-          </template>
-          <template x-if="!(tgPayment > 0)">
-            <div style="text-align:center;padding:48px 16px;color:var(--dim)">
-              <div style="font-size:36px;margin-bottom:10px">💰</div>
-              <div style="font-size:13px">Enter a payment to see your tax reserve</div>
-            </div>
-          </template>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── S-CORP SIMULATOR ───────────────────────────────────────────────── -->
-    <div class="tool-card" id="section-scorp">
-      <div class="tc-header">
-        <div class="tc-title"><span class="tc-icon">🏢</span><span><em>S-Corp</em> Structure Simulator</span></div>
-        <a href="/scorp-savings-calculator" class="tc-link">Full tool + breakeven chart →</a>
-      </div>
-      <div class="tc-body">
-        <div class="tc-inputs">
-          <div class="g2">
-            <div class="fld">
-              <label class="fld-lbl">Reasonable Salary / yr</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, scSalary)" @input="maskInp($event, 'scSalary')"
-                  placeholder="45,000">
-              </div>
-              <div class="fld-help">W-2 salary you'd pay yourself</div>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Net Profit (from profile)</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, annualIncome)" @input="maskInp($event, 'annualIncome')"
-                  placeholder="75,000">
-              </div>
-              <div class="fld-help">Linked to Your Profile above</div>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Payroll Software / yr</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, scPayroll)" @input="maskInp($event, 'scPayroll')"
-                  placeholder="600">
-              </div>
-              <div class="fld-help">Gusto, Rippling, etc.</div>
-            </div>
-            <div class="fld">
-              <label class="fld-lbl">Additional Acctg Fees / yr</label>
-              <div class="inp-wrap dollar">
-                <input type="text" inputmode="numeric" autocomplete="off" class="currency-field"
-                  x-effect="fmtInp($el, scAccounting)" @input="maskInp($event, 'scAccounting')"
-                  placeholder="1,000">
-              </div>
-              <div class="fld-help">Above your current CPA cost</div>
-            </div>
-          </div>
-          <div style="margin-top:13px;padding:10px 12px;background:var(--cream);border-radius:8px;border:1px solid var(--border)">
-            <div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-              <span style="font-weight:600;color:var(--navy)">CA $800 franchise tax:</span>
-              <span :style="state === 'CA' ? 'color:var(--amber);font-weight:600' : 'color:var(--dim)'" x-text="state === 'CA' ? 'Applied (you are in CA)' : 'Not applied — change state in profile to CA to include'"></span>
-              <span class="ca-tip-wrap">
-                <span class="ca-tip-ico">ⓘ</span>
-                <span class="ca-tip-box">California requires a minimum $800 annual franchise tax for all S-Corps, regardless of profit or revenue.</span>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="tc-results">
-          <div class="rbox">
-            <div class="r-lbl">Sole Proprietor Total Tax</div>
-            <div class="r-val" x-text="fmtD(scorpResult.spTotal)"></div>
-            <div style="margin-top:8px">
-              <div class="bd-row"><span class="bd-lbl">SE Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spSeTax)"></span></div>
-              <div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spFedTax)"></span></div>
-            </div>
-          </div>
-          <div class="rbox">
-            <div class="r-lbl">S-Corp Total Tax + Overhead</div>
-            <div class="r-val" x-text="fmtD(scorpResult.scTotal)"></div>
-            <div style="margin-top:8px">
-              <div class="bd-row"><span class="bd-lbl">FICA on Salary</span><span class="bd-val" x-text="fmtD(scorpResult.scFica)"></span></div>
-              <div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.scFedTax)"></span></div>
-              <div class="bd-row"><span class="bd-lbl">Overhead (payroll, acctg, CA)</span><span class="bd-val" x-text="fmtD(scorpResult.scOverhead)"></span></div>
-            </div>
-          </div>
-          <div class="rbox rbox-final" :class="scorpResult.savings >= 500 ? 'rbox-win' : scorpResult.savings < -500 ? 'rbox-lose' : ''">
-            <div class="r-lbl" x-text="scorpResult.savings >= 0 ? '✓ S-Corp Saves You' : '✗ Sole Prop Is Better By'"></div>
-            <div class="r-val" :class="scorpResult.savings >= 500 ? 'v-green' : scorpResult.savings >= 0 ? '' : 'v-red'" x-text="fmtD(Math.abs(scorpResult.savings)) + '/yr'"></div>
-            <div class="r-sub" x-text="'S-Corp breakeven: ~' + fmtD(scorpResult.breakeven) + ' profit/yr'"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </div><!-- /tools-grid -->
-
-    <!-- Northwest Registered Agent — Affiliate -->
-    <div class="nw-card">
-      <div class="nw-badge">Recommended</div>
-      <div class="nw-body">
-        <div class="nw-context" x-text="scorpResult.savings >= 500 ? 'Your S-Corp savings are significant — here\'s how to get started' : 'Thinking about forming an LLC or S-Corp?'"></div>
-        <div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
-        <div class="nw-desc">Flat-fee LLC formation, keeps your home address off public records, and handles all state paperwork. No upsells, no annual surprises.</div>
-        <div class="nw-features">
-          <span class="nw-feat">✓ Address privacy</span>
-          <span class="nw-feat">✓ All 50 states</span>
-          <span class="nw-feat">✓ Handles all paperwork</span>
-          <span class="nw-feat">✓ No hidden fees</span>
-        </div>
-        <a href="https://tidd.ly/3QEBTKc" class="nw-link" target="_blank" rel="noopener sponsored">Form your LLC with Northwest →</a>
-        <div class="nw-disc">Affiliate link — we earn a small commission if you form through this link, at no extra cost to you.</div>
-      </div>
-    </div>
-
-    <p style="font-size:11px;color:var(--dim);text-align:center;padding:6px 0 12px">Educational estimates only — not tax advice. Consult a licensed CPA before making structural decisions.</p>
-
-  </main>
-</div><!-- /db-wrap -->
-
-<!-- EMAIL MODAL -->
-<div class="modal-ov" x-show="showModal" x-cloak @click.self="showModal = false">
-  <div class="modal-box" @click.stop>
-    <div class="modal-title">Get Your Guard Report</div>
-    <div class="modal-sub">Enter your email and we'll generate your Guard Report as a downloadable PDF — a clean summary of your audit risk, tax rate, and S-Corp savings.</div>
-    <div class="fld">
-      <label class="fld-lbl">Email Address</label>
-      <div class="inp-wrap">
-        <input type="email" x-model="reportEmail" placeholder="you@example.com" @keydown.enter="submitReport()" style="padding:10px 12px">
-      </div>
-      <div class="modal-err" x-show="emailError" x-text="emailError"></div>
-    </div>
-    <button class="modal-btn" @click="submitReport()">Open My Guard Report →</button>
-    <button class="modal-cancel" @click="showModal = false">Cancel</button>
-    <p style="font-size:10px;color:var(--dim);text-align:center;margin-top:8px">No spam. We use this to send you tax deadline reminders.</p>
-  </div>
 </div>
-
+<div class="sb-spacer"></div>
+<hr class="sb-div"/>
+<button :disabled="pdfBusy" @click="requestReport()" class="sb-btn" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Guard Report'"></button>
+<div class="sb-disc">Educational estimates only — not tax advice. Consult a licensed CPA before making decisions.</div>
+</aside>
+<!-- MAIN -->
+<main class="main">
+<!-- PROFILE -->
+<section class="profile-card" id="section-profile">
+<div class="card-eye">Shared Profile</div>
+<div class="card-title">Enter once — <em>all three tools update live</em></div>
+<div class="profile-row">
+<div class="fld">
+<label class="fld-lbl">Annual Net Income / Profit</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'annualIncome')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="75,000" type="text" x-effect="fmtInp($el, annualIncome)"/>
+</div>
+<div class="fld-help">Expected net self-employment income this year</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">State</label>
+<div class="inp-wrap">
+<select x-model="state">
+<option value="CA">California</option>
+<option value="TX">Texas (no state tax)</option>
+<option value="FL">Florida (no state tax)</option>
+<option value="NY">New York</option>
+<option value="WA">Washington (no state tax)</option>
+<option value="NV">Nevada (no state tax)</option>
+<option value="OR">Oregon</option>
+<option value="CO">Colorado</option>
+<option value="AZ">Arizona</option>
+<option value="IL">Illinois</option>
+<option value="PA">Pennsylvania</option>
+<option value="NJ">New Jersey</option>
+<option value="MA">Massachusetts</option>
+<option value="GA">Georgia</option>
+<option value="NC">North Carolina</option>
+<option value="VA">Virginia</option>
+<option value="MN">Minnesota</option>
+<option value="none">Other / No State Tax</option>
+</select>
+</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Filing Status</label>
+<div class="inp-wrap">
+<select x-model="filingStatus">
+<option value="single">Single</option>
+<option value="mfj">Married filing jointly</option>
+<option value="hoh">Head of household</option>
+</select>
+</div>
+</div>
+<div class="tog-fld">
+<div class="fld-lbl">Self-Employed</div>
+<div class="tog-row">
+<label class="tog">
+<input type="checkbox" x-model="isSE"/>
+<span class="t-sl"></span>
+</label>
+<span class="tog-note" x-text="isSE ? 'SE tax on' : 'SE tax off'"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- SUMMARY STATS -->
+<div class="stats-row">
+<div :class="auditChipClass" class="stat-chip">
+<div class="sc-lbl">Audit Risk</div>
+<div class="sc-val" x-text="auditRiskLabel"></div>
+<div class="sc-sub" x-text="'Score ' + auditResult.score + ' / 20'"></div>
+</div>
+<div :class="tgPayment &gt; 0 ? '' : 'zero-state'" class="stat-chip">
+<div class="sc-lbl">Guard Rate (Per Payment)</div>
+<div class="sc-val" x-text="tgPayment &gt; 0 ? guardResult.guardPct.toFixed(0) + '%' : '--%'"></div>
+<div class="sc-sub" x-text="tgPayment &gt; 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
+</div>
+<div :class="scorpChipClass" class="stat-chip">
+<div class="sc-lbl">S-Corp Advantage</div>
+<div class="sc-val" x-text="scorpResult.savings &gt;= 0 ? '+' + fmtD(scorpResult.savings) : fmtD(scorpResult.savings)"></div>
+<div class="sc-sub" x-text="scorpResult.savings &gt;= 500 ? 'saved per year vs sole prop' : scorpResult.savings &gt;= 0 ? 'marginal advantage' : 'sole prop is better at this income'"></div>
+</div>
+</div>
+<!-- ALERTS -->
+<template x-if="alerts.length &gt; 0">
+<div class="alerts-stack">
+<template :key="i" x-for="(a, i) in alerts">
+<div :class="'a-' + a.type" class="alert">
+<span class="alert-ico" x-text="a.icon"></span>
+<span x-text="a.text"></span>
+</div>
+</template>
+</div>
+</template>
+<!-- ── TOOL CARDS (3-col on ≥1200px, stacked on mobile) ─────────────── -->
+<div class="tools-grid">
+<!-- ── AUDIT SHIELD ──────────────────────────────────────────────────── -->
+<div class="tool-card" id="section-audit">
+<div class="tc-header">
+<div class="tc-title"><span class="tc-icon">🛡️</span><span><em>Audit</em> Shield Estimator</span></div>
+<a class="tc-link" href="/audit-risk-estimator">Full 4-step tool →</a>
+</div>
+<div class="tc-body">
+<div class="tc-inputs">
+<div class="g2">
+<div class="fld">
+<label class="fld-lbl">Business Type</label>
+<select x-model="bizType">
+<option value="ecommerce">E-commerce / Etsy / reselling</option>
+<option value="consulting">Consulting / freelancing</option>
+<option value="content">Content creator</option>
+<option value="gig">Gig / delivery work</option>
+<option value="cash">Cash-based services</option>
+<option value="rental">Short-term rental</option>
+</select>
+</div>
+<div class="fld">
+<label class="fld-lbl">Loss History (3 yrs)</label>
+<select x-model="lossHistory">
+<option value="profitable">Profitable each year</option>
+<option value="loss-1-2">Lost money 1–2 years</option>
+<option value="loss-3plus">Lost money 3+ years</option>
+</select>
+</div>
+<div class="fld">
+<label class="fld-lbl">Gross Revenue</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'auditRevenue')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="80,000" type="text" x-effect="fmtInp($el, auditRevenue)"/>
+</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Total Expenses</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'auditExpenses')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="20,000" type="text" x-effect="fmtInp($el, auditExpenses)"/>
+</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Business Banking</label>
+<select x-model="bankAccount">
+<option value="dedicated">Dedicated business account</option>
+<option value="mixed">Mostly personal, some business</option>
+<option value="personal">Personal account only</option>
+</select>
+</div>
+<div class="fld">
+<label class="fld-lbl">Record Keeping</label>
+<select x-model="recordKeeping">
+<option value="organized">Organized (software/receipts)</option>
+<option value="basic">Basic (some gaps)</option>
+<option value="minimal">Minimal or none</option>
+</select>
+</div>
+</div>
+<hr class="fdiv"/>
+<div class="g3">
+<div class="fld">
+<label class="fld-lbl">Vehicle Use</label>
+<select x-model="vehicle">
+<option value="none">No vehicle deduction</option>
+<option value="partial">Partial business use</option>
+<option value="full">100% business use</option>
+</select>
+</div>
+<div class="fld" x-show="vehicle !== 'none'">
+<label class="fld-lbl">Mileage Log?</label>
+<select x-model="mileageLog">
+<option value="yes">Yes — I log every trip</option>
+<option value="no">No mileage log</option>
+</select>
+</div>
+<div class="fld">
+<label class="fld-lbl">Other Deductions</label>
+<div style="display:flex;flex-direction:column;gap:6px;margin-top:5px">
+<label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
+<input style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0" type="checkbox" x-model="homeOffice"/> Home office
+                </label>
+<label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer">
+<input style="accent-color:var(--gold);width:13px;height:13px;flex-shrink:0" type="checkbox" x-model="meals"/> Business meals
+                </label>
+</div>
+</div>
+</div>
+</div>
+<div class="tc-results">
+<div class="rbox">
+<div class="r-lbl">Risk Level</div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:5px">
+<span :class="auditRisk" class="rbadge" x-text="auditRiskLabel"></span>
+<span style="font-size:13px;color:var(--muted)" x-text="'Score: ' + auditResult.score + ' / 20'"></span>
+</div>
+<div class="score-bar-wrap">
+<div class="score-bar-track">
+<div :class="auditRisk" :style="'width:' + (auditResult.score / 20 * 100).toFixed(1) + '%'" class="score-bar-fill"></div>
+</div>
+<div class="score-bar-ticks"><span>Low (1–5)</span><span>Medium (6–12)</span><span>High (13+)</span></div>
+</div>
+</div>
+<div>
+<div class="r-lbl">Top Flags</div>
+<template x-if="auditResult.flags.length === 0">
+<p style="font-size:12px;color:var(--green);margin-top:7px">✓ No significant red flags with your current answers.</p>
+</template>
+<ul class="flags" x-show="auditResult.flags.length &gt; 0">
+<template :key="i" x-for="(f, i) in auditResult.flags.slice(0, 5)">
+<li class="flag-item">
+<span :class="f.severity" class="fdot"></span>
+<span style="flex:1" x-text="f.text"></span>
+</li>
+</template>
+</ul>
+</div>
+<div style="margin-top:auto;padding-top:4px">
+<a href="/audit-risk-estimator" style="font-size:12px;color:var(--gold);text-decoration:none">Get the full checklist with actionable tips →</a>
+</div>
+</div>
+</div>
+</div>
+<!-- ── TAX GUARD ─────────────────────────────────────────────────────── -->
+<div class="tool-card" id="section-guard">
+<div class="tc-header">
+<div class="tc-title"><span class="tc-icon">💰</span><span><em>Tax</em> Guard Calculator</span></div>
+<a class="tc-link" href="/tax-guard-calculator">Full tool + receipt →</a>
+</div>
+<div class="tc-body">
+<div class="tc-inputs">
+<div class="fld" style="max-width:260px">
+<label class="fld-lbl" style="font-size:13px;font-weight:600">Payment Received</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'tgPayment')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="1,500" style="font-size:20px;font-weight:600;padding:11px 10px 11px 28px" type="text" x-effect="fmtInp($el, tgPayment)"/>
+</div>
+<div class="fld-help">Enter any single payment to see how much to move to savings</div>
+</div>
+<hr class="fdiv"/>
+<div style="font-size:12px;color:var(--muted);line-height:1.8">
+<p style="font-weight:600;color:var(--navy);margin-bottom:4px">Rates from your profile:</p>
+<p>Annual income: <strong x-text="'$' + fmt(annualIncome)"></strong></p>
+<p>State: <strong x-text="state === 'none' ? 'No state tax' : state"></strong></p>
+<p>Filing: <strong x-text="filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'Married filing jointly' : 'Head of household'"></strong></p>
+<p style="color:var(--amber)" x-show="isSE">+ SE tax (15.3%) applies</p>
+</div>
+</div>
+<div class="tc-results">
+<template x-if="tgPayment &gt; 0">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div class="rbox navy">
+<div class="r-lbl">Guard Amount — Set This Aside</div>
+<div class="r-val" style="font-size:34px;color:var(--gold-lt)" x-text="'$' + fmt(guardResult.totalGuard)"></div>
+<div class="r-sub" x-text="guardResult.guardPct.toFixed(1) + '% of payment'"></div>
+<div class="gbar-wrap">
+<div class="gbar-lbls"><span>Tax reserve</span><span>Take-home</span></div>
+<div class="gbar"><div :style="'width:' + Math.min(100, guardResult.guardPct).toFixed(1) + '%'" class="gbar-fill"></div></div>
+</div>
+<div style="margin-top:10px">
+<div class="bd-row" x-show="isSE">
+<span class="bd-lbl">SE Tax (15.3%)</span>
+<span class="bd-val" x-text="'$' + fmt(guardResult.seTax)"></span>
+</div>
+<div class="bd-row">
+<span class="bd-lbl">Federal Income Tax</span>
+<span class="bd-val" x-text="'$' + fmt(guardResult.fedTax)"></span>
+</div>
+<div class="bd-row" x-show="guardResult.stateTax &gt; 0">
+<span class="bd-lbl" x-text="(state === 'none' ? 'State' : state) + ' Income Tax'"></span>
+<span class="bd-val" x-text="'$' + fmt(guardResult.stateTax)"></span>
+</div>
+</div>
+</div>
+<div class="rbox">
+<div class="r-lbl">Your Take-Home</div>
+<div class="r-val v-green" x-text="'$' + fmt(guardResult.takehome)"></div>
+</div>
+</div>
+</template>
+<template x-if="!(tgPayment &gt; 0)">
+<div style="text-align:center;padding:48px 16px;color:var(--dim)">
+<div style="font-size:36px;margin-bottom:10px">💰</div>
+<div style="font-size:13px">Enter a payment to see your tax reserve</div>
+</div>
+</template>
+</div>
+</div>
+</div>
+<!-- ── S-CORP SIMULATOR ───────────────────────────────────────────────── -->
+<div class="tool-card" id="section-scorp">
+<div class="tc-header">
+<div class="tc-title"><span class="tc-icon">🏢</span><span><em>S-Corp</em> Structure Simulator</span></div>
+<a class="tc-link" href="/scorp-savings-calculator">Full tool + breakeven chart →</a>
+</div>
+<div class="tc-body">
+<div class="tc-inputs">
+<div class="g2">
+<div class="fld">
+<label class="fld-lbl">Reasonable Salary / yr</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'scSalary')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="45,000" type="text" x-effect="fmtInp($el, scSalary)"/>
+</div>
+<div class="fld-help">W-2 salary you'd pay yourself</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Net Profit (from profile)</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'annualIncome')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="75,000" type="text" x-effect="fmtInp($el, annualIncome)"/>
+</div>
+<div class="fld-help">Linked to Your Profile above</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Payroll Software / yr</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'scPayroll')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="600" type="text" x-effect="fmtInp($el, scPayroll)"/>
+</div>
+<div class="fld-help">Gusto, Rippling, etc.</div>
+</div>
+<div class="fld">
+<label class="fld-lbl">Additional Acctg Fees / yr</label>
+<div class="inp-wrap dollar">
+<input @input="maskInp($event, 'scAccounting')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="1,000" type="text" x-effect="fmtInp($el, scAccounting)"/>
+</div>
+<div class="fld-help">Above your current CPA cost</div>
+</div>
+</div>
+<div style="margin-top:13px;padding:10px 12px;background:var(--cream);border-radius:8px;border:1px solid var(--border)">
+<div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+<span style="font-weight:600;color:var(--navy)">CA $800 franchise tax:</span>
+<span :style="state === 'CA' ? 'color:var(--amber);font-weight:600' : 'color:var(--dim)'" x-text="state === 'CA' ? 'Applied (you are in CA)' : 'Not applied — change state in profile to CA to include'"></span>
+<span class="ca-tip-wrap">
+<span class="ca-tip-ico">ⓘ</span>
+<span class="ca-tip-box">California requires a minimum $800 annual franchise tax for all S-Corps, regardless of profit or revenue.</span>
+</span>
+</div>
+</div>
+</div>
+<div class="tc-results">
+<div class="rbox">
+<div class="r-lbl">Sole Proprietor Total Tax</div>
+<div class="r-val" x-text="fmtD(scorpResult.spTotal)"></div>
+<div style="margin-top:8px">
+<div class="bd-row"><span class="bd-lbl">SE Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spSeTax)"></span></div>
+<div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.spFedTax)"></span></div>
+</div>
+</div>
+<div class="rbox">
+<div class="r-lbl">S-Corp Total Tax + Overhead</div>
+<div class="r-val" x-text="fmtD(scorpResult.scTotal)"></div>
+<div style="margin-top:8px">
+<div class="bd-row"><span class="bd-lbl">FICA on Salary</span><span class="bd-val" x-text="fmtD(scorpResult.scFica)"></span></div>
+<div class="bd-row"><span class="bd-lbl">Federal Income Tax</span><span class="bd-val" x-text="fmtD(scorpResult.scFedTax)"></span></div>
+<div class="bd-row"><span class="bd-lbl">Overhead (payroll, acctg, CA)</span><span class="bd-val" x-text="fmtD(scorpResult.scOverhead)"></span></div>
+</div>
+</div>
+<div :class="scorpResult.savings &gt;= 500 ? 'rbox-win' : scorpResult.savings &lt; -500 ? 'rbox-lose' : ''" class="rbox rbox-final">
+<div class="r-lbl" x-text="scorpResult.savings &gt;= 0 ? '✓ S-Corp Saves You' : '✗ Sole Prop Is Better By'"></div>
+<div :class="scorpResult.savings &gt;= 500 ? 'v-green' : scorpResult.savings &gt;= 0 ? '' : 'v-red'" class="r-val" x-text="fmtD(Math.abs(scorpResult.savings)) + '/yr'"></div>
+<div class="r-sub" x-text="'S-Corp breakeven: ~' + fmtD(scorpResult.breakeven) + ' profit/yr'"></div>
+</div>
+</div>
+</div>
+</div>
+</div><!-- /tools-grid -->
+<!-- Northwest Registered Agent — Affiliate -->
+<div class="nw-card">
+<div class="nw-badge">Recommended</div>
+<div class="nw-body">
+<div class="nw-context" x-text="scorpResult.savings &gt;= 500 ? 'Your S-Corp savings are significant — here\'s how to get started' : 'Thinking about forming an LLC or S-Corp?'"></div>
+<div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
+<div class="nw-desc">Flat-fee LLC formation, keeps your home address off public records, and handles all state paperwork. No upsells, no annual surprises.</div>
+<div class="nw-features">
+<span class="nw-feat">✓ Address privacy</span>
+<span class="nw-feat">✓ All 50 states</span>
+<span class="nw-feat">✓ Handles all paperwork</span>
+<span class="nw-feat">✓ No hidden fees</span>
+</div>
+<a class="nw-link" href="https://tidd.ly/3QEBTKc" rel="noopener sponsored" target="_blank">Form your LLC with Northwest →</a>
+<div class="nw-disc">Affiliate link — we earn a small commission if you form through this link, at no extra cost to you.</div>
+</div>
+</div>
+<p style="font-size:11px;color:var(--dim);text-align:center;padding:6px 0 12px">Educational estimates only — not tax advice. Consult a licensed CPA before making structural decisions.</p>
+</main>
+</div><!-- /db-wrap -->
+<!-- EMAIL MODAL -->
+<div @click.self="showModal = false" class="modal-ov" x-cloak="" x-show="showModal">
+<div @click.stop="" class="modal-box">
+<div class="modal-title">Get Your Guard Report</div>
+<div class="modal-sub">Enter your email and we'll generate your Guard Report as a downloadable PDF — a clean summary of your audit risk, tax rate, and S-Corp savings.</div>
+<div class="fld">
+<label class="fld-lbl">Email Address</label>
+<div class="inp-wrap">
+<input @keydown.enter="submitReport()" placeholder="you@example.com" style="padding:10px 12px" type="email" x-model="reportEmail"/>
+</div>
+<div class="modal-err" x-show="emailError" x-text="emailError"></div>
+</div>
+<button @click="submitReport()" class="modal-btn">Open My Guard Report →</button>
+<button @click="showModal = false" class="modal-cancel">Cancel</button>
+<p style="font-size:10px;color:var(--dim);text-align:center;margin-top:8px">No spam. We use this to send you tax deadline reminders.</p>
+</div>
+</div>
 <!-- PRINT REPORT (screen: hidden, print: shown) -->
 <div class="print-report">
-  <div class="pr-head">
-    <div>
-      <div class="pr-logo">SideHustle<span>Guard</span></div>
-      <div style="font-size:11px;color:#6b7a96;margin-top:3px">Side Hustle Dashboard Report</div>
-    </div>
-    <div class="pr-meta">
-      <div class="pr-title">Guard Report</div>
-      <div x-text="reportDate"></div>
-      <div x-text="'Annual income: $' + fmt(annualIncome) + ' · ' + (state === 'none' ? 'No state tax' : state) + ' · ' + (filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'MFJ' : 'HOH')"></div>
-    </div>
-  </div>
-
-  <!-- Summary grid -->
-  <div class="pr-grid">
-    <div class="pr-card">
-      <div class="pr-card-eye">Audit Risk</div>
-      <div style="margin-bottom:6px"><span class="pr-badge" :class="auditRisk" x-text="auditRiskLabel"></span></div>
-      <div class="pr-card-sub" x-text="'Risk score: ' + auditResult.score + ' / 20'"></div>
-      <template x-for="(f, i) in auditResult.flags.slice(0,3)" :key="i">
-        <div class="pr-row"><span class="pr-rlbl" x-text="f.text.substring(0,50) + (f.text.length > 50 ? '…' : '')"></span></div>
-      </template>
-    </div>
-    <div class="pr-card">
-      <div class="pr-card-eye">Tax Guard (Per Payment)</div>
-      <div class="pr-card-val" x-text="tgPayment > 0 ? '$' + fmt(guardResult.totalGuard) : '—'"></div>
-      <div class="pr-card-sub" x-text="tgPayment > 0 ? 'Reserve on a $' + fmt(tgPayment) + ' payment (' + guardResult.guardPct.toFixed(1) + '%)' : 'No payment entered'"></div>
-      <template x-if="tgPayment > 0">
-        <div>
-          <div class="pr-row" x-show="isSE"><span class="pr-rlbl">SE Tax</span><span class="pr-rval" x-text="'$' + fmt(guardResult.seTax)"></span></div>
-          <div class="pr-row"><span class="pr-rlbl">Federal</span><span class="pr-rval" x-text="'$' + fmt(guardResult.fedTax)"></span></div>
-          <div class="pr-row" x-show="guardResult.stateTax > 0"><span class="pr-rlbl" x-text="state + ' State'"></span><span class="pr-rval" x-text="'$' + fmt(guardResult.stateTax)"></span></div>
-          <div class="pr-row"><span class="pr-rlbl">Take-home</span><span class="pr-rval" x-text="'$' + fmt(guardResult.takehome)"></span></div>
-        </div>
-      </template>
-    </div>
-    <div class="pr-card">
-      <div class="pr-card-eye">S-Corp vs Sole Prop</div>
-      <div class="pr-card-val" x-text="(scorpResult.savings >= 0 ? '+' : '') + '$' + fmt(Math.abs(scorpResult.savings))"></div>
-      <div class="pr-card-sub" x-text="scorpResult.savings >= 0 ? 'S-Corp saves per year' : 'Sole prop is better at this income'"></div>
-      <div class="pr-row"><span class="pr-rlbl">Sole Prop Total</span><span class="pr-rval" x-text="fmtD(scorpResult.spTotal)"></span></div>
-      <div class="pr-row"><span class="pr-rlbl">S-Corp Total</span><span class="pr-rval" x-text="fmtD(scorpResult.scTotal)"></span></div>
-      <div class="pr-row"><span class="pr-rlbl">Breakeven</span><span class="pr-rval" x-text="'~' + fmtD(scorpResult.breakeven)"></span></div>
-    </div>
-  </div>
-
-  <!-- Audit detail -->
-  <div class="pr-section-title">Audit Shield — Full Flag List</div>
-  <template x-if="auditResult.flags.length === 0">
-    <p style="font-size:12px;color:#276944">No significant red flags detected based on your inputs.</p>
-  </template>
-  <template x-for="(f, i) in auditResult.flags" :key="i">
-    <div class="pr-row">
-      <span class="pr-rlbl" x-text="(f.severity === 'high' ? '⚠ ' : f.severity === 'medium' ? '• ' : '◦ ') + f.text"></span>
-    </div>
-  </template>
-
-  <div class="pr-footer">
+<div class="pr-head">
+<div>
+<div class="pr-logo">SideHustle<span>Guard</span></div>
+<div style="font-size:11px;color:#6b7a96;margin-top:3px">Side Hustle Dashboard Report</div>
+</div>
+<div class="pr-meta">
+<div class="pr-title">Guard Report</div>
+<div x-text="reportDate"></div>
+<div x-text="'Annual income: $' + fmt(annualIncome) + ' · ' + (state === 'none' ? 'No state tax' : state) + ' · ' + (filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'MFJ' : 'HOH')"></div>
+</div>
+</div>
+<!-- Summary grid -->
+<div class="pr-grid">
+<div class="pr-card">
+<div class="pr-card-eye">Audit Risk</div>
+<div style="margin-bottom:6px"><span :class="auditRisk" class="pr-badge" x-text="auditRiskLabel"></span></div>
+<div class="pr-card-sub" x-text="'Risk score: ' + auditResult.score + ' / 20'"></div>
+<template :key="i" x-for="(f, i) in auditResult.flags.slice(0,3)">
+<div class="pr-row"><span class="pr-rlbl" x-text="f.text.substring(0,50) + (f.text.length &gt; 50 ? '…' : '')"></span></div>
+</template>
+</div>
+<div class="pr-card">
+<div class="pr-card-eye">Tax Guard (Per Payment)</div>
+<div class="pr-card-val" x-text="tgPayment &gt; 0 ? '$' + fmt(guardResult.totalGuard) : '—'"></div>
+<div class="pr-card-sub" x-text="tgPayment &gt; 0 ? 'Reserve on a $' + fmt(tgPayment) + ' payment (' + guardResult.guardPct.toFixed(1) + '%)' : 'No payment entered'"></div>
+<template x-if="tgPayment &gt; 0">
+<div>
+<div class="pr-row" x-show="isSE"><span class="pr-rlbl">SE Tax</span><span class="pr-rval" x-text="'$' + fmt(guardResult.seTax)"></span></div>
+<div class="pr-row"><span class="pr-rlbl">Federal</span><span class="pr-rval" x-text="'$' + fmt(guardResult.fedTax)"></span></div>
+<div class="pr-row" x-show="guardResult.stateTax &gt; 0"><span class="pr-rlbl" x-text="state + ' State'"></span><span class="pr-rval" x-text="'$' + fmt(guardResult.stateTax)"></span></div>
+<div class="pr-row"><span class="pr-rlbl">Take-home</span><span class="pr-rval" x-text="'$' + fmt(guardResult.takehome)"></span></div>
+</div>
+</template>
+</div>
+<div class="pr-card">
+<div class="pr-card-eye">S-Corp vs Sole Prop</div>
+<div class="pr-card-val" x-text="(scorpResult.savings &gt;= 0 ? '+' : '') + '$' + fmt(Math.abs(scorpResult.savings))"></div>
+<div class="pr-card-sub" x-text="scorpResult.savings &gt;= 0 ? 'S-Corp saves per year' : 'Sole prop is better at this income'"></div>
+<div class="pr-row"><span class="pr-rlbl">Sole Prop Total</span><span class="pr-rval" x-text="fmtD(scorpResult.spTotal)"></span></div>
+<div class="pr-row"><span class="pr-rlbl">S-Corp Total</span><span class="pr-rval" x-text="fmtD(scorpResult.scTotal)"></span></div>
+<div class="pr-row"><span class="pr-rlbl">Breakeven</span><span class="pr-rval" x-text="'~' + fmtD(scorpResult.breakeven)"></span></div>
+</div>
+</div>
+<!-- Audit detail -->
+<div class="pr-section-title">Audit Shield — Full Flag List</div>
+<template x-if="auditResult.flags.length === 0">
+<p style="font-size:12px;color:#276944">No significant red flags detected based on your inputs.</p>
+</template>
+<template :key="i" x-for="(f, i) in auditResult.flags">
+<div class="pr-row">
+<span class="pr-rlbl" x-text="(f.severity === 'high' ? '⚠ ' : f.severity === 'medium' ? '• ' : '◦ ') + f.text"></span>
+</div>
+</template>
+<div class="pr-footer">
     SideHustleGuard.com — Educational estimates only — not legal or tax advice — Consult a licensed CPA before making decisions.
   </div>
 </div>
-
 <!-- MOBILE STICKY BAR (hidden on desktop via CSS) -->
 <div class="mobile-bar">
-  <div class="mobile-bar-disc">All three tools · live results</div>
-  <button class="mobile-bar-btn" @click="requestReport()" :disabled="pdfBusy" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Report'"></button>
+<div class="mobile-bar-disc">All three tools · live results</div>
+<button :disabled="pdfBusy" @click="requestReport()" class="mobile-bar-btn" x-text="pdfBusy ? '⏳ Generating…' : '📄 Download Report'"></button>
 </div>
-
 <!-- FOOTER -->
 <footer style="background:var(--navy);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
-  <span style="font-size:14px;font-weight:600;color:var(--white)">SideHustle<span style="color:var(--gold)">Guard</span></span>
-  <div style="display:flex;gap:20px;flex-wrap:wrap">
-    <a href="/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Home</a>
-    <a href="/tool" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Free Checker</a>
-    <a href="/guides" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">All Tools</a>
-    <a href="/quarterly-taxes-self-employed" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Quarterly Taxes</a>
-  </div>
-  <div style="font-size:11px;color:rgba(255,255,255,.25)">Educational information only — not tax advice.</div>
+<span style="font-size:14px;font-weight:600;color:var(--white)">SideHustle<span style="color:var(--gold)">Guard</span></span>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<a href="/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Home</a>
+<a href="/tool" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Free Checker</a>
+<a href="/guides" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">All Tools</a>
+<a href="/quarterly-taxes-self-employed" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none">Quarterly Taxes</a>
+</div>
+<div style="font-size:11px;color:rgba(255,255,255,.25)">Educational information only — not tax advice.</div>
 </footer>
-
 <script>
 // ─── 2025 Tax data ──────────────────────────────────────────────────────────
 const FED_BKT = {
@@ -1201,79 +1160,70 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 </script>
-
 <!-- ── PDF REPORT TEMPLATE (off-screen, populated by generatePDF()) ─────── -->
 <div id="pdf-report-template" style="position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;font-family:'DM Sans',Arial,sans-serif;color:#1c2b4a;padding:48px 52px;box-sizing:border-box;font-size:13px;line-height:1.6">
-
-  <!-- Header -->
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:2.5px solid #1c2b4a;margin-bottom:28px">
-    <div>
-      <div style="font-size:21px;font-weight:700;color:#1c2b4a;letter-spacing:-.01em">SideHustle<span style="color:#c9973a">Guard</span></div>
-      <div style="font-size:11px;color:#6b7a96;margin-top:3px;font-weight:300">Side Hustle Dashboard Report</div>
-    </div>
-    <div style="text-align:right">
-      <div style="font-size:12px;font-weight:600;color:#1c2b4a">Guard Report</div>
-      <div id="pdft-date" style="font-size:11px;color:#6b7a96;margin-top:2px"></div>
-    </div>
+<!-- Header -->
+<div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:2.5px solid #1c2b4a;margin-bottom:28px">
+<div>
+<div style="font-size:21px;font-weight:700;color:#1c2b4a;letter-spacing:-.01em">SideHustle<span style="color:#c9973a">Guard</span></div>
+<div style="font-size:11px;color:#6b7a96;margin-top:3px;font-weight:300">Side Hustle Dashboard Report</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:12px;font-weight:600;color:#1c2b4a">Guard Report</div>
+<div id="pdft-date" style="font-size:11px;color:#6b7a96;margin-top:2px"></div>
+</div>
+</div>
+<!-- Business Snapshot -->
+<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Business Snapshot</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
+<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Annual Income</div>
+<div id="pdft-income" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+</div>
+<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">State</div>
+<div id="pdft-state" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+</div>
+<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Filing Status</div>
+<div id="pdft-filing" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+</div>
+<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">SE Tax</div>
+<div id="pdft-se" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+</div>
+</div>
+<!-- Result Cards -->
+<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Your Results</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
+<!-- Audit Risk -->
+<div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#faf8f4">
+<div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🛡️ Audit Risk</div>
+<div id="pdft-risk-badge" style="margin-bottom:6px"></div>
+<div id="pdft-risk-score" style="font-size:11px;color:#6b7a96;margin-bottom:10px"></div>
+<div id="pdft-risk-flags" style="font-size:10px;color:#6b7a96;line-height:1.65"></div>
+</div>
+<!-- Tax Guard -->
+<div style="border:1px solid #1c2b4a;border-radius:10px;padding:16px 18px;background:#1c2b4a">
+<div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">💰 Tax Guard Rate</div>
+<div id="pdft-guard-pct" style="font-size:28px;font-weight:700;color:#ddb06a;line-height:1;margin-bottom:3px"></div>
+<div id="pdft-guard-amt" style="font-size:13px;font-weight:600;color:#ffffff;margin-bottom:2px"></div>
+<div id="pdft-guard-sub" style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:10px"></div>
+<div id="pdft-guard-breakdown" style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.8;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"></div>
+</div>
+<!-- S-Corp -->
+<div id="pdft-scorp-card" style="border-radius:10px;padding:16px 18px">
+<div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🏢 S-Corp vs Sole Prop</div>
+<div id="pdft-scorp-val" style="font-size:24px;font-weight:700;line-height:1;margin-bottom:4px"></div>
+<div id="pdft-scorp-sub" style="font-size:10px;color:#6b7a96;margin-bottom:10px"></div>
+<div id="pdft-scorp-rows" style="font-size:10px;color:#6b7a96;line-height:1.8;border-top:1px solid rgba(28,43,74,.08);padding-top:8px"></div>
+</div>
+</div>
+<!-- Disclaimer -->
+<div style="border-top:1px solid rgba(28,43,74,.09);padding-top:14px;font-size:10px;color:#9aa3b5;text-align:center;line-height:1.7">
+    Educational estimates only — not legal or tax advice. Figures are based on 2025 federal rates and may not reflect your exact situation.<br/>
+    Consult a licensed CPA or tax attorney before making any business structure or tax decisions.  ·  SideHustleGuard.com
   </div>
-
-  <!-- Business Snapshot -->
-  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Business Snapshot</div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
-    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
-      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Annual Income</div>
-      <div id="pdft-income" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
-    </div>
-    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
-      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">State</div>
-      <div id="pdft-state" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
-    </div>
-    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
-      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Filing Status</div>
-      <div id="pdft-filing" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
-    </div>
-    <div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
-      <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">SE Tax</div>
-      <div id="pdft-se" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
-    </div>
-  </div>
-
-  <!-- Result Cards -->
-  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Your Results</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
-
-    <!-- Audit Risk -->
-    <div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#faf8f4">
-      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🛡️ Audit Risk</div>
-      <div id="pdft-risk-badge" style="margin-bottom:6px"></div>
-      <div id="pdft-risk-score" style="font-size:11px;color:#6b7a96;margin-bottom:10px"></div>
-      <div id="pdft-risk-flags" style="font-size:10px;color:#6b7a96;line-height:1.65"></div>
-    </div>
-
-    <!-- Tax Guard -->
-    <div style="border:1px solid #1c2b4a;border-radius:10px;padding:16px 18px;background:#1c2b4a">
-      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">💰 Tax Guard Rate</div>
-      <div id="pdft-guard-pct" style="font-size:28px;font-weight:700;color:#ddb06a;line-height:1;margin-bottom:3px"></div>
-      <div id="pdft-guard-amt" style="font-size:13px;font-weight:600;color:#ffffff;margin-bottom:2px"></div>
-      <div id="pdft-guard-sub" style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:10px"></div>
-      <div id="pdft-guard-breakdown" style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.8;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"></div>
-    </div>
-
-    <!-- S-Corp -->
-    <div id="pdft-scorp-card" style="border-radius:10px;padding:16px 18px">
-      <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🏢 S-Corp vs Sole Prop</div>
-      <div id="pdft-scorp-val" style="font-size:24px;font-weight:700;line-height:1;margin-bottom:4px"></div>
-      <div id="pdft-scorp-sub" style="font-size:10px;color:#6b7a96;margin-bottom:10px"></div>
-      <div id="pdft-scorp-rows" style="font-size:10px;color:#6b7a96;line-height:1.8;border-top:1px solid rgba(28,43,74,.08);padding-top:8px"></div>
-    </div>
-  </div>
-
-  <!-- Disclaimer -->
-  <div style="border-top:1px solid rgba(28,43,74,.09);padding-top:14px;font-size:10px;color:#9aa3b5;text-align:center;line-height:1.7">
-    Educational estimates only — not legal or tax advice. Figures are based on 2025 federal rates and may not reflect your exact situation.<br>
-    Consult a licensed CPA or tax attorney before making any business structure or tax decisions. &nbsp;·&nbsp; SideHustleGuard.com
-  </div>
-
 </div>
 </body>
 </html>

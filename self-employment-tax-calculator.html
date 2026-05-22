@@ -1,22 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Self-Employment Tax Calculator (Free, 2025) — SideHustleGuard</title>
-<meta property="og:image" content="https://www.sidehustleguard.com/images/og/self-employment-tax-calculator.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://www.sidehustleguard.com/images/og/self-employment-tax-calculator.png">
-<meta name="description" content="Free self-employment tax calculator. Estimate your SE tax, federal income tax, and total taxes owed in seconds. Updated for 2024–2025 IRS rates.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.sidehustleguard.com/self-employment-tax-calculator">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<meta property="og:title" content="Self-Employment Tax Calculator (2025)">
-<meta property="og:description" content="Estimate your SE tax, federal income tax, and total taxes in seconds. Free.">
-<meta property="og:url" content="https://www.sidehustleguard.com/self-employment-tax-calculator">
-<meta property="og:type" content="website">
+<meta content="https://www.sidehustleguard.com/images/og/self-employment-tax-calculator.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="https://www.sidehustleguard.com/images/og/self-employment-tax-calculator.png" name="twitter:image"/>
+<meta content="Free self-employment tax calculator. Estimate your SE tax, federal income tax, and total taxes owed in seconds. Updated for 2024–2025 IRS rates." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/self-employment-tax-calculator" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<meta content="Self-Employment Tax Calculator (2025)" property="og:title"/>
+<meta content="Estimate your SE tax, federal income tax, and total taxes in seconds. Free." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/self-employment-tax-calculator" property="og:url"/>
+<meta content="website" property="og:type"/>
 <style>
 :root {
   --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
@@ -227,208 +228,177 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </script>
 </head>
 <body>
-
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <span class="logo-text">SideHustle<span>Guard</span></span>
-  </a>
-  <div class="nav-right">
-    <a href="/#how-it-works" class="nav-link">How it works</a>
-    <a href="/#pricing" class="nav-link">Pricing</a>
-    <a href="/#faq" class="nav-link">FAQ</a>
-    <a href="/guides" class="nav-link nav-guides">Guides</a>
-    <a href="/tool" class="nav-cta">Check my hustle — free →</a>
-  </div>
+<a class="logo" href="/">
+<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
+<span class="logo-text">SideHustle<span>Guard</span></span>
+</a>
+<div class="nav-right">
+<a class="nav-link" href="/#how-it-works">How it works</a>
+<a class="nav-link" href="/#pricing">Pricing</a>
+<a class="nav-link" href="/#faq">FAQ</a>
+<a class="nav-link nav-guides" href="/guides">Guides</a>
+<a class="nav-cta" href="/tool">Check my hustle — free →</a>
+</div>
 </nav>
-
 <div class="hero">
-  <div class="hero-badge">Free · 2024–2025 IRS rates</div>
-  <h1>Self-employment <em>tax calculator</em></h1>
-  <p class="hero-sub">Get an instant estimate of your self-employment tax, federal income tax, and total taxes owed. Just enter your numbers — no sign-up.</p>
+<div class="hero-badge">Free · 2024–2025 IRS rates</div>
+<h1>Self-employment <em>tax calculator</em></h1>
+<p class="hero-sub">Get an instant estimate of your self-employment tax, federal income tax, and total taxes owed. Just enter your numbers — no sign-up.</p>
 </div>
-
 <div class="calc-wrap">
-  <div class="calc-grid">
-
-    <!-- INPUTS -->
-    <div class="calc-card">
-      <div class="calc-title">Your numbers</div>
-
-      <div class="field">
-        <label class="field-label" for="gross">Gross self-employment income</label>
-        <div class="input-money">
-          <input type="number" id="gross" inputmode="decimal" placeholder="50000" oninput="recalc()">
-        </div>
-        <div class="field-help">Total income before expenses (1099 amounts, gross sales, etc.)</div>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="expenses">Business expenses</label>
-        <div class="input-money">
-          <input type="number" id="expenses" inputmode="decimal" placeholder="10000" oninput="recalc()">
-        </div>
-        <div class="field-help">Mileage, supplies, software, home office, fees — anything deductible</div>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="status">Filing status</label>
-        <select id="status" onchange="recalc()">
-          <option value="single">Single</option>
-          <option value="mfj">Married filing jointly</option>
-          <option value="hoh">Head of household</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="other">Other income (optional)</label>
-        <div class="input-money">
-          <input type="number" id="other" inputmode="decimal" placeholder="0" oninput="recalc()">
-        </div>
-        <div class="field-help">W-2 wages or other taxable income — affects your tax bracket</div>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="state">State income tax rate (optional)</label>
-        <select id="state" onchange="recalc()">
-          <option value="0">No state income tax</option>
-          <option value="3">Low (~3%) — AZ, IN, MI, NC, ND, PA</option>
-          <option value="5" selected>Medium (~5%) — most states</option>
-          <option value="7">Higher (~7%) — MN, NY, OR</option>
-          <option value="10">Highest (~10%+) — CA, HI, NJ</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- RESULTS -->
-    <div class="results-card">
-      <div class="results-title">Your estimate</div>
-
-      <div class="total-row">
-        <div class="total-label">Total estimated tax</div>
-        <div class="total-amt"><span class="currency">$</span><span id="r-total">0</span></div>
-        <div class="total-pct"><span id="r-pct">0%</span> effective rate · <span id="r-net">$0</span> kept after tax</div>
-      </div>
-
-      <div class="breakdown">
-        <div class="bd-row">
-          <div>
-            <div class="bd-label">Self-employment tax</div>
-            <div class="bd-sub">15.3% on net earnings × 92.35%</div>
-          </div>
-          <div class="bd-amt">$<span id="r-se">0</span></div>
-        </div>
-        <div class="bd-row">
-          <div>
-            <div class="bd-label">Federal income tax</div>
-            <div class="bd-sub">2025 brackets · standard deduction applied</div>
-          </div>
-          <div class="bd-amt">$<span id="r-fed">0</span></div>
-        </div>
-        <div class="bd-row">
-          <div>
-            <div class="bd-label">State income tax</div>
-            <div class="bd-sub">Estimate based on rate selected</div>
-          </div>
-          <div class="bd-amt">$<span id="r-state">0</span></div>
-        </div>
-      </div>
-
-      <div class="set-aside-box">
-        <div class="set-aside-label">Set-aside guidance</div>
-        <div class="set-aside-text">Set aside <strong><span id="r-setaside">25%</span> of every payment</strong> in a separate account. Pay quarterly (Apr 15 / Jun 15 / Sep 15 / Jan 15) to avoid penalties.</div>
-      </div>
-
-      <a href="/tool" class="btn-cta">Get a personalized check — free →</a>
-      <a href="/quarterly-taxes-self-employed" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">Quarterly Taxes Guide</div></a>
-      <a href="/llc-vs-sole-proprietor" class="related-card"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
-    </div>
-  </div>
+<div class="calc-grid">
+<!-- INPUTS -->
+<div class="calc-card">
+<div class="calc-title">Your numbers</div>
+<div class="field">
+<label class="field-label" for="gross">Gross self-employment income</label>
+<div class="input-money">
+<input id="gross" inputmode="decimal" oninput="recalc()" placeholder="50000" type="number"/>
 </div>
-
+<div class="field-help">Total income before expenses (1099 amounts, gross sales, etc.)</div>
+</div>
+<div class="field">
+<label class="field-label" for="expenses">Business expenses</label>
+<div class="input-money">
+<input id="expenses" inputmode="decimal" oninput="recalc()" placeholder="10000" type="number"/>
+</div>
+<div class="field-help">Mileage, supplies, software, home office, fees — anything deductible</div>
+</div>
+<div class="field">
+<label class="field-label" for="status">Filing status</label>
+<select id="status" onchange="recalc()">
+<option value="single">Single</option>
+<option value="mfj">Married filing jointly</option>
+<option value="hoh">Head of household</option>
+</select>
+</div>
+<div class="field">
+<label class="field-label" for="other">Other income (optional)</label>
+<div class="input-money">
+<input id="other" inputmode="decimal" oninput="recalc()" placeholder="0" type="number"/>
+</div>
+<div class="field-help">W-2 wages or other taxable income — affects your tax bracket</div>
+</div>
+<div class="field">
+<label class="field-label" for="state">State income tax rate (optional)</label>
+<select id="state" onchange="recalc()">
+<option value="0">No state income tax</option>
+<option value="3">Low (~3%) — AZ, IN, MI, NC, ND, PA</option>
+<option selected="" value="5">Medium (~5%) — most states</option>
+<option value="7">Higher (~7%) — MN, NY, OR</option>
+<option value="10">Highest (~10%+) — CA, HI, NJ</option>
+</select>
+</div>
+</div>
+<!-- RESULTS -->
+<div class="results-card">
+<div class="results-title">Your estimate</div>
+<div class="total-row">
+<div class="total-label">Total estimated tax</div>
+<div class="total-amt"><span class="currency">$</span><span id="r-total">0</span></div>
+<div class="total-pct"><span id="r-pct">0%</span> effective rate · <span id="r-net">$0</span> kept after tax</div>
+</div>
+<div class="breakdown">
+<div class="bd-row">
+<div>
+<div class="bd-label">Self-employment tax</div>
+<div class="bd-sub">15.3% on net earnings × 92.35%</div>
+</div>
+<div class="bd-amt">$<span id="r-se">0</span></div>
+</div>
+<div class="bd-row">
+<div>
+<div class="bd-label">Federal income tax</div>
+<div class="bd-sub">2025 brackets · standard deduction applied</div>
+</div>
+<div class="bd-amt">$<span id="r-fed">0</span></div>
+</div>
+<div class="bd-row">
+<div>
+<div class="bd-label">State income tax</div>
+<div class="bd-sub">Estimate based on rate selected</div>
+</div>
+<div class="bd-amt">$<span id="r-state">0</span></div>
+</div>
+</div>
+<div class="set-aside-box">
+<div class="set-aside-label">Set-aside guidance</div>
+<div class="set-aside-text">Set aside <strong><span id="r-setaside">25%</span> of every payment</strong> in a separate account. Pay quarterly (Apr 15 / Jun 15 / Sep 15 / Jan 15) to avoid penalties.</div>
+</div>
+<a class="btn-cta" href="/tool">Get a personalized check — free →</a>
+<a class="related-card" href="/quarterly-taxes-self-employed"><div class="related-card-arrow">→</div><div class="related-card-title">Quarterly Taxes Guide</div></a>
+<a class="related-card" href="/llc-vs-sole-proprietor"><div class="related-card-arrow">→</div><div class="related-card-title">LLC vs Sole Proprietor</div></a>
+</div>
+</div>
+</div>
 <div class="content">
-<picture><source srcset="/images/og/self-employment-tax-calculator.webp" type="image/webp"><img src="/images/og/self-employment-tax-calculator.png" alt="Self-employment tax calculator — estimate your federal SE tax" width="1200" height="630" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" loading="lazy"></picture>
-
-  <h2>How is <em>self-employment tax</em> calculated?</h2>
-  <p>Self-employment (SE) tax is 15.3% of your net earnings — but it's not applied to your gross income. The IRS uses a slightly counterintuitive formula:</p>
-  <ol>
-    <li><strong>Start with net earnings.</strong> Gross income minus business expenses.</li>
-    <li><strong>Multiply by 92.35%.</strong> This is the "SE tax base." (The math reflects that as a self-employed person, you can't deduct the employer half of FICA before applying SE tax to the same money.)</li>
-    <li><strong>Multiply by 15.3%.</strong> That's your SE tax. (Or 2.9% Medicare-only on amounts above the Social Security wage base of $176,100 for 2024.)</li>
-  </ol>
-
-  <div class="callout callout-green">
-    <p><strong>The 50% SE tax deduction:</strong> Half of the SE tax you pay is deductible from your income tax. The calculator above already accounts for this — it's why your federal tax estimate is lower than a simple bracket multiplication would suggest.</p>
-  </div>
-
-  <h2>2025 federal income tax brackets</h2>
-  <p>The federal income tax piece uses progressive brackets. Each "slice" of income is taxed at the bracket rate:</p>
-
-  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
-    <tr><th>Rate</th><th>Single</th><th>Married filing jointly</th></tr>
-    <tr><td>10%</td><td>$0–$11,925</td><td>$0–$23,850</td></tr>
-    <tr><td>12%</td><td>$11,925–$48,475</td><td>$23,850–$96,950</td></tr>
-    <tr><td>22%</td><td>$48,475–$103,350</td><td>$96,950–$206,700</td></tr>
-    <tr><td>24%</td><td>$103,350–$197,300</td><td>$206,700–$394,600</td></tr>
-    <tr><td>32%</td><td>$197,300–$250,525</td><td>$394,600–$501,050</td></tr>
-    <tr><td>35%</td><td>$250,525–$626,350</td><td>$501,050–$751,600</td></tr>
-    <tr><td>37%</td><td>$626,350+</td><td>$751,600+</td></tr>
-  </table></div>
-
-  <p>Most self-employed workers fall in the 12% or 22% bracket. The standard deduction ($15,000 single / $30,000 MFJ for 2025) is subtracted before brackets are applied.</p>
-
-  <h2>Common ways to reduce <em>self-employment tax</em></h2>
-
-  <h3>1. Track every deduction</h3>
-  <p>Every dollar of legitimate business expense lowers your net earnings and directly lowers SE tax. Common deductions self-employed people miss: home office, business mileage, software subscriptions, phone (business-use portion), internet, professional services, banking fees.</p>
-
-  <h3>2. Consider an S-corp at higher incomes</h3>
-  <p>Once your net self-employment income exceeds roughly $60,000–80,000, an S-corporation election can save real money on SE tax. You pay yourself a "reasonable salary" (subject to FICA) and take the remaining profit as distributions (not subject to FICA). The savings need to outweigh the added complexity (payroll, separate tax return), but at higher incomes the math is favorable.</p>
-
-  <h3>3. Use retirement accounts</h3>
-  <p>SEP-IRA, Solo 401(k), and similar retirement accounts let you contribute pre-tax dollars from self-employment earnings. The contribution lowers your taxable income (income tax savings) but does <em>not</em> reduce SE tax — it's still calculated on pre-retirement-contribution earnings.</p>
-
-  <h3>4. Maximize the qualified business income (QBI) deduction</h3>
-  <p>If your net business income qualifies, you may deduct up to 20% of it under the QBI deduction (Section 199A). Phases out at higher incomes for certain professions. This applies to income tax, not SE tax.</p>
-
-  <h2>Quarterly estimated taxes</h2>
-  <p>If you'll owe more than $1,000 in federal tax for the year, the IRS expects you to pay quarterly. Skipping these results in underpayment penalties. The four deadlines:</p>
-  <ul>
-    <li><strong>April 15</strong> — for income earned Jan–Mar</li>
-    <li><strong>June 15</strong> — for income earned Apr–May</li>
-    <li><strong>September 15</strong> — for income earned Jun–Aug</li>
-    <li><strong>January 15</strong> — for income earned Sep–Dec</li>
-  </ul>
-  <p>You can pay at <strong>IRS.gov/payments</strong> in about 10 minutes. The simplest approach: take your estimated annual tax and divide by 4.</p>
-
-  <div class="callout callout-amber">
-    <p><strong>This calculator is an estimate.</strong> Real tax outcomes depend on credits, deductions, retirement contributions, dependents, and other factors not captured here. For a personalized analysis specific to your hustle, state, and situation, run the free SideHustleGuard check below.</p>
-  </div>
-
-
-  <h2 id="what-counts-as-self-employment-income">What counts as self-employment income?</h2>
+<picture><source srcset="/images/og/self-employment-tax-calculator.webp" type="image/webp"/><img alt="Self-employment tax calculator — estimate your federal SE tax" height="630" loading="lazy" src="/images/og/self-employment-tax-calculator.png" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" width="1200"/></picture>
+<h2>How is <em>self-employment tax</em> calculated?</h2>
+<p>Self-employment (SE) tax is 15.3% of your net earnings — but it's not applied to your gross income. The IRS uses a slightly counterintuitive formula:</p>
+<ol>
+<li><strong>Start with net earnings.</strong> Gross income minus business expenses.</li>
+<li><strong>Multiply by 92.35%.</strong> This is the "SE tax base." (The math reflects that as a self-employed person, you can't deduct the employer half of FICA before applying SE tax to the same money.)</li>
+<li><strong>Multiply by 15.3%.</strong> That's your SE tax. (Or 2.9% Medicare-only on amounts above the Social Security wage base of $176,100 for 2024.)</li>
+</ol>
+<div class="callout callout-green">
+<p><strong>The 50% SE tax deduction:</strong> Half of the SE tax you pay is deductible from your income tax. The calculator above already accounts for this — it's why your federal tax estimate is lower than a simple bracket multiplication would suggest.</p>
+</div>
+<h2>2025 federal income tax brackets</h2>
+<p>The federal income tax piece uses progressive brackets. Each "slice" of income is taxed at the bracket rate:</p>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
+<tr><th>Rate</th><th>Single</th><th>Married filing jointly</th></tr>
+<tr><td>10%</td><td>$0–$11,925</td><td>$0–$23,850</td></tr>
+<tr><td>12%</td><td>$11,925–$48,475</td><td>$23,850–$96,950</td></tr>
+<tr><td>22%</td><td>$48,475–$103,350</td><td>$96,950–$206,700</td></tr>
+<tr><td>24%</td><td>$103,350–$197,300</td><td>$206,700–$394,600</td></tr>
+<tr><td>32%</td><td>$197,300–$250,525</td><td>$394,600–$501,050</td></tr>
+<tr><td>35%</td><td>$250,525–$626,350</td><td>$501,050–$751,600</td></tr>
+<tr><td>37%</td><td>$626,350+</td><td>$751,600+</td></tr>
+</table></div>
+<p>Most self-employed workers fall in the 12% or 22% bracket. The standard deduction ($15,000 single / $30,000 MFJ for 2025) is subtracted before brackets are applied.</p>
+<h2>Common ways to reduce <em>self-employment tax</em></h2>
+<h3>1. Track every deduction</h3>
+<p>Every dollar of legitimate business expense lowers your net earnings and directly lowers SE tax. Common deductions self-employed people miss: home office, business mileage, software subscriptions, phone (business-use portion), internet, professional services, banking fees.</p>
+<h3>2. Consider an S-corp at higher incomes</h3>
+<p>Once your net self-employment income exceeds roughly $60,000–80,000, an S-corporation election can save real money on SE tax. You pay yourself a "reasonable salary" (subject to FICA) and take the remaining profit as distributions (not subject to FICA). The savings need to outweigh the added complexity (payroll, separate tax return), but at higher incomes the math is favorable.</p>
+<h3>3. Use retirement accounts</h3>
+<p>SEP-IRA, Solo 401(k), and similar retirement accounts let you contribute pre-tax dollars from self-employment earnings. The contribution lowers your taxable income (income tax savings) but does <em>not</em> reduce SE tax — it's still calculated on pre-retirement-contribution earnings.</p>
+<h3>4. Maximize the qualified business income (QBI) deduction</h3>
+<p>If your net business income qualifies, you may deduct up to 20% of it under the QBI deduction (Section 199A). Phases out at higher incomes for certain professions. This applies to income tax, not SE tax.</p>
+<h2>Quarterly estimated taxes</h2>
+<p>If you'll owe more than $1,000 in federal tax for the year, the IRS expects you to pay quarterly. Skipping these results in underpayment penalties. The four deadlines:</p>
+<ul>
+<li><strong>April 15</strong> — for income earned Jan–Mar</li>
+<li><strong>June 15</strong> — for income earned Apr–May</li>
+<li><strong>September 15</strong> — for income earned Jun–Aug</li>
+<li><strong>January 15</strong> — for income earned Sep–Dec</li>
+</ul>
+<p>You can pay at <strong>IRS.gov/payments</strong> in about 10 minutes. The simplest approach: take your estimated annual tax and divide by 4.</p>
+<div class="callout callout-amber">
+<p><strong>This calculator is an estimate.</strong> Real tax outcomes depend on credits, deductions, retirement contributions, dependents, and other factors not captured here. For a personalized analysis specific to your hustle, state, and situation, run the free SideHustleGuard check below.</p>
+</div>
+<h2 id="what-counts-as-self-employment-income">What counts as self-employment income?</h2>
 <p>SE tax applies to net earnings from any trade or business you operate as a sole proprietor, independent contractor, or gig worker. In practice, this means:</p>
 <ul>
 <li><strong>Included:</strong> 1099-NEC and 1099-K income, cash payments from clients, tips you receive directly, income from selling handmade goods (Etsy, craft fairs), gig platform earnings (DoorDash, Uber, TaskRabbit, Rover), freelance project fees, consulting, coaching</li>
 <li><strong>Not included for SE tax:</strong> W-2 wages (your employer handles FICA), investment income, rental income (unless you're a real estate dealer), Social Security benefits, unemployment compensation</li>
 </ul>
 <p>Note that <strong>gross income from platforms isn't always your net SE income</strong>. Etsy sellers subtract cost of goods, shipping, Etsy fees, and materials. Drivers subtract the standard mileage rate. Freelancers subtract software, home office, and professional expenses. The calculator above uses your entered expenses to compute the correct net earnings.</p>
-
-  <h2 id="se-tax-by-income-level">Self-employment tax at a glance — by income level</h2>
+<h2 id="se-tax-by-income-level">Self-employment tax at a glance — by income level</h2>
 <p>Here's what a self-employed single filer with no other income owes at different net profit levels, after the standard deduction and the 50% SE tax deduction (2025 rates):</p>
 <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5em"><table class="tax-table">
-  <tr><th>Net SE profit</th><th>SE tax (15.3%)</th><th>Federal income tax</th><th>Total federal</th><th>Effective rate</th></tr>
-  <tr><td>$15,000</td><td>$2,121</td><td>$0</td><td>$2,121</td><td>14.1%</td></tr>
-  <tr><td>$30,000</td><td>$4,239</td><td>$716</td><td>$4,955</td><td>16.5%</td></tr>
-  <tr><td>$50,000</td><td>$7,065</td><td>$3,194</td><td>$10,259</td><td>20.5%</td></tr>
-  <tr><td>$75,000</td><td>$10,597</td><td>$7,426</td><td>$18,023</td><td>24.0%</td></tr>
-  <tr><td>$100,000</td><td>$14,130</td><td>$13,096</td><td>$27,226</td><td>27.2%</td></tr>
-  <tr><td>$150,000</td><td>$21,195</td><td>$24,436</td><td>$45,631</td><td>30.4%</td></tr>
+<tr><th>Net SE profit</th><th>SE tax (15.3%)</th><th>Federal income tax</th><th>Total federal</th><th>Effective rate</th></tr>
+<tr><td>$15,000</td><td>$2,121</td><td>$0</td><td>$2,121</td><td>14.1%</td></tr>
+<tr><td>$30,000</td><td>$4,239</td><td>$716</td><td>$4,955</td><td>16.5%</td></tr>
+<tr><td>$50,000</td><td>$7,065</td><td>$3,194</td><td>$10,259</td><td>20.5%</td></tr>
+<tr><td>$75,000</td><td>$10,597</td><td>$7,426</td><td>$18,023</td><td>24.0%</td></tr>
+<tr><td>$100,000</td><td>$14,130</td><td>$13,096</td><td>$27,226</td><td>27.2%</td></tr>
+<tr><td>$150,000</td><td>$21,195</td><td>$24,436</td><td>$45,631</td><td>30.4%</td></tr>
 </table></div>
 <p style="font-size:13px;color:var(--muted);margin-top:8px">Estimates for single filers, 2025. Assumes standard deduction only, no other income, no retirement contributions. State taxes additional.</p>
 <div class="callout callout-green"><p><strong>The practical takeaway:</strong> Most self-employed people in the $30k–$75k net profit range pay an effective federal rate of 16–24%. Setting aside 25–30% of every payment covers this for most people, with a small buffer for state taxes and any miscalculations.</p></div>
-
-  <h2 id="state-taxes-on-top-of-se-tax">State taxes on top of SE tax</h2>
+<h2 id="state-taxes-on-top-of-se-tax">State taxes on top of SE tax</h2>
 <p>SE tax is a federal obligation — but most states also tax self-employment income at the state level, using the same net profit figure. State rates vary significantly:</p>
 <ul>
 <li><strong>No state income tax:</strong> Texas, Florida, Washington, Nevada, Wyoming, South Dakota, Alaska, Tennessee, New Hampshire (on most income)</li>
@@ -437,62 +407,52 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <li><strong>High (7–10%+):</strong> California (up to 13.3%), New York (up to 10.9%), New Jersey (up to 10.75%), Minnesota (9.85%), Oregon (9.9%)</li>
 </ul>
 <p>California self-employed workers should budget closer to 35–40% total between federal SE tax, federal income tax, and California's state income tax. See the <a href="/california-self-employment-tax" style="color:var(--navy);text-decoration:underline">California self-employment tax guide</a> for state-specific details.</p>
-
-  <div class="product-card" data-product="quarterly-tax-system">
-  <div class="product-card-icon" aria-hidden="true">📅</div>
-  <div class="product-card-body">
-    <div class="product-card-eyebrow">Quarterly tax system · 6-file bundle</div>
-    <div class="product-card-title">Quarterly Tax System 2026</div>
-    <div class="product-card-desc">Built for self-employed filers. The complete system for paying quarterly taxes without the IRS underpayment penalty. Includes the spreadsheet (calculates SE + federal + state, tracks Q1–Q4, checks safe harbor) plus a <strong>15-page survival guide</strong>, a <strong>penalty abatement letter template</strong> (worth $200+ from a CPA), a <strong>50-state cheat sheet</strong>, a <strong>CPA handoff checklist</strong>, and a <strong>calendar file</strong> with all four deadline reminders pre-set.</div>
-    <div class="product-card-feats">
-      <span>✓ Dashboard + 8 working tabs</span>
-      <span>✓ Both IRS safe-harbor rules</span>
-      <span>✓ Color-coded payment tracker</span>
-      <span>✓ BONUS: 15-page survival guide</span>
-      <span>✓ BONUS: penalty abatement letter</span>
-      <span>✓ BONUS: 50-state cheat sheet</span>
-      <span>✓ BONUS: CPA handoff checklist</span>
-      <span>✓ BONUS: .ics calendar reminders</span>
-    </div>
-    <div class="product-card-cta-row">
-      <a href="https://sidehustleguard.gumroad.com/l/QUARTERLY_PENDING" class="product-card-btn" target="_blank" rel="noopener">Get the bundle — $17 →</a>
-      <span class="product-card-meta">6 files · Excel + Sheets + 4 PDFs + .ics</span>
-    </div>
-  </div>
+<div class="product-card" data-product="quarterly-tax-system">
+<div aria-hidden="true" class="product-card-icon">📅</div>
+<div class="product-card-body">
+<div class="product-card-eyebrow">Quarterly tax system · 6-file bundle</div>
+<div class="product-card-title">Quarterly Tax System 2026</div>
+<div class="product-card-desc">Built for self-employed filers. The complete system for paying quarterly taxes without the IRS underpayment penalty. Includes the spreadsheet (calculates SE + federal + state, tracks Q1–Q4, checks safe harbor) plus a <strong>15-page survival guide</strong>, a <strong>penalty abatement letter template</strong> (worth $200+ from a CPA), a <strong>50-state cheat sheet</strong>, a <strong>CPA handoff checklist</strong>, and a <strong>calendar file</strong> with all four deadline reminders pre-set.</div>
+<div class="product-card-feats">
+<span>✓ Dashboard + 8 working tabs</span>
+<span>✓ Both IRS safe-harbor rules</span>
+<span>✓ Color-coded payment tracker</span>
+<span>✓ BONUS: 15-page survival guide</span>
+<span>✓ BONUS: penalty abatement letter</span>
+<span>✓ BONUS: 50-state cheat sheet</span>
+<span>✓ BONUS: CPA handoff checklist</span>
+<span>✓ BONUS: .ics calendar reminders</span>
+</div>
+<div class="product-card-cta-row">
+<a class="product-card-btn" href="https://sidehustleguard.gumroad.com/l/QUARTERLY_PENDING" rel="noopener" target="_blank">Get the bundle — $17 →</a>
+<span class="product-card-meta">6 files · Excel + Sheets + 4 PDFs + .ics</span>
+</div>
+</div>
 </div>
 <h2 id="frequently-asked-questions">Frequently asked <em>questions</em></h2>
-
-  <h3>Do I have to pay self-employment tax?</h3>
-  <p>Yes, if your net self-employment earnings are $400 or more in a year. SE tax covers Social Security and Medicare for self-employed people. There's no exemption based on age, having a day job, or being part-time.</p>
-
-  <h3>How much should I set aside for self-employment taxes?</h3>
-  <p>For most self-employed workers, set aside <strong>25–30% of every payment</strong> in a separate account. This covers federal income tax (typically 10–22%), SE tax (15.3%), and most state taxes. Higher earners or high-tax states should aim closer to 35%.</p>
-
-  <h3>Is half my SE tax really deductible?</h3>
-  <p>Yes. Half of the SE tax you pay is deductible "above the line" from your gross income, lowering your federal income tax. This is the IRS's way of acknowledging that as a self-employed person, you're paying both the employee and employer halves of FICA.</p>
-
-  <h3>Do I owe SE tax if I also have a W-2 job?</h3>
-  <p>Yes. SE tax applies to self-employment income regardless of whether you also earn W-2 wages. Your employer handles FICA on your W-2 earnings, but side hustle income is entirely your responsibility. The only interaction: if your combined wages and SE income exceed the Social Security wage base ($176,100 for 2024), you stop owing the 12.4% Social Security portion on the overage — only the 2.9% Medicare tax continues.</p>
-
-  <h3>Does age affect whether I owe SE tax?</h3>
-  <p>No. SE tax has no age exemption. Even if you're collecting Social Security or Medicare, you still owe SE tax on self-employment earnings above $400. There's also no exemption for minors — a 16-year-old with a profitable Etsy shop technically owes SE tax. The only exception is certain religious order members and some nonresident aliens.</p>
-
-  <h3>What happens to SE tax above the Social Security wage base?</h3>
-  <p>The Social Security portion (12.4%) of SE tax only applies up to the annual wage base — $176,100 for 2024, adjusted each year for inflation. Above that threshold, you only owe the Medicare portion (2.9%), plus the 0.9% Additional Medicare Tax if total net earnings exceed $200,000 (single) or $250,000 (MFJ). So SE tax above the wage base is effectively 3.8% rather than 15.3%.</p>
-
+<h3>Do I have to pay self-employment tax?</h3>
+<p>Yes, if your net self-employment earnings are $400 or more in a year. SE tax covers Social Security and Medicare for self-employed people. There's no exemption based on age, having a day job, or being part-time.</p>
+<h3>How much should I set aside for self-employment taxes?</h3>
+<p>For most self-employed workers, set aside <strong>25–30% of every payment</strong> in a separate account. This covers federal income tax (typically 10–22%), SE tax (15.3%), and most state taxes. Higher earners or high-tax states should aim closer to 35%.</p>
+<h3>Is half my SE tax really deductible?</h3>
+<p>Yes. Half of the SE tax you pay is deductible "above the line" from your gross income, lowering your federal income tax. This is the IRS's way of acknowledging that as a self-employed person, you're paying both the employee and employer halves of FICA.</p>
+<h3>Do I owe SE tax if I also have a W-2 job?</h3>
+<p>Yes. SE tax applies to self-employment income regardless of whether you also earn W-2 wages. Your employer handles FICA on your W-2 earnings, but side hustle income is entirely your responsibility. The only interaction: if your combined wages and SE income exceed the Social Security wage base ($176,100 for 2024), you stop owing the 12.4% Social Security portion on the overage — only the 2.9% Medicare tax continues.</p>
+<h3>Does age affect whether I owe SE tax?</h3>
+<p>No. SE tax has no age exemption. Even if you're collecting Social Security or Medicare, you still owe SE tax on self-employment earnings above $400. There's also no exemption for minors — a 16-year-old with a profitable Etsy shop technically owes SE tax. The only exception is certain religious order members and some nonresident aliens.</p>
+<h3>What happens to SE tax above the Social Security wage base?</h3>
+<p>The Social Security portion (12.4%) of SE tax only applies up to the annual wage base — $176,100 for 2024, adjusted each year for inflation. Above that threshold, you only owe the Medicare portion (2.9%), plus the 0.9% Additional Medicare Tax if total net earnings exceed $200,000 (single) or $250,000 (MFJ). So SE tax above the wage base is effectively 3.8% rather than 15.3%.</p>
 </div>
-
 <footer>
-  <span class="footer-logo">SideHustle<span>Guard</span></span>
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/tool">Free checker</a>
-    <a href="/quarterly-taxes-self-employed">Quarterly taxes</a>
-    <a href="/side-hustle-taxes">Side hustle taxes</a>
-  </div>
-  <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
+<span class="footer-logo">SideHustle<span>Guard</span></span>
+<div class="footer-links">
+<a href="/">Home</a>
+<a href="/tool">Free checker</a>
+<a href="/quarterly-taxes-self-employed">Quarterly taxes</a>
+<a href="/side-hustle-taxes">Side hustle taxes</a>
+</div>
+<div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
 </footer>
-
 <script>
 // 2025 federal brackets
 const BRACKETS = {
@@ -573,6 +533,5 @@ function recalc(){
 }
 recalc();
 </script>
-
 </body>
 </html>
