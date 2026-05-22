@@ -30,7 +30,25 @@
       "name": "SideHustleGuard",
       "url": "https://www.sidehustleguard.com/",
       "email": "richard@sidehustleguard.com",
+      "founder": { "@id": "https://www.sidehustleguard.com/#author" },
       "description": "Free tax and legal checker for US side hustlers — taxes, licenses, and business structure in 60 seconds."
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.sidehustleguard.com/#author",
+      "name": "Richard Srey",
+      "url": "https://www.sidehustleguard.com/#author",
+      "email": "richard@sidehustleguard.com",
+      "jobTitle": "Founder, SideHustleGuard",
+      "worksFor": { "@id": "https://www.sidehustleguard.com/#org" },
+      "knowsAbout": [
+        "self-employment tax",
+        "1099 reporting",
+        "short-term rental tax compliance",
+        "small-business filing",
+        "side hustle legal compliance"
+      ],
+      "description": "Independent freelancer based in Long Beach, California. Built SideHustleGuard to translate IRS rules and state-by-state tax compliance into plain English for US side hustlers."
     },
     {
       "@type": "WebSite",
@@ -879,6 +897,26 @@ button.faq-q { width: 100%; background: none; border: none; cursor: pointer; tex
     </div>
   </div>
 </div>
+
+<!-- Author bio — anchor for byline links on guide pages -->
+<section id="author" class="author-bio" itemscope itemtype="https://schema.org/Person" style="background:var(--cream);padding:56px 48px;border-top:1px solid var(--border)">
+  <div style="max-width:780px;margin:0 auto;display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex-shrink:0;width:84px;height:84px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);box-shadow:0 6px 22px rgba(28,43,74,.12)" aria-hidden="true">R</div>
+    <div style="flex:1;min-width:240px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:6px">About the author</div>
+      <h3 itemprop="name" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin:0 0 6px;line-height:1.25">Richard Srey</h3>
+      <div itemprop="jobTitle" style="font-size:13px;color:var(--text-muted,#6b7a96);margin-bottom:14px">Founder, SideHustleGuard</div>
+      <p itemprop="description" style="font-size:14px;color:var(--text-muted,#6b7a96);line-height:1.7;margin:0 0 14px;font-weight:300">Independent freelancer based in Long Beach, California. Built SideHustleGuard after watching too many side hustlers get hit with surprise tax bills, late penalties, and licensing problems they didn't know about. Every guide and tool on this site is written from research into actual IRS publications, state revenue codes, and platform tax pages — not generic content rewrites.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13px">
+        <a href="mailto:richard@sidehustleguard.com" itemprop="email" style="color:var(--gold);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a>
+        <span style="color:var(--text-dim,#9aa3b5)">·</span>
+        <span style="color:var(--text-muted,#6b7a96)" itemprop="knowsAbout">Self-employment tax · 1099 reporting · Short-term rental compliance</span>
+      </div>
+      <link itemprop="url" href="https://www.sidehustleguard.com/#author">
+      <meta itemprop="worksFor" content="SideHustleGuard">
+    </div>
+  </div>
+</section>
 
 <!-- CTA -->
 <div class="cta-section">
