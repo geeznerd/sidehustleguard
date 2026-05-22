@@ -177,6 +177,11 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .chip--active,.chip--active:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
 .chip:focus-visible{outline:2px solid rgba(201,151,58,.5);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.chip{transition:none}}
+
+.article-card{position:relative}
+.article-expanding{position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:var(--amber,#a86c0a);border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4}
+.article-card[data-expanding="true"]{opacity:.92}
+.article-card[data-expanding="true"] .article-title{color:var(--navy,#1c2b4a)}
 </style>
 <script type="application/ld+json">
 {
@@ -432,7 +437,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/vrbo-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/vrbo-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">🏠</span>
 <div class="article-body">
 <span class="article-title">Vrbo Host Taxes</span>
@@ -440,7 +445,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/booking-com-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/booking-com-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">🌐</span>
 <div class="article-body">
 <span class="article-title">Booking.com Host Taxes</span>
@@ -448,7 +453,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/turo-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/turo-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">🚗</span>
 <div class="article-body">
 <span class="article-title">Turo Host Taxes</span>
@@ -456,7 +461,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/hipcamp-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/hipcamp-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">⛺</span>
 <div class="article-body">
 <span class="article-title">Hipcamp Host Taxes</span>
@@ -464,7 +469,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/rv-rental-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/rv-rental-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">🚐</span>
 <div class="article-body">
 <span class="article-title">RV Rental Host Taxes</span>
@@ -472,7 +477,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/furnished-finder-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/furnished-finder-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">🛋️</span>
 <div class="article-body">
 <span class="article-title">Furnished Finder Taxes</span>
@@ -480,7 +485,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="platform" href="/neighbor-storage-host-taxes">
+<a class="article-card" data-expanding="true" data-rental-type="platform" href="/neighbor-storage-host-taxes"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">📦</span>
 <div class="article-body">
 <span class="article-title">Neighbor Storage Taxes</span>
@@ -488,7 +493,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="topic" href="/airbnb-14-day-rule">
+<a class="article-card" data-expanding="true" data-rental-type="topic" href="/airbnb-14-day-rule"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">📅</span>
 <div class="article-body">
 <span class="article-title">The Airbnb 14-Day Rule</span>
@@ -496,7 +501,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-rental-type="topic" href="/schedule-c-vs-schedule-e-str">
+<a class="article-card" data-expanding="true" data-rental-type="topic" href="/schedule-c-vs-schedule-e-str"><span class="article-expanding">Expanding</span>
 <span aria-hidden="true" class="article-icon">📋</span>
 <div class="article-body">
 <span class="article-title">Schedule C vs Schedule E for STRs</span>
