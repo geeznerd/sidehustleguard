@@ -39,10 +39,13 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-link:hover{color:var(--indigo)}
-.hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--apricot-soft);border:1px solid rgba(232,148,100,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--apricot);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,48px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:14px}
-h1 em{font-style:italic;color:var(--apricot)}
+.hero{padding:72px 24px 44px;max-width:980px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(38px,5vw,58px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
 .calc-wrap{max-width:880px;margin:0 auto;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
@@ -241,7 +244,11 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<div class="hero-badge">Free Calculator · 2025</div>
+<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="hero-content">
+<div class="hero-badge">Free Calculator · 2025
+</div>
+</div>
 <h1>Quarterly tax calculator: <em>what to pay</em> each quarter</h1>
 <p class="hero-sub">Enter your estimated annual net profit and see exactly how much to pay each quarter — plus the safe harbor amount that protects you from penalties.</p>
 <p style="font-size:13px;color:var(--indigo-70);margin-top:14px;font-weight:300">Want the full system — payment tracker, IRS abatement letter, and CPA handoff bundle? <a href="/quarterly-tax-system" style="color:var(--apricot);font-weight:500">See the Quarterly Tax System →</a></p>

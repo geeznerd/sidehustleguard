@@ -48,10 +48,13 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-link:hover{color:var(--indigo)}
 
 /* HERO */
-.hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--apricot-soft);border:1px solid rgba(232,148,100,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--apricot);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:14px}
-h1 em{font-style:italic;color:var(--apricot)}
+.hero{padding:72px 24px 44px;max-width:980px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(40px,5.2vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
 
 /* TOOL WRAP */
@@ -107,9 +110,12 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 
 /* ===== RESULTS ===== */
 .results-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;overflow:hidden;box-shadow:0 2px 20px rgba(45,48,104,.05)}
-.results-header{padding:28px 36px 24px;background:var(--indigo)}
-.results-header-inner{display:flex;align-items:center;gap:20px}
-.risk-shield{width:56px;height:64px;flex-shrink:0}
+.results-header{padding:32px 36px 28px;background:var(--indigo);position:relative;overflow:hidden}
+.results-header::before{content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--apricot-soft),transparent 65%);pointer-events:none}
+.results-header-inner{display:flex;align-items:center;gap:22px;position:relative;z-index:1}
+.risk-numeral{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:80px;line-height:0.9;font-variation-settings:'opsz' 144,'SOFT' 30;color:var(--good);flex-shrink:0;min-width:80px;text-align:center}
+.risk-numeral.is-warn{color:var(--warn)}
+.risk-numeral.is-risk{color:var(--risk)}
 .results-label-wrap{}
 .results-eyebrow{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px}
 .risk-label{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:700;line-height:1;color:var(--paper)}
@@ -297,7 +303,11 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<div class="hero-badge">Free · No signup · 60 seconds</div>
+<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="hero-content">
+<div class="hero-badge">Free · No signup · 60 seconds
+</div>
+</div>
 <h1>Side Hustle <em>Audit Risk</em> Estimator</h1>
 <p class="hero-sub">Answer 10 quick questions about your business, deductions, and history. We'll score your return and flag anything the IRS notices.</p>
 </div>
@@ -450,10 +460,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <!-- HEADER WITH SHIELD -->
 <div class="results-header" id="results-header">
 <div class="results-header-inner">
-<svg class="risk-shield" fill="none" id="risk-shield-svg" viewbox="0 0 36 40">
-<path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#5a7a4f" id="shield-bg" stroke="#5a7a4f" stroke-linejoin="round" stroke-width="2.4"></path>
-<path d="M11 19.5L16 24.5L26 13.5" id="shield-icon" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path>
-</svg>
+<div class="risk-numeral" id="risk-numeral" aria-hidden="true">0</div>
 <div class="results-label-wrap">
 <div class="results-eyebrow">Your audit risk level</div>
 <div class="risk-label" id="risk-label">LOW RISK</div>
@@ -759,45 +766,28 @@ function calculateAndShowResults() {
 
   const { score, flags, tips } = calculateScore();
 
-  // Determine risk level
-  let riskLevel, riskColor, shieldFill, shieldStroke, shieldIconStroke;
+  // Determine risk level (color drives the gauge marker + risk-label tone)
+  let riskLevel, riskColor;
   if (score <= 4) {
     riskLevel = 'LOW RISK';
     riskColor = '#5a7a4f';
-    shieldFill = '#5a7a4f';
-    shieldStroke = '#5a7a4f';
-    shieldIconStroke = 'white';
   } else if (score <= 9) {
     riskLevel = 'MEDIUM RISK';
     riskColor = '#c98a3a';
-    shieldFill = '#c98a3a';
-    shieldStroke = '#c98a3a';
-    shieldIconStroke = 'white';
   } else {
     riskLevel = 'HIGH RISK';
     riskColor = '#c2533a';
-    shieldFill = '#c2533a';
-    shieldStroke = '#c2533a';
-    shieldIconStroke = 'white';
   }
 
-  // Update shield
-  document.getElementById('shield-bg').setAttribute('fill', shieldFill);
-  document.getElementById('shield-bg').setAttribute('stroke', shieldStroke);
-
-  // For high risk, swap checkmark for exclamation
-  const iconPath = document.getElementById('shield-icon');
-  if (score > 9) {
-    iconPath.setAttribute('d', 'M18 13V21M18 25.5V26');
-    iconPath.setAttribute('stroke-width', '3.5');
-  } else if (score > 4) {
-    iconPath.setAttribute('d', 'M12 20L16 24L24 14');
-    iconPath.setAttribute('stroke-width', '3.2');
-  } else {
-    iconPath.setAttribute('d', 'M11 19.5L16 24.5L26 13.5');
-    iconPath.setAttribute('stroke-width', '3.2');
+  // Update the Fraunces italic risk numeral (replaces the old shield SVG)
+  const numeral = document.getElementById('risk-numeral');
+  if (numeral) {
+    numeral.textContent = score;
+    numeral.classList.remove('is-warn', 'is-risk');
+    if (score > 9) numeral.classList.add('is-risk');
+    else if (score > 4) numeral.classList.add('is-warn');
+    // default class (no modifier) = good
   }
-  iconPath.setAttribute('stroke', shieldIconStroke);
 
   document.getElementById('risk-label').textContent = riskLevel;
   document.getElementById('risk-label').style.color = 'white';
