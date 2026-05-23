@@ -35,90 +35,90 @@
 <style>
 /* Page-specific styles only — tokens come from design-system.css. */
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .logo-icon svg{width:32px;height:32px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
-.logo-text span{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--apricot-hover)}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
 .hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
-.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
-.breadcrumb a{color:var(--dim);text-decoration:none}
-.breadcrumb a:hover{color:var(--navy)}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
-h1 em{font-style:italic;color:var(--gold)}
-.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
-.article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
-.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
-.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
+.breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:20px}
+.breadcrumb a{color:var(--indigo-55);text-decoration:none}
+.breadcrumb a:hover{color:var(--indigo)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot)}
+.hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:28px}
+.article-disc{font-size:11px;color:var(--indigo-55);margin:-10px 0 20px;font-weight:400;font-style:italic}
+.hero-intro{font-size:17px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.answer-box{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--indigo);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
-h2 em{font-style:italic;color:var(--gold)}
-h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
-p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
-p strong{color:var(--navy);font-weight:600}
+h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--indigo);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--apricot)}
+h3{font-size:17px;font-weight:600;color:var(--indigo);margin:28px 0 10px}
+p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
-li strong{color:var(--navy);font-weight:600}
+li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--indigo);font-weight:600}
 .callout{border-radius:10px;padding:18px 22px;margin:24px 0}
-.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
-.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
-.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
 .callout p{margin-bottom:0;font-size:14px}
-.callout strong{color:var(--navy)}
+.callout strong{color:var(--indigo)}
 .tax-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
-.tax-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
-.tax-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
+.tax-table th{background:var(--indigo);color:var(--paper);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+.tax-table td{padding:10px 14px;border-bottom:1px solid var(--indigo-08);color:var(--indigo-70);font-weight:300}
 .tax-table tr:last-child td{border-bottom:none}
-.tax-table td:first-child{font-weight:500;color:var(--navy)}
-.cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
-.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
-.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+.tax-table td:first-child{font-weight:500;color:var(--indigo)}
+.cta-box{background:var(--indigo);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:24px;color:var(--paper);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--apricot-hover)}
 .cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
-.btn-gold:hover{background:var(--gold-lt)}
+.btn-gold{display:inline-block;background:var(--apricot);color:var(--paper);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--apricot-hover)}
 .cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
-hr{border:none;border-top:1px solid var(--border);margin:40px 0}
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
-.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+hr{border:none;border-top:1px solid var(--indigo-08);margin:40px 0}
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:12px 14px;white-space:nowrap}.nav-right{gap:12px}}
-.nw-card{background:var(--navy);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
-.nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.nw-card{background:var(--indigo);border-radius:14px;padding:28px 32px;margin:44px 0;display:flex;gap:24px;align-items:flex-start}
+.nw-badge{background:var(--apricot);color:var(--paper);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
 .nw-body{flex:1}
 .nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
-.nw-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--paper);margin-bottom:8px;line-height:1.25}
 .nw-title em{font-style:italic;color:var(--gold-lt,#f0a075)}
 .nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
-.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
+.nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--apricot);color:var(--paper);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
 .nw-link:hover{background:var(--gold-lt,#f0a075)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
-.related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
-.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-section{border-top:1px solid var(--indigo-08);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
-.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.related-card-arrow{font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0}
-.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--apricot);transform:translateY(-2px)}
+.related-card-arrow{font-size:13px;color:var(--apricot);font-weight:700;flex-shrink:0}
+.related-card-title{font-size:13px;font-weight:600;color:var(--indigo);line-height:1.4}
 @media(max-width:600px){.nw-card{flex-direction:column;gap:14px}.nw-badge{align-self:flex-start}}
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
 
-.faq-item{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-item{border-bottom:1px solid var(--indigo-08);padding:18px 0}
 .faq-item:last-child{border-bottom:none}
-.faq-item h3{font-size:15px;font-weight:600;color:var(--navy);margin:0 0 8px;line-height:1.4}
-.faq-item p{font-size:14px;color:var(--muted);line-height:1.7;margin:0;font-weight:300}
-.faq-item p strong{color:var(--navy);font-weight:600}
-.faq-item p a{color:var(--gold);text-decoration:none}
+.faq-item h3{font-size:15px;font-weight:600;color:var(--indigo);margin:0 0 8px;line-height:1.4}
+.faq-item p{font-size:14px;color:var(--indigo-70);line-height:1.7;margin:0;font-weight:300}
+.faq-item p strong{color:var(--indigo);font-weight:600}
+.faq-item p a{color:var(--apricot);text-decoration:none}
 .faq-item p a:hover{text-decoration:underline}
 
 </style>
@@ -207,15 +207,15 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <div class="content">
 <picture><source srcset="/images/og/airbnb-host-taxes.webp" type="image/webp"/><img alt="New York short-term rental rules — Local Law 18 and NYC registration" height="630" loading="lazy" src="/images/og/airbnb-host-taxes.png" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" width="1200"/></picture>
-<div style="background:var(--cream-d);border-radius:10px;padding:20px 24px;margin:0 0 36px">
-<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px">Key questions this guide answers</div>
+<div style="background:var(--cream);border-radius:10px;padding:20px 24px;margin:0 0 36px">
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:10px">Key questions this guide answers</div>
 <ul style="margin:0;padding-left:18px">
-<li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What is Local Law 18 and what does it require of NYC Airbnb hosts?</li>
-<li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">Can I still rent my apartment on Airbnb in New York City?</li>
-<li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What taxes does New York State charge on short-term rental income?</li>
-<li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">What taxes does New York City add on top of the state rate?</li>
-<li style="font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:300">Does Airbnb collect and remit NYC hotel taxes automatically?</li>
-<li style="font-size:14px;color:var(--muted);margin-bottom:0;font-weight:300">What are the penalties for violating Local Law 18?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:6px;font-weight:300">What is Local Law 18 and what does it require of NYC Airbnb hosts?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:6px;font-weight:300">Can I still rent my apartment on Airbnb in New York City?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:6px;font-weight:300">What taxes does New York State charge on short-term rental income?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:6px;font-weight:300">What taxes does New York City add on top of the state rate?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:6px;font-weight:300">Does Airbnb collect and remit NYC hotel taxes automatically?</li>
+<li style="font-size:14px;color:var(--indigo-70);margin-bottom:0;font-weight:300">What are the penalties for violating Local Law 18?</li>
 </ul>
 </div>
 <h2 id="state-registration">State-level registration and permitting — <em>Local Law 18 and the NYC hosted-only rule</em></h2>

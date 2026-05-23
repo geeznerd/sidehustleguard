@@ -66,84 +66,84 @@
 <style>
 /* Page-specific styles only — tokens come from design-system.css. */
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .logo-icon svg{width:32px;height:32px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}.logo-text span{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--apricot-hover)}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
 .hero{padding:64px 48px 48px;max-width:800px;margin:0 auto}
-.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:18px}
-.breadcrumb a{color:var(--dim);text-decoration:none}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
-h1 em{font-style:italic;color:var(--gold)}
-.hero-meta{font-size:13px;color:var(--dim);margin-bottom:22px}
-.article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
-.hero-intro{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
-.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--navy);line-height:1.6}
+.breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:18px}
+.breadcrumb a{color:var(--indigo-55);text-decoration:none}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:16px}
+h1 em{font-style:italic;color:var(--apricot)}
+.hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:22px}
+.article-disc{font-size:11px;color:var(--indigo-55);margin:-10px 0 20px;font-weight:400;font-style:italic}
+.hero-intro{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
+.answer-box{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--indigo);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--navy);margin:40px 0 12px;line-height:1.2}
-h2 em{font-style:italic;color:var(--gold)}
-h3{font-size:16px;font-weight:600;color:var(--navy);margin:24px 0 8px}
-p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
-p strong{color:var(--navy);font-weight:600}
+h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--indigo);margin:40px 0 12px;line-height:1.2}
+h2 em{font-style:italic;color:var(--apricot)}
+h3{font-size:16px;font-weight:600;color:var(--indigo);margin:24px 0 8px}
+p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
-li strong{color:var(--navy);font-weight:600}
+li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--indigo);font-weight:600}
 .callout{border-radius:10px;padding:16px 20px;margin:20px 0}
-.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
-.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
-.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
 .callout p{margin-bottom:0;font-size:14px}
-.step-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:10px 0;display:flex;gap:14px;align-items:flex-start}
-.step-num{width:26px;height:26px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.step-box{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px 20px;margin:10px 0;display:flex;gap:14px;align-items:flex-start}
+.step-num{width:26px;height:26px;background:var(--indigo);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
 .step-body{flex:1}
-.step-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.step-desc{font-size:13px;color:var(--muted);line-height:1.55;font-weight:300}
+.step-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:3px}
+.step-desc{font-size:13px;color:var(--indigo-70);line-height:1.55;font-weight:300}
 table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
-th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
-td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
-td:first-child{font-weight:500;color:var(--navy)}
-.cta-box{background:var(--navy);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
-.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--white);margin-bottom:8px;font-weight:700}
-.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+th{background:var(--indigo);color:var(--paper);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+td{padding:10px 14px;border-bottom:1px solid var(--indigo-08);color:var(--indigo-70);font-weight:300}
+td:first-child{font-weight:500;color:var(--indigo)}
+.cta-box{background:var(--indigo);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--paper);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--apricot-hover)}
 .cta-box p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:20px;font-weight:300}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
-.btn-gold:hover{background:var(--gold-lt)}
+.btn-gold{display:inline-block;background:var(--apricot);color:var(--paper);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--apricot-hover)}
 .cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:8px}
-.nw-card{background:var(--navy);border-radius:14px;overflow:hidden;margin:40px 0}
-.nw-card-accent{height:3px;background:var(--gold)}
+.nw-card{background:var(--indigo);border-radius:14px;overflow:hidden;margin:40px 0}
+.nw-card-accent{height:3px;background:var(--apricot)}
 .nw-card-body{padding:24px 28px}
 .nw-card-tag{font-size:10px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:8px}
-.nw-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
-.nw-card-title em{font-style:italic;color:var(--gold-lt)}
+.nw-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--paper);margin-bottom:8px;line-height:1.25}
+.nw-card-title em{font-style:italic;color:var(--apricot-hover)}
 .nw-card-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
 .nw-pill{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px}
-.nw-btn{display:block;text-align:center;background:var(--gold);color:var(--white);padding:13px 24px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
-.nw-btn:hover{background:var(--gold-lt)}
+.nw-btn{display:block;text-align:center;background:var(--apricot);color:var(--paper);padding:13px 24px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.nw-btn:hover{background:var(--apricot-hover)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.2);text-align:center;margin-top:8px}
-.faq-section{margin-top:40px;border-top:1px solid var(--border);padding-top:32px}
-.faq-item{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.faq-section{margin-top:40px;border-top:1px solid var(--indigo-08);padding-top:32px}
+.faq-item{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--indigo-08)}
 .faq-item:last-child{border-bottom:none}
-.faq-item h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.faq-item p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:0}
-.related-section{border-top:1px solid var(--border);padding:36px 0 0;margin-top:36px}
-.related-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+.faq-item h3{font-size:15px;font-weight:600;color:var(--indigo);margin-bottom:8px}
+.faq-item p{font-size:14px;color:var(--indigo-70);line-height:1.7;font-weight:300;margin-bottom:0}
+.related-section{border-top:1px solid var(--indigo-08);padding:36px 0 0;margin-top:36px}
+.related-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:16px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
-.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.related-card-arrow{font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0}
-.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.35}
-hr{border:none;border-top:1px solid var(--border);margin:36px 0}
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--apricot);transform:translateY(-2px)}
+.related-card-arrow{font-size:13px;color:var(--apricot);font-weight:700;flex-shrink:0}
+.related-card-title{font-size:13px;font-weight:600;color:var(--indigo);line-height:1.35}
+hr{border:none;border-top:1px solid var(--indigo-08);margin:36px 0}
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:28px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
 
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
@@ -233,9 +233,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 <p>The threshold for 2025 is <strong>$2,500 in gross payments</strong> (down from $5,000 in 2024). This is separate from Etsy's own 1099-K — if you receive payments through both Etsy's payment system and PayPal separately, you may receive two 1099-Ks for the same selling activity.</p>
 <div class="callout callout-amber"><p><strong>Important:</strong> The 1099-K shows gross payments received — including amounts that were later refunded, chargebacked, or represent fees paid to PayPal. Your actual taxable income is lower than the 1099-K amount.</p></div>
 <div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
-<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
-<li><a href="#what-is-a-1099-k-and-why-did-paypal-send-it" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What is a 1099-K and why did PayPal send it?</a></li><li><a href="#why-the-1099-k-number-is-higher-than-your-actual-income" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Why the 1099-K number is higher than your actual income</a></li><li><a href="#how-to-handle-a-1099-k-on-your-tax-return" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How to handle a 1099-K on your tax return</a></li><li><a href="#what-if-the-1099-k-amount-doesnt-match-your-records" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What if the 1099-K amount doesn't match your records?</a></li><li><a href="#what-if-you-ignored-a-1099-k-in-a-prior-year" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What if you ignored a 1099-K in a prior year?</a></li><li><a href="#frequently-asked-questions" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Frequently asked questions</a></li>
+<li><a href="#what-is-a-1099-k-and-why-did-paypal-send-it" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What is a 1099-K and why did PayPal send it?</a></li><li><a href="#why-the-1099-k-number-is-higher-than-your-actual-income" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Why the 1099-K number is higher than your actual income</a></li><li><a href="#how-to-handle-a-1099-k-on-your-tax-return" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>How to handle a 1099-K on your tax return</a></li><li><a href="#what-if-the-1099-k-amount-doesnt-match-your-records" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What if the 1099-K amount doesn't match your records?</a></li><li><a href="#what-if-you-ignored-a-1099-k-in-a-prior-year" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What if you ignored a 1099-K in a prior year?</a></li><li><a href="#frequently-asked-questions" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Frequently asked questions</a></li>
 </ol>
 </div>
 <h2 id="why-the-1099-k-number-is-higher-than-your-actual-income">Why the 1099-K number is higher than your actual income</h2>
@@ -297,7 +297,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 </div>
 <!-- Bottom line -->
 <hr/>
-<p style="font-size:15px;font-weight:500;color:var(--navy);line-height:1.7">A PayPal 1099-K is not a tax bill. It's a gross receipts report that the IRS uses to verify your income was reported. The actual tax owed is on your net profit after expenses — which is almost always significantly lower than the 1099-K figure. The key is reporting it correctly on Schedule C and keeping records to support the difference.</p>
+<p style="font-size:15px;font-weight:500;color:var(--indigo);line-height:1.7">A PayPal 1099-K is not a tax bill. It's a gross receipts report that the IRS uses to verify your income was reported. The actual tax owed is on your net profit after expenses — which is almost always significantly lower than the 1099-K figure. The key is reporting it correctly on Schedule C and keeping records to support the difference.</p>
 <!-- End CTA -->
 <div class="cta-box">
 <h3>Know exactly where <em>you</em> stand</h3>

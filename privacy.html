@@ -8,59 +8,62 @@
 <meta content="SideHustleGuard's privacy policy. We don't store your personal data, don't sell it, and keep things simple. Here's exactly what we do and don't collect." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/privacy.html" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <style>
-:root {
-  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
-  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
-  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
-  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
-.logo-text span{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--apricot-hover)}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
 .hero{padding:72px 48px 56px;max-width:800px;margin:0 auto}
-.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
-.breadcrumb a{color:var(--dim);text-decoration:none}
-.breadcrumb a:hover{color:var(--navy)}
-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
-h1 em{font-style:italic;color:var(--gold)}
-.hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
-.hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
+.breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:20px}
+.breadcrumb a{color:var(--indigo-55);text-decoration:none}
+.breadcrumb a:hover{color:var(--indigo)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot)}
+.hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
-h2 em{font-style:italic;color:var(--gold)}
-h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
-p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
-p strong{color:var(--navy);font-weight:600}
+h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--indigo);margin:44px 0 14px;line-height:1.2}
+h2 em{font-style:italic;color:var(--apricot)}
+h3{font-size:17px;font-weight:600;color:var(--indigo);margin:28px 0 10px}
+p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
-li strong{color:var(--navy);font-weight:600}
+li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--indigo);font-weight:600}
 .callout{border-radius:10px;padding:18px 22px;margin:24px 0}
-.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
-.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
-.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
 .callout p{margin-bottom:0;font-size:14px}
-.callout strong{color:var(--navy)}
-hr{border:none;border-top:1px solid var(--border);margin:40px 0}
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
-.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+.callout strong{color:var(--indigo)}
+hr{border:none;border-top:1px solid var(--indigo-08);margin:40px 0}
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
 
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
@@ -69,8 +72,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" viewbox="0 0 40 46" xmlns="http://www.w3.org/2000/svg"><path d="M20 2L4 9v12c0 10.5 6.8 20.3 16 23 9.2-2.7 16-12.5 16-23V9L20 2z" fill="#1c2b4a" stroke="#1c2b4a" stroke-width="1"></path><path d="M20 2L4 9v12c0 10.5 6.8 20.3 16 23 9.2-2.7 16-12.5 16-23V9L20 2z" fill="none" stroke="#c9973a" stroke-width="1.5"></path><path d="M13 23l5 5 9-9" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -90,21 +93,21 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="callout callout-amber">
 <p><strong>The short version:</strong> We don't collect your name, email, or any personally identifiable information unless you contact us directly. We don't store your tool responses. We don't sell your data to anyone. Ever.</p>
 </div>
-<div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
-<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
+<div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
-<li><a href="#who-we-are" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Who we are</a></li><li><a href="#what-information-we-collect" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What information we collect</a></li><li><a href="#what-we-do-not-collect" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What we do not collect</a></li><li><a href="#affiliate-links-and-disclosures" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Affiliate links and disclosures</a></li><li><a href="#how-we-protect-your-information" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How we protect your information</a></li><li><a href="#third-party-services" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Third-party services</a></li><li><a href="#childrens-privacy" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Children's privacy</a></li><li><a href="#california-residents-ccpa-notice" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>California residents — CCPA notice</a></li><li><a href="#changes-to-this-policy" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Changes to this policy</a></li><li><a href="#contact-us" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Contact us</a></li>
+<li><a href="#who-we-are" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Who we are</a></li><li><a href="#what-information-we-collect" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What information we collect</a></li><li><a href="#what-we-do-not-collect" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What we do not collect</a></li><li><a href="#affiliate-links-and-disclosures" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Affiliate links and disclosures</a></li><li><a href="#how-we-protect-your-information" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>How we protect your information</a></li><li><a href="#third-party-services" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Third-party services</a></li><li><a href="#childrens-privacy" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Children's privacy</a></li><li><a href="#california-residents-ccpa-notice" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>California residents — CCPA notice</a></li><li><a href="#changes-to-this-policy" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Changes to this policy</a></li><li><a href="#contact-us" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Contact us</a></li>
 </ol>
 </div>
 <h2 id="who-we-are">Who we are</h2>
 <p>SideHustleGuard (<strong>sidehustleguard.com</strong>) is a small independent site that provides free tax guides and a $5 tax compliance checker for US side hustlers — Etsy sellers, gig workers, freelancers, and anyone earning income outside a traditional W-2 job.</p>
-<p>Questions about this policy? Email us at <a href="mailto:richard@sidehustleguard.com" style="color:var(--gold);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a>.</p>
+<p>Questions about this policy? Email us at <a href="mailto:richard@sidehustleguard.com" style="color:var(--apricot);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a>.</p>
 <h2 id="what-information-we-collect">What information we <em>collect</em></h2>
 <h3>The free tax checker tool (/tool.html)</h3>
 <p>The free checker asks you a short series of questions — your hustle type, state, and income range — and generates a personalized tax overview based on your answers. <strong>None of this is stored.</strong> Your responses exist only in your browser session to generate the report. Once you close the page, they're gone. We don't log them, we don't save them to a database, and we don't share them with anyone.</p>
 <h3>The $5 paid report</h3>
 <p>If you purchase the full $5 compliance report, payment is handled entirely by <strong>Stripe</strong>. We never see or store your card number, CVC, or billing details — those go directly to Stripe's servers. What Stripe may share with us is limited to transaction confirmation (that a payment succeeded) and your email address if you provide one to receive the report. We don't use that email for marketing without your explicit consent.</p>
-<p>Stripe's privacy practices are governed by <a href="https://stripe.com/privacy" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:500" target="_blank">Stripe's own Privacy Policy</a>.</p>
+<p>Stripe's privacy practices are governed by <a href="https://stripe.com/privacy" rel="noopener" style="color:var(--apricot);text-decoration:none;font-weight:500" target="_blank">Stripe's own Privacy Policy</a>.</p>
 <h3>Analytics</h3>
 <p>We use basic analytics to understand which guides are helpful and how visitors find the site. This is <strong>page-view-level data only</strong> — we track that a page was visited, not who visited it. No user profiles are built, no cross-site tracking occurs, and no individual visitor is identified or followed.</p>
 <h3>Cookies</h3>
@@ -134,21 +137,21 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <h2 id="third-party-services">Third-party services</h2>
 <p>Beyond Stripe (payments) and our analytics provider (page views only), we don't share data with third parties. We don't use data management platforms, advertising networks, or email list services that process personal information.</p>
 <h2 id="childrens-privacy">Children's privacy</h2>
-<p>SideHustleGuard is intended for adults with self-employment income. We don't knowingly collect information from anyone under 13. If you believe a child has submitted information through this site, contact us at <a href="mailto:richard@sidehustleguard.com" style="color:var(--gold);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a> and we'll remove it promptly.</p>
+<p>SideHustleGuard is intended for adults with self-employment income. We don't knowingly collect information from anyone under 13. If you believe a child has submitted information through this site, contact us at <a href="mailto:richard@sidehustleguard.com" style="color:var(--apricot);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a> and we'll remove it promptly.</p>
 <h2 id="california-residents-ccpa-notice">California residents — <em>CCPA notice</em></h2>
 <p>If you're a California resident, the California Consumer Privacy Act (CCPA) gives you certain rights regarding your personal information.</p>
 <p><strong>The simple version:</strong> We don't sell personal information — to anyone, at any price, under any definition of "sell" the CCPA covers. Because we collect so little personal data to begin with, most CCPA rights (right to know, right to delete, right to opt out of sale) are satisfied by default.</p>
-<p>If you have a specific CCPA request or question, email <a href="mailto:richard@sidehustleguard.com" style="color:var(--gold);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a> and we'll respond within 45 days.</p>
+<p>If you have a specific CCPA request or question, email <a href="mailto:richard@sidehustleguard.com" style="color:var(--apricot);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a> and we'll respond within 45 days.</p>
 <h2 id="changes-to-this-policy">Changes to this policy</h2>
 <p>If we make material changes to this privacy policy, we'll update the effective date at the top of this page. We don't plan to introduce advertising networks or data-sharing arrangements, but if anything changes you'll be able to see it here.</p>
 <h2 id="contact-us">Contact us</h2>
 <p>For any privacy questions, data requests, or concerns, reach us at:</p>
-<p><strong>Email:</strong> <a href="mailto:richard@sidehustleguard.com" style="color:var(--gold);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a></p>
+<p><strong>Email:</strong> <a href="mailto:richard@sidehustleguard.com" style="color:var(--apricot);text-decoration:none;font-weight:500">richard@sidehustleguard.com</a></p>
 <hr/>
-<p style="font-size:13px;color:var(--dim)">This privacy policy was last updated in April 2026. It applies to all pages on sidehustleguard.com.</p>
+<p style="font-size:13px;color:var(--indigo-55)">This privacy policy was last updated in April 2026. It applies to all pages on sidehustleguard.com.</p>
 </div>
 <footer>
-<span class="footer-logo">SideHustle<span>Guard</span></span>
+<span class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></span>
 <div class="footer-links">
 <a href="/">Home</a>
 <a href="/tool">Free checker</a>

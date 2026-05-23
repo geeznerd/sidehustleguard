@@ -8,122 +8,125 @@
 <meta content="Free quarterly estimated tax calculator. Find out exactly how much to pay each quarter, when it's due, and how the safe harbor rule protects you from penalties." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/quarterly-tax-calculator" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <meta content="Quarterly Tax Calculator — What to Pay Each Quarter" property="og:title"/>
 <meta content="Enter your net profit and see exactly how much to pay each quarter and when. Includes safe harbor calculation." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/quarterly-tax-calculator" property="og:url"/>
 <meta content="website" property="og:type"/>
 <style>
-:root {
-  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
-  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
-  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
-  --green:#276944; --green-bg:#eaf5ef; --red:#b83232; --amber:#a86c0a; --amber-bg:#fef6e8;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
-.logo-text span{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--apricot-hover)}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
 .hero{padding:60px 48px 32px;max-width:880px;margin:0 auto;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,48px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:14px}
-h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--apricot-soft);border:1px solid rgba(232,148,100,.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--apricot);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,48px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:14px}
+h1 em{font-style:italic;color:var(--apricot)}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
 .calc-wrap{max-width:880px;margin:0 auto;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-.calc-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px}
-.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:28px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
 .field{margin-bottom:18px}
-.field-label{display:block;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
-.field-help{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
+.field-help{font-size:11px;color:var(--indigo-55);margin-top:4px;font-weight:300}
 .input-money{position:relative}
-.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none}
-input[type="number"],select{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
+input[type="number"],select{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 13px 11px 26px;font-size:14px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
 select{padding-left:13px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-input:focus,select:focus{border-color:var(--gold);background:var(--white)}
+input:focus,select:focus{border-color:var(--apricot);background:var(--paper)}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.results-card{background:var(--navy);color:var(--white);border-radius:16px;padding:28px}
-.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold-lt);text-transform:uppercase;margin-bottom:14px}
+.results-card{background:var(--indigo);color:var(--paper);border-radius:16px;padding:28px}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:14px}
 .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
 .q-item{background:rgba(255,255,255,.06);border-radius:10px;padding:14px}
 .q-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px}
-.q-amt{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold-lt);line-height:1}
+.q-amt{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:700;color:var(--apricot-hover);line-height:1}
 .q-date{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
 .q-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;margin-top:5px;display:inline-block}
 .q-past{background:rgba(255,255,255,.1);color:rgba(255,255,255,.4)}
-.q-upcoming{background:rgba(201,151,58,.2);color:var(--gold-lt)}
+.q-upcoming{background:rgba(232,148,100,.2);color:var(--apricot-hover)}
 .q-future{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3)}
-.safe-box{background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.25);border-radius:10px;padding:14px 16px;margin-bottom:14px}
-.safe-label{font-size:10px;color:var(--gold-lt);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.safe-box{background:rgba(232,148,100,.12);border:1px solid rgba(232,148,100,.25);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.safe-label{font-size:10px;color:var(--apricot-hover);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .safe-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5;font-weight:300}
-.safe-text strong{color:var(--white);font-weight:600}
+.safe-text strong{color:var(--paper);font-weight:600}
 .total-row{border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin-top:4px}
 .total-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
-.total-amt{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold-lt);line-height:1}
+.total-amt{font-family:'Fraunces',Georgia,serif;font-size:36px;font-weight:700;color:var(--apricot-hover);line-height:1}
 .total-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px}
 .bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .bd-row:last-child{border-bottom:none}
 .bd-label{font-size:13px;color:rgba(255,255,255,.65);font-weight:300}
-.bd-amt{font-size:13px;color:var(--white);font-weight:500;font-family:'Playfair Display',serif}
-.btn-cta{display:block;width:100%;background:var(--gold);color:var(--white);border-radius:100px;padding:13px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:16px;transition:background .15s;border:none;cursor:pointer}
-.btn-cta:hover{background:var(--gold-lt)}
+.bd-amt{font-size:13px;color:var(--paper);font-weight:500;font-family:'Fraunces',Georgia,serif}
+.btn-cta{display:block;width:100%;background:var(--apricot);color:var(--paper);border-radius:100px;padding:13px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:16px;transition:background .15s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--apricot-hover)}
 .content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
-.content h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
-.content h2 em{font-style:italic;color:var(--gold)}
-.content h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
-.content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
-.content p strong{color:var(--navy);font-weight:600}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--indigo);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content h3{font-size:17px;font-weight:600;color:var(--indigo);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
 .content ul{padding-left:20px;margin-bottom:14px}
-.content li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
-.content li strong{color:var(--navy);font-weight:600}
+.content li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--indigo);font-weight:600}
 .callout{border-radius:10px;padding:18px 22px;margin:24px 0}
-.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
-.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
-.callout p{margin-bottom:0;font-size:14px;color:var(--muted)}
-.callout strong{color:var(--navy)}
-hr{border:none;border-top:1px solid var(--border);margin:40px 0}
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
-.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--indigo-70)}
+.callout strong{color:var(--indigo)}
+hr{border:none;border-top:1px solid var(--indigo-08);margin:40px 0}
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.calc-wrap,.content{padding-left:18px;padding-right:18px}h1{font-size:28px}.calc-grid{grid-template-columns:1fr}.q-grid{grid-template-columns:1fr 1fr}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
-.related-section{border-top:1px solid var(--border);padding:40px 0 0;margin-top:20px}
-.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.related-section{border-top:1px solid var(--indigo-08);padding:40px 0 0;margin-top:20px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
-.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.related-card-arrow{font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0}
-.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.4}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--apricot);transform:translateY(-2px)}
+.related-card-arrow{font-size:13px;color:var(--apricot);font-weight:700;flex-shrink:0}
+.related-card-title{font-size:13px;font-weight:600;color:var(--indigo);line-height:1.4}
 
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
 
-.product-card{background:var(--cream-d);border:1.5px solid rgba(201,151,58,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
+.product-card{background:var(--cream);border:1.5px solid rgba(232,148,100,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
 .product-card-icon{font-size:32px;line-height:1;flex-shrink:0;margin-top:2px}
 .product-card-body{flex:1;min-width:0}
-.product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
-.product-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.25}
-.product-card-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300}
+.product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.product-card-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--indigo);margin-bottom:8px;line-height:1.25}
+.product-card-desc{font-size:13px;color:var(--indigo-70);line-height:1.65;margin-bottom:12px;font-weight:300}
 .product-card-feats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.product-card-feats span{font-size:11px;color:var(--muted);background:var(--white);border:1px solid var(--border);padding:3px 10px;border-radius:100px}
+.product-card-feats span{font-size:11px;color:var(--indigo-70);background:var(--paper);border:1px solid var(--indigo-08);padding:3px 10px;border-radius:100px}
 .product-card-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.product-card-btn{display:inline-block;background:var(--gold);color:var(--white);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap}
-.product-card-btn:hover{background:var(--gold-lt)}
-.product-card-meta{font-size:11px;color:var(--dim)}
+.product-card-btn{display:inline-block;background:var(--apricot);color:var(--paper);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap}
+.product-card-btn:hover{background:var(--apricot-hover)}
+.product-card-meta{font-size:11px;color:var(--indigo-55)}
 @media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
 
 </style>
@@ -226,8 +229,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -241,7 +244,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="hero-badge">Free Calculator · 2025</div>
 <h1>Quarterly tax calculator: <em>what to pay</em> each quarter</h1>
 <p class="hero-sub">Enter your estimated annual net profit and see exactly how much to pay each quarter — plus the safe harbor amount that protects you from penalties.</p>
-<p style="font-size:13px;color:var(--muted);margin-top:14px;font-weight:300">Want the full system — payment tracker, IRS abatement letter, and CPA handoff bundle? <a href="/quarterly-tax-system" style="color:var(--gold);font-weight:500">See the Quarterly Tax System →</a></p>
+<p style="font-size:13px;color:var(--indigo-70);margin-top:14px;font-weight:300">Want the full system — payment tracker, IRS abatement letter, and CPA handoff bundle? <a href="/quarterly-tax-system" style="color:var(--apricot);font-weight:500">See the Quarterly Tax System →</a></p>
 </div>
 <div class="calc-wrap">
 <div class="calc-grid">
@@ -346,10 +349,10 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="callout callout-green">
 <p><strong>When safe harbor is most useful:</strong> If your income varies significantly year to year (common for freelancers, creators, and gig workers), the prior-year safe harbor removes the guesswork. You pay based on a number you already know — last year's tax return — not on projections.</p>
 </div>
-<div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
-<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
+<div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
-<li><a href="#how-quarterly-estimated-taxes-work" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How quarterly estimated taxes work</a></li><li><a href="#the-safe-harbor-rule-your-protection-against-penalties" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>The safe harbor rule — your protection against penalties</a></li><li><a href="#2025-quarterly-tax-deadlines" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>2025 quarterly tax deadlines</a></li><li><a href="#how-to-calculate-your-quarterly-payment-without-the-calculat" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How to calculate your quarterly payment (without the calculator)</a></li><li><a href="#what-to-do-if-you-missed-a-quarterly-payment" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What to do if you missed a quarterly payment</a></li><li><a href="#setting-up-a-quarterly-tax-system-that-actually-works" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Setting up a quarterly tax system that actually works</a></li>
+<li><a href="#how-quarterly-estimated-taxes-work" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>How quarterly estimated taxes work</a></li><li><a href="#the-safe-harbor-rule-your-protection-against-penalties" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>The safe harbor rule — your protection against penalties</a></li><li><a href="#2025-quarterly-tax-deadlines" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>2025 quarterly tax deadlines</a></li><li><a href="#how-to-calculate-your-quarterly-payment-without-the-calculat" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>How to calculate your quarterly payment (without the calculator)</a></li><li><a href="#what-to-do-if-you-missed-a-quarterly-payment" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What to do if you missed a quarterly payment</a></li><li><a href="#setting-up-a-quarterly-tax-system-that-actually-works" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Setting up a quarterly tax system that actually works</a></li>
 </ol>
 </div>
 <h2 id="2025-quarterly-tax-deadlines">2025 quarterly tax deadlines</h2>
@@ -432,7 +435,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 </div>
 <footer>
-<span class="footer-logo">SideHustle<span>Guard</span></span>
+<span class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></span>
 <div class="footer-links">
 <a href="/">Home</a>
 <a href="/tool">Free checker</a>

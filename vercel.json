@@ -8,5 +8,8 @@
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     }
+  ],
+  "redirects": [
+    { "source": "/favicon.ico", "destination": "/assets/logos/arc-dot.favicon-32.png", "permanent": false }
   ]
 }

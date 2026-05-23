@@ -1029,41 +1029,6 @@ a {
   .ticker-track { animation: none; }
 }
 
-/* ========================================================================
- * LEGACY ALIAS BLOCK — REMOVED IN PHASE 4
- *
- * Temporary backward-compat so inline `style="..."` attributes across
- * existing pages don't break visually during the redesign migration.
- * DO NOT use these tokens in new code — use the indigo/apricot/cream
- * tokens above. This block is deleted at the end of Phase 4 once every
- * page has been re-tokenized.
- * ====================================================================== */
-:root {
-  --navy:       var(--indigo);
-  --navy-mid:   var(--indigo-hover);
-  --navy-dk:    #14213d;
-  --navy-light: var(--indigo-55);
-  --navy-pale:  var(--indigo-08);
-
-  --gold:        var(--apricot);
-  --gold-light:  var(--apricot-hover);
-  --gold-lt:     var(--apricot-hover);
-  --gold-pale:   var(--apricot-soft);
-  --gold-border: rgba(232, 148, 100, 0.25);
-
-  --cream-d: var(--cream);
-  --white:   var(--paper);
-
-  --muted:      var(--indigo-70);
-  --dim:        var(--indigo-55);
-  --border:     var(--indigo-08);
-  --text-muted: var(--indigo-70);
-  --text-dim:   var(--indigo-55);
-
-  --green:    var(--good);
-  --green-bg: var(--good-bg);
-  --amber:    var(--warn);
-  --amber-bg: var(--warn-bg);
-  --red:      var(--risk);
-  --red-bg:   var(--risk-bg);
-}
+/* Legacy alias block removed at end of Phase 4 — every page is now tokenized
+ * with the new indigo/apricot/cream names. If a future page needs an alias,
+ * add it directly in the page's own <style> block. */

@@ -21,24 +21,16 @@
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
 <style>
-:root {
-  --navy:#2d3068; --gold:#e89464; --gold-lt:#f0a075; --gold-pale:#fde8d5;
-  --cream:#f0ece1; --cream-d:#fbf8ee; --white:#fff;
-  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(45,48,104,0.09);
-  --green:#5a7a4f; --green-bg:#e8edd9;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-body{font-family:'Inter',sans-serif;background:#e8e4dc;color:var(--navy);padding:40px 32px;display:flex;flex-direction:column;gap:0}
+body{font-family:'Inter',sans-serif;background:#e8e4dc;color:var(--indigo);padding:40px 32px;display:flex;flex-direction:column;gap:0}
 .option-wrap{margin-bottom:64px;max-width:800px;margin-left:auto;margin-right:auto}
 .option-wrap:last-child{margin-bottom:0}
-.option-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-left:4px}
-.context-note{font-size:12px;color:var(--muted);margin-bottom:12px;padding-left:4px;font-weight:300}
+.option-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--apricot);margin-bottom:16px;padding-left:4px}
+.context-note{font-size:12px;color:var(--indigo-70);margin-bottom:12px;padding-left:4px;font-weight:300}
 
 /* ── Shared article page context ── */
-.article-ctx{background:var(--cream);padding:28px 48px 0;border-top:1px solid var(--border)}
-.article-ctx-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-.article-ctx-hr{border:none;border-top:1px solid var(--border);margin:0}
+.article-ctx{background:var(--cream);padding:28px 48px 0;border-top:1px solid var(--indigo-08)}
+.article-ctx-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-55);margin-bottom:8px}
+.article-ctx-hr{border:none;border-top:1px solid var(--indigo-08);margin:0}
 .article-body-pad{background:var(--cream);padding:0 48px 40px}
 
 /* ────────────────────────────────────────────
@@ -47,58 +39,58 @@ body{font-family:'Inter',sans-serif;background:#e8e4dc;color:var(--navy);padding
 .filing-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;margin:32px 0}
 
 .filing-card{border-radius:16px;padding:26px 28px;text-decoration:none;display:flex;flex-direction:column;gap:0;transition:all .15s;border:1.5px solid transparent}
-.filing-card.primary{background:var(--navy)}
-.filing-card.secondary{background:var(--white);border-color:var(--border)}
+.filing-card.primary{background:var(--indigo)}
+.filing-card.secondary{background:var(--paper);border-color:var(--indigo-08)}
 .filing-card:hover{transform:translateY(-2px)}
-.filing-card.secondary:hover{border-color:var(--gold)}
+.filing-card.secondary:hover{border-color:var(--apricot)}
 
 .fc-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:14px;width:fit-content}
-.fc-badge.best{background:rgba(232,148,100,.18);color:var(--gold-lt)}
-.fc-badge.budget{background:var(--green-bg);color:var(--green);font-size:9px}
+.fc-badge.best{background:rgba(232,148,100,.18);color:var(--apricot-hover)}
+.fc-badge.budget{background:var(--good-bg);color:var(--good);font-size:9px}
 
 .fc-logo{font-size:15px;font-weight:700;margin-bottom:4px}
-.fc-logo.light{color:var(--white)}
-.fc-logo.dark{color:var(--navy)}
-.fc-logo span.tt{color:var(--gold-lt)}
+.fc-logo.light{color:var(--paper)}
+.fc-logo.dark{color:var(--indigo)}
+.fc-logo span.tt{color:var(--apricot-hover)}
 .fc-logo span.ft{color:#c0392b}
 
 .fc-sub{font-size:12px;font-weight:300;margin-bottom:16px;line-height:1.5}
 .fc-sub.light{color:rgba(255,255,255,.5)}
-.fc-sub.dark{color:var(--muted)}
+.fc-sub.dark{color:var(--indigo-70)}
 
 .fc-features{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
 .fc-feat{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:300;line-height:1.4}
 .fc-feat.light{color:rgba(255,255,255,.65)}
-.fc-feat.dark{color:var(--muted)}
+.fc-feat.dark{color:var(--indigo-70)}
 .fc-check{width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .fc-check.gold{background:rgba(232,148,100,.2)}
-.fc-check.green{background:var(--green-bg)}
+.fc-check.green{background:var(--good-bg)}
 .fc-check svg{width:8px;height:8px}
 
 .fc-cta{display:block;text-align:center;padding:11px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;margin-top:auto;transition:all .15s}
-.fc-cta.gold{background:var(--gold);color:var(--white)}
-.fc-cta.gold:hover{background:var(--gold-lt)}
-.fc-cta.outline{background:transparent;border:1.5px solid var(--border);color:var(--navy)}
-.fc-cta.outline:hover{border-color:var(--gold);color:var(--gold)}
+.fc-cta.gold{background:var(--apricot);color:var(--paper)}
+.fc-cta.gold:hover{background:var(--apricot-hover)}
+.fc-cta.outline{background:transparent;border:1.5px solid var(--indigo-08);color:var(--indigo)}
+.fc-cta.outline:hover{border-color:var(--apricot);color:var(--apricot)}
 
 .fc-note{font-size:10px;text-align:center;margin-top:8px}
 .fc-note.light{color:rgba(255,255,255,.25)}
-.fc-note.dark{color:var(--dim)}
+.fc-note.dark{color:var(--indigo-55)}
 
 /* ────────────────────────────────────────────
    OPTION B — Single combined card
    ──────────────────────────────────────────── */
-.combo-card{background:var(--navy);border-radius:16px;padding:28px 32px;margin:32px 0}
+.combo-card{background:var(--indigo);border-radius:16px;padding:28px 32px;margin:32px 0}
 .combo-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)}
 .combo-left{flex:1}
-.combo-tag{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.combo-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:6px}
-.combo-title em{font-style:italic;color:var(--gold-lt)}
+.combo-tag{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--apricot);margin-bottom:8px}
+.combo-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--paper);line-height:1.2;margin-bottom:6px}
+.combo-title em{font-style:italic;color:var(--apricot-hover)}
 .combo-desc{font-size:13px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.55}
 .combo-cta-wrap{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0}
 .combo-btn{display:inline-block;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s}
-.combo-btn.gold{background:var(--gold);color:var(--white)}
-.combo-btn.gold:hover{background:var(--gold-lt)}
+.combo-btn.gold{background:var(--apricot);color:var(--paper)}
+.combo-btn.gold:hover{background:var(--apricot-hover)}
 .combo-btn-note{font-size:10px;color:rgba(255,255,255,.3);text-align:right}
 
 .combo-picks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -108,24 +100,24 @@ body{font-family:'Inter',sans-serif;background:#e8e4dc;color:var(--navy);padding
 .combo-pick-icon.tt{background:rgba(45,130,210,.15);color:#4a9fd4}
 .combo-pick-icon.ft{background:rgba(192,57,43,.12);color:#e74c3c}
 .combo-pick-body{flex:1}
-.combo-pick-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.combo-pick-name{font-size:13px;font-weight:600;color:var(--paper);margin-bottom:2px}
 .combo-pick-desc{font-size:11px;color:rgba(255,255,255,.38);font-weight:300}
 .combo-pick-badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0}
-.combo-pick-badge.top{background:rgba(232,148,100,.18);color:var(--gold-lt)}
-.combo-pick-badge.free{background:var(--green-bg);color:var(--green)}
+.combo-pick-badge.top{background:rgba(232,148,100,.18);color:var(--apricot-hover)}
+.combo-pick-badge.free{background:var(--good-bg);color:var(--good)}
 
 /* ────────────────────────────────────────────
    OPTION C — Inline text recommendation (minimal)
    ──────────────────────────────────────────── */
-.inline-rec{background:var(--cream-d);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:16px 20px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.inline-rec-text{font-size:14px;color:var(--navy);line-height:1.55;font-weight:300}
-.inline-rec-text strong{font-weight:600;color:var(--navy)}
+.inline-rec{background:var(--cream);border-left:3px solid var(--apricot);border-radius:0 10px 10px 0;padding:16px 20px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.inline-rec-text{font-size:14px;color:var(--indigo);line-height:1.55;font-weight:300}
+.inline-rec-text strong{font-weight:600;color:var(--indigo)}
 .inline-rec-links{display:flex;gap:8px;flex-shrink:0}
 .inline-link{font-size:12px;font-weight:600;text-decoration:none;padding:7px 16px;border-radius:100px;white-space:nowrap;transition:all .14s}
-.inline-link.gold{background:var(--gold);color:var(--white)}
-.inline-link.gold:hover{background:var(--gold-lt)}
-.inline-link.ghost{background:transparent;border:1.5px solid var(--border);color:var(--navy)}
-.inline-link.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.inline-link.gold{background:var(--apricot);color:var(--paper)}
+.inline-link.gold:hover{background:var(--apricot-hover)}
+.inline-link.ghost{background:transparent;border:1.5px solid var(--indigo-08);color:var(--indigo)}
+.inline-link.ghost:hover{border-color:var(--apricot);color:var(--apricot)}
 </style>
 </head>
 <body>

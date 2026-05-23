@@ -66,102 +66,102 @@
 <style>
 /* Page-specific styles only — tokens come from design-system.css. */
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .logo-icon svg{width:32px;height:32px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}.logo-text span{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--apricot-hover)}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
 .hero{padding:64px 48px 48px;max-width:800px;margin:0 auto}
-.breadcrumb{font-size:12px;color:var(--dim);margin-bottom:18px}
-.breadcrumb a{color:var(--dim);text-decoration:none}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
-h1 em{font-style:italic;color:var(--gold)}
-.hero-meta{font-size:13px;color:var(--dim);margin-bottom:22px}
-.article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
-.hero-intro{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
-.answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--navy);line-height:1.6}
+.breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:18px}
+.breadcrumb a{color:var(--indigo-55);text-decoration:none}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:16px}
+h1 em{font-style:italic;color:var(--apricot)}
+.hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:22px}
+.article-disc{font-size:11px;color:var(--indigo-55);margin:-10px 0 20px;font-weight:400;font-style:italic}
+.hero-intro{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
+.answer-box{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--indigo);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--navy);margin:40px 0 12px;line-height:1.2}
-h2 em{font-style:italic;color:var(--gold)}
-h3{font-size:16px;font-weight:600;color:var(--navy);margin:24px 0 8px}
-p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
-p strong{color:var(--navy);font-weight:600}
+h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--indigo);margin:40px 0 12px;line-height:1.2}
+h2 em{font-style:italic;color:var(--apricot)}
+h3{font-size:16px;font-weight:600;color:var(--indigo);margin:24px 0 8px}
+p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:6px;font-weight:300}
-li strong{color:var(--navy);font-weight:600}
+li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li strong{color:var(--indigo);font-weight:600}
 .callout{border-radius:10px;padding:16px 20px;margin:20px 0}
-.callout-amber{background:var(--amber-bg);border-left:4px solid var(--amber)}
-.callout-green{background:var(--green-bg);border-left:4px solid var(--green)}
-.callout-navy{background:#edf0f7;border-left:4px solid var(--navy)}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
 .callout p{margin-bottom:0;font-size:14px}
-.step-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:10px 0;display:flex;gap:14px;align-items:flex-start}
-.step-num{width:26px;height:26px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.step-box{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px 20px;margin:10px 0;display:flex;gap:14px;align-items:flex-start}
+.step-num{width:26px;height:26px;background:var(--indigo);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
 .step-body{flex:1}
-.step-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.step-desc{font-size:13px;color:var(--muted);line-height:1.55;font-weight:300}
+.step-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:3px}
+.step-desc{font-size:13px;color:var(--indigo-70);line-height:1.55;font-weight:300}
 table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
-th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
-td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
-td:first-child{font-weight:500;color:var(--navy)}
-.cta-box{background:var(--navy);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
-.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--white);margin-bottom:8px;font-weight:700}
-.cta-box h3 em{font-style:italic;color:var(--gold-lt)}
+th{background:var(--indigo);color:var(--paper);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
+td{padding:10px 14px;border-bottom:1px solid var(--indigo-08);color:var(--indigo-70);font-weight:300}
+td:first-child{font-weight:500;color:var(--indigo)}
+.cta-box{background:var(--indigo);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--paper);margin-bottom:8px;font-weight:700}
+.cta-box h3 em{font-style:italic;color:var(--apricot-hover)}
 .cta-box p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:20px;font-weight:300}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
-.btn-gold:hover{background:var(--gold-lt)}
+.btn-gold{display:inline-block;background:var(--apricot);color:var(--paper);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-gold:hover{background:var(--apricot-hover)}
 .cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:8px}
-.nw-card{background:var(--navy);border-radius:14px;overflow:hidden;margin:40px 0}
-.nw-card-accent{height:3px;background:var(--gold)}
+.nw-card{background:var(--indigo);border-radius:14px;overflow:hidden;margin:40px 0}
+.nw-card-accent{height:3px;background:var(--apricot)}
 .nw-card-body{padding:24px 28px}
 .nw-card-tag{font-size:10px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:8px}
-.nw-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
-.nw-card-title em{font-style:italic;color:var(--gold-lt)}
+.nw-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--paper);margin-bottom:8px;line-height:1.25}
+.nw-card-title em{font-style:italic;color:var(--apricot-hover)}
 .nw-card-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
 .nw-pill{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px}
-.nw-btn{display:block;text-align:center;background:var(--gold);color:var(--white);padding:13px 24px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
-.nw-btn:hover{background:var(--gold-lt)}
+.nw-btn{display:block;text-align:center;background:var(--apricot);color:var(--paper);padding:13px 24px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.nw-btn:hover{background:var(--apricot-hover)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.2);text-align:center;margin-top:8px}
-.faq-section{margin-top:40px;border-top:1px solid var(--border);padding-top:32px}
-.faq-item{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.faq-section{margin-top:40px;border-top:1px solid var(--indigo-08);padding-top:32px}
+.faq-item{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--indigo-08)}
 .faq-item:last-child{border-bottom:none}
-.faq-item h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.faq-item p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:0}
-.related-section{border-top:1px solid var(--border);padding:36px 0 0;margin-top:36px}
-.related-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+.faq-item h3{font-size:15px;font-weight:600;color:var(--indigo);margin-bottom:8px}
+.faq-item p{font-size:14px;color:var(--indigo-70);line-height:1.7;font-weight:300;margin-bottom:0}
+.related-section{border-top:1px solid var(--indigo-08);padding:36px 0 0;margin-top:36px}
+.related-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:16px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-.related-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
-.related-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.related-card-arrow{font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0}
-.related-card-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.35}
-hr{border:none;border-top:1px solid var(--border);margin:36px 0}
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:10px;padding:10px 14px;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--apricot);transform:translateY(-2px)}
+.related-card-arrow{font-size:13px;color:var(--apricot);font-weight:700;flex-shrink:0}
+.related-card-title{font-size:13px;font-weight:600;color:var(--indigo);line-height:1.35}
+hr{border:none;border-top:1px solid var(--indigo-08);margin:36px 0}
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 @media(max-width:700px){nav,footer{padding:13px 18px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}h1{font-size:28px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
 
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
 
-.product-card{background:var(--cream-d);border:1.5px solid rgba(232,148,100,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
+.product-card{background:var(--cream);border:1.5px solid rgba(232,148,100,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
 .product-card-icon{font-size:32px;line-height:1;flex-shrink:0;margin-top:2px}
 .product-card-body{flex:1;min-width:0}
-.product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
-.product-card-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.25}
-.product-card-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300}
+.product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.product-card-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--indigo);margin-bottom:8px;line-height:1.25}
+.product-card-desc{font-size:13px;color:var(--indigo-70);line-height:1.65;margin-bottom:12px;font-weight:300}
 .product-card-feats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.product-card-feats span{font-size:11px;color:var(--muted);background:var(--white);border:1px solid var(--border);padding:3px 10px;border-radius:100px}
+.product-card-feats span{font-size:11px;color:var(--indigo-70);background:var(--paper);border:1px solid var(--indigo-08);padding:3px 10px;border-radius:100px}
 .product-card-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.product-card-btn{display:inline-block;background:var(--gold);color:var(--white);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap}
-.product-card-btn:hover{background:var(--gold-lt)}
-.product-card-meta{font-size:11px;color:var(--dim)}
+.product-card-btn{display:inline-block;background:var(--apricot);color:var(--paper);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap}
+.product-card-btn:hover{background:var(--apricot-hover)}
+.product-card-meta{font-size:11px;color:var(--indigo-55)}
 @media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
 
 </style>
@@ -248,9 +248,9 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 <p>If you also have a W-2 job, your employer's withholding may partially cover your obligation — but it won't cover self-employment tax on your side income. You'll still likely need to make quarterly payments for the SE tax portion.</p>
 <div class="callout callout-amber"><p><strong>The penalty for skipping:</strong> The IRS charges an underpayment penalty of approximately 8% annualized on the shortfall. This is calculated automatically when you file — you can't negotiate it away. It's not huge, but it's entirely avoidable.</p></div>
 <div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
-<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
-<li><a href="#do-you-actually-need-to-pay-quarterly" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Do you actually need to pay quarterly?</a></li><li><a href="#how-much-to-pay-each-quarter" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>How much to pay each quarter</a></li><li><a href="#exactly-how-to-pay-step-by-step" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Exactly how to pay — step by step</a></li><li><a href="#state-quarterly-taxes" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>State quarterly taxes</a></li><li><a href="#what-if-you-cant-pay-the-full-amount" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>What if you can't pay the full amount?</a></li><li><a href="#frequently-asked-questions" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Frequently asked questions</a></li>
+<li><a href="#do-you-actually-need-to-pay-quarterly" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Do you actually need to pay quarterly?</a></li><li><a href="#how-much-to-pay-each-quarter" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>How much to pay each quarter</a></li><li><a href="#exactly-how-to-pay-step-by-step" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Exactly how to pay — step by step</a></li><li><a href="#state-quarterly-taxes" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>State quarterly taxes</a></li><li><a href="#what-if-you-cant-pay-the-full-amount" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>What if you can't pay the full amount?</a></li><li><a href="#frequently-asked-questions" style="color:var(--indigo);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--apricot);margin-right:6px">→</span>Frequently asked questions</a></li>
 </ol>
 </div>
 <h2 id="how-much-to-pay-each-quarter">How much to pay each quarter</h2>
@@ -352,7 +352,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 </div>
 <!-- Bottom line -->
 <hr/>
-<p style="font-size:15px;font-weight:500;color:var(--navy);line-height:1.7">Quarterly taxes feel complicated the first time and routine by the second. The system is straightforward once you understand it: estimate 30% of net income, divide by four, pay on four dates per year at IRS.gov. Set four calendar reminders right now — April 15, June 15, September 15, January 15 — and you'll never pay an underpayment penalty.</p>
+<p style="font-size:15px;font-weight:500;color:var(--indigo);line-height:1.7">Quarterly taxes feel complicated the first time and routine by the second. The system is straightforward once you understand it: estimate 30% of net income, divide by four, pay on four dates per year at IRS.gov. Set four calendar reminders right now — April 15, June 15, September 15, January 15 — and you'll never pay an underpayment penalty.</p>
 <!-- End CTA -->
 <div class="cta-box">
 <h3>Get your <em>complete</em> tax picture</h3>
