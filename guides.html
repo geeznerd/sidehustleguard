@@ -304,7 +304,11 @@
     }
     .cat-tabs-inner::-webkit-scrollbar { display: none; }
     .guides-body { padding: 24px 24px 56px; }
-    .guides-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    /* Override both .guides-grid AND .guides-grid.is-3-with-mega (higher
+     * specificity 0,2,0) so the Interactive Tools section drops to 2-col
+     * on tablet just like the other category grids. */
+    .guides-grid,
+    .guides-grid.is-3-with-mega { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .cta-band { padding: 48px 24px; }
     .cta-inner { grid-template-columns: 1fr; gap: 24px; align-items: start; }
     .bottom-bar { padding: 28px 24px; }
@@ -316,9 +320,16 @@
     .guides-hero { padding: 48px 20px 36px; }
     .cat-tabs { padding: 8px 20px; }
     .guides-body { padding: 20px 20px 48px; }
-    .guides-grid { grid-template-columns: 1fr; }
+    /* Same override pattern — drop to 1-col including .is-3-with-mega */
+    .guides-grid,
+    .guides-grid.is-3-with-mega { grid-template-columns: 1fr; }
     .cta-band { padding: 40px 20px; }
     .bottom-bar { padding: 22px 20px; }
+    /* Mega-card padding tightens further on small mobile so its content
+     * doesn't push past the viewport edge */
+    .mega-card { padding: 20px 22px 22px; }
+    .mega-title { font-size: 24px; }
+    .mega-blurb { font-size: 13.5px; }
   }
 
   /* ============================================================

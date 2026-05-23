@@ -1071,16 +1071,54 @@ a {
   nav .ds-nav-right { gap: 12px; }
   /* Logo text shrinks uniformly */
   nav .logo-text { font-size: 13px; }
-  /* Primary CTA in nav: minimum tap target 40px tall, no wrapping */
+  /* Primary CTA in nav: minimum tap target 40px tall, no wrapping.
+   * Catches the three CTA naming conventions used across the site:
+   *   .nav-cta       — article template + landings (per-page nav)
+   *   .ds-nav-cta    — older variants
+   *   .btn .btn-primary — index, guides, tool (uses shared button)        */
   nav .nav-cta,
-  nav .ds-nav-cta {
-    font-size: 12.5px;
-    padding: 9px 14px;
+  nav .ds-nav-cta,
+  nav .btn,
+  nav .btn-primary {
+    font-size: 12.5px !important;
+    padding: 9px 14px !important;
     white-space: nowrap;
     min-height: 36px;
     display: inline-flex;
     align-items: center;
   }
+  /* Hide non-essential nav links on mobile, regardless of which selector
+   * the page uses. The CTA + the Arc & Dot logo lockup are the only
+   * elements that should remain in the nav at ≤700px. */
+  nav .ds-nav-link:not(.always-visible):not(.btn) { display: none; }
+  /* And hide any nav link whose aria-current="page" is set — that's the
+   * directory-self-reference (e.g. "Guides" link while on /guides) and
+   * provides zero navigation value while crowding the nav. */
+  nav .ds-nav-link[aria-current="page"] { display: none; }
+}
+
+/* ===== SMALL MOBILE NAV (≤420px) — extra compression =====
+ * At iPhone SE / Galaxy A-series widths the nav still felt crowded.
+ * Drop padding + shrink the CTA further; if the wordmark + always-visible
+ * link + CTA still don't fit, the wordmark accent ("guard") truncates
+ * gracefully via min-width:0 on .logo-text. */
+@media (max-width: 420px) {
+  nav {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  nav .nav-cta,
+  nav .ds-nav-cta,
+  nav .btn,
+  nav .btn-primary {
+    font-size: 11.5px !important;
+    padding: 8px 12px !important;
+  }
+  nav .logo-text { font-size: 12.5px; }
+  nav .ds-nav-right,
+  nav .nav-right { gap: 8px; }
+  /* Hide any remaining secondary nav links so only logo + CTA stay */
+  nav .ds-nav-link.always-visible { display: none; }
 }
 
 /* ===== RESPONSIVE TABLES =====
