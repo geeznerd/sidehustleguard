@@ -108,11 +108,15 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-cta{background:var(--apricot);color:var(--paper);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
 .nav-cta:hover{background:var(--apricot-hover)}
 /* Hero */
-.hero{padding:72px 48px 40px;max-width:820px;margin:0 auto}
+.hero{padding:72px 48px 48px;max-width:820px;margin:0 auto;position:relative;overflow:hidden}
+.hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
 .breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:20px}
 .breadcrumb a{color:var(--indigo-55);text-decoration:none}
 .breadcrumb a:hover{color:var(--indigo)}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:12px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(40px,5.4vw,64px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
 h1 em{font-style:italic;color:var(--apricot)}
 .hero-sub{font-family:'Fraunces',Georgia,serif;font-size:18px;font-style:italic;color:var(--apricot);line-height:1.5;margin-bottom:18px}
 .hero-intro{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:680px}
@@ -137,7 +141,7 @@ a:hover{color:var(--apricot-hover)}
 .article-grid>.article-card{flex:0 0 calc((100% - 20px) / 3);min-width:0}
 .article-card{display:flex;align-items:flex-start;gap:14px;background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s}
 .article-card:hover{border-color:var(--apricot);transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,48,104,0.07)}
-.article-icon{font-size:24px;line-height:1;flex-shrink:0;margin-top:2px}
+.article-icon{width:36px;height:36px;border-radius:10px;background:var(--apricot-12);color:var(--apricot);font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-variation-settings:'opsz' 144,'SOFT' 30;font-size:18px;display:inline-flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0;margin-top:0}
 .article-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
 .article-title{font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.35;transition:color .12s}
 .article-card:hover .article-title{color:var(--apricot)}
@@ -208,11 +212,30 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
+<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><radialGradient id="strHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="360" fill="url(#strHeroGlow)"/>
+  <g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1">
+    <ellipse cx="220" cy="280" rx="400" ry="170" transform="rotate(-12 220 280)"/>
+    <ellipse cx="214" cy="266" rx="365" ry="152" transform="rotate(-10.5 220 280)"/>
+    <ellipse cx="208" cy="252" rx="330" ry="134" transform="rotate(-9 220 280)" class="contour-inner-3"/>
+    <ellipse cx="202" cy="238" rx="295" ry="116" transform="rotate(-7.5 220 280)" class="contour-inner-3"/>
+    <ellipse cx="196" cy="224" rx="260" ry="98" transform="rotate(-6 220 280)"/>
+  </g>
+  <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+    <ellipse cx="1040" cy="110" rx="240" ry="106" transform="rotate(14 1040 110)"/>
+    <ellipse cx="1044" cy="102" rx="210" ry="92" transform="rotate(12 1040 110)" class="contour-inner-3"/>
+    <ellipse cx="1048" cy="94" rx="180" ry="78" transform="rotate(10 1040 110)"/>
+  </g>
+</svg>
+<div class="hero-content">
 <div class="breadcrumb"><a href="/">SideHustleGuard</a> → <a href="/guides">Guides</a> → Short-Term Rentals</div>
+<span class="hero-eyebrow">Short-term rentals &middot; 28 guides</span>
 <h1>Short-term rental taxes &amp; rules — <em>everything hosts need to know</em></h1>
 <p class="hero-sub">Schedule E vs. C, the 14-day rule, the STR loophole, and your state's rules — in plain English.</p>
 <p class="hero-intro">Short-term rental income follows a completely different rulebook than gig work or freelancing. Whether you host on Airbnb, Vrbo, or a niche platform, the tax treatment turns on how many days you rent, whether you provide services, and which state you're in. This page maps the entire landscape — use the decision tree below to find your guides quickly.</p>
 <p class="article-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney for your specific situation.</p>
+</div>
 </div>
 <div class="content">
 <!-- ── Decision tree ───────────────────────────────────────── -->
@@ -240,7 +263,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <p class="section-intro">Each platform handles 1099s, occupancy tax collection, and host fees differently — start with yours for platform-specific rules, then layer on the tax strategy guides below.</p>
 <div class="article-grid">
 <a class="article-card" href="/airbnb-host-taxes">
-<span aria-hidden="true" class="article-icon">🏡</span>
+<span aria-hidden="true" class="article-icon">A</span>
 <div class="article-body">
 <span class="article-title">Airbnb Host Taxes</span>
 <span class="article-sub">Deductions, Schedule E vs C, and the 14-day rule</span>
@@ -248,7 +271,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/vrbo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🏠</span>
+<span aria-hidden="true" class="article-icon">V</span>
 <div class="article-body">
 <span class="article-title">Vrbo Host Taxes</span>
 <span class="article-sub">Host fees, 1099s, and how Vrbo's tax collection works</span>
@@ -256,7 +279,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/booking-com-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🌐</span>
+<span aria-hidden="true" class="article-icon">B</span>
 <div class="article-body">
 <span class="article-title">Booking.com Host Taxes</span>
 <span class="article-sub">What Booking.com collects vs. what you still owe</span>
@@ -264,7 +287,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/turo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🚗</span>
+<span aria-hidden="true" class="article-icon">T</span>
 <div class="article-body">
 <span class="article-title">Turo Host Taxes</span>
 <span class="article-sub">Car-sharing income, depreciation, and the 1099-K threshold</span>
@@ -272,7 +295,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/hipcamp-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🏕️</span>
+<span aria-hidden="true" class="article-icon">H</span>
 <div class="article-body">
 <span class="article-title">Hipcamp Host Taxes</span>
 <span class="article-sub">Campsite and outdoor hosting income explained</span>
@@ -280,7 +303,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/rv-rental-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🚐</span>
+<span aria-hidden="true" class="article-icon">RV</span>
 <div class="article-body">
 <span class="article-title">RV Rental Host Taxes</span>
 <span class="article-sub">RV rental income, depreciation, and 1099 reporting</span>
@@ -288,7 +311,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/furnished-finder-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">🛋️</span>
+<span aria-hidden="true" class="article-icon">FF</span>
 <div class="article-body">
 <span class="article-title">Furnished Finder Host Taxes</span>
 <span class="article-sub">Mid-term rentals, the 30-day rule, and tax treatment</span>
@@ -296,7 +319,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/neighbor-storage-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">📦</span>
+<span aria-hidden="true" class="article-icon">N</span>
 <div class="article-body">
 <span class="article-title">Neighbor Storage Host Taxes</span>
 <span class="article-sub">Storage rental income — Schedule E or Schedule C?</span>
@@ -314,7 +337,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <p class="section-intro">The framework that governs how short-term rental income is taxed, regardless of which platform you use — passive vs. active, the 14-day exemption, depreciation, and the loophole strategies that can make STR one of the most tax-efficient income streams available.</p>
 <div class="article-grid">
 <a class="article-card" data-expanding="true" href="/airbnb-14-day-rule" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">📅</span>
+<span aria-hidden="true" class="article-icon">14</span>
 <div class="article-body">
 <span class="article-title">The 14-Day Rule</span>
 <span class="article-sub">The Augusta Rule — how to earn tax-free rental income</span>
@@ -322,7 +345,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" data-expanding="true" href="/schedule-c-vs-schedule-e-str" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">📋</span>
+<span aria-hidden="true" class="article-icon">C/E</span>
 <div class="article-body">
 <span class="article-title">Schedule C vs. Schedule E</span>
 <span class="article-sub">Passive vs. active — which form saves you 15.3%?</span>
@@ -330,7 +353,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/short-term-rental-loophole">
-<span aria-hidden="true" class="article-icon">🔑</span>
+<span aria-hidden="true" class="article-icon">L</span>
 <div class="article-body">
 <span class="article-title">The STR Tax Loophole</span>
 <span class="article-sub">How to deduct STR losses against your W-2 income</span>
@@ -338,7 +361,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/cost-segregation-str">
-<span aria-hidden="true" class="article-icon">🔬</span>
+<span aria-hidden="true" class="article-icon">CS</span>
 <div class="article-body">
 <span class="article-title">Cost Segregation for STRs</span>
 <span class="article-sub">Front-load depreciation and cut your year-one tax bill</span>
@@ -346,7 +369,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/lodging-tax-by-state">
-<span aria-hidden="true" class="article-icon">🗺️</span>
+<span aria-hidden="true" class="article-icon">$</span>
 <div class="article-body">
 <span class="article-title">Lodging Tax by State</span>
 <span class="article-sub">TOT, transient occupancy, and hotel tax rates — all 50 states</span>
@@ -354,7 +377,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/airbnb-self-employment-tax">
-<span aria-hidden="true" class="article-icon">💸</span>
+<span aria-hidden="true" class="article-icon">SE</span>
 <div class="article-body">
 <span class="article-title">STR &amp; Self-Employment Tax</span>
 <span class="article-sub">When Airbnb income triggers the 15.3% SE tax</span>
@@ -362,7 +385,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/airbnb-deductions-checklist">
-<span aria-hidden="true" class="article-icon">✅</span>
+<span aria-hidden="true" class="article-icon">✓</span>
 <div class="article-body">
 <span class="article-title">STR Deductions Checklist</span>
 <span class="article-sub">Every deduction available to short-term rental hosts</span>
@@ -370,7 +393,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/mixed-use-rental-taxes">
-<span aria-hidden="true" class="article-icon">🏗️</span>
+<span aria-hidden="true" class="article-icon">MU</span>
 <div class="article-body">
 <span class="article-title">Mixed-Use Rental Taxes</span>
 <span class="article-sub">Renting part of your home — how to split the deductions</span>
@@ -378,7 +401,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/house-hacking-taxes">
-<span aria-hidden="true" class="article-icon">🔧</span>
+<span aria-hidden="true" class="article-icon">HH</span>
 <div class="article-body">
 <span class="article-title">House Hacking Taxes</span>
 <span class="article-sub">Rent part of your primary home and live nearly rent-free</span>
@@ -386,7 +409,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/str-business-structure">
-<span aria-hidden="true" class="article-icon">🏢</span>
+<span aria-hidden="true" class="article-icon">S</span>
 <div class="article-body">
 <span class="article-title">STR Business Structure</span>
 <span class="article-sub">LLC vs. sole prop — the right setup for your rental</span>
@@ -394,7 +417,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/airbnb-1099-k">
-<span aria-hidden="true" class="article-icon">📬</span>
+<span aria-hidden="true" class="article-icon">K</span>
 <div class="article-body">
 <span class="article-title">Airbnb 1099-K Explained</span>
 <span class="article-sub">When Airbnb sends a 1099-K and what to do with it</span>
@@ -402,7 +425,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/quarterly-taxes-for-airbnb-hosts">
-<span aria-hidden="true" class="article-icon">🗓️</span>
+<span aria-hidden="true" class="article-icon">Q</span>
 <div class="article-body">
 <span class="article-title">Quarterly Taxes for Hosts</span>
 <span class="article-sub">How much to pay and when — a host's quarterly guide</span>
@@ -420,7 +443,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <p class="section-intro">TOT registration requirements, permitting, what platforms collect on your behalf, filing schedules, and the enforcement actions hosts need to know — broken down by state.</p>
 <div class="article-grid">
 <a class="article-card" href="/california-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🌴</span>
+<span aria-hidden="true" class="article-icon">CA</span>
 <div class="article-body">
 <span class="article-title">California STR Rules</span>
 <span class="article-sub">TOT registration, Airbnb collection, and CA permitting</span>
@@ -428,7 +451,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/new-york-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🗽</span>
+<span aria-hidden="true" class="article-icon">NY</span>
 <div class="article-body">
 <span class="article-title">New York STR Rules</span>
 <span class="article-sub">Local Law 18 requirements and NYC STR registration</span>
@@ -436,7 +459,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/florida-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">☀️</span>
+<span aria-hidden="true" class="article-icon">FL</span>
 <div class="article-body">
 <span class="article-title">Florida STR Taxes</span>
 <span class="article-sub">DBPR license, county TDT, and what Airbnb collects</span>
@@ -444,7 +467,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/hawaii-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🌺</span>
+<span aria-hidden="true" class="article-icon">HI</span>
 <div class="article-body">
 <span class="article-title">Hawaii STR Rules</span>
 <span class="article-sub">TAT and GET registration for short-term rental hosts</span>
@@ -452,7 +475,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/texas-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🤠</span>
+<span aria-hidden="true" class="article-icon">TX</span>
 <div class="article-body">
 <span class="article-title">Texas STR Taxes</span>
 <span class="article-sub">Hotel occupancy tax, STRO permits, and HOT filing</span>
@@ -460,7 +483,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/colorado-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">⛰️</span>
+<span aria-hidden="true" class="article-icon">CO</span>
 <div class="article-body">
 <span class="article-title">Colorado STR Taxes</span>
 <span class="article-sub">Local lodging taxes, licensing, and resort market rules</span>
@@ -468,7 +491,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/tennessee-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🎵</span>
+<span aria-hidden="true" class="article-icon">TN</span>
 <div class="article-body">
 <span class="article-title">Tennessee STR Taxes</span>
 <span class="article-sub">Sales tax on STRs and city-level permits in Nashville &amp; beyond</span>
@@ -476,7 +499,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
 <a class="article-card" href="/arizona-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🌵</span>
+<span aria-hidden="true" class="article-icon">AZ</span>
 <div class="article-body">
 <span class="article-title">Arizona STR Taxes</span>
 <span class="article-sub">TPT license, county JCTPT, and STR registration requirements</span>
