@@ -660,10 +660,37 @@
   </div>
 </div>
 
-<!-- HERO (G1) -->
-<section class="guides-hero" id="main-content">
-  <div class="blob"></div>
-  <div class="guides-hero-inner">
+<!-- HERO (G1) — topographic SVG backdrop matches the homepage + every
+     article page so the brand backdrop is consistent across the site. -->
+<section class="guides-hero hero-relative" id="main-content">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="guidesHeroGlow" cx="20%" cy="80%" r="55%">
+        <stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="360" fill="url(#guidesHeroGlow)"/>
+    <!-- Primary contour cluster (lower-left, indigo) — 7 nested ovals -->
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)" class="contour-inner-3"/>
+      <ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/>
+      <ellipse cx="204" cy="196" rx="210" ry="72" transform="rotate(-3 240 280)"/>
+    </g>
+    <!-- Secondary contour cluster (upper-right, apricot) — 5 nested ovals -->
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/>
+      <ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/>
+      <ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/>
+    </g>
+  </svg>
+  <div class="guides-hero-inner hero-content">
     <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">74</span> in total</div>
     <h1 class="display-l">Every side hustle.<br/><em>Every state.</em></h1>
     <p class="guides-hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">67</span> plain-English guides — for gig drivers, Etsy sellers, freelancers, hosts, and creators.</p>
