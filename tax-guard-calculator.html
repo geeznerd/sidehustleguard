@@ -158,6 +158,30 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   .nav-right{gap:12px}
   .guard-amount{font-size:42px}
 }
+
+/* Phase 6.9 — uniform mobile spacing across all 5 calculators */
+@media (max-width: 700px) {
+  /* Hero: tighter on mobile, matching the article-template compression */
+  .hero { padding: 40px 18px 28px !important; }
+  .hero-content { max-width: 100%; }
+  .hero-badge { margin-bottom: 14px; font-size: 11px; padding: 7px 13px; }
+  h1 { font-size: 28px !important; margin-bottom: 12px !important; line-height: 1.1 !important; }
+  .hero-sub { font-size: 14.5px; margin: 0 auto 4px; line-height: 1.55; }
+
+  /* Wrap: consistent breathing-room above the first form element */
+  .tool-wrap,
+  .calc-wrap { padding: 18px 18px 40px !important; }
+
+  /* Progress bar / wizard / cards: tighter vertical rhythm */
+  .progress-bar { margin-bottom: 22px; }
+  .wizard-card { padding: 22px 18px !important; }
+  .step-header { margin-bottom: 18px; }
+  .calc-card,
+  .results-card,
+  .inputs-card { padding: 20px 18px !important; }
+  .field { margin-bottom: 16px; }
+}
+
 </style>
 <script type="application/ld+json">
 {
