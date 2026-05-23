@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -8,8 +7,6 @@
 <meta content="74 free resources for side hustlers — 7 interactive tax tools and 67 plain-English guides covering gig work, Etsy, freelancing, short-term rentals, state taxes, and more. No jargon, no upsells." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/guides" rel="canonical"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <meta content="Free Tax &amp; Legal Guides for Side Hustlers" property="og:title"/>
 <meta content="74 free resources — 7 interactive tax tools and 67 plain-English guides for gig workers, Etsy sellers, freelancers, Airbnb hosts, and self-employed side hustlers. No jargon, no upsells." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/guides" property="og:url"/>
@@ -19,1055 +16,1042 @@
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="https://www.sidehustleguard.com/og-image.png" name="twitter:image"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
 <style>
-:root {
-  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
-  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
-  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
-.logo-text{font-size:15px;font-weight:600;color:var(--navy)}
-.logo-text span{color:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--navy)}
-.nav-link.active{color:var(--navy);font-weight:500}
-.nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
-.nav-cta:hover{background:var(--gold-lt)}
+  /* ===== GUIDES.HTML PAGE-SPECIFIC STYLES ===== */
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--indigo); color: var(--paper);
+    padding: 10px 16px; border-radius: 0 0 8px 0;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    z-index: 1000;
+  }
+  .skip-link:focus { left: 0; }
 
-/* Hero */
-.hero{padding:64px 48px 48px;max-width:860px;margin:0 auto;text-align:center}
-.hero-tag{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
-h1 .h1-em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:580px;margin:0 auto;text-wrap:balance}
-.hero-cta-ghost{display:inline-block;margin-top:22px;padding:10px 22px;border:1.5px solid rgba(28,43,74,.18);border-radius:100px;font-size:13px;font-weight:500;color:var(--navy);text-decoration:none;transition:all .15s}
-.hero-cta-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.hero-cta-ghost:focus-visible{outline:2px solid rgba(59,130,246,.6);outline-offset:2px}
+  .ds-fixed-header { position: sticky; top: 0; z-index: 100; }
 
-/* Content */
-.content{max-width:1060px;margin:0 auto;padding:24px 48px 80px}
+  /* HERO (smaller than index.html — this is a hub page) */
+  .guides-hero {
+    background: var(--cream);
+    padding: 72px 60px 56px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .guides-hero .blob { top: -160px; right: -120px; }
+  .guides-hero-inner {
+    position: relative; z-index: 1;
+    max-width: 760px; margin: 0 auto;
+  }
+  .guides-hero h1 {
+    margin: 16px 0 14px;
+  }
+  .guides-hero-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; line-height: 1.65; font-weight: 400;
+    color: var(--indigo-70);
+    max-width: 540px; margin: 0 auto 28px;
+  }
 
-/* Category section */
-.cat-section{margin-bottom:52px}
-.cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.cat-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy)}
-.cat-count{font-size:11px;font-weight:500;color:var(--dim);letter-spacing:.06em}
+  /* Live search (G1) */
+  .live-search {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .live-search input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px; font-weight: 400;
+    background: var(--paper);
+    border: 1px solid var(--indigo-12);
+    border-radius: var(--radius-pill);
+    padding: 14px 44px;
+    color: var(--indigo);
+    outline: none;
+    transition: border-color var(--dur-default) var(--ease-default), box-shadow var(--dur-default) var(--ease-default);
+  }
+  .live-search input::placeholder { color: var(--indigo-55); }
+  .live-search input:focus {
+    border-color: var(--apricot);
+    box-shadow: 0 0 0 4px rgba(232,148,100,0.12);
+  }
+  .live-search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%; transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--indigo-55);
+  }
+  .live-search-clear {
+    position: absolute;
+    right: 14px;
+    top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--indigo-08);
+    color: var(--indigo-70);
+    border: none;
+    display: none;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .live-search.has-query .live-search-clear { display: flex; }
 
-/* Article grid — flex so last-row orphans auto-centre */
-.article-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.article-grid > .article-card,
-.article-grid > .tool-card{flex:0 0 calc((100% - 20px) / 3);min-width:0}
-/* 2-col modifier — forces 2+2 for 4-card sections */
-.article-grid.article-grid-2 > .article-card,
-.article-grid.article-grid-2 > .tool-card{flex:0 0 calc((100% - 10px) / 2)}
-/* Solo — single card centred at ~1/3 width */
-.article-grid-solo{display:flex;justify-content:center}
-.article-grid-solo > .article-card{flex:0 0 calc((100% - 20px) / 3);min-width:0}
-.article-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s}
-.article-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 20px rgba(28,43,74,0.07)}
-.article-icon{font-size:24px;line-height:1;flex-shrink:0;margin-top:2px}
-.article-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-.article-title{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s;text-wrap:balance}
-.article-card:hover .article-title{color:var(--gold)}
-.article-sub{font-size:12px;color:var(--dim);font-weight:300;line-height:1.4;text-wrap:pretty}
-.article-arrow{font-size:13px;color:var(--gold);opacity:0;flex-shrink:0;transition:opacity .12s;align-self:center}
-.article-card:hover .article-arrow{opacity:1}
+  /* Sticky category tabs (G2) */
+  .cat-tabs {
+    position: sticky;
+    top: 64px;
+    background: rgba(240, 236, 225, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--indigo-08);
+    z-index: 10;
+    padding: 12px 60px;
+  }
+  .cat-tabs-inner {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    max-width: 1180px; margin: 0 auto;
+  }
+  .cat-tab {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: transparent;
+    color: var(--indigo-70);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--dur-default) var(--ease-default), color var(--dur-default) var(--ease-default);
+  }
+  .cat-tab:hover { color: var(--indigo); }
+  .cat-tab[aria-current="true"] {
+    background: var(--indigo);
+    color: var(--paper);
+  }
 
-/* (grid-2 and grid-1 modifiers now handled via flex rules above) */
+  /* Sections */
+  .guides-body {
+    padding: 32px 60px 64px;
+    background: var(--cream);
+  }
+  .guides-body-inner { max-width: 1180px; margin: 0 auto; }
 
-/* CTA */
-.cta-strip{background:var(--navy);border-radius:16px;padding:48px 40px;text-align:center;margin:12px 0 48px}
-.cta-strip h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--white);margin-bottom:8px}
-.cta-strip h2 em{font-style:italic;color:var(--gold-lt)}
-.cta-strip p{color:rgba(255,255,255,.55);font-size:14px;font-weight:300;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
-.btn-gold:hover{background:var(--gold-lt)}
-.cta-note{font-size:11px;color:rgba(255,255,255,.50);margin-top:10px}
+  .cat-section {
+    padding-top: 48px;
+    padding-bottom: 16px;
+    scroll-margin-top: 130px; /* nav + sticky tabs offset for anchor scrolling */
+  }
+  .cat-section:first-of-type { padding-top: 24px; }
 
-footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:13px;font-weight:600;color:var(--navy)}
-.footer-logo span{color:var(--gold)}
-.footer-links a{font-size:12px;color:var(--dim);text-decoration:none;margin-left:18px}
-.footer-disc{font-size:11px;color:var(--dim);margin-top:6px;width:100%}
-/* Dashboard featured card */
-.dashboard-feature-card{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--navy);border-radius:14px;padding:24px 28px;text-decoration:none;margin-bottom:10px;transition:all .14s;border:1.5px solid transparent}
-.dashboard-feature-card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(28,43,74,.18)}
-.dfc-left{display:flex;flex-direction:column;gap:7px}
-.dfc-eye{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.dfc-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.15}
-.dfc-title em{font-style:italic;color:var(--gold-lt)}
-.dfc-sub{font-size:13px;color:rgba(255,255,255,.55);font-weight:300;line-height:1.6;max-width:520px}
-.dfc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
-.dfc-tags span{font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:3px 10px;white-space:nowrap}
-.dfc-right{font-size:13px;font-weight:600;color:var(--gold);white-space:nowrap;flex-shrink:0}
-@media(max-width:760px){.dashboard-feature-card{flex-direction:column;align-items:flex-start}.dfc-right{font-size:12px;margin-top:4px}}
+  .cat-section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .cat-section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 36px; font-weight: 400; line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--indigo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin: 0;
+  }
+  .cat-section-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--indigo-55);
+  }
 
-/* Tool cards — distinct from guide cards */
-.tool-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1.5px solid rgba(201,151,58,.3);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s;position:relative}
-.tool-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,151,58,0.13)}
-.tool-badge{position:absolute;top:12px;right:14px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);border-radius:100px;padding:2px 7px}
-.tool-card .article-title{color:var(--navy)}
-.tool-card:hover .article-title{color:var(--gold)}
-.tool-card .article-arrow{color:var(--gold);opacity:0}
-.tool-card:hover .article-arrow{opacity:1}
+  /* Card grid */
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .guides-grid.is-3-with-mega { grid-template-columns: repeat(3, 1fr); }
+  .guides-grid > .mega-card { grid-column: 1 / -1; }
 
-/* Search bar */
-.guide-search-form{margin-bottom:28px}
-.guide-search-wrap{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0 14px;transition:box-shadow .15s}
-.guide-search-wrap:focus-within{box-shadow:0 0 0 2.5px rgba(59,130,246,.28)}
-.guide-search-icon{font-size:15px;color:var(--dim);flex-shrink:0;line-height:1;user-select:none}
-.guide-search-input{flex:1;border:none;background:transparent;font-family:inherit;font-size:14px;color:var(--navy);padding:13px 0;outline:none}
-.guide-search-input::placeholder{color:var(--dim)}
-.guide-search-clear{background:none;border:none;cursor:pointer;font-size:18px;color:var(--dim);padding:13px 10px;line-height:1;display:none;flex-shrink:0;transition:color .15s}
-.guide-search-clear:hover{color:var(--gold)}
-.guide-search-clear:focus-visible{outline:2px solid rgba(59,130,246,.6);border-radius:4px}
-/* Screen-reader live region */
-.guide-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-/* No-results state */
-.guide-no-results{display:none;text-align:center;padding:52px 24px 24px}
-.guide-no-results-msg{font-size:16px;color:var(--muted);font-weight:300;margin-bottom:18px}
-.guide-no-results-msg strong{color:var(--navy);font-weight:600}
-.guide-no-results-btn{background:none;border:1.5px solid var(--border);color:var(--navy);padding:9px 22px;border-radius:100px;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;transition:all .15s}
-.guide-no-results-btn:hover{border-color:var(--gold);color:var(--gold)}
-.guide-no-results-btn:focus-visible{outline:2px solid rgba(59,130,246,.6);outline-offset:2px}
+  /* Sub-filter chip row (G5) */
+  .chip-row {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
 
-@media(max-width:760px){
-  nav,footer{padding:13px 18px}
-  .hero{padding:48px 18px 36px}
-  .content{padding:16px 18px 60px}
-  /* tablet: 2 cols for main grid, 1 col for 2-col and solo sections */
-  .article-grid > .article-card,
-  .article-grid > .tool-card{flex:0 0 calc((100% - 10px) / 2)}
-  .article-grid.article-grid-2 > .article-card,
-  .article-grid.article-grid-2 > .tool-card{flex:0 0 100%}
-  .article-grid-solo > .article-card{flex:0 0 100%}
-  .nav-link{display:none}
-  .nav-link.active{display:none}
-  .logo-text{font-size:13px}
-  .nav-cta{font-size:12px;padding:12px 14px;white-space:nowrap}
-  .nav-right{gap:12px}
-}
-@media(max-width:480px){
-  /* mobile: 1 col for everything */
-  .article-grid > .article-card,
-  .article-grid > .tool-card,
-  .article-grid.article-grid-2 > .article-card,
-  .article-grid.article-grid-2 > .tool-card{flex:0 0 100%}
-}
+  /* Show-more (G6) */
+  .show-more-row {
+    margin-top: 18px;
+    text-align: center;
+  }
 
-/* STR hub callout card */
-.str-hub-card{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--gold-pale);border:1px solid rgba(201,151,58,.25);border-radius:10px;padding:13px 18px;text-decoration:none;color:var(--navy);font-size:14px;margin-bottom:20px;transition:border-color .14s}
-.str-hub-card:hover{border-color:var(--gold)}
-.str-hub-card strong{font-weight:600}
-.str-hub-card-cta{color:var(--gold);font-weight:500;white-space:nowrap;flex-shrink:0;font-size:13px}
-@media(max-width:480px){.str-hub-card{flex-direction:column;gap:6px}.str-hub-card-cta{align-self:flex-end}}
+  /* No-results state for search */
+  .no-results {
+    display: none;
+    max-width: 480px; margin: 64px auto;
+    text-align: center;
+    padding: 32px;
+    border: 1px solid var(--indigo-08);
+    background: var(--paper);
+    border-radius: var(--radius-card);
+  }
+  .no-results h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 400; color: var(--indigo);
+    margin-bottom: 8px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+  .no-results h3 em { font-style: italic; color: var(--apricot); font-weight: 500; }
+  .no-results p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--indigo-70);
+    margin-bottom: 18px;
+  }
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
 
-/* STR filter chips */
-.str-filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
-.chip{padding:8px 16px;border-radius:100px;border:1.5px solid var(--border);background:var(--cream-d);color:var(--navy);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:border-color .14s,background .14s,color .14s}
-.chip:hover{border-color:var(--gold);color:var(--gold)}
-.chip--active,.chip--active:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
-.chip:focus-visible{outline:2px solid rgba(201,151,58,.5);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){.chip{transition:none}}
+  /* CTA band */
+  .cta-band {
+    background: var(--indigo);
+    color: var(--paper);
+    padding: 64px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band .blob { top: -120px; right: -100px; }
+  .cta-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr auto;
+    align-items: center; gap: 40px;
+    position: relative; z-index: 1;
+  }
+  .cta-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(34px, 4vw, 48px); font-weight: 400;
+    line-height: 1.05; letter-spacing: -0.022em;
+    color: var(--paper);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: 14px;
+  }
+  .cta-band h2 em { font-style: italic; color: var(--apricot); font-weight: 500; }
+  .cta-band p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15.5px; line-height: 1.6; color: var(--paper-70);
+    max-width: 480px;
+  }
 
-.article-card{position:relative}
-.article-expanding{position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:var(--amber,#a86c0a);border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4}
-.article-card[data-expanding="true"]{opacity:.92}
-.article-card[data-expanding="true"] .article-title{color:var(--navy,#1c2b4a)}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Free Tax & Legal Guides for Side Hustlers",
-  "description": "74 free resources — 7 interactive tax tools and 67 plain-English guides for gig workers, Etsy sellers, freelancers, Airbnb hosts, and self-employed side hustlers.",
-  "url": "https://www.sidehustleguard.com/guides",
-  "publisher": {
-    "@type": "Organization",
-    "name": "SideHustleGuard",
-    "url": "https://www.sidehustleguard.com"
-  },
-  "hasPart": [
-    {"@type":"WebPage","name":"Audit Risk Estimator","url":"https://www.sidehustleguard.com/audit-risk-estimator"},
-    {"@type":"WebPage","name":"Tax Guard Calculator","url":"https://www.sidehustleguard.com/tax-guard-calculator"},
-    {"@type":"WebPage","name":"S-Corp vs Sole Prop Savings Calculator","url":"https://www.sidehustleguard.com/scorp-savings-calculator"},
-    {"@type":"WebPage","name":"Self-Employment Tax Calculator","url":"https://www.sidehustleguard.com/self-employment-tax-calculator"},
-    {"@type":"WebPage","name":"Quarterly Tax Calculator","url":"https://www.sidehustleguard.com/quarterly-tax-calculator"},
-    {"@type":"WebPage","name":"DoorDash Taxes","url":"https://www.sidehustleguard.com/doordash-taxes"},
-    {"@type":"WebPage","name":"Etsy Taxes","url":"https://www.sidehustleguard.com/etsy-taxes"},
-    {"@type":"WebPage","name":"Freelancer Taxes","url":"https://www.sidehustleguard.com/freelancer-taxes"},
-    {"@type":"WebPage","name":"Side Hustle Taxes","url":"https://www.sidehustleguard.com/side-hustle-taxes"},
-    {"@type":"WebPage","name":"California Self-Employment Tax","url":"https://www.sidehustleguard.com/california-self-employment-tax"}
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.sidehustleguard.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Guides",
-      "item": "https://www.sidehustleguard.com/guides"
+  /* Footer */
+  .bottom-bar {
+    background: var(--cream);
+    padding: 32px 60px;
+    border-top: 1px solid var(--indigo-08);
+  }
+  .bottom-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 18px; flex-wrap: wrap;
+    max-width: 1180px; margin: 0 auto;
+  }
+  .bottom-disc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px; color: var(--indigo-55);
+    max-width: 600px;
+  }
+  .bottom-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--indigo-55);
+    margin-left: 18px;
+    transition: color var(--dur-default) var(--ease-default);
+  }
+  .bottom-links a:hover { color: var(--indigo); }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    .guides-hero { padding: 56px 24px 44px; }
+    .cat-tabs { padding: 10px 24px; top: 56px; }
+    .cat-tabs-inner {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-  ]
-}
-</script>
+    .cat-tabs-inner::-webkit-scrollbar { display: none; }
+    .guides-body { padding: 24px 24px 56px; }
+    .guides-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cta-band { padding: 48px 24px; }
+    .cta-inner { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+    .bottom-bar { padding: 28px 24px; }
+    .cat-section { padding-top: 36px; }
+    .cat-section-title { font-size: 26px; }
+    .cat-section-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+  @media (max-width: 560px) {
+    .guides-hero { padding: 48px 20px 36px; }
+    .cat-tabs { padding: 8px 20px; }
+    .guides-body { padding: 20px 20px 48px; }
+    .guides-grid { grid-template-columns: 1fr; }
+    .cta-band { padding: 40px 20px; }
+    .bottom-bar { padding: 22px 20px; }
+  }
+</style>
 </head>
 <body>
-<nav>
-<a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
-</a>
-<div class="nav-right">
-<a class="nav-link" href="/#how-it-works">How it works</a>
-<a class="nav-link" href="/#pricing">Pricing</a>
-<a class="nav-link" href="/#faq">FAQ</a>
-<a class="nav-link active" href="/guides">Guides</a>
-<a class="nav-cta" href="/tool">Check my hustle — free →</a>
-</div>
-</nav>
-<div class="hero">
-<div class="hero-tag">Free tax guides</div>
-<h1>Plain-English guides for <span class="h1-em">every side hustle</span></h1>
-<p class="hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">39</span> plain-English guides covering gig work, creator income, Etsy, e-commerce, freelancing, and state taxes — no jargon, no upsells.</p>
-<a class="hero-cta-ghost" href="/dashboard">Try the dashboard →</a>
-</div>
-<div class="content">
-<!-- Search / filter -->
-<form class="guide-search-form" onsubmit="return false" role="search">
-<div class="guide-search-wrap">
-<span aria-hidden="true" class="guide-search-icon">🔍</span>
-<input aria-label="Search guides and tools" autocomplete="off" class="guide-search-input" id="guide-search" placeholder="Search guides and tools…" spellcheck="false" type="search"/>
-<button aria-label="Clear search" class="guide-search-clear" id="guide-search-clear" type="button">×</button>
-</div>
-</form>
-<span aria-atomic="true" aria-live="polite" class="guide-sr-only" id="guide-search-sr"></span>
-<!-- No-results state -->
-<div class="guide-no-results" id="guide-no-results">
-<p class="guide-no-results-msg">No guides match <strong id="guide-no-results-term"></strong></p>
-<button class="guide-no-results-btn" id="guide-show-all">Show all guides</button>
-</div>
-<!-- Interactive Tools — featured first -->
-<div class="cat-section" id="tools">
-<div class="cat-head">
-<h2 class="cat-title">Interactive Tools</h2>
-<span class="cat-count">7 free tools</span>
-</div>
-<!-- Dashboard — featured full-width card -->
-<a class="dashboard-feature-card" href="/dashboard">
-<div class="dfc-left">
-<div class="dfc-eye">All three tools · one page</div>
-<div class="dfc-title">Side Hustle <em>Dashboard</em></div>
-<div class="dfc-sub">Enter your income once — audit risk, tax set-aside, and S-Corp savings all update live. Download a clean PDF report.</div>
-<div class="dfc-tags">
-<span>🛡️ Audit Shield</span>
-<span>💰 Tax Guard</span>
-<span>🏢 S-Corp Sim</span>
-</div>
-</div>
-<div class="dfc-right">Open Dashboard →</div>
-</a>
-<div class="article-grid" style="margin-top:10px">
-<a class="article-card tool-card" href="/audit-risk-estimator">
-<span aria-hidden="true" class="article-icon">🛡️</span>
-<div class="article-body">
-<span class="article-title">Audit Risk Estimator</span>
-<span class="article-sub">Your IRS audit risk score with a safety checklist</span>
-</div>
-<span class="tool-badge">New</span>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card tool-card" href="/tax-guard-calculator">
-<span aria-hidden="true" class="article-icon">⚡</span>
-<div class="article-body">
-<span class="article-title">Tax Guard Calculator</span>
-<span class="article-sub">How much to set aside from every client payment</span>
-</div>
-<span class="tool-badge">New</span>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card tool-card" href="/scorp-savings-calculator">
-<span aria-hidden="true" class="article-icon">📊</span>
-<div class="article-body">
-<span class="article-title">S-Corp vs Sole Prop Simulator</span>
-<span class="article-sub">See exactly when an S-Corp saves more than it costs</span>
-</div>
-<span class="tool-badge">New</span>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card tool-card" href="/self-employment-tax-calculator">
-<span aria-hidden="true" class="article-icon">🧮</span>
-<div class="article-body">
-<span class="article-title">Self-Employment Tax Calculator</span>
-<span class="article-sub">Instant SE tax estimate — federal + state, 2025 rates</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card tool-card" href="/quarterly-tax-calculator">
-<span aria-hidden="true" class="article-icon">📅</span>
-<div class="article-body">
-<span class="article-title">Quarterly Tax Calculator</span>
-<span class="article-sub">How much to set aside and pay each quarter</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card tool-card" href="/tax-checklist">
-<span aria-hidden="true" class="article-icon">✅</span>
-<div class="article-body">
-<span class="article-title">Tax Deduction Checklist</span>
-<span class="article-sub">Every deduction by hustle type — free and printable</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- Gig Work & Delivery -->
-<div class="cat-section" id="gig-work-and-delivery">
-<div class="cat-head">
-<h2 class="cat-title">Gig Work &amp; Delivery</h2>
-<span class="cat-count">8 guides</span>
-</div>
-<div class="article-grid">
-<a class="article-card" href="/uber-lyft-taxes">
-<span aria-hidden="true" class="article-icon">🚗</span>
-<div class="article-body">
-<span class="article-title">Uber &amp; Lyft Taxes</span>
-<span class="article-sub">What every rideshare driver actually owes</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/doordash-taxes">
-<span aria-hidden="true" class="article-icon">🛵</span>
-<div class="article-body">
-<span class="article-title">DoorDash Taxes</span>
-<span class="article-sub">Mileage, 1099s, and quarterly payments</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/uber-eats-taxes">
-<span aria-hidden="true" class="article-icon">🍔</span>
-<div class="article-body">
-<span class="article-title">Uber Eats Taxes</span>
-<span class="article-sub">Food delivery taxes, 1099s, and mileage</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/grubhub-taxes">
-<span aria-hidden="true" class="article-icon">🥡</span>
-<div class="article-body">
-<span class="article-title">Grubhub Taxes</span>
-<span class="article-sub">Mileage deduction guide for delivery drivers</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/instacart-taxes">
-<span aria-hidden="true" class="article-icon">🛒</span>
-<div class="article-body">
-<span class="article-title">Instacart Taxes</span>
-<span class="article-sub">Tax rules for in-store and full-service shoppers</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/amazon-flex-taxes">
-<span aria-hidden="true" class="article-icon">📦</span>
-<div class="article-body">
-<span class="article-title">Amazon Flex Taxes</span>
-<span class="article-sub">Mileage, deductions, and the 1099-NEC explained</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/taskrabbit-taxes">
-<span aria-hidden="true" class="article-icon">🔧</span>
-<div class="article-body">
-<span class="article-title">TaskRabbit Taxes</span>
-<span class="article-sub">Service fees, tools, mileage, and quarterly payments</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/rover-taxes">
-<span aria-hidden="true" class="article-icon">🐾</span>
-<div class="article-body">
-<span class="article-title">Rover Taxes</span>
-<span class="article-sub">Pet sitting, dog walking, and home boarding deductions</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- Short-Term Rentals -->
-<div class="cat-section" id="short-term-rentals">
-<div class="cat-head">
-<h2 class="cat-title">Short-Term Rentals</h2>
-<span class="cat-count">28 guides</span>
-</div>
-<a class="str-hub-card" href="/short-term-rentals">
-<span>📖 <strong>New to STR taxes?</strong> Platforms, tax strategy, the 14-day rule, the STR loophole, and state rules — all in one place.</span>
-<span class="str-hub-card-cta">Complete STR guide →</span>
-</a>
-<div aria-label="Filter by rental type" class="str-filter-chips" id="str-filter-chips" role="group">
-<button aria-pressed="true" class="chip chip--active" data-filter="all">All</button>
-<button aria-pressed="false" class="chip" data-filter="platform">Platforms</button>
-<button aria-pressed="false" class="chip" data-filter="topic">Topics</button>
-<button aria-pressed="false" class="chip" data-filter="state">State Rules</button>
-</div>
-<div class="article-grid">
-<a class="article-card" data-rental-type="platform" href="/airbnb-host-taxes">
-<span aria-hidden="true" class="article-icon">🏡</span>
-<div class="article-body">
-<span class="article-title">Airbnb Host Taxes</span>
-<span class="article-sub">Deductions, taxes owed, and the 14-day rule</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/vrbo-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">🏠</span>
-<div class="article-body">
-<span class="article-title">Vrbo Host Taxes</span>
-<span class="article-sub">Whole-home vacation rental taxes explained</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/booking-com-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">🌐</span>
-<div class="article-body">
-<span class="article-title">Booking.com Host Taxes</span>
-<span class="article-sub">Taxes for property hosts on Booking.com</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/turo-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">🚗</span>
-<div class="article-body">
-<span class="article-title">Turo Host Taxes</span>
-<span class="article-sub">Car rental income, Schedule C, and deductions</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/hipcamp-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">⛺</span>
-<div class="article-body">
-<span class="article-title">Hipcamp Host Taxes</span>
-<span class="article-sub">Land and outdoor camping rental taxes</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/rv-rental-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">🚐</span>
-<div class="article-body">
-<span class="article-title">RV Rental Host Taxes</span>
-<span class="article-sub">RVshare &amp; Outdoorsy income taxes</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/furnished-finder-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">🛋️</span>
-<div class="article-body">
-<span class="article-title">Furnished Finder Taxes</span>
-<span class="article-sub">Mid-term rental taxes for furnished hosts</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="platform" href="/neighbor-storage-host-taxes"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">📦</span>
-<div class="article-body">
-<span class="article-title">Neighbor Storage Taxes</span>
-<span class="article-sub">Income taxes on renting out storage space</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="topic" href="/airbnb-14-day-rule"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">📅</span>
-<div class="article-body">
-<span class="article-title">The Airbnb 14-Day Rule</span>
-<span class="article-sub">Rent up to 14 days tax-free — here's how</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-expanding="true" data-rental-type="topic" href="/schedule-c-vs-schedule-e-str"><span class="article-expanding">Expanding</span>
-<span aria-hidden="true" class="article-icon">📋</span>
-<div class="article-body">
-<span class="article-title">Schedule C vs Schedule E for STRs</span>
-<span class="article-sub">Which form you file — and why it matters</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/short-term-rental-loophole">
-<span aria-hidden="true" class="article-icon">🔓</span>
-<div class="article-body">
-<span class="article-title">The STR Tax Loophole</span>
-<span class="article-sub">Use rental losses to offset W-2 income</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/cost-segregation-str">
-<span aria-hidden="true" class="article-icon">🏗️</span>
-<div class="article-body">
-<span class="article-title">Cost Segregation for STRs</span>
-<span class="article-sub">Accelerate depreciation and cut your tax bill</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/lodging-tax-by-state">
-<span aria-hidden="true" class="article-icon">🗺️</span>
-<div class="article-body">
-<span class="article-title">STR Lodging Tax by State</span>
-<span class="article-sub">What hosts owe in every state</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/airbnb-self-employment-tax">
-<span aria-hidden="true" class="article-icon">💼</span>
-<div class="article-body">
-<span class="article-title">Airbnb Self-Employment Tax</span>
-<span class="article-sub">Do Airbnb hosts owe SE tax? It depends.</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/airbnb-deductions-checklist">
-<span aria-hidden="true" class="article-icon">✅</span>
-<div class="article-body">
-<span class="article-title">Airbnb Deductions Checklist</span>
-<span class="article-sub">Every deduction short-term rental hosts can take</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/mixed-use-rental-taxes">
-<span aria-hidden="true" class="article-icon">🏘️</span>
-<div class="article-body">
-<span class="article-title">Mixed-Use Rental Taxes</span>
-<span class="article-sub">Splitting deductions when you also live there</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/house-hacking-taxes">
-<span aria-hidden="true" class="article-icon">🔑</span>
-<div class="article-body">
-<span class="article-title">House Hacking Taxes</span>
-<span class="article-sub">Tax rules for renting part of your primary home</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/str-business-structure">
-<span aria-hidden="true" class="article-icon">🏢</span>
-<div class="article-body">
-<span class="article-title">STR Business Structure</span>
-<span class="article-sub">LLC, S-corp, or sole prop — what makes sense</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/airbnb-1099-k">
-<span aria-hidden="true" class="article-icon">📄</span>
-<div class="article-body">
-<span class="article-title">Airbnb 1099-K Explained</span>
-<span class="article-sub">What the form means and what to do with it</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="topic" href="/quarterly-taxes-for-airbnb-hosts">
-<span aria-hidden="true" class="article-icon">🗓️</span>
-<div class="article-body">
-<span class="article-title">Quarterly Taxes for Airbnb Hosts</span>
-<span class="article-sub">Estimated tax deadlines and how to calculate them</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/california-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🌴</span>
-<div class="article-body">
-<span class="article-title">California STR Rules &amp; Taxes</span>
-<span class="article-sub">Permits, TOT, and state income tax rules</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/new-york-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🗽</span>
-<div class="article-body">
-<span class="article-title">New York STR Rules &amp; Taxes</span>
-<span class="article-sub">NYC restrictions, state and city tax obligations</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/florida-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">☀️</span>
-<div class="article-body">
-<span class="article-title">Florida STR Taxes</span>
-<span class="article-sub">Sales tax, tourist development tax, and no income tax</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/hawaii-short-term-rental-rules">
-<span aria-hidden="true" class="article-icon">🌺</span>
-<div class="article-body">
-<span class="article-title">Hawaii STR Rules &amp; Taxes</span>
-<span class="article-sub">GET, TAT, OTAT — Hawaii's layered tax system</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/texas-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">⭐</span>
-<div class="article-body">
-<span class="article-title">Texas STR Taxes</span>
-<span class="article-sub">Hotel occupancy tax, state and local rules</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/colorado-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🏔️</span>
-<div class="article-body">
-<span class="article-title">Colorado STR Taxes</span>
-<span class="article-sub">State lodging tax, local rules, and licensing</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/tennessee-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🎵</span>
-<div class="article-body">
-<span class="article-title">Tennessee STR Taxes</span>
-<span class="article-sub">Sales tax on rentals and county-level levies</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" data-rental-type="state" href="/arizona-short-term-rental-taxes">
-<span aria-hidden="true" class="article-icon">🌵</span>
-<div class="article-body">
-<span class="article-title">Arizona STR Taxes</span>
-<span class="article-sub">TPT license, city taxes, and state filing rules</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- Creator Economy -->
-<div class="cat-section" id="creator-economy">
-<div class="cat-head">
-<h2 class="cat-title">Creator Economy</h2>
-<span class="cat-count">8 guides</span>
-</div>
-<div class="article-grid">
-<a class="article-card" href="/youtube-taxes">
-<span aria-hidden="true" class="article-icon">🎬</span>
-<div class="article-body">
-<span class="article-title">YouTube Taxes</span>
-<span class="article-sub">AdSense, brand deals, memberships, merch</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/twitch-taxes">
-<span aria-hidden="true" class="article-icon">🎮</span>
-<div class="article-body">
-<span class="article-title">Twitch Taxes</span>
-<span class="article-sub">Subs, bits, donations — all of it is taxable</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/tiktok-taxes">
-<span aria-hidden="true" class="article-icon">📱</span>
-<div class="article-body">
-<span class="article-title">TikTok Taxes</span>
-<span class="article-sub">Creator Fund, TikTok Shop, and LIVE gifts</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/onlyfans-taxes">
-<span aria-hidden="true" class="article-icon">💌</span>
-<div class="article-body">
-<span class="article-title">OnlyFans Taxes</span>
-<span class="article-sub">What creators owe and how to pay less</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/fiverr-taxes">
-<span aria-hidden="true" class="article-icon">💼</span>
-<div class="article-body">
-<span class="article-title">Fiverr Taxes</span>
-<span class="article-sub">Tax on what you receive, not what clients pay</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/patreon-taxes">
-<span aria-hidden="true" class="article-icon">🎨</span>
-<div class="article-body">
-<span class="article-title">Patreon Taxes</span>
-<span class="article-sub">Membership income, platform fees, and deductions</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/substack-taxes">
-<span aria-hidden="true" class="article-icon">✉️</span>
-<div class="article-body">
-<span class="article-title">Substack Taxes</span>
-<span class="article-sub">Newsletter income, Substack's 10% fee, and deductions</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/pinterest-taxes">
-<span aria-hidden="true" class="article-icon">📌</span>
-<div class="article-body">
-<span class="article-title">Pinterest Taxes</span>
-<span class="article-sub">Affiliate commissions, sponsored pins, and 1099s</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- Etsy & Resellers -->
-<div class="cat-section" id="etsy-and-resellers">
-<div class="cat-head">
-<h2 class="cat-title">Etsy, E-commerce &amp; Resellers</h2>
-<span class="cat-count">12 guides</span>
-</div>
-<div class="article-grid">
-<a class="article-card" href="/etsy-taxes">
-<span aria-hidden="true" class="article-icon">🛍️</span>
-<div class="article-body">
-<span class="article-title">Etsy Taxes</span>
-<span class="article-sub">The complete Etsy seller tax guide</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/etsy-taxes-under-600">
-<span aria-hidden="true" class="article-icon">💵</span>
-<div class="article-body">
-<span class="article-title">Etsy Taxes Under $600</span>
-<span class="article-sub">You still owe tax even below the 1099 threshold</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/paypal-1099k-etsy">
-<span aria-hidden="true" class="article-icon">📬</span>
-<div class="article-body">
-<span class="article-title">PayPal &amp; 1099-K on Etsy</span>
-<span class="article-sub">New $600 threshold rules explained</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/etsy-home-office-deduction">
-<span aria-hidden="true" class="article-icon">🏠</span>
-<div class="article-body">
-<span class="article-title">Etsy Home Office Deduction</span>
-<span class="article-sub">How to claim your workspace correctly</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/etsy-schedule-c">
-<span aria-hidden="true" class="article-icon">📋</span>
-<div class="article-body">
-<span class="article-title">Etsy Schedule C</span>
-<span class="article-sub">Complete filing guide for Etsy sellers</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/llc-etsy-seller">
-<span aria-hidden="true" class="article-icon">🏢</span>
-<div class="article-body">
-<span class="article-title">LLC for Etsy Sellers</span>
-<span class="article-sub">When it's actually worth the paperwork</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/reseller-taxes">
-<span aria-hidden="true" class="article-icon">📦</span>
-<div class="article-body">
-<span class="article-title">Reseller Taxes</span>
-<span class="article-sub">General guide for all reselling platforms</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/ebay-taxes">
-<span aria-hidden="true" class="article-icon">🏷️</span>
-<div class="article-body">
-<span class="article-title">eBay Taxes</span>
-<span class="article-sub">COGS, 1099-K thresholds, casual vs business seller</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/poshmark-taxes">
-<span aria-hidden="true" class="article-icon">👗</span>
-<div class="article-body">
-<span class="article-title">Poshmark Taxes</span>
-<span class="article-sub">Fees, COGS, and the personal property rule</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/amazon-fba-taxes">
-<span aria-hidden="true" class="article-icon">📫</span>
-<div class="article-body">
-<span class="article-title">Amazon FBA Taxes</span>
-<span class="article-sub">Inventory, FBA fees, COGS, and 1099-K filing</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/shopify-taxes">
-<span aria-hidden="true" class="article-icon">🛒</span>
-<div class="article-body">
-<span class="article-title">Shopify Taxes</span>
-<span class="article-sub">Income tax and sales tax — what owners owe</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/mercari-taxes">
-<span aria-hidden="true" class="article-icon">🏷️</span>
-<div class="article-body">
-<span class="article-title">Mercari Taxes</span>
-<span class="article-sub">Casual vs reseller, COGS, and the $2,500 limit</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- Freelancing & Self-Employment -->
-<div class="cat-section" id="freelancing">
-<div class="cat-head">
-<h2 class="cat-title">Freelancing &amp; Self-Employment</h2>
-<span class="cat-count">5 guides</span>
-</div>
-<div class="article-grid">
-<a class="article-card" href="/side-hustle-taxes">
-<span aria-hidden="true" class="article-icon">💰</span>
-<div class="article-body">
-<span class="article-title">Side Hustle Taxes</span>
-<span class="article-sub">The complete overview — start here</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/freelancer-taxes">
-<span aria-hidden="true" class="article-icon">🧾</span>
-<div class="article-body">
-<span class="article-title">Freelancer Taxes</span>
-<span class="article-sub">1099s, deductions, and quarterly payments</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/upwork-taxes">
-<span aria-hidden="true" class="article-icon">💻</span>
-<div class="article-body">
-<span class="article-title">Upwork Taxes</span>
-<span class="article-sub">Service fees, 1099-K, and freelancer deductions</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/quarterly-taxes-self-employed">
-<span aria-hidden="true" class="article-icon">📅</span>
-<div class="article-body">
-<span class="article-title">Quarterly Taxes (Self-Employed)</span>
-<span class="article-sub">When to pay and how much each quarter</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/llc-vs-sole-proprietor">
-<span aria-hidden="true" class="article-icon">⚖️</span>
-<div class="article-body">
-<span class="article-title">LLC vs Sole Proprietor</span>
-<span class="article-sub">Key differences and when it's worth the paperwork</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- State-Specific -->
-<div class="cat-section" id="state-specific">
-<div class="cat-head">
-<h2 class="cat-title">State-Specific Guides</h2>
-<span class="cat-count">5 guides</span>
-</div>
-<div class="article-grid">
-<a class="article-card" href="/california-self-employment-tax">
-<span aria-hidden="true" class="article-icon">🌴</span>
-<div class="article-body">
-<span class="article-title">California Self-Employment Tax</span>
-<span class="article-sub">CA income tax, quarterly schedule, LLC fees</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/california-side-hustle">
-<span aria-hidden="true" class="article-icon">🌊</span>
-<div class="article-body">
-<span class="article-title">California Side Hustle Rules</span>
-<span class="article-sub">Licenses, AB5 contractor rules, and CA requirements</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/texas-self-employment-tax">
-<span aria-hidden="true" class="article-icon">🤠</span>
-<div class="article-body">
-<span class="article-title">Texas Self-Employment Tax</span>
-<span class="article-sub">No income tax — here's what you still owe</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/new-york-self-employment-tax">
-<span aria-hidden="true" class="article-icon">🗽</span>
-<div class="article-body">
-<span class="article-title">New York Self-Employment Tax</span>
-<span class="article-sub">NY state + NYC city tax + MCTMT explained</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-<a class="article-card" href="/state-tax-rates">
-<span aria-hidden="true" class="article-icon">🗺️</span>
-<div class="article-body">
-<span class="article-title">2025 State Tax Rates (All 50 States)</span>
-<span class="article-sub">Complete rate table for gig workers &amp; freelancers</span>
-</div>
-<span aria-hidden="true" class="article-arrow">→</span>
-</a>
-</div>
-</div>
-<!-- CTA -->
-<div class="cta-strip">
-<h2>Not sure what <em>you</em> owe?</h2>
-<p>Answer 8 quick questions and get a personalized breakdown — taxes, licenses, and business structure for your exact hustle.</p>
-<a class="btn-gold" href="/tool">Check my hustle — free →</a>
-<p class="cta-note">Free • No account required • Takes 60 seconds</p>
-</div>
-</div>
-<footer>
-<div>
-<div class="footer-logo">SideHustle<span>Guard</span></div>
-<div class="footer-disc">General educational information only — not legal or tax advice. Consult a licensed CPA or attorney for your specific situation.</div>
-</div>
-<div class="footer-links">
-<a href="/">Home</a>
-<a href="/guides">Guides</a>
-<a href="/tool">Free check</a>
-</div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- HEADER (nav + ticker) -->
+<div class="ds-fixed-header">
+  <nav class="ds-nav">
+    <a class="logo" href="/">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-base">SideHustle</span><span class="logo-accent">guard</span>
+      </span>
+    </a>
+    <div class="ds-nav-right">
+      <a class="ds-nav-link always-visible" href="/guides" aria-current="page">Guides</a>
+      <a class="ds-nav-link" href="/tool">Free check</a>
+      <a class="btn btn-primary" href="/tool">Check my hustle →</a>
+    </div>
+  </nav>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Free legal check</span>
+      <span class="ticker-item">All 50 states</span>
+      <span class="ticker-item">Etsy sellers</span>
+      <span class="ticker-item">Freelancers</span>
+      <span class="ticker-item">Plain English</span>
+      <span class="ticker-item">60 seconds</span>
+      <span class="ticker-item">No lawyer needed</span>
+      <span class="ticker-item">Instant results</span>
+      <span class="ticker-item">Free legal check</span>
+      <span class="ticker-item">All 50 states</span>
+      <span class="ticker-item">Etsy sellers</span>
+      <span class="ticker-item">Freelancers</span>
+      <span class="ticker-item">Plain English</span>
+      <span class="ticker-item">60 seconds</span>
+      <span class="ticker-item">No lawyer needed</span>
+      <span class="ticker-item">Instant results</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO (G1) -->
+<section class="guides-hero" id="main-content">
+  <div class="blob"></div>
+  <div class="guides-hero-inner">
+    <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">74</span> in total</div>
+    <h1 class="display-l">Every side hustle.<br/><em>Every state.</em></h1>
+    <p class="guides-hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">67</span> plain-English guides — for gig drivers, Etsy sellers, freelancers, hosts, and creators.</p>
+    <div class="live-search" id="search-wrap">
+      <svg class="live-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12.5 12.5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <input id="guide-search" type="search" placeholder="Search guides and tools…" aria-label="Search guides and tools" autocomplete="off"/>
+      <button class="live-search-clear" id="guide-search-clear" aria-label="Clear search" type="button">×</button>
+    </div>
+    <div class="sr-only" id="guide-search-sr" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- STICKY CATEGORY TABS (G2) -->
+<div class="cat-tabs" id="cat-tabs">
+  <div class="cat-tabs-inner" role="tablist" aria-label="Filter by category">
+    <button class="cat-tab" role="tab" data-cat="all" aria-current="true">All</button>
+    <button class="cat-tab" role="tab" data-cat="tools">Interactive tools</button>
+    <button class="cat-tab" role="tab" data-cat="gig">Gig &amp; delivery</button>
+    <button class="cat-tab" role="tab" data-cat="str">Short-term rentals</button>
+    <button class="cat-tab" role="tab" data-cat="creator">Creator economy</button>
+    <button class="cat-tab" role="tab" data-cat="ecom">Etsy &amp; e-commerce</button>
+    <button class="cat-tab" role="tab" data-cat="freelance">Freelancing</button>
+    <button class="cat-tab" role="tab" data-cat="state">State guides</button>
+  </div>
+</div>
+
+<!-- GUIDES BODY -->
+<main class="guides-body">
+  <div class="guides-body-inner">
+
+    <!-- NO RESULTS state -->
+    <div class="no-results" id="guide-no-results">
+      <h3>No matches for <em><span id="guide-no-results-term"></span></em></h3>
+      <p>Try a broader term — or browse everything we have.</p>
+      <button class="btn btn-outline" id="guide-show-all" type="button">Show all guides</button>
+    </div>
+
+    <!-- INTERACTIVE TOOLS -->
+    <section class="cat-section" data-cat="tools" id="cat-tools">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Interactive tools</h2>
+        <span class="cat-section-count">7 in total</span>
+      </div>
+      <div class="guides-grid is-3-with-mega">
+
+        <!-- MEGA CARD (G4) for /dashboard -->
+        <a class="mega-card" href="/dashboard" data-feature="true">
+          <div class="mega-blob"></div>
+          <div class="mega-eyebrow">★ Featured</div>
+          <h3 class="mega-title">Side Hustle <em>Dashboard</em></h3>
+          <p class="mega-blurb">All three calculators in one screen — your audit risk, set-aside amount, and S-corp savings projected together. Built for the moment after a client pays you and you don't know how much to keep.</p>
+          <div class="mega-pills">
+            <span>Audit Shield</span>
+            <span>Tax Guard</span>
+            <span>S-Corp Sim</span>
+          </div>
+          <span class="mega-cta">Open dashboard <span class="arrow">→</span></span>
+        </a>
+
+        <a class="guide-card" href="/audit-risk-estimator">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">A</div>
+            <div class="guide-title-row">
+              <span class="guide-title">Audit Risk Estimator</span>
+            </div>
+          </div>
+          <p class="guide-desc">Your IRS audit risk score with a safety checklist.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/tax-guard-calculator">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">T</div>
+            <div class="guide-title-row">
+              <span class="guide-title">Tax Guard Calculator</span>
+            </div>
+          </div>
+          <p class="guide-desc">How much to set aside from every client payment.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/scorp-savings-calculator">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">S</div>
+            <div class="guide-title-row">
+              <span class="guide-title">S-Corp vs Sole Prop Simulator</span>
+            </div>
+          </div>
+          <p class="guide-desc">See exactly when an S-Corp saves more than it costs.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/self-employment-tax-calculator">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">SE</div>
+            <div class="guide-title-row">
+              <span class="guide-title">Self-Employment Tax Calculator</span>
+            </div>
+          </div>
+          <p class="guide-desc">Instant SE tax estimate — federal + state, 2025 rates.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/quarterly-tax-calculator">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">Q</div>
+            <div class="guide-title-row">
+              <span class="guide-title">Quarterly Tax Calculator</span>
+            </div>
+          </div>
+          <p class="guide-desc">How much to set aside and pay each quarter.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/tax-checklist">
+          <div class="guide-card-head">
+            <div class="guide-monogram" aria-hidden="true">✓</div>
+            <div class="guide-title-row">
+              <span class="guide-title">Tax Deduction Checklist</span>
+            </div>
+          </div>
+          <p class="guide-desc">Every deduction by hustle type — free and printable.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- GIG WORK & DELIVERY -->
+    <section class="cat-section" data-cat="gig" id="cat-gig">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Gig work &amp; delivery</h2>
+        <span class="cat-section-count">8 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/uber-lyft-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Uber &amp; Lyft Taxes</span></div></div>
+          <p class="guide-desc">What every rideshare driver actually owes.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/doordash-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">D</div><div class="guide-title-row"><span class="guide-title">DoorDash Taxes</span></div></div>
+          <p class="guide-desc">Mileage, 1099s, and quarterly payments.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/uber-eats-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">UE</div><div class="guide-title-row"><span class="guide-title">Uber Eats Taxes</span></div></div>
+          <p class="guide-desc">Food delivery taxes, 1099s, and mileage.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/grubhub-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">G</div><div class="guide-title-row"><span class="guide-title">Grubhub Taxes</span></div></div>
+          <p class="guide-desc">Mileage deduction guide for delivery drivers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/instacart-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">I</div><div class="guide-title-row"><span class="guide-title">Instacart Taxes</span></div></div>
+          <p class="guide-desc">Tax rules for in-store and full-service shoppers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/amazon-flex-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">A</div><div class="guide-title-row"><span class="guide-title">Amazon Flex Taxes</span></div></div>
+          <p class="guide-desc">Mileage, deductions, and the 1099-NEC explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/taskrabbit-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">TaskRabbit Taxes</span></div></div>
+          <p class="guide-desc">Service fees, tools, mileage, and quarterly payments.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/rover-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">R</div><div class="guide-title-row"><span class="guide-title">Rover Taxes</span></div></div>
+          <p class="guide-desc">Pet sitting, dog walking, and home boarding deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SHORT-TERM RENTALS -->
+    <section class="cat-section" data-cat="str" id="cat-str">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Short-term rentals</h2>
+        <span class="cat-section-count">28 guides</span>
+      </div>
+
+      <!-- Sub-filter chips (G5) -->
+      <div class="chip-row" id="str-filter-chips" role="tablist" aria-label="Filter STR guides by type">
+        <button class="chip" data-filter="all" aria-pressed="true" role="tab">All</button>
+        <button class="chip" data-filter="platform" aria-pressed="false" role="tab">Platforms</button>
+        <button class="chip" data-filter="topic" aria-pressed="false" role="tab">Topics</button>
+        <button class="chip" data-filter="state" aria-pressed="false" role="tab">State rules</button>
+      </div>
+
+      <div class="guides-grid is-3-with-mega">
+        <!-- MEGA CARD (G4) for /short-term-rentals -->
+        <a class="mega-card" href="/short-term-rentals" data-feature="true">
+          <div class="mega-blob"></div>
+          <div class="mega-eyebrow">★ Featured</div>
+          <h3 class="mega-title">Complete <em>STR Guide</em></h3>
+          <p class="mega-blurb">The full short-term-rental landscape — platforms, tax forms, state rules, depreciation, the 14-day rule, when an LLC makes sense. Start here, then drill into specifics below.</p>
+          <div class="mega-pills">
+            <span>8 platforms</span>
+            <span>12 topics</span>
+            <span>8 state rules</span>
+          </div>
+          <span class="mega-cta">Open STR hub <span class="arrow">→</span></span>
+        </a>
+
+        <!-- Platforms (8) -->
+        <a class="guide-card" data-rental-type="platform" href="/airbnb-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">A</div><div class="guide-title-row"><span class="guide-title">Airbnb Host Taxes</span></div></div>
+          <p class="guide-desc">Deductions, taxes owed, and the 14-day rule.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/vrbo-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">V</div><div class="guide-title-row"><span class="guide-title">Vrbo Host Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Whole-home vacation rental taxes explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/booking-com-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">B</div><div class="guide-title-row"><span class="guide-title">Booking.com Host Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Taxes for property hosts on Booking.com.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/turo-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">Turo Host Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Car rental income, Schedule C, and deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/hipcamp-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">H</div><div class="guide-title-row"><span class="guide-title">Hipcamp Host Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Land and outdoor camping rental taxes.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/rv-rental-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">RV</div><div class="guide-title-row"><span class="guide-title">RV Rental Host Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">RVshare &amp; Outdoorsy income taxes.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/furnished-finder-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Furnished Finder Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Mid-term rental taxes for furnished hosts.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="platform" href="/neighbor-storage-host-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">N</div><div class="guide-title-row"><span class="guide-title">Neighbor Storage Taxes</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Income taxes on renting out storage space.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+
+        <!-- Topics (12) -->
+        <a class="guide-card" data-rental-type="topic" href="/airbnb-14-day-rule">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">14</div><div class="guide-title-row"><span class="guide-title">The Airbnb 14-Day Rule</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Rent up to 14 days tax-free — here's how.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/schedule-c-vs-schedule-e-str">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Schedule C vs Schedule E for STRs</span><span class="guide-tag tag-soon">Soon</span></div></div>
+          <p class="guide-desc">Which form you file — and why it matters.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/short-term-rental-loophole">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">The STR Tax Loophole</span></div></div>
+          <p class="guide-desc">Use rental losses to offset W-2 income.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/cost-segregation-str">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">C</div><div class="guide-title-row"><span class="guide-title">Cost Segregation for STRs</span></div></div>
+          <p class="guide-desc">Accelerate depreciation and cut your tax bill.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/lodging-tax-by-state">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">STR Lodging Tax by State</span></div></div>
+          <p class="guide-desc">What hosts owe in every state.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/airbnb-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">SE</div><div class="guide-title-row"><span class="guide-title">Airbnb Self-Employment Tax</span></div></div>
+          <p class="guide-desc">Do Airbnb hosts owe SE tax? It depends.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/airbnb-deductions-checklist">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">✓</div><div class="guide-title-row"><span class="guide-title">Airbnb Deductions Checklist</span></div></div>
+          <p class="guide-desc">Every deduction short-term rental hosts can take.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/mixed-use-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">M</div><div class="guide-title-row"><span class="guide-title">Mixed-Use Rental Taxes</span></div></div>
+          <p class="guide-desc">Splitting deductions when you also live there.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/house-hacking-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">H</div><div class="guide-title-row"><span class="guide-title">House Hacking Taxes</span></div></div>
+          <p class="guide-desc">Tax rules for renting part of your primary home.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/str-business-structure">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">B</div><div class="guide-title-row"><span class="guide-title">STR Business Structure</span></div></div>
+          <p class="guide-desc">LLC, S-corp, or sole prop — what makes sense.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/airbnb-1099-k">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">1K</div><div class="guide-title-row"><span class="guide-title">Airbnb 1099-K Explained</span></div></div>
+          <p class="guide-desc">What the form means and what to do with it.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="topic" href="/quarterly-taxes-for-airbnb-hosts">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Q</div><div class="guide-title-row"><span class="guide-title">Quarterly Taxes for Airbnb Hosts</span></div></div>
+          <p class="guide-desc">Estimated tax deadlines and how to calculate them.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+
+        <!-- State rules (8) -->
+        <a class="guide-card" data-rental-type="state" href="/california-short-term-rental-rules">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California STR Rules &amp; Taxes</span></div></div>
+          <p class="guide-desc">Permits, TOT, and state income tax rules.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/new-york-short-term-rental-rules">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">NY</div><div class="guide-title-row"><span class="guide-title">New York STR Rules &amp; Taxes</span></div></div>
+          <p class="guide-desc">NYC restrictions, state and city tax obligations.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/florida-short-term-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">FL</div><div class="guide-title-row"><span class="guide-title">Florida STR Taxes</span></div></div>
+          <p class="guide-desc">Sales tax, tourist development tax, and no income tax.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/hawaii-short-term-rental-rules">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">HI</div><div class="guide-title-row"><span class="guide-title">Hawaii STR Rules &amp; Taxes</span></div></div>
+          <p class="guide-desc">GET, TAT, OTAT — Hawaii's layered tax system.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/texas-short-term-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TX</div><div class="guide-title-row"><span class="guide-title">Texas STR Taxes</span></div></div>
+          <p class="guide-desc">Hotel occupancy tax, state and local rules.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/colorado-short-term-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CO</div><div class="guide-title-row"><span class="guide-title">Colorado STR Taxes</span></div></div>
+          <p class="guide-desc">State lodging tax, local rules, and licensing.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/tennessee-short-term-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TN</div><div class="guide-title-row"><span class="guide-title">Tennessee STR Taxes</span></div></div>
+          <p class="guide-desc">Sales tax on rentals and county-level levies.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" data-rental-type="state" href="/arizona-short-term-rental-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">AZ</div><div class="guide-title-row"><span class="guide-title">Arizona STR Taxes</span></div></div>
+          <p class="guide-desc">TPT license, city taxes, and state filing rules.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Show-more (G6) — initially hidden because we now show all 28 by default;
+           If we want to show only 12 initially, JS will toggle visibility on cards beyond the first 12. -->
+      <div class="show-more-row">
+        <button class="show-more" id="str-show-more" type="button" aria-expanded="false">Show 16 more →</button>
+      </div>
+    </section>
+
+    <!-- CREATOR ECONOMY -->
+    <section class="cat-section" data-cat="creator" id="cat-creator">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Creator economy</h2>
+        <span class="cat-section-count">8 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/youtube-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Y</div><div class="guide-title-row"><span class="guide-title">YouTube Taxes</span></div></div>
+          <p class="guide-desc">AdSense, brand deals, memberships, merch.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/twitch-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">Twitch Taxes</span></div></div>
+          <p class="guide-desc">Subs, bits, donations — all of it is taxable.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/tiktok-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TT</div><div class="guide-title-row"><span class="guide-title">TikTok Taxes</span></div></div>
+          <p class="guide-desc">Creator Fund, TikTok Shop, and LIVE gifts.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/onlyfans-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">OF</div><div class="guide-title-row"><span class="guide-title">OnlyFans Taxes</span></div></div>
+          <p class="guide-desc">What creators owe and how to pay less.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/fiverr-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Fiverr Taxes</span></div></div>
+          <p class="guide-desc">Tax on what you receive, not what clients pay.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/patreon-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Patreon Taxes</span></div></div>
+          <p class="guide-desc">Membership income, platform fees, and deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/substack-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Substack Taxes</span></div></div>
+          <p class="guide-desc">Newsletter income, Substack's 10% fee, and deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/pinterest-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Pinterest Taxes</span></div></div>
+          <p class="guide-desc">Affiliate commissions, sponsored pins, and 1099s.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ETSY & E-COMMERCE -->
+    <section class="cat-section" data-cat="ecom" id="cat-ecom">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Etsy, e-commerce &amp; resellers</h2>
+        <span class="cat-section-count">12 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/etsy-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">E</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes</span></div></div>
+          <p class="guide-desc">The complete Etsy seller tax guide.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-taxes-under-600">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">$</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes Under $600</span></div></div>
+          <p class="guide-desc">You still owe tax even below the 1099 threshold.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/paypal-1099k-etsy">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">1K</div><div class="guide-title-row"><span class="guide-title">PayPal &amp; 1099-K on Etsy</span></div></div>
+          <p class="guide-desc">New $600 threshold rules explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-home-office-deduction">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">H</div><div class="guide-title-row"><span class="guide-title">Etsy Home Office Deduction</span></div></div>
+          <p class="guide-desc">How to claim your workspace correctly.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-schedule-c">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">SC</div><div class="guide-title-row"><span class="guide-title">Etsy Schedule C</span></div></div>
+          <p class="guide-desc">Complete filing guide for Etsy sellers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/llc-etsy-seller">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC for Etsy Sellers</span></div></div>
+          <p class="guide-desc">When it's actually worth the paperwork.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/reseller-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">R</div><div class="guide-title-row"><span class="guide-title">Reseller Taxes</span></div></div>
+          <p class="guide-desc">General guide for all reselling platforms.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/ebay-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">e</div><div class="guide-title-row"><span class="guide-title">eBay Taxes</span></div></div>
+          <p class="guide-desc">COGS, 1099-K thresholds, casual vs business seller.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/poshmark-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Poshmark Taxes</span></div></div>
+          <p class="guide-desc">Fees, COGS, and the personal property rule.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/amazon-fba-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">A</div><div class="guide-title-row"><span class="guide-title">Amazon FBA Taxes</span></div></div>
+          <p class="guide-desc">Inventory, FBA fees, COGS, and 1099-K filing.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/shopify-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Shopify Taxes</span></div></div>
+          <p class="guide-desc">Income tax and sales tax — what owners owe.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/mercari-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">M</div><div class="guide-title-row"><span class="guide-title">Mercari Taxes</span></div></div>
+          <p class="guide-desc">Casual vs reseller, COGS, and the $2,500 limit.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FREELANCING -->
+    <section class="cat-section" data-cat="freelance" id="cat-freelance">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Freelancing &amp; self-employment</h2>
+        <span class="cat-section-count">5 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/side-hustle-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">§</div><div class="guide-title-row"><span class="guide-title">Side Hustle Taxes</span></div></div>
+          <p class="guide-desc">The complete overview — start here.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/freelancer-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Freelancer Taxes</span></div></div>
+          <p class="guide-desc">1099s, deductions, and quarterly payments.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/upwork-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Upwork Taxes</span></div></div>
+          <p class="guide-desc">Service fees, 1099-K, and freelancer deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/quarterly-taxes-self-employed">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Q</div><div class="guide-title-row"><span class="guide-title">Quarterly Taxes (Self-Employed)</span></div></div>
+          <p class="guide-desc">When to pay and how much each quarter.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/llc-vs-sole-proprietor">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC vs Sole Proprietor</span></div></div>
+          <p class="guide-desc">Key differences and when it's worth the paperwork.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- STATE-SPECIFIC -->
+    <section class="cat-section" data-cat="state" id="cat-state">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">State-specific guides</h2>
+        <span class="cat-section-count">5 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/california-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Self-Employment Tax</span></div></div>
+          <p class="guide-desc">CA income tax, quarterly schedule, LLC fees.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/california-side-hustle">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Side Hustle Rules</span></div></div>
+          <p class="guide-desc">Licenses, AB5 contractor rules, and CA requirements.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/texas-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TX</div><div class="guide-title-row"><span class="guide-title">Texas Self-Employment Tax</span></div></div>
+          <p class="guide-desc">No income tax — here's what you still owe.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/new-york-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">NY</div><div class="guide-title-row"><span class="guide-title">New York Self-Employment Tax</span></div></div>
+          <p class="guide-desc">NY state + NYC city tax + MCTMT explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/state-tax-rates">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">50</div><div class="guide-title-row"><span class="guide-title">2025 State Tax Rates (All 50 States)</span></div></div>
+          <p class="guide-desc">Complete rate table for gig workers &amp; freelancers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="blob blob-top-right"></div>
+  <div class="cta-inner">
+    <div>
+      <h2>Tell us your hustle.<br/><em>We'll figure out the rest.</em></h2>
+      <p>Pick your hustle, state, and income range. We surface every tax, license, and structure issue that applies to you — in plain English, in 60 seconds.</p>
+    </div>
+    <a class="btn btn-accent" href="/tool">Start free check →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bottom-bar">
+  <div class="bottom-inner">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <a class="logo" href="/">
+        <svg class="logo-mark" style="width:24px;height:24px" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+        </svg>
+        <span class="logo-text" style="font-size:16px">
+          <span class="logo-base" style="font-size:16px">SideHustle</span><span class="logo-accent" style="font-size:16px">guard</span>
+        </span>
+      </a>
+      <span class="bottom-disc">General educational information only — not legal or tax advice. Consult a CPA for your specific situation.</span>
+    </div>
+    <div class="bottom-links">
+      <a href="/">Home</a>
+      <a href="/guides">Guides</a>
+      <a href="/tool">Free check</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
 </footer>
+
 <script>
-/* Auto-count tools and guides so hero copy stays accurate as cards are added/removed.
-   Tools  = .tool-card elements + .dashboard-feature-card elements
-   Guides = .article-card elements that are NOT .tool-card */
-(function(){
-  var tools  = document.querySelectorAll('.tool-card').length
-              + document.querySelectorAll('.dashboard-feature-card').length;
-  var guides = document.querySelectorAll('.article-card:not(.tool-card)').length;
+/* ===== Auto-count tools and guides for the hero copy ===== */
+(function () {
+  var tools  = document.querySelectorAll('[data-cat="tools"] .guide-card').length
+             + document.querySelectorAll('[data-cat="tools"] .mega-card').length;
+  var guides = document.querySelectorAll('.guide-card').length - tools
+             + document.querySelectorAll('.mega-card').length - 1; /* minus the tools mega */
+  /* Simpler: count all non-tools cards + non-tools megas */
+  guides = document.querySelectorAll('.cat-section:not([data-cat="tools"]) .guide-card').length
+         + document.querySelectorAll('.cat-section:not([data-cat="tools"]) .mega-card').length;
+  var total = tools + guides;
   var tc = document.getElementById('js-tools-count');
   var gc = document.getElementById('js-guides-count');
-  if(tc) tc.textContent = tools;
-  if(gc) gc.textContent = guides;
+  var totalEl = document.getElementById('js-total-count');
+  if (tc) tc.textContent = tools;
+  if (gc) gc.textContent = guides;
+  if (totalEl) totalEl.textContent = total;
 })();
 
-/* Guide search / filter — vanilla JS, no dependencies */
-(function(){
-  var searchInput  = document.getElementById('guide-search');
-  var clearBtn     = document.getElementById('guide-search-clear');
-  var noResults    = document.getElementById('guide-no-results');
-  var noResultsTerm= document.getElementById('guide-no-results-term');
-  var showAllBtn   = document.getElementById('guide-show-all');
-  var srRegion     = document.getElementById('guide-search-sr');
-  var sections     = document.querySelectorAll('.cat-section');
-
-  /* Collect searchable text from a card element */
-  function cardText(card) {
-    var parts = [];
-    var sel = ['.article-title','.article-sub','.dfc-title','.dfc-sub','.dfc-eye'];
-    sel.forEach(function(s){
-      var el = card.querySelector(s);
-      if(el) parts.push(el.textContent);
+/* ===== STR show-more (G6) — show first 12, reveal rest on click ===== */
+(function () {
+  var section = document.getElementById('cat-str');
+  if (!section) return;
+  var cards = Array.from(section.querySelectorAll('.guide-card'));
+  var btn = document.getElementById('str-show-more');
+  if (!btn) return;
+  var INITIAL = 12;
+  if (cards.length <= INITIAL) { btn.parentElement.style.display = 'none'; return; }
+  function setExpanded(expanded) {
+    cards.forEach(function (c, i) {
+      c.dataset.hiddenByShowMore = (i >= INITIAL && !expanded) ? 'true' : 'false';
     });
-    return parts.join(' ').toLowerCase();
+    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    btn.textContent = expanded ? 'Show fewer ↑' : ('Show ' + (cards.length - INITIAL) + ' more →');
+    applyVisibility();
   }
-
-  function runFilter(raw) {
-    var q = raw.trim().toLowerCase();
-
-    /* Show/hide clear button */
-    clearBtn.style.display = q ? 'block' : 'none';
-
-    var totalVisible = 0;
-
-    sections.forEach(function(section){
-      var cards = section.querySelectorAll(
-        '.article-card, .tool-card, .dashboard-feature-card'
-      );
-      var sectionCount = 0;
-
-      cards.forEach(function(card){
-        var match = !q || cardText(card).includes(q);
-        card.style.display = match ? '' : 'none';
-        if(match) sectionCount++;
-      });
-
-      /* Hide the whole section (including its heading) when nothing matches */
-      section.style.display = sectionCount ? '' : 'none';
-      totalVisible += sectionCount;
-    });
-
-    /* No-results state */
-    var empty = q && totalVisible === 0;
-    noResults.style.display = empty ? 'block' : 'none';
-    if(empty) noResultsTerm.textContent = '“' + q + '”';
-
-    /* Screen-reader announcement */
-    if(srRegion){
-      srRegion.textContent = q
-        ? (totalVisible
-            ? totalVisible + ' result' + (totalVisible !== 1 ? 's' : '')
-            : 'No results for ' + q)
-        : '';
-    }
+  /* applyVisibility is defined in the filter IIFE below; we reference via window */
+  window.__strApplyVisibility = null;
+  function applyVisibility() {
+    if (window.__strApplyVisibility) window.__strApplyVisibility();
   }
-
-  function clearSearch() {
-    searchInput.value = '';
-    runFilter('');
-    searchInput.focus();
-  }
-
-  searchInput.addEventListener('input', function(){ runFilter(this.value); });
-
-  searchInput.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') clearSearch();
+  btn.addEventListener('click', function () {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
   });
-
-  clearBtn.addEventListener('click', clearSearch);
-  showAllBtn.addEventListener('click', clearSearch);
+  setExpanded(false);
 })();
 
-/* STR filter chips — hidden until section has ≥ 6 cards */
-(function(){
+/* ===== Category tabs filter (G2) — filter sections in place ===== */
+(function () {
+  var tabs = Array.from(document.querySelectorAll('.cat-tab'));
+  var sections = Array.from(document.querySelectorAll('.cat-section'));
+  if (!tabs.length || !sections.length) return;
+
+  function setActiveTab(cat) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.cat === cat;
+      if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+    });
+    sections.forEach(function (s) {
+      s.dataset.hiddenByTab = (cat === 'all' || s.dataset.cat === cat) ? 'false' : 'true';
+    });
+    /* Re-run combined visibility */
+    if (typeof runCombined === 'function') runCombined();
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { setActiveTab(t.dataset.cat); });
+  });
+})();
+
+/* ===== STR sub-filter chips (G5) ===== */
+(function () {
   var chips = document.getElementById('str-filter-chips');
   if (!chips) return;
-  var section = chips.closest('.cat-section');
-  var cards = section ? Array.from(section.querySelectorAll('.article-card')) : [];
-  /* Hide chip row when < 6 cards; it renders but stays invisible so layout isn't affected */
-  if (cards.length < 6) { chips.style.display = 'none'; return; }
+  var section = document.getElementById('cat-str');
+  if (!section) return;
+  var cards = Array.from(section.querySelectorAll('.guide-card'));
   var btns = Array.from(chips.querySelectorAll('.chip'));
-  function apply(type) {
-    cards.forEach(function(c) {
-      c.style.display = (type === 'all' || c.dataset.rentalType === type) ? '' : 'none';
+
+  function apply(filter) {
+    cards.forEach(function (c) {
+      var match = (filter === 'all' || c.dataset.rentalType === filter);
+      c.dataset.hiddenByChip = match ? 'false' : 'true';
     });
-    /* Re-trigger search if a query is active */
-    var si = document.getElementById('guide-search');
-    if (si && si.value) si.dispatchEvent(new Event('input'));
+    if (typeof runCombined === 'function') runCombined();
   }
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      btns.forEach(function(b) {
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) {
         var on = b === btn;
         b.classList.toggle('chip--active', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (on) b.setAttribute('aria-pressed', 'true');
+        else b.setAttribute('aria-pressed', 'false');
       });
       apply(btn.dataset.filter);
     });
-    btn.addEventListener('keydown', function(e) {
+    btn.addEventListener('keydown', function (e) {
       var idx = btns.indexOf(btn);
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault(); btns[(idx + 1) % btns.length].focus();
@@ -1077,6 +1061,98 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
     });
   });
 })();
+
+/* ===== Live search (G1) ===== */
+(function () {
+  var searchInput  = document.getElementById('guide-search');
+  var searchWrap   = document.getElementById('search-wrap');
+  var clearBtn     = document.getElementById('guide-search-clear');
+  var noResults    = document.getElementById('guide-no-results');
+  var noResultsTerm = document.getElementById('guide-no-results-term');
+  var showAllBtn   = document.getElementById('guide-show-all');
+  var srRegion     = document.getElementById('guide-search-sr');
+
+  function cardText(card) {
+    var t = card.querySelector('.guide-title') || card.querySelector('.mega-title');
+    var d = card.querySelector('.guide-desc')  || card.querySelector('.mega-blurb');
+    return ((t ? t.textContent : '') + ' ' + (d ? d.textContent : '')).toLowerCase();
+  }
+
+  function runFilter(raw) {
+    var q = raw.trim().toLowerCase();
+    if (searchWrap) searchWrap.classList.toggle('has-query', !!q);
+
+    /* When searching, mark mega-cards, chip rows, and show-more buttons as hidden */
+    var megas = document.querySelectorAll('.mega-card');
+    var chipsRow = document.getElementById('str-filter-chips');
+    var smRow = document.querySelector('.show-more-row');
+
+    document.querySelectorAll('.guide-card, .mega-card').forEach(function (c) {
+      var match = !q || cardText(c).includes(q);
+      c.dataset.hiddenBySearch = match ? 'false' : 'true';
+    });
+    if (megas && q) {
+      megas.forEach(function (m) { m.dataset.hiddenBySearch = 'true'; });
+    } else if (megas) {
+      megas.forEach(function (m) { m.dataset.hiddenBySearch = 'false'; });
+    }
+    if (chipsRow) chipsRow.style.display = q ? 'none' : '';
+    if (smRow) smRow.style.display = q ? 'none' : '';
+
+    if (typeof runCombined === 'function') runCombined();
+
+    /* No-results state */
+    var visible = document.querySelectorAll('.guide-card[data-visible="true"]').length;
+    var empty = q && visible === 0;
+    if (noResults) noResults.style.display = empty ? 'block' : 'none';
+    if (empty && noResultsTerm) noResultsTerm.textContent = q;
+
+    if (srRegion) {
+      srRegion.textContent = q
+        ? (visible ? visible + ' result' + (visible !== 1 ? 's' : '') : 'No results for ' + q)
+        : '';
+    }
+  }
+
+  function clearSearch() {
+    if (!searchInput) return;
+    searchInput.value = '';
+    runFilter('');
+    searchInput.focus();
+  }
+
+  if (searchInput) searchInput.addEventListener('input', function () { runFilter(this.value); });
+  if (searchInput) searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') clearSearch();
+  });
+  if (clearBtn) clearBtn.addEventListener('click', clearSearch);
+  if (showAllBtn) showAllBtn.addEventListener('click', clearSearch);
+})();
+
+/* ===== Combined visibility runner — all filters AND together ===== */
+function runCombined() {
+  document.querySelectorAll('.guide-card, .mega-card').forEach(function (c) {
+    var hiddenBy = ['hiddenBySearch', 'hiddenByChip', 'hiddenByTab', 'hiddenByShowMore']
+      .some(function (k) { return c.dataset[k] === 'true'; });
+    c.style.display = hiddenBy ? 'none' : '';
+    c.dataset.visible = hiddenBy ? 'false' : 'true';
+  });
+  /* Hide section heads when ALL cards in that section are hidden */
+  document.querySelectorAll('.cat-section').forEach(function (s) {
+    var anyVisible = s.querySelectorAll('[data-visible="true"]').length > 0;
+    var tabHidden = s.dataset.hiddenByTab === 'true';
+    s.style.display = (anyVisible && !tabHidden) ? '' : 'none';
+  });
+}
+
+/* Initialize combined visibility on first paint */
+document.addEventListener('DOMContentLoaded', function () {
+  /* Set initial visible markers */
+  document.querySelectorAll('.guide-card, .mega-card').forEach(function (c) {
+    c.dataset.visible = 'true';
+  });
+  runCombined();
+});
 </script>
 </body>
 </html>
