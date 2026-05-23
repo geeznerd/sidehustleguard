@@ -119,7 +119,8 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .btn-cta:hover{background:var(--apricot-hover)}
 
 .empty-state{text-align:center;padding:32px 0}
-.empty-state-icon{font-size:32px;margin-bottom:10px;opacity:.35}
+.empty-state-icon{margin-bottom:14px;opacity:.35;display:flex;justify-content:center}
+.empty-state-icon svg{width:56px;height:56px}
 .empty-state-text{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.6}
 
 /* Content section */
@@ -351,7 +352,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="results-card">
 <div class="results-title">Tax Guard</div>
 <div class="empty-state" id="empty-state">
-<div class="empty-state-icon">🛡</div>
+<div class="empty-state-icon" aria-hidden="true"><svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#fbf8ee" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#fbf8ee"/></svg></div>
 <div class="empty-state-text">Enter a payment amount on the left<br/>to see your guard amount instantly.</div>
 </div>
 <div id="results-body" style="display:none">
