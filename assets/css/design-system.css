@@ -284,6 +284,15 @@ a {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--indigo-08);
+  transition: box-shadow var(--dur-default) var(--ease-default),
+              border-bottom-color var(--dur-default) var(--ease-default);
+}
+/* Scroll-shadow appears only after the user scrolls past the top of the
+ * page (toggled via .is-stuck class by a small JS observer). Subtle by
+ * design — sits between the nav and the content scrolling underneath. */
+.ds-nav.is-stuck {
+  box-shadow: 0 2px 4px rgba(45, 48, 104, 0.05);
+  border-bottom-color: var(--indigo-12);
 }
 
 .ds-nav-right {
@@ -642,7 +651,7 @@ a {
   background: var(--indigo);
   color: var(--paper);
   border-radius: var(--radius-card);
-  padding: 26px 30px 28px;
+  padding: 32px 36px 34px;
   position: relative;
   overflow: hidden;
   display: block;
@@ -713,29 +722,48 @@ a {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
-  background: var(--paper-10);
-  color: rgba(251, 248, 238, 0.85);
+  background: var(--paper-12);
+  color: var(--paper);
+  /* Solid paper text on indigo = ~11:1 contrast. Easy AA pass at any size.
+   * (Previous rgba(251,248,238,0.85) measured ~6.5:1 — still AA but
+   * leaving headroom is good practice on the smallest pill text on mobile.) */
   padding: 5px 11px;
   border-radius: var(--radius-pill);
 }
 
+/* Mega-card CTA — promoted from a text link to a high-contrast button so
+ * it reads as the singular, obvious action on the indigo card. Apricot
+ * background pops against the dark purple; paper text passes WCAG AA at
+ * ~10:1 contrast. */
 .mega-cta {
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: var(--apricot);
+  color: var(--paper);
+  background: var(--apricot);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  transition: background var(--dur-default) var(--ease-default),
+              transform var(--dur-default) var(--ease-default),
+              box-shadow var(--dur-default) var(--ease-default);
 }
 
 .mega-cta .arrow {
   transition: transform var(--dur-default) var(--ease-default);
 }
 
+.mega-card:hover .mega-cta {
+  background: var(--apricot-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(232, 148, 100, 0.32);
+}
+
 .mega-card:hover .mega-cta .arrow {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 @media (max-width: 600px) {
@@ -977,8 +1005,27 @@ a {
   animation: ticker-scroll 22s linear infinite;
 }
 
-.ticker-item { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; }
+.ticker-item {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: opacity var(--dur-default) var(--ease-default);
+}
 .ticker-item:nth-child(even) { color: var(--apricot); }
+/* Interactive ticker items (hydrated by JS — only those mapped to an
+ * anchor) get a hover affordance so users see they're clickable. */
+.ticker-item[data-anchor]:hover {
+  opacity: 0.78;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+}
+.ticker-item[data-anchor]:focus-visible {
+  outline: 2px solid var(--apricot);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
 
 @keyframes ticker-scroll {
   from { transform: translateX(0); }

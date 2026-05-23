@@ -44,10 +44,11 @@
 
   .ds-fixed-header { position: sticky; top: 0; z-index: 100; }
 
-  /* HERO (smaller than index.html — this is a hub page) */
+  /* HERO (smaller than index.html — this is a hub page).
+   * Compressed to keep the first card above-the-fold on 768x viewports. */
   .guides-hero {
     background: var(--cream);
-    padding: 72px 60px 56px;
+    padding: 44px 60px 28px;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -58,13 +59,13 @@
     max-width: 760px; margin: 0 auto;
   }
   .guides-hero h1 {
-    margin: 16px 0 14px;
+    margin: 12px 0 10px;
   }
   .guides-hero-sub {
     font-family: 'Inter', sans-serif;
     font-size: 16px; line-height: 1.65; font-weight: 400;
     color: var(--indigo-70);
-    max-width: 540px; margin: 0 auto 28px;
+    max-width: 540px; margin: 0 auto 18px;
   }
 
   /* Live search (G1) */
@@ -114,7 +115,8 @@
   }
   .live-search.has-query .live-search-clear { display: flex; }
 
-  /* Sticky category tabs (G2) */
+  /* Sticky category tabs (G2) — sits directly under the search input so
+   * search + tabs feel like a single navigation band. */
   .cat-tabs {
     position: sticky;
     top: 64px;
@@ -123,7 +125,7 @@
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--indigo-08);
     z-index: 10;
-    padding: 12px 60px;
+    padding: 10px 60px;
   }
   .cat-tabs-inner {
     display: flex; gap: 6px; flex-wrap: wrap;
@@ -159,7 +161,7 @@
     padding-bottom: 16px;
     scroll-margin-top: 130px; /* nav + sticky tabs offset for anchor scrolling */
   }
-  .cat-section:first-of-type { padding-top: 24px; }
+  .cat-section:first-of-type { padding-top: 16px; }
 
   .cat-section-head {
     display: flex; align-items: baseline; justify-content: space-between;
@@ -293,8 +295,9 @@
 
   /* RESPONSIVE */
   @media (max-width: 980px) {
-    .guides-hero { padding: 56px 24px 44px; }
-    .cat-tabs { padding: 10px 24px; top: 56px; }
+    .guides-hero { padding: 32px 24px 22px; }
+    .guides-hero-sub { margin-bottom: 14px; }
+    .cat-tabs { padding: 8px 24px; top: 56px; }
     .cat-tabs-inner {
       flex-wrap: nowrap;
       overflow-x: auto;
@@ -317,7 +320,7 @@
     .cat-section-head { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
   @media (max-width: 560px) {
-    .guides-hero { padding: 48px 20px 36px; }
+    .guides-hero { padding: 28px 20px 18px; }
     .cat-tabs { padding: 8px 20px; }
     .guides-body { padding: 20px 20px 48px; }
     /* Same override pattern — drop to 1-col including .is-3-with-mega */
@@ -1519,6 +1522,86 @@ document.addEventListener('DOMContentLoaded', function () {
     catTabs.classList.toggle('is-stuck', !entries[0].isIntersecting);
   }, { threshold: 0, rootMargin: '-50px 0px 0px 0px' });
   obs.observe(sentinel);
+})();
+
+/* (1b) Global sticky nav scroll-shadow.
+ *      Adds .is-stuck to <nav class="ds-nav"> the moment the page scrolls
+ *      past the top, so the nav gains a subtle box-shadow to separate it
+ *      from body text passing underneath. Uses requestAnimationFrame so
+ *      the toggle is cheap (no layout thrash on every scroll event).    */
+(function () {
+  var nav = document.querySelector('.ds-nav');
+  if (!nav) return;
+  var ticking = false;
+  function update() {
+    nav.classList.toggle('is-stuck', window.scrollY > 4);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+})();
+
+/* (1c) Ticker click-to-anchor.
+ *      Items mapped to a category section smooth-scroll there. The
+ *      tagline items (Plain English / 60 seconds / etc.) stay as inert
+ *      text. Mapping lives in TICKER_ANCHORS below; new ticker items
+ *      just need an entry here. */
+(function () {
+  var TICKER_ANCHORS = {
+    'Etsy sellers':       '#cat-ecom',
+    'Freelancers':        '#cat-freelance',
+    'All 50 states':      '#cat-state',
+    'Free legal check':   '/tool',
+    /* Tagline items deliberately have no anchor — they read as voice,
+     * not navigation:
+     *   Plain English, 60 seconds, No lawyer needed, Instant results   */
+  };
+  var items = document.querySelectorAll('.ticker-item');
+  if (!items.length) return;
+  /* Mark interactive items + remove decorative aria-hidden so they're
+   * reachable by screen readers + keyboard. */
+  var ticker = document.querySelector('.ticker');
+  var hasInteractive = false;
+  items.forEach(function (item) {
+    var label = (item.textContent || '').trim();
+    var target = TICKER_ANCHORS[label];
+    if (!target) return;
+    hasInteractive = true;
+    item.setAttribute('role', 'link');
+    item.setAttribute('tabindex', '0');
+    item.dataset.anchor = target;
+    item.style.cursor = 'pointer';
+    item.style.textDecoration = 'none';
+  });
+  if (ticker && hasInteractive) ticker.removeAttribute('aria-hidden');
+
+  function go(target) {
+    if (!target) return;
+    if (target.startsWith('#')) {
+      var el = document.querySelector(target);
+      if (!el) return;
+      /* Compensate for sticky nav (56-64px) + cat-tabs (~48px) */
+      var offset = 56 + 48;
+      var y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    } else {
+      window.location.assign(target);
+    }
+  }
+  items.forEach(function (item) {
+    item.addEventListener('click', function () { go(item.dataset.anchor); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        go(item.dataset.anchor);
+      }
+    });
+  });
 })();
 
 /* (2) Tag every Soon card with .is-soon so the mobile CSS collapses them
