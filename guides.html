@@ -115,28 +115,29 @@
   }
   .live-search.has-query .live-search-clear { display: flex; }
 
-  /* Sticky category tabs (G2) — pinned directly below the sticky nav.
-   * Ticker was removed from this page in commit 6.16 so the header
-   * bundle is just the nav (~60px desktop, 56px mobile).
+  /* Sticky category tabs (G2) — pinned directly below the sticky nav,
+   * apricot-tinted band so the filter row has clear contrast against
+   * both the cream hero above and the content below.
    * Stacking: nav z:100 (top:0) > cat-tabs z:50 (top:60) > content z:auto */
   .cat-tabs {
     position: -webkit-sticky;
     position: sticky;
     top: 60px;
-    background: rgba(240, 236, 225, 0.94);
+    background: rgba(253, 232, 213, 0.92); /* apricot-pale (#FDE8D5) w/ transparency */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--indigo-08);
+    border-bottom: 1px solid var(--apricot-soft);
     z-index: 50;
-    padding: 10px 60px;
+    padding: 12px 60px;
+    margin-bottom: 24px; /* breathing room before the first cat-section */
     will-change: transform;
     isolation: isolate;
   }
-  /* Stuck state — more visible shadow so users see the tabs lock in place */
+  /* Stuck state — slightly deeper apricot wash + soft shadow when pinned */
   .cat-tabs.is-stuck {
-    box-shadow: 0 4px 16px rgba(45, 48, 104, 0.08);
-    border-bottom-color: var(--indigo-12);
-    background: rgba(240, 236, 225, 0.98);
+    box-shadow: 0 4px 16px rgba(232, 148, 100, 0.12);
+    border-bottom-color: var(--apricot-soft);
+    background: rgba(253, 232, 213, 0.98);
   }
   .cat-tabs-inner {
     display: flex; gap: 6px; flex-wrap: wrap;
