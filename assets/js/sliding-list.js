@@ -49,8 +49,10 @@
 
     function moveTo(row, options) {
       options = options || {};
-      var top = row.offsetTop - list.offsetTop;
-      indicator.style.top = top + 'px';
+      // The list is position:relative, so it IS the row's offsetParent.
+      // row.offsetTop is measured from the list's inner border edge — exactly
+      // where the indicator's top:Xpx is measured from too.
+      indicator.style.top = row.offsetTop + 'px';
 
       rows.forEach(function (r) {
         if (r === row) {
