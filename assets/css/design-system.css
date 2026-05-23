@@ -1018,6 +1018,41 @@ a {
   .hero-backdrop .contour-inner-3 { display: none; }
 }
 
+/* ===== UNIVERSAL NAV NORMALIZATION =====
+ * Article pages, calculators, and landings each declare their own <nav>
+ * with slightly different padding (13/14px vertical, 18/48px horizontal,
+ * different gaps). Standardize the mobile case so every nav on the site
+ * is the same height and respects the same edge padding below 700px.
+ * Desktop padding stays per-page since wider screens have different
+ * surrounding chrome on each page type.
+ *
+ * Selectors are unprefixed so this affects both `nav` (per-page) and
+ * `.ds-nav` (shared component) — both should look identical on mobile. */
+@media (max-width: 700px) {
+  nav {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    min-height: 56px;
+  }
+  /* Force consistent gap on the right-side nav group regardless of page */
+  nav .nav-right,
+  nav .ds-nav-right { gap: 12px; }
+  /* Logo text shrinks uniformly */
+  nav .logo-text { font-size: 13px; }
+  /* Primary CTA in nav: minimum tap target 40px tall, no wrapping */
+  nav .nav-cta,
+  nav .ds-nav-cta {
+    font-size: 12.5px;
+    padding: 9px 14px;
+    white-space: nowrap;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 /* ===== RESPONSIVE TABLES =====
  * Defensive global: any .tax-table without a parent overflow wrapper still
  * scrolls horizontally on mobile instead of overflowing the viewport. Most
