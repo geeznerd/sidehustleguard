@@ -115,15 +115,17 @@
   }
   .live-search.has-query .live-search-clear { display: flex; }
 
-  /* Sticky category tabs (G2) — pinned to viewport so users can switch
-   * categories from any scroll depth without going back to the top.
-   * Stacking: nav z:100 (top:0) > cat-tabs z:50 (top:64) > content z:auto.
-   * will-change forces a new stacking context so the sticky survives
-   * even when an ancestor inadvertently introduces an overflow rule. */
+  /* Sticky category tabs (G2) — pinned to viewport BELOW the entire
+   * sticky-header bundle (nav + ticker). The header is wrapped in
+   * .ds-fixed-header which is position:sticky;top:0;z-index:100; — its
+   * total height is nav (~60px) + ticker (~36px) = ~96px on desktop and
+   * ~92px on mobile. The cat-tabs must clear that combined height or
+   * they get pinned UNDERNEATH the ticker.
+   * Stacking: nav z:100 (top:0) > cat-tabs z:50 (top:96) > content z:auto */
   .cat-tabs {
-    position: -webkit-sticky; /* older Safari fallback */
+    position: -webkit-sticky;
     position: sticky;
-    top: 64px;
+    top: 96px;
     background: rgba(240, 236, 225, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -171,7 +173,7 @@
   .cat-section {
     padding-top: 48px;
     padding-bottom: 16px;
-    scroll-margin-top: 130px; /* nav + sticky tabs offset for anchor scrolling */
+    scroll-margin-top: 160px; /* nav (60) + ticker (36) + cat-tabs (~48) + breathing */
   }
   .cat-section:first-of-type { padding-top: 16px; }
 
@@ -309,7 +311,8 @@
   @media (max-width: 980px) {
     .guides-hero { padding: 32px 24px 22px; }
     .guides-hero-sub { margin-bottom: 14px; }
-    .cat-tabs { padding: 8px 24px; top: 56px; }
+    /* Mobile sticky offset: 56px nav + 36px ticker = 92px */
+    .cat-tabs { padding: 8px 24px; top: 92px; }
     .cat-tabs-inner {
       flex-wrap: nowrap;
       overflow-x: auto;
@@ -1624,8 +1627,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (target.startsWith('#')) {
       var el = document.querySelector(target);
       if (!el) return;
-      /* Compensate for sticky nav (56-64px) + cat-tabs (~48px) */
-      var offset = 56 + 48;
+      /* Compensate for sticky nav (~60) + ticker (~36) + cat-tabs (~48) */
+      var offset = 60 + 36 + 48;
       var y = el.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     } else {
