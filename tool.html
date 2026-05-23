@@ -16,217 +16,982 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this side hustle legal checker really free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The core check — taxes, licenses, business structure, and risk level — is completely free with no sign-up required. A paid upgrade ($5) unlocks your full action plan, detailed deduction list, and PDF report." }
-    },
-    {
-      "@type": "Question",
-      "name": "What does the side hustle legal checker actually check?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The checker evaluates six areas: (1) self-employment tax obligations and quarterly payment requirements, (2) whether you need a business license or permit in your state, (3) the right business structure — sole proprietor vs LLC vs S-corp, (4) sales tax rules for your hustle type and state, (5) deductions you're likely missing, and (6) upcoming tax deadlines relevant to your situation." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need an LLC for my side hustle?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. Most side hustlers start as sole proprietors — which is the legal default with no paperwork required. An LLC makes sense when you have meaningful personal assets to protect, earn over $10,000/year from the hustle, or operate in a field with liability risk (services, physical products, food). The checker will give you a personalized recommendation based on your specific situation." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I owe self-employment tax on my side hustle income?",
-      "acceptedAnswer": { "@type": "Answer", "text": "If your net side hustle profit exceeds $400 in a year, yes — you owe self-employment tax (15.3% on the first $168,600 of net earnings in 2025). This covers Social Security and Medicare that an employer would normally split with you. You'll also owe federal income tax at your marginal rate. The checker calculates your estimated tax owed based on your income and state." }
-    },
-    {
-      "@type": "Question",
-      "name": "What side hustles does this tool cover?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The checker covers Etsy sellers, freelancers, DoorDash and Uber Eats drivers, Airbnb and short-term rental hosts, resellers (eBay, Poshmark, Mercari), content creators (YouTube, TikTok, Substack), coaches and tutors, Amazon FBA sellers, and general self-employed income. It covers all 50 US states." }
-    }
+    {"@type":"Question","name":"Is this side hustle legal checker really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The core check — taxes, licenses, business structure, and risk level — is completely free with no sign-up required. A paid upgrade ($5) unlocks your full action plan, detailed deduction list, and PDF report."}},
+    {"@type":"Question","name":"What does the side hustle legal checker actually check?","acceptedAnswer":{"@type":"Answer","text":"The checker evaluates six areas: (1) self-employment tax obligations and quarterly payment requirements, (2) whether you need a business license or permit in your state, (3) the right business structure — sole proprietor vs LLC vs S-corp, (4) sales tax rules for your hustle type and state, (5) deductions you're likely missing, and (6) upcoming tax deadlines relevant to your situation."}},
+    {"@type":"Question","name":"Do I need an LLC for my side hustle?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Most side hustlers start as sole proprietors — which is the legal default with no paperwork required. An LLC makes sense when you have meaningful personal assets to protect, earn over $10,000/year from the hustle, or operate in a field with liability risk (services, physical products, food). The checker will give you a personalized recommendation based on your specific situation."}},
+    {"@type":"Question","name":"Do I owe self-employment tax on my side hustle income?","acceptedAnswer":{"@type":"Answer","text":"If your net side hustle profit exceeds $400 in a year, yes — you owe self-employment tax (15.3% on the first $168,600 of net earnings in 2025). This covers Social Security and Medicare that an employer would normally split with you. You'll also owe federal income tax at your marginal rate. The checker calculates your estimated tax owed based on your income and state."}},
+    {"@type":"Question","name":"What side hustles does this tool cover?","acceptedAnswer":{"@type":"Answer","text":"The checker covers Etsy sellers, freelancers, DoorDash and Uber Eats drivers, Airbnb and short-term rental hosts, resellers (eBay, Poshmark, Mercari), content creators (YouTube, TikTok, Substack), coaches and tutors, Amazon FBA sellers, and general self-employed income. It covers all 50 US states."}}
   ]
 }
 </script>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Shared design system -->
+<link rel="stylesheet" href="/assets/css/design-system.css">
+
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy: #1c2b4a; --gold: #c9973a; --gold-lt: #ddb06a;
-  --cream: #faf8f4; --cream-d: #f0ece3; --white: #fff;
-  --muted: #6b7a96; --dim: #9aa3b5; --border: #e2e6ef;
-  --green: #276944; --green-bg: #eaf5ef;
-  --red: #b83232; --red-bg: #fdf0f0;
-  --amber: #a86c0a; --amber-bg: #fef6e8;
-}
-body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); min-height: 100vh; }
-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(250,248,244,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
-.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-.logo-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
-.logo-icon svg { width: 26px; height: 30px; }
-.logo-text { font-size: 15px; font-weight: 600; color: var(--navy); }
-.logo-text span { color: var(--gold); }
-.nav-back { font-size: 13px; color: var(--muted); text-decoration: none; }
-.nav-back:hover { color: var(--navy); }
-.wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
-.page-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 6px; }
-.page-title em { color: var(--gold); font-style: italic; }
-.page-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; font-weight: 300; }
-.prog-bar { height: 3px; background: var(--cream-d); border-radius: 99px; margin-bottom: 6px; }
-.prog-fill { height: 100%; background: var(--gold); border-radius: 99px; transition: width .4s; width: 0; }
-.prog-label { font-size: 11px; color: var(--dim); text-align: right; margin-bottom: 24px; }
-.card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
-.q-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 8px; }
-.q-title { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
-.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 7px; }
-.opt { padding: 9px 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 13px; color: var(--muted); background: var(--cream); cursor: pointer; text-align: center; transition: all .15s; font-family: inherit; }
-.opt:hover { border-color: var(--gold); color: var(--navy); background: var(--white); }
-.opt.sel { background: var(--navy); color: var(--white); border-color: var(--navy); }
-textarea, select, input[type="text"] { width: 100%; border: 1px solid var(--border); border-radius: 9px; padding: 10px 13px; font-size: 14px; font-family: inherit; color: var(--navy); background: var(--cream); outline: none; transition: border .15s; appearance: none; }
-textarea:focus, select:focus, input[type="text"]:focus { border-color: var(--gold); background: var(--white); }
-textarea { resize: vertical; }
-.btn-submit { width: 100%; padding: 14px; background: var(--gold); color: var(--white); border: none; border-radius: 100px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer; margin-top: 6px; transition: all .15s; }
-.btn-submit:hover { background: var(--gold-lt); }
-.loading { text-align: center; padding: 60px 20px; }
-.spinner { width: 40px; height: 40px; border: 3px solid var(--cream-d); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
-.loading p { font-size: 13px; color: var(--muted); }
-.hidden { display: none !important; }
-.risk-banner { border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; border-left: 4px solid; }
-.risk-mod { background: var(--amber-bg); border-color: var(--amber); }
-.risk-hi  { background: var(--red-bg);   border-color: var(--red); }
-.risk-lo  { background: var(--green-bg); border-color: var(--green); }
-.risk-lvl { font-size: 10px; font-weight: 600; letter-spacing: .1em; margin-bottom: 4px; }
-.risk-hl  { font-size: 14px; font-weight: 500; line-height: 1.5; }
-.score-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
-.score-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 10px; text-align: center; }
-.score-val { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; display: block; margin-bottom: 2px; }
-.sv-red { color: var(--red); } .sv-amber { color: var(--amber); } .sv-green { color: var(--green); }
-.score-name { font-size: 10px; color: var(--dim); }
-.sec-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 8px; }
-.issue-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.issue-row:last-child { border-bottom: none; }
-.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-.dr { background: var(--red); } .da { background: var(--amber); } .dg { background: var(--green); }
-.issue-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-.issue-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
-.locked { font-size: 12px; color: var(--dim); font-style: italic; }
-.more-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
-.more-dots { display: flex; gap: 4px; }
-.more-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--border); display: block; }
-.more-txt { font-size: 12px; color: var(--dim); }
-.paywall { background: var(--navy); border-radius: 16px; padding: 28px; margin-top: 12px; text-align: center; }
-.pw-icon { font-size: 24px; margin-bottom: 10px; }
-.paywall h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
-.paywall h2 em { font-style: italic; color: var(--gold-lt); }
-.pw-sub { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 20px; line-height: 1.6; font-weight: 300; }
-.pw-feats { list-style: none; margin-bottom: 22px; text-align: left; }
-.pw-feats li { font-size: 13px; color: rgba(255,255,255,.75); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; gap: 8px; font-weight: 300; }
-.pw-feats li:last-child { border-bottom: none; }
-.pw-feats li::before { content: '→'; color: var(--gold-lt); font-size: 11px; flex-shrink: 0; }
-.btn-pay { display: block; background: var(--gold); color: var(--white); border-radius: 100px; padding: 14px 28px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; text-decoration: none; transition: all .15s; margin-bottom: 8px; }
-.btn-pay:hover { background: var(--gold-lt); }
-.pw-note { font-size: 11px; color: rgba(255,255,255,.3); }
-.paid-banner { background: var(--green-bg); border: 1px solid rgba(39,105,68,.2); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: var(--green); font-weight: 500; }
-.insight-box { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; }
-.ins-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--gold); margin-bottom: 4px; }
-.ins-txt { font-size: 13px; font-weight: 500; line-height: 1.6; }
-.qw-box { background: var(--green-bg); border-left: 3px solid var(--green); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
-.qw-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--green); margin-bottom: 10px; }
-.win-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
-.win-num { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.win-txt { font-size: 13px; font-weight: 500; }
-.wins-note { font-size: 12px; color: var(--green); font-weight: 500; margin-top: 10px; }
-.act-row { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
-.act-row:last-child { border-bottom: none; }
-.act-num { width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.act-pill { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-.pw { background: var(--red-bg);   color: var(--red); }
-.pm { background: var(--amber-bg); color: var(--amber); }
-.po { background: var(--cream-d);  color: var(--muted); }
-.act-txt { font-size: 13px; color: var(--muted); line-height: 1.5; font-weight: 300; }
-.dl-row { display: flex; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.dl-row:last-child { border-bottom: none; }
-.dl-date { font-size: 12px; font-weight: 600; min-width: 95px; }
-.dl-r { color: var(--red); } .dl-a { color: var(--amber); } .dl-n { color: var(--navy); }
-.dl-evt { font-size: 13px; color: var(--muted); }
-.bottom-line { background: var(--cream-d); border-left: 3px solid var(--gold); border-radius: 8px; padding: 14px 16px; font-size: 13px; font-weight: 500; line-height: 1.65; }
-.aff { background: var(--amber-bg); border-top: 2px solid var(--gold); border-radius: 0 0 10px 10px; padding: 16px; margin-top: 12px; }
-.aff-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-.aff-body { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 300; }
-.aff-link { font-size: 12px; color: var(--gold); font-weight: 600; }
-.disc { font-size: 11px; color: var(--dim); font-style: italic; line-height: 1.6; margin-top: 16px; padding: 10px 14px; background: var(--cream-d); border-radius: 8px; }
-.btn-reset { width: 100%; padding: 12px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; font-size: 13px; font-family: inherit; cursor: pointer; margin-top: 14px; transition: all .15s; }
-.btn-reset:hover { border-color: var(--navy); color: var(--navy); }
+  /* ===== TOOL.HTML PAGE-SPECIFIC ===== */
+  .hidden { display: none !important; }
 
-/* Locked / blurred issue cards — drives FOMO better than "X more" */
-.issue-row.locked-row { position: relative; }
-.locked-detail { font-size: 12px; color: var(--muted); line-height: 1.5; filter: blur(4.5px); user-select: none; pointer-events: none; opacity: .7; }
-.locked-detail::selection { background: transparent; }
-.lock-pill { position: absolute; right: 0; top: 10px; font-size: 10px; font-weight: 600; letter-spacing: .05em; color: var(--gold); background: var(--cream); border: 1px solid rgba(201,151,58,.3); padding: 3px 9px; border-radius: 100px; display: inline-flex; align-items: center; gap: 4px; }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px;
+    background: rgba(240, 236, 225, 0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--indigo-08);
+  }
+  .nav-back {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--indigo-55);
+    text-decoration: none;
+    transition: color var(--dur-default) var(--ease-default);
+  }
+  .nav-back:hover { color: var(--indigo); }
 
-/* Locked-section preview row — styled placeholders for action plan, deadlines, etc. */
-.locked-section { background: var(--cream); border: 1px dashed rgba(201,151,58,.4); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
-.locked-section-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-.locked-section-sub { font-size: 11px; color: var(--dim); }
-.locked-section-icon { color: var(--gold); }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
 
-/* Paywall — enhanced */
-.pw-anchor { background: rgba(201,151,58,.1); border: 1px solid rgba(201,151,58,.2); border-radius: 10px; padding: 12px 14px; margin: 0 0 18px; }
-.pw-anchor-line { font-size: 11px; color: rgba(255,255,255,.5); text-decoration: line-through; margin-bottom: 2px; letter-spacing: .02em; }
-.pw-anchor-now { font-size: 13px; color: var(--gold-lt); font-weight: 600; }
-.pw-anchor-now strong { color: var(--white); }
-.pw-price-row { display: flex; align-items: baseline; gap: 6px; justify-content: center; margin-bottom: 4px; }
-.pw-price-currency { font-size: 18px; font-weight: 600; color: rgba(255,255,255,.7); position: relative; top: -16px; }
-.pw-price-big { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; color: var(--white); line-height: 1; }
-.pw-price-once { font-size: 11px; color: rgba(255,255,255,.45); margin-bottom: 18px; letter-spacing: .03em; }
-.pw-trust-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.07); flex-wrap: wrap; }
-.pw-trust-item { font-size: 10px; color: rgba(255,255,255,.5); display: inline-flex; align-items: center; gap: 5px; letter-spacing: .03em; }
-.pw-trust-item svg { width: 11px; height: 11px; }
-.pw-guarantee { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 12px; padding: 10px 14px; background: rgba(255,255,255,.05); border-radius: 8px; line-height: 1.5; font-weight: 300; }
-.pw-guarantee strong { color: var(--white); font-weight: 500; }
-.btn-pay { box-shadow: 0 6px 18px rgba(201,151,58,.35); }
-.btn-pay.loading { opacity: .7; cursor: wait; }
+  .page-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--indigo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: 8px;
+  }
+  .page-title em {
+    font-style: italic;
+    color: var(--apricot);
+    font-weight: 500;
+  }
+  .page-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: var(--indigo-70);
+    margin-bottom: 24px;
+  }
 
-/* Sticky bottom CTA — only shown on the free results screen */
-.sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; background: var(--navy); padding: 12px 18px; z-index: 90; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -10px 30px rgba(28,43,74,.2); transform: translateY(110%); transition: transform .35s ease-out; border-top: 2px solid var(--gold); }
-.sticky-cta.show { transform: translateY(0); }
-.sticky-cta-text { color: var(--white); font-size: 13px; font-weight: 500; line-height: 1.25; flex: 1; min-width: 0; }
-.sticky-cta-text small { display: block; color: rgba(255,255,255,.5); font-size: 10px; font-weight: 300; margin-top: 2px; letter-spacing: .02em; }
-.sticky-cta-btn { background: var(--gold); color: var(--white); padding: 11px 20px; border-radius: 100px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background .15s; }
-.sticky-cta-btn:hover { background: var(--gold-lt); }
-body.has-sticky { padding-bottom: 70px; }
+  /* Progress bar */
+  .prog-bar {
+    height: 6px;
+    background: var(--indigo-08);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .prog-fill {
+    height: 100%;
+    background: var(--apricot);
+    border-radius: var(--radius-pill);
+    width: 0;
+    transition: width var(--dur-slow) var(--ease-default);
+  }
+  .prog-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--indigo-55);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
 
-/* Email capture (between LLM done and free results) */
-.email-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 36px 28px 28px; text-align: center; margin-top: 4px; }
-.email-icon { font-size: 30px; line-height: 1; margin-bottom: 14px; }
-.email-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.25; }
-.email-title em { font-style: italic; color: var(--gold); }
-.email-sub { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0 auto 22px; font-weight: 300; max-width: 380px; }
-.email-input { width: 100%; max-width: 360px; margin: 0 auto 10px; display: block; }
-.email-cta { display: block; width: 100%; max-width: 360px; margin: 0 auto; padding: 13px; background: var(--gold); color: var(--white); border: none; border-radius: 100px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; transition: background .15s; }
-.email-cta:hover { background: var(--gold-lt); }
-.email-cta:disabled { opacity: .6; cursor: wait; }
-.email-error { font-size: 12px; color: var(--red); margin-top: 8px; min-height: 16px; }
-.email-trust { font-size: 11px; color: var(--dim); margin-top: 12px; letter-spacing: .02em; }
-.email-skip { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--dim); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 4px 8px; }
-.email-skip:hover { color: var(--muted); }
+  /* Question cards */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-card);
+    padding: 22px 22px 18px;
+    margin-bottom: 14px;
+  }
+  .q-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--apricot);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .q-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--indigo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: 16px;
+  }
+  .opts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .opt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--cream);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-pill);
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: all var(--dur-default) var(--ease-default);
+    user-select: none;
+    line-height: 1.3;
+  }
+  .opt:hover {
+    border-color: var(--apricot);
+    color: var(--indigo);
+  }
+  .opt.sel {
+    background: var(--apricot);
+    border-color: var(--apricot);
+    color: var(--indigo);
+    font-weight: 600;
+  }
 
-/* Verifying-payment state */
-.verify-banner { background: var(--amber-bg); border: 1px solid rgba(168,108,10,.25); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--amber); font-weight: 500; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.verify-banner .spinner { width: 16px; height: 16px; border-width: 2px; margin: 0; }
-.recovery-card { background: var(--green-bg); border: 1px solid rgba(39,105,68,.2); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
-.recovery-card-title { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
-.recovery-card-body { font-size: 13px; color: var(--navy); font-weight: 300; line-height: 1.6; }
+  textarea, input[type="text"], input[type="email"], select {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    background: var(--cream);
+    color: var(--indigo);
+    border: 1px solid var(--indigo-12);
+    border-radius: 12px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color var(--dur-default) var(--ease-default), box-shadow var(--dur-default) var(--ease-default);
+    line-height: 1.5;
+    resize: vertical;
+  }
+  textarea:focus, input[type="text"]:focus, input[type="email"]:focus, select:focus {
+    border-color: var(--apricot);
+    box-shadow: 0 0 0 3px rgba(232,148,100,0.12);
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d3068' stroke-opacity='0.55' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
 
-@media(max-width:600px) { nav { padding: 12px 16px; } .wrap { padding: 28px 16px 60px; } .pw-price-big { font-size: 48px; } .sticky-cta { padding: 10px 14px; } .sticky-cta-text { font-size: 12px; } .sticky-cta-btn { padding: 10px 16px; font-size: 12px; } }
+  /* Submit button */
+  .btn-submit {
+    width: 100%;
+    margin-top: 18px;
+    background: var(--indigo);
+    color: var(--paper);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 15px 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--dur-default) var(--ease-default), transform var(--dur-fast) var(--ease-default);
+  }
+  .btn-submit:hover { background: var(--indigo-hover); transform: translateY(-1px); }
+  .btn-submit:active { transform: scale(0.98); }
+
+  .btn-reset {
+    width: 100%;
+    margin-top: 14px;
+    background: transparent;
+    color: var(--indigo-55);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-pill);
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--dur-default) var(--ease-default), color var(--dur-default) var(--ease-default);
+  }
+  .btn-reset:hover { border-color: var(--indigo); color: var(--indigo); }
+
+  /* Loading screen */
+  .loading {
+    text-align: center;
+    padding: 56px 20px;
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-card);
+  }
+  .spinner {
+    width: 44px; height: 44px;
+    border: 3px solid var(--indigo-08);
+    border-top-color: var(--apricot);
+    border-radius: 50%;
+    margin: 0 auto 22px;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+  .loading p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--indigo-70);
+  }
+
+  /* Email gate */
+  .email-card {
+    background: var(--indigo);
+    color: var(--paper);
+    border-radius: var(--radius-card);
+    padding: 36px 28px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .email-card::before {
+    content: ""; position: absolute;
+    top: -100px; right: -100px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--apricot-soft), transparent 65%);
+    pointer-events: none;
+  }
+  .email-icon {
+    font-size: 34px; margin-bottom: 12px; position: relative;
+  }
+  .email-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px; font-weight: 400; line-height: 1.2;
+    color: var(--paper);
+    margin-bottom: 10px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    position: relative;
+  }
+  .email-title em { font-style: italic; color: var(--apricot); font-weight: 500; }
+  .email-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--paper-70);
+    margin-bottom: 22px; line-height: 1.6;
+    position: relative;
+  }
+  .email-input {
+    background: var(--paper);
+    color: var(--indigo);
+    border: 1px solid transparent;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .email-input::placeholder { color: var(--indigo-55); }
+  .email-cta {
+    width: 100%;
+    background: var(--apricot);
+    color: var(--indigo);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 14px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--dur-default) var(--ease-default), transform var(--dur-fast) var(--ease-default);
+    position: relative;
+  }
+  .email-cta:hover { background: var(--apricot-hover); }
+  .email-cta:disabled { opacity: 0.6; cursor: default; }
+  .email-error {
+    color: #ffaa92;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    margin-top: 8px;
+    min-height: 16px;
+    position: relative;
+  }
+  .email-trust {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--paper-55);
+    margin-top: 14px;
+    position: relative;
+  }
+  .email-skip {
+    background: none;
+    border: none;
+    color: var(--paper-55);
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: color var(--dur-default) var(--ease-default);
+    position: relative;
+  }
+  .email-skip:hover { color: var(--paper); }
+
+  /* Recovery */
+  .recovery-card {
+    background: var(--good-bg);
+    border: 1px solid rgba(90, 122, 79, 0.3);
+    border-radius: var(--radius-card);
+    padding: 24px 22px;
+  }
+  .recovery-card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--good); margin-bottom: 8px;
+  }
+  .recovery-card-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px; line-height: 1.6; color: var(--indigo-70);
+  }
+
+  /* Risk banner (Pattern #7 for the overall) */
+  .risk-banner {
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-left: 4px solid var(--warn);
+    border-radius: var(--radius-card);
+    padding: 18px 22px;
+    margin-bottom: 18px;
+  }
+  .risk-banner.risk-lo { border-left-color: var(--good); background: var(--good-bg); }
+  .risk-banner.risk-mod { border-left-color: var(--warn); background: var(--warn-bg); }
+  .risk-banner.risk-hi { border-left-color: var(--risk); background: var(--risk-bg); }
+  .risk-lvl {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .risk-hl {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--indigo);
+  }
+
+  /* Three score boxes (Pattern #7 colors, smaller numerals since 3 stack horizontally) */
+  .score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .score-box {
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-card);
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .score-val {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    color: var(--indigo);
+  }
+  .score-val.sv-green { color: var(--good); }
+  .score-val.sv-amber { color: var(--warn); }
+  .score-val.sv-red   { color: var(--risk); }
+  .score-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--indigo-55);
+  }
+
+  .sec-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--apricot);
+    margin-bottom: 14px;
+  }
+
+  /* Issue rows */
+  .issue-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--indigo-08);
+  }
+  .issue-row:last-child { border-bottom: none; }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .dot.dr { background: var(--risk); }
+  .dot.da { background: var(--warn); }
+  .dot.dg { background: var(--good); }
+  .issue-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .issue-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--indigo-70);
+  }
+  .locked-row .locked-detail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--indigo-55);
+    filter: blur(3px);
+    line-height: 1.6;
+    margin-bottom: 8px;
+    user-select: none;
+  }
+  .lock-pill {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--apricot-soft);
+    color: var(--apricot);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+  }
+
+  .more-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+  .more-dots { display: flex; gap: 4px; }
+  .more-dots span {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--apricot);
+  }
+  .more-txt {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    color: var(--indigo-55);
+    font-style: italic;
+  }
+
+  /* Locked section preview rows */
+  .locked-section {
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-card);
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  .locked-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .locked-section-icon { font-size: 14px; }
+  .locked-section-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--indigo-55);
+    margin-left: 22px;
+  }
+
+  /* Paywall */
+  .paywall {
+    background: var(--indigo);
+    color: var(--paper);
+    border-radius: var(--radius-card);
+    padding: 32px 24px;
+    text-align: center;
+    margin-top: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .paywall::before {
+    content: ""; position: absolute;
+    top: -120px; right: -100px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--apricot-soft), transparent 65%);
+    pointer-events: none;
+  }
+  .pw-price-row {
+    position: relative;
+    display: flex; align-items: baseline; justify-content: center; gap: 2px;
+    margin-bottom: 4px;
+  }
+  .pw-price-currency {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--apricot);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+  .pw-price-big {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 78px;
+    line-height: 1;
+    color: var(--apricot);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+  .pw-price-once {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--paper-55);
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .pw-anchor {
+    background: var(--paper-10);
+    border: 1px solid var(--paper-12);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .pw-anchor-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--paper-55);
+    text-decoration: line-through;
+    text-decoration-color: rgba(194, 83, 58, 0.6);
+    margin-bottom: 6px;
+  }
+  .pw-anchor-now {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--paper);
+    line-height: 1.55;
+  }
+  .pw-anchor-now strong { color: var(--apricot); font-weight: 600; }
+  .paywall h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 400; line-height: 1.1;
+    color: var(--paper);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .paywall h2 em { font-style: italic; color: var(--apricot); font-weight: 500; }
+  .pw-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--paper-70);
+    margin-bottom: 20px;
+    line-height: 1.55;
+    position: relative;
+  }
+  .pw-feats {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 22px;
+    position: relative;
+    display: inline-block;
+  }
+  .pw-feats li {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--paper);
+    padding: 5px 0 5px 22px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .pw-feats li::before {
+    content: "✓";
+    position: absolute; left: 0; top: 5px;
+    color: var(--apricot);
+    font-weight: 700;
+  }
+  .btn-pay {
+    display: inline-block;
+    background: var(--apricot);
+    color: var(--indigo);
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    padding: 16px 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background var(--dur-default) var(--ease-default), transform var(--dur-fast) var(--ease-default);
+    box-shadow: 0 6px 20px rgba(232,148,100,0.3);
+    position: relative;
+  }
+  .btn-pay:hover { background: var(--apricot-hover); transform: translateY(-1px); }
+  .pw-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--paper-55);
+    margin-top: 12px;
+    position: relative;
+  }
+  .pw-trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+    position: relative;
+  }
+  .pw-trust-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--paper-55);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .pw-trust-item svg {
+    width: 12px; height: 12px;
+    color: var(--apricot);
+  }
+
+  /* Sticky CTA */
+  .sticky-cta {
+    position: fixed;
+    bottom: 16px; left: 16px; right: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--indigo);
+    color: var(--paper);
+    border-radius: var(--radius-pill);
+    padding: 12px 14px 12px 22px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 10px 36px rgba(45,48,104,0.32);
+    z-index: 99;
+  }
+  .sticky-cta.show { display: flex; }
+  .sticky-cta-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--paper); line-height: 1.3;
+    flex: 1; min-width: 0;
+  }
+  .sticky-cta-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--paper-55);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .sticky-cta-btn {
+    background: var(--apricot);
+    color: var(--indigo);
+    border-radius: var(--radius-pill);
+    padding: 10px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background var(--dur-default) var(--ease-default);
+  }
+  .sticky-cta-btn:hover { background: var(--apricot-hover); }
+  body.has-sticky { padding-bottom: 84px; }
+
+  /* Paid results */
+  .paid-banner {
+    background: var(--good-bg);
+    border: 1px solid rgba(90,122,79,0.25);
+    color: var(--good);
+    border-radius: var(--radius-card);
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .insight-box {
+    background: var(--apricot-soft);
+    border-left: 3px solid var(--apricot);
+    border-radius: 0 12px 12px 0;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .ins-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--apricot);
+    margin-bottom: 6px;
+  }
+  .ins-txt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--indigo);
+    font-weight: 500;
+  }
+
+  .qw-box {
+    background: var(--good-bg);
+    border-left: 3px solid var(--good);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .qw-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--good);
+    margin-bottom: 12px;
+  }
+  .win-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+  }
+  .win-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--apricot);
+    color: var(--indigo);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .win-txt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--indigo);
+  }
+  .wins-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--good);
+    font-weight: 500;
+    margin-top: 10px;
+  }
+
+  .act-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--indigo-08);
+  }
+  .act-row:last-child { border-bottom: none; }
+  .act-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--indigo);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .act-pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+  .act-pill.pw { background: var(--risk-bg); color: var(--risk); }
+  .act-pill.pm { background: var(--warn-bg); color: var(--warn); }
+  .act-pill.po { background: var(--indigo-08); color: var(--indigo-70); }
+  .act-txt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--indigo);
+  }
+
+  .dl-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--indigo-08);
+  }
+  .dl-row:last-child { border-bottom: none; }
+  .dl-date {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 500;
+    font-size: 14px;
+    min-width: 95px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+  .dl-date.dl-r { color: var(--risk); }
+  .dl-date.dl-a { color: var(--warn); }
+  .dl-date.dl-n { color: var(--indigo); }
+  .dl-evt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--indigo-70);
+  }
+
+  .bottom-line {
+    background: var(--apricot-soft);
+    border-left: 3px solid var(--apricot);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--indigo);
+    font-weight: 500;
+  }
+
+  .disc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--indigo-55);
+    font-style: italic;
+    line-height: 1.6;
+    padding: 12px 14px;
+    background: var(--paper);
+    border-radius: 10px;
+    margin-top: 12px;
+    border: 1px solid var(--indigo-08);
+  }
+
+  /* PDF download button */
+  #pdf-btn {
+    background: var(--indigo) !important;
+    color: var(--paper) !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+  #pdf-btn:hover { background: var(--indigo-hover) !important; }
+
+  /* SEO content block at the bottom */
+  .seo-block {
+    background: var(--paper);
+    border-top: 1px solid var(--indigo-08);
+    padding: 64px 24px 72px;
+  }
+  .seo-inner { max-width: 760px; margin: 0 auto; }
+  .seo-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--indigo);
+    margin-bottom: 8px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    line-height: 1.15;
+  }
+  .seo-h2 em { font-style: italic; color: var(--apricot); font-weight: 500; }
+  .seo-lead {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--indigo-70);
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .seo-card {
+    background: var(--cream);
+    border: 1px solid var(--indigo-08);
+    border-radius: var(--radius-card);
+    padding: 20px;
+  }
+  .seo-card-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--apricot);
+    margin-bottom: 6px;
+  }
+  .seo-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    line-height: 1.2;
+  }
+  .seo-card-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--indigo-70);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    nav { padding: 13px 18px; }
+    .wrap { padding: 32px 18px 80px; }
+  }
 </style>
 </head>
 <body>
 <nav>
   <a href="/" class="logo">
-    <div class="logo-icon">
-      <svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <span class="logo-text">SideHustle<span>Guard</span></span>
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-base">SideHustle</span><span class="logo-accent">guard</span>
+    </span>
   </a>
   <a href="/" class="nav-back">← Back</a>
 </nav>
@@ -345,10 +1110,10 @@ body.has-sticky { padding-bottom: 70px; }
     </div>
   </div>
 
-  <!-- EMAIL GATE — shown between loading and free results -->
+  <!-- EMAIL GATE -->
   <div id="vemail" class="hidden">
     <div class="email-card">
-      <div class="email-icon">📩</div>
+      <div class="email-icon">✉</div>
       <div class="email-title">Where should we send your <em>report?</em></div>
       <div class="email-sub">We'll email your full check now so you can come back to it. Plus a 7-day series with the deductions and deadlines for your specific hustle.</div>
       <input type="email" id="email-input" class="email-input" placeholder="you@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')submitEmail()">
@@ -359,7 +1124,7 @@ body.has-sticky { padding-bottom: 70px; }
     </div>
   </div>
 
-  <!-- POST-PAYMENT, NO SAVED DATA: ask user to re-enter answers -->
+  <!-- RECOVERY -->
   <div id="vrecover" class="hidden">
     <div class="recovery-card">
       <div class="recovery-card-title">✓ Payment received</div>
@@ -385,7 +1150,6 @@ body.has-sticky { padding-bottom: 70px; }
       </div>
     </div>
 
-    <!-- Locked sections preview — concrete, scannable list of what's missing -->
     <div class="locked-section">
       <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Personalized action plan</div>
       <div class="locked-section-sub">6 prioritized steps — what to do this week, this month, ongoing</div>
@@ -443,7 +1207,7 @@ body.has-sticky { padding-bottom: 70px; }
     <button class="btn-reset" onclick="reset()">Start over</button>
   </div>
 
-  <!-- STICKY BOTTOM CTA — visible only on free results screen -->
+  <!-- STICKY BOTTOM CTA -->
   <div id="sticky-cta" class="sticky-cta">
     <div class="sticky-cta-text">
       Your full report is locked
@@ -456,9 +1220,8 @@ body.has-sticky { padding-bottom: 70px; }
   <div id="vpaid" class="hidden">
     <div class="paid-banner">✓ Full report unlocked — here's everything we found.</div>
 
-    <!-- Download button -->
-    <button onclick="downloadPDF()" id="pdf-btn" style="width:100%;padding:13px;background:var(--navy);color:var(--white);border:none;border-radius:100px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s" onmouseover="this.style.background='#243459'" onmouseout="this.style.background='var(--navy)'">
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M7.5 10l-3-3M7.5 10l3-3M2 13h11" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <button onclick="downloadPDF()" id="pdf-btn" style="width:100%;padding:13px;border:none;border-radius:100px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M7.5 10l-3-3M7.5 10l3-3M2 13h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Download PDF report
     </button>
     <div id="paid-banner" class="risk-banner"></div>
@@ -478,16 +1241,16 @@ body.has-sticky { padding-bottom: 70px; }
     <div class="card">
       <div class="sec-lbl">Tax reality</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-        <div style="background:var(--red-bg);border-radius:8px;padding:12px">
-          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:.08em;margin-bottom:4px">EFFECTIVE RATE</div>
-          <div style="font-size:20px;font-weight:700;color:var(--red);font-family:'Playfair Display',serif" id="p-rate">—</div>
+        <div style="background:var(--risk-bg);border-radius:10px;padding:14px">
+          <div style="font-family:'Inter',sans-serif;font-size:9px;font-weight:700;color:var(--indigo-55);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Effective rate</div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:24px;color:var(--risk);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30" id="p-rate">—</div>
         </div>
-        <div style="background:var(--amber-bg);border-radius:8px;padding:12px">
-          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:.08em;margin-bottom:4px">EST. OWED</div>
-          <div style="font-size:16px;font-weight:700;color:var(--amber);font-family:'Playfair Display',serif" id="p-owed">—</div>
+        <div style="background:var(--warn-bg);border-radius:10px;padding:14px">
+          <div style="font-family:'Inter',sans-serif;font-size:9px;font-weight:700;color:var(--indigo-55);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Est. owed</div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:20px;color:var(--warn);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30" id="p-owed">—</div>
         </div>
       </div>
-      <div style="font-size:13px;color:var(--muted);line-height:1.6" id="p-tax-note"></div>
+      <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--indigo-70);line-height:1.6" id="p-tax-note"></div>
     </div>
     <div class="card">
       <div class="sec-lbl">What you're doing right</div>
@@ -503,36 +1266,30 @@ body.has-sticky { padding-bottom: 70px; }
     </div>
     <div class="bottom-line" id="p-closing"></div>
 
-    <!-- Northwest Affiliate — bold single placement -->
-    <div style="background:var(--navy);border-radius:16px;overflow:hidden;margin-top:14px">
-      <!-- Gold top accent -->
-      <div style="height:3px;background:var(--gold)"></div>
-      <div style="padding:28px 24px">
-        <!-- Label -->
-        <div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px">Recommended next step</div>
-        <!-- Headline -->
-        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px">
-          Ready to form your LLC? <span style="color:var(--gold-lt)">Don't overpay.</span>
+    <!-- Northwest Affiliate -->
+    <div style="background:var(--indigo);border-radius:18px;overflow:hidden;margin-top:14px;position:relative">
+      <div style="position:absolute;top:-100px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--apricot-soft),transparent 65%);pointer-events:none"></div>
+      <div style="padding:28px 24px;position:relative">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--apricot);text-transform:uppercase;margin-bottom:10px">★ Recommended next step</div>
+        <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--paper);line-height:1.15;margin-bottom:10px;font-variation-settings:'opsz' 144,'SOFT' 30">
+          Ready to form your LLC? <em style="font-style:italic;color:var(--apricot);font-weight:500">Don't overpay.</em>
         </div>
-        <!-- Body -->
-        <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:18px;font-weight:300">
+        <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:var(--paper-70);line-height:1.65;margin-bottom:18px">
           Northwest Registered Agent is the straightforward option — flat fee, no upsells, keeps your personal address off public records, and handles all the paperwork. Used by thousands of small business owners.
         </div>
-        <!-- Feature pills -->
         <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px">
-          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ Address privacy</span>
-          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ All 50 states</span>
-          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ Registered agent included</span>
-          <span style="font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:4px 11px;border-radius:100px">✓ No hidden fees</span>
+          <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(251,248,238,0.78);background:rgba(251,248,238,0.1);padding:5px 11px;border-radius:100px">✓ Address privacy</span>
+          <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(251,248,238,0.78);background:rgba(251,248,238,0.1);padding:5px 11px;border-radius:100px">✓ All 50 states</span>
+          <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(251,248,238,0.78);background:rgba(251,248,238,0.1);padding:5px 11px;border-radius:100px">✓ Registered agent included</span>
+          <span style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(251,248,238,0.78);background:rgba(251,248,238,0.1);padding:5px 11px;border-radius:100px">✓ No hidden fees</span>
         </div>
-        <!-- CTA button — full width, gold -->
         <a href="https://tidd.ly/3QEBTKc" target="_blank" rel="noopener sponsored"
-           style="display:block;width:100%;padding:15px;background:var(--gold);color:var(--white);border-radius:100px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;text-align:center;text-decoration:none;transition:all .15s;letter-spacing:.01em"
-           onmouseover="this.style.background='var(--gold-lt)'"
-           onmouseout="this.style.background='var(--gold)'">
+           style="display:block;width:100%;padding:15px;background:var(--apricot);color:var(--indigo);border-radius:100px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;text-align:center;text-decoration:none;transition:background var(--dur-default)"
+           onmouseover="this.style.background='var(--apricot-hover)'"
+           onmouseout="this.style.background='var(--apricot)'">
           Form my LLC with Northwest →
         </a>
-        <div style="font-size:10px;color:rgba(255,255,255,.22);text-align:center;margin-top:10px">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;color:var(--paper-55);text-align:center;margin-top:10px">
           Affiliate link — we may earn a commission at no extra cost to you
         </div>
       </div>
@@ -552,7 +1309,6 @@ let currentSessionId = null;
 function pick(k,el,v){
   el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
   el.classList.add('sel'); A[k]=v;
-  // If user picked a non-Other type, hide and clear the custom input
   if (k === 'type') {
     const other = id('type-other');
     if (other) { other.classList.add('hidden'); other.value=''; }
@@ -565,7 +1321,6 @@ function pickOther(el){
   const inp = id('type-other');
   inp.classList.remove('hidden');
   inp.focus();
-  // If they don't type anything, A.type is just "Other"
   A.type = inp.value.trim() ? `Other — ${inp.value.trim()}` : 'Other';
   updprog();
 }
@@ -586,7 +1341,6 @@ function sc(v){ const l=(v||'').toLowerCase(); return l.includes('good')||l.incl
 function id(x){ return document.getElementById(x); }
 function show(x){
   ['vform','vload','vfree','vpaid','vrecover','vemail'].forEach(v=>id(v).classList.toggle('hidden',v!==x));
-  // Sticky CTA only shows on free results
   const sticky = id('sticky-cta');
   if (sticky) {
     if (x === 'vfree') { sticky.classList.add('show'); document.body.classList.add('has-sticky'); }
@@ -612,7 +1366,7 @@ async function callCheck(answers, sessionId){
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'API error');
-  return data; // { tier, report }
+  return data;
 }
 
 async function run(){
@@ -623,7 +1377,6 @@ async function run(){
   show('vload');
 
   const answers = collectAnswers();
-  // Always save answers so a Stripe round-trip can pick them back up
   localStorage.setItem('shg_answers', JSON.stringify(answers));
 
   try {
@@ -632,7 +1385,6 @@ async function run(){
     if (data.tier === 'paid') {
       renderPaid(saved);
     } else {
-      // Free path: show email gate before results
       showEmailGate();
     }
   } catch(e){
@@ -643,7 +1395,6 @@ async function run(){
 }
 
 function showEmailGate(){
-  // Reset state in case user came back from a prior run
   const inp = id('email-input'); if (inp) inp.value = '';
   const err = id('email-error'); if (err) err.textContent = '';
   const cta = id('email-cta'); if (cta) { cta.disabled = false; cta.textContent = 'Send me my report →'; }
@@ -665,7 +1416,6 @@ async function submitEmail(){
   cta.disabled = true;
   cta.textContent = 'Sending…';
   try {
-    // Best-effort — if Kit hiccups, we still let the user see their report.
     await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -682,7 +1432,7 @@ function skipEmail(){
 }
 
 function riskClass(rl){ return {Low:'risk-lo',Moderate:'risk-mod',High:'risk-hi'}[rl]||'risk-mod'; }
-function riskColor(rl){ return {Low:'var(--green)',Moderate:'var(--amber)',High:'var(--red)'}[rl]||'var(--amber)'; }
+function riskColor(rl){ return {Low:'var(--good)',Moderate:'var(--warn)',High:'var(--risk)'}[rl]||'var(--warn)'; }
 function dotClass(s){ return {red:'dr',amber:'da',green:'dg'}[s]||'da'; }
 function pillClass(t){ return {'This week':'pw','This month':'pm','Ongoing':'po'}[t]||'po'; }
 function dlClass(u){ return {red:'dl-r',amber:'dl-a',navy:'dl-n'}[u]||'dl-n'; }
@@ -697,13 +1447,10 @@ function renderFree(r){
   setS('s-tax',r.tax_status); setS('s-str',r.structure_status); setS('s-com',r.compliance_status);
 
   const issues=(r.issues||[]);
-  // Render up to 3 issues. Green issues show full detail (good news).
-  // Red/amber show blurred placeholder text + lock pill.
   const top=issues.slice(0,3);
   id('free-issues').innerHTML = top.map(i => {
     const isLocked = i.status !== 'green';
     if (isLocked) {
-      // Server returns detail:null for locked items; show plausible-looking blur
       const fakeBlur = 'This issue affects your tax filings and may expose you to penalties at your income level. The full report explains exactly what to do and when.';
       return `<div class="issue-row locked-row">
         <div class="dot ${dotClass(i.status)}"></div>
@@ -750,7 +1497,7 @@ function renderPaid(r){
   id('p-rate').textContent=r.tax_rate||'—';
   id('p-owed').textContent=r.tax_owed_est||'—';
   id('p-tax-note').textContent=r.tax_note||'';
-  id('p-working').innerHTML=(r.working||[]).map(w=>`<div class="issue-row"><div style="color:var(--green);font-weight:700;font-size:13px;flex-shrink:0">✓</div><div class="issue-body" style="color:var(--navy)">${w}</div></div>`).join('');
+  id('p-working').innerHTML=(r.working||[]).map(w=>`<div class="issue-row"><div style="color:var(--good);font-weight:700;font-size:13px;flex-shrink:0">✓</div><div class="issue-body" style="color:var(--indigo)">${w}</div></div>`).join('');
   id('p-actions').innerHTML=(r.action_plan||[]).map((a,i)=>`<div class="act-row"><div class="act-num">${i+1}</div><span class="act-pill ${pillClass(a.timeline)}">${a.timeline}</span><div class="act-txt">${a.step}</div></div>`).join('');
   id('p-deadlines').innerHTML=(r.deadlines||[]).map(d=>`<div class="dl-row"><div class="dl-date ${dlClass(d.urgency)}">${d.date}</div><div class="dl-evt">${d.event}</div></div>`).join('');
   id('p-closing').textContent=r.closing||'';
@@ -770,95 +1517,98 @@ function downloadPDF() {
 
 function buildPrintHTML(r) {
   const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const riskColor = {Low:'#276944',Moderate:'#a86c0a',High:'#b83232'};
-  const riskBg    = {Low:'#eaf5ef',Moderate:'#fef6e8',High:'#fdf0f0'};
-  const dotCls    = {red:'#b83232',amber:'#a86c0a',green:'#276944'};
-  const tlColor   = {'This week':'#b83232','This month':'#a86c0a','Ongoing':'#1c2b4a'};
-  const tlBg      = {'This week':'#fdf0f0','This month':'#fef6e8','Ongoing':'#edf0f7'};
-  const dlColor   = {red:'#b83232',amber:'#a86c0a',navy:'#1c2b4a'};
-  const rc = riskColor[r.risk_level]||'#a86c0a';
+  // Direction E palette (indigo + apricot + cream/paper, moss/warn/clay status)
+  const riskColor = {Low:'#5a7a4f',Moderate:'#c98a3a',High:'#c2533a'};
+  const riskBg    = {Low:'#eaf5ef',Moderate:'#fef6e8',High:'#fbe9e9'};
+  const dotCls    = {red:'#c2533a',amber:'#c98a3a',green:'#5a7a4f'};
+  const tlColor   = {'This week':'#c2533a','This month':'#c98a3a','Ongoing':'#2d3068'};
+  const tlBg      = {'This week':'#fbe9e9','This month':'#fef6e8','Ongoing':'rgba(45,48,104,0.08)'};
+  const dlColor   = {red:'#c2533a',amber:'#c98a3a',navy:'#2d3068'};
+  const rc = riskColor[r.risk_level]||'#c98a3a';
   const rb = riskBg[r.risk_level]||'#fef6e8';
 
   const issues = (r.issues||[]).map(i=>`
-    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e2e6ef">
-      <div style="width:7px;height:7px;border-radius:50%;background:${dotCls[i.status]||'#a86c0a'};flex-shrink:0;margin-top:5px"></div>
-      <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;color:#1c2b4a">${esc(i.title)}</div>
-      <div style="font-size:12px;color:#6b7a96;line-height:1.5">${esc(i.detail)}</div></div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(45,48,104,0.08)">
+      <div style="width:7px;height:7px;border-radius:50%;background:${dotCls[i.status]||'#c98a3a'};flex-shrink:0;margin-top:5px"></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;color:#2d3068">${esc(i.title)}</div>
+      <div style="font-size:12px;color:rgba(45,48,104,0.7);line-height:1.5">${esc(i.detail)}</div></div>
     </div>`).join('');
 
   const wins = (r.quick_wins||[]).map((w,i)=>`
     <div style="display:flex;align-items:center;gap:10px;padding:5px 0">
-      <div style="width:20px;height:20px;border-radius:50%;background:#c9973a;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
-      <div style="font-size:13px;font-weight:500;color:#1c2b4a">${esc(w)}</div>
+      <div style="width:20px;height:20px;border-radius:50%;background:#e89464;color:#2d3068;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <div style="font-size:13px;font-weight:500;color:#2d3068">${esc(w)}</div>
     </div>`).join('');
 
   const working = (r.working||[]).map(w=>`
-    <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #e2e6ef">
-      <div style="color:#276944;font-weight:700;font-size:14px;flex-shrink:0;line-height:1.4">•</div>
-      <div style="font-size:13px;color:#1c2b4a;line-height:1.5">${esc(w)}</div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(45,48,104,0.08)">
+      <div style="color:#5a7a4f;font-weight:700;font-size:14px;flex-shrink:0;line-height:1.4">•</div>
+      <div style="font-size:13px;color:#2d3068;line-height:1.5">${esc(w)}</div>
     </div>`).join('');
 
   const actions = (r.action_plan||[]).map((a,i)=>`
-    <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid #e2e6ef">
-      <div style="width:20px;height:20px;border-radius:50%;background:#1c2b4a;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
-      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;background:${tlBg[a.timeline]||'#edf0f7'};color:${tlColor[a.timeline]||'#1c2b4a'}">${esc(a.timeline)}</span>
-      <div style="font-size:13px;color:#1c2b4a;line-height:1.5">${esc(a.step)}</div>
+    <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(45,48,104,0.08)">
+      <div style="width:20px;height:20px;border-radius:50%;background:#2d3068;color:#fbf8ee;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+      <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;background:${tlBg[a.timeline]||'rgba(45,48,104,0.08)'};color:${tlColor[a.timeline]||'#2d3068'}">${esc(a.timeline)}</span>
+      <div style="font-size:13px;color:#2d3068;line-height:1.5">${esc(a.step)}</div>
     </div>`).join('');
 
   const deadlines = (r.deadlines||[]).map(d=>`
-    <div style="display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e6ef">
-      <div style="font-size:12px;font-weight:600;min-width:95px;color:${dlColor[d.urgency]||'#1c2b4a'}">${esc(d.date)}</div>
-      <div style="font-size:13px;color:#6b7a96">${esc(d.event)}</div>
+    <div style="display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(45,48,104,0.08)">
+      <div style="font-family:'Fraunces',serif;font-style:italic;font-size:13px;font-weight:500;min-width:95px;color:${dlColor[d.urgency]||'#2d3068'}">${esc(d.date)}</div>
+      <div style="font-size:13px;color:rgba(45,48,104,0.7)">${esc(d.event)}</div>
     </div>`).join('');
 
   return `<!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>SideHustleGuard Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,0..100;1,9..144,400..600,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;color:#1c2b4a;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Inter',sans-serif;color:#2d3068;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .page{max-width:720px;margin:0 auto;padding:0}
-.hdr{background:#1c2b4a;padding:18px 36px;display:flex;align-items:center;justify-content:space-between}
+.hdr{background:#2d3068;padding:18px 36px;display:flex;align-items:center;justify-content:space-between}
 .hdr-logo{display:flex;align-items:center;gap:10px}
-.hdr-wordmark{font-size:16px;font-weight:700;color:#fff}
-.hdr-wordmark span{color:#c9973a}
-.hdr-badge{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 12px}
-.strip{background:#f0ece3;border-bottom:1px solid #e2e6ef;padding:10px 36px;display:flex;gap:32px}
+.hdr-wordmark{font-size:16px;font-weight:600;color:#fbf8ee}
+.hdr-wordmark span{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:#e89464}
+.hdr-badge{font-size:11px;font-weight:600;color:rgba(251,248,238,0.7);background:rgba(251,248,238,0.1);border:1px solid rgba(251,248,238,0.2);border-radius:100px;padding:5px 12px}
+.strip{background:#f0ece1;border-bottom:1px solid rgba(45,48,104,0.08);padding:10px 36px;display:flex;gap:32px}
 .strip-item{display:flex;flex-direction:column;gap:3px}
-.strip-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:#6b7a96;text-transform:uppercase}
+.strip-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:rgba(45,48,104,0.55);text-transform:uppercase}
 .strip-val{font-size:13px;font-weight:600}
-.gold-bar{height:3px;background:#c9973a}
+.apricot-bar{height:3px;background:#e89464}
 .body{padding:28px 36px 40px}
-.sec-head{font-size:9px;font-weight:600;letter-spacing:.12em;color:#c9973a;text-transform:uppercase;margin-bottom:6px;margin-top:22px;padding-bottom:6px;border-bottom:1px solid #e2e6ef}
+.sec-head{font-size:9px;font-weight:600;letter-spacing:.14em;color:#e89464;text-transform:uppercase;margin-bottom:6px;margin-top:22px;padding-bottom:6px;border-bottom:1px solid rgba(45,48,104,0.08)}
 .sec-head:first-child{margin-top:0}
-.card{background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:16px;margin-bottom:12px}
-.risk-card{border-left:4px solid ${rc};background:${rb};border-radius:10px;padding:14px 18px;margin-bottom:16px}
-.risk-lvl{font-size:9px;font-weight:600;letter-spacing:.1em;color:${rc};margin-bottom:4px;text-transform:uppercase}
-.risk-hl{font-size:13px;font-weight:500;line-height:1.5;color:#1c2b4a}
-.insight{background:#f0ece3;border-left:3px solid #c9973a;border-radius:8px;padding:12px 16px;margin-bottom:12px}
-.ins-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;color:#c9973a;margin-bottom:4px;text-transform:uppercase}
-.ins-txt{font-size:13px;font-weight:500;line-height:1.6;color:#1c2b4a}
-.qw{background:#eaf5ef;border-left:3px solid #276944;border-radius:8px;padding:14px 16px;margin-bottom:12px}
-.qw-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;color:#276944;margin-bottom:10px;text-transform:uppercase}
-.wins-note{font-size:12px;color:#276944;font-weight:500;margin-top:10px}
+.card{background:#fff;border:1px solid rgba(45,48,104,0.08);border-radius:12px;padding:16px;margin-bottom:12px}
+.risk-card{border-left:4px solid ${rc};background:${rb};border-radius:0 12px 12px 0;padding:14px 18px;margin-bottom:16px}
+.risk-lvl{font-size:9px;font-weight:700;letter-spacing:.14em;color:${rc};margin-bottom:4px;text-transform:uppercase}
+.risk-hl{font-size:13px;font-weight:500;line-height:1.5;color:#2d3068}
+.insight{background:rgba(232,148,100,0.18);border-left:3px solid #e89464;border-radius:0 12px 12px 0;padding:12px 16px;margin-bottom:12px}
+.ins-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;color:#e89464;margin-bottom:4px;text-transform:uppercase}
+.ins-txt{font-size:13px;font-weight:500;line-height:1.6;color:#2d3068}
+.qw{background:#eaf5ef;border-left:3px solid #5a7a4f;border-radius:0 12px 12px 0;padding:14px 16px;margin-bottom:12px}
+.qw-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;color:#5a7a4f;margin-bottom:10px;text-transform:uppercase}
+.wins-note{font-size:12px;color:#5a7a4f;font-weight:500;margin-top:10px}
 .tax-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.tax-box{border-radius:8px;padding:14px}
-.tax-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;color:#9aa3b5;margin-bottom:6px;text-transform:uppercase}
-.tax-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700}
-.tax-note-txt{font-size:12px;color:#6b7a96;line-height:1.6;margin-top:10px}
-.closing{background:#f0ece3;border-left:3px solid #c9973a;border-radius:8px;padding:14px 16px;font-size:13px;font-weight:500;line-height:1.65;color:#1c2b4a;margin-bottom:12px}
-.nw{background:#1c2b4a;border-radius:14px;overflow:hidden;margin-bottom:12px}
-.nw-accent{height:3px;background:#c9973a}
+.tax-box{border-radius:10px;padding:14px}
+.tax-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;color:rgba(45,48,104,0.55);margin-bottom:6px;text-transform:uppercase}
+.tax-val{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:26px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.tax-note-txt{font-size:12px;color:rgba(45,48,104,0.7);line-height:1.6;margin-top:10px}
+.closing{background:rgba(232,148,100,0.18);border-left:3px solid #e89464;border-radius:0 12px 12px 0;padding:14px 16px;font-size:13px;font-weight:500;line-height:1.65;color:#2d3068;margin-bottom:12px}
+.nw{background:#2d3068;border-radius:14px;overflow:hidden;margin-bottom:12px;position:relative}
+.nw-accent{height:3px;background:#e89464}
 .nw-body{padding:22px 24px}
-.nw-label{font-size:9px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:8px}
-.nw-head{font-family:'Playfair Display',serif;font-size:19px;color:#fff;line-height:1.2;margin-bottom:8px}
-.nw-head span{color:#ddb06a}
-.nw-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:14px}
+.nw-label{font-size:9px;font-weight:600;letter-spacing:.14em;color:#e89464;text-transform:uppercase;margin-bottom:8px}
+.nw-head{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:#fbf8ee;line-height:1.2;margin-bottom:8px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.nw-head span{font-style:italic;color:#e89464;font-weight:500}
+.nw-desc{font-size:12px;color:rgba(251,248,238,0.7);line-height:1.65;margin-bottom:14px}
 .nw-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.nw-pill{font-size:10px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:3px 10px;border-radius:100px}
-.nw-btn{display:block;padding:13px;background:#c9973a;color:#fff;border-radius:100px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;text-align:center;text-decoration:none}
-.nw-disc{font-size:10px;color:rgba(255,255,255,.22);text-align:center;margin-top:8px}
-.disc{font-size:10px;color:#9aa3b5;font-style:italic;line-height:1.6;padding:10px 14px;background:#f0ece3;border-radius:8px;margin-top:4px}
+.nw-pill{font-size:10px;color:rgba(251,248,238,0.78);background:rgba(251,248,238,0.1);padding:3px 10px;border-radius:100px}
+.nw-btn{display:block;padding:13px;background:#e89464;color:#2d3068;border-radius:100px;font-size:14px;font-weight:700;font-family:'Inter',sans-serif;text-align:center;text-decoration:none}
+.nw-disc{font-size:10px;color:rgba(251,248,238,0.5);text-align:center;margin-top:8px}
+.disc{font-size:10px;color:rgba(45,48,104,0.55);font-style:italic;line-height:1.6;padding:10px 14px;background:#f0ece1;border-radius:8px;margin-top:4px}
 @media print{
   body{font-size:11px}
   .page{max-width:100%}
@@ -869,12 +1619,16 @@ body{font-family:'DM Sans',sans-serif;color:#1c2b4a;background:#fff;-webkit-prin
 <div class="page">
   <div class="hdr">
     <div class="hdr-logo">
-      <svg width="24" height="28" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="hdr-wordmark">SideHustle<span>Guard</span></div>
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <path d="M6 30 Q24 4 42 30" stroke="#fbf8ee" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#fbf8ee"/>
+      </svg>
+      <div class="hdr-wordmark">SideHustle<span>guard</span></div>
     </div>
     <div class="hdr-badge">Compliance &amp; Tax Report</div>
   </div>
-  <div class="gold-bar"></div>
+  <div class="apricot-bar"></div>
   <div class="strip">
     <div class="strip-item"><div class="strip-label">Overall Risk</div><div class="strip-val" style="color:${rc}">${esc(r.risk_level||'Moderate').toUpperCase()}</div></div>
     <div class="strip-item"><div class="strip-label">Report Type</div><div class="strip-val">Tax &amp; Compliance</div></div>
@@ -893,8 +1647,8 @@ body{font-family:'DM Sans',sans-serif;color:#1c2b4a;background:#fff;-webkit-prin
     <div class="card" style="padding:4px 14px">${issues}</div>
     <div class="sec-head">Tax reality</div>
     <div class="tax-grid">
-      <div class="tax-box" style="background:#fdf0f0"><div class="tax-lbl">Effective Rate</div><div class="tax-val" style="color:#b83232">${esc(r.tax_rate||'—')}</div></div>
-      <div class="tax-box" style="background:#fef6e8"><div class="tax-lbl">Est. Tax Owed</div><div class="tax-val" style="color:#a86c0a;font-size:22px">${esc(r.tax_owed_est||'—')}</div></div>
+      <div class="tax-box" style="background:#fbe9e9"><div class="tax-lbl">Effective Rate</div><div class="tax-val" style="color:#c2533a">${esc(r.tax_rate||'—')}</div></div>
+      <div class="tax-box" style="background:#fef6e8"><div class="tax-lbl">Est. Tax Owed</div><div class="tax-val" style="color:#c98a3a;font-size:22px">${esc(r.tax_owed_est||'—')}</div></div>
     </div>
     ${r.tax_note?`<div class="tax-note-txt">${esc(r.tax_note)}</div>`:''}
     <div class="sec-head">What you're doing right</div>
@@ -907,7 +1661,7 @@ body{font-family:'DM Sans',sans-serif;color:#1c2b4a;background:#fff;-webkit-prin
     <div class="nw">
       <div class="nw-accent"></div>
       <div class="nw-body">
-        <div class="nw-label">Recommended next step</div>
+        <div class="nw-label">★ Recommended next step</div>
         <div class="nw-head">Ready to form your LLC? <span>Don't overpay.</span></div>
         <div class="nw-desc">Northwest Registered Agent is the straightforward option — flat fee, no upsells, keeps your personal address off public records, and handles all the paperwork.</div>
         <div class="nw-pills"><span class="nw-pill">✓ Address privacy</span><span class="nw-pill">✓ All 50 states</span><span class="nw-pill">✓ Registered agent included</span><span class="nw-pill">✓ No hidden fees</span></div>
@@ -940,7 +1694,6 @@ function repopulateForm(answers) {
   A = { type: answers.type||'', income: answers.income||'', bank: answers.bank||'', reg: answers.reg||'', extras: Array.isArray(answers.extras)?answers.extras:[] };
   id('desc').value = answers.desc || '';
   id('state').value = answers.state || '';
-  // Restore "Other — …" custom input if present
   if (A.type && A.type.startsWith('Other')) {
     const other = id('type-other');
     if (other) {
@@ -948,7 +1701,6 @@ function repopulateForm(answers) {
       other.value = A.type.replace(/^Other\s*—\s*/, '');
     }
   }
-  // Highlight selected single-pick options
   document.querySelectorAll('.opts').forEach(opts => {
     opts.querySelectorAll('.opt').forEach(o => {
       const txt = o.textContent.trim();
@@ -966,21 +1718,17 @@ function repopulateForm(answers) {
 }
 
 function goToFormWithSession() {
-  // Keep currentSessionId set; user re-enters answers and clicks "Check my hustle"
   show('vform');
 }
 
-// Wire up Pay buttons: persist answers + intent before redirecting to Stripe
 function attachPayHandlers() {
   const onPayClick = (e) => {
     try {
       const answers = collectAnswers();
-      // Only persist if we actually have answers (the user is on the free results screen)
       if (answers.type || answers.desc) {
         localStorage.setItem('shg_answers', JSON.stringify(answers));
       }
     } catch(_) {}
-    // Let the link do its thing
   };
   ['stripe-btn','sticky-cta-btn'].forEach(eid => {
     const el = id(eid);
@@ -991,7 +1739,6 @@ function attachPayHandlers() {
 function preselectFromQuery(params) {
   const type = params.get('type');
   if (!type) return;
-  // Find a Q1 option whose onclick string contains this type, and click it
   const q1 = document.querySelector('.card .opts');
   if (!q1) return;
   const opts = q1.querySelectorAll('.opt');
@@ -1002,7 +1749,6 @@ function preselectFromQuery(params) {
       return;
     }
   }
-  // No exact match → treat as "Other" with custom text
   const otherOpt = Array.from(opts).find(o => (o.getAttribute('onclick') || '').includes('pickOther'));
   if (otherOpt) {
     otherOpt.click();
@@ -1020,7 +1766,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(location.search);
   const sessionId = params.get('session_id');
 
-  // Legacy: ?paid=true used to bypass the paywall — strip it, send to form
   if (params.get('paid') === 'true' && !sessionId) {
     history.replaceState({}, '', location.pathname);
     show('vform');
@@ -1029,7 +1774,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   if (sessionId) {
     currentSessionId = sessionId;
-    // Validate format quickly to avoid hitting the API with junk
     if (!/^cs_(test|live)_[A-Za-z0-9_]+$/.test(sessionId)) {
       history.replaceState({}, '', location.pathname);
       show('vform');
@@ -1038,8 +1782,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const savedAns = localStorage.getItem('shg_answers');
     if (!savedAns) {
-      // We have payment but no answers (different device / cleared cache).
-      // Show the recovery panel; their session_id will be reused on submit.
       localStorage.setItem('shg_session', sessionId);
       show('vrecover');
       return;
@@ -1053,7 +1795,6 @@ window.addEventListener('DOMContentLoaded', async () => {
       show('vload');
       const data = await callCheck(answers, sessionId);
       if (data.tier !== 'paid') {
-        // Stripe didn't validate — show free + a banner explaining
         saved = data.report;
         renderFree(saved);
         alert("We couldn't verify your payment. If you just paid, please refresh in a moment. Otherwise, contact richard@sidehustleguard.com.");
@@ -1061,7 +1802,6 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
       saved = data.report;
       renderPaid(saved);
-      // Keep session_id & answers around so refresh still works (paid users can revisit)
     } catch(e) {
       console.error('Paid flow failed:', e);
       show('vform');
@@ -1070,7 +1810,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Restore session_id from localStorage if user came back without query string
   const stashedSession = localStorage.getItem('shg_session');
   if (stashedSession && /^cs_(test|live)_[A-Za-z0-9_]+$/.test(stashedSession)) {
     currentSessionId = stashedSession;
@@ -1081,48 +1820,48 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 </script>
 
-<!-- SEO content block — below the interactive tool, indexed by Google -->
-<div style="background:#f0ece3;border-top:1px solid #e2e6ef;padding:56px 20px 64px">
-  <div style="max-width:700px;margin:0 auto">
-    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#1c2b4a;margin-bottom:8px">What does the free side hustle checker cover?</h2>
-    <p style="font-size:15px;color:#6b7a96;margin-bottom:36px;font-weight:300">Answer 8 questions about your hustle — income, type, state, and structure — and the checker evaluates six compliance areas instantly.</p>
+<!-- SEO content block — below the tool, indexed by Google -->
+<div class="seo-block">
+  <div class="seo-inner">
+    <h2 class="seo-h2">What does the free side hustle <em>checker cover?</em></h2>
+    <p class="seo-lead">Answer 8 questions about your hustle — income, type, state, and structure — and the checker evaluates six compliance areas instantly.</p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px">
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">01 · TAX OBLIGATIONS</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">Self-employment tax & quarterly payments</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Freelancers and side hustlers owe 15.3% SE tax on net profit above $400/year, plus federal income tax. The checker calculates your estimated liability and tells you whether quarterly estimated payments apply to you.</p>
+    <div class="seo-grid">
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">01 · Tax obligations</div>
+        <div class="seo-card-title">SE tax &amp; quarterly payments</div>
+        <p class="seo-card-body">Freelancers and side hustlers owe 15.3% SE tax on net profit above $400/year, plus federal income tax. The checker calculates your estimated liability and tells you whether quarterly estimated payments apply to you.</p>
       </div>
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">02 · BUSINESS STRUCTURE</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">Sole proprietor, LLC, or S-corp?</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Most side hustlers are automatically sole proprietors — no paperwork needed. The checker tells you whether your income level and liability risk warrant forming an LLC, and at what point an S-corp election saves meaningful taxes.</p>
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">02 · Business structure</div>
+        <div class="seo-card-title">Sole proprietor, LLC, or S-corp?</div>
+        <p class="seo-card-body">Most side hustlers are automatically sole proprietors — no paperwork needed. The checker tells you whether your income level and liability risk warrant forming an LLC, and at what point an S-corp election saves meaningful taxes.</p>
       </div>
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">03 · LICENSES & PERMITS</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">State and local requirements</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Some states require a business license even for Etsy shops and digital product sellers. The checker evaluates your state and hustle type to flag any license or permit requirements you might not know about.</p>
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">03 · Licenses &amp; permits</div>
+        <div class="seo-card-title">State and local requirements</div>
+        <p class="seo-card-body">Some states require a business license even for Etsy shops and digital product sellers. The checker evaluates your state and hustle type to flag any license or permit requirements you might not know about.</p>
       </div>
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">04 · SALES TAX</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">What Etsy collects vs. what you owe</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Marketplace facilitator laws mean Etsy, Amazon, and eBay collect and remit sales tax in most states — but not all situations are covered. The checker flags whether you have any remaining sales tax obligations.</p>
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">04 · Sales tax</div>
+        <div class="seo-card-title">What Etsy collects vs. what you owe</div>
+        <p class="seo-card-body">Marketplace facilitator laws mean Etsy, Amazon, and eBay collect and remit sales tax in most states — but not all situations are covered. The checker flags whether you have any remaining sales tax obligations.</p>
       </div>
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">05 · DEDUCTIONS</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">What you can write off</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Home office, equipment, supplies, software subscriptions, shipping, and mileage are all potentially deductible — but most side hustlers miss at least a few. The paid report gives you a personalized deduction checklist based on your hustle type.</p>
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">05 · Deductions</div>
+        <div class="seo-card-title">What you can write off</div>
+        <p class="seo-card-body">Home office, equipment, supplies, software subscriptions, shipping, and mileage are all potentially deductible — but most side hustlers miss at least a few. The paid report gives you a personalized deduction checklist based on your hustle type.</p>
       </div>
-      <div style="background:#fff;border:1px solid #e2e6ef;border-radius:12px;padding:20px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#c9973a;margin-bottom:6px">06 · DEADLINES</div>
-        <div style="font-size:15px;font-weight:500;color:#1c2b4a;margin-bottom:6px">Quarterly & annual due dates</div>
-        <p style="font-size:13px;color:#6b7a96;line-height:1.6">Quarterly estimated tax is due April 15, June 15, September 15, and January 15. Miss one and you'll owe an underpayment penalty. The checker surfaces which deadlines apply to you so you're never caught off guard.</p>
+      <div class="seo-card">
+        <div class="seo-card-eyebrow">06 · Deadlines</div>
+        <div class="seo-card-title">Quarterly &amp; annual due dates</div>
+        <p class="seo-card-body">Quarterly estimated tax is due April 15, June 15, September 15, and January 15. Miss one and you'll owe an underpayment penalty. The checker surfaces which deadlines apply to you so you're never caught off guard.</p>
       </div>
     </div>
 
-    <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#1c2b4a;margin-bottom:16px">Who is this tool for?</h2>
-    <p style="font-size:15px;color:#6b7a96;line-height:1.7;margin-bottom:12px;font-weight:300">SideHustleGuard is built for US-based side hustlers who want straight answers without paying a lawyer or accountant. It covers <strong style="color:#1c2b4a;font-weight:500">Etsy sellers, Shopify store owners, freelancers, DoorDash and Uber Eats drivers, Airbnb hosts, resellers on eBay and Poshmark, YouTube and TikTok creators, Substack writers, coaches, tutors, and Amazon FBA sellers</strong> — across all 50 states.</p>
-    <p style="font-size:15px;color:#6b7a96;line-height:1.7;font-weight:300">If you earn money outside a W-2 job and you're not 100% sure you're handling the taxes and legal side correctly, this tool is for you. The check is free and takes about 60 seconds. No account, no email, no lawyer required.</p>
+    <h2 class="seo-h2" style="font-size:22px;margin-bottom:14px">Who is this tool for?</h2>
+    <p class="seo-card-body" style="font-size:14.5px;margin-bottom:12px">SideHustleGuard is built for US-based side hustlers who want straight answers without paying a lawyer or accountant. It covers <strong style="color:var(--indigo);font-weight:600">Etsy sellers, Shopify store owners, freelancers, DoorDash and Uber Eats drivers, Airbnb hosts, resellers on eBay and Poshmark, YouTube and TikTok creators, Substack writers, coaches, tutors, and Amazon FBA sellers</strong> — across all 50 states.</p>
+    <p class="seo-card-body" style="font-size:14.5px">If you earn money outside a W-2 job and you're not 100% sure you're handling the taxes and legal side correctly, this tool is for you. The check is free and takes about 60 seconds. No account, no email, no lawyer required.</p>
   </div>
 </div>
 </body>
