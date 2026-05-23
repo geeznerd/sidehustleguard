@@ -1130,23 +1130,15 @@ a {
  *
  * Desktop keeps native `display: table` semantics so columns auto-size to
  * content; mobile drops to `display: block` so the table is scroll-padded
- * within its own bounds. */
+ * within its own bounds. No background-image affordance — the previous
+ * version painted paper-colored "scroll shadow" overlays that read as
+ * visible bars against the cream page (paper #fbf8ee vs cream #f0ece1). */
 @media (max-width: 700px) {
   .tax-table {
     display: block;
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    /* Visual affordance — gradient fade on the right edge signals there's more */
-    background-image:
-      linear-gradient(to right, var(--paper), var(--paper)),
-      linear-gradient(to right, var(--paper), var(--paper)),
-      linear-gradient(to right, rgba(45,48,104,0.06), rgba(45,48,104,0)),
-      linear-gradient(to left, rgba(45,48,104,0.06), rgba(45,48,104,0));
-    background-position: left center, right center, left center, right center;
-    background-repeat: no-repeat;
-    background-size: 20px 100%, 20px 100%, 12px 100%, 12px 100%;
-    background-attachment: local, local, scroll, scroll;
   }
 }
 
