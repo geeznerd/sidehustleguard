@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Header renderer · Direction E</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #2d3068;
+    --indigo-70: rgba(45,48,104,0.7);
+    --indigo-55: rgba(45,48,104,0.55);
+    --indigo-35: rgba(45,48,104,0.35);
+    --indigo-15: rgba(45,48,104,0.15);
+    --indigo-08: rgba(45,48,104,0.08);
+    --apricot: #e89464;
+    --cream: #f0ece1;
+    --paper: #fbf8ee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #2a2a2a; }
+  body {
+    font-family: 'Inter', sans-serif;
+    padding: 0; margin: 0;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+  }
+  .stage {
+    /* The OG renders at true 1200×630. We scale it down to fit any viewport
+       so preview captures show the FULL design, not a cropped one.
+       Production rendering uses generate.py at full 1200×630 resolution. */
+    width: 1200px; height: 630px;
+    transform-origin: center;
+  }
+  .og {
+    width: 1200px; height: 630px;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  /* Topographic backdrop — same as hero, scaled for OG */
+  .topo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* Top brand lockup */
+  .brand {
+    position: absolute; top: 56px; left: 72px;
+    display: flex; align-items: center; gap: 12px; z-index: 3;
+  }
+  .brand-logo { width: 36px; height: 36px; }
+  .brand-text {
+    display: inline-flex; align-items: baseline;
+    line-height: 1; letter-spacing: -0.015em;
+  }
+  .brand-text .base {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 22px; color: var(--indigo);
+  }
+  .brand-text .accent {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 22px; color: var(--apricot); margin-left: 3px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  /* Big faint monogram on the right — echoes guide-card tiles */
+  .monogram {
+    position: absolute;
+    right: 80px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 440px; line-height: 0.85;
+    color: rgba(232,148,100,0.18);
+    font-variation-settings: 'opsz' 144, 'SOFT' 50;
+    user-select: none; pointer-events: none;
+    z-index: 1;
+    white-space: nowrap;
+  }
+
+  /* Content block */
+  .content {
+    position: absolute;
+    left: 72px; top: 50%;
+    transform: translateY(-50%);
+    max-width: 740px; z-index: 2;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--apricot);
+    padding: 7px 16px;
+    background: var(--paper);
+    border: 1px solid var(--indigo-08);
+    border-radius: 100px;
+    margin-bottom: 28px;
+    white-space: nowrap;
+  }
+  .eyebrow::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--apricot); border-radius: 50%; flex-shrink: 0;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: 92px; line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--indigo);
+    margin-bottom: 22px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    white-space: nowrap;
+  }
+  h1 em {
+    font-style: italic; color: var(--apricot);
+    margin-left: 0.2em;
+  }
+  h1.size-md { font-size: 78px; }
+  h1.size-sm { font-size: 66px; }
+  h1.size-xs { font-size: 56px; }
+  /* Two-line variant: stack main and em */
+  h1.stacked { white-space: normal; line-height: 0.95; }
+  h1.stacked em { display: block; margin-left: 0; }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 400;
+    line-height: 1.5; color: var(--indigo-70);
+    max-width: 640px;
+  }
+
+  /* URL bottom-right */
+  .url {
+    position: absolute; bottom: 48px; right: 72px;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--indigo-55);
+    letter-spacing: -0.005em; z-index: 3;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .url::before {
+    content: ''; width: 14px; height: 1px; background: var(--indigo-35);
+    display: inline-block;
+  }
+
+  /* Bottom-left tagline */
+  .tagline {
+    position: absolute; bottom: 48px; left: 72px;
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 18px; color: var(--indigo-55);
+    z-index: 3; white-space: nowrap;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  /* Hairline frame */
+  .frame {
+    position: absolute; inset: 24px;
+    border: 1px solid var(--indigo-08);
+    border-radius: 18px;
+    pointer-events: none; z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+<div class="og" id="og">
+
+  <!-- Topographic backdrop -->
+  <svg class="topo" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="gGlow" cx="20%" cy="80%" r="55%">
+        <stop offset="0%" stop-color="#e89464" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="630" fill="url(#gGlow)"/>
+    <!-- Lower-left indigo contours (9 ovals) -->
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.08" stroke-width="1">
+      <ellipse cx="220" cy="520" rx="430" ry="180" transform="rotate(-10 220 520)"/>
+      <ellipse cx="214" cy="508" rx="395" ry="166" transform="rotate(-8.5 220 520)"/>
+      <ellipse cx="208" cy="496" rx="360" ry="152" transform="rotate(-7 220 520)"/>
+      <ellipse cx="202" cy="484" rx="325" ry="138" transform="rotate(-5.5 220 520)"/>
+      <ellipse cx="196" cy="472" rx="290" ry="124" transform="rotate(-4 220 520)"/>
+      <ellipse cx="190" cy="460" rx="255" ry="110" transform="rotate(-2.5 220 520)"/>
+      <ellipse cx="184" cy="448" rx="220" ry="96" transform="rotate(-1 220 520)"/>
+      <ellipse cx="178" cy="436" rx="185" ry="82" transform="rotate(0.5 220 520)"/>
+      <ellipse cx="172" cy="424" rx="150" ry="68" transform="rotate(2 220 520)"/>
+    </g>
+    <!-- Upper-right apricot contours (6 ovals) -->
+    <g fill="none" stroke="#e89464" stroke-opacity="0.22" stroke-width="1">
+      <ellipse cx="1000" cy="120" rx="260" ry="120" transform="rotate(16 1000 120)"/>
+      <ellipse cx="1004" cy="112" rx="230" ry="106" transform="rotate(14 1000 120)"/>
+      <ellipse cx="1008" cy="104" rx="200" ry="92" transform="rotate(12 1000 120)"/>
+      <ellipse cx="1012" cy="96" rx="170" ry="78" transform="rotate(10 1000 120)"/>
+      <ellipse cx="1016" cy="88" rx="140" ry="64" transform="rotate(8 1000 120)"/>
+      <ellipse cx="1020" cy="80" rx="110" ry="50" transform="rotate(6 1000 120)"/>
+    </g>
+  </svg>
+
+  <!-- Hairline inner frame -->
+  <div class="frame"></div>
+
+  <!-- Brand lockup -->
+  <div class="brand">
+    <svg class="brand-logo" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+    </svg>
+    <span class="brand-text">
+      <span class="base">SideHustle</span><span class="accent">guard</span>
+    </span>
+  </div>
+
+  <!-- Big italic monogram -->
+  <div class="monogram" id="monogram">E</div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="eyebrow" id="eyebrow">Tax Guide</div>
+    <h1 id="title">
+      <span id="title-main">DoorDash</span>
+      <em id="title-em">Taxes</em>
+    </h1>
+    <p class="subtitle" id="subtitle">What every driver actually owes — plain English.</p>
+  </div>
+
+  <!-- Tagline + URL -->
+  <div class="tagline">Quietly thorough.</div>
+  <div class="url" id="url">sidehustleguard.com/doordash-taxes</div>
+</div>
+</div>
+
+<script>
+// Header data — slug, title_main, title_em, subtitle, tag, monogram letter
+window.HEADERS = [
+  // Gig & delivery
+  ["doordash-taxes",                "DoorDash", "Taxes",        "Mileage deductions, 1099-NEC, and quarterly payments explained.",        "Tax Guide",          "D"],
+  ["uber-lyft-taxes",               "Uber & Lyft", "Taxes",     "Mileage, 1099-K vs 1099-NEC, and what to set aside each quarter.",       "Tax Guide",          "U"],
+  ["uber-eats-taxes",               "Uber Eats", "Taxes",       "What every food delivery driver actually owes — plain English.",          "Tax Guide",          "U"],
+  ["grubhub-taxes",                 "Grubhub", "Taxes",         "Mileage deductions, 1099 forms, and quarterly tax deadlines.",            "Tax Guide",          "G"],
+  ["instacart-taxes",               "Instacart", "Taxes",       "What every shopper actually owes — SE tax, mileage, and more.",          "Tax Guide",          "I"],
+  ["amazon-flex-taxes",             "Amazon Flex", "Taxes",     "What delivery partners actually owe — deductions and deadlines.",         "Tax Guide",          "A"],
+  ["taskrabbit-taxes",              "TaskRabbit", "Taxes",      "SE tax, 1099-NEC, and deductions for Taskers — explained.",              "Tax Guide",          "T"],
+  ["rover-taxes",                   "Rover", "Taxes",           "What pet sitters and dog walkers actually owe — plain English.",          "Tax Guide",          "R"],
+  // Selling
+  ["etsy-taxes",                    "Etsy Seller", "Taxes",     "What you owe, when you owe it, and every deduction available.",           "Tax Guide",          "E"],
+  ["etsy-taxes-under-600",          "Etsy Sales", "Under $600", "Do you owe taxes even without a 1099? The real answer.",                 "Tax Guide",          "E"],
+  ["ebay-taxes",                    "eBay", "Taxes",            "What sellers actually owe in 2025 — income tax, 1099-K, and more.",      "Tax Guide",          "E"],
+  ["poshmark-taxes",                "Poshmark", "Taxes",        "What resellers actually owe — and what you can deduct.",                  "Tax Guide",          "P"],
+  ["mercari-taxes",                 "Mercari", "Taxes",         "What sellers actually owe — 1099-K, cost of goods, and deductions.",     "Tax Guide",          "M"],
+  ["amazon-fba-taxes",              "Amazon FBA", "Taxes",      "The complete guide for sellers — income tax, sales tax, and more.",       "Tax Guide",          "A"],
+  ["shopify-taxes",                 "Shopify", "Taxes",         "Income tax and sales tax — what store owners actually owe.",              "Tax Guide",          "S"],
+  ["reseller-taxes",                "Reseller", "Taxes",        "eBay, Poshmark, Mercari — what you actually owe explained.",              "Tax Guide",          "R"],
+  // Freelance & content
+  ["freelancer-taxes",              "Freelancer", "Taxes",      "Self-employment tax, quarterly payments, and deductions explained.",     "Tax Guide",          "F"],
+  ["upwork-taxes",                  "Upwork", "Taxes",          "What freelancers owe and how to legally pay less.",                       "Tax Guide",          "U"],
+  ["fiverr-taxes",                  "Fiverr", "Taxes",          "What freelancers actually owe — SE tax, 1099-K, and deductions.",        "Tax Guide",          "F"],
+  ["youtube-taxes",                 "YouTube", "Taxes",         "What creators owe on AdSense, memberships, and brand deals.",             "Tax Guide",          "Y"],
+  ["tiktok-taxes",                  "TikTok", "Taxes",          "Creator Fund, TikTok Shop, and LIVE Gifts — tax treatment explained.",   "Tax Guide",          "T"],
+  ["twitch-taxes",                  "Twitch", "Taxes",          "What every streamer actually owes — subs, bits, and brand deals.",       "Tax Guide",          "T"],
+  ["patreon-taxes",                 "Patreon", "Taxes",         "What every creator actually owes on membership income.",                  "Tax Guide",          "P"],
+  ["substack-taxes",                "Substack", "Taxes",        "What newsletter writers actually owe on paid subscriptions.",             "Tax Guide",          "S"],
+  ["onlyfans-taxes",                "OnlyFans", "Taxes",        "What creators actually owe — SE tax, deductions, and quarterly payments.","Tax Guide",          "O"],
+  ["pinterest-taxes",               "Pinterest", "Creator Taxes","What you actually owe on Creator Rewards and brand deals.",              "Tax Guide",          "P"],
+  // Etsy-specific
+  ["etsy-home-office-deduction",    "Etsy Home Office", "Deduction", "Can Etsy sellers write off a home office? Yes — here's how.",       "Deduction Guide",    "E"],
+  ["etsy-schedule-c",               "Etsy", "Schedule C",       "How to fill out Schedule C for Etsy sellers — step by step.",            "Tax Form Guide",     "C"],
+  ["paypal-1099k-etsy",             "PayPal 1099-K", "for Etsy","Got a 1099-K for your Etsy sales? Here's exactly what to do.",          "Tax Guide",          "1"],
+  ["llc-etsy-seller",               "LLC for", "Etsy Sellers",  "Do you actually need an LLC for your Etsy shop? Honest answer.",         "Business Structure", "L"],
+  // Structure & planning
+  ["llc-vs-sole-proprietor",        "LLC vs", "Sole Prop",      "Which structure fits your income level — and when it matters.",          "Business Structure", "L"],
+  ["quarterly-taxes-self-employed", "Quarterly", "Tax Guide",   "When to pay, how much to set aside, and how to avoid penalties.",        "Self-Employed",      "Q"],
+  ["side-hustle-taxes",             "Side Hustle", "Taxes",     "Everything you owe the moment you make your first sale.",                "Tax Guide",          "S"],
+  ["self-employment-tax-calculator","SE Tax", "Calculator",     "Estimate what you owe in self-employment tax — free, 2025.",             "Free Tool",          "S"],
+  ["tax-checklist",                 "Tax Deduction", "Checklist","Every deduction available to side hustlers — free and printable.",      "Free Resource",      "T"],
+  // State guides
+  ["california-self-employment-tax","California", "SE Tax",     "What CA freelancers and side hustlers owe — state plus federal.",        "State Tax Guide",    "C"],
+  ["california-side-hustle",        "California", "Side Hustle","Side hustle taxes in CA — what you owe in 2025.",                        "State Tax Guide",    "C"],
+  ["new-york-self-employment-tax",  "New York", "SE Tax",       "What NY freelancers and side hustlers owe — state plus federal.",        "State Tax Guide",    "N"],
+  ["texas-self-employment-tax",     "Texas", "SE Tax",          "What TX freelancers and side hustlers owe — no state income tax.",       "State Tax Guide",    "T"],
+  ["airbnb-host-taxes",             "Airbnb Host", "Taxes",     "What you actually owe on short-term rental income — plain English.",     "Tax Guide",          "A"],
+];
+
+// Render one header by index
+window.renderHeader = function(i) {
+  const [slug, main, em, sub, tag, mono] = window.HEADERS[i];
+  document.getElementById('title-main').textContent = main;
+  document.getElementById('title-em').textContent = em;
+  document.getElementById('subtitle').textContent = sub;
+  document.getElementById('eyebrow').textContent = tag;
+  // Always use a single character (defensive — strip to first char)
+  document.getElementById('monogram').textContent = mono.charAt(0);
+  document.getElementById('url').textContent = 'sidehustleguard.com/' + slug;
+
+  // Auto-fit title size — try inline first at decreasing sizes, then stack
+  const h1 = document.getElementById('title');
+  h1.className = '';
+  const MAX_W = 820;
+  const fits = () => h1.scrollWidth <= MAX_W;
+  const tries = ['', 'size-md', 'size-sm', 'size-xs'];
+  let landed = false;
+  for (const cls of tries) {
+    h1.className = cls;
+    if (fits()) { landed = true; break; }
+  }
+  // If still too wide at smallest inline size, fall back to stacked layout
+  if (!landed) {
+    h1.className = 'stacked';
+    // Re-test which size works stacked
+    for (const cls of ['stacked', 'stacked size-md', 'stacked size-sm']) {
+      h1.className = cls;
+      if (h1.scrollWidth <= MAX_W) break;
+    }
+  }
+};
+
+// Initial render
+window.addEventListener('load', () => {
+  // Wait a moment for fonts to load, then render
+  document.fonts.ready.then(() => {
+    window.renderHeader(0);
+    fitStage();
+    window.__ready = true;
+  });
+});
+
+// Scale the 1200×630 stage to fit the current viewport for preview
+function fitStage() {
+  const stage = document.getElementById('stage');
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const scale = Math.min(vw / 1200, vh / 630, 1);
+  stage.style.transform = `scale(${scale})`;
+}
+window.addEventListener('resize', fitStage);
+</script>
+</body>
+</html>

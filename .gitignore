@@ -2,3 +2,6 @@
 .claude/
 node_modules/
 .vercel
+
+# Generated OG-header artifacts — committed copies live in images/og/
+headers/output/

@@ -1,0 +1,12 @@
+{
+  "name": "sidehustleguard-headers",
+  "version": "2.0.0",
+  "description": "OG header images for SideHustleGuard guide pages — Direction E (indigo/apricot/cream).",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}
