@@ -204,12 +204,19 @@
   /* No-results state for search */
   .no-results {
     display: none;
-    max-width: 480px; margin: 64px auto;
+    max-width: 520px; margin: 64px auto;
     text-align: center;
-    padding: 32px;
-    border: 1px solid var(--indigo-08);
-    background: var(--paper);
+    padding: 36px 32px;
+    border: 1px solid var(--apricot-soft);
+    background: linear-gradient(135deg, var(--apricot-10) 0%, var(--paper) 70%);
     border-radius: var(--radius-card);
+  }
+  .no-results-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
   }
   .no-results h3 {
     font-family: 'Fraunces', serif;
@@ -328,15 +335,17 @@
     border-bottom-color: var(--indigo-12);
   }
 
-  /* (2) "Coming Soon" mobile bundle — replaces N stacked Soon cards on mobile */
+  /* (2) "Coming Soon" bundle — single elegant placeholder replacing every
+   *     Soon card, visible at all viewports. Spans the full grid width.   */
   .soon-bundle {
-    display: none; /* hidden by default; mobile breakpoint shows it */
     grid-column: 1 / -1;
-    background: var(--paper);
-    border: 1px solid var(--indigo-08);
+    background: linear-gradient(135deg, var(--apricot-10), var(--paper));
+    border: 1px solid var(--apricot-soft);
     border-radius: var(--radius-card);
-    padding: 18px 20px;
+    padding: 22px 26px;
   }
+  /* Hide individual Soon cards now that the bundle covers them */
+  .guide-card.is-soon { display: none !important; }
   .soon-bundle-inner {
     display: flex;
     align-items: center;
@@ -406,6 +415,39 @@
     opacity: 0;
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  /* Interactive-tool cards — distinct visual identity vs reading guides.
+   * Subtle apricot-tinted gradient, apricot border, "Interactive tool"
+   * eyebrow pill at the top of each card.                              */
+  .guide-card--tool {
+    background: linear-gradient(135deg, var(--apricot-10) 0%, var(--paper) 60%);
+    border-color: var(--apricot-soft);
+    position: relative;
+  }
+  .guide-card--tool:hover {
+    border-color: var(--apricot);
+    background: linear-gradient(135deg, var(--apricot-12) 0%, var(--paper) 60%);
+  }
+  .guide-card-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--apricot);
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .guide-card-eyebrow::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--apricot);
+    flex-shrink: 0;
   }
 
   /* (4) Touch-friendly cards + clearly-static mega pills */
@@ -506,9 +548,7 @@
     /* Smooth touch-scroll on iOS */
     .cat-tabs-inner { -webkit-overflow-scrolling: touch; }
 
-    /* (2) Hide individual Soon cards, show the bundle */
-    .guides-grid > .guide-card.is-soon { display: none !important; }
-    .guides-grid > .soon-bundle { display: block; }
+    /* (2) Soon bundle stacks vertically on mobile so the CTA is full-width */
     .soon-bundle-inner { flex-wrap: wrap; }
     .soon-bundle-cta { width: 100%; text-align: center; }
 
@@ -631,11 +671,11 @@
     <button class="cat-tab" role="tab" data-cat="all" aria-current="true">All</button>
     <button class="cat-tab" role="tab" data-cat="tools">Interactive tools</button>
     <button class="cat-tab" role="tab" data-cat="gig">Gig &amp; delivery</button>
-    <button class="cat-tab" role="tab" data-cat="str">Short-term rentals</button>
-    <button class="cat-tab" role="tab" data-cat="creator">Creator economy</button>
     <button class="cat-tab" role="tab" data-cat="ecom">Etsy &amp; e-commerce</button>
+    <button class="cat-tab" role="tab" data-cat="creator">Creator economy</button>
     <button class="cat-tab" role="tab" data-cat="freelance">Freelancing</button>
     <button class="cat-tab" role="tab" data-cat="state">State guides</button>
+    <button class="cat-tab" role="tab" data-cat="str">Short-term rentals</button>
   </div>
 </div>
 
@@ -643,11 +683,14 @@
 <main class="guides-body">
   <div class="guides-body-inner">
 
-    <!-- NO RESULTS state -->
+    <!-- NO RESULTS state — routes to /tool for niche hustles we don't yet cover -->
     <div class="no-results" id="guide-no-results">
-      <h3>No matches for <em><span id="guide-no-results-term"></span></em></h3>
-      <p>Try a broader term — or browse everything we have.</p>
-      <button class="btn btn-outline" id="guide-show-all" type="button">Show all guides</button>
+      <h3>Can't find your <em><span id="guide-no-results-term"></span></em> hustle?</h3>
+      <p>Run a free 60-second hustle check — we'll map out your state's rules instantly anyway.</p>
+      <div class="no-results-actions">
+        <a class="btn btn-primary" href="/tool" id="guide-no-results-cta">Run my free check →</a>
+        <button class="btn btn-outline" id="guide-show-all" type="button">Show all guides</button>
+      </div>
     </div>
 
     <!-- INTERACTIVE TOOLS -->
@@ -672,7 +715,8 @@
           <span class="mega-cta">Open dashboard <span class="arrow">→</span></span>
         </a>
 
-        <a class="guide-card" href="/audit-risk-estimator">
+        <a class="guide-card guide-card--tool" href="/audit-risk-estimator">
+          <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">A</div>
             <div class="guide-title-row">
@@ -682,7 +726,8 @@
           <p class="guide-desc">Your IRS audit risk score with a safety checklist.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card" href="/tax-guard-calculator">
+        <a class="guide-card guide-card--tool" href="/tax-guard-calculator">
+          <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">T</div>
             <div class="guide-title-row">
@@ -692,7 +737,8 @@
           <p class="guide-desc">How much to set aside from every client payment.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card" href="/scorp-savings-calculator">
+        <a class="guide-card guide-card--tool" href="/scorp-savings-calculator">
+          <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">S</div>
             <div class="guide-title-row">
@@ -702,7 +748,8 @@
           <p class="guide-desc">See exactly when an S-Corp saves more than it costs.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card" href="/self-employment-tax-calculator">
+        <a class="guide-card guide-card--tool" href="/self-employment-tax-calculator">
+          <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">SE</div>
             <div class="guide-title-row">
@@ -712,7 +759,8 @@
           <p class="guide-desc">Instant SE tax estimate — federal + state, 2025 rates.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card" href="/quarterly-tax-calculator">
+        <a class="guide-card guide-card--tool" href="/quarterly-tax-calculator">
+          <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">Q</div>
             <div class="guide-title-row">
@@ -722,7 +770,8 @@
           <p class="guide-desc">How much to set aside and pay each quarter.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card" href="/tax-checklist">
+        <a class="guide-card guide-card--tool" href="/tax-checklist">
+          <span class="guide-card-eyebrow">Free resource</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">✓</div>
             <div class="guide-title-row">
@@ -785,7 +834,7 @@
       </div>
     </section>
 
-    <!-- MID-PAGE CTA BANNER (Phase 5.1 — placed between Gig & STR for highest mid-scroll conversion) -->
+    <!-- MID-PAGE CTA BANNER — placed between Gig & Etsy for highest mid-scroll conversion -->
     <aside class="cta-band-mid" aria-labelledby="cta-band-mid-title">
       <div class="cta-band-mid-inner">
         <div class="cta-band-mid-text">
@@ -795,6 +844,196 @@
         <a class="cta-band-mid-btn" href="/tool">Run a free check →</a>
       </div>
     </aside>
+
+    <!-- ETSY & E-COMMERCE -->
+    <section class="cat-section" data-cat="ecom" id="cat-ecom">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Etsy, e-commerce &amp; resellers</h2>
+        <span class="cat-section-count">12 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/etsy-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">E</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes</span></div></div>
+          <p class="guide-desc">The complete Etsy seller tax guide.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-taxes-under-600">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">$</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes Under $600</span></div></div>
+          <p class="guide-desc">You still owe tax even below the 1099 threshold.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/paypal-1099k-etsy">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">1K</div><div class="guide-title-row"><span class="guide-title">PayPal &amp; 1099-K on Etsy</span></div></div>
+          <p class="guide-desc">New $600 threshold rules explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-home-office-deduction">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">H</div><div class="guide-title-row"><span class="guide-title">Etsy Home Office Deduction</span></div></div>
+          <p class="guide-desc">How to claim your workspace correctly.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/etsy-schedule-c">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">SC</div><div class="guide-title-row"><span class="guide-title">Etsy Schedule C</span></div></div>
+          <p class="guide-desc">Complete filing guide for Etsy sellers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/llc-etsy-seller">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC for Etsy Sellers</span></div></div>
+          <p class="guide-desc">When it's actually worth the paperwork.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/reseller-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">R</div><div class="guide-title-row"><span class="guide-title">Reseller Taxes</span></div></div>
+          <p class="guide-desc">General guide for all reselling platforms.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/ebay-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">e</div><div class="guide-title-row"><span class="guide-title">eBay Taxes</span></div></div>
+          <p class="guide-desc">COGS, 1099-K thresholds, casual vs business seller.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/poshmark-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Poshmark Taxes</span></div></div>
+          <p class="guide-desc">Fees, COGS, and the personal property rule.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/amazon-fba-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">A</div><div class="guide-title-row"><span class="guide-title">Amazon FBA Taxes</span></div></div>
+          <p class="guide-desc">Inventory, FBA fees, COGS, and 1099-K filing.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/shopify-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Shopify Taxes</span></div></div>
+          <p class="guide-desc">Income tax and sales tax — what owners owe.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/mercari-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">M</div><div class="guide-title-row"><span class="guide-title">Mercari Taxes</span></div></div>
+          <p class="guide-desc">Casual vs reseller, COGS, and the $2,500 limit.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CREATOR ECONOMY -->
+    <section class="cat-section" data-cat="creator" id="cat-creator">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Creator economy</h2>
+        <span class="cat-section-count">8 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/youtube-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Y</div><div class="guide-title-row"><span class="guide-title">YouTube Taxes</span></div></div>
+          <p class="guide-desc">AdSense, brand deals, memberships, merch.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/twitch-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">Twitch Taxes</span></div></div>
+          <p class="guide-desc">Subs, bits, donations — all of it is taxable.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/tiktok-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TT</div><div class="guide-title-row"><span class="guide-title">TikTok Taxes</span></div></div>
+          <p class="guide-desc">Creator Fund, TikTok Shop, and LIVE gifts.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/onlyfans-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">OF</div><div class="guide-title-row"><span class="guide-title">OnlyFans Taxes</span></div></div>
+          <p class="guide-desc">What creators owe and how to pay less.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/fiverr-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Fiverr Taxes</span></div></div>
+          <p class="guide-desc">Tax on what you receive, not what clients pay.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/patreon-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Patreon Taxes</span></div></div>
+          <p class="guide-desc">Membership income, platform fees, and deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/substack-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Substack Taxes</span></div></div>
+          <p class="guide-desc">Newsletter income, Substack's 10% fee, and deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/pinterest-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Pinterest Taxes</span></div></div>
+          <p class="guide-desc">Affiliate commissions, sponsored pins, and 1099s.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FREELANCING -->
+    <section class="cat-section" data-cat="freelance" id="cat-freelance">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">Freelancing &amp; self-employment</h2>
+        <span class="cat-section-count">5 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/side-hustle-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">§</div><div class="guide-title-row"><span class="guide-title">Side Hustle Taxes</span></div></div>
+          <p class="guide-desc">The complete overview — start here.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/freelancer-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Freelancer Taxes</span></div></div>
+          <p class="guide-desc">1099s, deductions, and quarterly payments.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/upwork-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Upwork Taxes</span></div></div>
+          <p class="guide-desc">Service fees, 1099-K, and freelancer deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/quarterly-taxes-self-employed">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Q</div><div class="guide-title-row"><span class="guide-title">Quarterly Taxes (Self-Employed)</span></div></div>
+          <p class="guide-desc">When to pay and how much each quarter.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/llc-vs-sole-proprietor">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC vs Sole Proprietor</span></div></div>
+          <p class="guide-desc">Key differences and when it's worth the paperwork.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- STATE-SPECIFIC -->
+    <section class="cat-section" data-cat="state" id="cat-state">
+      <div class="cat-section-head">
+        <h2 class="cat-section-title">State-specific guides</h2>
+        <span class="cat-section-count">5 guides</span>
+      </div>
+      <div class="guides-grid">
+        <a class="guide-card" href="/california-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Self-Employment Tax</span></div></div>
+          <p class="guide-desc">CA income tax, quarterly schedule, LLC fees.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/california-side-hustle">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Side Hustle Rules</span></div></div>
+          <p class="guide-desc">Licenses, AB5 contractor rules, and CA requirements.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/texas-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TX</div><div class="guide-title-row"><span class="guide-title">Texas Self-Employment Tax</span></div></div>
+          <p class="guide-desc">No income tax — here's what you still owe.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/new-york-self-employment-tax">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">NY</div><div class="guide-title-row"><span class="guide-title">New York Self-Employment Tax</span></div></div>
+          <p class="guide-desc">NY state + NYC city tax + MCTMT explained.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/state-tax-rates">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">50</div><div class="guide-title-row"><span class="guide-title">2025 State Tax Rates (All 50 States)</span></div></div>
+          <p class="guide-desc">Complete rate table for gig workers &amp; freelancers.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+      </div>
+    </section>
 
     <!-- SHORT-TERM RENTALS -->
     <section class="cat-section" data-cat="str" id="cat-str">
@@ -989,196 +1228,6 @@
            If we want to show only 12 initially, JS will toggle visibility on cards beyond the first 12. -->
       <div class="show-more-row">
         <button class="show-more" id="str-show-more" type="button" aria-expanded="false">Show 16 more →</button>
-      </div>
-    </section>
-
-    <!-- CREATOR ECONOMY -->
-    <section class="cat-section" data-cat="creator" id="cat-creator">
-      <div class="cat-section-head">
-        <h2 class="cat-section-title">Creator economy</h2>
-        <span class="cat-section-count">8 guides</span>
-      </div>
-      <div class="guides-grid">
-        <a class="guide-card" href="/youtube-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Y</div><div class="guide-title-row"><span class="guide-title">YouTube Taxes</span></div></div>
-          <p class="guide-desc">AdSense, brand deals, memberships, merch.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/twitch-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">Twitch Taxes</span></div></div>
-          <p class="guide-desc">Subs, bits, donations — all of it is taxable.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/tiktok-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TT</div><div class="guide-title-row"><span class="guide-title">TikTok Taxes</span></div></div>
-          <p class="guide-desc">Creator Fund, TikTok Shop, and LIVE gifts.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/onlyfans-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">OF</div><div class="guide-title-row"><span class="guide-title">OnlyFans Taxes</span></div></div>
-          <p class="guide-desc">What creators owe and how to pay less.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/fiverr-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Fiverr Taxes</span></div></div>
-          <p class="guide-desc">Tax on what you receive, not what clients pay.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/patreon-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Patreon Taxes</span></div></div>
-          <p class="guide-desc">Membership income, platform fees, and deductions.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/substack-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Substack Taxes</span></div></div>
-          <p class="guide-desc">Newsletter income, Substack's 10% fee, and deductions.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/pinterest-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Pinterest Taxes</span></div></div>
-          <p class="guide-desc">Affiliate commissions, sponsored pins, and 1099s.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ETSY & E-COMMERCE -->
-    <section class="cat-section" data-cat="ecom" id="cat-ecom">
-      <div class="cat-section-head">
-        <h2 class="cat-section-title">Etsy, e-commerce &amp; resellers</h2>
-        <span class="cat-section-count">12 guides</span>
-      </div>
-      <div class="guides-grid">
-        <a class="guide-card" href="/etsy-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">E</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes</span></div></div>
-          <p class="guide-desc">The complete Etsy seller tax guide.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/etsy-taxes-under-600">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">$</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes Under $600</span></div></div>
-          <p class="guide-desc">You still owe tax even below the 1099 threshold.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/paypal-1099k-etsy">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">1K</div><div class="guide-title-row"><span class="guide-title">PayPal &amp; 1099-K on Etsy</span></div></div>
-          <p class="guide-desc">New $600 threshold rules explained.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/etsy-home-office-deduction">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">H</div><div class="guide-title-row"><span class="guide-title">Etsy Home Office Deduction</span></div></div>
-          <p class="guide-desc">How to claim your workspace correctly.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/etsy-schedule-c">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">SC</div><div class="guide-title-row"><span class="guide-title">Etsy Schedule C</span></div></div>
-          <p class="guide-desc">Complete filing guide for Etsy sellers.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/llc-etsy-seller">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC for Etsy Sellers</span></div></div>
-          <p class="guide-desc">When it's actually worth the paperwork.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/reseller-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">R</div><div class="guide-title-row"><span class="guide-title">Reseller Taxes</span></div></div>
-          <p class="guide-desc">General guide for all reselling platforms.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/ebay-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">e</div><div class="guide-title-row"><span class="guide-title">eBay Taxes</span></div></div>
-          <p class="guide-desc">COGS, 1099-K thresholds, casual vs business seller.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/poshmark-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">P</div><div class="guide-title-row"><span class="guide-title">Poshmark Taxes</span></div></div>
-          <p class="guide-desc">Fees, COGS, and the personal property rule.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/amazon-fba-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">A</div><div class="guide-title-row"><span class="guide-title">Amazon FBA Taxes</span></div></div>
-          <p class="guide-desc">Inventory, FBA fees, COGS, and 1099-K filing.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/shopify-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">S</div><div class="guide-title-row"><span class="guide-title">Shopify Taxes</span></div></div>
-          <p class="guide-desc">Income tax and sales tax — what owners owe.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/mercari-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">M</div><div class="guide-title-row"><span class="guide-title">Mercari Taxes</span></div></div>
-          <p class="guide-desc">Casual vs reseller, COGS, and the $2,500 limit.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- FREELANCING -->
-    <section class="cat-section" data-cat="freelance" id="cat-freelance">
-      <div class="cat-section-head">
-        <h2 class="cat-section-title">Freelancing &amp; self-employment</h2>
-        <span class="cat-section-count">5 guides</span>
-      </div>
-      <div class="guides-grid">
-        <a class="guide-card" href="/side-hustle-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">§</div><div class="guide-title-row"><span class="guide-title">Side Hustle Taxes</span></div></div>
-          <p class="guide-desc">The complete overview — start here.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/freelancer-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">F</div><div class="guide-title-row"><span class="guide-title">Freelancer Taxes</span></div></div>
-          <p class="guide-desc">1099s, deductions, and quarterly payments.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/upwork-taxes">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Upwork Taxes</span></div></div>
-          <p class="guide-desc">Service fees, 1099-K, and freelancer deductions.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/quarterly-taxes-self-employed">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Q</div><div class="guide-title-row"><span class="guide-title">Quarterly Taxes (Self-Employed)</span></div></div>
-          <p class="guide-desc">When to pay and how much each quarter.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/llc-vs-sole-proprietor">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">L</div><div class="guide-title-row"><span class="guide-title">LLC vs Sole Proprietor</span></div></div>
-          <p class="guide-desc">Key differences and when it's worth the paperwork.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- STATE-SPECIFIC -->
-    <section class="cat-section" data-cat="state" id="cat-state">
-      <div class="cat-section-head">
-        <h2 class="cat-section-title">State-specific guides</h2>
-        <span class="cat-section-count">5 guides</span>
-      </div>
-      <div class="guides-grid">
-        <a class="guide-card" href="/california-self-employment-tax">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Self-Employment Tax</span></div></div>
-          <p class="guide-desc">CA income tax, quarterly schedule, LLC fees.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/california-side-hustle">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Side Hustle Rules</span></div></div>
-          <p class="guide-desc">Licenses, AB5 contractor rules, and CA requirements.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/texas-self-employment-tax">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">TX</div><div class="guide-title-row"><span class="guide-title">Texas Self-Employment Tax</span></div></div>
-          <p class="guide-desc">No income tax — here's what you still owe.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/new-york-self-employment-tax">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">NY</div><div class="guide-title-row"><span class="guide-title">New York Self-Employment Tax</span></div></div>
-          <p class="guide-desc">NY state + NYC city tax + MCTMT explained.</p>
-          <span class="guide-arrow">→</span>
-        </a>
-        <a class="guide-card" href="/state-tax-rates">
-          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">50</div><div class="guide-title-row"><span class="guide-title">2025 State Tax Rates (All 50 States)</span></div></div>
-          <p class="guide-desc">Complete rate table for gig workers &amp; freelancers.</p>
-          <span class="guide-arrow">→</span>
-        </a>
       </div>
     </section>
 
