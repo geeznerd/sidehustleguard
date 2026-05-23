@@ -28,7 +28,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
-<!-- Shared design system (provides --indigo/--apricot tokens + legacy --navy/--gold aliases) -->
+<!-- Shared design system (provides --indigo/--apricot tokens) -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -39,8 +39,7 @@
 </script>
 <style>
 [x-cloak]{display:none!important}
-/* Page-specific scalar (the design system handles all colors via tokens
- * + legacy aliases — --navy/--gold etc still resolve via design-system.css). */
+/* Page-specific scalar (the design system handles all colors via tokens — see assets/css/design-system.css). */
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px}
 
 /* NAV */
