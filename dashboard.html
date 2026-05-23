@@ -17,8 +17,20 @@
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="https://www.sidehustleguard.com/images/og/dashboard.png" name="twitter:image"/>
+<!-- Favicons (Arc & Dot mark) -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts: Fraunces (serif display) + Inter (UI) -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system (provides --indigo/--apricot tokens + legacy --navy/--gold aliases) -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
@@ -27,18 +39,10 @@
 </script>
 <style>
 [x-cloak]{display:none!important}
-:root{
-  --navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--gold-pale:#fdf5e8;
-  --cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;
-  --muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,.09);
-  --green:#276944;--green-bg:#eaf5ef;--red:#b83232;--red-bg:#fdf1f1;
-  --amber:#a86c0a;--amber-bg:#fef6e8;
-  --sb:220px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;font-size:16px}
+/* Page-specific scalar (the design system handles all colors via tokens
+ * + legacy aliases — --navy/--gold etc still resolve via design-system.css). */
+:root{ --sb:220px; }
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:11px 28px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
@@ -74,7 +78,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 /* PROFILE CARD */
 .profile-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px 26px}
 .card-eye{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-.card-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.card-title{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.2}
 .card-title em{color:var(--gold);font-style:italic}
 .profile-row{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:14px;align-items:start}
 
@@ -115,7 +119,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .stat-chip.c-green .sc-lbl{color:var(--green)}
 .stat-chip.c-amber .sc-lbl{color:var(--amber)}
 .stat-chip.c-red .sc-lbl{color:var(--red)}
-.sc-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);line-height:1}
+.sc-val{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--navy);line-height:1}
 .stat-chip.c-green .sc-val{color:var(--green)}
 .stat-chip.c-amber .sc-val{color:var(--amber)}
 .stat-chip.c-red .sc-val{color:var(--red)}
@@ -132,7 +136,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* TOOL CARDS */
 .tool-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(28,43,74,.05);transition:box-shadow .2s}
 .tc-header{padding:17px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.tc-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px;line-height:1.2}
+.tc-title{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px;line-height:1.2}
 .tc-icon{display:flex;align-items:center;font-style:normal;font-size:20px;line-height:1;flex-shrink:0}
 .tc-title em{color:var(--gold);font-style:italic}
 .tc-link{font-size:12px;color:var(--gold);text-decoration:none;font-weight:500;transition:all .15s}
@@ -151,7 +155,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .rbox.navy{background:var(--navy);border-color:var(--navy)}
 .r-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .navy .r-lbl{color:rgba(255,255,255,.45)}
-.r-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1}
+.r-val{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1}
 .navy .r-val{color:var(--gold-lt)}
 .r-sub{font-size:11px;color:var(--muted);font-weight:300;margin-top:3px}
 .navy .r-sub{color:rgba(255,255,255,.4)}
@@ -198,7 +202,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* MODAL */
 .modal-ov{position:fixed;inset:0;background:rgba(28,43,74,.65);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
 .modal-box{background:var(--white);border-radius:18px;padding:34px;max-width:400px;width:100%;box-shadow:0 8px 40px rgba(28,43,74,.25)}
-.modal-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.modal-title{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:7px}
 .modal-sub{font-size:13px;color:var(--muted);margin-bottom:22px;font-weight:300;line-height:1.6}
 .modal-btn{width:100%;padding:12px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:4px;transition:all .2s}
 .modal-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(201,151,58,.3)}
@@ -214,30 +218,30 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   nav,.sidebar,.modal-ov,footer{display:none!important}
   .db-wrap,.main{display:block!important;padding:0!important}
   .profile-card,.stats-row,.alerts-stack,.tool-card{display:none!important}
-  .print-report{display:block!important;font-family:'DM Sans',sans-serif;color:#1c2b4a;font-size:12px;line-height:1.6;padding:32px 40px}
-  .pr-head{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;border-bottom:2.5px solid #1c2b4a;margin-bottom:22px}
-  .pr-logo{font-size:18px;font-weight:700;color:#1c2b4a}
-  .pr-logo span{color:#c9973a}
+  .print-report{display:block!important;font-family:'Inter',sans-serif;color:#2d3068;font-size:12px;line-height:1.6;padding:32px 40px}
+  .pr-head{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;border-bottom:2.5px solid #2d3068;margin-bottom:22px}
+  .pr-logo{font-size:18px;font-weight:700;color:#2d3068}
+  .pr-logo span{color:#e89464}
   .pr-meta{font-size:11px;color:#6b7a96;text-align:right;line-height:1.7}
-  .pr-title{font-size:14px;font-weight:700;margin-bottom:3px;color:#1c2b4a}
+  .pr-title{font-size:14px;font-weight:700;margin-bottom:3px;color:#2d3068}
   .pr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:0}
   .pr-card{border:1px solid #e0ddd6;border-radius:8px;padding:14px 16px;break-inside:avoid}
   .pr-card-eye{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:8px}
-  .pr-card-val{font-size:22px;font-weight:700;color:#1c2b4a;line-height:1;margin-bottom:3px}
+  .pr-card-val{font-size:22px;font-weight:700;color:#2d3068;line-height:1;margin-bottom:3px}
   .pr-card-sub{font-size:10px;color:#6b7a96;margin-bottom:10px}
-  .pr-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0ece3;font-size:11px}
+  .pr-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0ece1;font-size:11px}
   .pr-row:last-child{border-bottom:none}
   .pr-rlbl{color:#9aa3b5}
   .pr-rval{font-weight:600}
   .pr-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-  .pr-badge.low{background:#eaf5ef;color:#276944}
-  .pr-badge.medium{background:#fef6e8;color:#a86c0a}
-  .pr-badge.high{background:#fdf1f1;color:#b83232}
+  .pr-badge.low{background:#eaf5ef;color:#5a7a4f}
+  .pr-badge.medium{background:#fef6e8;color:#c98a3a}
+  .pr-badge.high{background:#fdf1f1;color:#c2533a}
   .pr-highlight{background:#fdf5e8;border:1px solid rgba(201,151,58,.4);border-radius:6px;padding:10px 14px;margin:10px 0}
-  .pr-h-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#a86c0a;margin-bottom:2px;font-weight:600}
-  .pr-h-val{font-size:20px;font-weight:700;color:#1c2b4a}
-  .pr-h-sub{font-size:10px;color:#a86c0a;margin-top:1px}
-  .pr-section-title{font-size:13px;font-weight:700;color:#1c2b4a;margin:20px 0 12px;padding-bottom:5px;border-bottom:1px solid #e0ddd6}
+  .pr-h-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#c98a3a;margin-bottom:2px;font-weight:600}
+  .pr-h-val{font-size:20px;font-weight:700;color:#2d3068}
+  .pr-h-sub{font-size:10px;color:#c98a3a;margin-top:1px}
+  .pr-section-title{font-size:13px;font-weight:700;color:#2d3068;margin:20px 0 12px;padding-bottom:5px;border-bottom:1px solid #e0ddd6}
   .pr-footer{border-top:1px solid #e0ddd6;margin-top:28px;padding-top:10px;font-size:10px;color:#9aa3b5;text-align:center}
 }
 
@@ -274,7 +278,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:3px 9px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
 .nw-body{flex:1;min-width:0}
 .nw-context{font-size:10px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px}
-.nw-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.25}
+.nw-title{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.25}
 .nw-title em{font-style:italic;color:var(--gold-lt)}
 .nw-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:13px;font-weight:300}
 .nw-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
@@ -334,9 +338,13 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 <nav>
 <a class="logo" href="/">
 <span class="logo-icon">
-<svg fill="none" viewbox="0 0 26 30"><path d="M13 1L2 5.5V14C2 21 7.5 27 13 29C18.5 27 24 21 24 14V5.5L13 1Z" fill="#c9973a" stroke="#c9973a" stroke-linejoin="round" stroke-width="1"></path><path d="M8.5 14.5L11.5 17.5L17.5 11" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+<svg viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6 30 Q24 4 42 30" stroke="#fbf8ee" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <circle cx="24" cy="36" r="2.4" fill="#fbf8ee"/>
+</svg>
 </span>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-links">
 <a class="nav-link" href="/guides">Tools</a>
@@ -771,7 +779,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 <div class="print-report">
 <div class="pr-head">
 <div>
-<div class="pr-logo">SideHustle<span>Guard</span></div>
+<div class="pr-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:#e89464">guard</span></div>
 <div style="font-size:11px;color:#6b7a96;margin-top:3px">Side Hustle Dashboard Report</div>
 </div>
 <div class="pr-meta">
@@ -815,7 +823,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 <!-- Audit detail -->
 <div class="pr-section-title">Audit Shield — Full Flag List</div>
 <template x-if="auditResult.flags.length === 0">
-<p style="font-size:12px;color:#276944">No significant red flags detected based on your inputs.</p>
+<p style="font-size:12px;color:#5a7a4f">No significant red flags detected based on your inputs.</p>
 </template>
 <template :key="i" x-for="(f, i) in auditResult.flags">
 <div class="pr-row">
@@ -1060,7 +1068,7 @@ document.addEventListener('alpine:init', () => {
       const _fmt  = n => Number(n).toLocaleString('en-US');
       const _fmtD = n => '$' + _fmt(Math.round(n));
       const filingMap = { single: 'Single', mfj: 'Married Filing Jointly', hoh: 'Head of Household' };
-      const riskColors = { low:'#276944', medium:'#a86c0a', high:'#b83232' };
+      const riskColors = { low:'#5a7a4f', medium:'#c98a3a', high:'#c2533a' };
       const riskBg     = { low:'#eaf5ef', medium:'#fef6e8', high:'#fdf1f1' };
 
       // ── populate template IDs with current Alpine state ──
@@ -1077,8 +1085,8 @@ document.addEventListener('alpine:init', () => {
       document.getElementById('pdft-risk-score').textContent = `Score: ${ar.score} / 20`;
       const flagsEl = document.getElementById('pdft-risk-flags');
       flagsEl.innerHTML = ar.flags.length
-        ? ar.flags.slice(0,4).map(f => `<div style="padding:2px 0;border-bottom:1px solid #f0ece3"><span style="color:${riskColors[f.severity]||'#9aa3b5'};margin-right:5px">${f.severity==='high'?'⚠':'•'}</span>${f.text}</div>`).join('')
-        : '<div style="color:#276944">✓ No significant red flags</div>';
+        ? ar.flags.slice(0,4).map(f => `<div style="padding:2px 0;border-bottom:1px solid #f0ece1"><span style="color:${riskColors[f.severity]||'#9aa3b5'};margin-right:5px">${f.severity==='high'?'⚠':'•'}</span>${f.text}</div>`).join('')
+        : '<div style="color:#5a7a4f">✓ No significant red flags</div>';
 
       // Guard
       const gr = this.guardResult;
@@ -1090,7 +1098,7 @@ document.addEventListener('alpine:init', () => {
         if (this.isSE)         bkd += `<div>SE Tax (15.3%)<span style="float:right">${_fmtD(gr.seTax)}</span></div>`;
         bkd += `<div>Federal<span style="float:right">${_fmtD(gr.fedTax)}</span></div>`;
         if (gr.stateTax > 0)   bkd += `<div>${this.state} State<span style="float:right">${_fmtD(gr.stateTax)}</span></div>`;
-        bkd += `<div style="color:#ddb06a;font-weight:600">Take-home<span style="float:right">${_fmtD(gr.takehome)}</span></div>`;
+        bkd += `<div style="color:#f0a075;font-weight:600">Take-home<span style="float:right">${_fmtD(gr.takehome)}</span></div>`;
         document.getElementById('pdft-guard-breakdown').innerHTML = bkd;
       } else {
         document.getElementById('pdft-guard-pct').textContent  = '--%';
@@ -1105,13 +1113,13 @@ document.addEventListener('alpine:init', () => {
       const scorpVal  = document.getElementById('pdft-scorp-val');
       if (sr.savings >= 500) {
         scorpCard.style.background = '#f0fdf4'; scorpCard.style.border = '2px solid rgba(39,105,68,.3)';
-        scorpVal.style.color = '#276944';
+        scorpVal.style.color = '#5a7a4f';
       } else if (sr.savings < -500) {
         scorpCard.style.background = '#fdf1f1'; scorpCard.style.border = '1px solid rgba(184,50,50,.2)';
-        scorpVal.style.color = '#b83232';
+        scorpVal.style.color = '#c2533a';
       } else {
-        scorpCard.style.background = '#faf8f4'; scorpCard.style.border = '1px solid rgba(28,43,74,.09)';
-        scorpVal.style.color = '#1c2b4a';
+        scorpCard.style.background = '#fbf8ee'; scorpCard.style.border = '1px solid rgba(28,43,74,.09)';
+        scorpVal.style.color = '#2d3068';
       }
       scorpVal.textContent = (sr.savings >= 0 ? '+' : '') + _fmtD(Math.abs(sr.savings)) + '/yr';
       document.getElementById('pdft-scorp-sub').textContent = sr.savings >= 0 ? 'S-Corp saves per year vs sole prop' : 'Sole prop is better at this income level';
@@ -1161,52 +1169,52 @@ document.addEventListener('alpine:init', () => {
 });
 </script>
 <!-- ── PDF REPORT TEMPLATE (off-screen, populated by generatePDF()) ─────── -->
-<div id="pdf-report-template" style="position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;font-family:'DM Sans',Arial,sans-serif;color:#1c2b4a;padding:48px 52px;box-sizing:border-box;font-size:13px;line-height:1.6">
+<div id="pdf-report-template" style="position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;font-family:'Inter',Arial,sans-serif;color:#2d3068;padding:48px 52px;box-sizing:border-box;font-size:13px;line-height:1.6">
 <!-- Header -->
-<div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:2.5px solid #1c2b4a;margin-bottom:28px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:2.5px solid #2d3068;margin-bottom:28px">
 <div>
-<div style="font-size:21px;font-weight:700;color:#1c2b4a;letter-spacing:-.01em">SideHustle<span style="color:#c9973a">Guard</span></div>
+<div style="font-size:21px;font-weight:700;color:#2d3068;letter-spacing:-.01em">SideHustle<span style="color:#e89464">Guard</span></div>
 <div style="font-size:11px;color:#6b7a96;margin-top:3px;font-weight:300">Side Hustle Dashboard Report</div>
 </div>
 <div style="text-align:right">
-<div style="font-size:12px;font-weight:600;color:#1c2b4a">Guard Report</div>
+<div style="font-size:12px;font-weight:600;color:#2d3068">Guard Report</div>
 <div id="pdft-date" style="font-size:11px;color:#6b7a96;margin-top:2px"></div>
 </div>
 </div>
 <!-- Business Snapshot -->
-<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Business Snapshot</div>
+<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e89464;margin-bottom:10px">Business Snapshot</div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
-<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Annual Income</div>
-<div id="pdft-income" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+<div id="pdft-income" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">State</div>
-<div id="pdft-state" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+<div id="pdft-state" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Filing Status</div>
-<div id="pdft-filing" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+<div id="pdft-filing" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#faf8f4;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">SE Tax</div>
-<div id="pdft-se" style="font-size:17px;font-weight:700;color:#1c2b4a;line-height:1"></div>
+<div id="pdft-se" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
 </div>
 <!-- Result Cards -->
-<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9973a;margin-bottom:10px">Your Results</div>
+<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e89464;margin-bottom:10px">Your Results</div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
 <!-- Audit Risk -->
-<div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#faf8f4">
+<div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#fbf8ee">
 <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🛡️ Audit Risk</div>
 <div id="pdft-risk-badge" style="margin-bottom:6px"></div>
 <div id="pdft-risk-score" style="font-size:11px;color:#6b7a96;margin-bottom:10px"></div>
 <div id="pdft-risk-flags" style="font-size:10px;color:#6b7a96;line-height:1.65"></div>
 </div>
 <!-- Tax Guard -->
-<div style="border:1px solid #1c2b4a;border-radius:10px;padding:16px 18px;background:#1c2b4a">
+<div style="border:1px solid #2d3068;border-radius:10px;padding:16px 18px;background:#2d3068">
 <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">💰 Tax Guard Rate</div>
-<div id="pdft-guard-pct" style="font-size:28px;font-weight:700;color:#ddb06a;line-height:1;margin-bottom:3px"></div>
+<div id="pdft-guard-pct" style="font-size:28px;font-weight:700;color:#f0a075;line-height:1;margin-bottom:3px"></div>
 <div id="pdft-guard-amt" style="font-size:13px;font-weight:600;color:#ffffff;margin-bottom:2px"></div>
 <div id="pdft-guard-sub" style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:10px"></div>
 <div id="pdft-guard-breakdown" style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.8;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"></div>
