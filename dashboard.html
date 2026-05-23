@@ -68,7 +68,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .sb-link:hover{background:rgba(255,255,255,.07);color:var(--white)}
 .sb-div{border:none;border-top:1px solid rgba(255,255,255,.07);margin:4px 14px 12px}
 .sb-btn{margin:12px 14px 0;padding:11px 14px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;width:calc(100% - 28px);transition:all .2s}
-.sb-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(201,151,58,.3)}
+.sb-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(232,148,100,.3)}
 .sb-spacer{flex:1}
 .sb-disc{padding:14px 20px 6px;font-size:10px;color:rgba(255,255,255,.22);line-height:1.6}
 
@@ -90,7 +90,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .inp-wrap.dollar::before{content:'$';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none;user-select:none}
 input[type="number"],input[type="text"],input[type="email"],select{width:100%;border:1px solid var(--border);border-radius:8px;padding:11px 12px;font-size:13px;min-height:44px;font-family:inherit;color:var(--navy);background:var(--cream);outline:none;transition:border .15s,background .15s;appearance:none;-webkit-appearance:none}
 .inp-wrap.dollar input{padding-left:28px;min-height:44px}
-input[type="text"]:hover:not(:focus),input[type="number"]:hover:not(:focus),select:hover:not(:focus){border-color:rgba(28,43,74,.22)}
+input[type="text"]:hover:not(:focus),input[type="number"]:hover:not(:focus),select:hover:not(:focus){border-color:rgba(45,48,104,.22)}
 .inp-wrap:focus-within{border-radius:8px;box-shadow:0 0 0 2.5px rgba(59,130,246,.28)}
 select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px}
 input:focus,select:focus{border-color:var(--gold);background:var(--white)}
@@ -100,7 +100,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* TOGGLE */
 .tog-fld{display:flex;flex-direction:column;gap:4px}
 .tog-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--cream);transition:border-color .15s}
-.tog-row:has(input:checked){border-color:rgba(201,151,58,.35)}
+.tog-row:has(input:checked){border-color:rgba(232,148,100,.35)}
 .tog{position:relative;display:inline-block;width:38px;height:21px;flex-shrink:0}
 .tog input{opacity:0;width:0;height:0}
 .t-sl{position:absolute;cursor:pointer;inset:0;background:var(--dim);border-radius:21px;transition:.2s}
@@ -128,13 +128,13 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* ALERTS */
 .alerts-stack{display:flex;flex-direction:column;gap:8px}
 .alert{display:flex;align-items:flex-start;gap:9px;padding:11px 15px;border-radius:10px;font-size:13px;line-height:1.5}
-.alert.a-amber{background:var(--amber-bg);border:1px solid rgba(168,108,10,.25);color:var(--amber)}
-.alert.a-red{background:var(--red-bg);border:1px solid rgba(184,50,50,.25);color:var(--red)}
-.alert.a-green{background:var(--green-bg);border:1px solid rgba(39,105,68,.25);color:var(--green)}
+.alert.a-amber{background:var(--amber-bg);border:1px solid rgba(201,138,58,.25);color:var(--amber)}
+.alert.a-red{background:var(--red-bg);border:1px solid rgba(194,83,58,.25);color:var(--red)}
+.alert.a-green{background:var(--green-bg);border:1px solid rgba(90,122,79,.25);color:var(--green)}
 .alert-ico{font-size:14px;flex-shrink:0;line-height:1.5}
 
 /* TOOL CARDS */
-.tool-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(28,43,74,.05);transition:box-shadow .2s}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(45,48,104,.05);transition:box-shadow .2s}
 .tc-header{padding:17px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .tc-title{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px;line-height:1.2}
 .tc-icon{display:flex;align-items:center;font-style:normal;font-size:20px;line-height:1;flex-shrink:0}
@@ -151,7 +151,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .fdiv{border:none;border-top:1px solid var(--border);margin:13px 0}
 
 /* RESULT BOXES */
-.rbox{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--white);box-shadow:0 1px 4px rgba(28,43,74,.06)}
+.rbox{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--white);box-shadow:0 1px 4px rgba(45,48,104,.06)}
 .rbox.navy{background:var(--navy);border-color:var(--navy)}
 .r-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .navy .r-lbl{color:rgba(255,255,255,.45)}
@@ -164,7 +164,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .r-val.v-amber{color:var(--amber)}
 
 /* BREAKDOWN ROWS */
-.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(28,43,74,.06);font-size:12px}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(45,48,104,.06);font-size:12px}
 .bd-row:last-child{border-bottom:none}
 .bd-lbl{color:var(--muted);font-weight:300;line-height:1.4}
 .bd-val{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:8px}
@@ -200,12 +200,12 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .fdot.high{background:var(--red)}.fdot.medium{background:var(--amber)}.fdot.low{background:var(--green)}
 
 /* MODAL */
-.modal-ov{position:fixed;inset:0;background:rgba(28,43,74,.65);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
-.modal-box{background:var(--white);border-radius:18px;padding:34px;max-width:400px;width:100%;box-shadow:0 8px 40px rgba(28,43,74,.25)}
+.modal-ov{position:fixed;inset:0;background:rgba(45,48,104,.65);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:var(--white);border-radius:18px;padding:34px;max-width:400px;width:100%;box-shadow:0 8px 40px rgba(45,48,104,.25)}
 .modal-title{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:7px}
 .modal-sub{font-size:13px;color:var(--muted);margin-bottom:22px;font-weight:300;line-height:1.6}
 .modal-btn{width:100%;padding:12px;background:var(--gold);color:var(--white);border:none;border-radius:9px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:4px;transition:all .2s}
-.modal-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(201,151,58,.3)}
+.modal-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(232,148,100,.3)}
 .modal-cancel{margin-top:10px;width:100%;background:none;border:none;color:var(--muted);font-size:13px;font-family:inherit;cursor:pointer;padding:5px;transition:color .15s}
 .modal-cancel:hover{color:var(--navy)}
 .modal-err{font-size:12px;color:var(--red);margin-top:5px}
@@ -235,9 +235,9 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   .pr-rval{font-weight:600}
   .pr-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
   .pr-badge.low{background:#eaf5ef;color:#5a7a4f}
-  .pr-badge.medium{background:#fef6e8;color:#c98a3a}
+  .pr-badge.medium{background:#f9ecd6;color:#c98a3a}
   .pr-badge.high{background:#fdf1f1;color:#c2533a}
-  .pr-highlight{background:#fdf5e8;border:1px solid rgba(201,151,58,.4);border-radius:6px;padding:10px 14px;margin:10px 0}
+  .pr-highlight{background:#fde8d5;border:1px solid rgba(232,148,100,.4);border-radius:6px;padding:10px 14px;margin:10px 0}
   .pr-h-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#c98a3a;margin-bottom:2px;font-weight:600}
   .pr-h-val{font-size:20px;font-weight:700;color:#2d3068}
   .pr-h-sub{font-size:10px;color:#c98a3a;margin-top:1px}
@@ -250,7 +250,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* CA $800 info tooltip */
 .ca-tip-wrap{position:relative;display:inline-flex;align-items:center}
 .ca-tip-ico{font-size:12px;color:var(--dim);cursor:default;line-height:1;user-select:none}
-.ca-tip-box{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:220px;background:var(--navy);color:rgba(255,255,255,.85);font-size:11px;font-weight:300;line-height:1.55;padding:9px 11px;border-radius:8px;box-shadow:0 4px 18px rgba(28,43,74,.22);pointer-events:none;opacity:0;transition:opacity .15s;z-index:50;white-space:normal}
+.ca-tip-box{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);width:220px;background:var(--navy);color:rgba(255,255,255,.85);font-size:11px;font-weight:300;line-height:1.55;padding:9px 11px;border-radius:8px;box-shadow:0 4px 18px rgba(45,48,104,.22);pointer-events:none;opacity:0;transition:opacity .15s;z-index:50;white-space:normal}
 .ca-tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--navy)}
 .ca-tip-wrap:hover .ca-tip-box{opacity:1}
 
@@ -270,8 +270,8 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 /* S-Corp final result row — extra breathing room */
 .rbox.rbox-final{padding:18px 16px 20px;border-top:2px solid var(--border);margin-top:2px;text-align:center}
 .rbox.rbox-final .r-val{font-size:34px}
-.rbox.rbox-win{background:#f0fdf4;border:2px solid rgba(39,105,68,.3)}
-.rbox.rbox-lose{background:var(--red-bg);border:2px solid rgba(184,50,50,.22)}
+.rbox.rbox-win{background:#f0fdf4;border:2px solid rgba(90,122,79,.3)}
+.rbox.rbox-lose{background:var(--red-bg);border:2px solid rgba(194,83,58,.22)}
 
 /* NORTHWEST AFFILIATE CARD */
 .nw-card{background:var(--navy);border-radius:16px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start}
@@ -284,7 +284,7 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 .nw-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .nw-feat{font-size:10px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:3px 9px;border-radius:100px}
 .nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s}
-.nw-link:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(201,151,58,.3)}
+.nw-link:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 3px 10px rgba(232,148,100,.3)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.22);margin-top:8px}
 
 /* MOBILE BOTTOM BAR */
@@ -1112,13 +1112,13 @@ document.addEventListener('alpine:init', () => {
       const scorpCard = document.getElementById('pdft-scorp-card');
       const scorpVal  = document.getElementById('pdft-scorp-val');
       if (sr.savings >= 500) {
-        scorpCard.style.background = '#f0fdf4'; scorpCard.style.border = '2px solid rgba(39,105,68,.3)';
+        scorpCard.style.background = '#f0fdf4'; scorpCard.style.border = '2px solid rgba(90,122,79,.3)';
         scorpVal.style.color = '#5a7a4f';
       } else if (sr.savings < -500) {
-        scorpCard.style.background = '#fdf1f1'; scorpCard.style.border = '1px solid rgba(184,50,50,.2)';
+        scorpCard.style.background = '#fdf1f1'; scorpCard.style.border = '1px solid rgba(194,83,58,.2)';
         scorpVal.style.color = '#c2533a';
       } else {
-        scorpCard.style.background = '#fbf8ee'; scorpCard.style.border = '1px solid rgba(28,43,74,.09)';
+        scorpCard.style.background = '#fbf8ee'; scorpCard.style.border = '1px solid rgba(45,48,104,.09)';
         scorpVal.style.color = '#2d3068';
       }
       scorpVal.textContent = (sr.savings >= 0 ? '+' : '') + _fmtD(Math.abs(sr.savings)) + '/yr';
@@ -1184,19 +1184,19 @@ document.addEventListener('alpine:init', () => {
 <!-- Business Snapshot -->
 <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e89464;margin-bottom:10px">Business Snapshot</div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
-<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(45,48,104,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Annual Income</div>
 <div id="pdft-income" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(45,48,104,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">State</div>
 <div id="pdft-state" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(45,48,104,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">Filing Status</div>
 <div id="pdft-filing" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
-<div style="background:#fbf8ee;border:1px solid rgba(28,43,74,.09);border-radius:8px;padding:12px 14px">
+<div style="background:#fbf8ee;border:1px solid rgba(45,48,104,.09);border-radius:8px;padding:12px 14px">
 <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9aa3b5;margin-bottom:5px">SE Tax</div>
 <div id="pdft-se" style="font-size:17px;font-weight:700;color:#2d3068;line-height:1"></div>
 </div>
@@ -1205,7 +1205,7 @@ document.addEventListener('alpine:init', () => {
 <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e89464;margin-bottom:10px">Your Results</div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
 <!-- Audit Risk -->
-<div style="border:1px solid rgba(28,43,74,.09);border-radius:10px;padding:16px 18px;background:#fbf8ee">
+<div style="border:1px solid rgba(45,48,104,.09);border-radius:10px;padding:16px 18px;background:#fbf8ee">
 <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🛡️ Audit Risk</div>
 <div id="pdft-risk-badge" style="margin-bottom:6px"></div>
 <div id="pdft-risk-score" style="font-size:11px;color:#6b7a96;margin-bottom:10px"></div>
@@ -1224,11 +1224,11 @@ document.addEventListener('alpine:init', () => {
 <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aa3b5;margin-bottom:10px">🏢 S-Corp vs Sole Prop</div>
 <div id="pdft-scorp-val" style="font-size:24px;font-weight:700;line-height:1;margin-bottom:4px"></div>
 <div id="pdft-scorp-sub" style="font-size:10px;color:#6b7a96;margin-bottom:10px"></div>
-<div id="pdft-scorp-rows" style="font-size:10px;color:#6b7a96;line-height:1.8;border-top:1px solid rgba(28,43,74,.08);padding-top:8px"></div>
+<div id="pdft-scorp-rows" style="font-size:10px;color:#6b7a96;line-height:1.8;border-top:1px solid rgba(45,48,104,.08);padding-top:8px"></div>
 </div>
 </div>
 <!-- Disclaimer -->
-<div style="border-top:1px solid rgba(28,43,74,.09);padding-top:14px;font-size:10px;color:#9aa3b5;text-align:center;line-height:1.7">
+<div style="border-top:1px solid rgba(45,48,104,.09);padding-top:14px;font-size:10px;color:#9aa3b5;text-align:center;line-height:1.7">
     Educational estimates only — not legal or tax advice. Figures are based on 2025 federal rates and may not reflect your exact situation.<br/>
     Consult a licensed CPA or tax attorney before making any business structure or tax decisions.  ·  SideHustleGuard.com
   </div>

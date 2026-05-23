@@ -12,20 +12,30 @@
 <meta content="California has some of the highest taxes for self-employed people. Here's exactly what side hustlers in CA owe — state income tax, SE tax, and LLC rules." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/california-side-hustle" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <meta content="California Side Hustle Taxes: What You Owe in CA" property="og:title"/>
 <meta content="California has some of the highest self-employment taxes in the country. Here's the full picture for CA side hustlers." property="og:description"/>
 <meta content="article" property="og:type"/>
 <style>
-:root{--navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;--muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,0.09);--green:#276944;--green-bg:#eaf5ef;--red:#b83232;--amber:#a86c0a;--amber-bg:#fef6e8}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px}
+/* Page-specific styles only — tokens come from design-system.css. */
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
+.logo-icon svg{width:32px;height:32px}
 .logo-text{font-size:15px;font-weight:600;color:var(--navy)}.logo-text span{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:24px}
@@ -35,13 +45,13 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .content{padding-top:0;padding-bottom:80px}
 .breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
 .breadcrumb a{color:var(--dim);text-decoration:none}
-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-meta{font-size:13px;color:var(--dim);margin-bottom:20px}
 .article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
 .hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:32px}
 .answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:44px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
-h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px}
+h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px}
 h2 em{font-style:italic;color:var(--gold)}
 h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
 p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
@@ -58,7 +68,7 @@ li strong{color:var(--navy);font-weight:600}
 .rate-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
 .rate-table td:first-child{font-weight:500;color:var(--navy)}
 .cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
-.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
 .cta-box h3 em{font-style:italic;color:var(--gold-lt)}
 .cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
 .btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none}
@@ -75,13 +85,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
 .nw-body{flex:1}
 .nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
-.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
-.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#f0a075)}
 .nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
 .nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
-.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-link:hover{background:var(--gold-lt,#f0a075)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
 /* Related guides */
 .related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
@@ -212,8 +222,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -252,7 +262,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <div class="callout callout-amber">
 <p><strong>Note:</strong> California has no Q3 estimated payment — the weighting is front-loaded. This catches people off guard. Pay at <strong>ftb.ca.gov</strong> (California Franchise Tax Board) separately from your IRS federal payments.</p>
 </div>
-<div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
+<div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
 <div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
 <li><a href="#californias-tax-rates-for-self-employed-individuals" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>California's tax rates for self-employed individuals</a></li><li><a href="#california-quarterly-estimated-taxes" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>California quarterly estimated taxes</a></li><li><a href="#the-california-llc-question" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>The California LLC question</a></li><li><a href="#does-etsy-collect-california-sales-tax-for-me" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Does Etsy collect California sales tax for me?</a></li><li><a href="#california-specific-deductions-worth-knowing" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>California-specific deductions worth knowing</a></li><li><a href="#practical-steps-for-california-side-hustlers" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Practical steps for California side hustlers</a></li><li><a href="#frequently-asked-questions" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Frequently asked questions</a></li><li><a href="#bottom-line" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Bottom line</a></li>
@@ -364,7 +374,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 </div>
 <footer>
-<span class="footer-logo">SideHustle<span>Guard</span></span>
+<span class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></span>
 <div class="footer-links">
 <a href="/">Home</a><a href="/tool">Free checker</a>
 <a href="/etsy-taxes">Etsy taxes</a><a href="/llc-etsy-seller">LLC for Etsy</a>

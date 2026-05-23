@@ -17,8 +17,20 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,21 +82,21 @@
 
 <style>
 :root {
-  --navy: #1c2b4a;
-  --gold: #c9973a;
-  --gold-lt: #ddb06a;
-  --gold-pale: #fdf5e8;
-  --cream: #faf8f4;
-  --cream-d: #f0ece3;
+  --navy: #2d3068;
+  --gold: #e89464;
+  --gold-lt: #f0a075;
+  --gold-pale: #fde8d5;
+  --cream: #f0ece1;
+  --cream-d: #fbf8ee;
   --white: #fff;
   --muted: #6b7a96;
   --dim: #9aa3b5;
-  --border: rgba(28,43,74,0.09);
+  --border: rgba(45,48,104,0.09);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.7; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.7; font-size: 16px; }
 
 /* ── NAV ── */
 nav {
@@ -120,13 +132,13 @@ nav {
 .hero-glow {
   position: absolute; top: -80px; right: 5%; width: 480px; height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,151,58,0.12) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(232,148,100,0.12) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,151,58,0.15); border: 1px solid rgba(201,151,58,0.3);
+  background: rgba(232,148,100,0.15); border: 1px solid rgba(232,148,100,0.3);
   padding: 5px 14px; border-radius: 100px;
   font-size: 11px; font-weight: 600; color: var(--gold-lt);
   letter-spacing: .08em; text-transform: uppercase;
@@ -134,7 +146,7 @@ nav {
 }
 .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 h1 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Fraunces',Georgia, Georgia, serif;
   font-size: clamp(36px, 5vw, 58px);
   font-weight: 700; line-height: 1.1; letter-spacing: -.01em;
   color: var(--white); margin-bottom: 18px;
@@ -150,7 +162,7 @@ h1 em { font-style: italic; color: var(--gold-lt); }
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--gold); color: var(--white);
   padding: 14px 28px; border-radius: 100px;
-  font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif;
   text-decoration: none; border: none; cursor: pointer;
   transition: all .15s;
 }
@@ -160,7 +172,7 @@ h1 em { font-style: italic; color: var(--gold-lt); }
   display: inline-flex; align-items: center; gap: 8px;
   background: transparent; color: rgba(255,255,255,.7);
   padding: 14px 24px; border-radius: 100px;
-  font-size: 14px; font-weight: 400; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 400; font-family: 'Inter', sans-serif;
   text-decoration: none; border: 1.5px solid rgba(255,255,255,.18);
   cursor: pointer; transition: all .15s;
 }
@@ -172,7 +184,7 @@ h1 em { font-style: italic; color: var(--gold-lt); }
 }
 .hstat { border-left: 2px solid var(--gold); padding-left: 14px; }
 .hstat-num {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Fraunces',Georgia, Georgia, serif;
   font-size: 26px; font-weight: 700; color: var(--gold-lt);
   display: block; line-height: 1.1;
 }
@@ -185,7 +197,7 @@ h1 em { font-style: italic; color: var(--gold-lt); }
 
 /* ── SECTION HEADERS ── */
 h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Fraunces',Georgia, Georgia, serif;
   font-size: clamp(24px, 3.5vw, 34px); font-weight: 700;
   color: var(--navy); margin: 56px 0 8px; line-height: 1.2;
 }
@@ -204,7 +216,7 @@ h2 em { font-style: italic; color: var(--gold); }
 }
 .uni-check {
   width: 20px; height: 20px; border-radius: 5px;
-  background: var(--gold-pale); border: 1.5px solid rgba(201,151,58,0.35);
+  background: var(--gold-pale); border: 1.5px solid rgba(232,148,100,0.35);
   flex-shrink: 0; margin-top: 1px;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; color: var(--gold); font-weight: 700;
@@ -237,7 +249,7 @@ h2 em { font-style: italic; color: var(--gold); }
   text-transform: uppercase; color: var(--gold); margin-bottom: 3px;
 }
 .hustle-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Fraunces',Georgia, Georgia, serif;
   font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.2;
 }
 .hustle-platforms { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 300; }
@@ -249,7 +261,7 @@ h2 em { font-style: italic; color: var(--gold); }
 .hustle-item:last-child { border-bottom: none; padding-bottom: 0; }
 .item-check {
   width: 18px; height: 18px; border-radius: 4px;
-  background: var(--gold-pale); border: 1.5px solid rgba(201,151,58,0.35);
+  background: var(--gold-pale); border: 1.5px solid rgba(232,148,100,0.35);
   flex-shrink: 0; margin-top: 2px;
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--gold); font-weight: 800;
@@ -261,7 +273,7 @@ h2 em { font-style: italic; color: var(--gold); }
 /* ── EASY WINS CALLOUT ── */
 .wins-box {
   background: linear-gradient(135deg, var(--gold-pale) 0%, #fff8ec 100%);
-  border: 1.5px solid rgba(201,151,58,0.3);
+  border: 1.5px solid rgba(232,148,100,0.3);
   border-radius: 14px;
   padding: 32px 36px;
   margin: 48px 0;
@@ -273,14 +285,14 @@ h2 em { font-style: italic; color: var(--gold); }
 }
 .wins-tag::before { content: '★'; font-size: 12px; }
 .wins-box h3 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Fraunces',Georgia, Georgia, serif;
   font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 20px;
 }
 .wins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .win-item {
   display: flex; gap: 12px; align-items: flex-start;
   background: var(--white); border-radius: 10px;
-  padding: 14px 16px; border: 1px solid rgba(201,151,58,0.2);
+  padding: 14px 16px; border: 1px solid rgba(232,148,100,0.2);
 }
 .win-num {
   width: 28px; height: 28px; border-radius: 50%;
@@ -333,7 +345,7 @@ h2 em { font-style: italic; color: var(--gold); }
   color: rgba(255,255,255,.4); text-transform: uppercase; margin-bottom: 6px;
 }
 .nw-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces',Georgia, serif;
   font-size: 18px; font-weight: 700; color: var(--white);
   margin-bottom: 8px; line-height: 1.25;
 }
@@ -420,12 +432,12 @@ p strong { color: var(--navy); font-weight: 600; }
   body { background: white; }
   .hero {
     background: white; padding: 24px 0 20px;
-    border-bottom: 2px solid #1c2b4a;
+    border-bottom: 2px solid #2d3068;
   }
-  h1 { color: #1c2b4a; font-size: 28px; }
+  h1 { color: #2d3068; font-size: 28px; }
   .hero-sub { color: #6b7a96; }
   .hero-stats { display: none; }
-  .hustle-card { border-left: 3px solid #c9973a; break-inside: avoid; }
+  .hustle-card { border-left: 3px solid #e89464; break-inside: avoid; }
   .content { padding: 0; }
   .wins-box { break-inside: avoid; }
   .related-section { display: none; }
@@ -463,8 +475,8 @@ p strong { color: var(--navy); font-weight: 600; }
 <!-- NAV -->
 <nav>
   <a href="/" class="logo">
-    <div class="logo-icon"><svg width="26" height="30" viewBox="0 0 36 40" fill="none"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" stroke="#1c2b4a" stroke-width="2.4" fill="#faf8f4" stroke-linejoin="round"/><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <span class="logo-text">SideHustle<span>Guard</span></span>
+    <div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
   </a>
   <div class="nav-right">
     <a href="/side-hustle-taxes" class="nav-link">Taxes</a>
@@ -1230,7 +1242,7 @@ p strong { color: var(--navy); font-weight: 600; }
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">SideHustle<span>Guard</span></div>
+  <div class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></div>
   <div class="footer-links">
     <a href="/privacy">Privacy</a>
     <a href="/terms">Terms</a>

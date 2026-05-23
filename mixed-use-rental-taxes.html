@@ -13,22 +13,31 @@
 <meta content="https://www.sidehustleguard.com/images/og/mixed-use-rental-taxes.png" name="twitter:image"/>
 <meta content="When you rent a property you also personally use, two competing allocation methods determine how much of your expenses you can deduct. Here's how the IRS method vs the Tax Court method works — and which one favors the taxpayer." name="description"/>
 <link href="https://www.sidehustleguard.com/mixed-use-rental-taxes" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <meta content="Mixed-Use Rental Property Taxes — How to Allocate Deductions" property="og:title"/>
 <meta content="When you rent a property you also personally use, two competing allocation methods determine how much of your expenses you can deduct. Here's how the IRS method vs the Tax Court method works — and which one favors the taxpayer." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/mixed-use-rental-taxes" property="og:url"/>
 <meta content="article" property="og:type"/>
 <style>
-:root{--navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--gold-pale:#fdf5e8;--cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;--muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,0.09);--green:#276944;--green-bg:#eaf5ef;--red:#b83232;--amber:#a86c0a;--amber-bg:#fef6e8}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
+/* Page-specific styles only — tokens come from design-system.css. */
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
+.logo-icon svg{width:32px;height:32px}
 .logo-text{font-size:15px;font-weight:600;color:var(--navy)}
 .logo-text span{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
@@ -40,14 +49,14 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
 .breadcrumb a{color:var(--dim);text-decoration:none}
 .breadcrumb a:hover{color:var(--navy)}
-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:18px}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-meta{font-size:13px;color:var(--dim);margin-bottom:28px}
 .article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
 .hero-intro{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px}
 .answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:40px;font-size:15px;font-weight:500;color:var(--navy);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
+h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--navy);margin:44px 0 14px;line-height:1.2}
 h2 em{font-style:italic;color:var(--gold)}
 h3{font-size:17px;font-weight:600;color:var(--navy);margin:28px 0 10px}
 p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
@@ -67,7 +76,7 @@ li strong{color:var(--navy);font-weight:600}
 .tax-table tr:last-child td{border-bottom:none}
 .tax-table td:first-child{font-weight:500;color:var(--navy)}
 .cta-box{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
-.cta-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:24px;color:var(--white);margin-bottom:8px;font-weight:700}
 .cta-box h3 em{font-style:italic;color:var(--gold-lt)}
 .cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
 .btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
@@ -84,13 +93,13 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 .nw-badge{background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:100px;white-space:nowrap;margin-top:2px;flex-shrink:0}
 .nw-body{flex:1}
 .nw-context{font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px}
-.nw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
-.nw-title em{font-style:italic;color:var(--gold-lt,#ddb06a)}
+.nw-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-title em{font-style:italic;color:var(--gold-lt,#f0a075)}
 .nw-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .nw-feat{font-size:11px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:100px}
 .nw-link{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--white);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s}
-.nw-link:hover{background:var(--gold-lt,#ddb06a)}
+.nw-link:hover{background:var(--gold-lt,#f0a075)}
 .nw-disc{font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
 .related-section{border-top:1px solid var(--border);padding:40px 48px 60px;max-width:800px;margin:40px auto 0}
 .related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
@@ -174,8 +183,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -274,7 +283,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 </div>
 <footer>
-<span class="footer-logo">SideHustle<span>Guard</span></span>
+<span class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></span>
 <div class="footer-links">
 <a href="/">Home</a>
 <a href="/tool">Free checker</a>
@@ -283,6 +292,6 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <div class="footer-disc">Educational information only — not legal or tax advice. Consult a licensed CPA or attorney before making decisions.</div>
 </footer>
-<p style="font-size:13px;color:#6b7a96;margin-top:24px">📎 Official resource: <a href="https://www.irs.gov/publications/p527" rel="noopener noreferrer" style="color:#1c2b4a;text-decoration:underline" target="_blank">IRS Publication 527 (residential rental property)</a> (IRS.gov)</p>
+<p style="font-size:13px;color:#6b7a96;margin-top:24px">📎 Official resource: <a href="https://www.irs.gov/publications/p527" rel="noopener noreferrer" style="color:#2d3068;text-decoration:underline" target="_blank">IRS Publication 527 (residential rental property)</a> (IRS.gov)</p>
 </body>
 </html>

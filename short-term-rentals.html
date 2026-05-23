@@ -8,8 +8,20 @@
 <meta content="Complete STR tax guide: the 14-day rule, Schedule C vs E, the STR loophole, Airbnb &amp; Vrbo 1099s, and state rules for hosts — updated 2026." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/short-term-rentals" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <!-- OG — TODO: replace src with /images/og/short-term-rentals.png when custom asset is ready -->
 <meta content="https://www.sidehustleguard.com/images/og/airbnb-host-taxes.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -84,18 +96,18 @@
 </script>
 <style>
 :root {
-  --navy:#1c2b4a; --gold:#c9973a; --gold-lt:#ddb06a; --gold-pale:#fdf5e8;
-  --cream:#faf8f4; --cream-d:#f0ece3; --white:#fff;
-  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(28,43,74,0.09);
+  --navy:#2d3068; --gold:#e89464; --gold-lt:#f0a075; --gold-pale:#fde8d5;
+  --cream:#f0ece1; --cream-d:#fbf8ee; --white:#fff;
+  --muted:#6b7a96; --dim:#9aa3b5; --border:rgba(45,48,104,0.09);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
+.logo-icon svg{width:32px;height:32px}
 .logo-text{font-size:15px;font-weight:600;color:var(--navy)}
 .logo-text span{color:var(--gold)}
 .nav-right{display:flex;align-items:center;gap:24px}
@@ -108,14 +120,14 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .breadcrumb{font-size:12px;color:var(--dim);margin-bottom:20px}
 .breadcrumb a{color:var(--dim);text-decoration:none}
 .breadcrumb a:hover{color:var(--navy)}
-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:12px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:12px}
 h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.hero-sub{font-family:'Fraunces',Georgia,serif;font-size:18px;font-style:italic;color:var(--gold);line-height:1.5;margin-bottom:18px}
 .hero-intro{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:680px}
 .article-disc{font-size:11px;color:var(--dim);margin-top:10px;font-style:italic}
 /* Content */
 .content{max-width:1060px;margin:0 auto;padding:36px 48px 80px}
-h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy)}
+h2{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:700;color:var(--navy)}
 h2 em{font-style:italic;color:var(--gold)}
 h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
 p{font-size:15px;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:12px}
@@ -132,7 +144,7 @@ a:hover{color:var(--gold-lt)}
 .article-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .article-grid>.article-card{flex:0 0 calc((100% - 20px) / 3);min-width:0}
 .article-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-decoration:none;transition:all .14s}
-.article-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 20px rgba(28,43,74,0.07)}
+.article-card:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,48,104,0.07)}
 .article-icon{font-size:24px;line-height:1;flex-shrink:0;margin-top:2px}
 .article-body{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
 .article-title{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s}
@@ -162,7 +174,7 @@ a:hover{color:var(--gold-lt)}
 .faq-item p{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300}
 /* CTA */
 .cta-box{background:var(--navy);border-radius:16px;padding:44px 40px;text-align:center}
-.cta-box h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--white);margin-bottom:8px}
+.cta-box h2{font-family:'Fraunces',Georgia,serif;font-size:26px;color:var(--white);margin-bottom:8px}
 .cta-box h2 em{font-style:italic;color:var(--gold-lt)}
 .cta-box p{color:rgba(255,255,255,.55);font-size:14px;font-weight:300;margin:0 auto 22px;max-width:440px}
 .btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
@@ -192,8 +204,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -243,7 +255,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/vrbo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/vrbo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🏠</span>
 <div class="article-body">
 <span class="article-title">Vrbo Host Taxes</span>
@@ -251,7 +263,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/booking-com-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/booking-com-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🌐</span>
 <div class="article-body">
 <span class="article-title">Booking.com Host Taxes</span>
@@ -259,7 +271,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/turo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/turo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🚗</span>
 <div class="article-body">
 <span class="article-title">Turo Host Taxes</span>
@@ -267,7 +279,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/hipcamp-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/hipcamp-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🏕️</span>
 <div class="article-body">
 <span class="article-title">Hipcamp Host Taxes</span>
@@ -275,7 +287,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/rv-rental-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/rv-rental-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🚐</span>
 <div class="article-body">
 <span class="article-title">RV Rental Host Taxes</span>
@@ -283,7 +295,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/furnished-finder-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/furnished-finder-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">🛋️</span>
 <div class="article-body">
 <span class="article-title">Furnished Finder Host Taxes</span>
@@ -291,7 +303,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/neighbor-storage-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/neighbor-storage-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">📦</span>
 <div class="article-body">
 <span class="article-title">Neighbor Storage Host Taxes</span>
@@ -309,7 +321,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <p class="section-intro">The framework that governs how short-term rental income is taxed, regardless of which platform you use — passive vs. active, the 14-day exemption, depreciation, and the loophole strategies that can make STR one of the most tax-efficient income streams available.</p>
 <div class="article-grid">
-<a class="article-card" data-expanding="true" href="/airbnb-14-day-rule" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/airbnb-14-day-rule" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">📅</span>
 <div class="article-body">
 <span class="article-title">The 14-Day Rule</span>
@@ -317,7 +329,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/schedule-c-vs-schedule-e-str" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(168,108,10,0.12);color:#a86c0a;border:1px solid rgba(168,108,10,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
+<a class="article-card" data-expanding="true" href="/schedule-c-vs-schedule-e-str" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
 <span aria-hidden="true" class="article-icon">📋</span>
 <div class="article-body">
 <span class="article-title">Schedule C vs. Schedule E</span>
@@ -521,7 +533,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:24px
 </div>
 <footer>
 <div>
-<div class="footer-logo">SideHustle<span>Guard</span></div>
+<div class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></div>
 <div class="footer-disc">General educational information only — not legal or tax advice. Consult a licensed CPA or attorney for your specific situation.</div>
 </div>
 <div class="footer-links">

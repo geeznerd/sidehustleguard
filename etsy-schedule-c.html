@@ -12,8 +12,20 @@
 <meta content="Schedule C is how Etsy sellers report business income and deductions to the IRS. Here's exactly how to fill it out — line by line, in plain English." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://www.sidehustleguard.com/etsy-schedule-c" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
 <meta content="How to Fill Out Schedule C for Etsy Sellers" property="og:title"/>
 <meta content="Schedule C is how Etsy sellers report business income and deductions to the IRS. Here's exactly how to fill it out — line by line, in plain English." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/etsy-schedule-c" property="og:url"/>
@@ -52,15 +64,12 @@
 }
 </script>
 <style>
-:root{--navy:#1c2b4a;--gold:#c9973a;--gold-lt:#ddb06a;--gold-pale:#fdf5e8;--cream:#faf8f4;--cream-d:#f0ece3;--white:#fff;--muted:#6b7a96;--dim:#9aa3b5;--border:rgba(28,43,74,0.09);--green:#276944;--green-bg:#eaf5ef;--red:#b83232;--amber:#a86c0a;--amber-bg:#fef6e8}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-img,picture,video,canvas,svg{max-width:100%;height:auto;display:block}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;font-size:16px;overflow-x:clip}
+/* Page-specific styles only — tokens come from design-system.css. */
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:26px;height:30px}
+.logo-icon svg{width:32px;height:32px}
 .logo-text{font-size:15px;font-weight:600;color:var(--navy)}.logo-text span{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--white);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s}
 .nav-cta:hover{background:var(--gold-lt)}
@@ -70,14 +79,14 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .hero{padding:64px 48px 48px;max-width:800px;margin:0 auto}
 .breadcrumb{font-size:12px;color:var(--dim);margin-bottom:18px}
 .breadcrumb a{color:var(--dim);text-decoration:none}
-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:16px}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-meta{font-size:13px;color:var(--dim);margin-bottom:22px}
 .article-disc{font-size:11px;color:var(--dim);margin:-10px 0 20px;font-weight:400;font-style:italic}
 .hero-intro{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
 .answer-box{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--navy);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);margin:40px 0 12px;line-height:1.2}
+h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--navy);margin:40px 0 12px;line-height:1.2}
 h2 em{font-style:italic;color:var(--gold)}
 h3{font-size:16px;font-weight:600;color:var(--navy);margin:24px 0 8px}
 p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
@@ -100,7 +109,7 @@ th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;f
 td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:300}
 td:first-child{font-weight:500;color:var(--navy)}
 .cta-box{background:var(--navy);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
-.cta-box h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:8px;font-weight:700}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--white);margin-bottom:8px;font-weight:700}
 .cta-box h3 em{font-style:italic;color:var(--gold-lt)}
 .cta-box p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:20px;font-weight:300}
 .btn-gold{display:inline-block;background:var(--gold);color:var(--white);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
@@ -110,7 +119,7 @@ td:first-child{font-weight:500;color:var(--navy)}
 .nw-card-accent{height:3px;background:var(--gold)}
 .nw-card-body{padding:24px 28px}
 .nw-card-tag{font-size:10px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:8px}
-.nw-card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
+.nw-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.25}
 .nw-card-title em{font-style:italic;color:var(--gold-lt)}
 .nw-card-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:16px;font-weight:300}
 .nw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
@@ -198,8 +207,8 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 <body>
 <nav>
 <a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" height="30" viewbox="0 0 36 40" width="26"><path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#faf8f4" stroke="#1c2b4a" stroke-linejoin="round" stroke-width="2.4"></path><path d="M11 19.5L16 24.5L26 13.5" stroke="#c9973a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path></svg></div>
-<span class="logo-text">SideHustle<span>Guard</span></span>
+<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
+<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
 </a>
 <div class="nav-right">
 <a class="nav-link" href="/#how-it-works">How it works</a>
@@ -233,7 +242,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 <p><strong>Line 4 — Cost of goods sold.</strong> If you sell physical products with material costs, this is where you deduct the cost of materials used. Digital product sellers typically enter $0 here.</p>
 <p><strong>Line 7 — Gross income.</strong> This calculates automatically: Line 1 minus Lines 2 and 4.</p>
 <div class="callout callout-navy"><p><strong>For most digital Etsy sellers:</strong> Line 1 = your gross sales, Line 2 = refunds, Line 4 = $0. Gross income on Line 7 is simply your total sales minus refunds.</p></div>
-<div class="toc-box" style="background:var(--gold-pale,#fdf5e8);border:1px solid rgba(201,151,58,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
+<div class="toc-box" style="background:var(--gold-pale,#fde8d5);border:1px solid rgba(232,148,100,0.2);border-radius:12px;padding:24px 28px;margin:0 0 36px">
 <div style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">In this guide</div>
 <ol style="list-style:none;padding:0;margin:0;columns:2;column-gap:24px">
 <li><a href="#before-you-start-what-you-need" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Before you start — what you need</a></li><li><a href="#part-i-income-the-straightforward-part" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Part I — Income (the straightforward part)</a></li><li><a href="#part-ii-expenses-where-you-reduce-your-tax-bill" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Part II — Expenses (where you reduce your tax bill)</a></li><li><a href="#line-31-net-profit-the-number-that-matters" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Line 31 — Net profit (the number that matters)</a></li><li><a href="#common-schedule-c-mistakes-etsy-sellers-make" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Common Schedule C mistakes Etsy sellers make</a></li><li><a href="#frequently-asked-questions" style="color:var(--navy);text-decoration:none;font-size:14px;line-height:1.8;display:block;padding:2px 0"><span style="color:var(--gold);margin-right:6px">→</span>Frequently asked questions</a></li>
@@ -328,7 +337,7 @@ footer{background:var(--cream-d);border-top:1px solid var(--border);padding:22px
 </div>
 </div>
 <footer>
-<span class="footer-logo">SideHustle<span>Guard</span></span>
+<span class="footer-logo">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot)">guard</span></span>
 <div class="footer-links">
 <a href="/">Home</a>
 <a href="/tool">Free checker</a>
