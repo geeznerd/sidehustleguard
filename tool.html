@@ -38,6 +38,7 @@
 
 <!-- Shared design system -->
 <link rel="stylesheet" href="/assets/css/design-system.css">
+<script src="/assets/js/icons.js" defer></script>
 
 <style>
   /* ===== TOOL.HTML PAGE-SPECIFIC ===== */
@@ -62,18 +63,34 @@
   .wrap {
     max-width: 640px;
     margin: 0 auto;
-    padding: 48px 24px 80px;
+    padding: 0 24px 80px;
   }
+
+  /* ===== HERO (Phase 5) — topo backdrop + eyebrow pill + display H1 ===== */
+  .tool-hero {
+    background: var(--cream);
+    padding: 56px 24px 36px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--indigo-08);
+  }
+  .tool-hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tool-hero .ds-eyebrow-pill { margin-bottom: 18px; }
 
   .page-title {
     font-family: 'Fraunces', Georgia, serif;
-    font-size: clamp(32px, 5vw, 44px);
+    font-size: clamp(36px, 5.5vw, 56px);
     font-weight: 400;
-    line-height: 1.05;
+    line-height: 1.02;
     letter-spacing: -0.022em;
     color: var(--indigo);
     font-variation-settings: 'opsz' 144, 'SOFT' 30;
-    margin-bottom: 8px;
+    margin-bottom: 14px;
   }
   .page-title em {
     font-style: italic;
@@ -82,9 +99,15 @@
   }
   .page-sub {
     font-family: 'Inter', sans-serif;
-    font-size: 14.5px;
+    font-size: 15.5px;
     color: var(--indigo-70);
-    margin-bottom: 24px;
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto 22px;
+  }
+
+  @media (max-width: 640px) {
+    .tool-hero { padding: 36px 18px 28px; }
   }
 
   /* Progress bar */
@@ -279,8 +302,14 @@
     pointer-events: none;
   }
   .email-icon {
-    font-size: 34px; margin-bottom: 12px; position: relative;
+    margin-bottom: 14px; position: relative;
+    width: 44px; height: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--paper-10);
+    border-radius: 12px;
+    color: var(--apricot);
   }
+  .email-icon svg { width: 24px; height: 24px; }
   .email-title {
     font-family: 'Fraunces', serif;
     font-size: 24px; font-weight: 400; line-height: 1.2;
@@ -481,15 +510,18 @@
     user-select: none;
   }
   .lock-pill {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 600;
     background: var(--apricot-soft);
     color: var(--apricot);
-    padding: 3px 10px;
+    padding: 4px 10px 4px 8px;
     border-radius: var(--radius-pill);
   }
+  .lock-pill svg { width: 11px; height: 11px; stroke: currentColor; stroke-width: 2; fill: none; }
 
   .more-row {
     display: flex;
@@ -996,9 +1028,40 @@
   <a href="/" class="nav-back">← Back</a>
 </nav>
 
+<section class="tool-hero hero-relative" id="main-content">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="toolHeroGlow" cx="20%" cy="80%" r="55%">
+        <stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="360" fill="url(#toolHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)" class="contour-inner-3"/>
+      <ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/>
+      <ellipse cx="204" cy="196" rx="210" ry="72" transform="rotate(-3 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/>
+      <ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/>
+      <ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/>
+    </g>
+  </svg>
+  <div class="tool-hero-inner hero-content">
+    <span class="ds-eyebrow-pill">Free legal &amp; tax check &middot; 60 seconds</span>
+    <h1 class="page-title">Check your hustle — <em>free</em></h1>
+    <p class="page-sub">8 quick questions. Plain-English results. No sign-up needed.</p>
+  </div>
+</section>
+
 <div class="wrap">
-  <h1 class="page-title">Check your hustle — <em>free</em></h1>
-  <p class="page-sub">8 quick questions · Plain English results · No sign-up needed</p>
   <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
   <div class="prog-label" id="prog-lbl">Step 1 of 8</div>
 
@@ -1113,7 +1176,7 @@
   <!-- EMAIL GATE -->
   <div id="vemail" class="hidden">
     <div class="email-card">
-      <div class="email-icon">✉</div>
+      <div class="email-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"/><polyline points="3 7 12 13 21 7"/></svg></div>
       <div class="email-title">Where should we send your <em>report?</em></div>
       <div class="email-sub">We'll email your full check now so you can come back to it. Plus a 7-day series with the deductions and deadlines for your specific hustle.</div>
       <input type="email" id="email-input" class="email-input" placeholder="you@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')submitEmail()">
@@ -1151,23 +1214,23 @@
     </div>
 
     <div class="locked-section">
-      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Personalized action plan</div>
+      <div class="locked-section-title"><span class="locked-section-icon icon icon--sm" data-icon="lock" aria-hidden="true"></span> Personalized action plan</div>
       <div class="locked-section-sub">6 prioritized steps — what to do this week, this month, ongoing</div>
     </div>
     <div class="locked-section">
-      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Tax reality — your numbers</div>
+      <div class="locked-section-title"><span class="locked-section-icon icon icon--sm" data-icon="lock" aria-hidden="true"></span> Tax reality — your numbers</div>
       <div class="locked-section-sub">Effective tax rate + estimated amount owed for your income</div>
     </div>
     <div class="locked-section">
-      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Key deadlines for the year</div>
+      <div class="locked-section-title"><span class="locked-section-icon icon icon--sm" data-icon="lock" aria-hidden="true"></span> Key deadlines for the year</div>
       <div class="locked-section-sub">Quarterly payments + filings — your specific dates</div>
     </div>
     <div class="locked-section">
-      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Deductions you're missing</div>
+      <div class="locked-section-title"><span class="locked-section-icon icon icon--sm" data-icon="lock" aria-hidden="true"></span> Deductions you're missing</div>
       <div class="locked-section-sub">Specific deductions you qualify for at this income / structure</div>
     </div>
     <div class="locked-section">
-      <div class="locked-section-title"><span class="locked-section-icon">🔒</span> Downloadable PDF report</div>
+      <div class="locked-section-title"><span class="locked-section-icon icon icon--sm" data-icon="lock" aria-hidden="true"></span> Downloadable PDF report</div>
       <div class="locked-section-sub">Save it. Share it with your CPA. Yours forever.</div>
     </div>
 
@@ -1457,7 +1520,7 @@ function renderFree(r){
         <div style="flex:1;min-width:0">
           <div class="issue-title">${escapeHTML(i.title)}</div>
           <div class="locked-detail">${escapeHTML(fakeBlur)}</div>
-          <span class="lock-pill">🔒 Unlock</span>
+          <span class="lock-pill"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Unlock</span>
         </div>
       </div>`;
     }
