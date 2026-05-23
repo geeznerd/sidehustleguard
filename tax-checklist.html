@@ -103,46 +103,40 @@ nav {
 .nav-cta { background: var(--apricot); color: var(--paper); padding: 9px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all .15s; white-space: nowrap; }
 .nav-cta:hover { background: var(--apricot-hover); }
 
-/* ── HERO ── */
+/* ── HERO (Phase 5: cream + topo backdrop) ── */
 .hero {
-  background: var(--indigo);
-  padding: 72px 48px 64px;
+  background: var(--cream);
+  padding: 72px 48px 56px;
   position: relative;
   overflow: hidden;
 }
-.hero-dots {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
-.hero-glow {
-  position: absolute; top: -80px; right: 5%; width: 480px; height: 480px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,148,100,0.12) 0%, transparent 65%);
+.hero-backdrop {
+  position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none;
 }
-.hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(232,148,100,0.15); border: 1px solid rgba(232,148,100,0.3);
-  padding: 5px 14px; border-radius: 100px;
-  font-size: 11px; font-weight: 600; color: var(--apricot-hover);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 24px;
+  background: var(--paper); border: 1px solid var(--indigo-08);
+  padding: 8px 16px; border-radius: 100px;
+  font-size: 11.5px; font-weight: 600; color: var(--apricot);
+  letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 22px; line-height: 1;
 }
-.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--apricot); border-radius: 50%; }
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--apricot); border-radius: 50%; flex-shrink: 0; }
 h1 {
-  font-family: 'Fraunces',Georgia, Georgia, serif;
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 700; line-height: 1.1; letter-spacing: -.01em;
-  color: var(--paper); margin-bottom: 18px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(40px, 5.4vw, 64px);
+  font-weight: 400; line-height: 1.04; letter-spacing: -0.022em;
+  color: var(--indigo); margin-bottom: 18px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
 }
-h1 em { font-style: italic; color: var(--apricot-hover); }
+h1 em { font-style: italic; color: var(--apricot); font-weight: 500; }
 .hero-sub {
-  font-size: 17px; color: rgba(255,255,255,.6);
-  font-weight: 300; line-height: 1.75; max-width: 600px; margin-bottom: 36px;
+  font-size: 17px; color: var(--indigo-70);
+  font-weight: 400; line-height: 1.65; max-width: 600px; margin-bottom: 32px;
 }
-.hero-sub strong { color: rgba(255,255,255,.85); font-weight: 500; }
+.hero-sub strong { color: var(--indigo); font-weight: 600; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .btn-print {
   display: inline-flex; align-items: center; gap: 8px;
@@ -156,25 +150,26 @@ h1 em { font-style: italic; color: var(--apricot-hover); }
 .btn-print svg { width: 16px; height: 16px; }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: rgba(255,255,255,.7);
+  background: transparent; color: var(--indigo-70);
   padding: 14px 24px; border-radius: 100px;
-  font-size: 14px; font-weight: 400; font-family: 'Inter', sans-serif;
-  text-decoration: none; border: 1.5px solid rgba(255,255,255,.18);
+  font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif;
+  text-decoration: none; border: 1px solid var(--indigo-18);
   cursor: pointer; transition: all .15s;
 }
-.btn-ghost:hover { border-color: rgba(255,255,255,.4); color: var(--paper); }
+.btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); }
 .hero-stats {
   display: flex; gap: 32px; flex-wrap: wrap;
   margin-top: 44px; padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid var(--indigo-08);
 }
 .hstat { border-left: 2px solid var(--apricot); padding-left: 14px; }
 .hstat-num {
-  font-family: 'Fraunces',Georgia, Georgia, serif;
-  font-size: 26px; font-weight: 700; color: var(--apricot-hover);
-  display: block; line-height: 1.1;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic; font-size: 30px; font-weight: 500;
+  color: var(--apricot); display: block; line-height: 1;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
 }
-.hstat-label { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 3px; }
+.hstat-label { font-size: 12px; color: var(--indigo-55); margin-top: 5px; }
 
 /* ── LAYOUT ── */
 .content { max-width: 800px; margin: 0 auto; padding: 0 48px 80px; }
@@ -225,9 +220,14 @@ h2 em { font-style: italic; color: var(--apricot); }
   border-bottom: 1px solid var(--indigo-08);
 }
 .hustle-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  background: var(--apricot-soft); display: flex; align-items: center;
-  justify-content: center; font-size: 20px; flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--apricot-12); color: var(--apricot);
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic; font-weight: 500;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-size: 24px;
+  display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; line-height: 1;
 }
 .hustle-title-wrap { flex: 1; }
 .hustle-label {
@@ -420,10 +420,12 @@ p strong { color: var(--indigo); font-weight: 600; }
     background: white; padding: 24px 0 20px;
     border-bottom: 2px solid #2d3068;
   }
+  .hero-backdrop { display: none; }
   h1 { color: #2d3068; font-size: 28px; }
   .hero-sub { color: #6b7a96; }
   .hero-stats { display: none; }
   .hustle-card { border-left: 3px solid #e89464; break-inside: avoid; }
+  .hustle-icon { background: transparent; color: #e89464; border: 1px solid #e89464; }
   .content { padding: 0; }
   .wins-box { break-inside: avoid; }
   .related-section { display: none; }
@@ -471,10 +473,24 @@ p strong { color: var(--indigo); font-weight: 600; }
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (Phase 5: cream + topo) -->
 <section class="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-glow"></div>
+  <svg class="hero-backdrop" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="checklistHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="480" fill="url(#checklistHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="360" rx="430" ry="180" transform="rotate(-12 240 360)"/>
+      <ellipse cx="234" cy="346" rx="395" ry="162" transform="rotate(-10.5 240 360)"/>
+      <ellipse cx="228" cy="332" rx="360" ry="144" transform="rotate(-9 240 360)" class="contour-inner-3"/>
+      <ellipse cx="222" cy="318" rx="325" ry="126" transform="rotate(-7.5 240 360)" class="contour-inner-3"/>
+      <ellipse cx="216" cy="304" rx="290" ry="108" transform="rotate(-6 240 360)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1040" cy="150" rx="270" ry="116" transform="rotate(14 1040 150)"/>
+      <ellipse cx="1044" cy="142" rx="240" ry="102" transform="rotate(12 1040 150)" class="contour-inner-3"/>
+      <ellipse cx="1048" cy="134" rx="210" ry="88" transform="rotate(10 1040 150)"/>
+    </g>
+  </svg>
   <div class="hero-inner">
     <div class="hero-tag">2025 Tax Season · Free Printable</div>
     <h1>Don't Miss a<br><em>Single Deduction</em></h1>
@@ -593,7 +609,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Delivery Drivers -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🚗</div>
+      <div class="hustle-icon" aria-hidden="true">D</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Gig Driving</div>
         <div class="hustle-title">Delivery Drivers</div>
@@ -663,7 +679,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Rideshare Drivers -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🚕</div>
+      <div class="hustle-icon" aria-hidden="true">R</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Gig Driving</div>
         <div class="hustle-title">Rideshare Drivers</div>
@@ -705,7 +721,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Etsy & Handmade Sellers -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🎨</div>
+      <div class="hustle-icon" aria-hidden="true">E</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Marketplace Selling</div>
         <div class="hustle-title">Etsy &amp; Handmade Sellers</div>
@@ -768,7 +784,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Resellers -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">📦</div>
+      <div class="hustle-icon" aria-hidden="true">M</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Reselling</div>
         <div class="hustle-title">Resellers</div>
@@ -824,7 +840,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Content Creators -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🎬</div>
+      <div class="hustle-icon" aria-hidden="true">C</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Digital Creation</div>
         <div class="hustle-title">Content Creators</div>
@@ -908,7 +924,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Freelancers -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">💼</div>
+      <div class="hustle-icon" aria-hidden="true">F</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Service Work</div>
         <div class="hustle-title">Freelancers &amp; Service Providers</div>
@@ -964,7 +980,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Pet Sitters -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🐾</div>
+      <div class="hustle-icon" aria-hidden="true">P</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Pet Services</div>
         <div class="hustle-title">Pet Sitters &amp; Dog Walkers</div>
@@ -1027,7 +1043,7 @@ p strong { color: var(--indigo); font-weight: 600; }
   <!-- Airbnb Hosts -->
   <div class="hustle-card">
     <div class="hustle-header">
-      <div class="hustle-icon">🏠</div>
+      <div class="hustle-icon" aria-hidden="true">H</div>
       <div class="hustle-title-wrap">
         <div class="hustle-label">Short-Term Rental</div>
         <div class="hustle-title">Rental Hosts</div>
