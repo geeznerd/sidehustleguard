@@ -298,12 +298,51 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 
 /* MOBILE BOTTOM BAR */
 .mobile-bar{display:none}
+.db-mobile-tabs{display:none}
 
 /* Mobile */
 @media(max-width:768px){
   .db-wrap{grid-template-columns:1fr}
   .sidebar{display:none}
-  .main{padding:16px 14px calc(80px + env(safe-area-inset-bottom,0px))}
+  .main{padding:0 14px calc(80px + env(safe-area-inset-bottom,0px))}
+
+  /* Horizontal scroll-tab strip replacing the hidden sidebar nav */
+  .db-mobile-tabs{
+    display:flex;
+    position:sticky;
+    top:58px; /* sits below the 56px nav with 2px breathing */
+    z-index:50;
+    margin:0 -14px 12px;
+    padding:8px 14px;
+    background:rgba(240,236,225,0.96);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--indigo-08);
+    overflow-x:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;
+    gap:6px;
+  }
+  .db-mobile-tabs::-webkit-scrollbar{display:none}
+  .db-mobile-tab{
+    flex-shrink:0;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:8px 14px;
+    border-radius:100px;
+    text-decoration:none;
+    color:var(--indigo-70);
+    white-space:nowrap;
+    transition:background .15s,color .15s;
+    border:1px solid transparent;
+  }
+  .db-mobile-tab[aria-current="true"]{
+    background:var(--indigo);
+    color:var(--paper);
+  }
+  .db-mobile-tab:hover{color:var(--indigo)}
   .profile-row{grid-template-columns:1fr 1fr}
   .stats-row{grid-template-columns:1fr}
   .tc-body{grid-template-columns:1fr}
@@ -398,6 +437,15 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 </aside>
 <!-- MAIN -->
 <main class="main">
+
+<!-- Mobile-only quick-jump tabs (mirrors the hidden sidebar links) -->
+<nav class="db-mobile-tabs" aria-label="Dashboard sections">
+  <a class="db-mobile-tab" href="#section-profile" aria-current="true">Profile</a>
+  <a class="db-mobile-tab" href="#section-audit">Audit Shield</a>
+  <a class="db-mobile-tab" href="#section-guard">Tax Guard</a>
+  <a class="db-mobile-tab" href="#section-scorp">S-Corp Sim</a>
+</nav>
+
 <!-- HERO (Phase 5) -->
 <section class="db-hero" aria-labelledby="db-hero-title">
   <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -1217,6 +1265,50 @@ document.addEventListener('alpine:init', () => {
     }
   }));
 });
+
+/* ===== Phase 6.6 — mobile scroll-tab strip:
+ *   - Smooth-scroll on click (with sticky-header offset)
+ *   - IntersectionObserver-driven aria-current to highlight active tab
+ * ===================================================================== */
+(function () {
+  var tabs = document.querySelectorAll('.db-mobile-tab');
+  if (!tabs.length) return;
+
+  /* Smooth-scroll with offset for sticky nav + tab strip */
+  tabs.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerOffset = 56 + 48; /* nav + tab strip */
+      var y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      tabs.forEach(function (t) { t.removeAttribute('aria-current'); });
+      a.setAttribute('aria-current', 'true');
+    });
+  });
+
+  /* Active-tab tracking via IntersectionObserver */
+  if (!('IntersectionObserver' in window)) return;
+  var sections = ['section-profile', 'section-audit', 'section-guard', 'section-scorp']
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  if (!sections.length) return;
+  var obs = new IntersectionObserver(function (entries) {
+    var inView = entries.filter(function (e) { return e.isIntersecting; });
+    if (!inView.length) return;
+    /* Pick the topmost in-view section */
+    inView.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+    var topId = inView[0].target.id;
+    tabs.forEach(function (t) {
+      var match = t.getAttribute('href') === '#' + topId;
+      if (match) t.setAttribute('aria-current', 'true');
+      else t.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-110px 0px -50% 0px', threshold: 0 });
+  sections.forEach(function (s) { obs.observe(s); });
+})();
 </script>
 <!-- ── PDF REPORT TEMPLATE (off-screen, populated by generatePDF()) ─────── -->
 <div id="pdf-report-template" style="position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;font-family:'Inter',Arial,sans-serif;color:#2d3068;padding:48px 52px;box-sizing:border-box;font-size:13px;line-height:1.6">
