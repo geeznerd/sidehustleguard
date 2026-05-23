@@ -340,6 +340,19 @@ a {
   background: var(--indigo);
   color: var(--paper);
 }
+/* Nav-context CTA — apricot variant for consistency with the
+ * article/calculator/landing pages, which all use a warm apricot CTA in
+ * their nav. The plain .btn-primary stays indigo for in-page contexts
+ * (hero, mid-page CTAs, etc.) so we only override when explicitly opted
+ * in via the .nav-cta-primary modifier. */
+.btn-primary.nav-cta-primary {
+  background: var(--apricot);
+  color: var(--paper);
+}
+.btn-primary.nav-cta-primary:hover {
+  background: var(--apricot-hover);
+  transform: translateY(-1px);
+}
 .btn-primary:hover {
   background: var(--indigo-hover);
   transform: translateY(-1px);
