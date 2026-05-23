@@ -45,28 +45,37 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .content{padding-top:0;padding-bottom:80px}
 .breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:20px}
 .breadcrumb a{color:var(--indigo-55);text-decoration:none}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:18px}
-h1 em{font-style:italic;color:var(--apricot)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(38px,5vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:20px}
 .article-disc{font-size:11px;color:var(--indigo-55);margin:-10px 0 20px;font-weight:400;font-style:italic}
 .hero-intro{font-size:17px;color:var(--indigo-70);font-weight:300;line-height:1.75;margin-bottom:32px}
-.answer-box{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:44px;font-size:15px;font-weight:500;color:var(--indigo);line-height:1.6}
+.answer-box{background:var(--indigo);color:var(--paper);border-radius:18px;padding:24px 28px;margin-bottom:40px;font-size:15px;font-weight:400;line-height:1.65;position:relative;overflow:hidden}
+.answer-box::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--apricot-soft),transparent 65%);pointer-events:none}
+.answer-box-inner{position:relative;z-index:1;display:flex;gap:14px;align-items:flex-start}
+.answer-box-icon{flex-shrink:0;color:var(--apricot);margin-top:1px}
+.answer-box-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.answer-box-body{flex:1;min-width:0}
+.answer-box-body strong{color:var(--apricot);font-weight:500;font-family:'Fraunces',Georgia,serif;font-style:italic;font-variation-settings:'opsz' 144,'SOFT' 30}
 h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--indigo);margin:44px 0 14px}
-h2 em{font-style:italic;color:var(--apricot)}
+h2 em{font-style:italic;color:var(--apricot);font-weight:500}
 h3{font-size:17px;font-weight:600;color:var(--indigo);margin:28px 0 10px}
-p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p{font-size:15.5px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:400}
 p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li{font-size:15.5px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:400}
 li strong{color:var(--indigo);font-weight:600}
-.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
-.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
-.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout{background:var(--paper);border:1px solid var(--indigo-08);border-radius:14px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--warn-bg);border-color:rgba(201,138,58,.18)}
+.callout-green{background:var(--good-bg);border-color:rgba(90,122,79,.18)}
 .callout p{margin-bottom:0;font-size:14px}
-.cta-box{background:var(--indigo);border-radius:16px;padding:40px;text-align:center;margin:44px 0}
-.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:24px;color:var(--paper);margin-bottom:8px;font-weight:700}
-.cta-box h3 em{font-style:italic;color:var(--apricot-hover)}
-.cta-box p{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:22px;font-weight:300}
+.cta-box{background:var(--indigo);border-radius:22px;padding:48px 36px;text-align:center;margin:48px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-120px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--apricot-soft),transparent 65%);pointer-events:none}
+.cta-box > *{position:relative;z-index:1}
+.cta-box-eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--apricot);margin-bottom:14px}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(26px,3.2vw,34px);color:var(--paper);margin-bottom:10px;font-weight:400;line-height:1.12;letter-spacing:-0.015em;font-variation-settings:'opsz' 144,'SOFT' 30}
+.cta-box h3 em{font-style:italic;color:var(--apricot);font-weight:500}
+.cta-box p{color:var(--paper-70);font-size:15px;margin-bottom:22px;font-weight:400;line-height:1.55;max-width:480px;margin-left:auto;margin-right:auto}
 .btn-gold{display:inline-block;background:var(--apricot);color:var(--paper);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none}
 .cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
 hr{border:none;border-top:1px solid var(--indigo-08);margin:40px 0}
@@ -104,8 +113,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
 @media(max-width:500px){.related-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px}.related-section{padding-top:20px;padding-bottom:28px;margin-top:16px}.related-card{padding:8px 10px}}
 
-.product-card{background:var(--cream);border:1.5px solid rgba(232,148,100,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
-.product-card-icon{font-size:32px;line-height:1;flex-shrink:0;margin-top:2px}
+.product-card{background:var(--paper);border:1px solid var(--apricot-soft);border-radius:18px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
+.product-card-icon{width:48px;height:48px;border-radius:12px;background:var(--apricot-12);color:var(--apricot);font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-variation-settings:'opsz' 144,'SOFT' 30;font-size:26px;display:inline-flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0;margin-top:2px}
 .product-card-body{flex:1;min-width:0}
 .product-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
 .product-card-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:var(--indigo);margin-bottom:8px;line-height:1.25}
@@ -119,10 +128,18 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 @media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
 
 
-.faq-item{border-bottom:1px solid var(--indigo-08);padding:18px 0}
+/* Pattern #9 accordion */
+.faq-item{border-bottom:1px solid var(--indigo-08)}
 .faq-item:last-child{border-bottom:none}
-.faq-item h3{font-size:15px;font-weight:600;color:var(--indigo);margin:0 0 8px;line-height:1.4}
-.faq-item p{font-size:14px;color:var(--indigo-70);line-height:1.7;margin:0;font-weight:300}
+.faq-item details{padding:0}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;font-size:16px;font-weight:500;color:var(--indigo);line-height:1.4}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'';width:24px;height:24px;border-radius:50%;border:1px solid var(--indigo-18);background-image:linear-gradient(to right,var(--indigo) 0,var(--indigo) 100%),linear-gradient(to bottom,var(--indigo) 0,var(--indigo) 100%);background-size:10px 1.5px,1.5px 10px;background-position:center;background-repeat:no-repeat;flex-shrink:0;transition:transform var(--dur-default) var(--ease-default)}
+.faq-item details[open] summary::after{background-image:linear-gradient(to right,var(--apricot) 0,var(--apricot) 100%);background-size:10px 1.5px;border-color:var(--apricot)}
+.faq-item h3{font-size:16px;font-weight:500;color:var(--indigo);margin:0 0 8px;line-height:1.4;padding:20px 0 0}
+.faq-item h3 + p{padding:0 0 22px}
+.faq-item p{font-size:14.5px;color:var(--indigo-70);line-height:1.65;margin:0 0 10px;font-weight:400}
+.faq-item p:last-child{margin-bottom:0}
 .faq-item p strong{color:var(--indigo);font-weight:600}
 .faq-item p a{color:var(--apricot);text-decoration:none}
 .faq-item p a:hover{text-decoration:underline}
@@ -245,12 +262,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
+<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="articleHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#articleHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1"><ellipse cx="220" cy="280" rx="400" ry="170" transform="rotate(-12 220 280)"/><ellipse cx="214" cy="266" rx="365" ry="152" transform="rotate(-10.5 220 280)"/><ellipse cx="208" cy="252" rx="330" ry="134" transform="rotate(-9 220 280)" class="contour-inner-3"/><ellipse cx="202" cy="238" rx="295" ry="116" transform="rotate(-7.5 220 280)" class="contour-inner-3"/><ellipse cx="196" cy="224" rx="260" ry="98" transform="rotate(-6 220 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1040" cy="110" rx="240" ry="106" transform="rotate(14 1040 110)"/><ellipse cx="1044" cy="102" rx="210" ry="92" transform="rotate(12 1040 110)" class="contour-inner-3"/><ellipse cx="1048" cy="94" rx="180" ry="78" transform="rotate(10 1040 110)"/></g></svg>
+<div class="hero-content">
 <div class="breadcrumb"><a href="/">SideHustleGuard</a> → <a href="/guides#freelancing">Freelancing &amp; Self-Employment</a> → Freelancer Taxes</div>
 <h1>Freelancer taxes: the complete <em>2025 guide</em></h1>
 <div class="hero-meta"><span class="byline">By <a href="/#author" rel="author">Richard Srey</a></span> · <time datetime="2026-05-22">Updated May 2026</time> · 8 min read</div>
 <p class="article-disc">Educational information only — not legal or tax advice. Consult a CPA for your situation.</p>
 <p class="hero-intro">Freelancers face a tax situation that's fundamentally different from employees — and most people don't realize how different until they get their first April bill. This guide covers everything: what you owe, when you owe it, and how to keep more of what you earn.</p>
 <div class="answer-box">⚠️ <strong>The number most freelancers miss:</strong> Self-employment tax is 15.3% of your net profit — on top of income tax. A freelancer earning $30,000 net typically owes $8,000–$11,000 in combined federal taxes. Plan for 30% of every payment received.</div>
+</div>
 </div>
 <div class="content">
 <picture><source srcset="/images/og/freelancer-taxes.webp" type="image/webp"/><img alt="Freelancer tax guide — 1099-NEC, quarterly estimates, and deductions" height="630" loading="lazy" src="/images/og/freelancer-taxes.png" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" width="1200"/></picture>

@@ -76,27 +76,31 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-link:hover{color:var(--indigo)}
-.hero{padding:64px 48px 48px;max-width:800px;margin:0 auto}
+.hero{padding:64px 48px 48px;max-width:820px;margin:0 auto;position:relative;overflow:hidden}
+.hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;line-height:1}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
 .breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:18px}
 .breadcrumb a{color:var(--indigo-55);text-decoration:none}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;color:var(--indigo);margin-bottom:16px}
-h1 em{font-style:italic;color:var(--apricot)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(38px,5vw,60px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .hero-meta{font-size:13px;color:var(--indigo-55);margin-bottom:22px}
 .article-disc{font-size:11px;color:var(--indigo-55);margin:-10px 0 20px;font-weight:400;font-style:italic}
-.hero-intro{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:28px}
+.hero-intro{font-size:17px;color:var(--indigo-70);font-weight:400;line-height:1.65;max-width:640px;margin-bottom:32px}
 .answer-box{background:var(--good-bg);border-left:4px solid var(--good);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:36px;font-size:14px;font-weight:500;color:var(--indigo);line-height:1.6}
 .content{max-width:800px;margin:0 auto;padding:0 48px 80px}
-h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:var(--indigo);margin:40px 0 12px;line-height:1.2}
-h2 em{font-style:italic;color:var(--apricot)}
+h2{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:400;color:var(--indigo);margin:48px 0 14px;line-height:1.15;letter-spacing:-0.015em;font-variation-settings:'opsz' 144,'SOFT' 30}
+h2 em{font-style:italic;color:var(--apricot);font-weight:500}
 h3{font-size:16px;font-weight:600;color:var(--indigo);margin:24px 0 8px}
-p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+p{font-size:15.5px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:400}
 p strong{color:var(--indigo);font-weight:600}
 ul,ol{padding-left:20px;margin-bottom:14px}
-li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+li{font-size:15.5px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:400}
 li strong{color:var(--indigo);font-weight:600}
-.callout{border-radius:10px;padding:16px 20px;margin:20px 0}
-.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
-.callout-green{background:var(--good-bg);border-left:4px solid var(--good)}
+.callout{background:var(--paper);border:1px solid var(--indigo-08);border-radius:14px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--warn-bg);border-color:rgba(201,138,58,.18)}
+.callout-green{background:var(--good-bg);border-color:rgba(90,122,79,.18)}
 .callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
 .callout p{margin-bottom:0;font-size:14px}
 .step-box{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px 20px;margin:10px 0;display:flex;gap:14px;align-items:flex-start}
@@ -108,10 +112,13 @@ table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
 th{background:var(--indigo);color:var(--paper);padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.05em}
 td{padding:10px 14px;border-bottom:1px solid var(--indigo-08);color:var(--indigo-70);font-weight:300}
 td:first-child{font-weight:500;color:var(--indigo)}
-.cta-box{background:var(--indigo);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
-.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--paper);margin-bottom:8px;font-weight:700}
-.cta-box h3 em{font-style:italic;color:var(--apricot-hover)}
-.cta-box p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:20px;font-weight:300}
+.cta-box{background:var(--indigo);border-radius:22px;padding:48px 36px;text-align:center;margin:48px 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-120px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--apricot-soft),transparent 65%);pointer-events:none}
+.cta-box > *{position:relative;z-index:1}
+.cta-box-eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--apricot);margin-bottom:14px}
+.cta-box h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(26px,3.2vw,34px);color:var(--paper);margin-bottom:10px;font-weight:400;line-height:1.12;letter-spacing:-0.015em;font-variation-settings:'opsz' 144,'SOFT' 30}
+.cta-box h3 em{font-style:italic;color:var(--apricot);font-weight:500}
+.cta-box p{color:var(--paper-70);font-size:15px;margin-bottom:22px;font-weight:400;line-height:1.55;max-width:480px;margin-left:auto;margin-right:auto}
 .btn-gold{display:inline-block;background:var(--apricot);color:var(--paper);padding:12px 26px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
 .btn-gold:hover{background:var(--apricot-hover)}
 .cta-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:8px}
@@ -219,12 +226,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:22p
 </div>
 </nav>
 <div class="hero">
+<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="articleHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#articleHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1"><ellipse cx="220" cy="280" rx="400" ry="170" transform="rotate(-12 220 280)"/><ellipse cx="214" cy="266" rx="365" ry="152" transform="rotate(-10.5 220 280)"/><ellipse cx="208" cy="252" rx="330" ry="134" transform="rotate(-9 220 280)" class="contour-inner-3"/><ellipse cx="202" cy="238" rx="295" ry="116" transform="rotate(-7.5 220 280)" class="contour-inner-3"/><ellipse cx="196" cy="224" rx="260" ry="98" transform="rotate(-6 220 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1040" cy="110" rx="240" ry="106" transform="rotate(14 1040 110)"/><ellipse cx="1044" cy="102" rx="210" ry="92" transform="rotate(12 1040 110)" class="contour-inner-3"/><ellipse cx="1048" cy="94" rx="180" ry="78" transform="rotate(10 1040 110)"/></g></svg>
+<div class="hero-content">
 <div class="breadcrumb"><a href="/">SideHustleGuard</a> → <a href="/guides#etsy-and-resellers">Etsy, E-commerce &amp; Resellers</a> → Can Etsy sellers write off a</div>
 <h1>Can Etsy sellers write off a <em>home office?</em></h1>
 <div class="hero-meta"><span class="byline">By <a href="/#author" rel="author">Richard Srey</a></span> · <time datetime="2026-05-22">Updated May 2026</time> · 5 min read</div>
 <p class="article-disc">Educational information only — not legal or tax advice. Consult a CPA for your situation.</p>
 <p class="hero-intro">The home office deduction is one of the most valuable — and most avoided — deductions available to Etsy sellers. Most people skip it either because they're afraid it triggers an audit or because they don't know how to calculate it. Both concerns are overblown. Here's the straight answer.</p>
 <div class="answer-box">✓ <strong>Yes, Etsy sellers can deduct a home office.</strong> If you have a dedicated space in your home used regularly and exclusively for your Etsy business, it qualifies. The simplified method gives you $5 per square foot up to 300 sq ft — a potential $1,500 deduction that reduces both income tax and self-employment tax.</div>
+</div>
 </div>
 <div class="content">
 <picture><source srcset="/images/og/etsy-home-office-deduction.webp" type="image/webp"/><img alt="Etsy home office deduction — what qualifies and how to claim it" height="630" loading="lazy" src="/images/og/etsy-home-office-deduction.png" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" width="1200"/></picture>
