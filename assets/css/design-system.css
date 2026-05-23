@@ -1447,3 +1447,147 @@ a {
 .callout--info .callout-icon { color: var(--apricot); }
 .callout--info .callout-eyebrow { color: var(--apricot); }
 
+/* ===== NEWSLETTER WIDGET (Phase 7 — auto-hydrates into <footer>) =====
+ * Self-contained signup card injected by /assets/js/newsletter-widget.js.
+ * Sits at the TOP of every footer; posts to /api/subscribe (ConvertKit). */
+.newsletter-widget {
+  background: var(--paper);
+  border: 1px solid var(--indigo-12);
+  border-radius: var(--radius-card);
+  padding: 22px 24px;
+  margin: 0 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 22px;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.newsletter-widget-text {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.newsletter-widget-text strong {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--indigo);
+  line-height: 1.35;
+}
+
+.newsletter-widget-text span {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--indigo-70);
+  line-height: 1.5;
+}
+
+.newsletter-widget-form {
+  flex: 1 1 320px;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.newsletter-widget-form input[type="email"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  color: var(--indigo);
+  background: #fff;
+  border: 1px solid var(--indigo-18);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-default),
+              box-shadow var(--dur-fast) var(--ease-default);
+}
+
+.newsletter-widget-form input[type="email"]::placeholder {
+  color: var(--indigo-35);
+}
+
+.newsletter-widget-form input[type="email"]:focus {
+  border-color: var(--apricot);
+  box-shadow: 0 0 0 3px var(--apricot-soft);
+}
+
+.newsletter-widget-form button {
+  flex: 0 0 auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--apricot);
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .newsletter-widget-form button {
+    transition: background var(--dur-fast) var(--ease-default),
+                transform var(--dur-press) var(--ease-default);
+  }
+}
+
+.newsletter-widget-form button:hover {
+  background: var(--apricot-hover);
+}
+
+.newsletter-widget-form button:active {
+  transform: translateY(1px);
+}
+
+.newsletter-widget-form button:disabled {
+  background: var(--indigo-35);
+  cursor: not-allowed;
+}
+
+.newsletter-widget-state {
+  flex: 1 1 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--indigo-70);
+  min-height: 0;
+}
+
+.newsletter-widget-state:empty {
+  display: none;
+}
+
+.newsletter-widget-state[data-kind="error"]   { color: var(--risk); }
+.newsletter-widget-state[data-kind="success"] { color: var(--good); }
+.newsletter-widget-state[data-kind="loading"] { color: var(--indigo-55); }
+
+.newsletter-widget.is-success {
+  background: var(--good-bg);
+  border-color: rgba(90, 122, 79, 0.18);
+}
+.newsletter-widget.is-success .newsletter-widget-text strong { color: var(--good); }
+
+/* Mobile: stack everything */
+@media (max-width: 640px) {
+  .newsletter-widget {
+    padding: 18px 18px;
+    gap: 14px;
+  }
+  .newsletter-widget-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .newsletter-widget-form button {
+    width: 100%;
+    padding: 12px 18px;
+  }
+}
+
