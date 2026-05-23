@@ -1018,6 +1018,36 @@ a {
   .hero-backdrop .contour-inner-3 { display: none; }
 }
 
+/* ===== TOUCH-TARGET POLISH (mobile) =====
+ * Apple HIG / WCAG 2.5.5 minimum tap target is 44×44pt. Article body links
+ * (<p><a>, <li><a>) default to 14-15px font-size with no padding, which is
+ * well below that minimum. Below 700px we add a small vertical hit-area
+ * (negative margin + positive padding so visual layout doesn't shift) and
+ * a -webkit-tap-highlight-color so touch-feedback isn't the muddy default
+ * blue rectangle.
+ *
+ * Scoped to .content (article body) so it doesn't affect nav links, footer
+ * links, or buttons-styled-as-links elsewhere — those already meet the
+ * tap target via padding. */
+@media (max-width: 700px) {
+  .content p a,
+  .content li a {
+    padding: 4px 2px;
+    margin: -4px -2px;
+    -webkit-tap-highlight-color: rgba(232, 148, 100, 0.18);
+    /* font-size already inherits 15.5px from p/li on mobile post-Phase-6.3,
+       which is the WCAG-recommended minimum for body text anyway */
+  }
+  /* Footer links: bigger tap area, stack with vertical spacing */
+  footer a {
+    padding: 6px 0;
+    -webkit-tap-highlight-color: rgba(232, 148, 100, 0.18);
+  }
+  /* Inline checkmark/dot prefixes are not interactive */
+  .content p a > svg,
+  .content li a > svg { pointer-events: none; }
+}
+
 /* ===== UNIVERSAL NAV NORMALIZATION =====
  * Article pages, calculators, and landings each declare their own <nav>
  * with slightly different padding (13/14px vertical, 18/48px horizontal,
