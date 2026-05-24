@@ -101,30 +101,72 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .progress-bar{height:3px;background:var(--indigo-08);border-radius:2px;margin-bottom:18px;overflow:hidden}
 .progress-fill{height:100%;background:var(--apricot);width:0%;transition:width .35s cubic-bezier(0.4,0,0.2,1)}
 
-/* Card deck */
-.deck{position:relative;height:340px;margin-bottom:14px;touch-action:none;user-select:none;-webkit-user-select:none}
-.swipe-card{position:absolute;inset:0;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 30px rgba(45,48,104,0.08);cursor:grab;transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s,box-shadow .2s}
+/* ─── Card deck ─────────────────────────────────────────────────
+ * Direction A illustrated postcard. The .swipe-card class keeps the
+ * positional + drag-state behavior; .card-A adds the visual chrome.
+ * Cards are 3:4 portrait with an art "stage" on top and a body below.
+ */
+.deck{position:relative;width:100%;max-width:340px;aspect-ratio:3/4;margin:0 auto 18px;touch-action:none;user-select:none;-webkit-user-select:none}
+.swipe-card{position:absolute;inset:0;cursor:grab;transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s,box-shadow .2s}
 .swipe-card.is-dragging{transition:none;cursor:grabbing}
-.swipe-card[data-stack="1"]{transform:scale(0.96) translateY(8px);opacity:0.7;pointer-events:none;z-index:1}
-.swipe-card[data-stack="2"]{transform:scale(0.92) translateY(16px);opacity:0.4;pointer-events:none;z-index:0}
+.swipe-card[data-stack="1"]{transform:scale(0.96) translateY(10px);opacity:0.75;pointer-events:none;z-index:1}
+.swipe-card[data-stack="2"]{transform:scale(0.92) translateY(20px);opacity:0.45;pointer-events:none;z-index:0}
 .swipe-card[data-stack="0"]{z-index:2}
 @media(prefers-reduced-motion:reduce){.swipe-card{transition:none}}
 
-.card-eye{font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--apricot);text-transform:uppercase;display:flex;align-items:center;gap:6px}
-.card-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--apricot)}
-.card-prompt{font-size:13px;color:var(--indigo-55);font-weight:300;margin-top:4px}
+/* ─── Direction A · Illustrated postcard ───────────────────────── */
+.card-A{width:100%;height:100%;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;box-shadow:0 1px 2px rgba(45,48,104,0.06),0 18px 38px -16px rgba(45,48,104,0.22);overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card-A-art{flex:1 1 60%;position:relative;background:var(--cream);border-bottom:1px solid var(--indigo-08);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-A-topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.card-A-illu{position:relative;z-index:1;width:78%;display:flex;align-items:center;justify-content:center}
+.card-A-illu svg{width:100%;height:auto;display:block}
+.card-A-no{position:absolute;top:14px;left:18px;z-index:2;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:26px;color:var(--apricot);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30}
+.card-A-body{flex:0 0 auto;padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px}
+.card-A-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--indigo-55);font-weight:600}
+.card-A-eyebrow em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--apricot);font-size:12.5px;letter-spacing:0;text-transform:none;font-variation-settings:'opsz' 144,'SOFT' 30}
+.card-A-name{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:22px;line-height:1.1;letter-spacing:-0.015em;color:var(--indigo);margin:0;font-variation-settings:'opsz' 144,'SOFT' 30}
+.card-A-foot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:4px;border-top:1px dashed var(--indigo-12)}
+.card-A-cat{font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--apricot);background:var(--apricot-soft);padding:3px 8px;border-radius:100px}
+.card-A-prompt{font-size:11px;color:var(--indigo-35);letter-spacing:0.04em;font-weight:500}
 
-.card-q{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:400;line-height:1.18;color:var(--indigo);letter-spacing:-0.012em;font-variation-settings:'opsz' 144,'SOFT' 30;margin:18px 0}
-.card-q em{font-style:italic;color:var(--apricot);font-weight:500}
-.card-hint{font-size:13.5px;color:var(--indigo-70);font-weight:300;line-height:1.5;margin-top:6px}
-.card-hint strong{color:var(--indigo);font-weight:500}
-
-.card-decals{position:absolute;inset:0;border-radius:18px;pointer-events:none}
+/* Decals (DEDUCTIBLE / PERSONAL stamps shown while dragging) */
+.card-decals{position:absolute;inset:0;border-radius:18px;pointer-events:none;z-index:3}
 .card-decal{position:absolute;top:18px;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;padding:6px 14px;border-radius:10px;opacity:0;transition:opacity .15s}
 .card-decal.is-yes{right:18px;color:#fff;background:var(--good);transform:rotate(8deg)}
 .card-decal.is-no{left:18px;color:#fff;background:var(--risk);transform:rotate(-8deg)}
 .swipe-card[data-tilt="yes"] .card-decal.is-yes,
 .swipe-card[data-tilt="no"]  .card-decal.is-no{opacity:0.95}
+
+/* ─── Ambient animations · active card only ────────────────────── */
+.anim-steam-1,.anim-steam-2,.anim-steam-3,
+.anim-drop,.anim-pin,.anim-ping,
+.anim-rock,.anim-wave-1,.anim-wave-2{transform-box:fill-box;transform-origin:center}
+.anim-ping{transform-origin:140px 108px;transform-box:view-box}
+.anim-wave-1,.anim-wave-2{transform-origin:140px 100px;transform-box:view-box}
+
+@media (prefers-reduced-motion: no-preference){
+  @keyframes anim-steam{0%{opacity:0;transform:translate(0,6px)}20%{opacity:0.85}100%{opacity:0;transform:translate(0,-10px)}}
+  .is-active .anim-steam-1{animation:anim-steam 2.8s ease-out infinite}
+  .is-active .anim-steam-2{animation:anim-steam 2.8s ease-out infinite;animation-delay:0.45s}
+  .is-active .anim-steam-3{animation:anim-steam 2.8s ease-out infinite;animation-delay:0.9s}
+
+  @keyframes anim-pin-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .is-active .anim-pin{animation:anim-pin-pulse 2.4s ease-in-out infinite;transform-origin:140px 110px;transform-box:view-box}
+
+  @keyframes anim-ping-out{0%{transform:scale(1);opacity:0.6}80%{transform:scale(3.2);opacity:0}100%{transform:scale(3.2);opacity:0}}
+  .is-active .anim-ping-1{animation:anim-ping-out 2.4s ease-out infinite}
+  .is-active .anim-ping-2{animation:anim-ping-out 2.4s ease-out infinite;animation-delay:1.2s}
+
+  @keyframes anim-drop-fall{0%{transform:translateY(0);opacity:0}10%{opacity:1}80%{transform:translateY(54px);opacity:0}100%{transform:translateY(54px);opacity:0}}
+  .is-active .anim-drop{animation:anim-drop-fall 1.9s ease-in infinite;animation-delay:0.4s}
+
+  @keyframes anim-rock{0%,100%{transform:rotate(-0.8deg)}50%{transform:rotate(0.8deg)}}
+  .is-active .anim-rock{animation:anim-rock 3.2s ease-in-out infinite;transform-origin:140px 100px;transform-box:view-box}
+
+  @keyframes anim-wave-out{0%{transform:scale(0.7);opacity:0}40%{opacity:0.55}100%{transform:scale(1.35);opacity:0}}
+  .is-active .anim-wave-1{animation:anim-wave-out 2.6s ease-out infinite}
+  .is-active .anim-wave-2{animation:anim-wave-out 2.6s ease-out infinite;animation-delay:1.3s}
+}
 
 /* Choice buttons */
 .choice-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -386,10 +428,17 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // For 'cond' items, the swipe is scored as a partial credit: either
   // direction is "close enough" because the honest answer is "it depends."
   // ──────────────────────────────────────────────────────────────────────
+  // Each entry adds `cat` (category chip) and `art` (inline SVG illustration).
+  // 5 of the 6 prototype illustrations port directly (bag, phone mount, gym,
+  // spotify, coffee). #07 tolls is a fresh draw to confirm style match.
+  // The remaining 18 are TODO — empty `art` leaves the stage showing just
+  // the topo backdrop + numeral as a graceful fallback.
   var ITEMS = [
     {
       q: 'Mileage between deliveries',
       hint: 'While logged in to the app and driving for a job.',
+      cat: 'Vehicle',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Mileage is the single biggest deduction for delivery drivers. The standard mileage rate is 70¢/mile in 2026 — track every business mile (a mileage app like Stride is free).',
       cite: 'IRS Pub 463'
@@ -397,6 +446,19 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Insulated delivery bag or pizza warmer',
       hint: 'Specifically for hot/cold orders.',
+      cat: 'Gear',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="anim-steam-1" d="M104 26 Q108 18 104 12" stroke="#e89464"/>
+        <path class="anim-steam-2" d="M126 26 Q130 18 126 12" stroke="#e89464"/>
+        <path class="anim-steam-3" d="M148 26 Q152 18 148 12" stroke="#e89464"/>
+        <path d="M70 60 L210 60 L218 168 Q218 174 212 174 L68 174 Q62 174 62 168 Z"/>
+        <path d="M70 60 L82 38 L198 38 L210 60"/>
+        <path d="M82 38 Q140 30 198 38"/>
+        <path d="M120 38 Q120 22 140 22 Q160 22 160 38"/>
+        <path d="M68 96 L212 96" stroke-dasharray="4 4"/>
+        <rect x="118" y="118" width="44" height="32" rx="3" fill="#e89464" stroke="none"/>
+        <path d="M126 134 L134 142 L154 124" stroke="#fbf8ee" stroke-width="2.4"/>
+      </svg>`,
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Equipment specifically required for the job is "ordinary and necessary." 100% deductible in the year purchased.',
       cite: 'IRS Pub 535'
@@ -404,6 +466,18 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Spotify Premium subscription',
       hint: 'To listen to music while driving deliveries.',
+      cat: 'Personal',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="140" cy="100" r="20" fill="#e89464" stroke="none"/>
+        <circle cx="140" cy="100" r="20"/>
+        <path d="M104 100 A 36 36 0 0 1 176 100"/>
+        <path class="anim-wave-1" d="M88 100 A 52 52 0 0 1 192 100" stroke="#2d3068" stroke-opacity="0.55"/>
+        <path class="anim-wave-2" d="M72 100 A 68 68 0 0 1 208 100" stroke="#2d3068" stroke-opacity="0.30"/>
+        <path d="M134 90 L134 108" stroke="#fbf8ee" stroke-width="2.4"/>
+        <circle cx="131" cy="110" r="3.5" fill="#fbf8ee" stroke="none"/>
+        <path d="M134 90 Q142 88 146 92" stroke="#fbf8ee" stroke-width="2.4"/>
+        <line x1="48" y1="150" x2="232" y2="150" stroke="#2d3068" stroke-opacity="0.25"/>
+      </svg>`,
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Music streaming is personal entertainment, even if you only listen while driving for work. The IRS does not consider this "ordinary and necessary" for delivery.',
       cite: 'IRS Pub 535'
@@ -411,6 +485,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Phone bill',
       hint: 'Your only line, used for the apps + personal calls.',
+      cat: 'Phone',
+      art: '',
       verdict: 'cond',
       explain: '<strong>Partial — depends on use.</strong> You can deduct the <strong>business-use portion</strong>. If you spend ~60% of phone time on delivery apps and customer calls, deduct 60% of the bill. Document the split.',
       cite: 'IRS Pub 535'
@@ -418,6 +494,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Speeding ticket received on the job',
       hint: 'Caught going 15 over while rushing a Doordash order.',
+      cat: 'Penalty',
+      art: '',
       verdict: 'no',
       explain: '<strong>Never deductible.</strong> Fines and penalties paid to a government for any law violation are explicitly non-deductible — even when incurred during work.',
       cite: 'IRC § 162(f)'
@@ -425,6 +503,28 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Tolls paid during a delivery',
       hint: 'EZ-Pass charges from an active delivery.',
+      cat: 'Vehicle',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="30"  y1="180" x2="48"  y2="180" stroke-opacity="0.35" stroke-width="2"/>
+        <line x1="76"  y1="180" x2="94"  y2="180" stroke-opacity="0.35" stroke-width="2"/>
+        <line x1="186" y1="180" x2="204" y2="180" stroke-opacity="0.35" stroke-width="2"/>
+        <line x1="232" y1="180" x2="250" y2="180" stroke-opacity="0.35" stroke-width="2"/>
+        <line x1="20" y1="172" x2="260" y2="172" stroke-width="2.6"/>
+        <rect x="124" y="96" width="20" height="76" rx="2"/>
+        <line x1="116" y1="172" x2="152" y2="172" stroke-width="3"/>
+        <circle cx="134" cy="88" r="8" fill="#e89464" stroke="#2d3068"/>
+        <circle cx="132" cy="86" r="2.5" fill="#fbf8ee" stroke="none"/>
+        <g class="anim-rock">
+          <g transform="rotate(-24 144 100)">
+            <rect x="144" y="94" width="116" height="12" rx="2"/>
+            <line x1="170" y1="94" x2="170" y2="106"/>
+            <line x1="196" y1="94" x2="196" y2="106"/>
+            <line x1="222" y1="94" x2="222" y2="106"/>
+            <line x1="248" y1="94" x2="248" y2="106"/>
+            <circle cx="260" cy="100" r="4"/>
+          </g>
+        </g>
+      </svg>`,
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Tolls and parking fees paid during business driving are deductible <em>in addition to</em> standard mileage. Save receipts (or screenshots from the EZ-Pass app).',
       cite: 'IRS Pub 463'
@@ -432,6 +532,23 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Gym membership',
       hint: 'To stay in shape for long shifts walking groceries upstairs.',
+      cat: 'Personal',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <g class="anim-rock">
+          <path d="M40 100 L240 100" stroke-width="3"/>
+          <rect x="44"  y="68" width="14" height="64" rx="3"/>
+          <rect x="62"  y="50" width="22" height="100" rx="3" fill="#e89464" stroke="#2d3068"/>
+          <rect x="88"  y="64" width="14" height="72" rx="3"/>
+          <rect x="178" y="64" width="14" height="72" rx="3"/>
+          <rect x="196" y="50" width="22" height="100" rx="3" fill="#e89464" stroke="#2d3068"/>
+          <rect x="222" y="68" width="14" height="64" rx="3"/>
+          <line x1="118" y1="92" x2="118" y2="108"/>
+          <line x1="128" y1="92" x2="128" y2="108"/>
+          <line x1="138" y1="92" x2="138" y2="108"/>
+          <line x1="148" y1="92" x2="148" y2="108"/>
+          <line x1="158" y1="92" x2="158" y2="108"/>
+        </g>
+      </svg>`,
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Personal fitness expenses are not "ordinary and necessary" for delivery work — even if you genuinely use them for stamina. The IRS has rejected this argument repeatedly.',
       cite: 'IRS Pub 535'
@@ -439,6 +556,22 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Phone mount for your car dashboard',
       hint: 'So you can read the delivery app while driving.',
+      cat: 'Gear',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M0 158 L280 158"/>
+        <path d="M0 168 L280 168" stroke="#2d3068" stroke-opacity="0.25"/>
+        <path d="M140 158 L140 140"/>
+        <rect x="132" y="134" width="16" height="8" rx="2"/>
+        <rect x="100" y="46" width="80" height="120" rx="10" fill="#fbf8ee"/>
+        <rect x="100" y="46" width="80" height="120" rx="10"/>
+        <rect x="110" y="60" width="60" height="92" rx="3" fill="#e89464" fill-opacity="0.15" stroke="none"/>
+        <circle class="anim-ping anim-ping-1" cx="140" cy="108" r="4" fill="none" stroke="#e89464" stroke-width="1.6" opacity="0"/>
+        <circle class="anim-ping anim-ping-2" cx="140" cy="108" r="4" fill="none" stroke="#e89464" stroke-width="1.6" opacity="0"/>
+        <path class="anim-pin" d="M140 92 Q132 100 132 110 Q132 122 140 130 Q148 122 148 110 Q148 100 140 92 Z" fill="#e89464" stroke="none"/>
+        <circle cx="140" cy="108" r="3" fill="#fbf8ee"/>
+        <path d="M122 138 Q140 134 158 138" stroke="#2d3068" stroke-opacity="0.4"/>
+        <line x1="134" y1="54" x2="146" y2="54"/>
+      </svg>`,
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Equipment used directly for the work — especially when required by law (hands-free phone use). 100% deductible if exclusively for business.',
       cite: 'IRS Pub 535'
@@ -446,6 +579,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Your own lunch during a 6-hour shift',
       hint: 'A burrito you grabbed between drops.',
+      cat: 'Personal',
+      art: '',
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Your own meals during a normal workday are personal. Only meals with clients or business contacts qualify (and only at 50%).',
       cite: 'IRC § 274(n)'
@@ -453,6 +588,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Car wash during a delivery shift',
       hint: 'Keeping your car presentable for grocery customers.',
+      cat: 'Vehicle',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Reasonable car care directly tied to active business use of the vehicle. Track the receipts. Note: if you use standard mileage, you can take this <em>in addition</em>.',
       cite: 'IRS Pub 463'
@@ -460,6 +597,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Reflective vest for late-night deliveries',
       hint: 'High-visibility vest for safety walking to doors at night.',
+      cat: 'Gear',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Safety gear directly required for the work. 100% deductible.',
       cite: 'IRS Pub 535'
@@ -467,6 +606,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Personal car payment',
       hint: 'Your monthly auto loan, using standard mileage method.',
+      cat: 'Vehicle',
+      art: '',
       verdict: 'no',
       explain: '<strong>Not deductible (as such).</strong> Under standard mileage, depreciation is baked in. You <em>can</em> deduct the business-use portion of <strong>interest</strong> on the loan separately — but not the principal.',
       cite: 'IRS Pub 463'
@@ -474,6 +615,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Hand sanitizer + disinfecting wipes for your car',
       hint: 'For wiping down after each delivery during cold/flu season.',
+      cat: 'Supplies',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Reasonable, ordinary supplies for the safe conduct of customer-facing delivery work. Modest amount, but deductible.',
       cite: 'IRS Pub 535'
@@ -481,6 +624,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'New phone (full retail price)',
       hint: 'Bought a $1,200 phone, use it for everything.',
+      cat: 'Phone',
+      art: '',
       verdict: 'cond',
       explain: '<strong>Partial — only the business-use percentage.</strong> If you use the phone 50% for delivery, deduct 50% of the cost (likely via Section 179 in year 1). Document the split with a usage log or call/data records.',
       cite: 'IRS Pub 535'
@@ -488,6 +633,16 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Coffee you bought for yourself mid-shift',
       hint: 'A Starbucks run between deliveries.',
+      cat: 'Personal',
+      art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="anim-steam-1" d="M124 18 Q132 28 124 38 Q116 48 124 58" stroke="#e89464"/>
+        <path class="anim-steam-2" d="M150 18 Q158 28 150 38 Q142 48 150 58" stroke="#e89464"/>
+        <path d="M88 64 L192 64 L188 80 L92 80 Z" fill="#e89464" stroke="#2d3068"/>
+        <ellipse cx="140" cy="72" rx="8" ry="3" fill="#fbf8ee" stroke="#2d3068"/>
+        <path d="M96 80 L106 174 L174 174 L184 80 Z"/>
+        <path d="M102 122 L178 122 L182 142 L98 142 Z" fill="#fbf8ee" stroke="#2d3068"/>
+        <text x="140" y="138" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.16em" fill="#2d3068">HOT</text>
+      </svg>`,
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Your own food and drinks are personal, regardless of when you consume them. Same rule as lunch.',
       cite: 'IRC § 262'
@@ -495,6 +650,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Dashcam for your delivery vehicle',
       hint: 'Installed for evidence in case of accidents on shifts.',
+      cat: 'Gear',
+      art: '',
       verdict: 'cond',
       explain: '<strong>Partial — depends on use.</strong> If used only when delivering, deduct fully. If also recording during personal driving, prorate by business-use %.',
       cite: 'IRS Pub 535'
@@ -502,6 +659,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'AAA / roadside assistance subscription',
       hint: 'Annual membership for your delivery car.',
+      cat: 'Vehicle',
+      art: '',
       verdict: 'cond',
       explain: '<strong>Method-dependent.</strong> If you use the <strong>actual expense method</strong>, deduct the business-use %. If you use <strong>standard mileage</strong>, roadside assistance is already baked in — don\'t double-deduct.',
       cite: 'IRS Pub 463'
@@ -509,6 +668,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Parking ticket during a delivery',
       hint: 'Hit with a $65 ticket while running an order up to a third-floor apartment.',
+      cat: 'Penalty',
+      art: '',
       verdict: 'no',
       explain: '<strong>Never deductible.</strong> Same rule as a speeding ticket — government fines are non-deductible by statute. Sorry.',
       cite: 'IRC § 162(f)'
@@ -516,6 +677,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Reusable grocery totes for Instacart deliveries',
       hint: 'Heavy-duty bags for hauling produce orders.',
+      cat: 'Gear',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Job-specific equipment, 100% deductible. Buy in bulk and keep the receipts.',
       cite: 'IRS Pub 535'
@@ -523,6 +686,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'A second cell phone line just for the apps',
       hint: 'Separate Mint Mobile line, used only for DoorDash + Uber Eats.',
+      cat: 'Phone',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> A dedicated business line with no personal use is 100% deductible (no business-use % calculation needed).',
       cite: 'IRS Pub 535'
@@ -530,6 +695,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Sunglasses for daytime driving',
       hint: 'A new pair of polarized sunglasses for shifts.',
+      cat: 'Personal',
+      art: '',
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Sunglasses are personal even for full-time drivers — they have ordinary personal utility. (Prescription safety glasses with specific job requirements would be different.)',
       cite: 'IRS Pub 535'
@@ -537,6 +704,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Online course: "How to maximize your DoorDash earnings"',
       hint: '$49 course on driving more efficient routes.',
+      cat: 'Education',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Education that maintains or improves skills in your current trade is deductible. Doesn\'t apply to courses to enter a new trade.',
       cite: 'IRS Pub 970'
@@ -544,6 +713,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Mileage-tracking app subscription (Stride, MileIQ, etc.)',
       hint: '$60/year subscription for auto-tracking business miles.',
+      cat: 'Software',
+      art: '',
       verdict: 'yes',
       explain: '<strong>Likely deductible.</strong> Business software directly used for tax compliance and recordkeeping. 100% deductible. (Many apps are free — but if you pay, deduct it.)',
       cite: 'IRS Pub 535'
@@ -551,6 +722,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'Car insurance premium',
       hint: 'Annual auto insurance for your delivery car.',
+      cat: 'Vehicle',
+      art: '',
       verdict: 'cond',
       explain: '<strong>Method-dependent.</strong> Deductible via <strong>actual expense method</strong> (business-use %). Already baked in under <strong>standard mileage</strong> — don\'t deduct separately. Most delivery drivers use mileage.',
       cite: 'IRS Pub 463'
@@ -558,6 +731,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     {
       q: 'A new winter coat',
       hint: 'For doing deliveries through the snow.',
+      cat: 'Personal',
+      art: '',
       verdict: 'no',
       explain: '<strong>Not deductible.</strong> Clothing that\'s also suitable for everyday wear is personal — even if you bought it specifically for the job. (Uniforms or branded apparel with a logo would qualify.)',
       cite: 'IRS Pub 529'
@@ -591,14 +766,34 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // ──────────────────────────────────────────────────────────────────────
   // Card rendering — keep 3 cards stacked at all times (current + 2 behind)
   // ──────────────────────────────────────────────────────────────────────
+  // Direction A illustrated postcard. The .is-active class fires the ambient
+  // animations on the top card only; back-of-deck cards stay still.
   function cardHTML(item, stackPos) {
+    var num = String(idx + stackPos + 1);
+    if (num.length === 1) num = '0' + num;
+    var isActive = stackPos === 0 ? ' is-active' : '';
+    var TOPO = '<svg class="card-A-topo" viewBox="0 0 280 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+             +   '<g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1">'
+             +     '<ellipse cx="220" cy="40" rx="120" ry="42"/>'
+             +     '<ellipse cx="220" cy="40" rx="100" ry="32"/>'
+             +     '<ellipse cx="220" cy="40" rx="78"  ry="22"/>'
+             +   '</g>'
+             + '</svg>';
+    var illu = item.art ? ('<div class="card-A-illu">' + item.art + '</div>') : '';
     return ''
-      + '<article class="swipe-card" data-stack="' + stackPos + '">'
-      +   '<div>'
-      +     '<div class="card-eye">Question ' + (idx + stackPos + 1) + '</div>'
-      +     '<div class="card-prompt">As a delivery driver — can I deduct this?</div>'
-      +     '<div class="card-q">' + escapeHTML(item.q) + '</div>'
-      +     (item.hint ? '<div class="card-hint">' + escapeHTML(item.hint) + '</div>' : '')
+      + '<article class="swipe-card card-A' + isActive + '" data-stack="' + stackPos + '">'
+      +   '<div class="card-A-art">'
+      +     TOPO
+      +     '<span class="card-A-no">' + num + '</span>'
+      +     illu
+      +   '</div>'
+      +   '<div class="card-A-body">'
+      +     '<div class="card-A-eyebrow">What about <em>this</em>?</div>'
+      +     '<h3 class="card-A-name">' + escapeHTML(item.q) + '</h3>'
+      +     '<div class="card-A-foot">'
+      +       '<span class="card-A-cat">' + escapeHTML(item.cat || 'Expense') + '</span>'
+      +       '<span class="card-A-prompt">Personal · Deductible?</span>'
+      +     '</div>'
       +   '</div>'
       +   '<div class="card-decals">'
       +     '<div class="card-decal is-yes">DEDUCTIBLE</div>'
