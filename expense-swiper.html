@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Can I Deduct This? Tax Deduction Swipe for Delivery Drivers — SideHustleGuard</title>
+<meta content="Tap or swipe through 25 real expenses a DoorDash, Uber Eats, Grubhub, or Instacart driver might claim. See which are likely deductible, which aren't, and why — based on IRS Pub 535 and Pub 463." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/expense-swiper" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<!-- Open Graph -->
+<meta content="Can I Deduct This? Tax Deduction Swipe for Delivery Drivers" property="og:title"/>
+<meta content="25 real expenses. Swipe deductible or personal. Find out where IRS Pub 535 actually lands — and what to verify with your tax pro." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/expense-swiper" property="og:url"/>
+<meta content="website" property="og:type"/>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tax Deduction Swipe — Delivery Drivers",
+  "description": "Interactive tool to test your knowledge of which delivery-driver expenses are likely deductible under IRS Pub 535.",
+  "url": "https://www.sidehustleguard.com/expense-swiper",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+
+.hero{padding:64px 24px 28px;text-align:center;position:relative;overflow:hidden}
+.hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5vw,52px);font-weight:400;line-height:1.05;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.65;max-width:560px;margin:0 auto}
+
+.stage{max-width:600px;margin:0 auto;padding:24px 24px 64px;position:relative}
+.stage > section{display:none}
+.stage > section.is-active{display:block}
+
+/* Intro card */
+.intro-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:28px}
+.intro-eye{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--apricot);text-transform:uppercase;margin-bottom:8px}
+.intro-title{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:500;line-height:1.2;color:var(--indigo);margin-bottom:14px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.intro-title em{font-style:italic;color:var(--apricot)}
+.intro-rules{margin:14px 0 20px;padding:0;list-style:none}
+.intro-rules li{font-size:14px;color:var(--indigo-70);line-height:1.6;padding:8px 0 8px 32px;position:relative;border-bottom:1px dashed var(--indigo-08)}
+.intro-rules li:last-child{border-bottom:none}
+.intro-rules li::before{content:counter(intro-step);counter-increment:intro-step;position:absolute;left:0;top:9px;width:22px;height:22px;border-radius:50%;background:var(--apricot-soft);color:var(--apricot);font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1}
+.intro-rules{counter-reset:intro-step}
+.intro-rules strong{color:var(--indigo);font-weight:600}
+
+.disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin:18px 0}
+.disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.disclaimer-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.disclaimer p{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin:0}
+.disclaimer strong{color:var(--indigo);font-weight:600}
+
+/* Primary start button */
+.btn-start{display:block;width:100%;background:var(--apricot);color:var(--indigo);border:0;border-radius:14px;padding:14px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s;text-align:center;text-decoration:none}
+.btn-start:hover{background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.btn-start:hover{transform:translateY(-1px)}}
+
+/* Progress */
+.progress{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;padding:0 4px}
+.progress-count{font-family:'Fraunces',Georgia,serif;font-size:13px;font-style:italic;color:var(--indigo-55);letter-spacing:.02em}
+.progress-count strong{font-style:italic;color:var(--apricot);font-weight:500}
+.progress-score{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--indigo-55);text-transform:uppercase}
+.progress-bar{height:3px;background:var(--indigo-08);border-radius:2px;margin-bottom:18px;overflow:hidden}
+.progress-fill{height:100%;background:var(--apricot);width:0%;transition:width .35s cubic-bezier(0.4,0,0.2,1)}
+
+/* Card deck */
+.deck{position:relative;height:340px;margin-bottom:14px;touch-action:none;user-select:none;-webkit-user-select:none}
+.swipe-card{position:absolute;inset:0;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:22px 26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 30px rgba(45,48,104,0.08);cursor:grab;transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s,box-shadow .2s}
+.swipe-card.is-dragging{transition:none;cursor:grabbing}
+.swipe-card[data-stack="1"]{transform:scale(0.96) translateY(8px);opacity:0.7;pointer-events:none;z-index:1}
+.swipe-card[data-stack="2"]{transform:scale(0.92) translateY(16px);opacity:0.4;pointer-events:none;z-index:0}
+.swipe-card[data-stack="0"]{z-index:2}
+@media(prefers-reduced-motion:reduce){.swipe-card{transition:none}}
+
+.card-eye{font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--apricot);text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.card-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--apricot)}
+.card-prompt{font-size:13px;color:var(--indigo-55);font-weight:300;margin-top:4px}
+
+.card-q{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:400;line-height:1.18;color:var(--indigo);letter-spacing:-0.012em;font-variation-settings:'opsz' 144,'SOFT' 30;margin:18px 0}
+.card-q em{font-style:italic;color:var(--apricot);font-weight:500}
+.card-hint{font-size:13.5px;color:var(--indigo-70);font-weight:300;line-height:1.5;margin-top:6px}
+.card-hint strong{color:var(--indigo);font-weight:500}
+
+.card-decals{position:absolute;inset:0;border-radius:18px;pointer-events:none}
+.card-decal{position:absolute;top:18px;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;padding:6px 14px;border-radius:10px;opacity:0;transition:opacity .15s}
+.card-decal.is-yes{right:18px;color:#fff;background:var(--good);transform:rotate(8deg)}
+.card-decal.is-no{left:18px;color:#fff;background:var(--risk);transform:rotate(-8deg)}
+.swipe-card[data-tilt="yes"] .card-decal.is-yes,
+.swipe-card[data-tilt="no"]  .card-decal.is-no{opacity:0.95}
+
+/* Choice buttons */
+.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{background:var(--paper);border:1.5px solid var(--indigo-08);border-radius:14px;padding:14px;font-family:inherit;font-size:14px;font-weight:600;color:var(--indigo);cursor:pointer;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px}
+.choice .glyph{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:17px}
+.choice--no{color:var(--risk)}
+.choice--yes{color:var(--good)}
+.choice:hover{border-color:currentColor}
+.choice:active{transform:translateY(1px)}
+.choice-help{text-align:center;font-size:11.5px;color:var(--indigo-55);margin-top:10px;font-weight:300}
+.choice-help kbd{font-family:inherit;background:var(--paper);border:1px solid var(--indigo-12);padding:1px 5px;border-radius:4px;font-size:10.5px;color:var(--indigo)}
+
+/* Feedback toast */
+.feedback{position:fixed;left:50%;top:80px;transform:translate(-50%,-12px);opacity:0;pointer-events:none;background:var(--indigo);color:var(--paper);padding:10px 16px;border-radius:100px;font-size:13.5px;font-weight:500;box-shadow:0 8px 24px rgba(45,48,104,0.22);transition:opacity .2s,transform .25s cubic-bezier(0.4,0,0.2,1);z-index:80;display:inline-flex;align-items:center;gap:8px;max-width:90vw;text-align:center}
+.feedback.is-show{opacity:1;transform:translate(-50%,0)}
+.feedback-mark{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:16px}
+.feedback.is-correct .feedback-mark{color:var(--apricot)}
+.feedback.is-wrong .feedback-mark{color:#ff9c80}
+
+/* Results */
+.results-hero{background:var(--indigo);color:var(--paper);border-radius:18px;padding:26px;margin-bottom:18px;text-align:center}
+.results-eye{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:10px}
+.results-stat{font-family:'Fraunces',Georgia,serif;font-size:46px;line-height:1;font-weight:500;color:var(--paper);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:6px}
+.results-stat em{font-style:italic;color:var(--apricot-hover)}
+.results-headline{font-size:14px;color:rgba(251,248,238,0.75);font-weight:300;line-height:1.5}
+
+.results-list{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:6px}
+.result-item{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:14px 16px;border-bottom:1px solid var(--indigo-08)}
+.result-item:last-child{border-bottom:none}
+.result-mark{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2}
+.result-mark.is-yes{color:var(--good)}
+.result-mark.is-no{color:var(--risk)}
+.result-mark.is-cond{color:var(--warn)}
+.result-item-title{font-size:14.5px;font-weight:600;color:var(--indigo);line-height:1.3;margin-bottom:3px}
+.result-item-verdict{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.result-item-verdict.is-yes{color:var(--good)}
+.result-item-verdict.is-no{color:var(--risk)}
+.result-item-verdict.is-cond{color:var(--warn)}
+.result-item-expl{font-size:13px;color:var(--indigo-70);line-height:1.55;font-weight:300}
+.result-item-expl strong{color:var(--indigo);font-weight:600}
+.result-item-cite{font-size:11px;color:var(--indigo-55);margin-top:6px;font-weight:400}
+
+/* Email capture inline */
+.email-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:20px 22px;margin:18px 0;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.email-card-body{flex:1 1 260px}
+.email-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:3px}
+.email-card-sub{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.5}
+.email-card-link{flex-shrink:0;background:var(--apricot);color:var(--indigo);border:0;border-radius:12px;padding:10px 16px;font-family:inherit;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.email-card-link:hover{background:var(--apricot-hover)}
+
+.results-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.results-cta a{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:13px;font-size:14px;font-weight:600;text-decoration:none;text-align:center;transition:background .15s,transform .15s;font-family:inherit}
+.results-cta .btn-primary{background:var(--apricot);color:var(--indigo);box-shadow:0 4px 12px rgba(45,48,104,0.12)}
+.results-cta .btn-primary:hover{background:var(--apricot-hover)}
+.results-cta .btn-ghost{background:transparent;border:1.5px solid var(--indigo-18);color:var(--indigo)}
+.results-cta .btn-ghost:hover{border-color:var(--indigo)}
+@media(prefers-reduced-motion:no-preference){
+  .results-cta a:hover{transform:translateY(-1px)}
+}
+
+/* Bottom copy */
+.content{max-width:680px;margin:32px auto 0;padding:0 24px 64px}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:500;color:var(--indigo);margin:36px 0 12px;line-height:1.2;font-variation-settings:'opsz' 144,'SOFT' 30}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
+.content a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+@media(max-width:680px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 20px 20px}
+  h1{font-size:28px}
+  .stage{padding:18px 18px 56px}
+  .deck{height:300px}
+  .card-q{font-size:22px}
+  .results-stat{font-size:36px}
+  .email-card{flex-direction:column;align-items:stretch}
+  .email-card-link{text-align:center;justify-content:center}
+  .results-cta{grid-template-columns:1fr}
+  .nav-link{display:none}
+  .nav-link.nav-guides{display:inline-flex;font-size:13px}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link" href="/#faq">FAQ</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="swHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="360" fill="url(#swHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">Free · Delivery drivers</div>
+    <h1>Can I <em>deduct</em> this?</h1>
+    <p class="hero-sub">Swipe through 25 real expenses every DoorDash, Uber Eats, Grubhub, and Instacart driver runs into. Find out which are likely deductible — and where the IRS draws the line.</p>
+  </div>
+</div>
+
+<main class="stage">
+
+  <!-- ────────── INTRO ────────── -->
+  <section id="screen-intro" class="is-active">
+    <div class="intro-card">
+      <div class="intro-eye">Tax deduction swipe</div>
+      <div class="intro-title">25 expenses. <em>Personal</em> or <em>deductible</em>?</div>
+      <p style="font-size:14px;color:var(--indigo-70);line-height:1.6;margin-bottom:8px">For each card: would the IRS let a delivery driver write this off? Tap the buttons (or swipe the card) to guess. We'll show you the answer + explanation after each one.</p>
+      <ol class="intro-rules">
+        <li><strong>Swipe right</strong> or tap <strong>Deductible</strong> if you think a delivery driver can claim it.</li>
+        <li><strong>Swipe left</strong> or tap <strong>Personal</strong> if it's a personal expense.</li>
+        <li>At the end, you'll see all 25 with the IRS-aligned verdict + reasoning.</li>
+      </ol>
+      <div class="disclaimer">
+        <div class="disclaimer-label">Estimate only — not tax advice</div>
+        <p>Verdicts are based on <strong>IRS Pub 535 (Business Expenses)</strong> and <strong>Pub 463 (Travel, Gift, and Car Expenses)</strong>. Real-world deductibility depends on your usage, documentation, and method (standard mileage vs actual expenses). <strong>Verify with a licensed tax pro before claiming anything on a return.</strong></p>
+      </div>
+      <button class="btn-start" id="btn-start" type="button">Start the swipe →</button>
+    </div>
+  </section>
+
+  <!-- ────────── GAME ────────── -->
+  <section id="screen-game">
+    <div class="progress">
+      <div class="progress-count"><span id="p-current">1</span><span style="color:var(--indigo-35)"> of </span><strong id="p-total">25</strong></div>
+      <div class="progress-score">Score: <span id="p-score">0</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
+
+    <div class="deck" id="deck" aria-label="Swipe deck"></div>
+
+    <div class="choice-row">
+      <button class="choice choice--no" type="button" id="btn-no" aria-label="Personal expense">
+        <span class="glyph">←</span> Personal
+      </button>
+      <button class="choice choice--yes" type="button" id="btn-yes" aria-label="Deductible">
+        Deductible <span class="glyph">→</span>
+      </button>
+    </div>
+    <div class="choice-help">Tap buttons, swipe the card, or use <kbd>←</kbd> <kbd>→</kbd> keys.</div>
+  </section>
+
+  <!-- ────────── RESULTS ────────── -->
+  <section id="screen-results">
+    <div class="results-hero">
+      <div class="results-eye">Your results</div>
+      <div class="results-stat"><em id="r-score">—</em> of <span id="r-total">25</span></div>
+      <p class="results-headline" id="r-headline">Nice work. Here's the IRS-aligned breakdown for all 25 expenses.</p>
+    </div>
+
+    <div class="disclaimer" style="margin:0 0 18px">
+      <div class="disclaimer-label">Important — verify before claiming</div>
+      <p>These verdicts reflect typical IRS treatment under Pub 535 and Pub 463. Your specific situation (business-use %, recordkeeping, mileage vs actual-expense method) can change the answer. <strong>Always confirm with a licensed tax pro before deducting anything on your return.</strong></p>
+    </div>
+
+    <div class="results-list" id="r-list"></div>
+
+    <div class="email-card">
+      <div class="email-card-body">
+        <div class="email-card-title">Save this list?</div>
+        <div class="email-card-sub">Sign up for occasional updates on tax-law changes and new deduction guides.</div>
+      </div>
+      <a class="email-card-link" href="#newsletter-signup">Email me the list →</a>
+    </div>
+
+    <div class="results-cta">
+      <a class="btn-primary" href="/tool">Run my free check →</a>
+      <a class="btn-ghost" href="#" id="btn-restart">Take the swipe again ↺</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Feedback toast -->
+<div class="feedback" id="feedback" role="status" aria-live="polite">
+  <span class="feedback-mark" id="fb-mark">✓</span>
+  <span id="fb-text">Nice — that's right.</span>
+</div>
+
+<!-- SEO content -->
+<div class="content">
+  <h2>How <em>delivery driver</em> deductions actually work</h2>
+  <p>If you drive for DoorDash, Uber Eats, Grubhub, Instacart, or any food/grocery delivery app, you're an independent contractor — not an employee. You file a Schedule C, you pay self-employment tax, and you can deduct business expenses against your income.</p>
+  <p>The IRS test for any business deduction is whether it's <strong>ordinary and necessary</strong> for your trade. For a delivery driver, that usually means: things directly tied to the act of delivering (mileage, hot bags, phone mount, tolls) are likely deductible. Personal lifestyle expenses (gym, Spotify, lunch on shift) usually aren't, even if you can rationalize how they "help" you drive.</p>
+
+  <h2>The two <em>mileage</em> methods</h2>
+  <p><strong>Standard mileage</strong>: deduct a flat rate per business mile (70¢ in 2026). You can't separately deduct gas, oil, repairs, insurance, or depreciation — they're already baked in. You can still deduct tolls, parking, and the business-use portion of interest on your auto loan.</p>
+  <p><strong>Actual expense method</strong>: deduct the business-use percentage of every car-related cost (gas, insurance, maintenance, depreciation, repairs). Way more recordkeeping, often a smaller deduction unless you drive an expensive car.</p>
+  <p>Most delivery drivers come out ahead with standard mileage. <strong>You have to pick one method per car per year</strong> — and once you choose actual expenses for a vehicle, you can't switch back to standard mileage on that same car.</p>
+
+  <h2>What this tool <em>isn't</em></h2>
+  <p>This is an educational swipe — not tax advice. Real deductibility depends on how you actually use the item, what records you keep, and which mileage method you've elected. The verdicts here are based on IRS Pub 535 (Business Expenses) and Pub 463 (Travel, Gift, and Car Expenses) as of 2026. <strong>Verify with a licensed tax pro before claiming any deduction on your return.</strong></p>
+</div>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all deductibility decisions with a licensed tax professional before filing.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Curated expense set for delivery drivers (DoorDash, Uber Eats,
+  // Grubhub, Instacart). Each entry: question + hint + verdict + explainer.
+  //
+  // VERDICT KEY:
+  //   'yes'  — likely deductible for a delivery driver (Pub 535 ordinary+necessary)
+  //   'no'   — clearly personal under Pub 535 / Sec 162
+  //   'cond' — depends on method (mileage vs actual) or business-use %
+  //
+  // For 'cond' items, the swipe is scored as a partial credit: either
+  // direction is "close enough" because the honest answer is "it depends."
+  // ──────────────────────────────────────────────────────────────────────
+  var ITEMS = [
+    {
+      q: 'Mileage between deliveries',
+      hint: 'While logged in to the app and driving for a job.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Mileage is the single biggest deduction for delivery drivers. The standard mileage rate is 70¢/mile in 2026 — track every business mile (a mileage app like Stride is free).',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'Insulated delivery bag or pizza warmer',
+      hint: 'Specifically for hot/cold orders.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Equipment specifically required for the job is "ordinary and necessary." 100% deductible in the year purchased.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Spotify Premium subscription',
+      hint: 'To listen to music while driving deliveries.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Music streaming is personal entertainment, even if you only listen while driving for work. The IRS does not consider this "ordinary and necessary" for delivery.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Phone bill',
+      hint: 'Your only line, used for the apps + personal calls.',
+      verdict: 'cond',
+      explain: '<strong>Partial — depends on use.</strong> You can deduct the <strong>business-use portion</strong>. If you spend ~60% of phone time on delivery apps and customer calls, deduct 60% of the bill. Document the split.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Speeding ticket received on the job',
+      hint: 'Caught going 15 over while rushing a Doordash order.',
+      verdict: 'no',
+      explain: '<strong>Never deductible.</strong> Fines and penalties paid to a government for any law violation are explicitly non-deductible — even when incurred during work.',
+      cite: 'IRC § 162(f)'
+    },
+    {
+      q: 'Tolls paid during a delivery',
+      hint: 'EZ-Pass charges from an active delivery.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Tolls and parking fees paid during business driving are deductible <em>in addition to</em> standard mileage. Save receipts (or screenshots from the EZ-Pass app).',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'Gym membership',
+      hint: 'To stay in shape for long shifts walking groceries upstairs.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Personal fitness expenses are not "ordinary and necessary" for delivery work — even if you genuinely use them for stamina. The IRS has rejected this argument repeatedly.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Phone mount for your car dashboard',
+      hint: 'So you can read the delivery app while driving.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Equipment used directly for the work — especially when required by law (hands-free phone use). 100% deductible if exclusively for business.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Your own lunch during a 6-hour shift',
+      hint: 'A burrito you grabbed between drops.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Your own meals during a normal workday are personal. Only meals with clients or business contacts qualify (and only at 50%).',
+      cite: 'IRC § 274(n)'
+    },
+    {
+      q: 'Car wash during a delivery shift',
+      hint: 'Keeping your car presentable for grocery customers.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Reasonable car care directly tied to active business use of the vehicle. Track the receipts. Note: if you use standard mileage, you can take this <em>in addition</em>.',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'Reflective vest for late-night deliveries',
+      hint: 'High-visibility vest for safety walking to doors at night.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Safety gear directly required for the work. 100% deductible.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Personal car payment',
+      hint: 'Your monthly auto loan, using standard mileage method.',
+      verdict: 'no',
+      explain: '<strong>Not deductible (as such).</strong> Under standard mileage, depreciation is baked in. You <em>can</em> deduct the business-use portion of <strong>interest</strong> on the loan separately — but not the principal.',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'Hand sanitizer + disinfecting wipes for your car',
+      hint: 'For wiping down after each delivery during cold/flu season.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Reasonable, ordinary supplies for the safe conduct of customer-facing delivery work. Modest amount, but deductible.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'New phone (full retail price)',
+      hint: 'Bought a $1,200 phone, use it for everything.',
+      verdict: 'cond',
+      explain: '<strong>Partial — only the business-use percentage.</strong> If you use the phone 50% for delivery, deduct 50% of the cost (likely via Section 179 in year 1). Document the split with a usage log or call/data records.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Coffee you bought for yourself mid-shift',
+      hint: 'A Starbucks run between deliveries.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Your own food and drinks are personal, regardless of when you consume them. Same rule as lunch.',
+      cite: 'IRC § 262'
+    },
+    {
+      q: 'Dashcam for your delivery vehicle',
+      hint: 'Installed for evidence in case of accidents on shifts.',
+      verdict: 'cond',
+      explain: '<strong>Partial — depends on use.</strong> If used only when delivering, deduct fully. If also recording during personal driving, prorate by business-use %.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'AAA / roadside assistance subscription',
+      hint: 'Annual membership for your delivery car.',
+      verdict: 'cond',
+      explain: '<strong>Method-dependent.</strong> If you use the <strong>actual expense method</strong>, deduct the business-use %. If you use <strong>standard mileage</strong>, roadside assistance is already baked in — don\'t double-deduct.',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'Parking ticket during a delivery',
+      hint: 'Hit with a $65 ticket while running an order up to a third-floor apartment.',
+      verdict: 'no',
+      explain: '<strong>Never deductible.</strong> Same rule as a speeding ticket — government fines are non-deductible by statute. Sorry.',
+      cite: 'IRC § 162(f)'
+    },
+    {
+      q: 'Reusable grocery totes for Instacart deliveries',
+      hint: 'Heavy-duty bags for hauling produce orders.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Job-specific equipment, 100% deductible. Buy in bulk and keep the receipts.',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'A second cell phone line just for the apps',
+      hint: 'Separate Mint Mobile line, used only for DoorDash + Uber Eats.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> A dedicated business line with no personal use is 100% deductible (no business-use % calculation needed).',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Sunglasses for daytime driving',
+      hint: 'A new pair of polarized sunglasses for shifts.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Sunglasses are personal even for full-time drivers — they have ordinary personal utility. (Prescription safety glasses with specific job requirements would be different.)',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Online course: "How to maximize your DoorDash earnings"',
+      hint: '$49 course on driving more efficient routes.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Education that maintains or improves skills in your current trade is deductible. Doesn\'t apply to courses to enter a new trade.',
+      cite: 'IRS Pub 970'
+    },
+    {
+      q: 'Mileage-tracking app subscription (Stride, MileIQ, etc.)',
+      hint: '$60/year subscription for auto-tracking business miles.',
+      verdict: 'yes',
+      explain: '<strong>Likely deductible.</strong> Business software directly used for tax compliance and recordkeeping. 100% deductible. (Many apps are free — but if you pay, deduct it.)',
+      cite: 'IRS Pub 535'
+    },
+    {
+      q: 'Car insurance premium',
+      hint: 'Annual auto insurance for your delivery car.',
+      verdict: 'cond',
+      explain: '<strong>Method-dependent.</strong> Deductible via <strong>actual expense method</strong> (business-use %). Already baked in under <strong>standard mileage</strong> — don\'t deduct separately. Most delivery drivers use mileage.',
+      cite: 'IRS Pub 463'
+    },
+    {
+      q: 'A new winter coat',
+      hint: 'For doing deliveries through the snow.',
+      verdict: 'no',
+      explain: '<strong>Not deductible.</strong> Clothing that\'s also suitable for everyday wear is personal — even if you bought it specifically for the job. (Uniforms or branded apparel with a logo would qualify.)',
+      cite: 'IRS Pub 529'
+    }
+  ];
+
+  // ──────────────────────────────────────────────────────────────────────
+  // State + DOM
+  // ──────────────────────────────────────────────────────────────────────
+  var idx = 0;
+  var score = 0;
+  var answers = [];
+  var $ = function (id) { return document.getElementById(id); };
+  var screens = {
+    intro: $('screen-intro'),
+    game: $('screen-game'),
+    results: $('screen-results')
+  };
+  var deck = $('deck');
+  var fb = $('feedback');
+  var fbMark = $('fb-mark');
+  var fbText = $('fb-text');
+
+  function show(name) {
+    Object.keys(screens).forEach(function (k) {
+      screens[k].classList.toggle('is-active', k === name);
+    });
+    window.scrollTo({ top: screens[name].offsetTop - 80, behavior: 'smooth' });
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Card rendering — keep 3 cards stacked at all times (current + 2 behind)
+  // ──────────────────────────────────────────────────────────────────────
+  function cardHTML(item, stackPos) {
+    return ''
+      + '<article class="swipe-card" data-stack="' + stackPos + '">'
+      +   '<div>'
+      +     '<div class="card-eye">Question ' + (idx + stackPos + 1) + '</div>'
+      +     '<div class="card-prompt">As a delivery driver — can I deduct this?</div>'
+      +     '<div class="card-q">' + escapeHTML(item.q) + '</div>'
+      +     (item.hint ? '<div class="card-hint">' + escapeHTML(item.hint) + '</div>' : '')
+      +   '</div>'
+      +   '<div class="card-decals">'
+      +     '<div class="card-decal is-yes">DEDUCTIBLE</div>'
+      +     '<div class="card-decal is-no">PERSONAL</div>'
+      +   '</div>'
+      + '</article>';
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function renderDeck() {
+    var html = '';
+    // Stack from back to front so [data-stack="0"] is rendered LAST (top of deck)
+    for (var i = Math.min(2, ITEMS.length - idx - 1); i >= 0; i--) {
+      html += cardHTML(ITEMS[idx + i], i);
+    }
+    deck.innerHTML = html;
+    attachGesture(deck.querySelector('.swipe-card[data-stack="0"]'));
+    $('p-current').textContent = idx + 1;
+    $('p-total').textContent = ITEMS.length;
+    $('p-score').textContent = score;
+    $('p-fill').style.width = Math.round((idx / ITEMS.length) * 100) + '%';
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Gesture handling — pointer events for unified mouse + touch
+  // ──────────────────────────────────────────────────────────────────────
+  function attachGesture(card) {
+    if (!card) return;
+    var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+    var THRESHOLD = 100; // px to count as a swipe
+
+    function down(e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      dragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      card.classList.add('is-dragging');
+      card.setPointerCapture && card.setPointerCapture(e.pointerId);
+    }
+    function move(e) {
+      if (!dragging) return;
+      dx = e.clientX - startX;
+      dy = e.clientY - startY;
+      var rot = dx / 18;
+      card.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+      if (dx > 40) card.setAttribute('data-tilt', 'yes');
+      else if (dx < -40) card.setAttribute('data-tilt', 'no');
+      else card.removeAttribute('data-tilt');
+    }
+    function up(e) {
+      if (!dragging) return;
+      dragging = false;
+      card.classList.remove('is-dragging');
+      if (dx > THRESHOLD) commit('yes');
+      else if (dx < -THRESHOLD) commit('no');
+      else {
+        // snap back
+        card.style.transform = '';
+        card.removeAttribute('data-tilt');
+        dx = 0; dy = 0;
+      }
+    }
+
+    card.addEventListener('pointerdown', down);
+    card.addEventListener('pointermove', move);
+    card.addEventListener('pointerup', up);
+    card.addEventListener('pointercancel', up);
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Commit a choice — animate card off-screen, score it, advance
+  // ──────────────────────────────────────────────────────────────────────
+  function commit(choice) {
+    var item = ITEMS[idx];
+    if (!item) return;
+    var card = deck.querySelector('.swipe-card[data-stack="0"]');
+
+    answers.push({ idx: idx, choice: choice, item: item });
+    // Scoring: 'yes' verdict matches choice 'yes'; 'no' matches 'no'.
+    // 'cond' items count regardless of swipe (honest answer is "it depends").
+    var correct = item.verdict === choice || item.verdict === 'cond';
+    if (correct) score++;
+
+    if (card) {
+      var direction = choice === 'yes' ? 1 : -1;
+      card.style.transform = 'translate(' + (direction * window.innerWidth) + 'px, -40px) rotate(' + (direction * 24) + 'deg)';
+      card.style.opacity = '0';
+    }
+
+    showFeedback(item, choice);
+    idx++;
+
+    // Wait for card animation, then re-render
+    setTimeout(function () {
+      if (idx >= ITEMS.length) finish();
+      else renderDeck();
+    }, 280);
+  }
+
+  function showFeedback(item, choice) {
+    var correct = item.verdict === choice;
+    var conditional = item.verdict === 'cond';
+    if (conditional) {
+      fb.className = 'feedback is-show is-correct';
+      fbMark.textContent = '~';
+      fbText.textContent = "It's actually conditional — read the breakdown at the end.";
+    } else if (correct) {
+      fb.className = 'feedback is-show is-correct';
+      fbMark.textContent = '✓';
+      fbText.textContent = choice === 'yes' ? "Nice — likely deductible." : "Right — that's personal.";
+    } else {
+      fb.className = 'feedback is-show is-wrong';
+      fbMark.textContent = '✗';
+      fbText.textContent = item.verdict === 'yes'
+        ? "Actually — that's likely deductible."
+        : "Actually — that's personal.";
+    }
+    clearTimeout(showFeedback._t);
+    showFeedback._t = setTimeout(function () { fb.classList.remove('is-show'); }, 1600);
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Buttons + keyboard
+  // ──────────────────────────────────────────────────────────────────────
+  $('btn-no').addEventListener('click', function () { commit('no'); });
+  $('btn-yes').addEventListener('click', function () { commit('yes'); });
+  document.addEventListener('keydown', function (e) {
+    if (!screens.game.classList.contains('is-active')) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); commit('no'); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); commit('yes'); }
+  });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Start + restart
+  // ──────────────────────────────────────────────────────────────────────
+  $('btn-start').addEventListener('click', function () {
+    idx = 0; score = 0; answers = [];
+    renderDeck();
+    show('game');
+  });
+  $('btn-restart').addEventListener('click', function (e) {
+    e.preventDefault();
+    idx = 0; score = 0; answers = [];
+    renderDeck();
+    show('game');
+  });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Finish — render the full breakdown
+  // ──────────────────────────────────────────────────────────────────────
+  function finish() {
+    $('r-score').textContent = score;
+    $('r-total').textContent = ITEMS.length;
+    var pct = score / ITEMS.length;
+    var headline = $('r-headline');
+    if (pct >= 0.85) headline.textContent = "Strong — you've got the IRS line memorized. Here's the breakdown anyway.";
+    else if (pct >= 0.6) headline.textContent = "Solid foundation. Here's where the tricky ones land.";
+    else headline.textContent = "A few traps in there. Here's the full IRS-aligned breakdown.";
+
+    var list = $('r-list');
+    list.innerHTML = ITEMS.map(function (item, i) {
+      var ans = answers[i];
+      var cls = item.verdict === 'yes' ? 'is-yes' : item.verdict === 'no' ? 'is-no' : 'is-cond';
+      var mark = item.verdict === 'yes' ? '✓' : item.verdict === 'no' ? '✗' : '~';
+      var label = item.verdict === 'yes' ? 'Likely deductible' : item.verdict === 'no' ? 'Personal' : 'Conditional';
+      return ''
+        + '<div class="result-item">'
+        +   '<div class="result-mark ' + cls + '">' + mark + '</div>'
+        +   '<div>'
+        +     '<div class="result-item-title">' + escapeHTML(item.q) + '</div>'
+        +     '<div class="result-item-verdict ' + cls + '">' + label + '</div>'
+        +     '<div class="result-item-expl">' + item.explain + '</div>'
+        +     '<div class="result-item-cite">Source: ' + escapeHTML(item.cite) + '</div>'
+        +   '</div>'
+        + '</div>';
+    }).join('');
+
+    show('results');
+  }
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
