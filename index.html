@@ -149,22 +149,29 @@
   }
   /* Top row: eyebrow + headline + body + CTA, capped for readable line-length */
   .hero-intro { display: flex; flex-direction: column; gap: 22px; max-width: 880px; }
-  /* Bottom row: picker (left) + preview card (right), equal height */
+  /* Bottom row: picker (left) + preview card (right).
+   * align-items: start lets each card take its natural height — the picker is
+   * intrinsically tall (9 rows), the preview compact. Forcing equal height
+   * just creates void inside the preview, so we don't. */
   .hero-pair {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: 32px;
-    align-items: stretch;
+    align-items: start;
   }
-  .hero-pair-picker,
-  .hero-pair-preview { display: flex; flex-direction: column; }
-  .hero-pair-picker > .sliding-list { flex: 1; }
-  /* Stretch the indigo card to match the picker height; push the foot to the bottom */
-  .hero-pair-preview > .hero-preview {
-    flex: 1; margin-top: 0;
-    display: flex; flex-direction: column;
+  .hero-pair-preview > .hero-preview { margin-top: 0; }
+
+  /* Desktop only: compress the homepage picker rows so the height delta with
+   * the preview card is less jarring. Scoped to .hero-pair-picker so other
+   * sliding-list instances elsewhere on the site stay at the larger size. */
+  @media (min-width: 961px) {
+    .hero-pair-picker .sliding-list { padding: 8px; }
+    .hero-pair-picker .sliding-list-row { height: 54px; }
+    .hero-pair-picker .sliding-list-indicator {
+      height: 54px; top: 8px; left: 8px; right: 8px;
+    }
+    .hero-pair-picker .sliding-list-num { font-size: 20px; }
   }
-  .hero-pair-preview .hero-preview-foot { margin-top: auto; }
   .hero-body {
     font-family: 'Inter', sans-serif;
     font-size: 16.5px; line-height: 1.65; font-weight: 400;
