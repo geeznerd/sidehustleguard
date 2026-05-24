@@ -133,43 +133,54 @@
   }
   .cat-tabs-inner {
     display: flex;
-    gap: 4px;
+    gap: 6px;
     flex-wrap: wrap;
-    max-width: 940px;
+    align-items: center;
+    max-width: 1100px;
     margin: 0 auto;
     background: var(--paper);
     border: 1px solid var(--indigo-08);
-    border-radius: var(--radius-pill);
-    padding: 6px 8px;
+    border-radius: 18px;
+    padding: 10px 14px;
     box-shadow: 0 2px 10px rgba(45, 48, 104, 0.04);
     transition: box-shadow var(--dur-default) var(--ease-default);
   }
-  /* Stuck state — slightly deeper shadow so users see the capsule lock */
+  /* Stuck state — slightly deeper shadow so users see the band lock */
   .cat-tabs.is-stuck .cat-tabs-inner {
     box-shadow: 0 6px 22px rgba(45, 48, 104, 0.08);
     border-color: var(--indigo-12);
   }
-  .cat-tabs-inner {
-    display: flex; gap: 6px; flex-wrap: wrap;
-    max-width: 1180px; margin: 0 auto;
-  }
   .cat-tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 13px; font-weight: 500;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
     background: transparent;
-    color: var(--indigo-70);
+    color: var(--indigo);
     white-space: nowrap;
     cursor: pointer;
-    transition: background var(--dur-default) var(--ease-default), color var(--dur-default) var(--ease-default);
+    transition: border-color var(--dur-default) var(--ease-default),
+                color var(--dur-default) var(--ease-default);
   }
-  .cat-tab:hover { color: var(--indigo); }
-  .cat-tab[aria-current="true"] {
-    background: var(--indigo);
-    color: var(--paper);
+  .cat-tab-n {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--indigo-35);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    line-height: 1;
+    transition: color var(--dur-default) var(--ease-default);
   }
+  .cat-tab-l { line-height: 1.2; }
+  .cat-tab:hover .cat-tab-n { color: var(--indigo-55); }
+  .cat-tab[aria-current="true"] { border-color: var(--apricot); }
+  .cat-tab[aria-current="true"] .cat-tab-n { color: var(--apricot); }
 
   /* Sections */
   .guides-body {
@@ -712,14 +723,14 @@
 <!-- STICKY CATEGORY TABS (G2) -->
 <div class="cat-tabs" id="cat-tabs">
   <div class="cat-tabs-inner" role="tablist" aria-label="Filter by category">
-    <button class="cat-tab" role="tab" data-cat="all" aria-current="true">All</button>
-    <button class="cat-tab" role="tab" data-cat="tools">Interactive tools</button>
-    <button class="cat-tab" role="tab" data-cat="gig">Gig &amp; delivery</button>
-    <button class="cat-tab" role="tab" data-cat="ecom">Etsy &amp; e-commerce</button>
-    <button class="cat-tab" role="tab" data-cat="creator">Creator economy</button>
-    <button class="cat-tab" role="tab" data-cat="freelance">Freelancing</button>
-    <button class="cat-tab" role="tab" data-cat="state">State guides</button>
-    <button class="cat-tab" role="tab" data-cat="str">Short-term rentals</button>
+    <button class="cat-tab" role="tab" data-cat="all" aria-current="true"><span class="cat-tab-n">00</span><span class="cat-tab-l">All</span></button>
+    <button class="cat-tab" role="tab" data-cat="tools"><span class="cat-tab-n">01</span><span class="cat-tab-l">Interactive tools</span></button>
+    <button class="cat-tab" role="tab" data-cat="gig"><span class="cat-tab-n">02</span><span class="cat-tab-l">Gig &amp; delivery</span></button>
+    <button class="cat-tab" role="tab" data-cat="ecom"><span class="cat-tab-n">03</span><span class="cat-tab-l">Etsy &amp; e-commerce</span></button>
+    <button class="cat-tab" role="tab" data-cat="creator"><span class="cat-tab-n">04</span><span class="cat-tab-l">Creator economy</span></button>
+    <button class="cat-tab" role="tab" data-cat="freelance"><span class="cat-tab-n">05</span><span class="cat-tab-l">Freelancing</span></button>
+    <button class="cat-tab" role="tab" data-cat="state"><span class="cat-tab-n">06</span><span class="cat-tab-l">State guides</span></button>
+    <button class="cat-tab" role="tab" data-cat="str"><span class="cat-tab-n">07</span><span class="cat-tab-l">Short-term rentals</span></button>
   </div>
 </div>
 
