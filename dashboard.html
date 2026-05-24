@@ -40,6 +40,8 @@
 <style>
 [x-cloak]{display:none!important}
 /* Page-specific scalar (the design system handles all colors via tokens — see assets/css/design-system.css). */
+/* Restored Phase 4 regression: Phase 4 retokenize wiped --sb but the grid still references it. */
+:root{--sb:220px}
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px}
 
 /* NAV */
@@ -52,7 +54,9 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .nav-links{display:flex;align-items:center;gap:22px}
 .nav-link{font-family:'Inter',sans-serif;font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-link:hover{color:var(--indigo)}
-.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translate(2px,2px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+/* Dashboard nav CTA points to /guides (browse, not convert) — suppress the live-indicator dot. */
+.nav-cta::before{display:none}
 
 /* LAYOUT */
 .db-wrap{display:grid;grid-template-columns:var(--sb) 1fr;min-height:calc(100vh - 50px)}
