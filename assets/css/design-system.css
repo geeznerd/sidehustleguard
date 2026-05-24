@@ -363,48 +363,31 @@ a {
   transform: translateY(-1px);
 }
 
-/* High-conversion CTA — apricot "liquid glass" treatment.
+/* High-conversion CTA — apricot pill with solid indigo offset shadow.
  * Used for the top-of-funnel buttons ("Check my hustle", "Start free check")
  * that route to /tool. Quieter buttons (calculators, secondary actions) keep
- * .btn-primary (indigo). The recipe: vertical gradient + specular sheen via
- * ::before + inset edge highlights + outer apricot glow shadow. */
+ * .btn-primary (indigo). The recipe: flat apricot pill, hard offset shadow
+ * (no blur), pressed-down hover that "sinks" the button into the shadow. */
 .btn-cta {
-  position: relative;
-  overflow: hidden;
-  /* Override the .btn base — tighter padding + squircle radius (not pill) */
+  /* Override the .btn base — slightly tighter padding; pill radius inherits */
   padding: 11px 24px;
   font-size: 14px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, #f0a075 0%, #e89464 55%, #d97c4a 100%);
+  background: var(--apricot);
   color: var(--indigo);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 0 -1px 0 rgba(45, 48, 104, 0.12),
-    0 14px 36px rgba(232, 148, 100, 0.38),
-    0 6px 14px rgba(45, 48, 104, 0.16);
-}
-.btn-cta::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 55%;
-  background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.32) 0%,
-    rgba(255, 255, 255, 0) 100%);
-  border-radius: 14px 14px 0 0;
-  pointer-events: none;
+  box-shadow: 5px 5px 0 var(--indigo);
 }
 .btn-cta:hover {
-  background: linear-gradient(180deg, #f4ad84 0%, #ed9d72 55%, #e08c5e 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1px 0 rgba(45, 48, 104, 0.14),
-    0 18px 44px rgba(232, 148, 100, 0.46),
-    0 8px 18px rgba(45, 48, 104, 0.20);
+  background: var(--apricot-hover);
+  box-shadow: 3px 3px 0 var(--indigo);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .btn-cta:hover { transform: translateY(-1px); }
+  .btn-cta:hover { transform: translate(2px, 2px); }
 }
-.btn-cta:active { transform: translateY(0) scale(0.98); }
+.btn-cta:active {
+  background: var(--apricot-hover);
+  box-shadow: 0 0 0 var(--indigo);
+  transform: translate(5px, 5px);
+}
 
 .btn-outline {
   background: transparent;
