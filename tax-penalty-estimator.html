@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tax Penalty &amp; Late Fee Estimator — How Much Do I Owe the IRS? (Free) — SideHustleGuard</title>
+<meta content="Forgot to pay your quarterly taxes or filed your return late? Estimate your IRS failure-to-file penalty, failure-to-pay penalty, and interest. Free, no signup, updated 2026." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/tax-penalty-estimator" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<!-- Open Graph -->
+<meta content="Tax Penalty &amp; Late Fee Estimator — How Much Do I Owe the IRS?" property="og:title"/>
+<meta content="Forgot to pay quarterly taxes or filed late? Estimate your IRS failure-to-file penalty, failure-to-pay penalty, and interest in 30 seconds." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/tax-penalty-estimator" property="og:url"/>
+<meta content="website" property="og:type"/>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tax Penalty & Late Fee Estimator",
+  "description": "Estimate IRS failure-to-file, failure-to-pay, and interest charges for late or missed tax payments. Based on IRC §§ 6651, 6654, and 6621.",
+  "url": "https://www.sidehustleguard.com/tax-penalty-estimator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+
+.hero{padding:64px 24px 32px;text-align:center;position:relative;overflow:hidden}
+.hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5vw,52px);font-weight:400;line-height:1.05;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.65;max-width:600px;margin:0 auto}
+
+/* Scenario tabs */
+.scenario-wrap{max-width:880px;margin:18px auto 0;padding:0 24px;text-align:center}
+.scenario-tabs{display:inline-flex;background:var(--paper);border:1px solid var(--indigo-08);padding:4px;border-radius:14px;gap:2px;flex-wrap:wrap;justify-content:center;max-width:100%}
+.scenario-tab{font-family:inherit;background:transparent;border:0;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:500;color:var(--indigo-70);cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+.scenario-tab[aria-pressed="true"]{background:var(--apricot);color:var(--indigo);font-weight:600}
+.scenario-tab:hover:not([aria-pressed="true"]){color:var(--indigo)}
+
+/* Calc grid */
+.calc-wrap{max-width:1020px;margin:0 auto;padding:20px 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start}
+.calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:24px 26px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.calc-sub{font-size:13px;color:var(--indigo-70);margin-bottom:18px;font-weight:300;line-height:1.55}
+
+.field{margin-bottom:16px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
+.field-help{font-size:11.5px;color:var(--indigo-55);margin-top:4px;font-weight:300;line-height:1.4}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
+input[type="number"],input[type="date"],select{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 13px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+input[type="number"]{padding-left:26px}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--apricot);background:var(--paper)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+.field-toggle{display:flex;gap:8px;margin-top:2px}
+.toggle-btn{flex:1;border:1.5px solid var(--indigo-08);background:var(--cream);color:var(--indigo);padding:10px;border-radius:10px;font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s}
+.toggle-btn[aria-pressed="true"]{border-color:var(--apricot);background:var(--apricot-soft);color:var(--indigo)}
+.toggle-btn:hover{border-color:var(--indigo-35)}
+.toggle-btn[aria-pressed="true"]:hover{border-color:var(--apricot)}
+
+.scenario-explain{background:var(--apricot-soft);border-radius:10px;padding:12px 14px;margin-top:6px;font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
+.scenario-explain strong{color:var(--indigo);font-weight:600}
+
+.disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:18px}
+.disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.disclaimer-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.disclaimer p{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin:0}
+.disclaimer strong{color:var(--indigo);font-weight:600}
+
+/* Results card */
+.results-card{background:var(--indigo);color:var(--paper);border-radius:16px;padding:24px 26px;position:relative;overflow:hidden}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:14px}
+
+.headline{font-family:'Fraunces',Georgia,serif;font-size:48px;font-weight:500;line-height:1;color:var(--paper);font-variation-settings:'opsz' 144,'SOFT' 30;margin:2px 0 6px}
+.headline em{font-style:italic;color:var(--apricot-hover)}
+.headline-sub{font-size:13.5px;color:rgba(251,248,238,0.7);font-weight:300;line-height:1.5;margin-bottom:18px}
+
+.bd-section{margin-top:14px}
+.bd-head{font-size:10.5px;font-weight:600;letter-spacing:.08em;color:rgba(251,248,238,.5);text-transform:uppercase;margin-bottom:8px}
+.bd-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,0.08);font-size:13.5px}
+.bd-row:last-child{border-bottom:none}
+.bd-label{color:rgba(251,248,238,.78);font-weight:300;line-height:1.4}
+.bd-label .bd-meta{display:block;font-size:11.5px;color:rgba(251,248,238,.45);margin-top:2px}
+.bd-amt{font-family:'Fraunces',Georgia,serif;font-size:16px;color:var(--paper);font-weight:500;font-variation-settings:'opsz' 144,'SOFT' 30}
+.bd-row.is-zero .bd-amt{color:rgba(251,248,238,.4)}
+
+.total-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.total-label{font-size:11px;color:rgba(251,248,238,.55);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.total-amt{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:500;color:var(--apricot-hover);font-variation-settings:'opsz' 144,'SOFT' 30;line-height:1}
+
+.advice{background:rgba(232,148,100,.10);border:1px solid rgba(232,148,100,.22);border-radius:10px;padding:14px 16px;margin-top:16px}
+.advice-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:6px}
+.advice p{font-size:13px;color:rgba(251,248,238,.85);line-height:1.55;font-weight:300;margin:0 0 8px}
+.advice p:last-child{margin-bottom:0}
+.advice strong{color:var(--paper);font-weight:600}
+.advice a{color:var(--apricot-hover);text-decoration:underline;text-underline-offset:2px}
+.advice a:hover{color:var(--paper)}
+
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.cta-row .btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--apricot);color:var(--indigo);border-radius:14px;padding:12px;font-size:13.5px;font-weight:700;text-decoration:none;text-align:center;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(45,48,104,0.18);transition:background .2s,box-shadow .2s,transform .15s}
+.cta-row .btn-cta:hover{background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.22)}
+@media(prefers-reduced-motion:no-preference){.cta-row .btn-cta:hover{transform:translateY(-1px)}}
+.cta-row .btn-ghost{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.06);color:var(--paper);border-radius:14px;padding:12px;font-size:13.5px;font-weight:600;text-decoration:none;text-align:center;border:1px solid rgba(255,255,255,0.12);transition:background .2s}
+.cta-row .btn-ghost:hover{background:rgba(255,255,255,0.10)}
+
+/* SEO content */
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;color:var(--indigo);margin:44px 0 14px;line-height:1.2;font-variation-settings:'opsz' 144,'SOFT' 30}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content h3{font-size:16px;font-weight:600;color:var(--indigo);margin:24px 0 8px}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--indigo-70);line-height:1.65;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--indigo);font-weight:600}
+.content a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px}
+.callout{border-radius:10px;padding:16px 20px;margin:24px 0}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--indigo-70)}
+.callout strong{color:var(--indigo)}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+.related-section{border-top:1px solid var(--indigo-08);padding:32px 0 0;margin-top:24px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
+.related-card:hover{border-color:var(--apricot)}
+@media(prefers-reduced-motion:no-preference){.related-card:hover{transform:translateY(-1px)}}
+.related-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:4px}
+.related-card-desc{font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
+
+@media(max-width:780px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 20px 24px}
+  h1{font-size:30px}
+  .scenario-wrap,.calc-wrap,.content{padding-left:20px;padding-right:20px}
+  .calc-grid{grid-template-columns:1fr;gap:14px}
+  .scenario-tab{padding:8px 12px;font-size:12.5px}
+  .cta-row{grid-template-columns:1fr}
+  .headline{font-size:36px}
+  .total-amt{font-size:26px}
+  .nav-link{display:none}
+  .nav-link.nav-guides{display:inline-flex;font-size:13px}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link" href="/#faq">FAQ</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="penHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="360" fill="url(#penHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">Free Estimator · Updated 2026</div>
+    <h1>How much do I <em>actually</em> owe the IRS?</h1>
+    <p class="hero-sub">You missed a payment. Picked up another shift instead of filing. Now you're staring at it. Enter what you owe, when it was due, and we'll estimate the penalty + interest stack.</p>
+  </div>
+</div>
+
+<!-- Scenario tabs -->
+<div class="scenario-wrap">
+  <div class="scenario-tabs" role="group" aria-label="What did you miss?">
+    <button class="scenario-tab" data-scenario="quarterly" aria-pressed="true">Missed a quarterly payment</button>
+    <button class="scenario-tab" data-scenario="filed-late" aria-pressed="false">Filed return late + didn't pay</button>
+    <button class="scenario-tab" data-scenario="paid-late" aria-pressed="false">Filed on time, didn't pay</button>
+  </div>
+</div>
+
+<!-- Calculator -->
+<div class="calc-wrap">
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-title">Your situation</div>
+      <div class="calc-sub" id="scenario-sub">Underpaid a quarterly estimated tax payment. The IRS charges interest from the due date until the date you pay (or April 15 of the following year, whichever is earlier).</div>
+
+      <div class="field">
+        <label class="field-label" for="amt">Amount unpaid</label>
+        <div class="input-money"><input type="number" id="amt" min="0" placeholder="2500" inputmode="decimal" value="2500" aria-label="Amount of tax unpaid"/></div>
+        <div class="field-help">The tax you owed and didn't pay on time.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="due">Date the payment was due</label>
+        <input type="date" id="due" aria-label="Original due date"/>
+        <div class="field-help">Use the original IRS deadline (Apr 15, Jun 15, Sep 15, or Jan 15 for estimates).</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="paid">Date paid (or today, if still unpaid)</label>
+        <input type="date" id="paid" aria-label="Date paid or today"/>
+        <div class="field-help">Penalty + interest stops accruing the day you pay in full.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="state">State</label>
+        <select id="state" aria-label="State">
+          <option value="">— None / no state tax obligation —</option>
+          <option value="AL">Alabama</option><option value="AK">Alaska (no income tax)</option>
+          <option value="AZ">Arizona</option><option value="AR">Arkansas</option>
+          <option value="CA">California</option><option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option><option value="DE">Delaware</option>
+          <option value="DC">DC</option><option value="FL">Florida (no income tax)</option>
+          <option value="GA">Georgia</option><option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option><option value="IL">Illinois</option>
+          <option value="IN">Indiana</option><option value="IA">Iowa</option>
+          <option value="KS">Kansas</option><option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option><option value="ME">Maine</option>
+          <option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option><option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option><option value="MO">Missouri</option>
+          <option value="MT">Montana</option><option value="NE">Nebraska</option>
+          <option value="NV">Nevada (no income tax)</option>
+          <option value="NH">New Hampshire (no income tax)</option>
+          <option value="NJ">New Jersey</option><option value="NM">New Mexico</option>
+          <option value="NY">New York</option><option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option><option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option><option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota (no income tax)</option>
+          <option value="TN">Tennessee (no income tax)</option>
+          <option value="TX">Texas (no income tax)</option>
+          <option value="UT">Utah</option><option value="VT">Vermont</option>
+          <option value="VA">Virginia</option><option value="WA">Washington (no income tax)</option>
+          <option value="WV">West Virginia</option><option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming (no income tax)</option>
+        </select>
+        <div class="field-help">For estimating state-side penalty stacking. Most states roughly mirror federal rules.</div>
+      </div>
+
+      <div class="disclaimer">
+        <div class="disclaimer-label">Estimate only — not tax advice</div>
+        <p>Federal IRS penalty + interest only, with a generic state estimate. Interest compounds daily in real life — we approximate with simple annual. Edge cases (notice-of-levy rate bump, partial-month rounding, abatement) aren't modeled. Sources: <strong>IRC §§ 6651, 6654, 6621</strong>. <strong>Verify with a tax pro before relying on these numbers.</strong></p>
+      </div>
+    </div>
+
+    <div class="results-card">
+      <div class="results-title">Estimated total owed</div>
+      <div class="headline" id="r-headline">$0</div>
+      <div class="headline-sub" id="r-headline-sub">Enter an amount + dates to see the breakdown.</div>
+
+      <div class="bd-section">
+        <div class="bd-head">Breakdown</div>
+        <div class="bd-row" id="row-tax">
+          <div class="bd-label">Original tax unpaid<span class="bd-meta" id="meta-tax">The amount you missed</span></div>
+          <div class="bd-amt" id="amt-tax">$0</div>
+        </div>
+        <div class="bd-row" id="row-ftf">
+          <div class="bd-label">Failure-to-file penalty<span class="bd-meta" id="meta-ftf">5%/month, max 25%</span></div>
+          <div class="bd-amt" id="amt-ftf">$0</div>
+        </div>
+        <div class="bd-row" id="row-ftp">
+          <div class="bd-label">Failure-to-pay penalty<span class="bd-meta" id="meta-ftp">0.5%/month, max 25%</span></div>
+          <div class="bd-amt" id="amt-ftp">$0</div>
+        </div>
+        <div class="bd-row" id="row-int">
+          <div class="bd-label">Federal interest<span class="bd-meta" id="meta-int">~8% APR, daily compound</span></div>
+          <div class="bd-amt" id="amt-int">$0</div>
+        </div>
+        <div class="bd-row" id="row-state">
+          <div class="bd-label">State (estimated)<span class="bd-meta" id="meta-state">Most states ~6-8% APR</span></div>
+          <div class="bd-amt" id="amt-state">$0</div>
+        </div>
+      </div>
+
+      <div class="total-row">
+        <div class="total-label">Total estimated</div>
+        <div class="total-amt" id="amt-total">$0</div>
+      </div>
+
+      <div class="advice">
+        <div class="advice-label" id="advice-label">What to do now</div>
+        <div id="advice-body">
+          <p>Set up the inputs above and we'll lay out next steps based on your scenario.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn-cta" href="/tool">Run my free check →</a>
+        <a class="btn-ghost" href="#newsletter-signup">Get updates →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO content -->
+<div class="content">
+  <h2>How the IRS <em>actually</em> calculates penalties</h2>
+  <p>If you miss a tax deadline, the IRS doesn't just charge one penalty — it can stack <strong>three separate charges</strong>. They compound on each other and grow every month you wait.</p>
+
+  <h3>1. Failure-to-file penalty (IRC § 6651(a)(1))</h3>
+  <p><strong>5% of unpaid tax per month or part of a month</strong>, up to a maximum of 25%. Caps at 5 months. If your return is more than 60 days late, the minimum penalty is the smaller of <strong>$510</strong> (2025+ inflation-adjusted) or 100% of the tax owed.</p>
+
+  <h3>2. Failure-to-pay penalty (IRC § 6651(a)(2))</h3>
+  <p><strong>0.5% of unpaid tax per month or part of a month</strong>, up to a 25% cap. Increases to 1% per month if the IRS issues a final notice of intent to levy. Decreases to 0.25%/month if you're on an approved installment agreement.</p>
+
+  <h3>3. Interest (IRC § 6621)</h3>
+  <p>The IRS interest rate is the <strong>federal short-term rate + 3 percentage points</strong>, updated quarterly. For most of 2024 and 2025 it's been <strong>8% per year</strong>. Critical detail: it compounds <strong>daily</strong>, not monthly or yearly. Our estimator uses simple annual to keep math digestible — the real number will be a touch higher.</p>
+
+  <div class="callout callout-amber">
+    <p><strong>The two penalties interact.</strong> In any month where both failure-to-file and failure-to-pay apply, the failure-to-file penalty is reduced by the failure-to-pay amount (so the combined cap is 5%/month, not 5.5%). The penalties also cap at <em>different</em> totals — FTF at 25% after 5 months, FTP at 25% after 50 months.</p>
+  </div>
+
+  <h2>What about <em>missed quarterly</em> estimated payments?</h2>
+  <p>Quarterly estimated tax underpayment is calculated differently — it's under <strong>IRC § 6654</strong>, not § 6651. There's no "failure-to-file" or "failure-to-pay" penalty per se. Instead, the IRS charges an interest-style penalty from the missed due date until the earlier of:</p>
+  <ul>
+    <li>The date you actually pay the underpayment, or</li>
+    <li><strong>April 15 of the following year</strong> (when the underpayment is "resolved" by your annual return).</li>
+  </ul>
+  <p>The rate is the same federal short-term + 3%. <strong>Safe harbor exceptions</strong> mean you avoid the penalty entirely if you paid <strong>100% of last year's tax</strong> (110% if AGI &gt; $150k) or <strong>90% of this year's tax</strong> in withholding + estimates.</p>
+
+  <h2>Can I get penalties <em>abated</em>?</h2>
+  <p>Sometimes, yes. The IRS offers <strong>first-time penalty abatement</strong> (FTA) for filers with a clean compliance history — typically removing FTF + FTP for one tax year if you've been on time the previous three. You request it by calling the IRS or writing a short letter. Reasonable-cause abatement is also available if you can document why you missed (illness, disaster, etc.) — much harder to qualify for.</p>
+
+  <h2>State penalties — how to think about them</h2>
+  <p>Most states roughly mirror the federal structure: a failure-to-file penalty (often 5%/month, capped at 25%), a failure-to-pay penalty (around 0.5-1%/month), and interest at 5-10% APR. A few states have lower thresholds or different mechanics. <strong>No income tax states</strong> (AK, FL, NV, NH, SD, TN, TX, WA, WY) won't charge anything on the income side — you might still owe other state-level taxes (sales, franchise, etc.).</p>
+
+  <p>Our estimator uses a conservative middle estimate (≈ 6% APR plus a small monthly penalty) for states with income tax. For an exact number, check your state's Department of Revenue penalty schedule.</p>
+
+  <div class="related-section">
+    <div class="related-label">Related guides &amp; tools</div>
+    <div class="related-grid">
+      <a class="related-card" href="/quarterly-tax-calculator">
+        <div class="related-card-title">Quarterly tax calculator →</div>
+        <div class="related-card-desc">What to pay each quarter to avoid this penalty next time.</div>
+      </a>
+      <a class="related-card" href="/quarterly-taxes-self-employed">
+        <div class="related-card-title">Quarterly taxes guide →</div>
+        <div class="related-card-desc">When estimates are due, safe harbor rules, and how to set up direct withdrawals.</div>
+      </a>
+      <a class="related-card" href="/state-tax-rates">
+        <div class="related-card-title">State tax rates →</div>
+        <div class="related-card-desc">Side-hustle income tax rates by state with deadlines.</div>
+      </a>
+      <a class="related-card" href="/audit-risk-estimator">
+        <div class="related-card-title">Audit risk estimator →</div>
+        <div class="related-card-desc">See how late filings affect your audit profile.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before filing or paying.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Constants — IRC § 6651, § 6654, § 6621.
+  // Update annually as rates / minimums shift.
+  // ──────────────────────────────────────────────────────────────────────
+  var FTF_RATE  = 0.05;   // 5%/month
+  var FTF_CAP   = 0.25;   // 25% max
+  var FTF_MIN   = 510;    // 60-day minimum (2025+ inflation-adjusted)
+  var FTP_RATE  = 0.005;  // 0.5%/month
+  var FTP_CAP   = 0.25;   // 25% max
+  var INT_APR   = 0.08;   // Federal short-term + 3% (≈8% as of 2025-2026)
+
+  // States with no income tax — penalty = 0 on the state side
+  var NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
+  // Conservative state estimate (most states roughly mirror federal but slightly lower)
+  var STATE_PENALTY_RATE = 0.005;     // 0.5%/month FTP-style
+  var STATE_PENALTY_CAP  = 0.25;      // capped 25%
+  var STATE_INTEREST_APR = 0.06;      // ~6% APR mean across states
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Helpers
+  // ──────────────────────────────────────────────────────────────────────
+  function fmt(n) {
+    if (!isFinite(n) || n <= 0) return '$0';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  function partialMonths(days) {
+    // IRS counts "part of a month" as a full month for FTF/FTP
+    return Math.ceil(days / 30);
+  }
+  function todayISO() {
+    var d = new Date();
+    return d.toISOString().slice(0, 10);
+  }
+  function defaultDueISO() {
+    // Default to most recent quarterly deadline (≈4 months ago)
+    var d = new Date();
+    d.setMonth(d.getMonth() - 4);
+    d.setDate(15);
+    return d.toISOString().slice(0, 10);
+  }
+  function daysBetween(aISO, bISO) {
+    var a = new Date(aISO + 'T00:00:00');
+    var b = new Date(bISO + 'T00:00:00');
+    return Math.max(0, Math.round((b - a) / (1000 * 60 * 60 * 24)));
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Penalty calculators per scenario
+  // ──────────────────────────────────────────────────────────────────────
+  function calcQuarterly(amt, days) {
+    // Just interest from due date to paid date (capped at April 15 of next
+    // year — when annual return resolves the underpayment). For the
+    // estimator, we just use days. Simple annual interest.
+    var interest = amt * INT_APR * (days / 365);
+    return { ftf: 0, ftp: 0, interest: interest };
+  }
+
+  function calcFiledLate(amt, days) {
+    var months = partialMonths(days);
+
+    // FTF: 5%/month for up to 5 months, BUT in months where FTP also applies
+    // it's reduced by 0.5% (so effective 4.5%). We assume both apply for all
+    // shared months — typical case.
+    var ftfMonths = Math.min(months, 5);
+    var ftfEffectiveRate = FTF_RATE - FTP_RATE; // 4.5% when both apply
+    var ftf = amt * ftfEffectiveRate * ftfMonths;
+    // Cap at the FTF cap minus what the FTP "ate" (22.5% effective max)
+    ftf = Math.min(ftf, amt * (FTF_CAP - 0.025));
+
+    // 60-day minimum: if return >60 days late, FTF ≥ min($510, tax owed)
+    if (days > 60) {
+      ftf = Math.max(ftf, Math.min(FTF_MIN, amt));
+    }
+
+    // FTP: 0.5%/month for up to 50 months (caps at 25%)
+    var ftpMonths = Math.min(months, 50);
+    var ftp = Math.min(amt * FTP_RATE * ftpMonths, amt * FTP_CAP);
+
+    var interest = amt * INT_APR * (days / 365);
+    return { ftf: ftf, ftp: ftp, interest: interest };
+  }
+
+  function calcPaidLate(amt, days) {
+    // Filed on time, just didn't pay. No FTF, just FTP + interest.
+    var months = partialMonths(days);
+    var ftpMonths = Math.min(months, 50);
+    var ftp = Math.min(amt * FTP_RATE * ftpMonths, amt * FTP_CAP);
+    var interest = amt * INT_APR * (days / 365);
+    return { ftf: 0, ftp: ftp, interest: interest };
+  }
+
+  function calcState(amt, days, stateCode, scenario) {
+    if (!stateCode || NO_TAX_STATES.indexOf(stateCode) !== -1) return 0;
+    var months = partialMonths(days);
+
+    if (scenario === 'quarterly') {
+      // Most states don't charge quarterly underpayment penalty separately
+      // for low amounts. Just estimate state-side interest.
+      return amt * STATE_INTEREST_APR * (days / 365);
+    }
+    // Other scenarios: roughly mirror federal FTP + interest, modestly lower
+    var penalty = Math.min(amt * STATE_PENALTY_RATE * months, amt * STATE_PENALTY_CAP);
+    var interest = amt * STATE_INTEREST_APR * (days / 365);
+    return penalty + interest;
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // UI state
+  // ──────────────────────────────────────────────────────────────────────
+  var currentScenario = 'quarterly';
+  var SCENARIO_DESC = {
+    'quarterly':  "Underpaid a quarterly estimated tax payment. The IRS charges interest from the due date until the date you pay (or April 15 of the following year, whichever is earlier).",
+    'filed-late': "Filed your annual return late AND didn't pay what you owed. Two penalties stack — failure-to-file (5%/month) plus failure-to-pay (0.5%/month) — and interest accrues on the whole pile.",
+    'paid-late':  "Filed your return on time, but couldn't pay what you owed. The failure-to-file penalty doesn't apply, but failure-to-pay (0.5%/month) and interest still run."
+  };
+  var FTF_META_TEXT = {
+    'quarterly':  'Not applicable for estimates',
+    'filed-late': '5%/month, max 25%',
+    'paid-late':  'Not applicable — filed on time'
+  };
+  var FTP_META_TEXT = {
+    'quarterly':  'Not applicable for estimates',
+    'filed-late': '0.5%/month, max 25%',
+    'paid-late':  '0.5%/month, max 25%'
+  };
+
+  // ──────────────────────────────────────────────────────────────────────
+  // DOM hooks
+  // ──────────────────────────────────────────────────────────────────────
+  var $ = function (id) { return document.getElementById(id); };
+  var elAmt  = $('amt');
+  var elDue  = $('due');
+  var elPaid = $('paid');
+  var elState= $('state');
+
+  elDue.value = defaultDueISO();
+  elPaid.value = todayISO();
+
+  function render() {
+    var amount = Math.max(0, parseFloat(elAmt.value) || 0);
+    var days = daysBetween(elDue.value, elPaid.value);
+    var stateCode = elState.value;
+
+    var result;
+    if (currentScenario === 'quarterly') result = calcQuarterly(amount, days);
+    else if (currentScenario === 'filed-late') result = calcFiledLate(amount, days);
+    else result = calcPaidLate(amount, days);
+
+    var stateAmt = calcState(amount, days, stateCode, currentScenario);
+    var total = amount + result.ftf + result.ftp + result.interest + stateAmt;
+
+    // Headline
+    if (amount <= 0) {
+      $('r-headline').innerHTML = '$0';
+      $('r-headline-sub').textContent = 'Enter an amount + dates to see the breakdown.';
+    } else {
+      $('r-headline').innerHTML = '<em>' + fmt(total) + '</em>';
+      var monthsLate = Math.floor(days / 30);
+      $('r-headline-sub').textContent = 'About ' + (monthsLate === 1 ? '1 month' : monthsLate + ' months') + ' of penalty + interest on top of your original ' + fmt(amount) + '.';
+    }
+
+    // Breakdown
+    $('amt-tax').textContent   = fmt(amount);
+    $('amt-ftf').textContent   = fmt(result.ftf);
+    $('amt-ftp').textContent   = fmt(result.ftp);
+    $('amt-int').textContent   = fmt(result.interest);
+    $('amt-state').textContent = fmt(stateAmt);
+    $('amt-total').textContent = fmt(total);
+
+    // Meta lines
+    $('meta-ftf').textContent = FTF_META_TEXT[currentScenario];
+    $('meta-ftp').textContent = FTP_META_TEXT[currentScenario];
+    $('meta-state').textContent = !stateCode ? 'No state selected'
+      : NO_TAX_STATES.indexOf(stateCode) !== -1 ? stateCode + ' has no state income tax'
+      : '≈ 0.5%/month + 6% APR (state-side estimate)';
+
+    // Zero-state styling
+    document.querySelectorAll('.bd-row').forEach(function (row) { row.classList.remove('is-zero'); });
+    if (result.ftf <= 0)      $('row-ftf').classList.add('is-zero');
+    if (result.ftp <= 0)      $('row-ftp').classList.add('is-zero');
+    if (result.interest <= 0) $('row-int').classList.add('is-zero');
+    if (stateAmt <= 0)        $('row-state').classList.add('is-zero');
+
+    // Advice
+    updateAdvice(amount, days, result, currentScenario);
+  }
+
+  function updateAdvice(amount, days, result, scenario) {
+    var label = $('advice-label');
+    var body = $('advice-body');
+
+    if (amount <= 0) {
+      label.textContent = 'What to do now';
+      body.innerHTML = '<p>Set up the inputs above and we\'ll lay out next steps based on your scenario.</p>';
+      return;
+    }
+
+    if (scenario === 'quarterly') {
+      label.textContent = 'Next steps — quarterly underpayment';
+      body.innerHTML =
+        '<p><strong>Pay it now</strong> if you can. The interest keeps running until April 15 of the following year (or the date you pay). The faster you settle, the smaller the bill.</p>' +
+        '<p>If you can\'t pay in full, send what you can — interest only runs on the unpaid balance. Use <strong>IRS Direct Pay</strong> (free) or <strong>EFTPS</strong>.</p>' +
+        '<p>Going forward, the <a href="/quarterly-tax-calculator">quarterly tax calculator</a> can help you stay current.</p>';
+    } else if (scenario === 'filed-late') {
+      label.textContent = 'Next steps — late filer';
+      body.innerHTML =
+        '<p><strong>File now even if you can\'t pay.</strong> The failure-to-file penalty (5%/month) is 10× larger than failure-to-pay. Stop the bleeding by getting the return in.</p>' +
+        '<p>After filing, request <strong>first-time penalty abatement</strong> if you\'ve been on time the prior 3 years. Call the IRS or write a one-page letter. It removes the FTF + FTP for one year if you qualify.</p>' +
+        '<p>If you can\'t pay the full balance, apply for an <strong>installment agreement</strong> on IRS.gov — drops the failure-to-pay rate to 0.25%/month.</p>';
+    } else {
+      label.textContent = 'Next steps — paid late only';
+      body.innerHTML =
+        '<p><strong>Pay what you can now.</strong> Failure-to-pay is small (0.5%/month) but interest at 8% APR is the real cost over time.</p>' +
+        '<p>If the balance is more than you can handle, set up an <strong>installment agreement</strong> — it cuts the FTP rate to 0.25%/month and prevents enforcement actions.</p>' +
+        '<p>Once cleared, check if you qualify for <strong>first-time penalty abatement</strong> to claw back the FTP (clean 3-year history required).</p>';
+    }
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Scenario tab switching
+  // ──────────────────────────────────────────────────────────────────────
+  Array.prototype.forEach.call(document.querySelectorAll('.scenario-tab'), function (btn) {
+    btn.addEventListener('click', function () {
+      currentScenario = btn.getAttribute('data-scenario');
+      Array.prototype.forEach.call(document.querySelectorAll('.scenario-tab'), function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      $('scenario-sub').textContent = SCENARIO_DESC[currentScenario];
+      render();
+    });
+  });
+
+  // Live recalc
+  [elAmt, elDue, elPaid, elState].forEach(function (el) {
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+
+  render();
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
