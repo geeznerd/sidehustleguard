@@ -305,11 +305,55 @@ a {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: var(--indigo-55);
+  color: var(--indigo-70);
+  position: relative;
+  padding: 2px 0 6px;
   transition: color var(--dur-default) var(--ease-default);
 }
 
 .ds-nav-link:hover {
+  color: var(--indigo);
+}
+
+/* Animated apricot underline for nav text links — applies to both
+ * .ds-nav-link (shared) and .nav-link (article-page inline rule). The
+ * underline scales in from the left on hover and stays visible on the
+ * active page. Borrows the .btn-cta apricot to feel of-a-family without
+ * adding a second pulsing dot (which would dilute the CTA's signal). */
+nav .nav-link {
+  position: relative;
+  padding: 2px 0 6px;
+}
+nav .nav-link:hover {
+  color: var(--indigo);
+}
+
+.ds-nav-link::after,
+nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--apricot);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ds-nav-link::after,
+  nav .nav-link::after {
+    transition: transform var(--dur-default) var(--ease-default);
+  }
+}
+.ds-nav-link:hover::after,
+nav .nav-link:hover::after,
+.ds-nav-link[aria-current="page"]::after,
+nav .nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.ds-nav-link[aria-current="page"],
+nav .nav-link[aria-current="page"] {
   color: var(--indigo);
 }
 
