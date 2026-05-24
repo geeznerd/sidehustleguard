@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>1099-K Threshold Calculator — Will You Get a 1099-K? (Free, 2026) — SideHustleGuard</title>
+<meta content="Plug in your gross sales across Etsy, eBay, PayPal, Venmo, Stripe, and Shopify to see which platforms will issue you a 1099-K for tax year 2024, 2025, or 2026. Free, no signup." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/1099k-threshold-calculator" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<!-- Open Graph -->
+<meta content="1099-K Threshold Calculator — Will You Get a 1099-K?" property="og:title"/>
+<meta content="Enter your gross sales by platform and see which 1099-Ks the IRS will be looking for. Updated for the 2024 → 2025 → 2026 phase-in." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/1099k-threshold-calculator" property="og:url"/>
+<meta content="website" property="og:type"/>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "1099-K Threshold Calculator",
+  "description": "Free tool to estimate which platforms will issue a Form 1099-K based on gross sales and the IRS phase-in schedule (Notice 2024-85).",
+  "url": "https://www.sidehustleguard.com/1099k-threshold-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+
+.hero{padding:72px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,5vw,54px);font-weight:400;line-height:1.05;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:600px;margin:0 auto}
+
+/* Year selector */
+.year-wrap{max-width:880px;margin:24px auto 0;padding:0 48px}
+.year-tabs{display:inline-flex;background:var(--paper);border:1px solid var(--indigo-08);padding:4px;border-radius:14px;gap:2px}
+.year-tab{font-family:inherit;background:transparent;border:0;padding:8px 18px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--indigo-70);cursor:pointer;transition:background .2s,color .2s}
+.year-tab[aria-pressed="true"]{background:var(--apricot);color:var(--indigo);font-weight:600}
+.year-tab:hover:not([aria-pressed="true"]){color:var(--indigo)}
+.year-note{font-size:12px;color:var(--indigo-55);margin-top:10px;font-weight:300}
+.year-note strong{color:var(--indigo);font-weight:600}
+
+/* Calc grid */
+.calc-wrap{max-width:1020px;margin:0 auto;padding:24px 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start}
+.calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:26px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.calc-sub{font-size:13px;color:var(--indigo-70);margin-bottom:18px;font-weight:300}
+
+.platform-row{display:grid;grid-template-columns:1fr 150px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--indigo-08)}
+.platform-row:last-of-type{border-bottom:none}
+.platform-label{font-size:14px;font-weight:500;color:var(--indigo);line-height:1.3}
+.platform-help{font-size:11.5px;color:var(--indigo-55);font-weight:300;margin-top:2px;line-height:1.4}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
+.platform-row input[type="number"]{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:9px 12px 9px 24px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none;text-align:right}
+.platform-row input:focus{border-color:var(--apricot);background:var(--paper)}
+.platform-row input::-webkit-inner-spin-button,.platform-row input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* Disclaimer callout */
+.disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:18px}
+.disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.disclaimer-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.disclaimer p{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.5;margin:0}
+.disclaimer strong{color:var(--indigo);font-weight:600}
+
+/* Results card */
+.results-card{background:var(--indigo);color:var(--paper);border-radius:16px;padding:26px;position:relative;overflow:hidden}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:18px}
+.headline-stat{font-family:'Fraunces',Georgia,serif;font-size:38px;line-height:1.04;font-weight:500;color:var(--paper);margin:6px 0 6px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.headline-stat em{font-style:italic;color:var(--apricot-hover);font-weight:500}
+.headline-sub{font-size:13.5px;color:rgba(251,248,238,.7);font-weight:300;line-height:1.55;margin-bottom:16px}
+
+.totals-row{display:flex;gap:10px;margin:14px 0;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px}
+.totals-cell{flex:1;min-width:0}
+.totals-label{font-size:10px;font-weight:600;letter-spacing:.06em;color:rgba(251,248,238,.5);text-transform:uppercase;margin-bottom:3px}
+.totals-amt{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:500;color:var(--paper);line-height:1;font-variation-settings:'opsz' 144}
+.totals-amt em{font-style:italic;color:var(--apricot-hover)}
+
+.breakdown{margin-top:14px}
+.breakdown-head{font-size:10.5px;font-weight:600;letter-spacing:.08em;color:rgba(251,248,238,.5);text-transform:uppercase;margin-bottom:10px}
+.bd-row{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,0.08);font-size:13px}
+.bd-row:last-child{border-bottom:none}
+.bd-mark{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:14px;line-height:1}
+.bd-mark.is-yes{color:var(--apricot-hover)}
+.bd-mark.is-no{color:rgba(251,248,238,.35)}
+.bd-name{color:var(--paper);font-weight:500}
+.bd-amt{font-family:'Fraunces',Georgia,serif;font-size:13px;color:rgba(251,248,238,.7)}
+.bd-amt.is-yes{color:var(--apricot-hover);font-weight:600}
+
+.advice{background:rgba(232,148,100,.10);border:1px solid rgba(232,148,100,.22);border-radius:10px;padding:14px 16px;margin-top:16px}
+.advice-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:6px}
+.advice p{font-size:13px;color:rgba(251,248,238,.85);line-height:1.55;font-weight:300;margin:0 0 8px}
+.advice p:last-child{margin-bottom:0}
+.advice strong{color:var(--paper);font-weight:600}
+.advice a{color:var(--apricot-hover);text-decoration:underline;text-underline-offset:2px}
+.advice a:hover{color:var(--paper)}
+
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.cta-row .btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--apricot);color:var(--indigo);border-radius:14px;padding:12px;font-size:13.5px;font-weight:700;text-decoration:none;text-align:center;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(45,48,104,0.18);transition:background .2s,box-shadow .2s,transform .15s}
+.cta-row .btn-cta:hover{background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.22)}
+@media(prefers-reduced-motion:no-preference){.cta-row .btn-cta:hover{transform:translateY(-1px)}}
+.cta-row .btn-ghost{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.06);color:var(--paper);border-radius:14px;padding:12px;font-size:13.5px;font-weight:600;text-decoration:none;text-align:center;border:1px solid rgba(255,255,255,0.12);transition:background .2s}
+.cta-row .btn-ghost:hover{background:rgba(255,255,255,0.10)}
+
+/* Content section */
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:var(--indigo);margin:44px 0 14px;line-height:1.2}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content h3{font-size:17px;font-weight:600;color:var(--indigo);margin:28px 0 10px}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--indigo);font-weight:600}
+.content a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout-amber{background:var(--warn-bg);border-left:4px solid var(--warn)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--indigo-70)}
+.callout strong{color:var(--indigo)}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+.related-section{border-top:1px solid var(--indigo-08);padding:32px 0 0;margin-top:24px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
+.related-card:hover{border-color:var(--apricot)}
+@media(prefers-reduced-motion:no-preference){.related-card:hover{transform:translateY(-1px)}}
+.related-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:4px}
+.related-card-desc{font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
+
+@media(max-width:780px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 20px 24px}
+  h1{font-size:30px}
+  .year-wrap,.calc-wrap,.content{padding-left:20px;padding-right:20px}
+  .calc-grid{grid-template-columns:1fr;gap:14px}
+  .platform-row{grid-template-columns:1fr;gap:6px;padding:12px 0}
+  .platform-row input[type="number"]{text-align:left}
+  .totals-row{flex-direction:column;gap:8px}
+  .cta-row{grid-template-columns:1fr}
+  .nav-link{display:none}
+  .nav-link.nav-guides{display:inline-flex;font-size:13px}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link" href="/#faq">FAQ</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="360" fill="url(#calcHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/>
+      <ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
+      <ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)"/>
+      <ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">Free Calculator · Updated 2026</div>
+    <h1>Will the IRS send you a <em>1099-K</em> this year?</h1>
+    <p class="hero-sub">Enter your gross sales by platform and see exactly which 1099-Ks will show up — and what to do whether you get one or not.</p>
+  </div>
+</div>
+
+<!-- Year selector -->
+<div class="year-wrap" style="text-align:center">
+  <div class="year-tabs" role="group" aria-label="Tax year">
+    <button class="year-tab" data-year="2024" aria-pressed="false">2024</button>
+    <button class="year-tab" data-year="2025" aria-pressed="false">2025</button>
+    <button class="year-tab" data-year="2026" aria-pressed="true">2026</button>
+  </div>
+  <div class="year-note">Federal threshold for tax year <strong id="yr-label">2026</strong>: <strong id="yr-amt">$600</strong> gross payments (no transaction minimum). <span id="yr-context">Final phase-in step under IRS Notice 2024-85.</span></div>
+</div>
+
+<!-- Calculator -->
+<div class="calc-wrap">
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-title">Your platforms</div>
+      <div class="calc-sub">Enter gross payments processed per platform (before fees, before refunds). The IRS counts gross, not net.</div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">Etsy</div>
+          <div class="platform-help">Etsy issues 1099-Ks based on gross sales processed through Etsy Payments.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-etsy" min="0" placeholder="0" inputmode="decimal" aria-label="Etsy gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">eBay</div>
+          <div class="platform-help">eBay Managed Payments processes the transaction and is the 1099-K filer.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-ebay" min="0" placeholder="0" inputmode="decimal" aria-label="eBay gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">PayPal (business)</div>
+          <div class="platform-help">Business-tagged payments only. "Friends &amp; family" sends do not count.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-paypal" min="0" placeholder="0" inputmode="decimal" aria-label="PayPal gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">Venmo / Cash App / Zelle</div>
+          <div class="platform-help">Only business-flagged payments. Zelle is technically exempt as a bank network — confirm with your bank.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-venmo" min="0" placeholder="0" inputmode="decimal" aria-label="Venmo / Cash App gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">Stripe / direct invoicing</div>
+          <div class="platform-help">Stripe is a payment processor, so it files 1099-Ks per merchant account.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-stripe" min="0" placeholder="0" inputmode="decimal" aria-label="Stripe gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">Shopify Payments</div>
+          <div class="platform-help">Shopify Payments (not non-Shopify gateways) tracks processed volume per store.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-shopify" min="0" placeholder="0" inputmode="decimal" aria-label="Shopify gross sales"/></div>
+      </div>
+
+      <div class="platform-row">
+        <div>
+          <div class="platform-label">Other marketplace</div>
+          <div class="platform-help">Poshmark, Mercari, Depop, Reverb, StubHub, etc. Each tracks its own threshold.</div>
+        </div>
+        <div class="input-money"><input type="number" id="p-other" min="0" placeholder="0" inputmode="decimal" aria-label="Other marketplace gross sales"/></div>
+      </div>
+
+      <div class="disclaimer">
+        <div class="disclaimer-label">Estimate only — not tax advice</div>
+        <p>Federal-only. Some states (MA, VT, VA, MD, DC, NJ, IL) have <strong>lower</strong> thresholds — you may receive a 1099-K below the federal cutoff. Always verify with a licensed tax pro before filing. Source: <strong>IRS Notice 2024-85</strong>.</p>
+      </div>
+    </div>
+
+    <div class="results-card">
+      <div class="results-title">What this means for you</div>
+      <div class="headline-stat" id="r-headline">Add a number<br/>to start →</div>
+      <div class="headline-sub" id="r-headline-sub">Enter gross sales on any platform to see which 1099-Ks will land in your mailbox.</div>
+
+      <div class="totals-row">
+        <div class="totals-cell">
+          <div class="totals-label">Total gross</div>
+          <div class="totals-amt" id="r-total">$0</div>
+        </div>
+        <div class="totals-cell">
+          <div class="totals-label">1099-Ks expected</div>
+          <div class="totals-amt"><em id="r-count">0</em></div>
+        </div>
+      </div>
+
+      <div class="breakdown" id="r-breakdown" style="display:none">
+        <div class="breakdown-head">Per platform</div>
+        <div id="r-bd-rows"></div>
+      </div>
+
+      <div class="advice" id="r-advice" style="display:none">
+        <div class="advice-label" id="r-advice-label">What to do</div>
+        <div id="r-advice-body"></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn-cta" href="/tool">Run my free check →</a>
+        <a class="btn-ghost" href="#newsletter-signup">Get updates →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO content -->
+<div class="content">
+  <h2>Why the 1099-K threshold <em>keeps</em> changing</h2>
+  <p>The American Rescue Plan Act of 2021 dropped the federal 1099-K reporting threshold from $20,000 + 200 transactions down to <strong>$600 with no transaction minimum</strong>. The IRS has phased that change in over multiple years to give platforms and taxpayers time to adapt.</p>
+
+  <p>As of the most recent IRS guidance:</p>
+  <ul>
+    <li><strong>Tax year 2024:</strong> $5,000 gross — no transaction minimum.</li>
+    <li><strong>Tax year 2025:</strong> $2,500 gross — no transaction minimum.</li>
+    <li><strong>Tax year 2026:</strong> $600 gross — the final landing point.</li>
+  </ul>
+
+  <div class="callout callout-amber">
+    <p><strong>Important:</strong> A 1099-K is a <em>reporting form</em>, not a tax bill. If you owe self-employment tax (net earnings of $400 or more from your hustle), you owe it whether or not the platform sent a 1099-K. The form just tells the IRS the platform already knows about your income.</p>
+  </div>
+
+  <h2>What if I <em>don't</em> get a 1099-K?</h2>
+  <p>This is the trap. The threshold determines whether the <strong>platform</strong> reports to the IRS — not whether <strong>you</strong> owe tax. If your net self-employment income (sales minus business expenses) is $400 or more, you still owe self-employment tax and still need to file Schedule C and Schedule SE. The IRS doesn't need a 1099-K to ask about that income.</p>
+
+  <h2>Multiple platforms — do they <em>combine</em>?</h2>
+  <p>No. Each payment processor evaluates its own threshold independently. If you made $1,200 on Etsy and $1,200 on PayPal in 2025, neither platform will issue a 1099-K (each is below the $2,500 federal threshold) — but you still earned $2,400 of taxable income and need to report it on your return.</p>
+
+  <h2>State <em>thresholds</em> can be lower</h2>
+  <p>Several states have set their own 1099-K reporting thresholds below the federal level. If you're in one of these states, you may receive a 1099-K even when the federal threshold isn't met:</p>
+  <ul>
+    <li><strong>Massachusetts, Vermont, Virginia, Maryland, DC:</strong> $600 (regardless of federal rule).</li>
+    <li><strong>Illinois:</strong> $1,000 and 3+ transactions.</li>
+    <li><strong>New Jersey:</strong> $1,000.</li>
+    <li><strong>Other states</strong> may have additional rules — check with your state's Department of Revenue.</li>
+  </ul>
+
+  <h2>How to <em>reconcile</em> a 1099-K</h2>
+  <p>The 1099-K reports <strong>gross payment volume</strong> — before fees, before refunds, before chargebacks. Your taxable income is much less than that. Keep records of:</p>
+  <ul>
+    <li><strong>Platform fees</strong> deducted from each sale (Etsy fees, PayPal fees, etc.) — deductible.</li>
+    <li><strong>Refunds and chargebacks</strong> reversed — subtract from gross.</li>
+    <li><strong>Sales tax collected and remitted</strong> — pass-through, not income.</li>
+    <li><strong>Business expenses</strong> (supplies, shipping, software, etc.) — Schedule C deductions.</li>
+  </ul>
+
+  <p>Net business income is what hits Schedule C — usually a fraction of the 1099-K gross figure. Don't panic at the big number; reconcile.</p>
+
+  <h2>What to do <em>next</em></h2>
+  <p>If you've got side hustle income from any of these platforms, run a free compliance check to see what else you should be tracking — quarterly estimates, sales tax nexus, entity structure, state licenses.</p>
+
+  <div class="related-section">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a class="related-card" href="/etsy-taxes">
+        <div class="related-card-title">Etsy taxes →</div>
+        <div class="related-card-desc">1099-K, Schedule C, sales tax, and platform-fee deductions.</div>
+      </a>
+      <a class="related-card" href="/ebay-taxes">
+        <div class="related-card-title">eBay taxes →</div>
+        <div class="related-card-desc">Reselling rules, cost-basis tracking, and 1099-K reconciliation.</div>
+      </a>
+      <a class="related-card" href="/paypal-1099k-etsy">
+        <div class="related-card-title">PayPal &amp; Etsy 1099-K →</div>
+        <div class="related-card-desc">How double-reporting works when both platforms file.</div>
+      </a>
+      <a class="related-card" href="/quarterly-tax-calculator">
+        <div class="related-card-title">Quarterly tax calculator →</div>
+        <div class="related-card-desc">What to pay each quarter to avoid underpayment penalties.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before filing.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Federal-only thresholds per IRS Notice 2024-85
+  var THRESHOLDS = { 2024: 5000, 2025: 2500, 2026: 600 };
+  var CONTEXT = {
+    2024: 'First step down from the legacy $20,000/200-transaction rule.',
+    2025: 'Second step down. Some states already lower than this.',
+    2026: 'Final phase-in step under IRS Notice 2024-85.'
+  };
+  var PLATFORMS = [
+    { id: 'p-etsy',    name: 'Etsy' },
+    { id: 'p-ebay',    name: 'eBay' },
+    { id: 'p-paypal',  name: 'PayPal (business)' },
+    { id: 'p-venmo',   name: 'Venmo / Cash App / Zelle' },
+    { id: 'p-stripe',  name: 'Stripe / direct invoicing' },
+    { id: 'p-shopify', name: 'Shopify Payments' },
+    { id: 'p-other',   name: 'Other marketplace' }
+  ];
+
+  var currentYear = 2026;
+  function fmt(n) {
+    if (n >= 1000) return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    return '$' + Math.round(n);
+  }
+  function val(id) {
+    var el = document.getElementById(id);
+    var n = parseFloat(el && el.value);
+    return (isFinite(n) && n > 0) ? n : 0;
+  }
+
+  function render() {
+    var threshold = THRESHOLDS[currentYear];
+    var rows = PLATFORMS.map(function (p) {
+      var amount = val(p.id);
+      var willIssue = amount >= threshold;
+      return { name: p.name, amount: amount, willIssue: willIssue };
+    }).filter(function (r) { return r.amount > 0; });
+
+    var total = rows.reduce(function (s, r) { return s + r.amount; }, 0);
+    var count = rows.filter(function (r) { return r.willIssue; }).length;
+
+    document.getElementById('r-total').textContent = fmt(total);
+    document.getElementById('r-count').textContent = count;
+
+    var headline = document.getElementById('r-headline');
+    var headlineSub = document.getElementById('r-headline-sub');
+    var bd = document.getElementById('r-breakdown');
+    var bdRows = document.getElementById('r-bd-rows');
+    var advice = document.getElementById('r-advice');
+    var adviceLabel = document.getElementById('r-advice-label');
+    var adviceBody = document.getElementById('r-advice-body');
+
+    if (rows.length === 0) {
+      headline.innerHTML = 'Add a number<br/>to start →';
+      headlineSub.textContent = 'Enter gross sales on any platform to see which 1099-Ks will land in your mailbox.';
+      bd.style.display = 'none';
+      advice.style.display = 'none';
+      return;
+    }
+
+    // Headline
+    if (count === 0) {
+      headline.innerHTML = 'No 1099-Ks <em>expected</em>';
+      headlineSub.textContent = 'Every platform you entered is below the $' + threshold.toLocaleString() + ' federal threshold for ' + currentYear + '. Read on — that doesn\'t mean you owe nothing.';
+    } else if (count === 1) {
+      headline.innerHTML = '<em>1</em> 1099-K incoming';
+      headlineSub.textContent = 'One platform will issue you a Form 1099-K for tax year ' + currentYear + '. Watch your mail and email in late January.';
+    } else {
+      headline.innerHTML = '<em>' + count + '</em> 1099-Ks incoming';
+      headlineSub.textContent = count + ' platforms will issue you Forms 1099-K for tax year ' + currentYear + '. Each one will be sent separately — track them all.';
+    }
+
+    // Breakdown
+    bd.style.display = '';
+    bdRows.innerHTML = rows.map(function (r) {
+      var mark = r.willIssue ? '✓' : '–';
+      var markCls = r.willIssue ? 'is-yes' : 'is-no';
+      var amtCls = r.willIssue ? 'is-yes' : '';
+      return '<div class="bd-row">'
+        +   '<div class="bd-mark ' + markCls + '">' + mark + '</div>'
+        +   '<div class="bd-name">' + r.name + '</div>'
+        +   '<div class="bd-amt ' + amtCls + '">' + fmt(r.amount) + '</div>'
+        + '</div>';
+    }).join('');
+
+    // Advice
+    advice.style.display = '';
+    if (count === 0) {
+      adviceLabel.textContent = 'What this means';
+      adviceBody.innerHTML = '<p>You won\'t get a 1099-K from any of these platforms, but that <strong>doesn\'t exempt you from tax</strong>. If your net side-hustle income (gross minus business expenses) is $400 or more, you owe self-employment tax and must file Schedule C + Schedule SE.</p><p>Some <a href="/state-tax-rates">states have lower thresholds</a> — you may still get a 1099-K in MA, VT, VA, MD, DC, NJ, or IL.</p>';
+    } else if (rows.length > count) {
+      // Some platforms over, some under
+      var under = rows.length - count;
+      adviceLabel.textContent = 'What this means';
+      adviceBody.innerHTML = '<p>' + count + ' of your platforms will report you to the IRS via 1099-K. The other ' + under + ' won\'t — but that income is <strong>still taxable</strong>. Add it all up and report it on Schedule C.</p><p>When the 1099-Ks arrive, check that the gross figure matches your records. The form reports <strong>before</strong> platform fees, refunds, and chargebacks — your taxable net will be lower.</p>';
+    } else {
+      // All over threshold
+      adviceLabel.textContent = 'What this means';
+      adviceBody.innerHTML = '<p>All your platforms will issue 1099-Ks. The IRS will have every gross figure. <strong>Reconcile each one</strong> against your bookkeeping — platform fees, refunds, and chargebacks are all deductible.</p><p>If you haven\'t set up quarterly estimated payments yet, do that next. The <a href="/quarterly-tax-calculator">quarterly tax calculator</a> can help.</p>';
+    }
+  }
+
+  // Year tab switching
+  Array.prototype.forEach.call(document.querySelectorAll('.year-tab'), function (btn) {
+    btn.addEventListener('click', function () {
+      var y = parseInt(btn.getAttribute('data-year'), 10);
+      currentYear = y;
+      Array.prototype.forEach.call(document.querySelectorAll('.year-tab'), function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      document.getElementById('yr-label').textContent = y;
+      document.getElementById('yr-amt').textContent = fmt(THRESHOLDS[y]);
+      document.getElementById('yr-context').textContent = CONTEXT[y];
+      render();
+    });
+  });
+
+  // Input live update
+  PLATFORMS.forEach(function (p) {
+    var el = document.getElementById(p.id);
+    if (el) el.addEventListener('input', render);
+  });
+
+  render();
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
