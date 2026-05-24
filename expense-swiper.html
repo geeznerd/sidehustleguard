@@ -144,7 +144,13 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 }
 
 /* ─── Direction A · Illustrated postcard ───────────────────────── */
-.card-A{width:100%;height:100%;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;box-shadow:0 1px 2px rgba(45,48,104,0.06),0 18px 38px -16px rgba(45,48,104,0.22);overflow:hidden;display:flex;flex-direction:column;position:relative}
+/* No position here — .swipe-card supplies position:absolute. Adding
+ * position:relative here would override .swipe-card via cascade order
+ * (both class selectors, same specificity, .card-A declared later).
+ * .card-decals (the absolute-positioned tilt stamps) anchor to .card-A
+ * fine either way since absolute *and* relative both create containing
+ * blocks. */
+.card-A{width:100%;height:100%;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;box-shadow:0 1px 2px rgba(45,48,104,0.06),0 18px 38px -16px rgba(45,48,104,0.22);overflow:hidden;display:flex;flex-direction:column}
 .card-A-art{flex:1 1 60%;position:relative;background:var(--cream);border-bottom:1px solid var(--indigo-08);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .card-A-topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .card-A-illu{position:relative;z-index:1;width:78%;display:flex;align-items:center;justify-content:center}
