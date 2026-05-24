@@ -168,6 +168,12 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
   mix-blend-mode:multiply;
 }
 .card-A-no{position:absolute;top:14px;left:18px;z-index:2;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:26px;color:var(--apricot);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30}
+/* Indigo header strip at the top of the card — "CARD 01 / 25" pattern */
+.card-A-head{display:flex;align-items:center;justify-content:space-between;background:var(--indigo);color:var(--paper);padding:9px 18px 10px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;flex:0 0 auto}
+.card-A-head-label{color:rgba(251,248,238,0.55)}
+.card-A-head em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:14px;color:var(--apricot);letter-spacing:0;padding:0 2px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.card-A-head-total{color:rgba(251,248,238,0.55);margin-left:2px}
+.card-A-head-cat{color:var(--apricot)}
 .card-A-body{flex:0 0 auto;padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px}
 .card-A-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--indigo-55);font-weight:600}
 .card-A-eyebrow em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--apricot);font-size:12.5px;letter-spacing:0;text-transform:none;font-variation-settings:'opsz' 144,'SOFT' 30}
@@ -1098,16 +1104,18 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       : (item.art ? ('<div class="card-A-illu">' + item.art + '</div>') : '');
     return ''
       + '<article class="swipe-card card-A' + isActive + '" data-stack="' + stackPos + '">'
+      +   '<header class="card-A-head">'
+      +     '<span><span class="card-A-head-label">Card </span><em>' + num + '</em><span class="card-A-head-total"> / ' + ITEMS.length + '</span></span>'
+      +     '<span class="card-A-head-cat">' + escapeHTML(item.cat || 'Expense') + '</span>'
+      +   '</header>'
       +   '<div class="card-A-art">'
       +     TOPO
-      +     '<span class="card-A-no">' + num + '</span>'
       +     illu
       +   '</div>'
       +   '<div class="card-A-body">'
       +     '<div class="card-A-eyebrow">What about <em>this</em>?</div>'
       +     '<h3 class="card-A-name">' + escapeHTML(item.q) + '</h3>'
       +     '<div class="card-A-foot">'
-      +       '<span class="card-A-cat">' + escapeHTML(item.cat || 'Expense') + '</span>'
       +       '<span class="card-A-prompt">Personal · Deductible?</span>'
       +     '</div>'
       +   '</div>'
