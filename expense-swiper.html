@@ -155,6 +155,10 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .card-A-topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .card-A-illu{position:relative;z-index:1;width:78%;display:flex;align-items:center;justify-content:center}
 .card-A-illu svg{width:100%;height:auto;display:block}
+/* Generated images get a uniform square crop + soft corners so the
+ * mixed source aspect ratios (portrait vs landscape) all read consistently
+ * inside the cream art stage. */
+.card-A-illu img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:14px;display:block;box-shadow:0 2px 10px rgba(45,48,104,0.08)}
 .card-A-no{position:absolute;top:14px;left:18px;z-index:2;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:26px;color:var(--apricot);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30}
 .card-A-body{flex:0 0 auto;padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px}
 .card-A-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--indigo-55);font-weight:600}
@@ -499,6 +503,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Insulated delivery bag or pizza warmer',
       hint: 'Specifically for hot/cold orders.',
       cat: 'Gear',
+      img: '/assets/images/expense-cards/insulated-bag.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path class="anim-steam-1" d="M104 26 Q108 18 104 12" stroke="#e89464"/>
         <path class="anim-steam-2" d="M126 26 Q130 18 126 12" stroke="#e89464"/>
@@ -519,6 +524,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Spotify Premium subscription',
       hint: 'To listen to music while driving deliveries.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/spotify.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="140" cy="100" r="20" fill="#e89464" stroke="none"/>
         <circle cx="140" cy="100" r="20"/>
@@ -538,6 +544,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Phone bill',
       hint: 'Your only line, used for the apps + personal calls.',
       cat: 'Phone',
+      img: '/assets/images/expense-cards/phone-bill.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="100" y="32" width="80" height="138" rx="10"/>
         <rect x="110" y="48" width="60" height="106" rx="3" fill="#fbf8ee" stroke="#2d3068" stroke-opacity="0.4"/>
@@ -560,6 +567,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Speeding ticket received on the job',
       hint: 'Caught going 15 over while rushing a Doordash order.',
       cat: 'Penalty',
+      img: '/assets/images/expense-cards/speeding-ticket.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <g class="anim-rock">
           <g transform="rotate(-4 140 104)">
@@ -583,6 +591,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Tolls paid during a delivery',
       hint: 'EZ-Pass charges from an active delivery.',
       cat: 'Vehicle',
+      img: '/assets/images/expense-cards/tolls.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="30"  y1="180" x2="48"  y2="180" stroke-opacity="0.35" stroke-width="2"/>
         <line x1="76"  y1="180" x2="94"  y2="180" stroke-opacity="0.35" stroke-width="2"/>
@@ -612,6 +621,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Gym membership',
       hint: 'To stay in shape for long shifts walking groceries upstairs.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/gym.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <g class="anim-rock">
           <path d="M40 100 L240 100" stroke-width="3"/>
@@ -636,6 +646,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Phone mount for your car dashboard',
       hint: 'So you can read the delivery app while driving.',
       cat: 'Gear',
+      img: '/assets/images/expense-cards/phone-mount.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M0 158 L280 158"/>
         <path d="M0 168 L280 168" stroke="#2d3068" stroke-opacity="0.25"/>
@@ -659,6 +670,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Your own lunch during a 6-hour shift',
       hint: 'A burrito you grabbed between drops.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/lunch.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path class="anim-steam-1" d="M120 36 Q124 28 120 22" stroke="#e89464"/>
         <path class="anim-steam-2" d="M140 36 Q144 28 140 22" stroke="#e89464"/>
@@ -682,6 +694,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Car wash during a delivery shift',
       hint: 'Keeping your car presentable for grocery customers.',
       cat: 'Vehicle',
+      img: '/assets/images/expense-cards/car-wash.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="30" y1="172" x2="250" y2="172" stroke-width="2.6"/>
         <path d="M70 152 L82 110 Q86 100 96 100 L184 100 Q194 100 200 110 L212 152 Z"/>
@@ -707,6 +720,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Reflective vest for late-night deliveries',
       hint: 'High-visibility vest for safety walking to doors at night.',
       cat: 'Gear',
+      img: '/assets/images/expense-cards/reflective-vest.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M86 60 L120 50 L120 38 Q140 32 160 38 L160 50 L194 60 L194 170 L86 170 Z"/>
         <path d="M120 50 Q140 64 160 50"/>
@@ -747,6 +761,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Hand sanitizer + disinfecting wipes for your car',
       hint: 'For wiping down after each delivery during cold/flu season.',
       cat: 'Supplies',
+      img: '/assets/images/expense-cards/hand-sanitizer.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="50" y1="172" x2="230" y2="172" stroke-opacity="0.2"/>
         <rect x="124" y="38" width="32" height="14" rx="2"/>
@@ -792,6 +807,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Coffee you bought for yourself mid-shift',
       hint: 'A Starbucks run between deliveries.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/coffee.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path class="anim-steam-1" d="M124 18 Q132 28 124 38 Q116 48 124 58" stroke="#e89464"/>
         <path class="anim-steam-2" d="M150 18 Q158 28 150 38 Q142 48 150 58" stroke="#e89464"/>
@@ -809,6 +825,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Dashcam for your delivery vehicle',
       hint: 'Installed for evidence in case of accidents on shifts.',
       cat: 'Gear',
+      img: '/assets/images/expense-cards/dashcam.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="20" y1="170" x2="260" y2="170" stroke-width="2.6"/>
         <line x1="140" y1="38" x2="140" y2="56" stroke-width="2.4"/>
@@ -830,6 +847,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'AAA / roadside assistance subscription',
       hint: 'Annual membership for your delivery car.',
       cat: 'Vehicle',
+      img: '/assets/images/expense-cards/roadside-assistance.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="100" y="32" width="80" height="138" rx="10"/>
         <rect x="110" y="48" width="60" height="106" rx="3" fill="#fbf8ee" stroke="#2d3068" stroke-opacity="0.4"/>
@@ -852,6 +870,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Parking ticket during a delivery',
       hint: 'Hit with a $65 ticket while running an order up to a third-floor apartment.',
       cat: 'Penalty',
+      img: '/assets/images/expense-cards/parking-ticket.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M40 162 L60 88 Q62 80 70 80 L210 80 Q218 80 220 88 L240 162"/>
         <line x1="40" y1="162" x2="240" y2="162" stroke-width="2.6"/>
@@ -877,6 +896,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Reusable grocery totes for Instacart deliveries',
       hint: 'Heavy-duty bags for hauling produce orders.',
       cat: 'Gear',
+      img: '/assets/images/expense-cards/tote-bag.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M76 76 L162 76 L166 168 L72 168 Z"/>
         <path d="M76 76 L86 50 Q102 42 118 50 L128 76"/>
@@ -893,6 +913,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'A second cell phone line just for the apps',
       hint: 'Separate Mint Mobile line, used only for DoorDash + Uber Eats.',
       cat: 'Phone',
+      img: '/assets/images/expense-cards/second-phone.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="76" y="38" width="60" height="130" rx="8"/>
         <rect x="84" y="50" width="44" height="100" rx="3" fill="#fbf8ee" stroke="#2d3068" stroke-opacity="0.4"/>
@@ -911,6 +932,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Sunglasses for daytime driving',
       hint: 'A new pair of polarized sunglasses for shifts.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/sunglasses.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M62 86 Q56 132 100 132 Q132 132 132 92 L132 84 Q132 76 124 76 L70 76 Q62 76 62 86 Z" fill="#e89464" stroke="#2d3068"/>
         <path d="M218 86 Q224 132 180 132 Q148 132 148 92 L148 84 Q148 76 156 76 L210 76 Q218 76 218 86 Z" fill="#e89464" stroke="#2d3068"/>
@@ -928,6 +950,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Online course: "How to maximize your DoorDash earnings"',
       hint: '$49 course on driving more efficient routes.',
       cat: 'Education',
+      img: '/assets/images/expense-cards/online-course.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M50 156 L230 156 L242 172 L38 172 Z"/>
         <line x1="124" y1="164" x2="156" y2="164" stroke-opacity="0.4"/>
@@ -970,6 +993,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'Car insurance premium',
       hint: 'Annual auto insurance for your delivery car.',
       cat: 'Vehicle',
+      img: '/assets/images/expense-cards/car-insurance.jpg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M60 76 Q140 26 220 76" stroke-width="2.6"/>
         <path d="M60 76 Q80 84 100 76 Q120 84 140 76 Q160 84 180 76 Q200 84 220 76" stroke-opacity="0.5"/>
@@ -994,6 +1018,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       q: 'A new winter coat',
       hint: 'For doing deliveries through the snow.',
       cat: 'Personal',
+      img: '/assets/images/expense-cards/winter-coat.jpeg',
       art: `<svg viewBox="0 0 280 200" fill="none" stroke="#2d3068" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M104 50 Q140 34 176 50 L176 70 Q140 60 104 70 Z"/>
         <path d="M114 56 Q140 50 166 56 L166 64 Q140 58 114 64 Z" fill="#e89464" stroke="none"/>
@@ -1055,7 +1080,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
              +     '<ellipse cx="220" cy="40" rx="78"  ry="22"/>'
              +   '</g>'
              + '</svg>';
-    var illu = item.art ? ('<div class="card-A-illu">' + item.art + '</div>') : '';
+    // Prefer raster image over inline SVG. Falls back to topo + numeral only.
+    var illu = item.img
+      ? ('<div class="card-A-illu"><img src="' + item.img + '" alt="" loading="lazy"/></div>')
+      : (item.art ? ('<div class="card-A-illu">' + item.art + '</div>') : '');
     return ''
       + '<article class="swipe-card card-A' + isActive + '" data-stack="' + stackPos + '">'
       +   '<div class="card-A-art">'
