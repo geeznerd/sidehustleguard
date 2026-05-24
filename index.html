@@ -144,11 +144,27 @@
   .hero-content { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 48px;
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  /* Top row: eyebrow + headline + body + CTA, capped for readable line-length */
+  .hero-intro { display: flex; flex-direction: column; gap: 22px; max-width: 880px; }
+  /* Bottom row: picker (left) + preview card (right), equal height */
+  .hero-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 32px;
     align-items: stretch;
   }
-  .hero-left { display: flex; flex-direction: column; gap: 22px; }
+  .hero-pair-picker,
+  .hero-pair-preview { display: flex; flex-direction: column; }
+  .hero-pair-picker > .sliding-list { flex: 1; }
+  /* Stretch the indigo card to match the picker height; push the foot to the bottom */
+  .hero-pair-preview > .hero-preview {
+    flex: 1; margin-top: 0;
+    display: flex; flex-direction: column;
+  }
+  .hero-pair-preview .hero-preview-foot { margin-top: auto; }
   .hero-body {
     font-family: 'Inter', sans-serif;
     font-size: 16.5px; line-height: 1.65; font-weight: 400;
@@ -763,7 +779,11 @@
   /* RESPONSIVE */
   @media (max-width: 960px) {
     .hero { padding: 56px 24px 64px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-grid { gap: 32px; }
+    .hero-pair { grid-template-columns: 1fr; gap: 24px; }
+    /* Mobile order: headline → preview → picker */
+    .hero-pair-preview { order: 1; }
+    .hero-pair-picker  { order: 2; }
     .ds-section { padding: 56px 24px; }
     .intro-context { padding: 40px 24px; }
     .faq-section { padding: 56px 24px; }
@@ -877,8 +897,8 @@
 
   <div class="hero-content">
     <div class="hero-grid">
-      <!-- LEFT: copy + indigo preview card -->
-      <div class="hero-left">
+      <!-- TOP ROW: eyebrow + headline + body + CTAs (full width) -->
+      <div class="hero-intro">
         <div>
           <div class="ds-eyebrow">Free legal check <span class="glyph">✦</span></div>
         </div>
@@ -889,25 +909,12 @@
           <a class="btn btn-primary" href="/tool">Start free check →</a>
           <a class="hero-ghost-link" href="#how-it-works">See how it works</a>
         </div>
-
-        <!-- INDIGO PREVIEW CARD — swapped by JS as user hovers/clicks the hustle picker -->
-        <div class="hero-preview" id="hero-preview">
-          <div class="hero-preview-eyebrow" id="hp-eyebrow">For digital sellers</div>
-          <div class="hero-preview-title" id="hp-title">What we check for digital products</div>
-          <ul class="hero-preview-bullets" id="hp-bullets">
-            <li>Schedule C and self-employment tax math</li>
-            <li>Sales tax — marketplace facilitator vs your own store</li>
-            <li>1099-K thresholds and how to reconcile platform reports</li>
-          </ul>
-          <div class="hero-preview-foot">
-            <span class="hero-preview-metric" id="hp-metric">60s</span>
-            <span class="hero-preview-lbl" id="hp-lbl">free check · all 50 states</span>
-          </div>
-        </div>
       </div>
 
-      <!-- RIGHT: sliding-list hustle picker -->
-      <div class="hero-right">
+      <!-- BOTTOM ROW: paired cards, level. Picker LEFT, preview RIGHT. -->
+      <div class="hero-pair">
+        <!-- LEFT: sliding-list hustle picker -->
+        <div class="hero-pair-picker">
         <div class="sliding-list" data-sliding-list id="hustle-picker">
           <div class="sliding-list-indicator" aria-hidden="true"></div>
           <a class="sliding-list-row" aria-current="true" data-value="digital" href="/tool?type=Selling%20digital%20products">
@@ -983,7 +990,25 @@
             <span class="sliding-list-arrow">→</span>
           </a>
         </div>
-      </div>
+        </div><!-- /.hero-pair-picker -->
+
+        <!-- RIGHT: indigo preview card — swapped by JS when picker selection changes -->
+        <div class="hero-pair-preview">
+          <div class="hero-preview" id="hero-preview">
+            <div class="hero-preview-eyebrow" id="hp-eyebrow">For digital sellers</div>
+            <div class="hero-preview-title" id="hp-title">What we check for digital products</div>
+            <ul class="hero-preview-bullets" id="hp-bullets">
+              <li>Schedule C and self-employment tax math</li>
+              <li>Sales tax — marketplace facilitator vs your own store</li>
+              <li>1099-K thresholds and how to reconcile platform reports</li>
+            </ul>
+            <div class="hero-preview-foot">
+              <span class="hero-preview-metric" id="hp-metric">60s</span>
+              <span class="hero-preview-lbl" id="hp-lbl">free check · all 50 states</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.hero-pair -->
     </div>
   </div>
 </section>
