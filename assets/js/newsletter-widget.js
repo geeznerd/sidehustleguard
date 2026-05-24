@@ -17,6 +17,11 @@
     var wrap = document.createElement('div');
     wrap.className = 'newsletter-widget';
     wrap.setAttribute('data-newsletter', 'auto');
+    /* Anchor target so any link on the page can route here via
+     * href="#newsletter-signup" (e.g. the /guides "Notify me" CTA). */
+    if (!document.getElementById('newsletter-signup')) {
+      wrap.id = 'newsletter-signup';
+    }
     wrap.innerHTML = [
       '<div class="newsletter-widget-text">',
       '<strong>Get notified when new guides ship.</strong>',
@@ -95,9 +100,35 @@
     });
   }
 
+  /* Any anchor link with href="#newsletter-signup" focuses the email input
+   * after the native scroll lands. Keeps the browser's smooth-scroll
+   * behavior, just adds keyboard focus on top of it. */
+  function bindNotifyLinks() {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest
+        ? e.target.closest('a[href="#newsletter-signup"], a[href$="#newsletter-signup"]')
+        : null;
+      if (!a) return;
+      var target = document.getElementById('newsletter-signup');
+      if (!target) return;
+      /* Don't preventDefault — let the browser handle the scroll. Just
+       * focus the input shortly after so the user is ready to type. */
+      var input = target.querySelector('input[type="email"]');
+      if (!input) return;
+      setTimeout(function () {
+        try { input.focus({ preventScroll: true }); }
+        catch (_) { input.focus(); }
+      }, 500);
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hydrate);
+    document.addEventListener('DOMContentLoaded', function () {
+      hydrate();
+      bindNotifyLinks();
+    });
   } else {
     hydrate();
+    bindNotifyLinks();
   }
 })();
