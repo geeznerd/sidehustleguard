@@ -105,14 +105,42 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
  * Direction A illustrated postcard. The .swipe-card class keeps the
  * positional + drag-state behavior; .card-A adds the visual chrome.
  * Cards are 3:4 portrait with an art "stage" on top and a body below.
+ *
+ * Using CSS grid (single grid-area) to stack the cards. More robust than
+ * position:absolute + aspect-ratio on iOS Safari (which can mis-compute
+ * containing-block heights when aspect-ratio is the only sizing input).
+ * Explicit height locks the deck in case any CSS variable upstream goes
+ * sideways.
  */
-.deck{position:relative;width:100%;max-width:340px;aspect-ratio:3/4;margin:0 auto 18px;touch-action:none;user-select:none;-webkit-user-select:none}
-.swipe-card{position:absolute;inset:0;cursor:grab;transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s,box-shadow .2s}
+.deck{
+  position:relative;
+  width:100%;
+  max-width:340px;
+  height:460px;
+  margin:0 auto 18px;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  display:grid;
+  grid-template-areas:"stack";
+}
+.swipe-card{
+  grid-area:stack;
+  width:100%;height:100%;
+  cursor:grab;
+  transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s,box-shadow .2s;
+}
 .swipe-card.is-dragging{transition:none;cursor:grabbing}
 .swipe-card[data-stack="1"]{transform:scale(0.96) translateY(10px);opacity:0.75;pointer-events:none;z-index:1}
 .swipe-card[data-stack="2"]{transform:scale(0.92) translateY(20px);opacity:0.45;pointer-events:none;z-index:0}
 .swipe-card[data-stack="0"]{z-index:2}
 @media(prefers-reduced-motion:reduce){.swipe-card{transition:none}}
+/* Mobile: scale deck to viewport width while keeping ~3:4 ratio */
+@media (max-width: 420px){
+  .deck{
+    max-width:none;
+    width:min(86vw, 360px);
+    height:min(115vw, 480px);
+  }
+}
 
 /* ─── Direction A · Illustrated postcard ───────────────────────── */
 .card-A{width:100%;height:100%;background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;box-shadow:0 1px 2px rgba(45,48,104,0.06),0 18px 38px -16px rgba(45,48,104,0.22);overflow:hidden;display:flex;flex-direction:column;position:relative}
