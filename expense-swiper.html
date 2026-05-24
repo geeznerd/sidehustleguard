@@ -264,7 +264,7 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 
 /* Email capture inline */
 .email-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:20px 22px;margin:18px 0;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-.email-card-body{flex:1 1 260px}
+.email-card-body{flex:1 1 260px;min-width:0}
 .email-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:3px}
 .email-card-sub{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.5}
 .email-card-link{flex-shrink:0;background:var(--apricot);color:var(--indigo);border:0;border-radius:12px;padding:10px 16px;font-family:inherit;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
@@ -302,7 +302,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   /* .deck height handled by the Phase 14 mobile rule above (line ~138).
    * Old "height:300px" override removed — was forcing stumpy cards. */
   .results-stat{font-size:36px}
-  .email-card{flex-direction:column;align-items:stretch}
+  .email-card{flex-direction:column;align-items:stretch;gap:12px}
+  /* Body's flex:1 1 260px was inflating the card height in column mode —
+   * reset it to natural content height on mobile. */
+  .email-card-body{flex:0 0 auto}
   .email-card-link{text-align:center;justify-content:center}
   .results-cta{grid-template-columns:1fr}
   .nav-link{display:none}
