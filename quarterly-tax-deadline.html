@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>When Are Quarterly Taxes Due? Live Countdown for Freelancers (2026) — SideHustleGuard</title>
+<meta content="Live countdown to the next IRS estimated quarterly tax deadline. See all 4 dates for 2026, download an .ics calendar, and check if you're required to pay. Free, no signup." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/quarterly-tax-deadline" rel="canonical"/>
+
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<meta content="When Are Quarterly Taxes Due? Live Countdown for Freelancers" property="og:title"/>
+<meta content="Live countdown to the next IRS estimated quarterly tax deadline. Download all 4 dates to your calendar." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/quarterly-tax-deadline" property="og:url"/>
+<meta content="website" property="og:type"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quarterly Tax Deadline Countdown",
+  "description": "Live countdown + calendar download for IRS estimated quarterly tax deadlines. Per IRC § 6654 estimated tax schedule.",
+  "url": "https://www.sidehustleguard.com/quarterly-tax-deadline",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+
+.hero{padding:64px 24px 32px;text-align:center;position:relative;overflow:hidden}
+.hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+@media(prefers-reduced-motion:no-preference){
+  .hero-badge::before{animation:pulse 2.2s cubic-bezier(0.4,0,0.2,1) infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,148,100,0.55)}70%{box-shadow:0 0 0 8px rgba(232,148,100,0)}100%{box-shadow:0 0 0 0 rgba(232,148,100,0)}}
+}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5vw,52px);font-weight:400;line-height:1.05;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.65;max-width:600px;margin:0 auto}
+
+/* Countdown */
+.countdown-wrap{max-width:880px;margin:18px auto 0;padding:0 24px}
+.countdown-card{background:var(--indigo);color:var(--paper);border-radius:18px;padding:32px 32px 28px;text-align:center;position:relative;overflow:hidden}
+.countdown-eye{font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:10px;display:inline-flex;align-items:center;gap:8px}
+.countdown-eye::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+@media(prefers-reduced-motion:no-preference){
+  .countdown-eye::before{animation:pulse 2.2s cubic-bezier(0.4,0,0.2,1) infinite}
+}
+.countdown-line{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,5vw,40px);font-weight:400;color:var(--paper);line-height:1.15;letter-spacing:-0.015em;font-variation-settings:'opsz' 144,'SOFT' 30;margin:2px auto 8px;max-width:560px}
+.countdown-line em{font-style:italic;color:var(--apricot-hover);font-weight:500}
+.countdown-num{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--apricot-hover);font-variation-settings:'opsz' 144,'SOFT' 30}
+.countdown-date{font-size:14px;color:rgba(251,248,238,0.6);font-weight:400;margin-bottom:20px}
+.countdown-cta{display:inline-flex;align-items:center;gap:8px;background:var(--apricot);color:var(--indigo);border:0;border-radius:14px;padding:12px 20px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(45,48,104,0.20);transition:background .2s,box-shadow .2s,transform .15s}
+.countdown-cta:hover{background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.24)}
+@media(prefers-reduced-motion:no-preference){.countdown-cta:hover{transform:translateY(-1px)}}
+.countdown-cta-icon{width:16px;height:16px;display:inline-block}
+.countdown-feedback{font-size:12px;color:rgba(251,248,238,0.55);margin-top:10px;font-weight:400;min-height:18px}
+
+/* All 4 deadlines grid */
+.deadlines-wrap{max-width:1020px;margin:28px auto 0;padding:0 48px}
+.deadlines-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.deadline-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;position:relative}
+.deadline-card.is-next{border-color:var(--apricot);background:var(--apricot-soft);border-width:1.5px}
+.deadline-card.is-past{opacity:0.55}
+.deadline-q{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:24px;color:var(--indigo);line-height:1;font-variation-settings:'opsz' 144,'SOFT' 30}
+.deadline-card.is-next .deadline-q{color:var(--apricot)}
+.deadline-status{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:100px;width:fit-content;margin-top:2px}
+.deadline-status.is-past{background:var(--indigo-08);color:var(--indigo-55)}
+.deadline-status.is-next{background:var(--apricot);color:var(--indigo)}
+.deadline-status.is-upcoming{background:var(--indigo-08);color:var(--indigo-70)}
+.deadline-date{font-size:14.5px;font-weight:600;color:var(--indigo);margin-top:4px;line-height:1.3}
+.deadline-income{font-size:12px;color:var(--indigo-55);font-weight:400}
+
+/* Threshold check */
+.check-wrap{max-width:760px;margin:32px auto 0;padding:0 48px}
+.check-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:28px}
+.check-eye{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.check-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:24px;line-height:1.2;color:var(--indigo);margin-bottom:6px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.check-title em{font-style:italic;color:var(--apricot)}
+.check-sub{font-size:14px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin-bottom:18px}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
+input[type="number"],select{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 13px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+input[type="number"]{padding-left:26px}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--apricot);background:var(--paper)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.check-result{background:var(--indigo);color:var(--paper);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.check-result-head{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--apricot-hover);text-transform:uppercase}
+.check-result-line{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:500;color:var(--paper);line-height:1.25;font-variation-settings:'opsz' 144,'SOFT' 30}
+.check-result-line em{font-style:italic;color:var(--apricot-hover)}
+.check-result-sub{font-size:13px;color:rgba(251,248,238,0.7);font-weight:300;line-height:1.5}
+.check-result-sub a{color:var(--apricot-hover);text-decoration:underline;text-underline-offset:2px}
+.check-result-sub a:hover{color:var(--paper)}
+
+/* Disclaimer */
+.disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:14px}
+.disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.disclaimer-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.disclaimer p{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin:0}
+.disclaimer strong{color:var(--indigo);font-weight:600}
+
+/* SEO content */
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;color:var(--indigo);margin:44px 0 14px;line-height:1.2;font-variation-settings:'opsz' 144,'SOFT' 30}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content h3{font-size:16px;font-weight:600;color:var(--indigo);margin:24px 0 8px}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--indigo-70);line-height:1.65;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--indigo);font-weight:600}
+.content a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px}
+.callout{border-radius:10px;padding:16px 20px;margin:24px 0;background:var(--apricot-soft);border-left:4px solid var(--apricot)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--indigo-70)}
+.callout strong{color:var(--indigo)}
+
+.related-section{border-top:1px solid var(--indigo-08);padding:32px 0 0;margin-top:24px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
+.related-card:hover{border-color:var(--apricot)}
+@media(prefers-reduced-motion:no-preference){.related-card:hover{transform:translateY(-1px)}}
+.related-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:4px}
+.related-card-desc{font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+@media(max-width:780px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 20px 24px}
+  h1{font-size:30px}
+  .countdown-wrap,.deadlines-wrap,.check-wrap,.content{padding-left:20px;padding-right:20px}
+  .countdown-card{padding:24px 22px 20px}
+  .deadlines-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .check-grid{grid-template-columns:1fr}
+  .nav-link{display:none}
+  .nav-link.nav-guides{display:inline-flex;font-size:13px}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link" href="/#faq">FAQ</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="qdHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="360" fill="url(#qdHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">Free · Live countdown</div>
+    <h1>When's your <em>next</em> quarterly tax payment due?</h1>
+    <p class="hero-sub">Live countdown to the next IRS estimated tax deadline. Add all four to your calendar. Take 30 seconds to check if you're even required to pay.</p>
+  </div>
+</div>
+
+<!-- Live countdown -->
+<div class="countdown-wrap">
+  <div class="countdown-card">
+    <div class="countdown-eye"><span id="cd-q-label">Q?</span> &middot; Next IRS estimated tax deadline</div>
+    <div class="countdown-line"><span id="cd-q-name">—</span> is due in <em><span id="cd-days">—</span> days</em></div>
+    <div class="countdown-date" id="cd-date">—</div>
+    <button class="countdown-cta" type="button" id="btn-download-ics">
+      <svg class="countdown-cta-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6h12M5 1.5v3M11 1.5v3"/></svg>
+      Add all 4 deadlines to my calendar
+    </button>
+    <div class="countdown-feedback" id="cd-feedback" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- All 4 deadlines grid -->
+<div class="deadlines-wrap">
+  <div class="deadlines-grid" id="deadlines-grid">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<!-- Threshold check -->
+<div class="check-wrap">
+  <div class="check-card">
+    <div class="check-eye">Quick check</div>
+    <div class="check-title">Are you even <em>required</em> to pay?</div>
+    <p class="check-sub">Estimated payments are required when your expected annual tax owed is <strong>$1,000 or more</strong>. Plug in a rough number — we'll tell you whether to bother and what each quarter looks like.</p>
+    <div class="check-grid">
+      <div>
+        <label class="field-label" for="net-annual">Expected annual net income</label>
+        <div class="input-money"><input type="number" id="net-annual" min="0" placeholder="40000" inputmode="decimal" value=""/></div>
+      </div>
+      <div>
+        <label class="field-label" for="check-state">State</label>
+        <select id="check-state">
+          <option value="">— Select —</option>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska (no income tax)</option>
+          <option value="AZ">Arizona</option><option value="AR">Arkansas</option>
+          <option value="CA">California</option><option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option><option value="DE">Delaware</option>
+          <option value="DC">DC</option>
+          <option value="FL">Florida (no income tax)</option>
+          <option value="GA">Georgia</option><option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option><option value="IL">Illinois</option>
+          <option value="IN">Indiana</option><option value="IA">Iowa</option>
+          <option value="KS">Kansas</option><option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option><option value="ME">Maine</option>
+          <option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option><option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option><option value="MO">Missouri</option>
+          <option value="MT">Montana</option><option value="NE">Nebraska</option>
+          <option value="NV">Nevada (no income tax)</option>
+          <option value="NH">New Hampshire (no income tax)</option>
+          <option value="NJ">New Jersey</option><option value="NM">New Mexico</option>
+          <option value="NY">New York</option><option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option><option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option><option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota (no income tax)</option>
+          <option value="TN">Tennessee (no income tax)</option>
+          <option value="TX">Texas (no income tax)</option>
+          <option value="UT">Utah</option><option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington (no income tax)</option>
+          <option value="WV">West Virginia</option><option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming (no income tax)</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-result">
+      <div class="check-result-head">What this means</div>
+      <div class="check-result-line" id="check-line">Enter a number above to see your status.</div>
+      <div class="check-result-sub" id="check-sub">For an exact quarterly amount that uses safe harbor + last-year-tax logic, use the <a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.</div>
+    </div>
+    <div class="disclaimer">
+      <div class="disclaimer-label">Estimate only — not tax advice</div>
+      <p>Threshold check uses a flat 25% rule (15.3% SE tax + ~10% income tax). Real tax owed depends on your filing status, deductions, and other income. <strong>Verify with a licensed tax pro</strong>. Source: <strong>IRC § 6654</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SEO content -->
+<div class="content">
+  <h2>Why <em>quarterly</em> estimated taxes exist</h2>
+  <p>When you have a regular job, your employer withholds federal income tax + payroll tax from each paycheck and sends it to the IRS on your behalf. As a self-employed person, nobody does that for you. The IRS still expects to be paid <strong>throughout the year</strong>, not in one lump on April 15 — so you make quarterly estimated payments via Form 1040-ES.</p>
+
+  <h2>Who's <em>required</em> to make estimated payments?</h2>
+  <p>Per <strong>IRC § 6654</strong>, you must make estimated payments if both:</p>
+  <ul>
+    <li>You expect to owe <strong>$1,000 or more</strong> in federal tax for the year (after withholding from any W-2 jobs and refundable credits), AND</li>
+    <li>Your withholding + credits won't cover at least 90% of this year's tax OR 100% of last year's tax (110% if last year's AGI was over $150k — known as the <strong>safe harbor</strong> rule).</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>Rule of thumb:</strong> if you expect net self-employment income above roughly <strong>$5,000-$6,000</strong> for the year and have no W-2 withholding, you almost certainly need to be paying quarterly. Below that, you might be under the $1,000 threshold and can pay it all in April.</p>
+  </div>
+
+  <h2>What happens if you <em>miss</em> a deadline?</h2>
+  <p>The IRS charges an underpayment penalty for each quarter you were short. It's not a flat fee — it's calculated as interest on the missing amount, from the original due date until the date you pay (or April 15 of the following year, whichever comes first). The rate is the <strong>federal short-term rate + 3%</strong> — currently around <strong>8% APR</strong>.</p>
+  <p>Use the <a href="/tax-penalty-estimator">tax penalty estimator</a> if you've already missed one and want a rough sense of the damage.</p>
+
+  <h2>How to actually <em>pay</em></h2>
+  <ul>
+    <li><strong>IRS Direct Pay</strong> (free, online, takes 5 minutes): <a href="https://www.irs.gov/payments/direct-pay" rel="noopener" target="_blank">irs.gov/payments/direct-pay</a></li>
+    <li><strong>EFTPS</strong> (free, requires enrollment): <a href="https://www.eftps.gov/" rel="noopener" target="_blank">eftps.gov</a></li>
+    <li><strong>Debit/credit card</strong> via an IRS-approved processor (small fee, ~2% for credit cards).</li>
+    <li><strong>Check or money order</strong> mailed with Form 1040-ES voucher.</li>
+  </ul>
+
+  <h2>The <em>state</em> side</h2>
+  <p>Most states with income tax mirror the federal quarterly schedule. <strong>No-income-tax states</strong> (AK, FL, NV, NH, SD, TN, TX, WA, WY) require no state estimated payments. Some states have slightly different deadlines or different thresholds — check your state's Department of Revenue if you're not sure.</p>
+
+  <div class="related-section">
+    <div class="related-label">Related tools &amp; guides</div>
+    <div class="related-grid">
+      <a class="related-card" href="/quarterly-tax-calculator">
+        <div class="related-card-title">Quarterly tax calculator →</div>
+        <div class="related-card-desc">Exact amount per quarter with safe harbor math.</div>
+      </a>
+      <a class="related-card" href="/tax-penalty-estimator">
+        <div class="related-card-title">Tax penalty estimator →</div>
+        <div class="related-card-desc">Missed a payment? See what you owe now.</div>
+      </a>
+      <a class="related-card" href="/quarterly-taxes-self-employed">
+        <div class="related-card-title">Quarterly taxes guide →</div>
+        <div class="related-card-desc">Deep dive on safe harbor, withholding, and how to pay.</div>
+      </a>
+      <a class="related-card" href="/self-employment-tax-calculator">
+        <div class="related-card-title">SE tax calculator →</div>
+        <div class="related-card-desc">15.3% self-employment tax broken out.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before paying or filing.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────────────────────────
+  // IRS quarterly deadlines per IRC § 6654.
+  // Q1 = Apr 15 (for income Jan-Mar)
+  // Q2 = Jun 15 (for income Apr-May)
+  // Q3 = Sep 15 (for income Jun-Aug)
+  // Q4 = Jan 15 of NEXT year (for income Sep-Dec)
+  // If a date falls on Sat/Sun, IRS shifts to the next Monday.
+  // (Federal holidays can also shift; not modeled here — edge case.)
+  // ──────────────────────────────────────────────────────────────────────
+
+  var NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DAYS_OF_WEEK = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  function shiftWeekend(d) {
+    var dow = d.getDay();
+    if (dow === 0) d.setDate(d.getDate() + 1);       // Sun → Mon
+    else if (dow === 6) d.setDate(d.getDate() + 2);  // Sat → Mon
+    return d;
+  }
+
+  function quarterlyDeadlines(year) {
+    return [
+      { q: 'Q1', label: 'Q1 ' + year, due: shiftWeekend(new Date(year, 3, 15)),  incomeFor: 'Income earned Jan–Mar ' + year },
+      { q: 'Q2', label: 'Q2 ' + year, due: shiftWeekend(new Date(year, 5, 15)),  incomeFor: 'Income earned Apr–May ' + year },
+      { q: 'Q3', label: 'Q3 ' + year, due: shiftWeekend(new Date(year, 8, 15)),  incomeFor: 'Income earned Jun–Aug ' + year },
+      { q: 'Q4', label: 'Q4 ' + year, due: shiftWeekend(new Date(year + 1, 0, 15)), incomeFor: 'Income earned Sep–Dec ' + year }
+    ];
+  }
+
+  function daysUntil(target, now) {
+    var midnightNow = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var midnightTarget = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    return Math.round((midnightTarget - midnightNow) / (1000 * 60 * 60 * 24));
+  }
+
+  function formatDateLong(d) {
+    return DAYS_OF_WEEK[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+  function formatDateShort(d) {
+    return MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+  function fmtMoney(n) {
+    if (!isFinite(n) || n <= 0) return '$0';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Render: countdown + all-deadlines grid
+  // ──────────────────────────────────────────────────────────────────────
+  var now = new Date();
+  var year = now.getFullYear();
+  // Include both this-year + next-year deadlines so we can find "next" even
+  // late in the year when Q4 falls in January of the following year.
+  var all = quarterlyDeadlines(year).concat(quarterlyDeadlines(year + 1));
+  var nextIdx = all.findIndex(function (d) { return daysUntil(d.due, now) > 0; });
+  var next = nextIdx >= 0 ? all[nextIdx] : all[0];
+
+  // Hero countdown
+  document.getElementById('cd-q-label').textContent = next.q;
+  document.getElementById('cd-q-name').textContent = next.label;
+  document.getElementById('cd-days').textContent = daysUntil(next.due, now);
+  document.getElementById('cd-date').textContent = formatDateLong(next.due);
+
+  // 4-deadline grid (current year's 4)
+  var thisYearDeadlines = quarterlyDeadlines(year);
+  var gridEl = document.getElementById('deadlines-grid');
+  gridEl.innerHTML = thisYearDeadlines.map(function (d) {
+    var dleft = daysUntil(d.due, now);
+    var status, statusCls;
+    if (dleft < 0) { status = 'Past'; statusCls = 'is-past'; }
+    else if (d === next) { status = 'Next'; statusCls = 'is-next'; }
+    else { status = 'Upcoming'; statusCls = 'is-upcoming'; }
+    var cardCls = (dleft < 0) ? 'is-past' : ((d === next) ? 'is-next' : '');
+    return '<div class="deadline-card ' + cardCls + '">'
+      + '<div class="deadline-q">' + d.q + '</div>'
+      + '<span class="deadline-status ' + statusCls + '">' + status + '</span>'
+      + '<div class="deadline-date">' + formatDateShort(d.due) + '</div>'
+      + '<div class="deadline-income">' + d.incomeFor + '</div>'
+      + '</div>';
+  }).join('');
+
+  // ──────────────────────────────────────────────────────────────────────
+  // .ics generation + download
+  // ──────────────────────────────────────────────────────────────────────
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function icsDate(d) {
+    return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  }
+  function icsStamp() {
+    var d = new Date();
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate())
+      + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+  }
+  function escapeICS(s) {
+    return String(s).replace(/[\\,;]/g, function (m) { return '\\' + m; }).replace(/\n/g, '\\n');
+  }
+  function buildICS(deadlines) {
+    var stamp = icsStamp();
+    var lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//SideHustleGuard//Quarterly Tax//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH'
+    ];
+    deadlines.forEach(function (d) {
+      var dateStr = icsDate(d.due);
+      // All-day events use DTSTART;VALUE=DATE + DTEND = day after
+      var nextDay = new Date(d.due);
+      nextDay.setDate(nextDay.getDate() + 1);
+      lines.push('BEGIN:VEVENT');
+      lines.push('UID:quarterly-' + d.q.toLowerCase() + '-' + d.due.getFullYear() + '@sidehustleguard.com');
+      lines.push('DTSTAMP:' + stamp);
+      lines.push('DTSTART;VALUE=DATE:' + dateStr);
+      lines.push('DTEND;VALUE=DATE:' + icsDate(nextDay));
+      lines.push('SUMMARY:' + escapeICS(d.label + ' estimated tax payment due (Form 1040-ES)'));
+      lines.push('DESCRIPTION:' + escapeICS(d.incomeFor + '. Pay via IRS Direct Pay (irs.gov/payments/direct-pay) or EFTPS.'));
+      lines.push('END:VEVENT');
+    });
+    lines.push('END:VCALENDAR');
+    return lines.join('\r\n');
+  }
+
+  document.getElementById('btn-download-ics').addEventListener('click', function () {
+    // Bundle this year's 4 + next year's Q1-Q2 (so users get ~6 deadlines covering ~9 months ahead)
+    var bundle = thisYearDeadlines.filter(function (d) { return daysUntil(d.due, now) >= 0; })
+      .concat(quarterlyDeadlines(year + 1).slice(0, 2));
+    var ics = buildICS(bundle);
+    try {
+      var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'irs-quarterly-tax-deadlines.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      document.getElementById('cd-feedback').textContent = '✓ Calendar file downloaded — open it to add to Apple Calendar, Google Calendar, or Outlook.';
+    } catch (e) {
+      document.getElementById('cd-feedback').textContent = "Couldn't download the file on this browser. The dates are listed above — add manually.";
+    }
+  });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Threshold check
+  // ──────────────────────────────────────────────────────────────────────
+  function renderCheck() {
+    var raw = parseFloat(document.getElementById('net-annual').value);
+    var state = document.getElementById('check-state').value;
+    var line = document.getElementById('check-line');
+    var sub = document.getElementById('check-sub');
+
+    if (!isFinite(raw) || raw <= 0) {
+      line.innerHTML = 'Enter a number above to see your status.';
+      sub.innerHTML = 'For an exact quarterly amount that uses safe harbor + last-year-tax logic, use the <a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.';
+      return;
+    }
+
+    // Rough estimate: 15.3% SE tax on net × 0.9235 + ~10% federal income tax = ~25% effective
+    var federalTax = raw * 0.25;
+    var stateTax = (state && NO_TAX_STATES.indexOf(state) === -1) ? raw * 0.05 : 0;
+    var totalTax = federalTax + stateTax;
+    var perQuarter = totalTax / 4;
+
+    var required = totalTax >= 1000;
+    if (required) {
+      line.innerHTML = "<em>Yes</em> — you're likely required to make estimated payments.";
+      sub.innerHTML = 'Set aside roughly <strong>' + fmtMoney(perQuarter) + '/quarter</strong> ('
+        + fmtMoney(totalTax) + ' total/year) to stay clean. '
+        + 'For an exact figure that accounts for safe harbor + your specific situation, use the '
+        + '<a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.';
+    } else {
+      line.innerHTML = "<em>Probably not</em> — estimated tax owed (" + fmtMoney(totalTax) + ") is under the $1,000 trigger.";
+      sub.innerHTML = "You can probably just pay this when you file your annual return in April. "
+        + "But set aside <strong>" + fmtMoney(totalTax) + "</strong> now so it's not a surprise — open a separate savings account.";
+    }
+  }
+
+  document.getElementById('net-annual').addEventListener('input', renderCheck);
+  document.getElementById('check-state').addEventListener('change', renderCheck);
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
