@@ -173,194 +173,10 @@
 
   /* Sections */
   .guides-body {
-    padding: 0;
+    padding: 32px 60px 64px;
     background: var(--cream);
   }
-  .guides-body-inner { max-width: none; margin: 0; }
-
-  /* ============================================================
-   * Phase 10 — Sidebar layout: desktop 2-col, mobile sheet trigger
-   * ========================================================== */
-  .guides-shell {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 36px 32px 88px;
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 44px;
-    align-items: start;
-    background: var(--cream);
-  }
-
-  .guides-sidebar {
-    position: sticky;
-    top: 80px;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    scrollbar-width: thin;
-  }
-  .guides-sidebar::-webkit-scrollbar { width: 4px; }
-  .guides-sidebar::-webkit-scrollbar-thumb { background: var(--indigo-12); border-radius: 2px; }
-
-  /* Sidebar live-search overrides — sits inside the column at a sane width */
-  .guides-sidebar .live-search { width: 100%; }
-
-  .sidebar-cats {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .sidebar-section {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .sidebar-section-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--indigo-35);
-    padding: 0 12px;
-    margin-bottom: 4px;
-  }
-  .sidebar-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .sidebar-cat {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 9px 12px;
-    border-radius: 9px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--indigo);
-    text-decoration: none;
-    position: relative;
-    transition: background var(--dur-fast) var(--ease-default),
-                color var(--dur-fast) var(--ease-default);
-  }
-  .sidebar-cat:hover {
-    background: rgba(45, 48, 104, 0.04);
-  }
-  .sidebar-cat-count {
-    font-size: 12.5px;
-    font-weight: 500;
-    color: var(--indigo-35);
-    font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
-  }
-  .sidebar-cat[aria-current="true"] {
-    background: rgba(232, 148, 100, 0.10);
-  }
-  .sidebar-cat[aria-current="true"]::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 9px;
-    bottom: 9px;
-    width: 2.5px;
-    background: var(--apricot);
-    border-radius: 2px;
-  }
-  .sidebar-cat[aria-current="true"] .sidebar-cat-name { font-weight: 600; }
-  .sidebar-cat:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--apricot-soft);
-  }
-
-  /* Mobile sheet trigger — hidden on desktop */
-  .guides-cat-trigger { display: none; }
-
-  /* ============================================================
-   * Bottom sheet (mobile category overlay)
-   * ========================================================== */
-  .guides-sheet[hidden] { display: none; }
-  .guides-sheet {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-  }
-  .guides-sheet-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(45, 48, 104, 0.40);
-  }
-  .guides-sheet-panel {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    background: var(--paper);
-    border-radius: 20px 20px 0 0;
-    max-height: 84vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 -8px 24px rgba(45, 48, 104, 0.18);
-  }
-  .guides-sheet-handle {
-    align-self: center;
-    width: 40px;
-    height: 4px;
-    background: var(--indigo-18);
-    border-radius: 2px;
-    margin: 10px 0 6px;
-  }
-  .guides-sheet-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 22px 14px;
-    border-bottom: 1px solid var(--indigo-08);
-  }
-  .guides-sheet-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 15.5px;
-    font-weight: 600;
-    color: var(--indigo);
-    margin: 0;
-  }
-  .guides-sheet-close {
-    width: 32px; height: 32px;
-    border: none;
-    background: transparent;
-    font-size: 26px;
-    color: var(--indigo-55);
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .guides-sheet-close:hover { color: var(--indigo); }
-  .guides-sheet-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 14px 18px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .guides-sheet:not([hidden]) .guides-sheet-backdrop {
-      animation: sheetFadeIn 0.22s var(--ease-default);
-    }
-    .guides-sheet:not([hidden]) .guides-sheet-panel {
-      animation: sheetSlideUp 0.28s var(--ease-default);
-    }
-    @keyframes sheetFadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes sheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-  }
+  .guides-body-inner { max-width: 1180px; margin: 0 auto; }
 
   .cat-section {
     padding-top: 48px;
@@ -503,53 +319,17 @@
   @media (max-width: 980px) {
     .guides-hero { padding: 32px 24px 22px; }
     .guides-hero-sub { margin-bottom: 14px; }
-
-    /* Phase 10 — collapse the sidebar layout to a single column. Sidebar
-     * hides its categories list; user opens the bottom sheet via the
-     * trigger button to filter. Search stays visible at the top. */
-    .guides-shell {
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 20px 18px 56px;
+    /* Mobile sticky offset: 56px nav (ticker removed in 6.16) */
+    .cat-tabs { padding: 8px 24px; top: 56px; }
+    .cat-tabs-inner {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .guides-sidebar {
-      position: static;
-      max-height: none;
-      overflow: visible;
-      gap: 12px;
-    }
-    .sidebar-cats { display: none; }
-    .guides-cat-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--indigo-12);
-      border-radius: 14px;
-      background: var(--paper);
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--indigo);
-      cursor: pointer;
-      gap: 12px;
-    }
-    .guides-cat-trigger:hover { border-color: var(--apricot); }
-    .guides-cat-trigger-label {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 10px;
-      min-width: 0;
-    }
-    .guides-cat-trigger-count {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--indigo-35);
-      font-variant-numeric: tabular-nums;
-    }
-    .guides-cat-trigger-chevron { color: var(--indigo-55); flex-shrink: 0; }
-    .guides-body { padding: 4px 0 32px; }
+    .cat-tabs-inner::-webkit-scrollbar { display: none; }
+    .guides-body { padding: 24px 24px 56px; }
     /* Override both .guides-grid AND .guides-grid.is-3-with-mega (higher
      * specificity 0,2,0) so the Interactive Tools section drops to 2-col
      * on tablet just like the other category grids. */
@@ -917,14 +697,6 @@
     <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">74</span> in total</div>
     <h1 class="display-l">Every side hustle.<br/><em>Every state.</em></h1>
     <p class="guides-hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">67</span> plain-English guides — for gig drivers, Etsy sellers, freelancers, hosts, and creators.</p>
-    <div class="sr-only" id="guide-search-sr" aria-live="polite"></div>
-  </div>
-</section>
-
-<!-- GUIDES SHELL: 2-col grid (sidebar + content) on desktop;
-     single-column with a bottom-sheet trigger on mobile. -->
-<div class="guides-shell">
-  <aside class="guides-sidebar" aria-label="Filter guides">
     <div class="live-search" id="search-wrap">
       <svg class="live-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/>
@@ -933,42 +705,23 @@
       <input id="guide-search" type="search" placeholder="Search guides and tools…" aria-label="Search guides and tools" autocomplete="off"/>
       <button class="live-search-clear" id="guide-search-clear" aria-label="Clear search" type="button">×</button>
     </div>
-    <button class="guides-cat-trigger" id="guides-cat-trigger" type="button"
-            aria-haspopup="dialog" aria-expanded="false" aria-controls="guides-sheet">
-      <span class="guides-cat-trigger-label">
-        <span class="guides-cat-trigger-name" id="guides-cat-trigger-name">All categories</span>
-        <span class="guides-cat-trigger-count" id="guides-cat-trigger-count">74</span>
-      </span>
-      <svg class="guides-cat-trigger-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <nav class="sidebar-cats" aria-label="Categories">
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">Browse</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#all" data-cat="all" aria-current="true"><span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">74</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-tools" data-cat="tools"><span class="sidebar-cat-name">Interactive tools</span><span class="sidebar-cat-count">7</span></a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">By work</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#cat-gig" data-cat="gig"><span class="sidebar-cat-name">Gig &amp; delivery</span><span class="sidebar-cat-count">8</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-ecom" data-cat="ecom"><span class="sidebar-cat-name">Etsy &amp; e-commerce</span><span class="sidebar-cat-count">12</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-creator" data-cat="creator"><span class="sidebar-cat-name">Creator economy</span><span class="sidebar-cat-count">8</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-freelance" data-cat="freelance"><span class="sidebar-cat-name">Freelancing</span><span class="sidebar-cat-count">5</span></a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">Other</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#cat-state" data-cat="state"><span class="sidebar-cat-name">State guides</span><span class="sidebar-cat-count">5</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-str" data-cat="str"><span class="sidebar-cat-name">Short-term rentals</span><span class="sidebar-cat-count">28</span></a></li>
-        </ul>
-      </div>
-    </nav>
-  </aside>
+    <div class="sr-only" id="guide-search-sr" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- STICKY CATEGORY TABS (G2) -->
+<div class="cat-tabs" id="cat-tabs">
+  <div class="cat-tabs-inner" role="tablist" aria-label="Filter by category">
+    <button class="cat-tab" role="tab" data-cat="all" aria-current="true">All</button>
+    <button class="cat-tab" role="tab" data-cat="tools">Interactive tools</button>
+    <button class="cat-tab" role="tab" data-cat="gig">Gig &amp; delivery</button>
+    <button class="cat-tab" role="tab" data-cat="ecom">Etsy &amp; e-commerce</button>
+    <button class="cat-tab" role="tab" data-cat="creator">Creator economy</button>
+    <button class="cat-tab" role="tab" data-cat="freelance">Freelancing</button>
+    <button class="cat-tab" role="tab" data-cat="state">State guides</button>
+    <button class="cat-tab" role="tab" data-cat="str">Short-term rentals</button>
+  </div>
+</div>
 
 <!-- GUIDES BODY -->
 <main class="guides-body">
@@ -1524,44 +1277,6 @@
 
   </div>
 </main>
-</div><!-- /.guides-shell -->
-
-<!-- BOTTOM SHEET: mobile category filter overlay -->
-<div class="guides-sheet" id="guides-sheet" hidden role="dialog" aria-modal="true" aria-label="Filter by category">
-  <div class="guides-sheet-backdrop" data-sheet-close aria-hidden="true"></div>
-  <div class="guides-sheet-panel" role="document">
-    <div class="guides-sheet-handle" aria-hidden="true"></div>
-    <div class="guides-sheet-head">
-      <h2 class="guides-sheet-title">Categories</h2>
-      <button class="guides-sheet-close" type="button" data-sheet-close aria-label="Close filter">×</button>
-    </div>
-    <nav class="guides-sheet-body" aria-label="Categories (mobile)">
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">Browse</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#all" data-cat="all" aria-current="true"><span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">74</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-tools" data-cat="tools"><span class="sidebar-cat-name">Interactive tools</span><span class="sidebar-cat-count">7</span></a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">By work</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#cat-gig" data-cat="gig"><span class="sidebar-cat-name">Gig &amp; delivery</span><span class="sidebar-cat-count">8</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-ecom" data-cat="ecom"><span class="sidebar-cat-name">Etsy &amp; e-commerce</span><span class="sidebar-cat-count">12</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-creator" data-cat="creator"><span class="sidebar-cat-name">Creator economy</span><span class="sidebar-cat-count">8</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-freelance" data-cat="freelance"><span class="sidebar-cat-name">Freelancing</span><span class="sidebar-cat-count">5</span></a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-section-label">Other</div>
-        <ul class="sidebar-list">
-          <li><a class="sidebar-cat" href="#cat-state" data-cat="state"><span class="sidebar-cat-name">State guides</span><span class="sidebar-cat-count">5</span></a></li>
-          <li><a class="sidebar-cat" href="#cat-str" data-cat="str"><span class="sidebar-cat-name">Short-term rentals</span><span class="sidebar-cat-count">28</span></a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</div>
 
 <!-- CTA BAND -->
 <div class="cta-band">
@@ -1649,94 +1364,26 @@
   setExpanded(false);
 })();
 
-/* ===== Category filter (G2) — sidebar + mobile sheet drive section visibility =====
- * Sidebar lives in .guides-sidebar (desktop). The sheet duplicates the markup
- * for mobile. Both sets share .sidebar-cat[data-cat]; aria-current flips on
- * BOTH so they stay in sync. */
+/* ===== Category tabs filter (G2) — filter sections in place ===== */
 (function () {
-  var links = Array.from(document.querySelectorAll('.sidebar-cat'));
+  var tabs = Array.from(document.querySelectorAll('.cat-tab'));
   var sections = Array.from(document.querySelectorAll('.cat-section'));
-  var triggerName = document.getElementById('guides-cat-trigger-name');
-  var triggerCount = document.getElementById('guides-cat-trigger-count');
-  if (!links.length || !sections.length) return;
+  if (!tabs.length || !sections.length) return;
 
-  /* Build a quick label lookup so the mobile trigger reads "Gig & delivery (8)"
-   * instead of always saying "All categories (74)" after a filter. */
-  var byCat = {};
-  links.forEach(function (l) {
-    var key = l.dataset.cat;
-    if (byCat[key]) return;
-    var nameEl = l.querySelector('.sidebar-cat-name');
-    var countEl = l.querySelector('.sidebar-cat-count');
-    byCat[key] = {
-      name: nameEl ? nameEl.textContent.trim() : key,
-      count: countEl ? countEl.textContent.trim() : ''
-    };
-  });
-
-  function setActiveCat(cat) {
-    links.forEach(function (l) {
-      var on = l.dataset.cat === cat;
-      if (on) l.setAttribute('aria-current', 'true');
-      else l.removeAttribute('aria-current');
+  function setActiveTab(cat) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.cat === cat;
+      if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
     });
     sections.forEach(function (s) {
       s.dataset.hiddenByTab = (cat === 'all' || s.dataset.cat === cat) ? 'false' : 'true';
     });
-    if (triggerName && byCat[cat]) {
-      /* Mobile pill: "All categories" when filter is "all", category name otherwise */
-      triggerName.textContent = (cat === 'all') ? 'All categories' : byCat[cat].name;
-    }
-    if (triggerCount && byCat[cat]) {
-      triggerCount.textContent = byCat[cat].count;
-    }
+    /* Re-run combined visibility */
     if (typeof runCombined === 'function') runCombined();
   }
 
-  links.forEach(function (l) {
-    l.addEventListener('click', function (e) {
-      /* Prevent the hash from jumping the page — we filter in-place */
-      e.preventDefault();
-      setActiveCat(l.dataset.cat);
-    });
-  });
-})();
-
-/* ===== Mobile bottom sheet — open/close + scroll-lock + focus management ===== */
-(function () {
-  var trigger = document.getElementById('guides-cat-trigger');
-  var sheet = document.getElementById('guides-sheet');
-  if (!trigger || !sheet) return;
-
-  var lastFocus = null;
-
-  function openSheet() {
-    lastFocus = document.activeElement;
-    sheet.hidden = false;
-    document.body.style.overflow = 'hidden';
-    trigger.setAttribute('aria-expanded', 'true');
-    /* Focus the currently-active category, fall back to first */
-    var target = sheet.querySelector('.sidebar-cat[aria-current="true"]') ||
-                 sheet.querySelector('.sidebar-cat');
-    if (target) target.focus();
-  }
-  function closeSheet() {
-    sheet.hidden = true;
-    document.body.style.overflow = '';
-    trigger.setAttribute('aria-expanded', 'false');
-    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-  }
-
-  trigger.addEventListener('click', openSheet);
-  sheet.querySelectorAll('[data-sheet-close]').forEach(function (el) {
-    el.addEventListener('click', closeSheet);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (!sheet.hidden && e.key === 'Escape') closeSheet();
-  });
-  /* Tapping a category inside the sheet closes it after the filter applies */
-  sheet.addEventListener('click', function (e) {
-    if (e.target.closest('.sidebar-cat')) closeSheet();
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { setActiveTab(t.dataset.cat); });
   });
 })();
 
