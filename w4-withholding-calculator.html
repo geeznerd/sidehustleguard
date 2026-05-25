@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>W-4 Withholding Calculator for Side Hustlers — Skip Quarterlies (Free) — SideHustleGuard</title>
+<meta content="Have a W-2 job plus side hustle income? Calculate how much extra to add to W-4 Line 4(c) so your employer withholds enough for both. Skip the quarterly forms. Free, 2025 tax year." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/w4-withholding-calculator" rel="canonical"/>
+
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<meta content="W-4 Withholding Calculator — Skip Quarterly Estimated Taxes" property="og:title"/>
+<meta content="The W-4 hack: have your W-2 employer withhold enough extra to cover your side hustle profit. No quarterly forms." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/w4-withholding-calculator" property="og:url"/>
+<meta content="website" property="og:type"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "W-4 Withholding Calculator for Side Hustlers",
+  "description": "Calculate the extra per-paycheck withholding to add to Form W-4 Line 4(c) to cover side hustle tax liability and skip quarterly estimated payments.",
+  "url": "https://www.sidehustleguard.com/w4-withholding-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.6;font-size:16px;overflow-x:clip}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+
+.hero{padding:64px 24px 28px;text-align:center;position:relative;overflow:hidden}
+.hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5vw,52px);font-weight:400;line-height:1.05;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.65;max-width:600px;margin:0 auto}
+
+.calc-wrap{max-width:1020px;margin:24px auto 0;padding:0 48px 32px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:26px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.calc-sub{font-size:13px;color:var(--indigo-70);margin-bottom:18px;font-weight:300;line-height:1.55}
+
+.field{margin-bottom:16px}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
+.field-help{font-size:11.5px;color:var(--indigo-55);margin-top:4px;font-weight:300;line-height:1.4}
+.input-money{position:relative}
+.input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
+input[type="number"],select{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 13px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
+input[type="number"]{padding-left:26px}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%236b7a96' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus{border-color:var(--apricot);background:var(--paper)}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+.toggle-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px dashed var(--indigo-08);margin-top:8px}
+.toggle-row label{flex:1;font-size:13.5px;color:var(--indigo);font-weight:500;cursor:pointer}
+.toggle-row .help{font-size:11.5px;color:var(--indigo-55);font-weight:300;margin-top:2px;display:block;cursor:pointer}
+.toggle{position:relative;width:44px;height:24px;background:var(--indigo-12);border-radius:12px;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(45,48,104,0.18)}
+input[type="checkbox"]:checked + .toggle{background:var(--apricot)}
+input[type="checkbox"]:checked + .toggle::after{transform:translateX(20px)}
+.toggle-input{position:absolute;opacity:0;pointer-events:none}
+
+.disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:18px}
+.disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.disclaimer-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.disclaimer p{font-size:12.5px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin:0}
+.disclaimer strong{color:var(--indigo);font-weight:600}
+
+.results-card{background:var(--indigo);color:var(--paper);border-radius:16px;padding:26px;position:relative;overflow:hidden}
+.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:14px}
+
+.headline{font-family:'Fraunces',Georgia,serif;font-size:38px;line-height:1.04;font-weight:500;color:var(--paper);font-variation-settings:'opsz' 144,'SOFT' 30;margin:6px 0 6px}
+.headline em{font-style:italic;color:var(--apricot-hover);font-weight:500}
+.headline-sub{font-size:13.5px;color:rgba(251,248,238,0.7);font-weight:300;line-height:1.55;margin-bottom:16px}
+
+.w4-instruction{background:rgba(232,148,100,.10);border:1px solid rgba(232,148,100,.22);border-radius:10px;padding:14px 16px;margin:14px 0}
+.w4-instruction-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:6px}
+.w4-instruction p{font-size:13.5px;color:rgba(251,248,238,.9);line-height:1.55;font-weight:300;margin:0 0 6px}
+.w4-instruction p:last-child{margin-bottom:0}
+.w4-instruction strong{color:var(--paper);font-weight:600}
+.w4-instruction code{font-family:ui-monospace,monospace;background:rgba(255,255,255,.10);padding:1px 6px;border-radius:4px;font-size:13px;color:var(--apricot-hover)}
+
+.bd-section{margin-top:14px}
+.bd-head{font-size:10.5px;font-weight:600;letter-spacing:.08em;color:rgba(251,248,238,.5);text-transform:uppercase;margin-bottom:8px}
+.bd-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.08);font-size:13px}
+.bd-row:last-child{border-bottom:none}
+.bd-label{color:rgba(251,248,238,.78);font-weight:300}
+.bd-label .bd-meta{display:block;font-size:11px;color:rgba(251,248,238,.45);margin-top:2px}
+.bd-amt{font-family:'Fraunces',Georgia,serif;font-size:15px;color:var(--paper);font-weight:500;font-variation-settings:'opsz' 144,'SOFT' 30}
+
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.cta-row .btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--apricot);color:var(--indigo);border-radius:14px;padding:12px;font-size:13.5px;font-weight:700;text-decoration:none;text-align:center;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(45,48,104,0.18);transition:background .2s,box-shadow .2s,transform .15s}
+.cta-row .btn-cta:hover{background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.22)}
+@media(prefers-reduced-motion:no-preference){.cta-row .btn-cta:hover{transform:translateY(-1px)}}
+.cta-row .btn-ghost{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.06);color:var(--paper);border-radius:14px;padding:12px;font-size:13.5px;font-weight:600;text-decoration:none;text-align:center;border:1px solid rgba(255,255,255,0.12);transition:background .2s}
+.cta-row .btn-ghost:hover{background:rgba(255,255,255,0.10)}
+
+.content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
+.content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;color:var(--indigo);margin:44px 0 14px;line-height:1.2;font-variation-settings:'opsz' 144,'SOFT' 30}
+.content h2 em{font-style:italic;color:var(--apricot)}
+.content h3{font-size:17px;font-weight:600;color:var(--indigo);margin:24px 0 10px}
+.content p{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px;font-weight:300}
+.content p strong{color:var(--indigo);font-weight:600}
+.content ul{padding-left:20px;margin-bottom:14px}
+.content li{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300}
+.content li strong{color:var(--indigo);font-weight:600}
+.content a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px}
+.callout{border-radius:10px;padding:16px 20px;margin:24px 0;background:var(--apricot-soft);border-left:4px solid var(--apricot)}
+.callout p{margin-bottom:0;font-size:14px;color:var(--indigo-70)}
+.callout strong{color:var(--indigo)}
+
+.related-section{border-top:1px solid var(--indigo-08);padding:32px 0 0;margin-top:24px}
+.related-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:16px;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
+.related-card:hover{border-color:var(--apricot)}
+@media(prefers-reduced-motion:no-preference){.related-card:hover{transform:translateY(-1px)}}
+.related-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:4px}
+.related-card-desc{font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+@media(max-width:780px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 20px 24px}
+  h1{font-size:30px}
+  .calc-wrap,.content{padding-left:20px;padding-right:20px}
+  .calc-grid{grid-template-columns:1fr;gap:14px}
+  .cta-row{grid-template-columns:1fr}
+  .headline{font-size:32px}
+  .nav-link{display:none}
+  .nav-link.nav-guides{display:inline-flex;font-size:13px}
+  .logo-text{font-size:13px}
+  .nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}
+  .nav-right{gap:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link" href="/#faq">FAQ</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><radialGradient id="wHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1200" height="360" fill="url(#wHeroGlow)"/>
+    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
+      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
+      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
+      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)"/>
+      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)"/>
+      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
+      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
+      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
+      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">Free · The W-4 hack · 2025</div>
+    <h1>Skip the <em>quarterlies.</em> Just up your W-2 withholding.</h1>
+    <p class="hero-sub">If you have a day job <strong>and</strong> a side hustle, you can have your employer withhold enough extra to cover everything. No quarterly forms. No deadlines. Two inputs in, one number out.</p>
+  </div>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-title">Your numbers</div>
+      <div class="calc-sub">Drop in your W-2 salary, your expected net hustle profit (after expenses), and your filing situation. We'll do the bracket math.</div>
+
+      <div class="field">
+        <label class="field-label" for="w2">W-2 annual salary (gross)</label>
+        <div class="input-money"><input type="number" id="w2" min="0" placeholder="75000" inputmode="decimal" value="75000"/></div>
+        <div class="field-help">Pre-tax salary from your day job, before any deductions or 401(k).</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="se">Net side hustle profit (annual)</label>
+        <div class="input-money"><input type="number" id="se" min="0" placeholder="15000" inputmode="decimal" value="15000"/></div>
+        <div class="field-help">Revenue minus business expenses. Whatever lands on Schedule C line 31.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="filing">Filing status</label>
+        <select id="filing">
+          <option value="single">Single</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="hoh">Head of Household</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="freq">Pay frequency</label>
+        <select id="freq">
+          <option value="26">Biweekly (every 2 weeks · 26 paychecks/yr)</option>
+          <option value="24">Semimonthly (twice a month · 24/yr)</option>
+          <option value="52">Weekly (52/yr)</option>
+          <option value="12">Monthly (12/yr)</option>
+        </select>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <label for="state-toggle">My state has income tax</label>
+          <span class="help">Adds ~5% to the recommendation as a rough state buffer. Skip if you're in AK, FL, NV, NH, SD, TN, TX, WA, WY.</span>
+        </div>
+        <input class="toggle-input" type="checkbox" id="state-toggle" checked/>
+        <label class="toggle" for="state-toggle"></label>
+      </div>
+
+      <div class="disclaimer">
+        <div class="disclaimer-label">Estimate only — not tax advice</div>
+        <p>Uses <strong>2025 federal brackets</strong> + standard deduction + 15.3% SE tax. Real liability depends on credits, other deductions, retirement contributions, and your exact W-4 setup. The IRS provides the <a href="https://www.irs.gov/individuals/tax-withholding-estimator" rel="noopener" target="_blank">Tax Withholding Estimator</a> for higher-precision math. <strong>Verify with a tax pro before changing your W-4</strong>.</p>
+      </div>
+    </div>
+
+    <div class="results-card">
+      <div class="results-title">Add this much per paycheck</div>
+      <div class="headline" id="r-perpaycheck"><em>$—</em></div>
+      <div class="headline-sub" id="r-context">Enter your numbers to see the recommendation.</div>
+
+      <div class="w4-instruction">
+        <div class="w4-instruction-label">How to set this on your W-4</div>
+        <p>On <strong>IRS Form W-4</strong>, Step 4(c) is labeled "<em>Extra withholding: Enter any additional tax you want withheld each pay period.</em>"</p>
+        <p>Enter <code id="r-code">$—</code> there, sign + date, hand it to HR. Your employer will start withholding the extra amount on the next pay cycle.</p>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-head">Breakdown · annual</div>
+        <div class="bd-row">
+          <div class="bd-label">Additional federal income tax<span class="bd-meta">SE income × your marginal rate</span></div>
+          <div class="bd-amt" id="r-fedtax">$0</div>
+        </div>
+        <div class="bd-row">
+          <div class="bd-label">Self-employment tax (15.3%)<span class="bd-meta">SS + Medicare on net SE × 0.9235</span></div>
+          <div class="bd-amt" id="r-setax">$0</div>
+        </div>
+        <div class="bd-row" id="r-state-row">
+          <div class="bd-label">State buffer (~5%)<span class="bd-meta">Rough estimate; varies by state</span></div>
+          <div class="bd-amt" id="r-state">$0</div>
+        </div>
+        <div class="bd-row">
+          <div class="bd-label" style="font-weight:500;color:var(--paper)">Total extra tax for the year</div>
+          <div class="bd-amt" style="color:var(--apricot-hover)" id="r-total">$0</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn-cta" href="/tool">Run my free check →</a>
+        <a class="btn-ghost" href="#newsletter-signup">Get updates →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <h2>Why this <em>works</em></h2>
+  <p>When you have a regular W-2 job, your employer withholds federal income tax (and FICA) from every paycheck. They send it to the IRS on your behalf. You don't think about it.</p>
+  <p>When you add side hustle income, the IRS expects you to make <strong>quarterly estimated payments</strong> to cover the additional tax — both income tax AND the 15.3% self-employment tax. That's four extra deadlines a year, four extra forms, four chances to forget.</p>
+  <p><strong>The hack:</strong> instead of filing quarterlies, just have your W-2 employer withhold the extra. The IRS doesn't care which pocket the money comes from — payroll withholding is "considered paid evenly throughout the year" per <strong>IRC § 6654(g)(1)</strong>, so it satisfies the safe harbor automatically. No estimated payment vouchers, no quarterly forms, no penalties for under-paying any single quarter.</p>
+
+  <div class="callout">
+    <p><strong>When this works best:</strong> your day job income is comparable to or larger than your side hustle profit. If your hustle is making 5× what your W-2 is, the extra withholding could swallow most of your take-home pay — quarterlies are usually a better fit there.</p>
+  </div>
+
+  <h2>How to <em>fill out</em> the W-4</h2>
+  <ol style="padding-left:20px;margin-bottom:14px">
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Download <strong>Form W-4 (2025)</strong> from <a href="https://www.irs.gov/forms-pubs/about-form-w-4" rel="noopener" target="_blank">irs.gov</a>, or get a fresh copy from your HR portal.</li>
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Fill out <strong>Steps 1 and 5</strong> (name, address, filing status, signature) as usual.</li>
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Skip Steps 2 and 3 unless you have multiple jobs or dependents you want to claim.</li>
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">In <strong>Step 4(c)</strong> — labeled "Extra withholding" — enter the per-paycheck dollar amount from the tool above.</li>
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;font-weight:300">Submit to HR. New withholding starts the next pay cycle (sometimes the one after).</li>
+  </ol>
+
+  <h2>Two <em>line</em> options — why we recommend 4(c) over 4(a)</h2>
+  <p>The W-4 has two places you can adjust for side income:</p>
+  <ul>
+    <li><strong>Line 4(a) "Other income"</strong>: enter your side income amount. Your employer uses the standard withholding tables to calculate withholding as if you had a higher salary. Risk: it can over-withhold because it uses graduated bracket logic without knowing your real situation.</li>
+    <li><strong>Line 4(c) "Extra withholding"</strong>: enter a specific dollar amount per pay period. Your employer adds it on top of normal withholding. Predictable, exact, easy to update.</li>
+  </ul>
+  <p>We recommend 4(c) because <strong>you know the math is right</strong>. The tool above computed the exact dollar amount your shortfall needs to cover.</p>
+
+  <h2>When this <em>doesn't</em> work</h2>
+  <ul>
+    <li><strong>You don't have a W-2 job.</strong> If side hustling is your only income, you have no paycheck to withhold from. Use <a href="/quarterly-tax-calculator">the quarterly tax calculator</a> instead.</li>
+    <li><strong>Your hustle dwarfs your day job.</strong> If your side income is much larger than your W-2 salary, the extra withholding may exceed your take-home pay. Mix: partial withholding bump + some quarterly payments.</li>
+    <li><strong>You're already maxed out at FICA.</strong> If your W-2 is over the Social Security wage base (~$176k for 2025), employer withholding only covers the federal income tax portion of your SE tax obligation — Medicare still works, but it gets complicated. Worth a CPA review.</li>
+    <li><strong>You're a high earner with NIIT exposure.</strong> Net Investment Income Tax (3.8% on certain income over $200k single / $250k MFJ) isn't modeled here — verify with a tax pro.</li>
+  </ul>
+
+  <h2>What about <em>state</em> taxes?</h2>
+  <p>Most states with income tax have their own W-4 equivalent. The tool above adds a ~5% buffer to the federal recommendation as a rough estimate — but state withholding is handled separately, typically via a state-specific form (California DE-4, New York IT-2104, etc.). Increase your state withholding similarly using whatever form your state uses.</p>
+  <p>If you're in a <strong>no-income-tax state</strong> (AK, FL, NV, NH, SD, TN, TX, WA, WY), toggle that off in the tool — the state buffer drops to zero.</p>
+
+  <div class="related-section">
+    <div class="related-label">Related tools &amp; guides</div>
+    <div class="related-grid">
+      <a class="related-card" href="/quarterly-tax-calculator">
+        <div class="related-card-title">Quarterly tax calculator →</div>
+        <div class="related-card-desc">If the W-4 hack doesn't fit, here's the per-quarter math.</div>
+      </a>
+      <a class="related-card" href="/quarterly-tax-deadline">
+        <div class="related-card-title">Deadline countdown →</div>
+        <div class="related-card-desc">All 4 IRS quarterly dates + .ics calendar download.</div>
+      </a>
+      <a class="related-card" href="/tax-penalty-estimator">
+        <div class="related-card-title">Tax penalty estimator →</div>
+        <div class="related-card-desc">Missed a payment? Estimate the IRS damage.</div>
+      </a>
+      <a class="related-card" href="/self-employment-tax-calculator">
+        <div class="related-card-title">SE tax calculator →</div>
+        <div class="related-card-desc">15.3% self-employment tax broken out.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before filing or changing your W-4.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────────────────────────
+  // 2025 federal tax brackets + standard deduction. SE tax = 15.3% on
+  // 92.35% of net SE income. Half of SE tax is deductible against
+  // income tax (above-the-line).
+  // ──────────────────────────────────────────────────────────────────────
+  var BRACKETS = {
+    single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+    mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+    hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  };
+  var STD_DED = { single: 15000, mfj: 30000, hoh: 22500 };
+  var STATE_BUFFER_RATE = 0.05;
+
+  function marginalRate(taxable, status) {
+    var bkts = BRACKETS[status] || BRACKETS.single;
+    for (var i = 0; i < bkts.length; i++) {
+      if (taxable <= bkts[i][0]) return bkts[i][1];
+    }
+    return bkts[bkts.length - 1][1];
+  }
+
+  function fmtMoney(n) {
+    if (!isFinite(n) || n <= 0) return '$0';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtPerPaycheck(n) {
+    if (!isFinite(n) || n <= 0) return '$0';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Calculation
+  // ──────────────────────────────────────────────────────────────────────
+  function calc() {
+    var w2 = Math.max(0, parseFloat(document.getElementById('w2').value) || 0);
+    var se = Math.max(0, parseFloat(document.getElementById('se').value) || 0);
+    var status = document.getElementById('filing').value;
+    var freq = parseInt(document.getElementById('freq').value, 10) || 26;
+    var stateOn = document.getElementById('state-toggle').checked;
+
+    // SE tax: 15.3% of 92.35% of net SE income
+    var seBase = se * 0.9235;
+    var seTax = seBase * 0.153;
+    var seTaxDeduction = seTax / 2;
+
+    // Taxable income WITH SE added (using actual standard deduction)
+    var stdDed = STD_DED[status] || STD_DED.single;
+    var taxableWithSE = Math.max(0, w2 + se - seTaxDeduction - stdDed);
+    var taxableW2Only = Math.max(0, w2 - stdDed);
+
+    // Marginal rate at the *higher* taxable income (where the SE income lands)
+    var marg = marginalRate(taxableWithSE, status);
+
+    // Additional federal income tax from the SE income chunk
+    // (after the half-SE-tax deduction reduces it)
+    var addlTaxableFromSE = Math.max(0, taxableWithSE - taxableW2Only);
+    var addlFedTax = addlTaxableFromSE * marg;
+
+    // State buffer (rough — 5% of net SE income if state has income tax)
+    var stateBuffer = stateOn ? se * STATE_BUFFER_RATE : 0;
+
+    var totalExtraTax = addlFedTax + seTax + stateBuffer;
+    var perPaycheck = totalExtraTax / freq;
+
+    // ────────────── Render ──────────────
+    var perPaycheckEl = document.getElementById('r-perpaycheck');
+    var codeEl = document.getElementById('r-code');
+    var ctxEl = document.getElementById('r-context');
+
+    if (w2 <= 0 && se <= 0) {
+      perPaycheckEl.innerHTML = '<em>$—</em>';
+      codeEl.textContent = '$—';
+      ctxEl.textContent = 'Enter your numbers to see the recommendation.';
+    } else if (w2 <= 0 && se > 0) {
+      perPaycheckEl.innerHTML = '<em>n/a</em>';
+      codeEl.textContent = 'n/a';
+      ctxEl.innerHTML = "This hack requires a W-2 job. Use the <a href=\"/quarterly-tax-calculator\" style=\"color:var(--apricot-hover)\">quarterly tax calculator</a> instead.";
+    } else if (se <= 0) {
+      perPaycheckEl.innerHTML = '<em>$0</em>';
+      codeEl.textContent = '$0';
+      ctxEl.textContent = "No side hustle income → no extra withholding needed. Your employer's default W-4 covers you.";
+    } else {
+      perPaycheckEl.innerHTML = '<em>' + fmtPerPaycheck(perPaycheck) + '</em>';
+      codeEl.textContent = fmtPerPaycheck(perPaycheck);
+      var freqLabel = ({26:'biweekly',24:'semimonthly',52:'weekly',12:'monthly'})[freq] || 'pay period';
+      ctxEl.innerHTML = 'Adds <strong>' + fmtMoney(totalExtraTax) + '</strong> total over the year (' + freqLabel + '). Covers your ' + fmtMoney(se) + ' of side hustle profit at your ' + Math.round(marg * 100) + '% marginal bracket plus 15.3% SE tax' + (stateOn ? ' + a small state buffer' : '') + '.';
+    }
+
+    document.getElementById('r-fedtax').textContent = fmtMoney(addlFedTax);
+    document.getElementById('r-setax').textContent  = fmtMoney(seTax);
+    document.getElementById('r-state').textContent  = fmtMoney(stateBuffer);
+    document.getElementById('r-total').textContent  = fmtMoney(totalExtraTax);
+
+    // Toggle the state row visibility based on the toggle
+    document.getElementById('r-state-row').style.display = stateOn ? '' : 'none';
+  }
+
+  // Wire up inputs
+  ['w2','se','filing','freq','state-toggle'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  // Initial render
+  calc();
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
