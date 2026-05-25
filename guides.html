@@ -224,6 +224,81 @@
   .guides-grid.is-3-with-mega { grid-template-columns: repeat(3, 1fr); }
   .guides-grid > .mega-card { grid-column: 1 / -1; }
 
+  /* ─── Compact 2-col rows variant (Phase 19.2) ────────────────────
+   * Article-section grids use this modifier to lay each guide-card
+   * sideways: monogram on the left, title + truncated desc stacked in
+   * the middle, arrow on the right. ~38% shorter per section than the
+   * card grid. Tools sections stay as cards.
+   *
+   * Mechanics: turn each .guide-card into a 3-col CSS grid, then use
+   * display:contents on .guide-card-head so its children (monogram +
+   * title-row) participate in the parent grid directly. No HTML
+   * changes — same DOM, same anchor text, same SEO surface area.
+   */
+  .guides-grid--rows { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .guides-grid--rows > .mega-card { grid-column: 1 / -1; }
+
+  .guides-grid--rows .guide-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 14px;
+    align-items: center;
+    padding: 12px 18px;
+    min-height: 0;
+  }
+  /* Let monogram + title-row hoist into the parent grid */
+  .guides-grid--rows .guide-card-head {
+    display: contents;
+  }
+  .guides-grid--rows .guide-monogram {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+  .guides-grid--rows .guide-title-row {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  .guides-grid--rows .guide-title {
+    font-size: 14.5px;
+    line-height: 1.25;
+    /* Title never truncates (per spec) — let it wrap to 2 lines max */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .guides-grid--rows .guide-desc {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 12.5px;
+    line-height: 1.4;
+    margin: 2px 0 0;
+    /* Descriptions truncate to a single line */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--indigo-55);
+  }
+  .guides-grid--rows .guide-arrow {
+    /* Override absolute positioning from base .guide-arrow */
+    position: static;
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    bottom: auto;
+    right: auto;
+  }
+  /* Tag pills (NEW, SOON) inline with the title without wrap */
+  .guides-grid--rows .guide-tag {
+    font-size: 9px;
+    padding: 2px 6px;
+    flex-shrink: 0;
+  }
+
   /* Sub-filter chip row (G5) */
   .chip-row {
     display: flex; gap: 8px; flex-wrap: wrap;
@@ -1159,6 +1234,12 @@
         "position": 83,
         "url": "https://www.sidehustleguard.com/arizona-short-term-rental-taxes",
         "name": "Arizona STR Taxes"
+      },
+      {
+        "@type": "ListItem",
+        "position": 84,
+        "url": "https://www.sidehustleguard.com/online-tutor-taxes",
+        "name": "Online Tutor Taxes"
       }
     ]
   }
@@ -1240,9 +1321,9 @@
     </g>
   </svg>
   <div class="guides-hero-inner hero-content">
-    <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">74</span> in total</div>
+    <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">75</span> in total</div>
     <h1 class="display-l">Every side hustle.<br/><em>Every state.</em></h1>
-    <p class="guides-hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">67</span> plain-English guides — for gig drivers, Etsy sellers, freelancers, hosts, and creators.</p>
+    <p class="guides-hero-sub"><span id="js-tools-count">7</span> interactive tools and <span id="js-guides-count">68</span> plain-English guides — for gig drivers, Etsy sellers, freelancers, hosts, and creators.</p>
     <div class="live-search" id="search-wrap">
       <svg class="live-search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/>
@@ -1479,7 +1560,7 @@
         <h2 class="cat-section-title">Gig work &amp; delivery</h2>
         <span class="cat-section-count">8 guides</span>
       </div>
-      <div class="guides-grid">
+      <div class="guides-grid guides-grid--rows">
         <a class="guide-card" href="/uber-lyft-taxes">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Uber &amp; Lyft Taxes</span></div></div>
           <p class="guide-desc">What every rideshare driver actually owes.</p>
@@ -1540,7 +1621,7 @@
         <h2 class="cat-section-title">Etsy, e-commerce &amp; resellers</h2>
         <span class="cat-section-count">12 guides</span>
       </div>
-      <div class="guides-grid">
+      <div class="guides-grid guides-grid--rows">
         <a class="guide-card" href="/etsy-taxes">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">E</div><div class="guide-title-row"><span class="guide-title">Etsy Taxes</span></div></div>
           <p class="guide-desc">The complete Etsy seller tax guide.</p>
@@ -1610,7 +1691,7 @@
         <h2 class="cat-section-title">Creator economy</h2>
         <span class="cat-section-count">8 guides</span>
       </div>
-      <div class="guides-grid">
+      <div class="guides-grid guides-grid--rows">
         <a class="guide-card" href="/youtube-taxes">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">Y</div><div class="guide-title-row"><span class="guide-title">YouTube Taxes</span></div></div>
           <p class="guide-desc">AdSense, brand deals, memberships, merch.</p>
@@ -1658,9 +1739,9 @@
     <section class="cat-section" data-cat="freelance" id="cat-freelance">
       <div class="cat-section-head">
         <h2 class="cat-section-title">Freelancing &amp; self-employment</h2>
-        <span class="cat-section-count">5 guides</span>
+        <span class="cat-section-count">6 guides</span>
       </div>
-      <div class="guides-grid">
+      <div class="guides-grid guides-grid--rows">
         <a class="guide-card" href="/side-hustle-taxes">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">§</div><div class="guide-title-row"><span class="guide-title">Side Hustle Taxes</span></div></div>
           <p class="guide-desc">The complete overview — start here.</p>
@@ -1674,6 +1755,11 @@
         <a class="guide-card" href="/upwork-taxes">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">U</div><div class="guide-title-row"><span class="guide-title">Upwork Taxes</span></div></div>
           <p class="guide-desc">Service fees, 1099-K, and freelancer deductions.</p>
+          <span class="guide-arrow">→</span>
+        </a>
+        <a class="guide-card" href="/online-tutor-taxes">
+          <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">T</div><div class="guide-title-row"><span class="guide-title">Online Tutor Taxes</span></div></div>
+          <p class="guide-desc">VIPKid, Outschool, Preply, Wyzant — Schedule C, deductions, home office.</p>
           <span class="guide-arrow">→</span>
         </a>
         <a class="guide-card" href="/quarterly-taxes-self-employed">
@@ -1695,7 +1781,7 @@
         <h2 class="cat-section-title">State-specific guides</h2>
         <span class="cat-section-count">5 guides</span>
       </div>
-      <div class="guides-grid">
+      <div class="guides-grid guides-grid--rows">
         <a class="guide-card" href="/california-self-employment-tax">
           <div class="guide-card-head"><div class="guide-monogram" aria-hidden="true">CA</div><div class="guide-title-row"><span class="guide-title">California Self-Employment Tax</span></div></div>
           <p class="guide-desc">CA income tax, quarterly schedule, LLC fees.</p>
@@ -1739,7 +1825,7 @@
         <button class="chip" data-filter="state" aria-pressed="false" role="tab">State rules</button>
       </div>
 
-      <div class="guides-grid is-3-with-mega">
+      <div class="guides-grid guides-grid--rows">
         <!-- MEGA CARD (G4) for /short-term-rentals -->
         <a class="mega-card" href="/short-term-rentals" data-feature="true">
           <div class="mega-blob"></div>
