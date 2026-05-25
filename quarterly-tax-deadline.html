@@ -153,6 +153,31 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .related-card-title{font-size:14px;font-weight:600;color:var(--indigo);margin-bottom:4px}
 .related-card-desc{font-size:12.5px;color:var(--indigo-70);line-height:1.5;font-weight:300}
 
+/* Modal overlay — soft-intercept on .ics download */
+.modal-bg{position:fixed;inset:0;background:rgba(45,48,104,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-bg.is-open{display:flex}
+.modal-card{background:var(--paper);border-radius:18px;padding:28px 28px 24px;max-width:440px;width:100%;box-shadow:0 24px 60px rgba(45,48,104,0.30);position:relative;transform:translateY(8px);opacity:0;transition:transform .25s cubic-bezier(0.4,0,0.2,1),opacity .25s}
+.modal-bg.is-open .modal-card{transform:translateY(0);opacity:1}
+.modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:transparent;border:0;color:var(--indigo-55);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .15s,color .15s}
+.modal-close:hover{background:var(--indigo-08);color:var(--indigo)}
+.modal-eye{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--apricot);text-transform:uppercase;margin-bottom:8px}
+.modal-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:24px;line-height:1.2;color:var(--indigo);margin:0 0 8px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.modal-title em{font-style:italic;color:var(--apricot)}
+.modal-sub{font-size:13.5px;color:var(--indigo-70);font-weight:300;line-height:1.55;margin-bottom:18px}
+.modal-form{display:flex;flex-direction:column;gap:10px}
+.modal-form input[type="email"]{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 14px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s}
+.modal-form input[type="email"]:focus{border-color:var(--apricot);background:var(--paper)}
+.modal-submit{background:var(--apricot);color:var(--indigo);border:0;border-radius:12px;padding:12px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(45,48,104,0.12);transition:background .2s,box-shadow .2s,transform .15s}
+.modal-submit:hover:not(:disabled){background:var(--apricot-hover);box-shadow:0 6px 16px rgba(45,48,104,0.16)}
+@media(prefers-reduced-motion:no-preference){.modal-submit:hover:not(:disabled){transform:translateY(-1px)}}
+.modal-submit:disabled{opacity:0.7;cursor:wait}
+.modal-skip{background:transparent;border:0;color:var(--indigo-55);font-family:inherit;font-size:13px;cursor:pointer;text-align:center;text-decoration:underline;text-underline-offset:2px;padding:8px;margin-top:2px}
+.modal-skip:hover{color:var(--indigo)}
+.modal-state{font-size:12.5px;font-weight:500;line-height:1.5;min-height:18px;text-align:center;margin-top:4px}
+.modal-state[data-kind="error"]{color:var(--risk)}
+.modal-state[data-kind="success"]{color:var(--good)}
+.modal-state[data-kind="loading"]{color:var(--indigo-55)}
+
 footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
 .footer-logo span{color:var(--apricot)}
@@ -357,6 +382,24 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   </div>
 </div>
 
+<!-- Soft-intercept modal: shown when user clicks the .ics download button -->
+<div class="modal-bg" id="modal-bg" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" type="button" id="modal-close" aria-label="Close">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" width="14" height="14"><path d="M4 4 L12 12 M12 4 L4 12"/></svg>
+    </button>
+    <div class="modal-eye">Free · 4 deadlines</div>
+    <h3 class="modal-title" id="modal-title">Get the <em>calendar</em></h3>
+    <p class="modal-sub">Drop your email for occasional tax-law updates and we'll trigger the download. Unsubscribe any time — or skip the signup below and just grab the file.</p>
+    <form class="modal-form" id="modal-form" novalidate>
+      <input type="email" id="modal-email" name="email" required autocomplete="email" inputmode="email" maxlength="254" placeholder="you@email.com" aria-label="Your email address"/>
+      <button class="modal-submit" type="submit" id="modal-submit">Sign up + download →</button>
+      <button class="modal-skip" type="button" id="modal-skip">Just download the file →</button>
+      <div class="modal-state" id="modal-state" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
 <footer>
   <div>
     <span class="footer-logo">SideHustle<span>guard</span></span>
@@ -498,8 +541,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     return lines.join('\r\n');
   }
 
-  document.getElementById('btn-download-ics').addEventListener('click', function () {
-    // Bundle this year's 4 + next year's Q1-Q2 (so users get ~6 deadlines covering ~9 months ahead)
+  // The .ics download is the core utility. Wrap it so it can be invoked from
+  // either the modal's email path (after subscribe success) or the skip path.
+  function triggerDownload() {
+    // Bundle this year's remaining + next year's Q1-Q2 (~9 months forward)
     var bundle = thisYearDeadlines.filter(function (d) { return daysUntil(d.due, now) >= 0; })
       .concat(quarterlyDeadlines(year + 1).slice(0, 2));
     var ics = buildICS(bundle);
@@ -513,10 +558,119 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       a.click();
       document.body.removeChild(a);
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-      document.getElementById('cd-feedback').textContent = '✓ Calendar file downloaded — open it to add to Apple Calendar, Google Calendar, or Outlook.';
+      return true;
     } catch (e) {
-      document.getElementById('cd-feedback').textContent = "Couldn't download the file on this browser. The dates are listed above — add manually.";
+      return false;
     }
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Soft-intercept modal: opens on calendar-button click, gives the user a
+  // choice between (a) signing up for the newsletter + getting the file or
+  // (b) just downloading the file. Either path always delivers the .ics.
+  // ──────────────────────────────────────────────────────────────────────
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var modalBg = document.getElementById('modal-bg');
+  var modalForm = document.getElementById('modal-form');
+  var modalEmail = document.getElementById('modal-email');
+  var modalSubmit = document.getElementById('modal-submit');
+  var modalSkip = document.getElementById('modal-skip');
+  var modalClose = document.getElementById('modal-close');
+  var modalState = document.getElementById('modal-state');
+  var lastFocused = null;
+
+  function setModalState(kind, message) {
+    modalState.textContent = message || '';
+    if (kind) modalState.setAttribute('data-kind', kind);
+    else modalState.removeAttribute('data-kind');
+  }
+  function openModal() {
+    lastFocused = document.activeElement;
+    setModalState('', '');
+    modalSubmit.disabled = false;
+    modalSubmit.textContent = 'Sign up + download →';
+    modalEmail.value = '';
+    modalBg.classList.add('is-open');
+    modalBg.setAttribute('aria-hidden', 'false');
+    setTimeout(function () { modalEmail.focus(); }, 80);
+  }
+  function closeModal() {
+    modalBg.classList.remove('is-open');
+    modalBg.setAttribute('aria-hidden', 'true');
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  document.getElementById('btn-download-ics').addEventListener('click', openModal);
+
+  modalClose.addEventListener('click', closeModal);
+  modalBg.addEventListener('click', function (e) {
+    if (e.target === modalBg) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modalBg.classList.contains('is-open')) closeModal();
+  });
+
+  // Skip path: just download immediately, no email
+  modalSkip.addEventListener('click', function () {
+    var ok = triggerDownload();
+    if (ok) {
+      document.getElementById('cd-feedback').textContent = '✓ Calendar file downloaded — open it to add to Apple, Google, or Outlook calendar.';
+      closeModal();
+    } else {
+      setModalState('error', "Couldn't download on this browser. The dates are listed on the page above — add manually.");
+    }
+  });
+
+  // Email path: subscribe via existing /api/subscribe, then trigger download
+  modalForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (modalEmail.value || '').trim().toLowerCase();
+    if (!email || !EMAIL_RE.test(email) || email.length > 254) {
+      setModalState('error', 'Please enter a valid email address.');
+      modalEmail.focus();
+      return;
+    }
+    setModalState('loading', 'Subscribing…');
+    modalSubmit.disabled = true;
+
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('subscribe-failed');
+        return r.json().catch(function () { return {}; });
+      })
+      .then(function () {
+        // Trigger the download regardless of UI state — that's the promise.
+        var ok = triggerDownload();
+        setModalState('success', ok
+          ? '✓ Signed up. Calendar file downloaded — open it to add to your calendar.'
+          : "✓ Signed up. Couldn't trigger the file download — refresh and try again.");
+        modalSubmit.textContent = 'Done';
+        // Auto-close after a beat
+        setTimeout(function () {
+          closeModal();
+          document.getElementById('cd-feedback').textContent = ok
+            ? '✓ Calendar file downloaded — open it to add to Apple, Google, or Outlook calendar.'
+            : '';
+        }, 1800);
+      })
+      .catch(function () {
+        // Subscribe failed — be honest, still trigger the download
+        var ok = triggerDownload();
+        setModalState('error', ok
+          ? "Couldn't sign you up just now, but the calendar is downloading."
+          : "Couldn't sign you up or trigger the download. Try again in a moment?");
+        modalSubmit.disabled = false;
+        if (ok) {
+          setTimeout(function () {
+            closeModal();
+            document.getElementById('cd-feedback').textContent = '✓ Calendar file downloaded — open it to add to Apple, Google, or Outlook calendar.';
+          }, 1800);
+        }
+      });
   });
 
   // ──────────────────────────────────────────────────────────────────────
