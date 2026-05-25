@@ -78,14 +78,20 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
 input:focus,select:focus{border-color:var(--apricot);background:var(--paper)}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 
-.toggle-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px dashed var(--indigo-08);margin-top:8px}
-.toggle-row label{flex:1;font-size:13.5px;color:var(--indigo);font-weight:500;cursor:pointer}
-.toggle-row .help{font-size:11.5px;color:var(--indigo-55);font-weight:300;margin-top:2px;display:block;cursor:pointer}
-.toggle{position:relative;width:44px;height:24px;background:var(--indigo-12);border-radius:12px;cursor:pointer;transition:background .2s;flex-shrink:0}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(45,48,104,0.18)}
-input[type="checkbox"]:checked + .toggle{background:var(--apricot)}
-input[type="checkbox"]:checked + .toggle::after{transform:translateX(20px)}
-.toggle-input{position:absolute;opacity:0;pointer-events:none}
+/* State callout — shows below the result with a link to the matching state guide */
+.state-callout{background:var(--apricot-soft);border:1px solid rgba(232,148,100,0.22);border-radius:10px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--indigo-70);line-height:1.55}
+.state-callout strong{color:var(--indigo);font-weight:600}
+.state-callout a{color:var(--apricot);text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.state-callout a:hover{color:var(--indigo)}
+
+/* FICA wage-base warning callout — shown when W-2 > SS wage base */
+.fica-warn{background:rgba(232,148,100,0.10);border:1px solid rgba(232,148,100,0.30);border-radius:10px;padding:14px 16px;margin-top:14px;display:none}
+.fica-warn.is-show{display:block}
+.fica-warn-label{font-size:10.5px;color:var(--apricot-hover);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.fica-warn-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot-hover);flex-shrink:0}
+.fica-warn p{font-size:12.5px;color:rgba(251,248,238,0.85);font-weight:300;line-height:1.55;margin:0 0 8px}
+.fica-warn p:last-child{margin-bottom:0}
+.fica-warn strong{color:var(--paper);font-weight:600}
 
 .disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:18px}
 .disclaimer-label{font-size:10.5px;color:var(--warn);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
@@ -249,13 +255,44 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
         </select>
       </div>
 
-      <div class="toggle-row">
-        <div>
-          <label for="state-toggle">My state has income tax</label>
-          <span class="help">Adds ~5% to the recommendation as a rough state buffer. Skip if you're in AK, FL, NV, NH, SD, TN, TX, WA, WY.</span>
-        </div>
-        <input class="toggle-input" type="checkbox" id="state-toggle" checked/>
-        <label class="toggle" for="state-toggle"></label>
+      <div class="field">
+        <label class="field-label" for="state">State</label>
+        <select id="state">
+          <option value="">— Select your state —</option>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska (no income tax)</option>
+          <option value="AZ">Arizona</option><option value="AR">Arkansas</option>
+          <option value="CA">California</option><option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option><option value="DE">Delaware</option>
+          <option value="DC">DC</option>
+          <option value="FL">Florida (no income tax)</option>
+          <option value="GA">Georgia</option><option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option><option value="IL">Illinois</option>
+          <option value="IN">Indiana</option><option value="IA">Iowa</option>
+          <option value="KS">Kansas</option><option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option><option value="ME">Maine</option>
+          <option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option><option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option><option value="MO">Missouri</option>
+          <option value="MT">Montana</option><option value="NE">Nebraska</option>
+          <option value="NV">Nevada (no income tax)</option>
+          <option value="NH">New Hampshire (no income tax)</option>
+          <option value="NJ">New Jersey</option><option value="NM">New Mexico</option>
+          <option value="NY">New York</option><option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option><option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option><option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota (no income tax)</option>
+          <option value="TN">Tennessee (no income tax)</option>
+          <option value="TX">Texas (no income tax)</option>
+          <option value="UT">Utah</option><option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington (no income tax)</option>
+          <option value="WV">West Virginia</option><option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming (no income tax)</option>
+        </select>
+        <div class="field-help">Used to estimate your state-side buffer (no-tax states zero out) and to surface your state's relevant SHG guide.</div>
       </div>
 
       <div class="disclaimer">
@@ -278,15 +315,23 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       <div class="bd-section">
         <div class="bd-head">Breakdown · annual</div>
         <div class="bd-row">
-          <div class="bd-label">Additional federal income tax<span class="bd-meta">SE income × your marginal rate</span></div>
+          <div class="bd-label">Additional federal income tax<span class="bd-meta" id="r-fedtax-meta">SE income × your marginal rate</span></div>
           <div class="bd-amt" id="r-fedtax">$0</div>
         </div>
         <div class="bd-row">
-          <div class="bd-label">Self-employment tax (15.3%)<span class="bd-meta">SS + Medicare on net SE × 0.9235</span></div>
-          <div class="bd-amt" id="r-setax">$0</div>
+          <div class="bd-label">Social Security (12.4%)<span class="bd-meta" id="r-sstax-meta">Up to the wage base cap</span></div>
+          <div class="bd-amt" id="r-sstax">$0</div>
+        </div>
+        <div class="bd-row">
+          <div class="bd-label">Medicare (2.9%)<span class="bd-meta">No income cap</span></div>
+          <div class="bd-amt" id="r-medtax">$0</div>
+        </div>
+        <div class="bd-row" id="r-addlmed-row">
+          <div class="bd-label">Additional Medicare (0.9%)<span class="bd-meta" id="r-addlmed-meta">On combined income above the threshold</span></div>
+          <div class="bd-amt" id="r-addlmed">$0</div>
         </div>
         <div class="bd-row" id="r-state-row">
-          <div class="bd-label">State buffer (~5%)<span class="bd-meta">Rough estimate; varies by state</span></div>
+          <div class="bd-label">State buffer<span class="bd-meta" id="r-state-meta">Rough estimate</span></div>
           <div class="bd-amt" id="r-state">$0</div>
         </div>
         <div class="bd-row">
@@ -294,6 +339,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="bd-amt" style="color:var(--apricot-hover)" id="r-total">$0</div>
         </div>
       </div>
+
+      <!-- Conditional: shows when W-2 > 2026 Social Security wage base -->
+      <div class="fica-warn" id="r-fica-warn">
+        <div class="fica-warn-label">FICA wage-base note</div>
+        <p id="r-fica-warn-body"></p>
+      </div>
+
+      <!-- Conditional: shows when state is selected -->
+      <div class="state-callout" id="r-state-callout" style="display:none"></div>
 
       <div class="cta-row">
         <a class="btn-cta" href="/tool">Run my free check →</a>
@@ -383,9 +437,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   'use strict';
 
   // ──────────────────────────────────────────────────────────────────────
-  // 2025 federal tax brackets + standard deduction. SE tax = 15.3% on
-  // 92.35% of net SE income. Half of SE tax is deductible against
-  // income tax (above-the-line).
+  // 2025 federal tax brackets + standard deduction. SE tax = 12.4% SS
+  // (capped at the Social Security wage base, after subtracting W-2 wages)
+  // + 2.9% Medicare (uncapped) + 0.9% Additional Medicare on combined
+  // wages+SE above filing-status threshold. Half of regular SE tax is
+  // deductible against income tax (above-the-line). Additional Medicare
+  // is NOT part of the SE tax deduction.
   // ──────────────────────────────────────────────────────────────────────
   var BRACKETS = {
     single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
@@ -393,7 +450,34 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
   };
   var STD_DED = { single: 15000, mfj: 30000, hoh: 22500 };
-  var STATE_BUFFER_RATE = 0.05;
+  var SS_WAGE_BASE_2026 = 176100;
+  var ADDL_MED_THRESHOLD = { single: 200000, mfj: 250000, hoh: 200000 };
+
+  // No-income-tax states (state buffer = 0)
+  var NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
+  // High-tax states (state buffer = 7%)
+  var HIGH_TAX_STATES = ['CA','NY','NJ','OR','HI','MN'];
+  // Default buffer for everyone else
+  var DEFAULT_STATE_BUFFER = 0.05;
+  var HIGH_STATE_BUFFER = 0.07;
+
+  // State-specific guide mapping. Falls back to /state-tax-rates for any
+  // state without a dedicated SHG guide page.
+  var STATE_GUIDES = {
+    CA: { name: 'California', url: '/california-self-employment-tax', linkText: 'California SE tax + DE-4 form' },
+    NY: { name: 'New York',   url: '/new-york-self-employment-tax',   linkText: 'New York SE tax + IT-2104 form' },
+    TX: { name: 'Texas',      url: '/texas-self-employment-tax',      linkText: 'Texas SE tax (no state income tax)' }
+  };
+  var STATE_NAMES = {
+    AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',
+    DE:'Delaware',DC:'DC',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',
+    IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',
+    MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
+    NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',
+    OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',
+    SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',
+    WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+  };
 
   function marginalRate(taxable, status) {
     var bkts = BRACKETS[status] || BRACKETS.single;
@@ -403,50 +487,74 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     return bkts[bkts.length - 1][1];
   }
 
-  function fmtMoney(n) {
-    if (!isFinite(n) || n <= 0) return '$0';
-    return '$' + Math.round(n).toLocaleString('en-US');
+  function stateBufferRate(stateCode) {
+    if (!stateCode) return 0;
+    if (NO_TAX_STATES.indexOf(stateCode) !== -1) return 0;
+    if (HIGH_TAX_STATES.indexOf(stateCode) !== -1) return HIGH_STATE_BUFFER;
+    return DEFAULT_STATE_BUFFER;
   }
-  function fmtPerPaycheck(n) {
+
+  function fmtMoney(n) {
     if (!isFinite(n) || n <= 0) return '$0';
     return '$' + Math.round(n).toLocaleString('en-US');
   }
 
   // ──────────────────────────────────────────────────────────────────────
-  // Calculation
+  // Calculation — accurate SE tax accounting for SS wage base + Add'l Medicare
   // ──────────────────────────────────────────────────────────────────────
   function calc() {
     var w2 = Math.max(0, parseFloat(document.getElementById('w2').value) || 0);
     var se = Math.max(0, parseFloat(document.getElementById('se').value) || 0);
     var status = document.getElementById('filing').value;
     var freq = parseInt(document.getElementById('freq').value, 10) || 26;
-    var stateOn = document.getElementById('state-toggle').checked;
+    var stateCode = document.getElementById('state').value || '';
 
-    // SE tax: 15.3% of 92.35% of net SE income
+    // SE base: net SE × 0.9235 (the standard SE tax reduction)
     var seBase = se * 0.9235;
-    var seTax = seBase * 0.153;
-    var seTaxDeduction = seTax / 2;
 
-    // Taxable income WITH SE added (using actual standard deduction)
+    // Social Security: 12.4%, but capped at the SS wage base AFTER subtracting W-2 wages.
+    // If W-2 already exceeds the wage base, SS portion on SE is $0.
+    var ssRoomLeft = Math.max(0, SS_WAGE_BASE_2026 - w2);
+    var ssTaxableFromSE = Math.min(seBase, ssRoomLeft);
+    var ssTax = ssTaxableFromSE * 0.124;
+
+    // Regular Medicare: 2.9%, no cap
+    var medicareTax = seBase * 0.029;
+
+    // Additional Medicare: 0.9% on combined wages + SE above filing-status threshold
+    var addlMedThreshold = ADDL_MED_THRESHOLD[status] || 200000;
+    var combinedForAddlMed = w2 + seBase;
+    var addlMedTax = 0;
+    if (combinedForAddlMed > addlMedThreshold) {
+      if (w2 >= addlMedThreshold) {
+        // All SE base is above threshold for purposes of additional Medicare
+        addlMedTax = seBase * 0.009;
+      } else {
+        // Only the portion above threshold (after W-2 fills the room below) counts
+        addlMedTax = (combinedForAddlMed - addlMedThreshold) * 0.009;
+      }
+    }
+
+    // SE tax deduction (above-the-line, half of regular SE tax — Add'l Medicare excluded)
+    var seTaxDeduction = (ssTax + medicareTax) / 2;
+
+    // Income tax delta from the SE chunk
     var stdDed = STD_DED[status] || STD_DED.single;
     var taxableWithSE = Math.max(0, w2 + se - seTaxDeduction - stdDed);
     var taxableW2Only = Math.max(0, w2 - stdDed);
-
-    // Marginal rate at the *higher* taxable income (where the SE income lands)
     var marg = marginalRate(taxableWithSE, status);
-
-    // Additional federal income tax from the SE income chunk
-    // (after the half-SE-tax deduction reduces it)
     var addlTaxableFromSE = Math.max(0, taxableWithSE - taxableW2Only);
     var addlFedTax = addlTaxableFromSE * marg;
 
-    // State buffer (rough — 5% of net SE income if state has income tax)
-    var stateBuffer = stateOn ? se * STATE_BUFFER_RATE : 0;
+    // State buffer (% of net SE income; 0 for no-tax states)
+    var stateRate = stateBufferRate(stateCode);
+    var stateBuffer = se * stateRate;
 
-    var totalExtraTax = addlFedTax + seTax + stateBuffer;
+    var totalSeTax = ssTax + medicareTax + addlMedTax;
+    var totalExtraTax = addlFedTax + totalSeTax + stateBuffer;
     var perPaycheck = totalExtraTax / freq;
 
-    // ────────────── Render ──────────────
+    // ────────────── Headline + W-4 instruction ──────────────
     var perPaycheckEl = document.getElementById('r-perpaycheck');
     var codeEl = document.getElementById('r-code');
     var ctxEl = document.getElementById('r-context');
@@ -464,23 +572,85 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       codeEl.textContent = '$0';
       ctxEl.textContent = "No side hustle income → no extra withholding needed. Your employer's default W-4 covers you.";
     } else {
-      perPaycheckEl.innerHTML = '<em>' + fmtPerPaycheck(perPaycheck) + '</em>';
-      codeEl.textContent = fmtPerPaycheck(perPaycheck);
+      perPaycheckEl.innerHTML = '<em>' + fmtMoney(perPaycheck) + '</em>';
+      codeEl.textContent = fmtMoney(perPaycheck);
       var freqLabel = ({26:'biweekly',24:'semimonthly',52:'weekly',12:'monthly'})[freq] || 'pay period';
-      ctxEl.innerHTML = 'Adds <strong>' + fmtMoney(totalExtraTax) + '</strong> total over the year (' + freqLabel + '). Covers your ' + fmtMoney(se) + ' of side hustle profit at your ' + Math.round(marg * 100) + '% marginal bracket plus 15.3% SE tax' + (stateOn ? ' + a small state buffer' : '') + '.';
+      var ssNote = (w2 >= SS_WAGE_BASE_2026) ? ' (Social Security portion zeroed out — you\'re past the wage base via your W-2)' : '';
+      ctxEl.innerHTML = 'Adds <strong>' + fmtMoney(totalExtraTax) + '</strong> total over the year (' + freqLabel + '). Covers your ' + fmtMoney(se) + ' of side hustle profit at your ' + Math.round(marg * 100) + '% marginal bracket' + ssNote + '.';
     }
 
+    // ────────────── Breakdown ──────────────
     document.getElementById('r-fedtax').textContent = fmtMoney(addlFedTax);
-    document.getElementById('r-setax').textContent  = fmtMoney(seTax);
-    document.getElementById('r-state').textContent  = fmtMoney(stateBuffer);
-    document.getElementById('r-total').textContent  = fmtMoney(totalExtraTax);
+    document.getElementById('r-fedtax-meta').textContent = 'At your ' + Math.round(marg * 100) + '% marginal rate';
+    document.getElementById('r-sstax').textContent = fmtMoney(ssTax);
+    document.getElementById('r-sstax-meta').textContent = (w2 >= SS_WAGE_BASE_2026)
+      ? 'W-2 already exceeds 2026 wage base ($176,100) — no SS owed on SE'
+      : (ssRoomLeft < seBase
+          ? 'Only ' + fmtMoney(ssRoomLeft) + ' of SE wages fits below the wage base'
+          : 'Full SE base subject to SS');
+    document.getElementById('r-medtax').textContent = fmtMoney(medicareTax);
 
-    // Toggle the state row visibility based on the toggle
-    document.getElementById('r-state-row').style.display = stateOn ? '' : 'none';
+    // Additional Medicare row (conditional)
+    var addlMedRow = document.getElementById('r-addlmed-row');
+    if (addlMedTax > 0) {
+      addlMedRow.style.display = '';
+      document.getElementById('r-addlmed').textContent = fmtMoney(addlMedTax);
+      document.getElementById('r-addlmed-meta').textContent = 'Combined income above $' + addlMedThreshold.toLocaleString('en-US') + ' (' + status.toUpperCase() + ')';
+    } else {
+      addlMedRow.style.display = 'none';
+    }
+
+    document.getElementById('r-state').textContent = fmtMoney(stateBuffer);
+    var stateRow = document.getElementById('r-state-row');
+    var stateMeta = document.getElementById('r-state-meta');
+    if (stateCode) {
+      stateRow.style.display = '';
+      var stateName = STATE_NAMES[stateCode] || stateCode;
+      stateMeta.textContent = (stateRate === 0)
+        ? stateName + ' — no state income tax'
+        : '~' + Math.round(stateRate * 100) + '% buffer for ' + stateName;
+    } else {
+      stateRow.style.display = 'none';
+    }
+
+    document.getElementById('r-total').textContent = fmtMoney(totalExtraTax);
+
+    // ────────────── FICA wage-base warning (conditional) ──────────────
+    var ficaWarn = document.getElementById('r-fica-warn');
+    var ficaBody = document.getElementById('r-fica-warn-body');
+    if (w2 > SS_WAGE_BASE_2026) {
+      ficaWarn.classList.add('is-show');
+      var msg = "Your W-2 salary exceeds the <strong>2026 Social Security wage base ($176,100)</strong>. You won't owe the 12.4% Social Security portion of SE tax on your hustle income — only Medicare (2.9%)";
+      if (addlMedTax > 0) {
+        msg += ", plus 0.9% Additional Medicare on combined income above $" + addlMedThreshold.toLocaleString('en-US');
+      }
+      msg += ". The math above reflects this correctly, but the rules are complex for high earners — <strong>verify with a CPA before changing your W-4</strong>.";
+      ficaBody.innerHTML = msg;
+    } else {
+      ficaWarn.classList.remove('is-show');
+    }
+
+    // ────────────── State callout (conditional) ──────────────
+    var stateCallout = document.getElementById('r-state-callout');
+    if (!stateCode) {
+      stateCallout.style.display = 'none';
+    } else if (NO_TAX_STATES.indexOf(stateCode) !== -1) {
+      stateCallout.style.display = '';
+      var stName = STATE_NAMES[stateCode];
+      stateCallout.innerHTML = '<strong>' + stName + '</strong> has no state income tax — no state W-4 to fill out, no state withholding to bump. Federal-only.';
+    } else {
+      stateCallout.style.display = '';
+      var guide = STATE_GUIDES[stateCode];
+      if (guide) {
+        stateCallout.innerHTML = "<strong>Don't forget your state W-4 equivalent.</strong> See our " + STATE_NAMES[stateCode] + " guide: <a href=\"" + guide.url + "\">" + guide.linkText + " →</a>";
+      } else {
+        stateCallout.innerHTML = "<strong>Don't forget your state W-4 equivalent.</strong> Each state has its own form (DE-4, IT-2104, etc.). See our <a href=\"/state-tax-rates\">state tax rates page</a> for " + STATE_NAMES[stateCode] + " specifics.";
+      }
+    }
   }
 
   // Wire up inputs
-  ['w2','se','filing','freq','state-toggle'].forEach(function (id) {
+  ['w2','se','filing','freq','state'].forEach(function (id) {
     var el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', calc);
