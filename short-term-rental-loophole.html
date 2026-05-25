@@ -140,6 +140,22 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 .faq-item p a{color:var(--apricot);text-decoration:none}
 .faq-item p a:hover{text-decoration:underline}
 
+/* Override the shared .ds-faq-a max-height for this page —
+ * STR loophole answers run longer than the 600px default and would clip. */
+.kq-wrap .ds-faq-a{max-height:0}
+.kq-wrap .ds-faq-item.open .ds-faq-a{max-height:1500px;padding-top:14px}
+.kq-wrap .ds-faq-item{border-bottom:1px solid var(--indigo-08);padding:18px 0}
+.kq-wrap .ds-faq-item:first-child{border-top:1px solid var(--indigo-08)}
+.kq-wrap .ds-faq-q{font-size:16.5px;font-weight:600;line-height:1.4}
+.kq-num{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30;margin-right:10px;display:inline-block;min-width:24px}
+.kq-wrap .ds-faq-a p{font-size:14.5px;color:var(--indigo-70);line-height:1.7;font-weight:400;margin:0 0 10px}
+.kq-wrap .ds-faq-a p:last-child{margin-bottom:0}
+.kq-wrap .ds-faq-a p strong{color:var(--indigo);font-weight:600}
+.kq-wrap .ds-faq-a ul{padding-left:20px;margin:0 0 12px}
+.kq-wrap .ds-faq-a li{font-size:14.5px;color:var(--indigo-70);line-height:1.7;margin-bottom:4px;font-weight:400}
+.kq-wrap .ds-faq-a li strong{color:var(--indigo);font-weight:600}
+.kq-eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin:0 0 14px}
+
 </style>
 <script type="application/ld+json">
 {
@@ -239,44 +255,83 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 <div class="content">
 <picture><source srcset="/images/og/short-term-rental-loophole.webp" type="image/webp"/><img alt="Short-term rental tax loophole — how active STR operators offset W-2 income" height="630" loading="lazy" src="/images/og/short-term-rental-loophole.png" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;display:block" width="1200"/></picture>
-<h2 id="key-questions" style="font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin:0 0 18px">Key questions this guide answers</h2>
-<div class="faq-item">
-<h3>What exactly is the "short-term rental loophole" — and is it legal?</h3>
+<div class="kq-wrap">
+<div class="kq-eyebrow">Key questions this guide answers</div>
+
+<div class="ds-faq-item open">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-1" aria-expanded="true" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">01</span>What exactly is the "short-term rental loophole" — and is it legal?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-1">
 <p>Yes, it is 100% legal and rooted directly in the tax code. Under <strong>IRC § 469</strong>, residential rental activities are automatically classified as "passive," meaning any losses you incur cannot be used to offset "active" income (like a W-2 salary). However, <strong>Treas. Reg. § 1.469-1T(e)(3)(ii)(A)</strong> explicitly states that if the average period of customer use is <strong>7 days or less</strong>, the activity is not considered a rental activity. If you also meet the "material participation" standards, the business is classified as an active trade or business, allowing you to use tax losses to shelter your W-2 or business income without limitation.</p>
 </div>
-<div class="faq-item">
-<h3>What does "materially participate" mean for an Airbnb host?</h3>
+</div>
+
+<div class="ds-faq-item">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-2" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">02</span>What does "materially participate" mean for an Airbnb host?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-2">
 <p>It means you are actively involved in the regular, continuous, and substantial operations of the rental. The IRS provides <strong>7 tests under Reg. § 1.469-5T</strong>, but STR hosts typically rely on two:</p>
-<ul style="padding-left:20px;margin:0 0 12px">
-<li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:4px;font-weight:300">You spend <strong>more than 500 hours</strong> on the activity during the year, or</li>
-<li style="font-size:15px;color:var(--indigo-70);line-height:1.7;font-weight:300">You spend <strong>more than 100 hours</strong> on the activity, and no other single individual spends more hours than you (including property managers, cleaners, or contractors).</li>
+<ul>
+<li>You spend <strong>more than 500 hours</strong> on the activity during the year, or</li>
+<li>You spend <strong>more than 100 hours</strong> on the activity, and no other single individual spends more hours than you (including property managers, cleaners, or contractors).</li>
 </ul>
 <p><strong>Crucial note:</strong> spousal hours count jointly toward meeting these thresholds.</p>
 </div>
-<div class="faq-item">
-<h3>How is the 7-day average rental period calculated?</h3>
+</div>
+
+<div class="ds-faq-item">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-3" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">03</span>How is the 7-day average rental period calculated?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-3">
 <p>You divide the total number of days the property was actually rented during the tax year by the number of separate rental periods (bookings).</p>
 <p><strong>Example:</strong> if your property was occupied for 90 days across 15 distinct guest bookings, your average rental period is exactly 6 days (90 ÷ 15 = 6). Because 6 is less than or equal to 7, you clear the first hurdle. If a single long-term guest pushes your blended annual average to 7.1 days, you lose the loophole for that entire tax year.</p>
 </div>
-<div class="faq-item">
-<h3>What generates the losses that can offset my W-2 income?</h3>
+</div>
+
+<div class="ds-faq-item">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-4" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">04</span>What generates the losses that can offset my W-2 income?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-4">
 <p>The losses are almost always <strong>paper losses generated by depreciation</strong>, not actual cash losses. While a building is normally depreciated over a slow <strong>27.5 years</strong>, a <strong>Cost Segregation Study</strong> allows an investor to break the property down into components (appliances, carpeting, fixtures, landscaping) that can be depreciated much faster — over <strong>5, 7, or 15 years</strong>.</p>
 <p>When you front-load these large depreciation expenses into year one, it creates a net operating loss on paper that wipes out taxable W-2 income — even though the property itself may be cash-flow positive.</p>
 </div>
-<div class="faq-item">
-<h3>Does bonus depreciation still apply to STR properties in 2025–2026?</h3>
+</div>
+
+<div class="ds-faq-item">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-5" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">05</span>Does bonus depreciation still apply to STR properties in 2025–2026?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-5">
 <p>It does, but at a phased-down rate. Under the <strong>Tax Cuts and Jobs Act (TCJA)</strong>, 100% bonus depreciation began stepping down by 20 percentage points per year:</p>
-<ul style="padding-left:20px;margin:0 0 12px">
-<li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:4px;font-weight:300"><strong>2025:</strong> bonus depreciation is 20%.</li>
-<li style="font-size:15px;color:var(--indigo-70);line-height:1.7;font-weight:300"><strong>2026:</strong> bonus depreciation drops to 0% unless Congress passes extending legislation.</li>
+<ul>
+<li><strong>2025:</strong> bonus depreciation is 20%.</li>
+<li><strong>2026:</strong> bonus depreciation drops to 0% unless Congress passes extending legislation.</li>
 </ul>
 <p>However, even with bonus phasing down, a standard Cost Segregation Study remains <strong>highly effective</strong>. Accelerated 5-, 7-, and 15-year straight-line depreciation still drastically front-loads your deductions compared to the standard 27.5-year timeline.</p>
 </div>
-<div class="faq-item">
-<h3>What are the audit risks of using this strategy?</h3>
+</div>
+
+<div class="ds-faq-item">
+<button class="ds-faq-q" type="button" aria-controls="kq-a-6" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">
+<span><span class="kq-num">06</span>What are the audit risks of using this strategy?</span>
+<span class="ds-faq-toggle" aria-hidden="true">+</span>
+</button>
+<div class="ds-faq-a" id="kq-a-6">
 <p>The audit risk is <strong>high and rising</strong>. The IRS has explicitly designated wealthy taxpayers and aggressive real estate deductions as enforcement priorities.</p>
 <p>The IRS rarely wins on the math — <strong>they win on the documentation</strong>. During an audit, they will demand contemporaneous time logs proving your material participation hours. If a host tries to recreate a log using calendar estimates months after the fact ("reconstructed logs"), the IRS routinely disallows the deductions in tax court.</p>
 <p>Defending this strategy requires a <strong>bulletproof log</strong> detailing the exact date, hours spent, and specific tasks performed (e.g., messaging guests, replacing linens, coordinating handymen). Maintain it weekly, not retroactively.</p>
+</div>
+</div>
+
 </div>
 <!-- MID-PAGE CTA -->
 <div class="cta-box">
