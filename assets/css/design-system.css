@@ -1549,6 +1549,126 @@ nav .nav-link[aria-current="page"] {
 .callout--info .callout-icon { color: var(--apricot); }
 .callout--info .callout-eyebrow { color: var(--apricot); }
 
+/* ===== TOOL CALLOUT (Phase 19.1 — interactive-tool intercept) ==========
+ * In-article CTA card linking a guide to its companion interactive tool.
+ * Anatomy: Fraunces italic apricot glyph (left), eyebrow + title + blurb
+ * (center), apricot pill CTA (right). On mobile collapses to a single
+ * column with the CTA at the bottom for thumb-reach.
+ *
+ * Use sparingly — one per article max, placed right above the section it
+ * relates to (e.g., a deduction-list H2). Drives crawl signal from
+ * existing SEO traffic into the new programmatic swiper pages.
+ *
+ * Markup:
+ *   <aside class="tool-callout" aria-label="Interactive tool">
+ *     <div class="tool-callout-glyph" aria-hidden="true">↺</div>
+ *     <div class="tool-callout-body">
+ *       <span class="tool-callout-eyebrow">Free · 60-second swipe</span>
+ *       <p class="tool-callout-title">Title with <em>italic</em></p>
+ *       <p class="tool-callout-blurb">One-line context.</p>
+ *     </div>
+ *     <a class="tool-callout-cta" href="/your-tool">Play the swiper →</a>
+ *   </aside>
+ */
+.tool-callout {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  background: var(--paper);
+  border: 1px solid var(--apricot-soft);
+  border-left: 4px solid var(--apricot);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 28px 0;
+}
+.tool-callout-glyph {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  flex-shrink: 0;
+}
+.tool-callout-body {
+  min-width: 0;
+}
+.tool-callout-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--apricot);
+  margin-bottom: 4px;
+}
+.tool-callout-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--indigo);
+  margin: 0 0 4px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.tool-callout-title em {
+  font-style: italic;
+  color: var(--apricot);
+}
+.tool-callout-blurb {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--indigo-70);
+  line-height: 1.55;
+  font-weight: 400;
+  margin: 0;
+}
+.tool-callout-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--apricot);
+  color: var(--indigo);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 100px;
+  box-shadow: 0 3px 10px rgba(45, 48, 104, 0.10);
+  white-space: nowrap;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+.tool-callout-cta:hover {
+  background: var(--apricot-hover);
+  box-shadow: 0 5px 14px rgba(45, 48, 104, 0.14);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tool-callout-cta:hover { transform: translateY(-1px); }
+}
+
+@media (max-width: 600px) {
+  .tool-callout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+  .tool-callout-glyph {
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: -4px;
+  }
+  .tool-callout-cta {
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 13.5px;
+  }
+}
+
 /* ===== NEWSLETTER WIDGET (Phase 7 — auto-hydrates into <footer>) =====
  * Self-contained signup card injected by /assets/js/newsletter-widget.js.
  * Sits at the TOP of every footer; posts to /api/subscribe (ConvertKit). */
