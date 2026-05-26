@@ -1813,3 +1813,294 @@ nav .nav-link[aria-current="page"] {
   }
 }
 
+/* ===== INTERACTIVE TOOL KIT (Phase 21 — extracted from crypto calc) ====
+ * Light-cream versions of the visual + interaction patterns from
+ * /crypto-tax-calculator (dark-mode). Calculator pages opt in by adding
+ * the .tool-* classes to their existing markup. Pair with the JS
+ * utilities in /assets/js/calc-kit.js for live thousand-separator
+ * money formatting, count-up animations, and segmented-control handlers.
+ *
+ * Classes added (all new, no conflicts with existing patterns):
+ *   .tool-drift     — opt-in rotation animation for hero SVG topo
+ *   .tool-aurora    — soft apricot glow blob overlay
+ *   .tool-eye       — pulsing eye-pill ("Free · 2026 tax year" badge)
+ *   .tool-input     — money-input wrapper with apricot italic $ prefix
+ *   .tool-seg       — segmented radio control + .tool-seg-opt buttons
+ *   .tool-bar       — stacked multi-segment progress bar
+ *   .tool-big       — big Fraunces italic-$ result number
+ *   .tool-cue       — scroll-cue card bridging calc → content below
+ *
+ * Motion is opt-in to `prefers-reduced-motion: no-preference` for the
+ * drift + pulse animations. Hover lifts are gated the same way.
+ * ====================================================================== */
+
+/* --- Drift: opt-in slow rotation on a hero topo SVG --- */
+@media (prefers-reduced-motion: no-preference) {
+  .tool-drift {
+    transform-origin: center;
+    animation: tool-drift 120s linear infinite;
+  }
+}
+@keyframes tool-drift {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --- Aurora wash: soft apricot glow blobs over the hero --- */
+.tool-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60% 50% at 78% 20%, rgba(232, 148, 100, 0.10), transparent 70%),
+    radial-gradient(50% 40% at 12% 86%, rgba(232, 148, 100, 0.05), transparent 70%);
+}
+
+/* --- Eye pill with pulsing apricot dot --- */
+.tool-eye {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--apricot);
+  margin-bottom: 22px;
+  line-height: 1;
+}
+.tool-eye .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--apricot);
+  box-shadow: 0 0 12px rgba(232, 148, 100, 0.45);
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tool-eye .pulse { animation: tool-pulse 2.4s ease-in-out infinite; }
+}
+@keyframes tool-pulse {
+  0%, 100% { opacity: 1;    box-shadow: 0 0 12px rgba(232, 148, 100, 0.45); }
+  50%      { opacity: 0.55; box-shadow: 0 0 4px  rgba(232, 148, 100, 0.45); }
+}
+
+/* --- Money input wrapper: apricot italic Fraunces $ + bare input --- *
+ * Markup:
+ *   <div class="tool-input">
+ *     <span class="prefix" aria-hidden="true">$</span>
+ *     <input type="text" inputmode="decimal" />
+ *   </div>
+ * .is-lg          — larger primary input
+ * .no-prefix      — no $ prefix (for non-money inputs)
+ * .select         — for wrapping a <select> element with chevron
+ */
+.tool-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--cream);
+  border: 1px solid var(--indigo-08);
+  border-radius: 12px;
+  transition: border-color var(--dur-default) var(--ease-default),
+              box-shadow var(--dur-default) var(--ease-default),
+              background var(--dur-default) var(--ease-default);
+}
+.tool-input:hover { border-color: rgba(232, 148, 100, 0.4); }
+.tool-input:focus-within {
+  border-color: var(--apricot);
+  background: var(--paper);
+  box-shadow:
+    0 0 0 4px rgba(232, 148, 100, 0.10),
+    0 0 18px rgba(232, 148, 100, 0.08);
+}
+.tool-input .prefix {
+  padding-left: 16px;
+  padding-right: 4px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--apricot);
+  font-size: 18px;
+  line-height: 1;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  user-select: none;
+  flex-shrink: 0;
+}
+.tool-input input,
+.tool-input select {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 12px 14px 12px 4px;
+  font-size: 16px;
+  color: var(--indigo);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.tool-input input::placeholder { color: var(--indigo-35); }
+.tool-input.no-prefix input,
+.tool-input.no-prefix select { padding-left: 14px; }
+.tool-input.is-lg input {
+  font-size: 22px;
+  font-weight: 600;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.tool-input.is-lg .prefix { font-size: 22px; }
+.tool-input select { padding-right: 36px; cursor: pointer; }
+.tool-input.select::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--indigo-55);
+  border-bottom: 2px solid var(--indigo-55);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* --- Segmented radio control (replaces native <select> for 2-3-4 options) --- *
+ * Markup:
+ *   <div class="tool-seg" role="radiogroup" aria-label="...">
+ *     <button class="tool-seg-opt is-active" role="radio"
+ *             aria-checked="true" data-val="single">Single</button>
+ *     ...
+ *   </div>
+ */
+.tool-seg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  background: var(--cream);
+  border: 1px solid var(--indigo-08);
+  border-radius: 12px;
+  padding: 4px;
+}
+.tool-seg-opt {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--indigo-55);
+  border-radius: 9px;
+  transition: background var(--dur-fast) var(--ease-default),
+              color var(--dur-fast) var(--ease-default);
+  white-space: nowrap;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tool-seg-opt:hover { color: var(--indigo); }
+.tool-seg-opt.is-active {
+  background: var(--apricot);
+  color: var(--indigo);
+  box-shadow: 0 0 18px rgba(232, 148, 100, 0.18);
+}
+
+/* --- Stacked multi-segment progress bar --- *
+ * Markup:
+ *   <div class="tool-bar">
+ *     <span class="tool-bar-a" style="width:30%"></span>
+ *     <span class="tool-bar-b" style="width:25%"></span>
+ *     <span class="tool-bar-c" style="width:10%"></span>
+ *   </div>
+ * Use modifier colors or inline style for segment fills.
+ */
+.tool-bar {
+  height: 10px;
+  border-radius: 100px;
+  background: var(--indigo-08);
+  overflow: hidden;
+  display: flex;
+  border: 1px solid var(--indigo-08);
+}
+.tool-bar > span {
+  height: 100%;
+  transition: width 0.8s var(--ease-default);
+}
+.tool-bar-a { background: var(--apricot); }
+.tool-bar-b { background: rgba(232, 148, 100, 0.55); }
+.tool-bar-c { background: rgba(232, 148, 100, 0.30); }
+.tool-bar-d { background: var(--indigo-35); }
+
+/* --- Big result number with Fraunces italic-$ format --- *
+ * Markup:
+ *   <div class="tool-big"><em>$</em>5,420</div>
+ * The <em>$</em> is italic apricot; the digits are indigo Fraunces.
+ * font-variant-numeric: tabular-nums prevents jitter as values change.
+ */
+.tool-big {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(48px, 6.5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--indigo);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variant-numeric: tabular-nums;
+}
+.tool-big em {
+  font-style: italic;
+  color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+/* --- Scroll cue card (bridges calculator → content below) --- *
+ * Markup:
+ *   <div class="tool-cue">
+ *     <span class="ico" aria-hidden="true">↓</span>
+ *     <span><strong>...</strong> · ...</span>
+ *   </div>
+ */
+.tool-cue {
+  max-width: 880px;
+  margin: 56px auto 0;
+  padding: 18px 22px;
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--indigo-70);
+  line-height: 1.5;
+}
+.tool-cue strong { color: var(--indigo); font-weight: 600; }
+.tool-cue .ico {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(232, 148, 100, 0.14);
+  color: var(--apricot);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+@media (max-width: 560px) {
+  .tool-eye { font-size: 11px; padding: 6px 12px; }
+  .tool-input input { font-size: 16px; }       /* prevent iOS zoom */
+  .tool-input.is-lg input { font-size: 20px; }
+  .tool-seg-opt { font-size: 12px; padding: 9px 6px; }
+  .tool-cue { padding: 14px 16px; gap: 12px; font-size: 12px; }
+}
+

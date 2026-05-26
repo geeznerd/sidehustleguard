@@ -31,6 +31,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 <style>
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
@@ -82,48 +84,53 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .toggle input:checked + .slider{background:var(--apricot)}
 .toggle input:checked + .slider:before{transform:translateX(20px)}
 
-/* Results card */
-.results-card{background:var(--indigo);color:var(--paper);border-radius:16px;padding:28px;border:1px solid var(--indigo)}
-.results-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot-hover);text-transform:uppercase;margin-bottom:8px}
+/* Results card — light cream variant matching the crypto-calc pattern.
+ * Hierarchy comes from the giant italic-$ Guard Amount, not from
+ * background contrast against the inputs panel. */
+.results-card{
+  background:linear-gradient(180deg,var(--paper),var(--cream));
+  color:var(--indigo);
+  border-radius:16px;
+  padding:28px;
+  border:1px solid var(--indigo-08);
+}
+.results-title{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--apricot);text-transform:uppercase;margin-bottom:8px}
 
-.guard-amount-section{padding:20px 0 18px;border-bottom:1px solid rgba(255,255,255,.1)}
-.guard-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-.guard-amount{font-family:'Fraunces',Georgia,serif;font-size:52px;font-weight:700;line-height:1;color:var(--apricot-hover)}
-.guard-amount .currency{font-size:22px;font-weight:600;color:rgba(255,255,255,.65);position:relative;top:-16px;margin-right:3px}
-.guard-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;font-weight:300;letter-spacing:.02em}
+.guard-amount-section{padding:20px 0 18px;border-bottom:1px solid var(--indigo-08);text-align:center}
+.guard-label{font-size:10.5px;color:var(--apricot);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.guard-amount{font-family:'Fraunces',Georgia,serif;font-size:clamp(48px,7vw,72px);font-weight:400;line-height:1;color:var(--indigo);letter-spacing:-0.035em;font-variation-settings:'opsz' 144,'SOFT' 30;font-variant-numeric:tabular-nums}
+.guard-amount em{font-style:italic;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30}
+.guard-sub{font-size:12.5px;color:var(--indigo-55);margin-top:10px;font-weight:400;letter-spacing:0}
 
-.takehome-section{padding:16px 0 18px;border-bottom:1px solid rgba(255,255,255,.08)}
-.takehome-label{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.takehome-amount{font-family:'Fraunces',Georgia,serif;font-size:32px;font-weight:700;line-height:1;color:var(--paper)}
-.takehome-amount .currency{font-size:15px;font-weight:500;color:rgba(255,255,255,.55);position:relative;top:-10px;margin-right:2px}
+.takehome-section{padding:16px 0 18px;border-bottom:1px solid var(--indigo-08);display:flex;justify-content:space-between;align-items:baseline}
+.takehome-label{font-size:11px;color:var(--indigo-55);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.takehome-amount{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:500;line-height:1;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;font-variant-numeric:tabular-nums}
+.takehome-amount em{font-style:italic;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30}
 
-/* Bar */
+/* Tax-reserve bar — uses .tool-bar from the shared kit */
 .tax-bar-wrap{margin:18px 0 6px}
-.tax-bar-label{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
-.tax-bar{height:10px;background:rgba(255,255,255,.12);border-radius:100px;overflow:hidden}
-.tax-bar-fill{height:100%;background:var(--apricot);border-radius:100px;transition:width .3s ease}
+.tax-bar-label{display:flex;justify-content:space-between;font-size:10.5px;color:var(--indigo-55);margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.tax-bar-label strong{color:var(--apricot);font-weight:700}
 
 .breakdown{margin-top:16px}
-.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.bd-row:last-child{border-bottom:none;padding-top:10px;margin-top:2px}
-.bd-row.bd-total{border-top:1px solid rgba(255,255,255,.15);border-bottom:none}
-.bd-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:300}
-.bd-amt{font-size:13px;color:var(--paper);font-weight:500;font-family:'Fraunces',Georgia,serif}
-.bd-row.bd-total .bd-label{font-size:13px;color:var(--apricot-hover);font-weight:600}
-.bd-row.bd-total .bd-amt{font-size:15px;color:var(--apricot-hover);font-weight:700}
-.bd-sub{font-size:11px;color:rgba(255,255,255,.3);font-weight:300}
-.bd-hidden{display:none}
+.bd-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--indigo-08)}
+.bd-row:last-child{border-bottom:none}
+.bd-row.bd-total{border-top:1px solid var(--indigo-08);border-bottom:none;padding-top:14px;margin-top:6px}
+.bd-label{font-size:13px;color:var(--indigo-70);font-weight:500}
+.bd-amt{font-size:14px;color:var(--indigo);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.005em}
+.bd-row.bd-total .bd-label{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.02em}
+.bd-row.bd-total .bd-amt{font-size:17px;color:var(--apricot);font-weight:700}
 
-.btn-download{display:block;width:100%;background:transparent;color:var(--apricot-hover);border:1px solid rgba(232,148,100,.4);border-radius:100px;padding:12px;font-size:13px;font-weight:600;font-family:inherit;text-align:center;margin-top:20px;transition:all .15s;cursor:pointer}
-.btn-download:hover{background:rgba(232,148,100,.1);border-color:rgba(232,148,100,.7)}
+.btn-download{display:block;width:100%;background:transparent;color:var(--apricot);border:1px solid var(--apricot-soft);border-radius:100px;padding:12px;font-size:13px;font-weight:600;font-family:inherit;text-align:center;margin-top:20px;transition:all .15s;cursor:pointer}
+.btn-download:hover{background:var(--apricot-12);border-color:var(--apricot)}
 
-.btn-cta{display:block;width:100%;background:var(--apricot);color:var(--paper);border-radius:100px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:12px;transition:background .15s;border:none;cursor:pointer}
-.btn-cta:hover{background:var(--apricot-hover)}
+.btn-cta{display:block;width:100%;background:var(--apricot);color:var(--indigo);border-radius:100px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;text-align:center;margin-top:12px;transition:background .15s,box-shadow .15s;border:none;cursor:pointer;box-shadow:0 3px 10px rgba(45,48,104,0.10)}
+.btn-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
 
 .empty-state{text-align:center;padding:32px 0}
-.empty-state-icon{margin-bottom:14px;opacity:.35;display:flex;justify-content:center}
+.empty-state-icon{margin-bottom:14px;opacity:.5;display:flex;justify-content:center}
 .empty-state-icon svg{width:56px;height:56px}
-.empty-state-text{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.6}
+.empty-state-text{font-size:13px;color:var(--indigo-55);font-weight:400;line-height:1.6}
 
 /* Content section */
 .content{max-width:760px;margin:32px auto 0;padding:0 48px 80px}
@@ -276,13 +283,13 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="tool-aurora" aria-hidden="true"></div>
 <div class="hero-content">
-<div class="hero-badge">Per-payment · 2025 rates · All 50 states
-</div>
-</div>
+<span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Per-payment &middot; 2025 rates &middot; All 50 states</span>
 <h1>Tax Guard <em>Calculator</em></h1>
 <p class="hero-sub">Just got paid? Enter the amount and see the exact dollar figure to move to your tax savings account — right now, before you spend it.</p>
+</div>
 </div>
 <div class="calc-wrap">
 <div class="calc-grid">
@@ -291,14 +298,16 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="calc-title">This payment</div>
 <div class="field field-payment">
 <label class="field-label" for="payment">Payment I just received</label>
-<div class="input-money input-lg">
-<input id="payment" inputmode="decimal" oninput="recalc()" placeholder="2500" type="number"/>
+<div class="tool-input is-lg">
+<span class="prefix" aria-hidden="true">$</span>
+<input id="payment" inputmode="decimal" type="text" placeholder="2,500" autocomplete="off"/>
 </div>
 </div>
 <div class="field">
 <label class="field-label" for="annual">Estimated annual gross income (total this year)</label>
-<div class="input-money">
-<input id="annual" inputmode="decimal" oninput="recalc()" placeholder="75000" type="number"/>
+<div class="tool-input">
+<span class="prefix" aria-hidden="true">$</span>
+<input id="annual" inputmode="decimal" type="text" placeholder="75,000" autocomplete="off"/>
 </div>
 <div class="field-help">Used to estimate your tax bracket. Include all income sources.</div>
 </div>
@@ -308,21 +317,22 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="toggle-sub">Include 15.3% SE tax (SS + Medicare)</div>
 </div>
 <label class="toggle">
-<input checked="" id="se-toggle" onchange="recalc()" type="checkbox"/>
+<input checked="" id="se-toggle" type="checkbox"/>
 <span class="slider"></span>
 </label>
 </div>
 <div class="field">
-<label class="field-label" for="status">Filing status</label>
-<select id="status" onchange="recalc()">
-<option value="single">Single</option>
-<option value="mfj">Married filing jointly</option>
-<option value="hoh">Head of household</option>
-</select>
+<label class="field-label">Filing status</label>
+<div class="tool-seg" id="seg-status" role="radiogroup" aria-label="Filing status">
+<button class="tool-seg-opt is-active" type="button" role="radio" aria-checked="true"  data-val="single">Single</button>
+<button class="tool-seg-opt"           type="button" role="radio" aria-checked="false" data-val="mfj">Married &mdash; jointly</button>
+<button class="tool-seg-opt"           type="button" role="radio" aria-checked="false" data-val="hoh">Head of household</button>
+</div>
 </div>
 <div class="field" style="margin-bottom:0">
 <label class="field-label" for="state">State</label>
-<select id="state" onchange="recalc()">
+<div class="tool-input select no-prefix">
+<select id="state">
 <option value="none">No state income tax</option>
 <option value="AK">Alaska — no state tax</option>
 <option value="AL">Alabama (~4% effective)</option>
@@ -378,48 +388,49 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </select>
 </div>
 </div>
+</div>
 <!-- RESULTS -->
 <div class="results-card">
 <div class="results-title">Tax Guard</div>
 <div class="empty-state" id="empty-state">
-<div class="empty-state-icon" aria-hidden="true"><svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#fbf8ee" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#fbf8ee"/></svg></div>
+<div class="empty-state-icon" aria-hidden="true"><svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
 <div class="empty-state-text">Enter a payment amount on the left<br/>to see your guard amount instantly.</div>
 </div>
 <div id="results-body" style="display:none">
 <div class="guard-amount-section">
 <div class="guard-label">The Guard Amount</div>
-<div class="guard-amount"><span class="currency">$</span><span id="r-guard">0</span></div>
+<div class="guard-amount" id="r-guard"><em>$</em>0</div>
 <div class="guard-sub">Move this to your tax savings account now</div>
 </div>
 <div class="takehome-section">
 <div class="takehome-label">Your take-home</div>
-<div class="takehome-amount"><span class="currency">$</span><span id="r-takehome">0</span></div>
+<div class="takehome-amount" id="r-takehome"><em>$</em>0</div>
 </div>
 <div class="tax-bar-wrap">
 <div class="tax-bar-label">
-<span>Tax reserve (<span id="r-pct">0</span>%)</span>
-<span>Keep (<span id="r-keep-pct">100</span>%)</span>
+<span>Tax reserve <strong id="r-pct">0%</strong></span>
+<span>Keep <strong id="r-keep-pct">100%</strong></span>
 </div>
-<div class="tax-bar">
-<div class="tax-bar-fill" id="tax-bar-fill" style="width:0%"></div>
+<div class="tool-bar">
+<span class="tool-bar-a" id="tax-bar-fill" style="width:0%"></span>
 </div>
 </div>
 <div class="breakdown">
 <div class="bd-row" id="row-se">
 <div class="bd-label">SE tax (15.3%)</div>
-<div class="bd-amt">$<span id="r-se">0</span></div>
+<div class="bd-amt" id="r-se">$0</div>
 </div>
 <div class="bd-row">
 <div class="bd-label">Federal income tax</div>
-<div class="bd-amt">$<span id="r-fed">0</span></div>
+<div class="bd-amt" id="r-fed">$0</div>
 </div>
 <div class="bd-row" id="row-state">
 <div class="bd-label">State income tax (<span id="r-state-name">—</span>)</div>
-<div class="bd-amt">$<span id="r-state">0</span></div>
+<div class="bd-amt" id="r-state">$0</div>
 </div>
 <div class="bd-row bd-total">
 <div class="bd-label">Total to reserve</div>
-<div class="bd-amt">$<span id="r-total">0</span></div>
+<div class="bd-amt" id="r-total">$0</div>
 </div>
 </div>
 <button class="btn-download" onclick="downloadReceipt()">Download Receipt (.txt)</button>
@@ -428,6 +439,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </div>
 </div>
+
+<div class="tool-cue">
+  <span class="ico" aria-hidden="true">↓</span>
+  <span><strong>How tax guarding actually works</strong> &middot; marginal vs effective rates, California specifics, and why per-payment beats end-of-year — read on below.</span>
+</div>
+
 <div class="content">
 <h2>How much should you set aside from every <em>freelance payment</em>?</h2>
 <p>Most financial advice tells freelancers to "save 25–30% for taxes" — and then leaves it at that. The problem is that number lives in your head but not in your bank account. The discipline that actually works is simpler: every time a payment hits, immediately move a fixed dollar amount into a dedicated tax savings account before you do anything else.</p>
@@ -618,12 +635,28 @@ const STATE_NAMES = {
 
 let lastCalc = {};
 
+// ── State held in JS (decoupled from input .value formatted strings) ────
+// Live thousand-separator formatting puts commas in the input box; the
+// raw numeric value lives here instead, so parseFloat doesn't have to
+// strip commas every recalc.
+const state = {
+  payment:   0,
+  annual:    0,
+  isSE:      true,
+  status:    'single',
+  stateCode: 'none'
+};
+
+// Previous result values — fed to CalcKit.animateNumber so the count-up
+// tweens from the LAST shown value to the new one, not from 0.
+const prev = { guard: 0, takehome: 0, se: 0, fed: 0, state: 0, total: 0, pct: 0, keep: 100 };
+
 function recalc(){
-  const payment = parseFloat(document.getElementById('payment').value) || 0;
-  const annual  = parseFloat(document.getElementById('annual').value)  || 0;
-  const isSE    = document.getElementById('se-toggle').checked;
-  const status  = document.getElementById('status').value;
-  const stateCode = document.getElementById('state').value;
+  const payment   = state.payment;
+  const annual    = state.annual;
+  const isSE      = state.isSE;
+  const status    = state.status;
+  const stateCode = state.stateCode;
 
   if(payment<=0){
     document.getElementById('empty-state').style.display='block';
@@ -667,25 +700,40 @@ function recalc(){
   const guardPct   = payment > 0 ? (totalGuard / payment) * 100 : 0;
   const keepPct    = 100 - guardPct;
 
-  // Update DOM
-  document.getElementById('r-guard').textContent    = fmt(totalGuard);
-  document.getElementById('r-takehome').textContent = fmt(takehome);
-  document.getElementById('r-pct').textContent      = guardPct.toFixed(1);
-  document.getElementById('r-keep-pct').textContent = keepPct.toFixed(1);
+  // ── Render with CalcKit count-up animations ────────────────────────────
+  // The "big" results get the italic-$ HTML format; breakdown rows get
+  // plain $NNN. Reduced-motion users get instant snaps.
+  CalcKit.animateNumber(document.getElementById('r-guard'),    prev.guard,    totalGuard, 700, {isHTML:true});
+  CalcKit.animateNumber(document.getElementById('r-takehome'), prev.takehome, takehome,   500, {isHTML:true});
+  CalcKit.animateNumber(document.getElementById('r-se'),       prev.se,       seTax,      400);
+  CalcKit.animateNumber(document.getElementById('r-fed'),      prev.fed,      fedTax,     400);
+  CalcKit.animateNumber(document.getElementById('r-state'),    prev.state,    stateTax,   400);
+  CalcKit.animateNumber(document.getElementById('r-total'),    prev.total,    totalGuard, 500);
+
+  // Percentages — custom formatter so they show with 1 decimal + %
+  const pctFmt = (n) => n.toFixed(1) + '%';
+  CalcKit.animateNumber(document.getElementById('r-pct'),      prev.pct,  guardPct, 500, {fmt: pctFmt});
+  CalcKit.animateNumber(document.getElementById('r-keep-pct'), prev.keep, keepPct,  500, {fmt: pctFmt});
+
+  prev.guard    = totalGuard;
+  prev.takehome = takehome;
+  prev.se       = seTax;
+  prev.fed      = fedTax;
+  prev.state    = stateTax;
+  prev.total    = totalGuard;
+  prev.pct      = guardPct;
+  prev.keep     = keepPct;
+
+  // Bar width transitions via CSS (.tool-bar > span has transition: width .8s)
   document.getElementById('tax-bar-fill').style.width = Math.min(100, guardPct).toFixed(1) + '%';
 
   // SE row visibility
   document.getElementById('row-se').style.display = isSE ? 'flex' : 'none';
-  document.getElementById('r-se').textContent  = fmt(seTax);
-  document.getElementById('r-fed').textContent = fmt(fedTax);
 
   // State row
   const stateDisplay = STATE_NAMES[stateCode] || stateCode;
   document.getElementById('r-state-name').textContent = stateDisplay;
-  document.getElementById('r-state').textContent = fmt(stateTax);
   document.getElementById('row-state').style.display = stateTax > 0 ? 'flex' : 'none';
-
-  document.getElementById('r-total').textContent = fmt(totalGuard);
 
   // Save for receipt
   lastCalc = {
@@ -693,6 +741,23 @@ function recalc(){
     seTax, fedTax, stateTax, totalGuard, takehome
   };
 }
+
+// ── Wire inputs via CalcKit (live thousand-separator formatting) ───────
+CalcKit.bindMoneyInput(document.getElementById('payment'), (v) => {
+  state.payment = v; recalc();
+});
+CalcKit.bindMoneyInput(document.getElementById('annual'), (v) => {
+  state.annual = v; recalc();
+});
+document.getElementById('se-toggle').addEventListener('change', (e) => {
+  state.isSE = e.target.checked; recalc();
+});
+CalcKit.bindSegControl(document.getElementById('seg-status'), (v) => {
+  state.status = v; recalc();
+});
+document.getElementById('state').addEventListener('change', (e) => {
+  state.stateCode = e.target.value; recalc();
+});
 
 function downloadReceipt(){
   if(!lastCalc.payment) return;
