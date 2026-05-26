@@ -564,7 +564,10 @@
     isolation: isolate;
   }
   .guide-card--dark::before {
-    /* Satin sheen — like light catching a metallic surface */
+    /* Satin sheen — like light catching a metallic surface.
+     * z-index: -1 keeps it inside the isolated stacking context (above
+     * the indigo bg, below all children) so children don't need any
+     * position override — .guide-arrow keeps its absolute bottom-right. */
     content: '';
     position: absolute;
     inset: 0;
@@ -575,10 +578,9 @@
       rgba(232, 224, 200, 0) 70%
     );
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
     transition: transform var(--dur-default, .2s) var(--ease-default, ease);
   }
-  .guide-card--dark > * { position: relative; z-index: 1; }
   .guide-card--dark:hover {
     border-color: var(--apricot);
     background: linear-gradient(135deg, #353878 0%, #252862 55%, #1a1c44 100%);
