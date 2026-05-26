@@ -917,6 +917,312 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   .tools-grid .tc-inputs { padding: 18px; border-radius: 16px; }
   .tools-grid .tc-results { padding: 22px 22px 24px; border-radius: 16px; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+ * Phase 22.3 — Recommend (Northwest affiliate) + Guard Report PDF.
+ *
+ * Both are light editorial cards. The recommend card stays paper-warm
+ * with a tinted radial accent. The PDF report card has a tilted
+ * stylized thumbnail that mocks the actual report layout using the
+ * user's live numbers — feels real without needing a live preview.
+ *
+ * Email gate flow preserved verbatim: the "Open my report →" CTA
+ * triggers the existing requestReport() Alpine method which opens the
+ * existing modal-based email capture → /api/subscribe → PDF render.
+ * Backend untouched.
+ * ════════════════════════════════════════════════════════════════════ */
+
+.recommend {
+  max-width: 1280px;
+  margin: 0 auto 32px;
+  background: #f7f1e2;
+  border: 1px solid var(--indigo-08);
+  border-radius: 22px;
+  padding: 36px 40px;
+  display: grid; grid-template-columns: 1fr 280px;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.recommend::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(40% 60% at 100% 0%, rgba(232, 148, 100, 0.10), transparent 70%);
+}
+.recommend-l, .recommend-r { position: relative; z-index: 1; }
+
+.recommend-eye {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--apricot);
+  margin-bottom: 14px;
+}
+.recommend-eye .num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(232, 148, 100, 0.18);
+  color: var(--apricot);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500; font-style: italic; font-size: 14px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.recommend-h {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--indigo);
+  margin: 0 0 14px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.recommend-h em { font-style: italic; color: var(--apricot); font-variation-settings: 'opsz' 144, 'SOFT' 30; }
+.recommend-p {
+  font-size: 15px; color: var(--indigo-70); line-height: 1.6;
+  margin: 0 0 18px; max-width: 540px;
+}
+.recommend-checks {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 18px;
+}
+.recommend-chk {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 600; color: var(--indigo);
+  padding: 6px 12px;
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  border-radius: 100px;
+}
+.recommend-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--indigo);
+  color: var(--paper);
+  padding: 12px 22px;
+  border-radius: 100px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 10px rgba(45, 48, 104, 0.18);
+}
+.recommend-cta:hover {
+  background: var(--indigo-deep, #1f2150);
+  box-shadow: 0 5px 14px rgba(45, 48, 104, 0.24);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .recommend-cta:hover { transform: translateY(-1px); }
+}
+.recommend-disc {
+  margin-top: 14px;
+  font-size: 11.5px; color: var(--indigo-55);
+  line-height: 1.5;
+}
+
+/* Sidekick "card within card" — visual support, not separate clickable */
+.recommend-card {
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+.recommend-card-h {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: 18px; color: var(--indigo);
+  line-height: 1.15; letter-spacing: -0.012em;
+  margin-bottom: 16px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.recommend-card-h em { font-style: italic; color: var(--apricot); font-variation-settings: 'opsz' 144, 'SOFT' 30; }
+.recommend-card-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 7px 0;
+  font-size: 12.5px;
+  border-bottom: 1px dashed var(--indigo-08);
+}
+.recommend-card-row:last-of-type { border-bottom: 0; }
+.recommend-card-row .l { color: var(--indigo-55); }
+.recommend-card-row .v { color: var(--indigo); font-weight: 600; font-variant-numeric: tabular-nums; }
+.recommend-card-stars {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--indigo-08);
+  color: var(--apricot); font-size: 14px; letter-spacing: 2px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .recommend { grid-template-columns: 1fr; padding: 28px 24px; gap: 24px; }
+}
+
+/* ─── Guard Report PDF section ─── */
+.report {
+  max-width: 1280px;
+  margin: 0 auto 56px;
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  border-radius: 22px;
+  padding: 40px 44px;
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.report::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(40% 60% at 0% 100%, rgba(232, 148, 100, 0.10), transparent 70%);
+}
+.report-l, .report-r { position: relative; z-index: 1; }
+
+.report-eye {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--apricot);
+  margin-bottom: 14px;
+}
+.report-eye .num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(232, 148, 100, 0.18);
+  color: var(--apricot);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500; font-style: italic; font-size: 14px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.report-h {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: clamp(26px, 3.6vw, 36px);
+  line-height: 1.1; letter-spacing: -0.022em;
+  color: var(--indigo);
+  margin: 0 0 14px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.report-h em { font-style: italic; color: var(--apricot); font-variation-settings: 'opsz' 144, 'SOFT' 30; }
+.report-p {
+  font-size: 15px; color: var(--indigo-70); line-height: 1.6;
+  margin: 0 0 20px; max-width: 540px;
+}
+.report-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--apricot); color: var(--indigo);
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(232, 148, 100, 0.22);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.report-cta:hover {
+  background: var(--apricot-hover, #f0a075);
+  box-shadow: 0 5px 14px rgba(232, 148, 100, 0.32);
+}
+.report-cta:disabled { opacity: 0.55; cursor: wait; }
+@media (prefers-reduced-motion: no-preference) {
+  .report-cta:hover:not(:disabled) { transform: translateY(-1px); }
+}
+.report-disc {
+  margin-top: 14px;
+  font-size: 11.5px; color: var(--indigo-55);
+}
+
+/* PDF thumbnail — stylized rendering that mocks the actual report */
+.pdf-thumb {
+  width: 280px; max-width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--indigo-12);
+  border-radius: 14px;
+  overflow: hidden;
+  transform: rotate(2deg);
+  transition: transform 0.35s var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: 0 18px 40px -16px rgba(45, 48, 104, 0.18);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pdf-thumb:hover { transform: rotate(0deg) scale(1.03); }
+}
+.pdf-thumb-head {
+  background: var(--indigo);
+  color: var(--paper);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.pdf-thumb-lockup {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: var(--paper);
+}
+.pdf-thumb-lockup em {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic; color: var(--apricot);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  margin-left: 1px;
+}
+.pdf-thumb-year {
+  margin-left: auto;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+  color: rgba(251, 248, 238, 0.55);
+}
+.pdf-thumb-body {
+  padding: 16px 14px 14px;
+}
+.pdf-thumb-title {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: 18px; line-height: 1.1;
+  color: var(--indigo);
+  margin-bottom: 14px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.pdf-thumb-title em {
+  font-style: italic; color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.pdf-thumb-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--indigo-08);
+}
+.pdf-thumb-stat .l {
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--indigo-55);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.pdf-thumb-stat .v {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: 13.5px; color: var(--indigo);
+  letter-spacing: -0.008em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variant-numeric: tabular-nums;
+}
+.pdf-thumb-stat.hot .v { color: var(--apricot); font-style: italic; }
+.pdf-thumb-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 4px 0;
+  font-size: 10.5px;
+  border-bottom: 1px dashed var(--indigo-08);
+}
+.pdf-thumb-row:last-of-type { border-bottom: 0; }
+.pdf-thumb-row .l { color: var(--indigo-55); }
+.pdf-thumb-row .v {
+  color: var(--indigo); font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pdf-thumb-row.muted .l,
+.pdf-thumb-row.muted .v { color: var(--indigo-35); }
+.pdf-thumb-foot {
+  padding: 10px 14px;
+  background: var(--cream);
+  font-size: 9px; color: var(--indigo-55);
+  letter-spacing: 0.02em;
+  border-top: 1px solid var(--indigo-08);
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .report { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+  .report-r { display: flex; justify-content: center; }
+  .pdf-thumb { transform: rotate(0deg); width: 100%; max-width: 320px; }
+}
 </style>
 </head>
 <body x-data="dashboard()">
@@ -1477,23 +1783,89 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 </div>
 </div>
 </div><!-- /tools-grid -->
-<!-- Northwest Registered Agent — Affiliate -->
-<div class="nw-card">
-<div class="nw-badge">Recommended</div>
-<div class="nw-body">
-<div class="nw-context" x-text="scorpResult.savings &gt;= 500 ? 'Your S-Corp savings are significant — here\'s how to get started' : 'Thinking about forming an LLC or S-Corp?'"></div>
-<div class="nw-title">Northwest Registered Agent — <em>our top pick</em></div>
-<div class="nw-desc">Flat-fee LLC formation, keeps your home address off public records, and handles all state paperwork. No upsells, no annual surprises.</div>
-<div class="nw-features">
-<span class="nw-feat">✓ Address privacy</span>
-<span class="nw-feat">✓ All 50 states</span>
-<span class="nw-feat">✓ Handles all paperwork</span>
-<span class="nw-feat">✓ No hidden fees</span>
-</div>
-<a class="nw-link" href="https://tidd.ly/3QEBTKc" rel="noopener sponsored" target="_blank">Form your LLC with Northwest →</a>
-<div class="nw-disc">Affiliate link — we earn a small commission if you form through this link, at no extra cost to you.</div>
-</div>
-</div>
+<!-- Northwest Registered Agent — Affiliate (Phase 22.3: light editorial) -->
+<section class="recommend">
+  <div class="recommend-l">
+    <div class="recommend-eye">
+      <span class="num" aria-hidden="true">→</span>
+      <span x-text="scorpResult.savings &gt;= 500 ? 'Recommended next step · S-Corp electors' : 'Recommended next step'"></span>
+    </div>
+    <h3 class="recommend-h">Ready to <em>form your LLC</em>? Don't use your home address.</h3>
+    <p class="recommend-p">If the S-Corp math works for you, the first step is forming an LLC. The trap most people fall into: using their home address on the public filing. Northwest is who we recommend — they're the only registered agent that uses their own address on public filings by default.</p>
+    <div class="recommend-checks">
+      <span class="recommend-chk">✓ Address privacy</span>
+      <span class="recommend-chk">✓ All 50 states</span>
+      <span class="recommend-chk">✓ Handles paperwork</span>
+      <span class="recommend-chk">✓ No hidden fees</span>
+    </div>
+    <a class="recommend-cta" href="https://tidd.ly/3QEBTKc" rel="noopener sponsored" target="_blank">Form your LLC with Northwest →</a>
+    <div class="recommend-disc">Affiliate link — we earn a small commission if you form through this link, at no extra cost to you.</div>
+  </div>
+  <div class="recommend-r">
+    <div class="recommend-card">
+      <div class="recommend-card-h">Northwest <em>Registered Agent</em></div>
+      <div class="recommend-card-row"><span class="l">Starting at</span><span class="v">$39 + state</span></div>
+      <div class="recommend-card-row"><span class="l">Time to file</span><span class="v">~10 minutes</span></div>
+      <div class="recommend-card-row"><span class="l">Address privacy</span><span class="v">Included</span></div>
+      <div class="recommend-card-row"><span class="l">Annual upkeep</span><span class="v">No upsells</span></div>
+      <div class="recommend-card-stars" aria-label="5 star rating">★★★★★</div>
+    </div>
+  </div>
+</section>
+
+<!-- Guard Report PDF (Phase 22.3: light editorial card → triggers existing modal) -->
+<section class="report">
+  <div class="report-l">
+    <div class="report-eye">
+      <span class="num" aria-hidden="true">↓</span>
+      <span>Get your guard report</span>
+    </div>
+    <h3 class="report-h">A clean <em>PDF snapshot</em> you can save or send to your CPA.</h3>
+    <p class="report-p">Your audit risk score, tax-reserve rate, S-Corp savings estimate, and the top flags from your profile — packaged into a one-page PDF you can save or forward. No spam, just the report.</p>
+    <button type="button" :disabled="pdfBusy" @click="requestReport()" class="report-cta">
+      <span x-text="pdfBusy ? 'Generating…' : 'Open my report →'"></span>
+    </button>
+    <div class="report-disc">No spam. Quarterly deadline reminders only.</div>
+  </div>
+  <div class="report-r">
+    <!-- Tilted PDF thumbnail mocking the user's current numbers.
+         Updates reactively via Alpine x-text bindings. -->
+    <div class="pdf-thumb">
+      <div class="pdf-thumb-head">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M6 30 Q24 4 42 30" stroke="#fbf8ee" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <circle cx="24" cy="36" r="2.4" fill="#fbf8ee"/>
+        </svg>
+        <span class="pdf-thumb-lockup">SideHustle<em>guard</em></span>
+        <span class="pdf-thumb-year">2026</span>
+      </div>
+      <div class="pdf-thumb-body">
+        <div class="pdf-thumb-title">Your <em>Guard Report</em></div>
+        <div class="pdf-thumb-stats">
+          <div class="pdf-thumb-stat">
+            <div class="l">Audit</div>
+            <div class="v" x-text="auditResult.score + ' / 20'"></div>
+          </div>
+          <div class="pdf-thumb-stat hot">
+            <div class="l">Guard %</div>
+            <div class="v" x-text="dashboardGuardRate(annualIncome, isSE, filingStatus, state) + '%'"></div>
+          </div>
+          <div class="pdf-thumb-stat">
+            <div class="l">S-Corp</div>
+            <div class="v" x-text="(scorpResult.savings >= 0 ? '+$' : '-$') + fmt(Math.abs(Math.round(scorpResult.savings)))"></div>
+          </div>
+        </div>
+        <div class="pdf-thumb-row"><span class="l">Annual income</span><span class="v" x-text="'$' + fmt(annualIncome)"></span></div>
+        <div class="pdf-thumb-row"><span class="l">State</span><span class="v" x-text="state === 'none' ? 'No state tax' : state"></span></div>
+        <div class="pdf-thumb-row"><span class="l">Filing</span><span class="v" x-text="filingStatus === 'single' ? 'Single' : filingStatus === 'mfj' ? 'MFJ' : 'HoH'"></span></div>
+        <div class="pdf-thumb-row"><span class="l">SE tax?</span><span class="v" x-text="isSE ? 'Yes' : 'No'"></span></div>
+        <div class="pdf-thumb-row muted"><span class="l">Top flags</span><span class="v" x-text="auditResult.flags.length + ' listed →'"></span></div>
+      </div>
+      <div class="pdf-thumb-foot">SideHustleGuard.com · Educational estimates only · Consult a CPA</div>
+    </div>
+  </div>
+</section>
 <p style="font-size:11px;color:var(--indigo-55);text-align:center;padding:6px 0 12px">Educational estimates only — not tax advice. Consult a licensed CPA before making structural decisions.</p>
 </main>
 </div><!-- /db-wrap -->
