@@ -1932,12 +1932,17 @@ nav .nav-link[aria-current="page"] {
   user-select: none;
   flex-shrink: 0;
 }
-.tool-input input,
-.tool-input select {
+/* Specificity bumped via .tool-input.tool-input to beat any per-page
+ * `input[type="text"]{...}` or `select{...}` base rules. Without this,
+ * inline page styles win the cascade and leave the inner input visible
+ * as its own rounded box (with cream fill + border) inside our wrapper. */
+.tool-input.tool-input input,
+.tool-input.tool-input select {
   flex: 1;
   min-width: 0;
   background: transparent;
   border: 0;
+  border-radius: 0;
   outline: 0;
   padding: 12px 14px 12px 4px;
   font-size: 16px;
@@ -1948,8 +1953,11 @@ nav .nav-link[aria-current="page"] {
   font-family: inherit;
   appearance: none;
   -webkit-appearance: none;
+  box-shadow: none;
 }
-.tool-input input::placeholder { color: var(--indigo-35); }
+.tool-input.tool-input input::placeholder { color: var(--indigo-35); }
+.tool-input.tool-input input:focus,
+.tool-input.tool-input select:focus { background: transparent; }
 .tool-input.no-prefix input,
 .tool-input.no-prefix select { padding-left: 14px; }
 .tool-input.is-lg input {
@@ -1959,7 +1967,7 @@ nav .nav-link[aria-current="page"] {
   padding-bottom: 14px;
 }
 .tool-input.is-lg .prefix { font-size: 22px; }
-.tool-input select { padding-right: 36px; cursor: pointer; }
+.tool-input.tool-input select { padding-right: 36px; cursor: pointer; }
 .tool-input.select::after {
   content: "";
   position: absolute;
