@@ -21,6 +21,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 
 <!-- Open Graph -->
 <meta content="Tax Penalty &amp; Late Fee Estimator — How Much Do I Owe the IRS?" property="og:title"/>
@@ -141,7 +143,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-link:hover{color:var(--indigo)}
 
-.hero{padding:64px 24px 32px;text-align:center;position:relative;overflow:hidden}
+.hero{padding:72px 24px 44px;text-align:center;position:relative;overflow:hidden}
 .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
@@ -158,7 +160,7 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .scenario-tab:hover:not([aria-pressed="true"]){color:var(--indigo)}
 
 /* Calc grid */
-.calc-wrap{max-width:1020px;margin:0 auto;padding:20px 48px 32px}
+.calc-wrap{max-width:1020px;margin:0 auto;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start}
 .calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:24px 26px}
 .calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
@@ -259,7 +261,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
 @media(max-width:780px){
   nav,footer{padding:13px 18px}
-  .hero{padding:48px 20px 24px}
+  .hero{padding:72px 24px 44px}
   h1{font-size:30px}
   .scenario-wrap,.calc-wrap,.content{padding-left:20px;padding-right:20px}
   .calc-grid{grid-template-columns:1fr;gap:14px}
@@ -297,7 +299,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </nav>
 
 <div class="hero">
-  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><radialGradient id="penHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
     <rect width="1200" height="360" fill="url(#penHeroGlow)"/>
     <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
@@ -313,8 +315,9 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)"/>
     </g>
   </svg>
+<div class="tool-aurora" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-badge">Free Estimator · Updated 2026</div>
+    <span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free Estimator · Updated 2026</span>
     <h1>How much do I <em>actually</em> owe the IRS?</h1>
     <p class="hero-sub">You missed a payment. Picked up another shift instead of filing. Now you're staring at it. Enter what you owe, when it was due, and we'll estimate the penalty + interest stack.</p>
   </div>
@@ -338,7 +341,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
       <div class="field">
         <label class="field-label" for="amt">Amount unpaid</label>
-        <div class="input-money"><input type="number" id="amt" min="0" placeholder="2500" inputmode="decimal" value="2500" aria-label="Amount of tax unpaid"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="amt" min="0" placeholder="2500" inputmode="decimal" value="2500" aria-label="Amount of tax unpaid"/></div>
         <div class="field-help">The tax you owed and didn't pay on time.</div>
       </div>
 
@@ -660,7 +663,9 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   elPaid.value = todayISO();
 
   function render() {
-    var amount = Math.max(0, parseFloat(elAmt.value) || 0);
+    // Strip thousand-separator commas before parsing — CalcKit's
+    // bindMoneyInput live-formats the input value with commas.
+    var amount = Math.max(0, parseFloat(String(elAmt.value).replace(/,/g,'')) || 0);
     var days = daysBetween(elDue.value, elPaid.value);
     var stateCode = elState.value;
 
@@ -753,8 +758,11 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     });
   });
 
-  // Live recalc
-  [elAmt, elDue, elPaid, elState].forEach(function (el) {
+  // Money input — CalcKit gives live thousand-separator formatting
+  if (window.CalcKit) CalcKit.bindMoneyInput(elAmt, function () { render(); });
+
+  // Non-money inputs (date + state) — standard listeners
+  [elDue, elPaid, elState].forEach(function (el) {
     el.addEventListener('input', render);
     el.addEventListener('change', render);
   });

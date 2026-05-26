@@ -31,6 +31,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 <style>
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
 
@@ -57,7 +59,7 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:580px;margin:0 auto 8px}
 
 /* TOOL WRAP */
-.tool-wrap{max-width:680px;margin:0 auto;padding:0 24px 40px}
+.tool-wrap{max-width:680px;margin:0 auto;padding:0 48px 32px}
 
 /* PROGRESS BAR */
 .progress-bar{display:flex;gap:6px;margin-bottom:28px;padding:0 4px}
@@ -326,10 +328,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="tool-aurora" aria-hidden="true"></div>
 <div class="hero-content">
-<div class="hero-badge">Free · No signup · 60 seconds
-</div>
+<span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free · No signup · 60 seconds</span>
 </div>
 <h1>Side Hustle <em>Audit Risk</em> Estimator</h1>
 <p class="hero-sub">Answer 10 quick questions about your business, deductions, and history. We'll score your return and flag anything the IRS notices.</p>
@@ -374,16 +376,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 <div class="field">
 <label class="field-label" for="revenue">Annual revenue (gross)</label>
-<div class="input-money">
-<input id="revenue" inputmode="decimal" min="0" placeholder="45000" type="number"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="revenue" inputmode="decimal" min="0" placeholder="45000" type="text"/></div>
 <div class="field-help">Total income before expenses — 1099 amounts, gross sales, cash received</div>
 </div>
 <div class="field">
 <label class="field-label" for="expenses">Annual business expenses</label>
-<div class="input-money">
-<input id="expenses" inputmode="decimal" min="0" placeholder="12000" type="number"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="expenses" inputmode="decimal" min="0" placeholder="12000" type="text"/></div>
 <div class="field-help">All deductible expenses: mileage, supplies, software, home office, fees, etc.</div>
 </div>
 <div class="step-nav">
@@ -597,7 +595,7 @@ function updateProgress(currentStep) {
 // ─── VALIDATION ──────────────────────────────────────────────────────────────
 function validateStep1() {
   const biz = document.getElementById('biz-type').value;
-  const rev = parseFloat(document.getElementById('revenue').value);
+  const rev = parseFloat(document.getElementById('revenue').value.replace(/,/g,''));
 
   if (!biz) {
     alert('Please select your business type.');
@@ -668,8 +666,8 @@ function calculateScore() {
   const tips = [];
 
   const bizType = document.getElementById('biz-type').value;
-  const revenue = parseFloat(document.getElementById('revenue').value) || 0;
-  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+  const revenue = parseFloat(document.getElementById('revenue').value.replace(/,/g,'')) || 0;
+  const expenses = parseFloat(document.getElementById('expenses').value.replace(/,/g,'')) || 0;
   const lossHistory = document.getElementById('loss-history').value;
   const bankAccount = document.getElementById('bank-account').value;
   const recordKeeping = document.getElementById('record-keeping').value;
@@ -896,6 +894,13 @@ function resetTool() {
   // Go back to step 1
   goToStep(1);
 }
+
+// Wizard model — money inputs format live (commas), no live recalc.
+// The user clicks "Calculate" to trigger calculateAndShowResults().
+['revenue', 'expenses'].forEach(function (id) {
+  var el = document.getElementById(id);
+  if (el && window.CalcKit) CalcKit.bindMoneyInput(el, function () { /* no-op */ });
+});
 </script>
 <script src="/assets/js/newsletter-widget.js" defer></script>
 </body>

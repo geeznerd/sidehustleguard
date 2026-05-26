@@ -22,6 +22,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 <meta content="S-Corp vs Sole Proprietor Savings Calculator (2025)" property="og:title"/>
 <meta content="Free S-Corp savings calculator. Enter your net profit and salary to see exactly when an S-Corp saves you more than it costs — including California's $800 franchise tax." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/scorp-savings-calculator" property="og:url"/>
@@ -307,10 +309,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="tool-aurora" aria-hidden="true"></div>
 <div class="hero-content">
-<div class="hero-badge">Free · 2025 IRS rates
-</div>
+<span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free · 2025 IRS rates</span>
 </div>
 <h1>S-Corp vs Sole Prop <em>savings simulator</em></h1>
 <p class="hero-sub">See exactly how much an S-Corp election would save — or cost — at your income level. Includes California's $800 franchise tax and all overhead.</p>
@@ -322,15 +324,11 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="inputs-grid">
 <div class="field">
 <label class="field-label" for="profit">Net annual profit (after expenses, before taxes)</label>
-<div class="input-money">
-<input id="profit" inputmode="decimal" oninput="recalc()" placeholder="80000" type="number" value="80000"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="profit" inputmode="decimal" placeholder="80000" type="text" value="80000"/></div>
 </div>
 <div class="field">
 <label class="field-label" for="salary">Reasonable S-Corp salary</label>
-<div class="input-money">
-<input id="salary" inputmode="decimal" oninput="recalc()" placeholder="45000" type="number" value="45000"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="salary" inputmode="decimal" placeholder="45000" type="text" value="45000"/></div>
 <div class="field-help">IRS requires a "reasonable" salary — typically 40–60% of net profit. Example: $80k profit → $35–48k salary.</div>
 </div>
 <div class="field">
@@ -350,16 +348,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="inputs-grid-bottom">
 <div class="field">
 <label class="field-label" for="payroll">Payroll processing costs / year</label>
-<div class="input-money">
-<input id="payroll" inputmode="decimal" oninput="recalc()" placeholder="600" type="number" value="600"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="payroll" inputmode="decimal" placeholder="600" type="text" value="600"/></div>
 <div class="field-help">Gusto, Rippling, etc. Typically $500–$1,200/yr</div>
 </div>
 <div class="field">
 <label class="field-label" for="accounting">Extra accounting for S-Corp return</label>
-<div class="input-money">
-<input id="accounting" inputmode="decimal" oninput="recalc()" placeholder="1000" type="number" value="1000"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="accounting" inputmode="decimal" placeholder="1000" type="text" value="1000"/></div>
 <div class="field-help">CPA fees for Form 1120-S. Typically $800–$2,000/yr</div>
 </div>
 </div>
@@ -602,11 +596,11 @@ function fmtRaw(n) {
 }
 
 function recalc() {
-  const profit    = parseFloat(document.getElementById('profit').value)     || 0;
-  const salary    = parseFloat(document.getElementById('salary').value)      || 0;
+  const profit    = parseFloat(document.getElementById('profit').value.replace(/,/g,''))     || 0;
+  const salary    = parseFloat(document.getElementById('salary').value.replace(/,/g,''))      || 0;
   const caOn      = document.getElementById('caToggle').checked;
-  const payroll   = parseFloat(document.getElementById('payroll').value)     || 0;
-  const acct      = parseFloat(document.getElementById('accounting').value)  || 0;
+  const payroll   = parseFloat(document.getElementById('payroll').value.replace(/,/g,''))     || 0;
+  const acct      = parseFloat(document.getElementById('accounting').value.replace(/,/g,''))  || 0;
 
   const sp = calcSoleProp(profit);
   const sc = calcSCorp(profit, salary, caOn, payroll, acct);
@@ -690,6 +684,15 @@ function recalc() {
 
 // Run on load
 recalc();
+
+
+// ── Phase 21.2 — Wire money inputs to CalcKit ──────────────
+// Live thousand-separator formatting + recalc on every keystroke.
+// recalc() is the existing calculator-specific compute function.
+['profit','salary','payroll','accounting'].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el && window.CalcKit) CalcKit.bindMoneyInput(el, function(){ recalc(); });
+});
 </script>
 <script src="/assets/js/newsletter-widget.js" defer></script>
 </body>

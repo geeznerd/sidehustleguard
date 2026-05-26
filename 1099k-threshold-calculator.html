@@ -21,6 +21,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 
 <!-- Open Graph -->
 <meta content="1099-K Threshold Calculator — Will You Get a 1099-K?" property="og:title"/>
@@ -133,7 +135,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-link:hover{color:var(--indigo)}
 
-.hero{padding:72px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero{padding:72px 24px 44px;text-align:center;position:relative;overflow:hidden}
 .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
@@ -152,7 +154,7 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .year-note strong{color:var(--indigo);font-weight:600}
 
 /* Calc grid */
-.calc-wrap{max-width:1020px;margin:0 auto;padding:24px 48px 32px}
+.calc-wrap{max-width:1020px;margin:0 auto;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start}
 .calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:26px}
 .calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
@@ -247,7 +249,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
 @media(max-width:780px){
   nav,footer{padding:13px 18px}
-  .hero{padding:48px 20px 24px}
+  .hero{padding:72px 24px 44px}
   h1{font-size:30px}
   .year-wrap,.calc-wrap,.content{padding-left:20px;padding-right:20px}
   .calc-grid{grid-template-columns:1fr;gap:14px}
@@ -285,7 +287,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </nav>
 
 <div class="hero">
-  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
     <rect width="1200" height="360" fill="url(#calcHeroGlow)"/>
     <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
@@ -304,8 +306,9 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       <ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/>
     </g>
   </svg>
+<div class="tool-aurora" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-badge">Free Calculator · Updated 2026</div>
+    <span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free Calculator · Updated 2026</span>
     <h1>Will the IRS send you a <em>1099-K</em> this year?</h1>
     <p class="hero-sub">Enter your gross sales by platform and see exactly which 1099-Ks will show up — and what to do whether you get one or not.</p>
   </div>
@@ -333,7 +336,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">Etsy</div>
           <div class="platform-help">Etsy issues 1099-Ks based on gross sales processed through Etsy Payments.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-etsy" min="0" placeholder="0" inputmode="decimal" aria-label="Etsy gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-etsy" min="0" placeholder="0" inputmode="decimal" aria-label="Etsy gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -341,7 +344,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">eBay</div>
           <div class="platform-help">eBay Managed Payments processes the transaction and is the 1099-K filer.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-ebay" min="0" placeholder="0" inputmode="decimal" aria-label="eBay gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-ebay" min="0" placeholder="0" inputmode="decimal" aria-label="eBay gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -349,7 +352,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">PayPal (business)</div>
           <div class="platform-help">Business-tagged payments only. "Friends &amp; family" sends do not count.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-paypal" min="0" placeholder="0" inputmode="decimal" aria-label="PayPal gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-paypal" min="0" placeholder="0" inputmode="decimal" aria-label="PayPal gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -357,7 +360,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">Venmo / Cash App / Zelle</div>
           <div class="platform-help">Only business-flagged payments. Zelle is technically exempt as a bank network — confirm with your bank.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-venmo" min="0" placeholder="0" inputmode="decimal" aria-label="Venmo / Cash App gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-venmo" min="0" placeholder="0" inputmode="decimal" aria-label="Venmo / Cash App gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -365,7 +368,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">Stripe / direct invoicing</div>
           <div class="platform-help">Stripe is a payment processor, so it files 1099-Ks per merchant account.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-stripe" min="0" placeholder="0" inputmode="decimal" aria-label="Stripe gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-stripe" min="0" placeholder="0" inputmode="decimal" aria-label="Stripe gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -373,7 +376,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">Shopify Payments</div>
           <div class="platform-help">Shopify Payments (not non-Shopify gateways) tracks processed volume per store.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-shopify" min="0" placeholder="0" inputmode="decimal" aria-label="Shopify gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-shopify" min="0" placeholder="0" inputmode="decimal" aria-label="Shopify gross sales"/></div>
       </div>
 
       <div class="platform-row">
@@ -381,7 +384,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
           <div class="platform-label">Other marketplace</div>
           <div class="platform-help">Poshmark, Mercari, Depop, Reverb, StubHub, etc. Each tracks its own threshold.</div>
         </div>
-        <div class="input-money"><input type="number" id="p-other" min="0" placeholder="0" inputmode="decimal" aria-label="Other marketplace gross sales"/></div>
+        <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" type="text" id="p-other" min="0" placeholder="0" inputmode="decimal" aria-label="Other marketplace gross sales"/></div>
       </div>
 
       <div class="disclaimer">
@@ -533,7 +536,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   }
   function val(id) {
     var el = document.getElementById(id);
-    var n = parseFloat(el && el.value);
+    // Strip thousand-separator commas before parsing — bindMoneyInput
+    // formats the .value live so we must remove the commas here.
+    var raw = el && String(el.value).replace(/,/g, '');
+    var n = parseFloat(raw);
     return (isFinite(n) && n > 0) ? n : 0;
   }
 
@@ -624,10 +630,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     });
   });
 
-  // Input live update
+  // Input live update — CalcKit handles thousand-separator formatting,
+  // its onChange callback triggers render() on every keystroke.
   PLATFORMS.forEach(function (p) {
     var el = document.getElementById(p.id);
-    if (el) el.addEventListener('input', render);
+    if (el && window.CalcKit) {
+      CalcKit.bindMoneyInput(el, function () { render(); });
+    } else if (el) {
+      el.addEventListener('input', render); // fallback if kit not loaded
+    }
   });
 
   render();

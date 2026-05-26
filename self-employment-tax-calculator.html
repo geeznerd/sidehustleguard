@@ -26,6 +26,8 @@
 
 <!-- Shared design system -->
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
+<!-- Interactive tool kit — shared utilities (Phase 21) -->
+<script src="/assets/js/calc-kit.js"></script>
 <meta content="Self-Employment Tax Calculator (2025)" property="og:title"/>
 <meta content="Estimate your SE tax, federal income tax, and total taxes in seconds. Free." property="og:description"/>
 <meta content="https://www.sidehustleguard.com/self-employment-tax-calculator" property="og:url"/>
@@ -277,10 +279,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 </nav>
 <div class="hero">
-<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<svg class="hero-backdrop tool-drift" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="calcHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#calcHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1"><ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/><ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/><ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/><ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/><ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)"/><ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/><ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/><ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/><ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/><ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/></g></svg>
+<div class="tool-aurora" aria-hidden="true"></div>
 <div class="hero-content">
-<div class="hero-badge">Free · 2024–2025 IRS rates
-</div>
+<span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free · 2024–2025 IRS rates</span>
 </div>
 <h1>Self-employment <em>tax calculator</em></h1>
 <p class="hero-sub">Get an instant estimate of your self-employment tax, federal income tax, and total taxes owed. Just enter your numbers — no sign-up.</p>
@@ -292,16 +294,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="calc-title">Your numbers</div>
 <div class="field">
 <label class="field-label" for="gross">Gross self-employment income</label>
-<div class="input-money">
-<input id="gross" inputmode="decimal" oninput="recalc()" placeholder="50000" type="number"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="gross" inputmode="decimal" placeholder="50000" type="text"/></div>
 <div class="field-help">Total income before expenses (1099 amounts, gross sales, etc.)</div>
 </div>
 <div class="field">
 <label class="field-label" for="expenses">Business expenses</label>
-<div class="input-money">
-<input id="expenses" inputmode="decimal" oninput="recalc()" placeholder="10000" type="number"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="expenses" inputmode="decimal" placeholder="10000" type="text"/></div>
 <div class="field-help">Mileage, supplies, software, home office, fees — anything deductible</div>
 </div>
 <div class="field">
@@ -314,9 +312,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 <div class="field">
 <label class="field-label" for="other">Other income (optional)</label>
-<div class="input-money">
-<input id="other" inputmode="decimal" oninput="recalc()" placeholder="0" type="number"/>
-</div>
+<div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" id="other" inputmode="decimal" placeholder="0" type="text"/></div>
 <div class="field-help">W-2 wages or other taxable income — affects your tax bracket</div>
 </div>
 <div class="field">
@@ -534,9 +530,9 @@ function calcFederal(taxable, status){
 }
 
 function recalc(){
-  const gross = parseFloat(document.getElementById('gross').value) || 0;
-  const exp   = parseFloat(document.getElementById('expenses').value) || 0;
-  const other = parseFloat(document.getElementById('other').value) || 0;
+  const gross = parseFloat(document.getElementById('gross').value.replace(/,/g,'')) || 0;
+  const exp   = parseFloat(document.getElementById('expenses').value.replace(/,/g,'')) || 0;
+  const other = parseFloat(document.getElementById('other').value.replace(/,/g,'')) || 0;
   const status = document.getElementById('status').value;
   const stateRate = (parseFloat(document.getElementById('state').value) || 0) / 100;
 
@@ -573,6 +569,15 @@ function recalc(){
   document.getElementById('r-setaside').textContent = setAside + '%';
 }
 recalc();
+
+
+// ── Phase 21.2 — Wire money inputs to CalcKit ──────────────
+// Live thousand-separator formatting + recalc on every keystroke.
+// recalc() is the existing calculator-specific compute function.
+['gross','expenses','other'].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el && window.CalcKit) CalcKit.bindMoneyInput(el, function(){ recalc(); });
+});
 </script>
 <script src="/assets/js/newsletter-widget.js" defer></script>
 </body>
