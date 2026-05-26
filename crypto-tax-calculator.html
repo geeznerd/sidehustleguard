@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crypto Tax Calculator 2026 — Estimate Federal + State Crypto Tax — SideHustleGuard</title>
+<meta content="Free crypto tax calculator for 2026. Enter your short-term and long-term gains, income, and state — see your federal capital gains, NIIT exposure, state tax, and what you'd save by holding past 1 year. No sign-up." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/crypto-tax-calculator" rel="canonical"/>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+<!-- Shared design system (we override most tokens for dark mode below, but
+     inheriting the base keeps button shapes, animations, transitions sane) -->
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+
+<!-- Open Graph -->
+<meta content="Crypto Tax Calculator 2026 — Estimate Federal + State Crypto Tax" property="og:title"/>
+<meta content="Free, no sign-up. Short-term + long-term gains, NIIT, state tax, hold-to-long-term scenario, tax-loss harvesting." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/crypto-tax-calculator" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.sidehustleguard.com/og-image.png" property="og:image"/>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crypto Tax Calculator 2026",
+  "description": "Estimate federal capital gains tax, NIIT, and state tax on crypto gains. Includes hold-to-long-term and tax-loss harvesting scenario planners.",
+  "url": "https://www.sidehustleguard.com/crypto-tax-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is crypto taxed in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS treats crypto as property. Selling, swapping, or spending crypto is a taxable event. Hold under 1 year = short-term capital gains, taxed at ordinary income rates (10%-37%). Hold over 1 year = long-term capital gains, taxed at 0%, 15%, or 20% depending on income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Net Investment Income Tax (NIIT) on crypto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NIIT is a 3.8% surtax on investment income (including crypto gains) for high earners. It applies when your modified adjusted gross income (MAGI) exceeds $200,000 (single/HoH) or $250,000 (MFJ). Only the investment income above the threshold is hit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I owe state tax on crypto gains?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most states tax crypto gains as ordinary income at state income tax rates. No-income-tax states (AK, FL, NV, SD, TN, TX, WY, NH, WA) generally don't tax cap gains — except Washington, which has a 7% tax on long-term gains over $250k since 2022. New Hampshire only taxes interest and dividends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is crypto-to-crypto trading taxable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every swap — BTC to ETH, ETH to stablecoin, anything — is a taxable disposition. Your gain or loss equals the fair market value of the crypto received minus your cost basis in the crypto given up. This is one of the biggest sources of unexpected tax bills."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I deduct crypto losses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Crypto losses offset capital gains dollar-for-dollar. If losses exceed gains, you can deduct up to $3,000 against ordinary income per year ($1,500 if married filing separately). Excess losses carry forward to future years indefinitely. The wash-sale rule does not currently apply to crypto, so harvesting losses and re-buying immediately is legal as of 2026."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sidehustleguard.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://www.sidehustleguard.com/guides"},
+    {"@type": "ListItem", "position": 3, "name": "Crypto Tax Calculator", "item": "https://www.sidehustleguard.com/crypto-tax-calculator"}
+  ]
+}
+</script>
+
+<style>
+/* ─── Dark theme override ──────────────────────────────────────────
+ * This page intentionally breaks from the rest of the site's cream
+ * palette. Uses brand indigo as the dark base + apricot accents +
+ * gain-green / loss-red for cap gains affordances. Returning visitors
+ * will notice the shift — that's intentional. Crypto users expect dark
+ * "trading terminal" UIs, and forcing the cream palette into this
+ * context lost the audience.
+ *
+ * All other Direction E pages remain on cream. Nav stays the same
+ * component but recolors itself here so back-navigation feels coherent.
+ */
+:root {
+  --d-base:        #0f1130;   /* deeper than --indigo for the page bg */
+  --d-surface:     #1a1d4a;   /* card surface — between bg and brand indigo */
+  --d-surface-hi:  #232760;   /* hover / focused card */
+  --d-stroke:      rgba(255,255,255,0.06);
+  --d-stroke-hi:   rgba(255,255,255,0.12);
+  --d-text:        #f4f1e8;   /* paper-tone, brand-warmer than white */
+  --d-text-mute:   rgba(244,241,232,0.62);
+  --d-text-faint:  rgba(244,241,232,0.38);
+  --d-apricot:     #f4a47a;   /* slightly brighter on dark — accessibility */
+  --d-apricot-soft:rgba(244,164,122,0.14);
+  --d-gain:        #7fc28a;   /* gain green — readable on dark */
+  --d-gain-soft:   rgba(127,194,138,0.12);
+  --d-loss:        #f17a5b;   /* loss red-orange — matches brand warmth */
+  --d-loss-soft:   rgba(241,122,91,0.14);
+  --d-warn:        #f3c269;   /* NIIT warning */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--d-base);
+  color: var(--d-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  line-height: 1.55;
+}
+
+/* Topographic backdrop on the body */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 800px 500px at 15% 10%, rgba(244,164,122,0.07), transparent 60%),
+    radial-gradient(ellipse 600px 400px at 90% 90%, rgba(127,194,138,0.05), transparent 70%);
+  z-index: 0;
+}
+
+main, nav, footer, .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(15,17,48,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--d-stroke);
+}
+.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.logo-icon { width: 32px; height: 32px; }
+.logo-icon svg { width: 32px; height: 32px; }
+.logo-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--d-text);
+  letter-spacing: -0.01em;
+}
+.logo-text span {
+  color: var(--d-apricot);
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+}
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-link {
+  font-size: 13px;
+  color: var(--d-text-mute);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--d-text); }
+.nav-cta {
+  background: var(--d-apricot);
+  color: var(--d-base);
+  padding: 9px 18px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: background .15s, transform .15s, box-shadow .15s;
+  box-shadow: 0 0 0 1px rgba(244,164,122,0.3), 0 6px 18px -6px rgba(244,164,122,0.5);
+}
+.nav-cta:hover { background: #f7b288; }
+@media (prefers-reduced-motion: no-preference) {
+  .nav-cta:hover { transform: translateY(-1px); }
+}
+
+/* ─── Hero ────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: 56px 24px 28px;
+  max-width: 740px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--d-apricot-soft);
+  color: var(--d-apricot);
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 1;
+  border: 1px solid rgba(244,164,122,0.22);
+}
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--d-apricot);
+  box-shadow: 0 0 12px var(--d-apricot);
+  animation: hero-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}
+h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(34px, 5.5vw, 56px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--d-text);
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+  margin: 0 0 16px;
+}
+h1 em {
+  font-style: italic;
+  color: var(--d-apricot);
+  font-weight: 500;
+}
+.hero-sub {
+  font-size: 16.5px;
+  color: var(--d-text-mute);
+  font-weight: 400;
+  line-height: 1.55;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ─── Main calc surface ────────────────────────────────── */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 24px 64px;
+}
+
+/* Two-column layout: inputs left, outputs right.
+   Stack to single column under 900px. */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .calc-grid { grid-template-columns: 1fr; }
+}
+
+/* Card primitives */
+.panel {
+  background: var(--d-surface);
+  border: 1px solid var(--d-stroke);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+.panel + .panel { margin-top: 14px; }
+.panel-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--d-text-faint);
+  margin-bottom: 14px;
+}
+.panel-eyebrow .eyebrow-tag {
+  background: var(--d-apricot-soft);
+  color: var(--d-apricot);
+  padding: 3px 9px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  font-size: 9.5px;
+}
+
+/* Form fields */
+.field { margin-bottom: 14px; }
+.field:last-child { margin-bottom: 0; }
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--d-text);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.field-label .label-meta {
+  float: right;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--d-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.field-input,
+.field-select {
+  width: 100%;
+  background: var(--d-base);
+  border: 1px solid var(--d-stroke-hi);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--d-text);
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  outline: none;
+  transition: border-color .15s, background .15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field-select {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23f4a47a' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.field-input:focus,
+.field-select:focus {
+  border-color: var(--d-apricot);
+  background: var(--d-surface-hi);
+}
+.field-input::placeholder { color: var(--d-text-faint); }
+.field-help {
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--d-text-faint);
+  line-height: 1.45;
+}
+
+/* Field-pair row (two side-by-side inputs) */
+.field-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Prefix on numeric fields ($-sign inside the input box) */
+.field-with-prefix { position: relative; }
+.field-with-prefix .field-input { padding-left: 28px; }
+.field-with-prefix::before {
+  content: '$';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--d-text-faint);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* ─── Output panel (right column) ────────────────────────
+   The marquee number. Live-updates as inputs change. */
+.output-hero {
+  background: linear-gradient(160deg, var(--d-surface-hi) 0%, var(--d-surface) 100%);
+  border: 1px solid var(--d-stroke-hi);
+  border-radius: 18px;
+  padding: 26px 28px 28px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.output-hero::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(244,164,122,0.18), transparent 60%);
+  pointer-events: none;
+}
+.output-hero-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--d-apricot);
+  margin-bottom: 12px;
+  position: relative;
+}
+.output-hero-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(44px, 7vw, 64px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--d-text);
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+  margin: 0;
+  position: relative;
+  /* Tabular nums prevents number jitter when values change */
+  font-variant-numeric: tabular-nums;
+}
+.output-hero-amount em {
+  font-style: italic;
+  color: var(--d-apricot);
+  font-weight: 500;
+}
+.output-hero-sub {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--d-text-mute);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.output-hero-sub .rate-chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--d-stroke-hi);
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--d-text);
+}
+
+/* Breakdown rows */
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--d-stroke);
+  gap: 16px;
+}
+.breakdown-row:last-child { border-bottom: 0; }
+.breakdown-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--d-text);
+  letter-spacing: -0.01em;
+}
+.breakdown-label .meta {
+  display: block;
+  font-size: 11px;
+  color: var(--d-text-faint);
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+.breakdown-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--d-text);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.breakdown-amount.is-gain { color: var(--d-gain); }
+.breakdown-amount.is-loss { color: var(--d-loss); }
+.breakdown-amount.is-warn { color: var(--d-warn); }
+.breakdown-amount.is-mute { color: var(--d-text-mute); font-weight: 500; }
+
+/* Allocation chart — horizontal stacked bar showing where the $ goes */
+.alloc-bar {
+  height: 8px;
+  border-radius: 100px;
+  background: var(--d-base);
+  display: flex;
+  overflow: hidden;
+  margin: 18px 0 10px;
+}
+.alloc-seg { transition: width .35s cubic-bezier(0.4,0,0.2,1); }
+.alloc-seg.st    { background: var(--d-loss); }
+.alloc-seg.lt    { background: var(--d-apricot); }
+.alloc-seg.niit  { background: var(--d-warn); }
+.alloc-seg.state { background: var(--d-gain); }
+
+.alloc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--d-text-mute);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.alloc-legend-item { display: flex; align-items: center; gap: 6px; }
+.alloc-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+.alloc-legend-dot.st    { background: var(--d-loss); }
+.alloc-legend-dot.lt    { background: var(--d-apricot); }
+.alloc-legend-dot.niit  { background: var(--d-warn); }
+.alloc-legend-dot.state { background: var(--d-gain); }
+
+/* ─── Scenario planner ──────────────────────────────────── */
+.scenarios {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .scenarios { grid-template-columns: 1fr; }
+}
+.scenario {
+  background: var(--d-surface);
+  border: 1px solid var(--d-stroke);
+  border-radius: 14px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.scenario-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--d-text-faint);
+  margin-bottom: 8px;
+}
+.scenario-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--d-text);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+}
+.scenario-title em { color: var(--d-apricot); }
+.scenario-body {
+  font-size: 13px;
+  color: var(--d-text-mute);
+  line-height: 1.55;
+}
+.scenario-delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 10px;
+}
+.scenario-delta-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+}
+.scenario-delta-num.is-gain { color: var(--d-gain); }
+.scenario-delta-num.is-loss { color: var(--d-loss); }
+.scenario-delta-label {
+  font-size: 12px;
+  color: var(--d-text-faint);
+  font-weight: 500;
+}
+
+/* Tax-loss harvest input row */
+.harvest-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.harvest-input {
+  flex: 1;
+  position: relative;
+}
+.harvest-input .field-input { padding: 10px 12px 10px 26px; font-size: 14px; }
+.harvest-input::before {
+  content: '$';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--d-text-faint);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: rgba(243,194,105,0.06);
+  border: 1px solid rgba(243,194,105,0.2);
+  border-left: 3px solid var(--d-warn);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--d-text-mute);
+  line-height: 1.55;
+}
+.disclaimer strong { color: var(--d-text); font-weight: 600; }
+
+/* ─── SEO content ──────────────────────────────────────── */
+.content {
+  max-width: 720px;
+  margin: 48px auto 0;
+  padding: 0 24px 24px;
+}
+.content h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--d-text);
+  margin: 36px 0 12px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+}
+.content h2 em {
+  font-style: italic;
+  color: var(--d-apricot);
+}
+.content p {
+  font-size: 15px;
+  color: var(--d-text-mute);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.content p strong { color: var(--d-text); font-weight: 600; }
+.content a {
+  color: var(--d-apricot);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Related cards (re-skinned for dark) */
+.related-section { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--d-stroke); }
+.related-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--d-text-faint);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.related-card {
+  background: var(--d-surface);
+  border: 1px solid var(--d-stroke);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: border-color .15s, background .15s;
+}
+.related-card:hover {
+  border-color: var(--d-apricot);
+  background: var(--d-surface-hi);
+}
+.related-card-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--d-text);
+  margin-bottom: 3px;
+  letter-spacing: -0.005em;
+}
+.related-card-desc {
+  font-size: 12px;
+  color: var(--d-text-faint);
+  line-height: 1.45;
+}
+
+/* ─── Footer ──────────────────────────────────────────── */
+footer {
+  background: var(--d-base);
+  border-top: 1px solid var(--d-stroke);
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.footer-logo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--d-text);
+}
+.footer-logo span {
+  color: var(--d-apricot);
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-variation-settings: 'opsz' 144,'SOFT' 30;
+}
+.footer-links a {
+  font-size: 12px;
+  color: var(--d-text-faint);
+  text-decoration: none;
+  margin-left: 18px;
+}
+.footer-links a:hover { color: var(--d-text); }
+.footer-disc {
+  font-size: 11px;
+  color: var(--d-text-faint);
+  margin-top: 6px;
+  width: 100%;
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  nav, footer { padding: 13px 18px; }
+  .hero { padding: 36px 18px 16px; }
+  main { padding: 14px 18px 48px; }
+  .nav-link { display: none; }
+  .nav-link.nav-guides { display: inline-flex; font-size: 13px; }
+  .nav-cta { font-size: 12px; padding: 8px 14px; }
+  .panel { padding: 18px 18px; }
+  .output-hero { padding: 22px 20px; }
+  .scenario { padding: 16px 18px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#f4a47a" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#f4a47a" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <circle cx="24" cy="36" r="2.4" fill="#f4f1e8"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span>guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/#how-it-works">How it works</a>
+    <a class="nav-link" href="/#pricing">Pricing</a>
+    <a class="nav-link nav-guides" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Free · 2026 tax year</div>
+  <h1>Your <em>crypto tax</em> bill, in 10 seconds.</h1>
+  <p class="hero-sub">Enter your realized gains, income, and state. See your federal + state crypto tax estimate, what NIIT might cost you, and how much you'd save by holding past one year.</p>
+</div>
+
+<main>
+  <div class="calc-grid">
+
+    <!-- ─── INPUTS ─── -->
+    <section class="panel" aria-labelledby="inputs-label">
+      <div class="panel-eyebrow">
+        <span id="inputs-label">Your numbers</span>
+        <span class="eyebrow-tag">2026</span>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="st-gains">
+          Short-term gains
+          <span class="label-meta">Held ≤ 1 year</span>
+        </label>
+        <div class="field-with-prefix">
+          <input class="field-input" id="st-gains" type="number" inputmode="decimal" min="0" step="100" value="0" placeholder="0"/>
+        </div>
+        <div class="field-help">Realized gains from crypto sold, swapped, or spent within 1 year of acquiring it. Taxed at ordinary income rates.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="lt-gains">
+          Long-term gains
+          <span class="label-meta">Held &gt; 1 year</span>
+        </label>
+        <div class="field-with-prefix">
+          <input class="field-input" id="lt-gains" type="number" inputmode="decimal" min="0" step="100" value="0" placeholder="0"/>
+        </div>
+        <div class="field-help">Realized gains from crypto held more than 1 year. Taxed at preferential 0% / 15% / 20% rates based on total income.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="other-income">
+          Other ordinary income
+          <span class="label-meta">W-2 + self-employment</span>
+        </label>
+        <div class="field-with-prefix">
+          <input class="field-input" id="other-income" type="number" inputmode="decimal" min="0" step="1000" value="60000" placeholder="60000"/>
+        </div>
+        <div class="field-help">Your non-crypto taxable income for 2026 — salary, freelance, side hustle profit. Determines which long-term cap gains bracket you land in.</div>
+      </div>
+
+      <div class="field-pair">
+        <div class="field">
+          <label class="field-label" for="filing">Filing status</label>
+          <select class="field-select" id="filing">
+            <option value="single">Single</option>
+            <option value="mfj">Married filing jointly</option>
+            <option value="hoh">Head of household</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label" for="state">State</label>
+          <select class="field-select" id="state">
+            <option value="">— Select —</option>
+            <!-- Populated by JS from STATE_NAMES below -->
+          </select>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Estimate only — not tax advice.</strong> 2026 federal brackets are projected from 2025 with inflation indexing. State cap gains tax uses each state's top ordinary income rate. NIIT (3.8%) applies above MAGI thresholds. Verify with a tax pro before filing.
+      </div>
+    </section>
+
+    <!-- ─── OUTPUTS ─── -->
+    <section aria-labelledby="output-label">
+      <div class="output-hero">
+        <div class="output-hero-eyebrow" id="output-label">Total tax on your crypto</div>
+        <div class="output-hero-amount"><em id="r-total">$0</em></div>
+        <div class="output-hero-sub">
+          <span id="r-sub">Enter your gains above to see your bill.</span>
+          <span class="rate-chip" id="r-rate" style="display:none">— effective</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-eyebrow">
+          <span>Breakdown</span>
+          <span class="eyebrow-tag" id="r-status">Awaiting input</span>
+        </div>
+
+        <div class="alloc-bar" aria-hidden="true">
+          <div class="alloc-seg st"    id="seg-st"    style="width:0%"></div>
+          <div class="alloc-seg lt"    id="seg-lt"    style="width:0%"></div>
+          <div class="alloc-seg niit"  id="seg-niit"  style="width:0%"></div>
+          <div class="alloc-seg state" id="seg-state" style="width:0%"></div>
+        </div>
+        <div class="alloc-legend">
+          <span class="alloc-legend-item"><span class="alloc-legend-dot st"></span>Short-term</span>
+          <span class="alloc-legend-item"><span class="alloc-legend-dot lt"></span>Long-term</span>
+          <span class="alloc-legend-item"><span class="alloc-legend-dot niit"></span>NIIT</span>
+          <span class="alloc-legend-item"><span class="alloc-legend-dot state"></span>State</span>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <div class="breakdown-row">
+            <div class="breakdown-label">
+              Short-term federal
+              <span class="meta" id="r-st-meta">Taxed at ordinary rates</span>
+            </div>
+            <div class="breakdown-amount" id="r-st">$0</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-label">
+              Long-term federal
+              <span class="meta" id="r-lt-meta">Taxed at 0% / 15% / 20%</span>
+            </div>
+            <div class="breakdown-amount" id="r-lt">$0</div>
+          </div>
+          <div class="breakdown-row" id="r-niit-row">
+            <div class="breakdown-label">
+              Net Investment Income Tax (3.8%)
+              <span class="meta" id="r-niit-meta">Above MAGI thresholds</span>
+            </div>
+            <div class="breakdown-amount is-warn" id="r-niit">$0</div>
+          </div>
+          <div class="breakdown-row" id="r-state-row">
+            <div class="breakdown-label">
+              State tax
+              <span class="meta" id="r-state-meta">— Select a state above —</span>
+            </div>
+            <div class="breakdown-amount is-mute" id="r-state-amt">$0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SCENARIO PLANNER ─── -->
+      <div class="scenarios">
+        <div class="scenario" id="sc-hold">
+          <div class="scenario-eyebrow">Scenario · Hold to long-term</div>
+          <div class="scenario-title">What if you <em>wait</em>?</div>
+          <div class="scenario-body" id="sc-hold-body">
+            If you reclassified your short-term gains as long-term (held past 1 year), here's your savings.
+          </div>
+          <div class="scenario-delta">
+            <span class="scenario-delta-num is-gain" id="sc-hold-num">$0</span>
+            <span class="scenario-delta-label">in tax savings</span>
+          </div>
+        </div>
+
+        <div class="scenario" id="sc-harvest">
+          <div class="scenario-eyebrow">Scenario · Tax-loss harvest</div>
+          <div class="scenario-title">Got <em>losses</em> sitting?</div>
+          <div class="scenario-body">
+            Enter unrealized loss positions you could close. Up to $3,000 over net offsets ordinary income, the rest carries forward.
+          </div>
+          <div class="harvest-row">
+            <div class="harvest-input">
+              <input class="field-input" id="harvest-amt" type="number" inputmode="decimal" min="0" step="100" value="0" placeholder="0"/>
+            </div>
+          </div>
+          <div class="scenario-delta" style="margin-top: 12px">
+            <span class="scenario-delta-num is-gain" id="sc-harvest-num">$0</span>
+            <span class="scenario-delta-label">in tax savings</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ─── SEO CONTENT ─── -->
+  <div class="content">
+    <h2>How <em>crypto taxes</em> actually work in 2026</h2>
+    <p>The IRS treats crypto as <strong>property</strong>, not currency. Every disposition — selling for USD, swapping one coin for another, paying for goods with crypto — is a taxable event. Your gain or loss equals the fair market value at disposal minus your cost basis.</p>
+    <p>The big split:</p>
+    <ul style="color: var(--d-text-mute); line-height: 1.7; padding-left: 22px;">
+      <li><strong style="color: var(--d-text)">Short-term</strong> (held ≤ 1 year): taxed at your ordinary income rate — 10% to 37% federal.</li>
+      <li><strong style="color: var(--d-text)">Long-term</strong> (held &gt; 1 year): taxed at <strong style="color: var(--d-text)">0% / 15% / 20%</strong> depending on your total income. Most middle-income earners pay 15%.</li>
+    </ul>
+
+    <h2>The <em>NIIT</em> trap most calculators miss</h2>
+    <p>Above $200k MAGI (single/HoH) or $250k (MFJ), the IRS tacks on a <strong>3.8% Net Investment Income Tax</strong> on top of your cap gains. The threshold is unindexed — it hasn't moved since 2013 — so more people hit it every year. If you had a big crypto year, NIIT can be the difference between a 15% and an effective 18.8% federal rate on long-term gains.</p>
+
+    <h2>Why <em>holding period</em> is the single biggest lever</h2>
+    <p>The gap between short-term (up to 37%) and long-term (max 20%) rates is the biggest tax decision a crypto holder makes. Selling on day 364 vs day 366 can cost you 12-22 percentage points on the gain. The hold-to-long-term scenario above shows exactly what waiting buys you for your numbers.</p>
+
+    <h2>Tax-loss harvesting <em>is</em> legal for crypto</h2>
+    <p>The wash-sale rule that blocks stock-sale loss harvesting <strong>does not currently apply to crypto</strong> as of 2026. You can sell a loss position to crystallize the loss for tax purposes, immediately re-buy at the same price, and the loss is still deductible. Congress has proposed closing this loophole multiple times — assume it could change in any year.</p>
+    <p>Losses offset gains dollar-for-dollar. Up to <strong>$3,000 of net loss</strong> can offset ordinary income per year ($1,500 if MFS). Anything beyond that carries forward indefinitely.</p>
+
+    <h2>What this calculator <em>doesn't</em> cover</h2>
+    <ul style="color: var(--d-text-mute); line-height: 1.7; padding-left: 22px;">
+      <li><strong style="color: var(--d-text)">Mining and staking</strong> income — taxed as ordinary income at fair market value when received.</li>
+      <li><strong style="color: var(--d-text)">DeFi yield</strong> — generally ordinary income; specific treatment varies.</li>
+      <li><strong style="color: var(--d-text)">Airdrops and forks</strong> — ordinary income at receipt.</li>
+      <li><strong style="color: var(--d-text)">NFT sales</strong> — collectibles taxed up to 28% if held over 1 year.</li>
+      <li><strong style="color: var(--d-text)">Lost or stolen crypto</strong> — generally not deductible since 2018.</li>
+      <li><strong style="color: var(--d-text)">Form 8949 + Schedule D</strong> generation — for that, you need transaction-level software (Koinly, CoinTracker, ZenLedger).</li>
+    </ul>
+    <p>This estimator gives you the rough number. For actual filing, get a CPA or use crypto-specific tax software.</p>
+
+    <div class="related-section">
+      <div class="related-label">Other free tools</div>
+      <div class="related-grid">
+        <a class="related-card" href="/tax-penalty-estimator">
+          <div class="related-card-title">Tax penalty estimator →</div>
+          <div class="related-card-desc">Missed quarterly? Estimate the IRS damage.</div>
+        </a>
+        <a class="related-card" href="/quarterly-tax-calculator">
+          <div class="related-card-title">Quarterly tax calculator →</div>
+          <div class="related-card-desc">Per-quarter math for 1099 + side hustle income.</div>
+        </a>
+        <a class="related-card" href="/self-employment-tax-calculator">
+          <div class="related-card-title">SE tax calculator →</div>
+          <div class="related-card-desc">15.3% self-employment tax broken out.</div>
+        </a>
+        <a class="related-card" href="/tool">
+          <div class="related-card-title">Free compliance check →</div>
+          <div class="related-card-desc">60-second tax + legal scan for your situation.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before filing.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────────────────────
+  // 2026 federal ordinary income brackets (projected from 2025 with
+  // standard inflation indexing). Same data the W-4 calc uses.
+  // ──────────────────────────────────────────────────────────────────
+  var BRACKETS = {
+    single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+    mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+    hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  };
+  var STD_DED = { single: 15000, mfj: 30000, hoh: 22500 };
+
+  // Long-term capital gains brackets (taxable income thresholds)
+  // 2026 projections — slightly above 2025 with indexing.
+  var LTCG = {
+    single: [[48350,0], [533400,0.15], [Infinity,0.20]],
+    mfj:    [[96700,0], [600050,0.15], [Infinity,0.20]],
+    hoh:    [[64750,0], [566700,0.15], [Infinity,0.20]]
+  };
+
+  // NIIT: 3.8% surtax on lesser-of(net investment income, MAGI - threshold)
+  var NIIT_THRESHOLD = { single: 200000, mfj: 250000, hoh: 200000 };
+  var NIIT_RATE = 0.038;
+
+  // Per-state effective cap gains rate — uses each state's top ordinary
+  // income rate as the cap gains rate (most states treat cap gains as
+  // ordinary income; a few have flat or special treatment).
+  // Defaults to ~5% for states without an explicit entry.
+  var STATE_CG = {
+    // True no-tax states for cap gains
+    AK: 0, FL: 0, NV: 0, SD: 0, TX: 0, WY: 0, TN: 0, NH: 0,
+    // WA: 0% on most, 7% on LTCG over $250k — simplified to 0 here.
+    WA: 0,
+
+    // Flat-rate states
+    PA: 0.0307, ND: 0.0290, AZ: 0.0250, IN: 0.0305, MI: 0.0425,
+    OH: 0.0350, IL: 0.0495, UT: 0.0455, KY: 0.0400, MA: 0.0500,
+    CO: 0.0440, NC: 0.0450, IA: 0.0382,
+
+    // Progressive states — using top marginal as approximation
+    AL: 0.0500, AR: 0.0440, CT: 0.0699, DE: 0.0660, DC: 0.0975,
+    GA: 0.0549, HI: 0.0725, ID: 0.0580, KS: 0.0570, LA: 0.0425,
+    ME: 0.0715, MD: 0.0575, MN: 0.0985, MS: 0.0440, MO: 0.0480,
+    MT: 0.0590, NE: 0.0584, NJ: 0.1075, NM: 0.0590, NY: 0.1090,
+    OK: 0.0475, OR: 0.0990, RI: 0.0599, SC: 0.0640, VT: 0.0875,
+    VA: 0.0575, WV: 0.0512, WI: 0.0765, CA: 0.1330
+  };
+
+  var STATE_NAMES = {
+    AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',
+    DE:'Delaware',DC:'DC',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',
+    IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',
+    MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
+    NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',
+    OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',
+    SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',
+    WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+  };
+
+  // ──────────────────────────────────────────────────────────────────
+  // Populate the state dropdown
+  // ──────────────────────────────────────────────────────────────────
+  (function populateStates() {
+    var sel = document.getElementById('state');
+    var codes = Object.keys(STATE_NAMES).sort(function (a, b) {
+      return STATE_NAMES[a].localeCompare(STATE_NAMES[b]);
+    });
+    codes.forEach(function (c) {
+      var opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = STATE_NAMES[c];
+      sel.appendChild(opt);
+    });
+  })();
+
+  // ──────────────────────────────────────────────────────────────────
+  // Helpers
+  // ──────────────────────────────────────────────────────────────────
+  function fmtMoney(n) {
+    if (!isFinite(n) || Math.abs(n) < 0.5) return '$0';
+    var sign = n < 0 ? '-' : '';
+    return sign + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+  }
+  function num(id) {
+    return Math.max(0, parseFloat(document.getElementById(id).value) || 0);
+  }
+  function $(id) { return document.getElementById(id); }
+
+  // Compute federal income tax on a given taxable amount using progressive
+  // brackets. Returns the total tax owed.
+  function taxOnOrdinary(taxable, status) {
+    var bkts = BRACKETS[status] || BRACKETS.single;
+    var tax = 0;
+    var prev = 0;
+    for (var i = 0; i < bkts.length; i++) {
+      var top = bkts[i][0];
+      var rate = bkts[i][1];
+      if (taxable <= top) {
+        tax += (taxable - prev) * rate;
+        return tax;
+      }
+      tax += (top - prev) * rate;
+      prev = top;
+    }
+    return tax;
+  }
+
+  // Long-term cap gains tax. Stacked on top of ordinary income — the
+  // LT gain "slot" is in the LTCG bracket range starting from where
+  // ordinary taxable income ends.
+  function taxOnLTCG(ltGain, ordinaryTaxable, status) {
+    var bkts = LTCG[status] || LTCG.single;
+    var tax = 0;
+    var lo = ordinaryTaxable;
+    var hi = ordinaryTaxable + ltGain;
+
+    var prevTop = 0;
+    for (var i = 0; i < bkts.length; i++) {
+      var top = bkts[i][0];
+      var rate = bkts[i][1];
+      // Portion of the LT gain that falls in [prevTop, top]
+      var segLo = Math.max(lo, prevTop);
+      var segHi = Math.min(hi, top);
+      if (segHi > segLo) tax += (segHi - segLo) * rate;
+      if (hi <= top) break;
+      prevTop = top;
+    }
+    return tax;
+  }
+
+  // ──────────────────────────────────────────────────────────────────
+  // Core calculation
+  // ──────────────────────────────────────────────────────────────────
+  function calc() {
+    var st     = num('st-gains');
+    var lt     = num('lt-gains');
+    var income = num('other-income');
+    var status = $('filing').value;
+    var state  = $('state').value;
+    var harvest = num('harvest-amt');
+
+    var stdDed = STD_DED[status] || STD_DED.single;
+
+    // 1. Ordinary taxable income = (other income + ST gains) − std ded.
+    //    ST gains stack on ordinary; LT gains are taxed separately.
+    var ordinaryGross = income + st;
+    var ordinaryTaxable = Math.max(0, ordinaryGross - stdDed);
+
+    // Federal tax on (ordinary + ST gains)
+    var taxOrdinaryTotal = taxOnOrdinary(ordinaryTaxable, status);
+    // Counterfactual: federal tax on ordinary alone — the delta is the ST tax
+    var ordinaryAloneTaxable = Math.max(0, income - stdDed);
+    var taxOrdinaryAlone = taxOnOrdinary(ordinaryAloneTaxable, status);
+    var stTax = Math.max(0, taxOrdinaryTotal - taxOrdinaryAlone);
+
+    // Federal tax on LT gains
+    var ltTax = taxOnLTCG(lt, ordinaryTaxable, status);
+
+    // NIIT — 3.8% on lesser of (net investment income, MAGI - threshold)
+    var magi = ordinaryGross + lt;  // approximation
+    var niiThreshold = NIIT_THRESHOLD[status] || NIIT_THRESHOLD.single;
+    var niitBase = Math.min(st + lt, Math.max(0, magi - niiThreshold));
+    var niitTax = niitBase * NIIT_RATE;
+
+    // State tax — applies to total realized gains at top ordinary rate
+    var stateRate = STATE_CG.hasOwnProperty(state) ? STATE_CG[state] : 0.05;
+    var stateTax = (st + lt) * stateRate;
+
+    // Tax-loss harvest savings
+    // Net the harvest against gains: offset short-term first (higher
+    // marginal rate), then long-term, then up to $3k of ordinary.
+    var harvestSavings = 0;
+    if (harvest > 0) {
+      var stRateApprox = stTax / Math.max(1, st);
+      var ltRateApprox = ltTax / Math.max(1, lt);
+      var rem = harvest;
+      var offsetST = Math.min(rem, st);
+      harvestSavings += offsetST * stRateApprox;
+      rem -= offsetST;
+      var offsetLT = Math.min(rem, lt);
+      harvestSavings += offsetLT * ltRateApprox;
+      rem -= offsetLT;
+      // Remainder up to $3k offsets ordinary income at marginal rate
+      var ordCap = (status === 'mfs') ? 1500 : 3000;
+      var offsetOrd = Math.min(rem, ordCap);
+      // Marginal rate at this income level
+      var marg = marginalRate(ordinaryTaxable, status);
+      harvestSavings += offsetOrd * marg;
+      // Anything beyond ordCap carries forward — no current-year savings.
+
+      // State tax savings too (harvested losses reduce state-taxable gains
+      // proportionally)
+      var stateOffset = Math.min(harvest, st + lt);
+      harvestSavings += stateOffset * stateRate;
+    }
+
+    // Hold-to-long-term scenario: what if all ST gains were actually LT?
+    var hypotheticalLT = lt + st;
+    var hypotheticalLtTax = taxOnLTCG(hypotheticalLT, ordinaryAloneTaxable, status);
+    // NIIT scenario doesn't change (same total gains)
+    var holdSavings = (stTax + ltTax) - hypotheticalLtTax;
+    if (holdSavings < 0) holdSavings = 0;
+
+    // Total
+    var totalGains = st + lt;
+    var totalTax = stTax + ltTax + niitTax + stateTax;
+    var effectiveRate = totalGains > 0 ? (totalTax / totalGains) : 0;
+
+    // ───────── Render ─────────
+    $('r-total').textContent = fmtMoney(totalTax);
+    $('r-st').textContent    = fmtMoney(stTax);
+    $('r-lt').textContent    = fmtMoney(ltTax);
+    $('r-niit').textContent  = fmtMoney(niitTax);
+    $('r-state-amt').textContent = fmtMoney(stateTax);
+
+    // Subtitle + status pill
+    if (totalGains === 0) {
+      $('r-sub').textContent = 'Enter your gains above to see your bill.';
+      $('r-rate').style.display = 'none';
+      $('r-status').textContent = 'Awaiting input';
+    } else {
+      $('r-sub').textContent = 'on ' + fmtMoney(totalGains) + ' in realized crypto gains';
+      $('r-rate').style.display = 'inline-flex';
+      $('r-rate').textContent = (effectiveRate * 100).toFixed(1) + '%  effective';
+      $('r-status').textContent = 'Estimated';
+    }
+
+    // Meta rows
+    if (lt > 0) {
+      var ltRateShown = lt > 0 ? (ltTax / lt) : 0;
+      $('r-lt-meta').textContent = (ltRateShown * 100).toFixed(1) + '% effective on long-term';
+    } else {
+      $('r-lt-meta').textContent = 'Taxed at 0% / 15% / 20%';
+    }
+    if (st > 0) {
+      var stRateShown = stTax / st;
+      $('r-st-meta').textContent = (stRateShown * 100).toFixed(1) + '% — your marginal rate';
+    } else {
+      $('r-st-meta').textContent = 'Taxed at ordinary rates';
+    }
+    if (niitTax > 0) {
+      $('r-niit-meta').textContent = 'Triggered above $' + niiThreshold.toLocaleString() + ' MAGI';
+      $('r-niit-row').style.opacity = '1';
+    } else {
+      $('r-niit-meta').textContent = 'Below MAGI threshold — not owed';
+      $('r-niit-row').style.opacity = '0.45';
+    }
+    if (state) {
+      $('r-state-meta').textContent = STATE_NAMES[state] + ' · ' + (stateRate * 100).toFixed(2) + '% top rate';
+      $('r-state-amt').classList.remove('is-mute');
+    } else {
+      $('r-state-meta').textContent = '— Select a state above —';
+      $('r-state-amt').classList.add('is-mute');
+    }
+
+    // Allocation bar
+    var totalForBar = Math.max(1, totalTax);
+    $('seg-st').style.width    = (stTax    / totalForBar * 100) + '%';
+    $('seg-lt').style.width    = (ltTax    / totalForBar * 100) + '%';
+    $('seg-niit').style.width  = (niitTax  / totalForBar * 100) + '%';
+    $('seg-state').style.width = (stateTax / totalForBar * 100) + '%';
+
+    // Scenario cards
+    $('sc-hold-num').textContent = fmtMoney(holdSavings);
+    if (holdSavings > 0) {
+      $('sc-hold-body').textContent = 'Reclassifying ' + fmtMoney(st) +
+        ' of short-term gains as long-term would drop your tax by this much. ' +
+        'Holding past 365 days from acquisition gets you the long-term rate.';
+    } else if (st > 0) {
+      $('sc-hold-body').textContent = "You're already in the 0% long-term bracket — no extra savings from holding.";
+    } else {
+      $('sc-hold-body').textContent = 'No short-term gains to reclassify. Once you have short-term positions, this shows what waiting buys you.';
+    }
+
+    $('sc-harvest-num').textContent = fmtMoney(harvestSavings);
+  }
+
+  function marginalRate(taxable, status) {
+    var bkts = BRACKETS[status] || BRACKETS.single;
+    for (var i = 0; i < bkts.length; i++) {
+      if (taxable <= bkts[i][0]) return bkts[i][1];
+    }
+    return bkts[bkts.length - 1][1];
+  }
+
+  // ──────────────────────────────────────────────────────────────────
+  // Wire up live updates
+  // ──────────────────────────────────────────────────────────────────
+  var inputs = ['st-gains', 'lt-gains', 'other-income', 'filing', 'state', 'harvest-amt'];
+  inputs.forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  // Initial render
+  calc();
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script></body>
+</html>
