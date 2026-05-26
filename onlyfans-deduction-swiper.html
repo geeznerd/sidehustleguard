@@ -550,6 +550,24 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
      Loaded before the inline engine so window.EXPENSE_SWIPER_* is ready. -->
 <script src="/assets/js/expense-swiper-data.js"></script>
 <script>
+// ────────────────────────────────────────────────────────────────────
+// Global fallback handler for failed card images. Reads num + name
+// from data attributes on the <img> and swaps the parent .card-A-illu
+// to the polished poster fallback. Defined OUTSIDE the IIFE so it's
+// reachable from the inline onerror="window.__swiperFallback(this)"
+// attribute the cardHTML renderer emits.
+// ────────────────────────────────────────────────────────────────────
+window.__swiperFallback = function (img) {
+  if (!img || !img.parentNode) return;
+  var num  = img.getAttribute('data-num')  || '';
+  var name = img.getAttribute('data-name') || '';
+  img.parentNode.innerHTML =
+    '<div class="card-A-illu-fallback" aria-hidden="true">'
+    +   '<div class="card-A-illu-fallback-num">'  + num  + '</div>'
+    +   '<div class="card-A-illu-fallback-name">' + name + '</div>'
+    + '</div>';
+};
+
 (function () {
   'use strict';
 
@@ -689,12 +707,17 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     }
     var illu;
     if (item.img) {
-      var swap = "this.parentNode.innerHTML='"
-               + fallbackMarkup(num, safeName).replace(/'/g, "\\'")
-               + "';";
+      // Swap to fallback via a global handler instead of inline JS in
+      // onerror — the old inline version built a string containing
+      // <div class="..."> which has DOUBLE QUOTES that prematurely
+      // terminate the onerror="..." HTML attribute. That malformed
+      // markup leaked into the DOM as visible "01" + name text next
+      // to a successfully-loaded image. Reading num + name from data-
+      // attributes keeps the onerror attribute value quote-free.
       illu = '<div class="card-A-illu">'
            +   '<img src="' + item.img + '" alt="' + safeName + '" '
-           +        'loading="lazy" onerror="' + swap + '"/>'
+           +        'data-num="' + num + '" data-name="' + safeName + '" '
+           +        'loading="lazy" onerror="window.__swiperFallback(this)"/>'
            + '</div>';
     } else if (item.art) {
       illu = '<div class="card-A-illu">' + item.art + '</div>';
