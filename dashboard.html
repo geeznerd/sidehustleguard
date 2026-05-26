@@ -382,6 +382,294 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   /* Tighten result gap in narrow column */
   .tools-grid .tc-results{gap:10px}
 }
+
+/* ════════════════════════════════════════════════════════════════════
+ * Phase 22.1 — Dashboard hero + profile + results-band redesign.
+ *
+ * Hybrid light/dark per design_handoff_dashboard: light cream overall
+ * (matching site), dark indigo accent on the results band only. The 3
+ * tool sections + recommend + PDF below still use the legacy classes
+ * (.tool-card, .profile-card, etc.) and will get re-skinned in 22.2/3.
+ *
+ * Tokens reused from the crypto-calc handoff in design-system.css —
+ * --indigo-darker, --indigo-line, --apricot-glow, etc.
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* Page wrapper (replaces .db-wrap padding for these new sections) */
+.dash-page { max-width: 1280px; margin: 0 auto; padding: 56px 32px 0; }
+
+/* ─── PAGE HEAD ─── */
+.page-head { max-width: 760px; margin: 0 0 32px; }
+.page-eye {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 14px; border-radius: 100px;
+  background: var(--paper); border: 1px solid var(--indigo-08);
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--apricot);
+  margin-bottom: 22px; line-height: 1;
+}
+.page-eye .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--apricot);
+  box-shadow: 0 0 12px rgba(232, 148, 100, 0.45);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .page-eye .dot { animation: tool-pulse 2.4s ease-in-out infinite; }
+}
+.page-h1 {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: clamp(40px, 5.6vw, 64px);
+  line-height: 1.02; letter-spacing: -0.028em;
+  color: var(--indigo);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.page-h1 em {
+  font-style: italic; color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.page-sub {
+  font-size: 17px; color: var(--indigo-70); line-height: 1.55;
+  max-width: 620px; margin: 0;
+}
+
+/* ─── SHARED PROFILE (light) ─── */
+.profile {
+  background: var(--paper);
+  border: 1px solid var(--indigo-08);
+  border-radius: 22px;
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.profile-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--indigo-08);
+}
+.profile-h-name {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: 24px; letter-spacing: -0.016em;
+  color: var(--indigo); line-height: 1.1;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.profile-h-name em { font-style: italic; color: var(--apricot); font-variation-settings: 'opsz' 144, 'SOFT' 30; }
+.profile-h-sub { font-size: 12.5px; color: var(--indigo-55); margin-top: 4px; line-height: 1.4; }
+.profile-h-r {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(125, 214, 164, 0.16); color: #3e7d57;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 12px 5px 10px; border-radius: 100px;
+  white-space: nowrap;
+}
+.profile-h-r::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #3e7d57; flex-shrink: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .profile-h-r::before { animation: profile-pulse 2.4s ease-in-out infinite; }
+}
+@keyframes profile-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.profile-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+
+/* Field label + .tool-input chrome (reuses the shared kit's pattern) */
+.profile .field-label,
+.tool-inputs-new .field-label {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.profile .field-label .l,
+.tool-inputs-new .field-label .l {
+  font-size: 13px; font-weight: 600; color: var(--indigo);
+  letter-spacing: -0.005em;
+}
+.profile .field-label .l em,
+.tool-inputs-new .field-label .l em {
+  font-family: 'Fraunces', Georgia, serif; font-style: italic;
+  color: var(--apricot); font-weight: 500;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.profile .field-label .hint,
+.tool-inputs-new .field-label .hint {
+  font-size: 11px; color: var(--indigo-35);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── RESULTS BAND (DARK) ─── */
+.results-band {
+  position: relative;
+  background: var(--indigo-darker, #16183a);
+  color: var(--cream);
+  border-radius: 24px;
+  padding: 40px 44px 44px;
+  margin-bottom: 56px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -28px rgba(22, 24, 58, 0.45);
+}
+.results-band::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(60% 50% at 88% 16%, rgba(232, 148, 100, 0.18), transparent 70%),
+    radial-gradient(50% 40% at 8% 92%, rgba(125, 214, 164, 0.10), transparent 70%);
+}
+.results-band-topo {
+  position: absolute; inset: -20% -10%;
+  pointer-events: none; z-index: 0; opacity: 0.55;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .results-band-topo { animation: tool-drift 140s linear infinite; }
+}
+.results-band-head {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: end;
+  margin-bottom: 22px; padding-bottom: 22px;
+  border-bottom: 1px solid rgba(232, 224, 200, 0.10);
+}
+.results-band-eye {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--apricot);
+  margin-bottom: 8px;
+}
+.results-band-h {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 28px); line-height: 1.1;
+  letter-spacing: -0.018em; color: var(--cream);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.results-band-h em {
+  font-style: italic; color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.results-band-r .ts {
+  font-size: 13px; color: rgba(240, 236, 225, 0.62);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.results-band-r .ts strong { color: var(--cream); font-weight: 600; }
+
+.results-grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+}
+.result-tile {
+  padding: 0 28px;
+  border-right: 1px solid rgba(232, 224, 200, 0.10);
+}
+.result-tile:first-child { padding-left: 0; }
+.result-tile:last-child  { padding-right: 0; border-right: 0; }
+
+.rt-eye {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--apricot);
+  margin-bottom: 14px;
+}
+.rt-eye .ico {
+  width: 22px; height: 22px; border-radius: 7px;
+  background: rgba(232, 148, 100, 0.18);
+  color: var(--apricot);
+  font-family: 'Fraunces', Georgia, serif; font-style: italic;
+  font-weight: 500; font-size: 13px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.rt-val-wrap { position: relative; display: inline-block; margin-bottom: 14px; }
+.rt-glow {
+  position: absolute; inset: -50% -20%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(232, 148, 100, 0.18), transparent 70%);
+  border-radius: 50%; z-index: 0; pointer-events: none; opacity: 0.5;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rt-glow.is-active { animation: rt-breathe 3.6s ease-in-out infinite; }
+}
+@keyframes rt-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.06); }
+}
+.rt-val {
+  position: relative; z-index: 1;
+  font-family: 'Fraunces', Georgia, serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 72px); line-height: 1;
+  letter-spacing: -0.032em; color: var(--cream);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 32px rgba(232, 148, 100, 0.12);
+}
+.rt-val em {
+  font-style: italic; color: var(--apricot);
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  text-shadow: 0 0 36px rgba(232, 148, 100, 0.45);
+}
+.rt-val.is-loss em { color: #ff8e8e; text-shadow: 0 0 36px rgba(255, 142, 142, 0.45); }
+.rt-val .unit, .rt-val .of {
+  font-family: 'Fraunces', Georgia, serif; font-style: italic;
+  color: var(--apricot); font-weight: 400;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+.rt-val .unit { font-size: 0.42em; margin-left: 2px; }
+.rt-val .of   { font-size: 0.28em; color: rgba(240, 236, 225, 0.38); font-style: normal; letter-spacing: 0.04em; }
+
+.rt-sub {
+  font-size: 14px; line-height: 1.5;
+  color: rgba(240, 236, 225, 0.62);
+  max-width: 320px;
+}
+.rt-sub strong { color: var(--apricot); font-weight: 600; }
+
+/* Audit risk badge in tile */
+.rt-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px;
+  padding: 4px 11px; border-radius: 100px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.rt-badge .b { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.rt-badge.low    { background: rgba(125, 214, 164, 0.16); color: #7dd6a4; }
+.rt-badge.low .b { background: #7dd6a4; }
+.rt-badge.med    { background: rgba(232, 148, 100, 0.18); color: var(--apricot); }
+.rt-badge.med .b { background: var(--apricot); }
+.rt-badge.high   { background: rgba(196, 74, 74, 0.18); color: #ff8e8e; }
+.rt-badge.high .b { background: #ff8e8e; }
+
+/* Audit meter under the score in the tile */
+.rt-meter {
+  height: 6px; border-radius: 100px; overflow: hidden;
+  background: rgba(232, 224, 200, 0.10);
+  margin-top: 4px; max-width: 200px;
+}
+.rt-meter > div {
+  height: 100%;
+  background: linear-gradient(90deg, #7dd6a4 0%, #f0a87f 60%, #c44a4a 100%);
+  transition: width 0.8s var(--ease-default, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 860px) {
+  .dash-page { padding: 36px 18px 0; }
+  .page-head { margin-bottom: 24px; }
+  .profile { padding: 24px 22px; border-radius: 18px; margin-bottom: 18px; }
+  .profile-head { flex-wrap: wrap; gap: 12px; padding-bottom: 14px; margin-bottom: 18px; }
+  .profile-grid { grid-template-columns: 1fr; gap: 14px; }
+  .results-band { padding: 28px 22px 30px; border-radius: 20px; margin-bottom: 36px; }
+  .results-band-head { grid-template-columns: 1fr; padding-bottom: 18px; margin-bottom: 22px; }
+  .results-band-r .ts { text-align: left; }
+  .results-grid { grid-template-columns: 1fr; }
+  .result-tile {
+    padding: 18px 0;
+    border-right: 0; border-bottom: 1px solid rgba(232, 224, 200, 0.10);
+  }
+  .result-tile:first-child { padding-top: 0; }
+  .result-tile:last-child  { padding-bottom: 0; border-bottom: 0; }
+  .rt-sub { max-width: none; }
+}
 </style>
 </head>
 <body x-data="dashboard()">
@@ -449,114 +737,210 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   <a class="db-mobile-tab" href="#section-scorp">S-Corp Sim</a>
 </nav>
 
-<!-- HERO (Phase 5) -->
-<section class="db-hero" aria-labelledby="db-hero-title">
-  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <radialGradient id="dbHeroGlow" cx="80%" cy="50%" r="55%">
-        <stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/>
-        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <rect width="1200" height="360" fill="url(#dbHeroGlow)"/>
-    <g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1">
-      <ellipse cx="200" cy="260" rx="380" ry="160" transform="rotate(-12 200 260)"/>
-      <ellipse cx="194" cy="246" rx="345" ry="142" transform="rotate(-10.5 200 260)"/>
-      <ellipse cx="188" cy="232" rx="310" ry="124" transform="rotate(-9 200 260)" class="contour-inner-3"/>
-      <ellipse cx="182" cy="218" rx="275" ry="106" transform="rotate(-7.5 200 260)" class="contour-inner-3"/>
-      <ellipse cx="176" cy="204" rx="240" ry="88" transform="rotate(-6 200 260)"/>
-      <ellipse cx="170" cy="190" rx="205" ry="70" transform="rotate(-4.5 200 260)"/>
-    </g>
-    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
-      <ellipse cx="1080" cy="120" rx="260" ry="110" transform="rotate(14 1080 120)"/>
-      <ellipse cx="1084" cy="112" rx="230" ry="96" transform="rotate(12 1080 120)" class="contour-inner-3"/>
-      <ellipse cx="1088" cy="104" rx="200" ry="82" transform="rotate(10 1080 120)" class="contour-inner-3"/>
-      <ellipse cx="1092" cy="96" rx="170" ry="68" transform="rotate(8 1080 120)"/>
-    </g>
-  </svg>
-  <div class="db-hero-inner">
-    <span class="ds-eyebrow-pill">Side Hustle Dashboard &middot; All three tools, one income</span>
-    <h1 id="db-hero-title">Your numbers, <em>together.</em></h1>
-    <p>Enter your income once. Audit Shield, Tax Guard, and the S-Corp Simulator all update live — and you can download a clean Guard Report PDF whenever you want one.</p>
-  </div>
-</section>
+<!-- ═══════════════ Phase 22.1: new hero + profile + results band ═══════════════ -->
+<div class="dash-page">
 
-<!-- PROFILE -->
-<section class="profile-card" id="section-profile">
-<div class="card-eye">Shared Profile</div>
-<div class="card-title">Enter once — <em>all three tools update live</em></div>
-<div class="profile-row">
-<div class="fld">
-<label class="fld-lbl">Annual Net Income / Profit</label>
-<div class="inp-wrap dollar">
-<input @input="maskInp($event, 'annualIncome')" autocomplete="off" class="currency-field" inputmode="numeric" placeholder="75,000" type="text" x-effect="fmtInp($el, annualIncome)"/>
-</div>
-<div class="fld-help">Expected net self-employment income this year</div>
-</div>
-<div class="fld">
-<label class="fld-lbl">State</label>
-<div class="inp-wrap">
-<select x-model="state">
-<option value="CA">California</option>
-<option value="TX">Texas (no state tax)</option>
-<option value="FL">Florida (no state tax)</option>
-<option value="NY">New York</option>
-<option value="WA">Washington (no state tax)</option>
-<option value="NV">Nevada (no state tax)</option>
-<option value="OR">Oregon</option>
-<option value="CO">Colorado</option>
-<option value="AZ">Arizona</option>
-<option value="IL">Illinois</option>
-<option value="PA">Pennsylvania</option>
-<option value="NJ">New Jersey</option>
-<option value="MA">Massachusetts</option>
-<option value="GA">Georgia</option>
-<option value="NC">North Carolina</option>
-<option value="VA">Virginia</option>
-<option value="MN">Minnesota</option>
-<option value="none">Other / No State Tax</option>
-</select>
-</div>
-</div>
-<div class="fld">
-<label class="fld-lbl">Filing Status</label>
-<div class="inp-wrap">
-<select x-model="filingStatus">
-<option value="single">Single</option>
-<option value="mfj">Married filing jointly</option>
-<option value="hoh">Head of household</option>
-</select>
-</div>
-</div>
-<div class="tog-fld">
-<div class="fld-lbl">Self-Employed</div>
-<div class="tog-row">
-<label class="tog">
-<input type="checkbox" x-model="isSE"/>
-<span class="t-sl"></span>
-</label>
-<span class="tog-note" x-text="isSE ? 'SE tax on' : 'SE tax off'"></span>
-</div>
-</div>
-</div>
-</section>
-<!-- SUMMARY STATS -->
-<div class="stats-row">
-<div :class="auditChipClass" class="stat-chip">
-<div class="sc-lbl">Audit Risk</div>
-<div class="sc-val" x-text="auditRiskLabel"></div>
-<div class="sc-sub" x-text="'Score ' + auditResult.score + ' / 20'"></div>
-</div>
-<div :class="tgPayment &gt; 0 ? '' : 'zero-state'" class="stat-chip">
-<div class="sc-lbl">Guard Rate (Per Payment)</div>
-<div class="sc-val" x-text="tgPayment &gt; 0 ? guardResult.guardPct.toFixed(0) + '%' : '--%'"></div>
-<div class="sc-sub" x-text="tgPayment &gt; 0 ? fmtD(guardResult.totalGuard) + ' on a ' + fmtD(tgPayment) + ' payment' : 'Enter a payment below'"></div>
-</div>
-<div :class="scorpChipClass" class="stat-chip">
-<div class="sc-lbl">S-Corp Advantage</div>
-<div class="sc-val" x-text="scorpResult.savings &gt;= 0 ? '+' + fmtD(scorpResult.savings) : fmtD(scorpResult.savings)"></div>
-<div class="sc-sub" x-text="scorpResult.savings &gt;= 500 ? 'saved per year vs sole prop' : scorpResult.savings &gt;= 0 ? 'marginal advantage' : 'sole prop is better at this income'"></div>
-</div>
+  <!-- PAGE HEAD -->
+  <header class="page-head">
+    <div class="page-eye"><span class="dot" aria-hidden="true"></span> Dashboard · 3 tools, 1 profile</div>
+    <h1 class="page-h1" id="db-hero-title">Your numbers, <em>together.</em></h1>
+    <p class="page-sub">Enter your income once. Audit Shield, Tax Guard, and the S-Corp Simulator all update live — and you can download a clean Guard Report PDF whenever you want one.</p>
+  </header>
+
+  <!-- SHARED PROFILE (light) -->
+  <section class="profile" id="section-profile">
+    <div class="profile-head">
+      <div class="profile-h-l">
+        <div class="profile-h-name">Shared <em>profile</em></div>
+        <div class="profile-h-sub">Enter once — all three tools update live.</div>
+      </div>
+      <div class="profile-h-r">Live</div>
+    </div>
+
+    <div class="profile-grid">
+      <div class="field">
+        <div class="field-label">
+          <span class="l">Annual net <em>income</em></span>
+          <span class="hint">2026</span>
+        </div>
+        <div class="tool-input">
+          <span class="prefix" aria-hidden="true">$</span>
+          <input
+            @input="maskInp($event, 'annualIncome')"
+            autocomplete="off"
+            class="currency-field"
+            inputmode="numeric"
+            placeholder="75,000"
+            type="text"
+            x-effect="fmtInp($el, annualIncome)"/>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-label"><span class="l"><em>State</em></span></div>
+        <div class="tool-input select no-prefix">
+          <select x-model="state">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska — no state tax</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">DC</option>
+            <option value="FL">Florida — no state tax</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada — no state tax</option>
+            <option value="NH">New Hampshire — no state tax</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota — no state tax</option>
+            <option value="TN">Tennessee — no state tax</option>
+            <option value="TX">Texas — no state tax</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington — no state tax</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming — no state tax</option>
+            <option value="none">Other / no state tax</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-label"><span class="l">Filing <em>status</em></span></div>
+        <div class="tool-input select no-prefix">
+          <select x-model="filingStatus">
+            <option value="single">Single</option>
+            <option value="mfj">Married filing jointly</option>
+            <option value="hoh">Head of household</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Self-employed toggle kept inline below the grid — production
+         currently surfaces this on the dashboard and it affects every
+         downstream calc (the redesign README didn't kill the toggle,
+         it just didn't show it in the 3-field grid mock). -->
+    <div class="tog-fld" style="margin-top:18px;padding-top:18px;border-top:1px solid var(--indigo-08);">
+      <div class="fld-lbl">Self-Employed</div>
+      <div class="tog-row">
+        <label class="tog">
+          <input type="checkbox" x-model="isSE"/>
+          <span class="t-sl"></span>
+        </label>
+        <span class="tog-note" x-text="isSE ? 'SE tax on' : 'SE tax off'"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE RESULTS BAND (DARK) -->
+  <section class="results-band" id="results-band">
+    <svg class="results-band-topo" viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#e89464" stroke-opacity="0.10" stroke-width="1">
+        <ellipse cx="200" cy="540" rx="640" ry="240" transform="rotate(-12 200 540)"></ellipse>
+        <ellipse cx="206" cy="520" rx="580" ry="210" transform="rotate(-10 206 520)"></ellipse>
+        <ellipse cx="212" cy="498" rx="520" ry="180" transform="rotate(-8 212 498)"></ellipse>
+        <ellipse cx="220" cy="474" rx="460" ry="150" transform="rotate(-6 220 474)"></ellipse>
+      </g>
+      <g fill="none" stroke="#7dd6a4" stroke-opacity="0.08" stroke-width="1">
+        <ellipse cx="1240" cy="80" rx="420" ry="150" transform="rotate(18 1240 80)"></ellipse>
+        <ellipse cx="1248" cy="70" rx="370" ry="128" transform="rotate(16 1248 70)"></ellipse>
+      </g>
+    </svg>
+
+    <div class="results-band-head">
+      <div class="results-band-h-l">
+        <div class="results-band-eye">Your live results</div>
+        <div class="results-band-h">Three numbers <em>worth knowing</em> right now</div>
+      </div>
+      <div class="results-band-r">
+        <div class="ts">From <strong x-text="'$' + fmt(annualIncome) + ' · ' + (state === 'none' ? 'no state' : state) + ' · ' + ({single:'single',mfj:'MFJ',hoh:'HoH'}[filingStatus] || filingStatus)"></strong></div>
+      </div>
+    </div>
+
+    <div class="results-grid">
+      <!-- Audit Shield tile -->
+      <div class="result-tile">
+        <div class="rt-eye"><span class="ico">A</span> Audit Shield</div>
+        <div class="rt-val-wrap">
+          <div class="rt-glow is-active" aria-hidden="true"></div>
+          <div class="rt-val"><em x-text="auditResult.score"></em><span class="of"> / 20</span></div>
+        </div>
+        <div class="rt-meter" aria-hidden="true">
+          <div :style="'width:' + (auditResult.score / 20 * 100).toFixed(1) + '%'"></div>
+        </div>
+        <div class="rt-sub">
+          Your audit risk score is <strong x-text="auditRisk === 'low' ? 'low' : auditRisk === 'medium' ? 'moderate' : 'elevated'"></strong>.
+          <span x-text="auditRisk === 'low' ? 'Most red-flag triggers don’t apply.' : auditRisk === 'medium' ? 'A few items to address in Audit Shield below.' : 'Several flags — review before filing.'"></span>
+        </div>
+        <span class="rt-badge" :class="auditRisk === 'low' ? 'low' : auditRisk === 'medium' ? 'med' : 'high'">
+          <span class="b"></span>
+          <span x-text="auditRisk === 'low' ? 'Low risk' : auditRisk === 'medium' ? 'Medium risk' : 'High risk'"></span>
+        </span>
+      </div>
+
+      <!-- Tax Guard tile -->
+      <div class="result-tile">
+        <div class="rt-eye"><span class="ico">T</span> Tax Guard</div>
+        <div class="rt-val-wrap">
+          <div class="rt-glow is-active" aria-hidden="true"></div>
+          <!-- Synthetic per-payment rate: SE 15.3% (if SE) + fed marginal + state, rounded.
+               Uses a $1000 reference payment so the rate is independent of the empty
+               .tgPayment field. The Tax Guard tool below shows the per-payment math
+               for whatever the user types. -->
+          <div class="rt-val"><em x-text="dashboardGuardRate(annualIncome, isSE, filingStatus, state)"></em><span class="unit">%</span></div>
+        </div>
+        <div class="rt-sub">
+          Move <strong x-text="dashboardGuardRate(annualIncome, isSE, filingStatus, state) + '%'"></strong> of every payment to a tax savings account. That covers federal, state, and SE tax with a small buffer.
+        </div>
+      </div>
+
+      <!-- S-Corp tile -->
+      <div class="result-tile">
+        <div class="rt-eye"><span class="ico">S</span> S-Corp Sim</div>
+        <div class="rt-val-wrap">
+          <div class="rt-glow is-active" aria-hidden="true"></div>
+          <div class="rt-val" :class="scorpResult.savings < 0 ? 'is-loss' : ''">
+            <em x-text="(scorpResult.savings < 0 ? '-$' : '$') + fmt(Math.abs(Math.round(scorpResult.savings)))"></em>
+          </div>
+        </div>
+        <div class="rt-sub">
+          <span x-text="scorpResult.savings >= 500 ? 'Estimated annual savings if you elect S-Corp at this income.' : scorpResult.savings >= 0 ? 'Marginal — barely covers overhead at this income.' : 'Sole prop wins here — overhead exceeds FICA savings.'"></span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <!-- ALERTS -->
 <template x-if="alerts.length &gt; 0">
@@ -1015,6 +1399,15 @@ function calcGuard({payment, annual, isSE, status, stateCode}) {
   const stateTax = stateOnPayment(payment, annual, stateCode, status);
   const totalGuard = seTax + fedTax + stateTax;
   return {payment, totalGuard, takehome: Math.max(0, payment - totalGuard), guardPct: (totalGuard / payment) * 100, seTax, fedTax, stateTax};
+}
+
+// Phase 22.1: Tax Guard rate for the results-band tile (independent of tgPayment).
+// Uses a $1,000 reference payment — the rate is proportional so the dollar amount
+// doesn't matter, only the federal marginal + SE flag + state. Rounded to 0 dp
+// for the headline display.
+function dashboardGuardRate(annual, isSE, status, stateCode) {
+  const r = calcGuard({ payment: 1000, annual, isSE, status, stateCode });
+  return Math.round(r.guardPct);
 }
 function fedProg(taxable) { return progressive(Math.max(0, taxable), FED_BKT.single); }
 function calcSETax(p) { const b = p * .9235; return Math.min(b, SS_BASE) * .124 + b * .029; }
