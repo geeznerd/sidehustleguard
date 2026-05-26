@@ -552,6 +552,59 @@
     border-color: var(--apricot);
     background: linear-gradient(135deg, var(--apricot-12) 0%, var(--paper) 60%);
   }
+
+  /* "Dark" tool cards — for calculators with the dark Robinhood-vibe
+   * treatment (crypto, stock). Indigo gradient + satin sheen highlight
+   * the inside-the-card content but signal "this one feels different." */
+  .guide-card--dark {
+    background: linear-gradient(135deg, #2d3068 0%, #1f2150 55%, #16183a 100%);
+    border-color: rgba(232, 224, 200, 0.10);
+    color: var(--paper);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .guide-card--dark::before {
+    /* Satin sheen — like light catching a metallic surface */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg,
+      rgba(232, 224, 200, 0) 30%,
+      rgba(232, 224, 200, 0.08) 48%,
+      rgba(232, 224, 200, 0.02) 52%,
+      rgba(232, 224, 200, 0) 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+    transition: transform var(--dur-default, .2s) var(--ease-default, ease);
+  }
+  .guide-card--dark > * { position: relative; z-index: 1; }
+  .guide-card--dark:hover {
+    border-color: var(--apricot);
+    background: linear-gradient(135deg, #353878 0%, #252862 55%, #1a1c44 100%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .guide-card--dark:hover::before { transform: translateX(8%); }
+  }
+  .guide-card--dark .guide-title { color: var(--paper); }
+  .guide-card--dark .guide-desc  { color: rgba(240, 236, 225, 0.62); }
+  .guide-card--dark .guide-arrow { color: var(--apricot); }
+  .guide-card--dark .guide-monogram {
+    background: rgba(232, 148, 100, 0.18);
+    color: var(--apricot);
+  }
+  .guide-card--dark .guide-card-eyebrow {
+    color: var(--apricot);
+  }
+  .guide-card--dark .guide-card-eyebrow::before {
+    background: var(--apricot);
+    box-shadow: 0 0 8px rgba(232, 148, 100, 0.6);
+  }
+  /* NEW tag still readable on dark */
+  .guide-card--dark .guide-tag.tag-new {
+    background: var(--apricot);
+    color: var(--indigo-darker, #16183a);
+  }
   .guide-card-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -1520,18 +1573,19 @@
           <p class="guide-desc">22-card swipe for VIPKid, Outschool, Preply, private instructors.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card guide-card--tool" href="/crypto-tax-calculator">
+        <a class="guide-card guide-card--tool guide-card--dark" href="/crypto-tax-calculator">
           <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">C</div>
             <div class="guide-title-row">
               <span class="guide-title">Crypto Tax Calculator</span>
+              <span class="guide-tag tag-new">NEW</span>
             </div>
           </div>
           <p class="guide-desc">Short-term + long-term gains, NIIT, state — plus a hold-to-long-term scenario.</p>
           <span class="guide-arrow">→</span>
         </a>
-        <a class="guide-card guide-card--tool" href="/stock-tax-calculator">
+        <a class="guide-card guide-card--tool guide-card--dark" href="/stock-tax-calculator">
           <span class="guide-card-eyebrow">Interactive tool</span>
           <div class="guide-card-head">
             <div class="guide-monogram" aria-hidden="true">S</div>
