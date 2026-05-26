@@ -473,9 +473,13 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
 }
 @keyframes profile-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+/* 2-col on row 1 (income + state), filing-status segmented full-width on row 2.
+ * Gives the 3-option segmented control room to breathe — single column with
+ * 3 selects looked uniform but a segmented control gets cramped at 1/3 width. */
 .profile-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
 }
+.profile-grid .field-filing { grid-column: 1 / -1; }
 
 /* Field label + .tool-input chrome (reuses the shared kit's pattern) */
 .profile .field-label,
@@ -836,14 +840,27 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
         </div>
       </div>
 
-      <div class="field">
+      <div class="field field-filing">
         <div class="field-label"><span class="l">Filing <em>status</em></span></div>
-        <div class="tool-input select no-prefix">
-          <select x-model="filingStatus">
-            <option value="single">Single</option>
-            <option value="mfj">Married filing jointly</option>
-            <option value="hoh">Head of household</option>
-          </select>
+        <!-- Segmented control matches the tax-guard / crypto-calc pattern.
+             Alpine: each button toggles .is-active + aria-checked based on
+             filingStatus state. Click handler updates the state. -->
+        <div class="tool-seg" role="radiogroup" aria-label="Filing status">
+          <button type="button" role="radio"
+                  :class="filingStatus === 'single' ? 'is-active' : ''"
+                  :aria-checked="filingStatus === 'single' ? 'true' : 'false'"
+                  @click="filingStatus = 'single'"
+                  class="tool-seg-opt">Single</button>
+          <button type="button" role="radio"
+                  :class="filingStatus === 'mfj' ? 'is-active' : ''"
+                  :aria-checked="filingStatus === 'mfj' ? 'true' : 'false'"
+                  @click="filingStatus = 'mfj'"
+                  class="tool-seg-opt">Married &mdash; jointly</button>
+          <button type="button" role="radio"
+                  :class="filingStatus === 'hoh' ? 'is-active' : ''"
+                  :aria-checked="filingStatus === 'hoh' ? 'true' : 'false'"
+                  @click="filingStatus = 'hoh'"
+                  class="tool-seg-opt">Head of household</button>
         </div>
       </div>
     </div>
