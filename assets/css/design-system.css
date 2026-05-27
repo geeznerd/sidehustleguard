@@ -1687,7 +1687,14 @@ nav .nav-link[aria-current="page"] {
 
 /* ===== NEWSLETTER WIDGET (Phase 7 — auto-hydrates into <footer>) =====
  * Self-contained signup card injected by /assets/js/newsletter-widget.js.
- * Sits at the TOP of every footer; posts to /api/subscribe (ConvertKit). */
+ * Sits at the TOP of every footer; posts to /api/subscribe (ConvertKit).
+ *
+ * Width-locked to 100% so it ALWAYS occupies a full row regardless of
+ * how the parent <footer> lays out its children. Some pages use a
+ * flex-row footer (logo + links horizontal); some use flex-column or
+ * bottom-bar grid. Without the width lock the widget got squeezed
+ * inline next to other footer content on the row-flex pages. */
+footer:has(.newsletter-widget) { flex-wrap: wrap; }
 .newsletter-widget {
   background: var(--paper);
   border: 1px solid var(--indigo-12);
@@ -1700,6 +1707,10 @@ nav .nav-link[aria-current="page"] {
   align-items: center;
   justify-content: space-between;
   text-align: left;
+  /* Force-fill the row regardless of footer layout type */
+  width: 100%;
+  flex: 1 1 100%;
+  box-sizing: border-box;
 }
 
 .newsletter-widget-text {
