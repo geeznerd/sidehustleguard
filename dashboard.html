@@ -902,11 +902,35 @@ input[type="text"].currency-field{font-variant-numeric:tabular-nums}
   background: var(--paper);
   box-shadow: 0 0 0 4px rgba(232, 148, 100, 0.10);
 }
-.tools-grid .tc-inputs select,
-.tools-grid .tc-inputs input[type="text"],
-.tools-grid .tc-inputs input[type="number"] {
+/* Money inputs sit inside .inp-wrap which provides the chrome — strip
+ * the native input styling so the wrapper's border + bg show through. */
+.tools-grid .tc-inputs .inp-wrap input[type="text"],
+.tools-grid .tc-inputs .inp-wrap input[type="number"] {
   background: transparent;
   border: 0;
+}
+/* Selects sit naked (no .inp-wrap) — give them matching chrome so they
+ * visibly read as interactive controls, not static labels. Apricot
+ * chevron + hover/focus states for the "click me" cue. */
+.tools-grid .tc-inputs select {
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' stroke='%23e89464' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  border: 1px solid var(--indigo-12);
+  border-radius: 12px;
+  padding-right: 36px;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+}
+.tools-grid .tc-inputs select:hover {
+  border-color: rgba(232, 148, 100, 0.45);
+  background-color: var(--paper);
+}
+.tools-grid .tc-inputs select:focus {
+  border-color: var(--apricot);
+  background-color: var(--paper);
+  box-shadow: 0 0 0 4px rgba(232, 148, 100, 0.10);
 }
 
 /* Mobile — preserve breathing room */
