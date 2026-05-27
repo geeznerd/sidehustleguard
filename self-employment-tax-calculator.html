@@ -577,13 +577,23 @@ function recalc(){
   const sePctOfNet = netSE > 0 ? Math.round((total / Math.max(1, netSE)) * 100) : 25;
   const setAside = Math.min(40, Math.max(20, sePctOfNet));
 
-  document.getElementById('r-total').textContent = fmt(total);
-  document.getElementById('r-pct').textContent   = effRate.toFixed(1) + '%';
-  document.getElementById('r-net').textContent   = '$' + fmt(kept);
-  document.getElementById('r-se').textContent    = fmt(seTax);
-  document.getElementById('r-fed').textContent   = fmt(fedTax);
-  document.getElementById('r-state').textContent = fmt(stateTax);
-  document.getElementById('r-setaside').textContent = setAside + '%';
+  // Count-up animation via CalcKit. Previous values stored on the
+  // recalc function itself so they persist across calls without a
+  // module-level state object. Crypto-calc-style tween between renders.
+  var p = recalc._prev || (recalc._prev = { total:0, pct:0, net:0, se:0, fed:0, state:0, setaside:0 });
+  var moneyFmt = function (n) { return fmt(n); };
+  var dollarFmt = function (n) { return '$' + fmt(n); };
+  var pctFmt = function (n) { return n.toFixed(1) + '%'; };
+  var intPctFmt = function (n) { return Math.round(n) + '%'; };
+  CalcKit.animateNumber(document.getElementById('r-total'),    p.total,    total,    700, { fmt: moneyFmt });
+  CalcKit.animateNumber(document.getElementById('r-pct'),      p.pct,      effRate,  500, { fmt: pctFmt });
+  CalcKit.animateNumber(document.getElementById('r-net'),      p.net,      kept,     500, { fmt: dollarFmt });
+  CalcKit.animateNumber(document.getElementById('r-se'),       p.se,       seTax,    400, { fmt: moneyFmt });
+  CalcKit.animateNumber(document.getElementById('r-fed'),      p.fed,      fedTax,   400, { fmt: moneyFmt });
+  CalcKit.animateNumber(document.getElementById('r-state'),    p.state,    stateTax, 400, { fmt: moneyFmt });
+  CalcKit.animateNumber(document.getElementById('r-setaside'), p.setaside, setAside, 400, { fmt: intPctFmt });
+  p.total = total; p.pct = effRate; p.net = kept; p.se = seTax;
+  p.fed = fedTax; p.state = stateTax; p.setaside = setAside;
 }
 recalc();
 
