@@ -232,6 +232,21 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:36p
       "shippingDestination": {
         "@type": "DefinedRegion",
         "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        }
       }
     }
   }
