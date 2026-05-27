@@ -55,6 +55,14 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .field{margin-bottom:18px}
 .field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
 .field-help{font-size:11px;color:var(--indigo-55);margin-top:4px;font-weight:300}
+.field-label-aside{font-size:11px;font-weight:400;color:var(--indigo-55);letter-spacing:0;text-transform:none}
+/* AGI field: dim when prior tax is empty (the field is meaningless without it) */
+.field.is-inert{opacity:.5;transition:opacity .25s ease}
+.field.is-inert .tool-input{cursor:not-allowed}
+/* AGI field: highlight when 110% rule kicks in */
+.field.is-active-rule .field-label-aside{color:var(--apricot);font-weight:600}
+.field.is-active-rule .tool-input{border-color:var(--apricot);box-shadow:0 0 0 3px rgba(232,148,100,.12)}
+.field-help.is-rule-on{color:var(--apricot-hover)}
 .input-money{position:relative}
 .input-money::before{content:'$';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--indigo-70);pointer-events:none}
 input[type="number"],select{width:100%;border:1px solid var(--indigo-08);border-radius:9px;padding:11px 13px 11px 26px;font-size:16px;font-family:inherit;color:var(--indigo);background:var(--cream);outline:none;transition:border .15s;appearance:none;-webkit-appearance:none}
@@ -323,10 +331,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" inputmode="decimal" id="prior-year-tax" min="0" placeholder="0" type="text" value="0"/></div>
 <div class="field-help">From last year's Form 1040 line 24. Used for safe harbor calculation.</div>
 </div>
-<div class="field">
-<label class="field-label" for="prior-year-agi">Last year's AGI (for safe harbor threshold)</label>
+<div class="field" id="agi-field-wrap">
+<label class="field-label" for="prior-year-agi">Last year's AGI <span class="field-label-aside" id="agi-label-aside">— only matters if &gt; $150k</span></label>
 <div class="tool-input"><span class="prefix" aria-hidden="true">$</span><input autocomplete="off" inputmode="decimal" id="prior-year-agi" min="0" placeholder="0" type="text" value="0"/></div>
-<div class="field-help">From last year's Form 1040 line 11. If over $150k, safe harbor is 110% of prior year tax.</div>
+<div class="field-help" id="agi-field-help">From last year's Form 1040 line 11. If your AGI was over $150,000, the IRS requires safe harbor of <strong>110%</strong> of last year's tax instead of 100%. Has no effect below that threshold.</div>
 </div>
 </div>
 <div class="results-card" id="results">
@@ -560,19 +568,39 @@ function compute(){
   prevQ.se = seTax; prevQ.fed = fedTax; prevQ.ded = seDeduction; prevQ.total = totalTax; prevQ.perQ = perQ;
 
   // Safe harbor
+  var agiField = document.getElementById('agi-field-wrap');
+  var agiAside = document.getElementById('agi-label-aside');
+  var agiHelp  = document.getElementById('agi-field-help');
   if(priorTax>0){
+    // Prior tax filled → AGI field is meaningful; un-dim it
+    if (agiField) agiField.classList.remove('is-inert');
     const shMultiplier = priorAGI>150000 ? 1.10 : 1.00;
     const safeHarborAnnual = priorTax * shMultiplier;
     const safeHarborQ = safeHarborAnnual / 4;
-    const recommended = Math.min(perQ, safeHarborQ);
     document.getElementById('safe-box').style.display='block';
-    const pct = priorAGI>150000?'110%':'100%';
+    const ruleOn = priorAGI>150000;
+    const pct = ruleOn?'110%':'100%';
+    // Highlight AGI field when the 110% rule is actively used
+    if (agiField) agiField.classList.toggle('is-active-rule', ruleOn);
+    if (agiHelp)  agiHelp.classList.toggle('is-rule-on', ruleOn);
+    if (agiAside) {
+      agiAside.textContent = ruleOn
+        ? '— 110% rule active'
+        : '— only matters if > $150k';
+    }
     document.getElementById('safe-text').innerHTML =
-      'Safe harbor payment: <strong>'+fmt(safeHarborQ)+'/quarter</strong> ('+pct+' of last year\'s $'+Math.round(priorTax).toLocaleString()+' tax). '+
+      'Safe harbor payment: <strong>'+fmt(safeHarborQ)+'/quarter</strong> ('+pct+' of last year\'s $'+Math.round(priorTax).toLocaleString()+' tax'+(ruleOn?' — AGI over $150k triggers the 110% rule':'')+'). '+
       (safeHarborQ<perQ
         ? 'Paying the safe harbor amount protects you from underpayment penalties even if your actual tax is higher.'
         : 'Your estimated payment already meets or exceeds the safe harbor threshold.');
   } else {
+    // No prior tax → AGI is meaningless; dim the field
+    if (agiField) {
+      agiField.classList.add('is-inert');
+      agiField.classList.remove('is-active-rule');
+    }
+    if (agiHelp) agiHelp.classList.remove('is-rule-on');
+    if (agiAside) agiAside.textContent = '— enter last year\'s tax first';
     document.getElementById('safe-box').style.display='none';
   }
 }
