@@ -553,8 +553,16 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     var total = rows.reduce(function (s, r) { return s + r.amount; }, 0);
     var count = rows.filter(function (r) { return r.willIssue; }).length;
 
-    document.getElementById('r-total').textContent = fmt(total);
-    document.getElementById('r-count').textContent = count;
+    // Count-up animation via CalcKit (crypto-calc-style tween)
+    var prev = window.__1099kPrev || (window.__1099kPrev = { total: 0, count: 0 });
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-total'), prev.total, total, 600, { fmt: fmt });
+      CalcKit.animateNumber(document.getElementById('r-count'), prev.count, count, 400, { fmt: function (n) { return Math.round(n); } });
+    } else {
+      document.getElementById('r-total').textContent = fmt(total);
+      document.getElementById('r-count').textContent = count;
+    }
+    prev.total = total; prev.count = count;
 
     var headline = document.getElementById('r-headline');
     var headlineSub = document.getElementById('r-headline-sub');

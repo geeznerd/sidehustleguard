@@ -536,13 +536,28 @@ function compute(){
   const totalTax = seTax + fedTax;
   const perQ = totalTax / 4;
 
-  document.getElementById('res-se').textContent = fmt(seTax);
-  document.getElementById('res-fed').textContent = fmt(fedTax);
-  document.getElementById('res-se-ded').textContent = '-'+fmt(seDeduction);
-  document.getElementById('res-total').textContent = fmt(totalTax);
-  document.getElementById('res-per-q').textContent = fmt(perQ)+' per quarter recommended';
-
-  ['q1-amt','q2-amt','q3-amt','q4-amt'].forEach(id=>document.getElementById(id).textContent=fmt(perQ));
+  // Count-up animation via CalcKit (crypto-calc-style tween)
+  var prevQ = window.__qtcPrev || (window.__qtcPrev = { se:0, fed:0, ded:0, total:0, perQ:0 });
+  var perQFmt = function (n) { return fmt(n) + ' per quarter recommended'; };
+  var negFmt = function (n) { return '-' + fmt(n); };
+  if (window.CalcKit) {
+    CalcKit.animateNumber(document.getElementById('res-se'),     prevQ.se,    seTax,        500, { fmt: fmt });
+    CalcKit.animateNumber(document.getElementById('res-fed'),    prevQ.fed,   fedTax,       500, { fmt: fmt });
+    CalcKit.animateNumber(document.getElementById('res-se-ded'), prevQ.ded,   seDeduction,  400, { fmt: negFmt });
+    CalcKit.animateNumber(document.getElementById('res-total'),  prevQ.total, totalTax,     700, { fmt: fmt });
+    CalcKit.animateNumber(document.getElementById('res-per-q'),  prevQ.perQ,  perQ,         600, { fmt: perQFmt });
+    ['q1-amt','q2-amt','q3-amt','q4-amt'].forEach(function(id){
+      CalcKit.animateNumber(document.getElementById(id), prevQ.perQ, perQ, 500, { fmt: fmt });
+    });
+  } else {
+    document.getElementById('res-se').textContent = fmt(seTax);
+    document.getElementById('res-fed').textContent = fmt(fedTax);
+    document.getElementById('res-se-ded').textContent = '-'+fmt(seDeduction);
+    document.getElementById('res-total').textContent = fmt(totalTax);
+    document.getElementById('res-per-q').textContent = fmt(perQ)+' per quarter recommended';
+    ['q1-amt','q2-amt','q3-amt','q4-amt'].forEach(id=>document.getElementById(id).textContent=fmt(perQ));
+  }
+  prevQ.se = seTax; prevQ.fed = fedTax; prevQ.ded = seDeduction; prevQ.total = totalTax; prevQ.perQ = perQ;
 
   // Safe harbor
   if(priorTax>0){

@@ -654,35 +654,65 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       codeEl.textContent = '$0';
       ctxEl.textContent = "No side hustle income → no extra withholding needed. Your employer's default W-4 covers you.";
     } else {
-      perPaycheckEl.innerHTML = '<em>' + fmtMoney(perPaycheck) + '</em>';
-      codeEl.textContent = fmtMoney(perPaycheck);
+      // Count-up animation via CalcKit (crypto-calc-style tween)
+      var prevW = window.__w4Prev || (window.__w4Prev = { pp:0, fed:0, ss:0, med:0, addmed:0, state:0, total:0 });
+      var richMoneyFmt = function (n) { return '<em>' + fmtMoney(n) + '</em>'; };
+      if (window.CalcKit) {
+        CalcKit.animateNumber(perPaycheckEl, prevW.pp, perPaycheck, 700, { isHTML: true, fmt: richMoneyFmt });
+        CalcKit.animateNumber(codeEl,        prevW.pp, perPaycheck, 700, { fmt: fmtMoney });
+      } else {
+        perPaycheckEl.innerHTML = '<em>' + fmtMoney(perPaycheck) + '</em>';
+        codeEl.textContent = fmtMoney(perPaycheck);
+      }
+      prevW.pp = perPaycheck;
       var freqLabel = ({26:'biweekly',24:'semimonthly',52:'weekly',12:'monthly'})[freq] || 'pay period';
       var ssNote = (w2 >= SS_WAGE_BASE_2026) ? ' (Social Security portion zeroed out — you\'re past the wage base via your W-2)' : '';
       ctxEl.innerHTML = 'Adds <strong>' + fmtMoney(totalExtraTax) + '</strong> total over the year (' + freqLabel + '). Covers your ' + fmtMoney(se) + ' of side hustle profit at your ' + Math.round(marg * 100) + '% marginal bracket' + ssNote + '.';
     }
 
     // ────────────── Breakdown ──────────────
-    document.getElementById('r-fedtax').textContent = fmtMoney(addlFedTax);
+    var prevW = window.__w4Prev || (window.__w4Prev = { pp:0, fed:0, ss:0, med:0, addmed:0, state:0, total:0 });
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-fedtax'), prevW.fed, addlFedTax, 500, { fmt: fmtMoney });
+    } else {
+      document.getElementById('r-fedtax').textContent = fmtMoney(addlFedTax);
+    }
     document.getElementById('r-fedtax-meta').textContent = 'At your ' + Math.round(marg * 100) + '% marginal rate';
-    document.getElementById('r-sstax').textContent = fmtMoney(ssTax);
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-sstax'), prevW.ss, ssTax, 500, { fmt: fmtMoney });
+    } else {
+      document.getElementById('r-sstax').textContent = fmtMoney(ssTax);
+    }
     document.getElementById('r-sstax-meta').textContent = (w2 >= SS_WAGE_BASE_2026)
       ? 'W-2 already exceeds 2026 wage base ($176,100) — no SS owed on SE'
       : (ssRoomLeft < seBase
           ? 'Only ' + fmtMoney(ssRoomLeft) + ' of SE wages fits below the wage base'
           : 'Full SE base subject to SS');
-    document.getElementById('r-medtax').textContent = fmtMoney(medicareTax);
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-medtax'), prevW.med, medicareTax, 500, { fmt: fmtMoney });
+    } else {
+      document.getElementById('r-medtax').textContent = fmtMoney(medicareTax);
+    }
 
     // Additional Medicare row (conditional)
     var addlMedRow = document.getElementById('r-addlmed-row');
     if (addlMedTax > 0) {
       addlMedRow.style.display = '';
-      document.getElementById('r-addlmed').textContent = fmtMoney(addlMedTax);
+      if (window.CalcKit) {
+        CalcKit.animateNumber(document.getElementById('r-addlmed'), prevW.addmed, addlMedTax, 500, { fmt: fmtMoney });
+      } else {
+        document.getElementById('r-addlmed').textContent = fmtMoney(addlMedTax);
+      }
       document.getElementById('r-addlmed-meta').textContent = 'Combined income above $' + addlMedThreshold.toLocaleString('en-US') + ' (' + status.toUpperCase() + ')';
     } else {
       addlMedRow.style.display = 'none';
     }
 
-    document.getElementById('r-state').textContent = fmtMoney(stateBuffer);
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-state'), prevW.state, stateBuffer, 500, { fmt: fmtMoney });
+    } else {
+      document.getElementById('r-state').textContent = fmtMoney(stateBuffer);
+    }
     var stateRow = document.getElementById('r-state-row');
     var stateMeta = document.getElementById('r-state-meta');
     if (stateCode) {
@@ -695,7 +725,13 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       stateRow.style.display = 'none';
     }
 
-    document.getElementById('r-total').textContent = fmtMoney(totalExtraTax);
+    if (window.CalcKit) {
+      CalcKit.animateNumber(document.getElementById('r-total'), prevW.total, totalExtraTax, 700, { fmt: fmtMoney });
+    } else {
+      document.getElementById('r-total').textContent = fmtMoney(totalExtraTax);
+    }
+    prevW.fed = addlFedTax; prevW.ss = ssTax; prevW.med = medicareTax;
+    prevW.addmed = addlMedTax; prevW.state = stateBuffer; prevW.total = totalExtraTax;
 
     // ────────────── FICA wage-base warning (conditional) ──────────────
     var ficaWarn = document.getElementById('r-fica-warn');

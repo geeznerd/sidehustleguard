@@ -679,23 +679,44 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     var stateAmt = calcState(amount, days, stateCode, currentScenario);
     var total = amount + result.ftf + result.ftp + result.interest + stateAmt;
 
+    // Count-up animation via CalcKit (crypto-calc-style tween)
+    var prevP = window.__tpePrev || (window.__tpePrev = { headline:0, tax:0, ftf:0, ftp:0, int:0, state:0, total:0 });
+    var richFmt = function (n) { return '<em>' + fmt(n) + '</em>'; };
+
     // Headline
     if (amount <= 0) {
       $('r-headline').innerHTML = '$0';
       $('r-headline-sub').textContent = 'Enter an amount + dates to see the breakdown.';
+      prevP.headline = 0;
     } else {
-      $('r-headline').innerHTML = '<em>' + fmt(total) + '</em>';
+      if (window.CalcKit) {
+        CalcKit.animateNumber($('r-headline'), prevP.headline, total, 700, { isHTML: true, fmt: richFmt });
+      } else {
+        $('r-headline').innerHTML = '<em>' + fmt(total) + '</em>';
+      }
       var monthsLate = Math.floor(days / 30);
       $('r-headline-sub').textContent = 'About ' + (monthsLate === 1 ? '1 month' : monthsLate + ' months') + ' of penalty + interest on top of your original ' + fmt(amount) + '.';
+      prevP.headline = total;
     }
 
     // Breakdown
-    $('amt-tax').textContent   = fmt(amount);
-    $('amt-ftf').textContent   = fmt(result.ftf);
-    $('amt-ftp').textContent   = fmt(result.ftp);
-    $('amt-int').textContent   = fmt(result.interest);
-    $('amt-state').textContent = fmt(stateAmt);
-    $('amt-total').textContent = fmt(total);
+    if (window.CalcKit) {
+      CalcKit.animateNumber($('amt-tax'),   prevP.tax,   amount,         500, { fmt: fmt });
+      CalcKit.animateNumber($('amt-ftf'),   prevP.ftf,   result.ftf,     500, { fmt: fmt });
+      CalcKit.animateNumber($('amt-ftp'),   prevP.ftp,   result.ftp,     500, { fmt: fmt });
+      CalcKit.animateNumber($('amt-int'),   prevP.int,   result.interest,500, { fmt: fmt });
+      CalcKit.animateNumber($('amt-state'), prevP.state, stateAmt,       500, { fmt: fmt });
+      CalcKit.animateNumber($('amt-total'), prevP.total, total,          600, { fmt: fmt });
+    } else {
+      $('amt-tax').textContent   = fmt(amount);
+      $('amt-ftf').textContent   = fmt(result.ftf);
+      $('amt-ftp').textContent   = fmt(result.ftp);
+      $('amt-int').textContent   = fmt(result.interest);
+      $('amt-state').textContent = fmt(stateAmt);
+      $('amt-total').textContent = fmt(total);
+    }
+    prevP.tax = amount; prevP.ftf = result.ftf; prevP.ftp = result.ftp;
+    prevP.int = result.interest; prevP.state = stateAmt; prevP.total = total;
 
     // Meta lines
     $('meta-ftf').textContent = FTF_META_TEXT[currentScenario];

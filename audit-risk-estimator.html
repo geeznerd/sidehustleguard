@@ -820,7 +820,14 @@ function calculateAndShowResults() {
   // Update the Fraunces italic risk numeral (replaces the old shield SVG)
   const numeral = document.getElementById('risk-numeral');
   if (numeral) {
-    numeral.textContent = score;
+    // Count-up animation via CalcKit (crypto-calc-style tween)
+    var prevScore = (window.__auditPrevScore != null) ? window.__auditPrevScore : 0;
+    if (window.CalcKit) {
+      CalcKit.animateNumber(numeral, prevScore, score, 600, { fmt: function (n) { return Math.round(n); } });
+    } else {
+      numeral.textContent = score;
+    }
+    window.__auditPrevScore = score;
     numeral.classList.remove('is-warn', 'is-risk');
     if (score > 9) numeral.classList.add('is-risk');
     else if (score > 4) numeral.classList.add('is-warn');

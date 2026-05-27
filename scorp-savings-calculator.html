@@ -627,33 +627,50 @@ function recalc() {
   const salaryFraction = profit > 0 ? Math.min(1, Math.max(0.01, salary / profit)) : 0.5;
   const breakeven = calcBreakeven(salaryFraction, caOn, payroll, acct);
 
+  // Count-up animation via CalcKit (crypto-calc-style tween)
+  var prevS = window.__scorpPrev || (window.__scorpPrev = {
+    spSE:0, spFed:0, spTot:0, scFica:0, scFed:0, scOH:0, scPay:0, scAcct:0, scTot:0,
+    center:0, seSav:0, oh:0, netAdv:0, breakeven:0
+  });
+  var beYrFmt = function (n) { return fmt(n) + '/yr'; };
+  var anim = function (id, prev, val, ms, opts) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (window.CalcKit) CalcKit.animateNumber(el, prev, val, ms, opts || { fmt: fmt });
+    else el.textContent = (opts && opts.fmt) ? opts.fmt(val) : fmt(val);
+  };
+
   // --- Left card (Sole Prop) ---
-  document.getElementById('sp-se-tax').textContent = fmt(sp.seTax);
-  document.getElementById('sp-fed-tax').textContent = fmt(sp.fedTax);
-  document.getElementById('sp-total').textContent = fmt(sp.total);
+  anim('sp-se-tax',  prevS.spSE,  sp.seTax,  500);
+  anim('sp-fed-tax', prevS.spFed, sp.fedTax, 500);
+  anim('sp-total',   prevS.spTot, sp.total,  700);
 
   // --- Right card (S-Corp) ---
-  document.getElementById('sc-fica').textContent = fmt(sc.totalFICA);
-  document.getElementById('sc-fed-tax').textContent = fmt(sc.fedTax);
-  document.getElementById('sc-overhead-total').textContent = fmt(sc.overhead);
+  anim('sc-fica',           prevS.scFica, sc.totalFICA, 500);
+  anim('sc-fed-tax',        prevS.scFed,  sc.fedTax,    500);
+  anim('sc-overhead-total', prevS.scOH,   sc.overhead,  500);
   document.getElementById('sc-ca-label').textContent = caOn ? 'CA franchise tax' : 'CA franchise tax';
   document.getElementById('sc-ca-amt').textContent = caOn ? '$800' : '$0';
-  document.getElementById('sc-payroll-amt').textContent = fmt(payroll);
-  document.getElementById('sc-acct-amt').textContent = fmt(acct);
-  document.getElementById('sc-total').textContent = fmt(sc.total);
+  anim('sc-payroll-amt', prevS.scPay,  payroll, 400);
+  anim('sc-acct-amt',    prevS.scAcct, acct,    400);
+  anim('sc-total',       prevS.scTot,  sc.total,700);
 
   // --- Center card ---
   const centerSavingsEl = document.getElementById('center-savings');
   const centerLabelEl   = document.getElementById('center-label');
   const centerBreakEl   = document.getElementById('center-breakeven');
 
+  var centerVal = Math.abs(annualSavings);
+  if (window.CalcKit) {
+    CalcKit.animateNumber(centerSavingsEl, prevS.center, centerVal, 800, { fmt: fmt });
+  } else {
+    centerSavingsEl.textContent = fmt(centerVal);
+  }
   if (annualSavings > 0) {
-    centerSavingsEl.textContent = fmt(annualSavings);
     centerSavingsEl.className = 'savings-big';
     centerLabelEl.textContent = 'saved per year with S-Corp';
     centerBreakEl.innerHTML = '<strong>S-Corp pays off at ~' + fmt(breakeven) + ' profit</strong>';
   } else {
-    centerSavingsEl.textContent = fmt(Math.abs(annualSavings));
     centerSavingsEl.className = 'savings-big negative';
     centerLabelEl.innerHTML = '<span class="not-worth-it">S-Corp not worth it yet</span>Sole Prop saves more at this income level';
     centerBreakEl.innerHTML = '<strong>S-Corp worth it above ~' + fmt(breakeven) + ' profit</strong>';
@@ -662,9 +679,13 @@ function recalc() {
   // --- Key stats ---
   const netAdv = document.getElementById('s-net-adv');
   const netAdvSub = document.getElementById('s-net-adv-sub');
-  document.getElementById('s-se-savings').textContent = fmt(Math.max(0, seSavings));
-  document.getElementById('s-overhead').textContent   = fmt(sc.overhead);
-  netAdv.textContent = fmt(annualSavings);
+  anim('s-se-savings', prevS.seSav, Math.max(0, seSavings), 500);
+  anim('s-overhead',   prevS.oh,    sc.overhead,            500);
+  if (window.CalcKit) {
+    CalcKit.animateNumber(netAdv, prevS.netAdv, annualSavings, 600, { fmt: fmt });
+  } else {
+    netAdv.textContent = fmt(annualSavings);
+  }
   if (annualSavings > 0) {
     netAdv.className = 'stat-chip-val green';
     netAdvSub.textContent = 'S-Corp wins';
@@ -672,7 +693,14 @@ function recalc() {
     netAdv.className = 'stat-chip-val red';
     netAdvSub.textContent = 'Sole Prop wins';
   }
-  document.getElementById('s-breakeven-stat').textContent = fmt(breakeven) + '/yr';
+  anim('s-breakeven-stat', prevS.breakeven, breakeven, 600, { fmt: beYrFmt });
+
+  // Save current values for next tick's tween
+  prevS.spSE = sp.seTax; prevS.spFed = sp.fedTax; prevS.spTot = sp.total;
+  prevS.scFica = sc.totalFICA; prevS.scFed = sc.fedTax; prevS.scOH = sc.overhead;
+  prevS.scPay = payroll; prevS.scAcct = acct; prevS.scTot = sc.total;
+  prevS.center = centerVal; prevS.seSav = Math.max(0, seSavings); prevS.oh = sc.overhead;
+  prevS.netAdv = annualSavings; prevS.breakeven = breakeven;
 
   // --- Breakeven scale ---
   // Scale: $20k to $150k, positions map linearly
