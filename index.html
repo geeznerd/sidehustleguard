@@ -876,16 +876,20 @@
 
     /* "Guides" link → soft apricot-tinted pill (Option B) so it reads
      * as a tappable secondary action, while still ranking below the
-     * primary apricot-filled CTA on the right. */
+     * primary apricot-filled CTA on the right.
+     * Padding tuned so the pill matches the CTA pill height (40px),
+     * giving the two right-side pills a unified row rhythm. */
     nav .ds-nav-link.always-visible {
       color: var(--apricot);
       font-weight: 600;
       background: rgba(232, 148, 100, 0.12);
       border: 1px solid rgba(232, 148, 100, 0.22);
-      padding: 6px 12px;
+      padding: 11px 14px;
       border-radius: 100px;
       letter-spacing: -0.005em;
       line-height: 1;
+      display: inline-flex;
+      align-items: center;
     }
     /* Tight gap between nav items at ≤700px so the right cluster
      * doesn't fight the wordmark for horizontal space. */
@@ -922,15 +926,15 @@
     nav .btn-cta .ds-cta-arc {
       width: 30px; height: 30px; display: block; flex-shrink: 0;
     }
-    /* The checkmark circle (right) */
+    /* The checkmark circle (right) — indigo bg, apricot check stroke */
     nav .btn-cta .ds-cta-icon {
       width: 26px; height: 26px; border-radius: 50%;
-      background: var(--paper);
+      background: var(--indigo);
       display: inline-flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      box-shadow: inset 0 0 0 1px rgba(45, 48, 104, 0.10);
     }
     nav .btn-cta .ds-cta-icon svg { display: block; }
+    nav .btn-cta .ds-cta-icon svg path { stroke: var(--apricot); }
   }
 
   /* ═══ FREE LIBRARY SECTION — dark "crypto-calc" treatment ═══
@@ -1239,7 +1243,7 @@
           </svg>
           <span class="ds-cta-icon" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="12" height="12">
-              <path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2d3068" stroke-width="2"
+              <path d="M3 8.5 L6.5 12 L13 4.5" stroke="#e89464" stroke-width="2.2"
                     fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
