@@ -922,9 +922,20 @@
       scroll-padding-left: 20px;
       -webkit-overflow-scrolling: touch;
       gap: 14px;
-      /* Bleed past the section's 20px padding so cards reach edge-to-edge */
-      padding: 4px 20px 10px;
-      margin: 0 -20px;
+      /* Stay inside the section's natural padding — previous bleed
+       * (margin: 0 -20px) caused the previous card to peek awkwardly
+       * on the left when scrolled past card 1, showing a fragmented
+       * sliver of text. Without bleed, prev card is fully off-screen. */
+      padding: 4px 0 10px;
+      margin: 0;
+      /* Each card slightly wider since we lost the bleed (90% instead
+       * of 84%) — keeps a deliberate right-side peek without the
+       * messy left peek. */
+      grid-auto-columns: 90%;
+      /* Snap-stop always so the user can only advance one card at a
+       * time, never landing in an awkward mid-scroll state. */
+      scroll-snap-stop: always;
+      scroll-padding-left: 0;
       /* Hide the scrollbar — peek + snap is the affordance */
       scrollbar-width: none;
       -ms-overflow-style: none;
