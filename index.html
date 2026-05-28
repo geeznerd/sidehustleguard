@@ -896,6 +896,55 @@
     nav .ds-nav-right { gap: 10px; }
   }
 
+  /* ═══ MOBILE HORIZONTAL-SCROLL CARD ROWS ═══
+   * On phones, the 3 card-grid sections (How it works, What we check,
+   * Free Library) become horizontal swipe carousels with scroll-snap.
+   * Saves ~1,580px of vertical scroll vs the 1-col stack pattern.
+   * Each card takes ~85% of viewport width so the next card peeks past
+   * the right edge — natural "swipe me" affordance, no extra UI needed.
+   * Desktop layouts (3-col grids) are untouched. */
+  @media (max-width: 700px) {
+    .steps-grid,
+    .checks-grid,
+    .library-grid {
+      /* Override the stacked 1fr fallback that lives in the earlier media queries */
+      display: grid;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 84%;
+      overflow-x: auto;
+      overflow-y: visible; /* allow card hover shadows to bloom */
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 20px;
+      -webkit-overflow-scrolling: touch;
+      gap: 14px;
+
+      /* Bleed past the section's 20px padding so the first card starts
+       * flush with the section edge — but use scroll-padding-left so
+       * snap targets stay aligned to the 20px margin */
+      padding: 4px 20px 10px;
+      margin: 0 -20px;
+
+      /* Hide the scrollbar — the peek + snap is the affordance */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .steps-grid::-webkit-scrollbar,
+    .checks-grid::-webkit-scrollbar,
+    .library-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .steps-grid > *,
+    .checks-grid > *,
+    .library-grid > * {
+      scroll-snap-align: start;
+    }
+    /* Each card has its own min-height so the row is visually uniform */
+    .steps-grid > * { min-height: 220px; }
+    .checks-grid > * { min-height: 220px; }
+    .library-grid > * { min-height: 160px; }
+  }
+
   /* ═══ NAV CTA MOBILE VARIANT — "60s arc + ✓" ═══
    * On mobile (≤700px) the nav CTA swaps its text "Check my hustle →"
    * for an icon-only pill: 60s progress arc (cream stroke on apricot
