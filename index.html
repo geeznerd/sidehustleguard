@@ -899,7 +899,6 @@
   /* ═══ MOBILE HORIZONTAL-SCROLL CARD ROWS ═══
    * On phones, the 3 card-grid sections (How it works, What we check,
    * Free Library) become horizontal swipe carousels with scroll-snap.
-   * Saves ~1,580px of vertical scroll vs the 1-col stack pattern.
    * Each card takes ~85% of viewport width so the next card peeks past
    * the right edge — natural "swipe me" affordance, no extra UI needed.
    * Desktop layouts (3-col grids) are untouched. */
@@ -912,20 +911,21 @@
       grid-template-columns: none;
       grid-auto-flow: column;
       grid-auto-columns: 84%;
+      /* Critical: align-items: start so cards size to their CONTENT,
+       * not to the implicit row height. Without this the grid stretched
+       * cards to the tallest implicit row (which could be huge) and the
+       * margin-top:auto arrows pushed to the bottom of the ballooned card. */
+      align-items: start;
       overflow-x: auto;
-      overflow-y: visible; /* allow card hover shadows to bloom */
+      overflow-y: visible;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 20px;
       -webkit-overflow-scrolling: touch;
       gap: 14px;
-
-      /* Bleed past the section's 20px padding so the first card starts
-       * flush with the section edge — but use scroll-padding-left so
-       * snap targets stay aligned to the 20px margin */
+      /* Bleed past the section's 20px padding so cards reach edge-to-edge */
       padding: 4px 20px 10px;
       margin: 0 -20px;
-
-      /* Hide the scrollbar — the peek + snap is the affordance */
+      /* Hide the scrollbar — peek + snap is the affordance */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -939,10 +939,18 @@
     .library-grid > * {
       scroll-snap-align: start;
     }
-    /* Each card has its own min-height so the row is visually uniform */
-    .steps-grid > * { min-height: 220px; }
-    .checks-grid > * { min-height: 220px; }
-    .library-grid > * { min-height: 160px; }
+    /* Uniform card heights so the carousel row looks tidy.
+     * Tuned to fit the longest title + 2-line desc + arrow row
+     * without leaving empty space at the bottom. */
+    .steps-grid    > * { height: 200px; min-height: 0; }
+    .checks-grid   > * { height: 230px; min-height: 0; }
+    .library-grid  > * { height: 175px; min-height: 0; }
+
+    /* On the library cards specifically, drop the margin-top:auto on
+     * the arrow so it follows the desc instead of pushing to the bottom
+     * of a stretched card. With a tighter fixed height, this looks
+     * cleaner. */
+    .library-grid .library-card-arrow { margin-top: 0; }
   }
 
   /* ═══ NAV CTA MOBILE VARIANT — "60s arc + ✓" ═══
