@@ -2109,42 +2109,67 @@
 </a>
 
 <script>
-/* Reveal the sticky mobile Check pill after the user scrolls past the hero,
- * and hide it again when they reach the footer (no point doubling the CTA
- * when the CTA band + footer are in view). Mobile-only — CSS already hides
- * the element ≥701px so this code is a no-op on desktop. */
+/* Reveal the sticky mobile Check pill after the user scrolls past the
+ * hero, hide it again when they reach the footer. Mobile-only — CSS
+ * already hides the element ≥701px so this code is a no-op on desktop.
+ *
+ * Simple scroll listener (instead of IntersectionObserver) because IO's
+ * threshold/rootMargin semantics behave differently across mobile
+ * browsers and the sticky behavior is sensitive to that. Plain
+ * scrollY math is rock-solid everywhere. */
 (function () {
   var pill = document.querySelector('.check-pill-mobile');
   if (!pill) return;
   var hero = document.querySelector('.hero');
   var footer = document.querySelector('footer') || document.querySelector('.bottom-bar');
-  if (!hero) return;
 
-  // Below this scroll point: hide. Above: show.
-  function show()  { pill.classList.add('is-visible'); }
-  function hide()  { pill.classList.remove('is-visible'); }
+  function update() {
+    var y = window.scrollY || window.pageYOffset || 0;
+    var viewportH = window.innerHeight || 0;
 
-  // IntersectionObserver pair: track when hero leaves + footer enters
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.target === hero) {
-          // Hero visible → hide (the hero already has its own primary CTA)
-          if (e.isIntersecting) hide(); else show();
-        } else if (footer && e.target === footer) {
-          // Footer visible → hide
-          if (e.isIntersecting) hide();
-        }
-      });
-    }, { threshold: 0.05 });
-    io.observe(hero);
-    if (footer) io.observe(footer);
-  } else {
-    // Fallback: just show after 600px scroll
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 600) show(); else hide();
-    }, { passive: true });
+    // SHOW threshold: scrolled at least ~80% of viewport height
+    // (or past the hero's bottom edge if we can measure it)
+    var showAt = viewportH * 0.8;
+    if (hero) {
+      var heroRect = hero.getBoundingClientRect();
+      // heroRect.bottom is relative to viewport; once it's <= 80 (px from top
+      // of viewport) we consider the hero scrolled past.
+      if (heroRect.bottom > 80) {
+        pill.classList.remove('is-visible');
+        return;
+      }
+    } else if (y < showAt) {
+      pill.classList.remove('is-visible');
+      return;
+    }
+
+    // HIDE again when the footer is in view (no point doubling CTA there)
+    if (footer) {
+      var footerRect = footer.getBoundingClientRect();
+      if (footerRect.top < viewportH - 60) {
+        pill.classList.remove('is-visible');
+        return;
+      }
+    }
+
+    pill.classList.add('is-visible');
   }
+
+  // rAF-throttled scroll
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  // Initial state (in case page loads scrolled, e.g. via #anchor)
+  update();
 })();
 </script>
 </body>
