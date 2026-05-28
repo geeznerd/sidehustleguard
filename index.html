@@ -958,18 +958,41 @@
     .library-grid > * {
       scroll-snap-align: start;
     }
-    /* Uniform card heights so the carousel row looks tidy.
-     * Sized to the longest content per section (step 04 in "How it
-     * works" is 5 lines on mobile, so steps need the most height). */
-    .steps-grid    > * { height: 300px; min-height: 0; }
-    .checks-grid   > * { height: 230px; min-height: 0; }
+    /* Uniform card heights per carousel — sized to the longest
+     * content in each section so nothing clips, no empty space. */
+    .steps-grid    > * { height: 270px; min-height: 0; }
+    .checks-grid   > * { height: 320px; min-height: 0; }
     .library-grid  > * { height: 175px; min-height: 0; }
-    /* Tighten the step-card internal padding on mobile so the longer
-     * desc has room without making the card feel cramped */
-    .steps-grid .step-card { padding: 22px 22px 24px; }
-    .steps-grid .step-num  { font-size: 38px; margin-bottom: 12px; }
-    .steps-grid .step-title { font-size: 20px; margin-bottom: 6px; }
-    .steps-grid .step-desc  { font-size: 13.5px; line-height: 1.55; }
+
+    /* Compact internal sizing for the cards in carousel mode —
+     * smaller padding, tighter type so longer descs fit comfortably
+     * without ballooning the card or leaving empty space. */
+    .steps-grid .step-card,
+    .checks-grid .check-card {
+      padding: 18px 18px 20px;
+    }
+    .steps-grid .step-num,
+    .checks-grid .step-num {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+    .steps-grid .step-title,
+    .checks-grid .step-title {
+      font-size: 19px;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .steps-grid .step-desc,
+    .checks-grid .step-desc {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    /* Check cards also have a "→ link" at the bottom — let it sit
+     * close to the desc, not pushed away by the card's flex layout */
+    .checks-grid .check-link {
+      font-size: 13px;
+      margin-top: 8px;
+    }
 
     /* On the library cards specifically, drop the margin-top:auto on
      * the arrow so it follows the desc instead of pushing to the bottom
