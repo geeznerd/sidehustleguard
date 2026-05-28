@@ -867,6 +867,13 @@
     vertical-align: middle;
     transform: translateY(-1px);
   }
+  /* On mobile the nav already collapses to logo + Guides + CTA;
+   * the depth-signal tag adds crowding without adding info, since
+   * tapping "Guides" is the same action with or without it. Hide
+   * the pill ≤700px to give the CTA breathing room. */
+  @media (max-width: 700px) {
+    .ds-nav-link-tag { display: none; }
+  }
 
   /* ═══ FREE LIBRARY SECTION — dark "crypto-calc" treatment ═══
    * Sits between "What we check" and "Pricing". Dark indigo BG with
