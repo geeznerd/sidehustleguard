@@ -873,6 +873,25 @@
    * the pill ≤700px to give the CTA breathing room. */
   @media (max-width: 700px) {
     .ds-nav-link-tag { display: none; }
+
+    /* Shrink the CTA pill at ≤700px (not just ≤420px) — the default
+     * desktop sizing dominated the nav on iPhones and made "Guides"
+     * feel lost. Medium-compressed: smaller font, tighter padding. */
+    nav .btn-cta {
+      font-size: 12.5px !important;
+      padding: 8px 14px !important;
+      gap: 8px !important;
+    }
+    /* Bump "Guides" link to full indigo (was indigo-70) so it has
+     * real contrast against cream — otherwise it visually disappears
+     * next to the apricot CTA pill. */
+    nav .ds-nav-link.always-visible {
+      color: var(--indigo);
+      font-weight: 500;
+    }
+    /* Tight gap between nav items at ≤700px so the right cluster
+     * doesn't fight the wordmark for horizontal space. */
+    nav .ds-nav-right { gap: 12px; }
   }
 
   /* ═══ FREE LIBRARY SECTION — dark "crypto-calc" treatment ═══
