@@ -906,11 +906,14 @@
     .steps-grid,
     .checks-grid,
     .library-grid {
-      /* Override the stacked 1fr fallback that lives in the earlier media queries */
-      display: grid;
-      grid-template-columns: none;
-      grid-auto-flow: column;
-      grid-auto-columns: 84%;
+      /* !important here because LATER source-order rules at
+       * @media (max-width: 580px) set grid-template-columns: 1fr which
+       * would otherwise override and break the carousel layout — card 1
+       * would be full-width and card 2+ would peek messily on the left */
+      display: grid !important;
+      grid-template-columns: none !important;
+      grid-auto-flow: column !important;
+      grid-auto-columns: 90%;
       /* Critical: align-items: start so cards size to their CONTENT,
        * not to the implicit row height. Without this the grid stretched
        * cards to the tallest implicit row (which could be huge) and the
