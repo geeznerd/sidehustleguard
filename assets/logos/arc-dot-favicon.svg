@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <!-- Cream background — keeps the mark visible on Google dark-mode SERPs -->
+  <rect width="48" height="48" rx="6" fill="#f0ece1"/>
+  <!-- Outer arc — indigo dome (centered within viewBox) -->
+  <path d="M8 33 Q24 8 40 33" stroke="#2d3068" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+  <!-- Inner arc — apricot guard -->
+  <path d="M15 34 Q24 21 33 34" stroke="#e89464" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+  <!-- Anchor dot — indigo -->
+  <circle cx="24" cy="38" r="2.8" fill="#2d3068"/>
+</svg>
