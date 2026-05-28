@@ -1,89 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<title>SideHustleGuard — OG card (Direction E)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  width: 1200px; height: 630px; overflow: hidden;
-  background: #2d3068;
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  display: flex; align-items: stretch;
-}
-.left {
-  width: 56px;
-  background: #e89464;
-  flex-shrink: 0;
-}
-.main {
-  flex: 1;
-  padding: 64px 72px 64px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.top { display: flex; align-items: center; gap: 14px; }
-.shield svg { width: 38px; height: 44px; }
-.wordmark { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -.3px; }
-.wordmark span { color: #e89464; }
-.body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; }
-.headline {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 62px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: -.5px;
-  margin-bottom: 22px;
-}
-.headline em { color: #e89464; font-style: italic; }
-.sub {
-  font-size: 22px;
-  color: rgba(255,255,255,0.55);
-  font-weight: 300;
-  line-height: 1.5;
-}
-.pills {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.pill {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255,255,255,.7);
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 7px 16px;
-  border-radius: 100px;
-  letter-spacing: .02em;
-}
+  :root {
+    --indigo: #2d3068;
+    --indigo-darker: #16183a;
+    --indigo-deep: #1f2150;
+    --apricot: #e89464;
+    --apricot-soft: #f0a87f;
+    --cream: #f0ece1;
+    --paper: #fbf8ee;
+    --green: #7dd6a4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+  }
+  body {
+    width: 1200px; height: 630px;
+    display: block; overflow: hidden;
+  }
+
+  /* ───────── The OG card itself ───────── */
+  .og {
+    width: 1200px; height: 630px;
+    background: var(--indigo-darker);
+    color: var(--cream);
+    position: relative; overflow: hidden;
+  }
+
+  /* Topographic backdrop — apricot + green ellipse clusters */
+  .topo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Aurora gradient — adds warmth + depth */
+  .aurora {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 78% 18%, rgba(232,148,100,0.25), transparent 70%),
+      radial-gradient(50% 40% at 12% 86%, rgba(125,214,164,0.10), transparent 70%);
+  }
+
+  /* Brand lockup top-left */
+  .brand {
+    position: absolute; top: 56px; left: 72px;
+    display: flex; align-items: center; gap: 12px;
+    z-index: 3;
+  }
+  .brand-logo { width: 40px; height: 40px; }
+  .brand-text {
+    display: inline-flex; align-items: baseline;
+    line-height: 1; letter-spacing: -0.015em;
+  }
+  .brand-text .base {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 26px; color: var(--cream);
+  }
+  .brand-text .accent {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 26px; color: var(--apricot);
+    margin-left: 3px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  /* "60s · 2026 · free" eyebrow pill */
+  .eyebrow {
+    position: absolute; top: 64px; right: 72px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(232,224,200,0.07);
+    border: 1px solid rgba(232,224,200,0.14);
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--apricot);
+    backdrop-filter: blur(8px);
+    z-index: 3;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--apricot);
+    box-shadow: 0 0 14px rgba(232,148,100,0.5);
+    flex-shrink: 0;
+  }
+
+  /* Big "?" italic monogram in the bottom-right */
+  .monogram {
+    position: absolute;
+    right: -40px; bottom: -180px;
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 620px; line-height: 0.85;
+    color: rgba(232,148,100,0.10);
+    font-variation-settings: 'opsz' 144, 'SOFT' 50;
+    user-select: none; pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Main content */
+  .content {
+    position: absolute;
+    left: 72px; right: 72px; top: 200px;
+    z-index: 2;
+  }
+  .headline {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: 88px; line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: 32px;
+    max-width: 920px;
+    text-wrap: balance;
+  }
+  .headline em {
+    font-style: italic;
+    color: var(--apricot);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    text-shadow: 0 0 36px rgba(232,148,100,0.45);
+  }
+
+  /* Subline with value props */
+  .sub {
+    font-size: 22px; line-height: 1.45;
+    color: rgba(240,236,225,0.78); font-weight: 400;
+    max-width: 880px;
+    letter-spacing: -0.005em;
+  }
+  .sub strong {
+    color: var(--cream); font-weight: 600;
+  }
+
+  /* Stat strip across the bottom — 18 tools, 67 guides, $0 */
+  .stats {
+    position: absolute;
+    left: 72px; right: 72px; bottom: 56px;
+    display: flex; align-items: center; gap: 40px;
+    z-index: 3;
+  }
+  .stat {
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .stat-n {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-style: italic;
+    font-size: 52px; line-height: 1;
+    color: var(--apricot);
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    text-shadow: 0 0 20px rgba(232,148,100,0.35);
+  }
+  .stat-l {
+    font-size: 18px; font-weight: 500;
+    color: var(--cream); letter-spacing: -0.005em;
+  }
+  .stat-sep {
+    width: 1px; height: 36px;
+    background: rgba(232,224,200,0.18);
+  }
+  .url {
+    margin-left: auto;
+    font-size: 16px; font-weight: 500;
+    color: rgba(240,236,225,0.55);
+    letter-spacing: -0.005em;
+  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="left"></div>
-<div class="main">
-  <div class="top">
-    <div class="shield">
-      <svg viewBox="0 0 36 40" fill="none">
-        <path d="M18 2L4 6.5V19C4 28 10.5 35.5 18 38C25.5 35.5 32 28 32 19V6.5L18 2Z" fill="#f0ece1" stroke="#2d3068" stroke-width="2"/>
-        <path d="M11 19.5L16 24.5L26 13.5" stroke="#e89464" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="wordmark">SideHustle<span>Guard</span></div>
+<div class="og">
+  <!-- Topo SVG backdrop (apricot + green ellipses) -->
+  <svg class="topo" viewBox="0 0 2000 2000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#e89464" stroke-opacity="0.16" stroke-width="1.2">
+      <ellipse cx="400" cy="1600" rx="680" ry="280" transform="rotate(-12 400 1600)"/>
+      <ellipse cx="408" cy="1576" rx="620" ry="248" transform="rotate(-10 408 1576)"/>
+      <ellipse cx="416" cy="1552" rx="560" ry="216" transform="rotate(-8 416 1552)"/>
+      <ellipse cx="424" cy="1528" rx="500" ry="184" transform="rotate(-6 424 1528)"/>
+    </g>
+    <g fill="none" stroke="#e89464" stroke-opacity="0.16" stroke-width="1.2">
+      <ellipse cx="1600" cy="400" rx="540" ry="220" transform="rotate(18 1600 400)"/>
+      <ellipse cx="1608" cy="388" rx="480" ry="194" transform="rotate(16 1608 388)"/>
+      <ellipse cx="1616" cy="376" rx="416" ry="166" transform="rotate(14 1616 376)"/>
+    </g>
+    <g fill="none" stroke="#7dd6a4" stroke-opacity="0.10" stroke-width="1.2">
+      <ellipse cx="1000" cy="1000" rx="780" ry="360" transform="rotate(30 1000 1000)"/>
+      <ellipse cx="1000" cy="1000" rx="640" ry="300" transform="rotate(45 1000 1000)"/>
+      <ellipse cx="1000" cy="1000" rx="500" ry="240" transform="rotate(60 1000 1000)"/>
+    </g>
+  </svg>
+
+  <div class="aurora"></div>
+
+  <!-- Brand lockup -->
+  <div class="brand">
+    <svg class="brand-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 30 Q24 4 42 30" stroke="#f0ece1" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.8" fill="#f0ece1"/>
+    </svg>
+    <span class="brand-text">
+      <span class="base">SideHustle</span><span class="accent">guard</span>
+    </span>
   </div>
-  <div class="body">
-    <div class="headline">Is your hustle<br>legally <em>protected?</em></div>
-    <div class="sub">Free tax &amp; compliance check for US side hustlers.<br>60 seconds. Plain English. No sign-up.</div>
+
+  <!-- Eyebrow pill top-right -->
+  <span class="eyebrow">Free · 2026</span>
+
+  <!-- Big italic ? monogram in the background -->
+  <span class="monogram">?</span>
+
+  <!-- Headline + sub -->
+  <div class="content">
+    <h1 class="headline">Free 60-second tax &amp; legal check for any <em>US side hustle.</em></h1>
+    <p class="sub"><strong>Taxes, licenses, deductions, audit risk</strong> — covered. Plus 18 calculators and 67 plain-English guides.</p>
   </div>
-  <div class="pills">
-    <span class="pill">Taxes</span>
-    <span class="pill">Licenses</span>
-    <span class="pill">Business structure</span>
-    <span class="pill">Free check</span>
-    <span class="pill">sidehustleguard.com</span>
+
+  <!-- Stats strip across the bottom -->
+  <div class="stats">
+    <div class="stat"><span class="stat-n">18</span><span class="stat-l">Free tools</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">67</span><span class="stat-l">In-depth guides</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">$0</span><span class="stat-l">Forever</span></div>
+    <span class="url">sidehustleguard.com</span>
   </div>
 </div>
 </body>
