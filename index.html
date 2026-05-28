@@ -939,6 +939,11 @@
        * time, never landing in an awkward mid-scroll state. */
       scroll-snap-stop: always;
       scroll-padding-left: 0;
+      /* Contain horizontal momentum within the carousel — without this,
+       * a fast swipe could bleed into page-level scroll on iOS Safari */
+      overscroll-behavior-x: contain;
+      /* Smooth-snap on iOS instead of the rubber-band feel */
+      scroll-behavior: smooth;
       /* Hide the scrollbar — peek + snap is the affordance */
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -954,11 +959,17 @@
       scroll-snap-align: start;
     }
     /* Uniform card heights so the carousel row looks tidy.
-     * Tuned to fit the longest title + 2-line desc + arrow row
-     * without leaving empty space at the bottom. */
-    .steps-grid    > * { height: 200px; min-height: 0; }
+     * Sized to the longest content per section (step 04 in "How it
+     * works" is 5 lines on mobile, so steps need the most height). */
+    .steps-grid    > * { height: 300px; min-height: 0; }
     .checks-grid   > * { height: 230px; min-height: 0; }
     .library-grid  > * { height: 175px; min-height: 0; }
+    /* Tighten the step-card internal padding on mobile so the longer
+     * desc has room without making the card feel cramped */
+    .steps-grid .step-card { padding: 22px 22px 24px; }
+    .steps-grid .step-num  { font-size: 38px; margin-bottom: 12px; }
+    .steps-grid .step-title { font-size: 20px; margin-bottom: 6px; }
+    .steps-grid .step-desc  { font-size: 13.5px; line-height: 1.55; }
 
     /* On the library cards specifically, drop the margin-top:auto on
      * the arrow so it follows the desc instead of pushing to the bottom
