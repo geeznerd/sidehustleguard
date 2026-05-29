@@ -530,8 +530,22 @@ nav .btn-cta:hover {
   box-shadow: 0 4px 12px rgba(45, 48, 104, 0.08);
 }
 nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
+/* Idle pulse on the indigo arrow inside the apricot end-cap —
+ * cycles background-size so the arrow appears to gently breathe.
+ * Same rhythm (2.4s) as the existing pulsing-dot indicator on
+ * hero CTAs so the two pulses feel of-a-family. Pauses on hover
+ * so the user isn't tracking motion right as they're aiming the
+ * click. Accessibility-safe: wrapped in prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
   nav .btn-cta:hover { transform: translateY(-1px); }
+  nav .btn-cta::after {
+    animation: navCtaArrowPulse 2.4s var(--ease-default) infinite;
+  }
+  nav .btn-cta:hover::after { animation-play-state: paused; }
+}
+@keyframes navCtaArrowPulse {
+  0%, 100% { background-size: 14px 14px; }
+  50%      { background-size: 17px 17px; }
 }
 
 /* Article-page nav CTA pulse: dot pseudo + flex layout shared via this stylesheet
@@ -1356,6 +1370,22 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
     height: 24px;
     background-size: 13px 13px;
   }
+  /* Scale the pulse keyframe values to the mobile arrow size so
+   * the animation stays in proportion (otherwise it'd snap back
+   * to the desktop 14→17 range on each loop). */
+  @media (prefers-reduced-motion: no-preference) {
+    nav .btn-cta::after {
+      animation-name: navCtaArrowPulseSm;
+    }
+  }
+}
+@keyframes navCtaArrowPulseSm {
+  0%, 100% { background-size: 13px 13px; }
+  50%      { background-size: 15.5px 15.5px; }
+}
+@keyframes navCtaArrowPulseXs {
+  0%, 100% { background-size: 12px 12px; }
+  50%      { background-size: 14px 14px; }
 }
 
 /* ===== SMALL MOBILE NAV (≤420px) — extra compression =====
@@ -1386,6 +1416,12 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
     width: 22px;
     height: 22px;
     background-size: 12px 12px;
+  }
+  /* Tiny-mobile pulse, scaled to the 12px arrow. */
+  @media (prefers-reduced-motion: no-preference) {
+    nav .btn-cta::after {
+      animation-name: navCtaArrowPulseXs;
+    }
   }
   nav .logo-text { font-size: 12.5px; }
   nav .ds-nav-right,
