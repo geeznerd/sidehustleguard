@@ -67,8 +67,15 @@
 
   /* Motion */
   --ease-default:    cubic-bezier(0.4, 0, 0.2, 1);
+  /* Snappy / tactile curves for micro-interactions. ease-snappy is
+   * the Linear-style "spring out fast, decelerate gently" curve used
+   * for hover scales + arrow shifts. ease-out-snap lands focus rings
+   * and active sinks crisply without overshoot. */
+  --ease-snappy:     cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out-snap:   cubic-bezier(0.25, 1, 0.5, 1);
   --dur-press:       80ms;
   --dur-fast:        150ms;
+  --dur-snap:        180ms;
   --dur-default:     250ms;
   --dur-slow:        350ms;
   --dur-entry:       450ms;
@@ -402,7 +409,22 @@ nav .nav-link[aria-current="page"] {
   .ds-nav-right { gap: 10px; }
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS =====
+ *
+ * Interaction model (overhauled per the Emil-Kowalski playbook):
+ *
+ *   • Hover (desktop only — `@media (hover: hover)`): subtle scale(1.02)
+ *     via the snappy cubic-bezier(0.32, 0.72, 0, 1). Never fires on
+ *     touch devices, so no sticky-after-tap hover state.
+ *   • Active (all devices): scale(0.96) tactile sink at 80ms. Gives
+ *     desktop click + mobile touch the same "physical press" feel.
+ *   • Focus: outline:none + custom expanding apricot box-shadow ring
+ *     (320ms ease-out-snap). High-visibility for keyboard nav without
+ *     the chunky browser default.
+ *
+ * Per-element extras (icon shifts, pulse coordination) live on each
+ * variant block below.
+ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -419,29 +441,53 @@ nav .nav-link[aria-current="page"] {
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: background var(--dur-default) var(--ease-default),
-              border-color var(--dur-default) var(--ease-default),
-              transform var(--dur-fast) var(--ease-default);
+  outline: none;   /* custom :focus-visible ring below */
+  /* Color/border on snappy timing; transform on press-fast for tactility.
+   * Separate transitions so a hover scale doesn't drag the bg color along
+   * for the same duration. */
+  transition:
+    background-color var(--dur-fast) var(--ease-snappy),
+    border-color     var(--dur-fast) var(--ease-snappy),
+    box-shadow       var(--dur-snap) var(--ease-snappy),
+    transform        var(--dur-press) var(--ease-snappy);
 }
 
-.btn:active { transform: scale(0.97); }
+/* Active sink — works for both desktop click + mobile tap. Snappier
+ * than hover (80ms) so the press registers immediately. */
+.btn:active { transform: scale(0.96); }
+
+/* Custom focus ring — expands outward from the pill via box-shadow.
+ * `apricot @ 32% alpha` reads as primary brand color without clashing
+ * with the apricot border on the nav CTA variant. */
+.btn:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(232, 148, 100, 0.35),
+    0 4px 12px rgba(45, 48, 104, 0.10);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn:focus-visible { animation: btnFocusRing 320ms var(--ease-out-snap); }
+}
+@keyframes btnFocusRing {
+  0%   { box-shadow: 0 0 0 0 rgba(232, 148, 100, 0),    0 4px 12px rgba(45, 48, 104, 0.10); }
+  100% { box-shadow: 0 0 0 4px rgba(232, 148, 100, 0.35), 0 4px 12px rgba(45, 48, 104, 0.10); }
+}
 
 .btn-primary {
   background: var(--indigo);
   color: var(--paper);
 }
-.btn-primary:hover {
-  background: var(--indigo-hover);
-  transform: translateY(-1px);
+.btn-primary:hover { background: var(--indigo-hover); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn-primary:hover { transform: scale(1.02); }
 }
 
 .btn-accent {
   background: var(--apricot);
   color: var(--indigo);
 }
-.btn-accent:hover {
-  background: var(--apricot-hover);
-  transform: translateY(-1px);
+.btn-accent:hover { background: var(--apricot-hover); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn-accent:hover { transform: scale(1.02); }
 }
 
 /* High-conversion CTA — apricot squircle with pulsing indigo dot indicator.
@@ -468,10 +514,15 @@ nav .nav-link[aria-current="page"] {
   text-decoration: none;
   border: 0;
   cursor: pointer;
+  outline: none;
   box-shadow: 0 4px 12px rgba(45, 48, 104, 0.10);
-  transition: background var(--dur-default) var(--ease-default),
-              box-shadow var(--dur-default) var(--ease-default),
-              transform var(--dur-default) var(--ease-default);
+  /* Same snappy interaction model as .btn — bg/border on fast snappy,
+   * shadow on snap, transform on press. Transform stays at press timing
+   * so hover scale + active sink feel immediate. */
+  transition:
+    background-color var(--dur-fast) var(--ease-snappy),
+    box-shadow       var(--dur-snap) var(--ease-snappy),
+    transform        var(--dur-press) var(--ease-snappy);
 }
 .btn-cta::before {
   content: '';
@@ -482,11 +533,17 @@ nav .nav-link[aria-current="page"] {
   background: var(--indigo);
   flex-shrink: 0;
 }
-.btn-cta:hover {
-  background: var(--apricot-hover);
-  box-shadow: 0 6px 16px rgba(45, 48, 104, 0.14);
+.btn-cta:hover { background: var(--apricot-hover); }
+.btn-cta:active { transform: scale(0.96); box-shadow: 0 2px 6px rgba(45, 48, 104, 0.10); }
+/* Desktop-only hover micro-interaction. @media (hover: hover) keeps
+ * this from firing on touch devices, where it would stick after a tap
+ * and read as a stuck state. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(45, 48, 104, 0.14);
+  }
 }
-.btn-cta:active { box-shadow: 0 2px 6px rgba(45, 48, 104, 0.10); }
 
 /* ═══ Nav CTA — compact pill with apricot arrow circle ═══
  * Cream pill with a 1.5px apricot border, indigo text, and an apricot-
@@ -530,18 +587,33 @@ nav .btn-cta:hover {
   box-shadow: 0 4px 12px rgba(45, 48, 104, 0.08);
 }
 nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
-/* Idle pulse on the indigo arrow inside the apricot end-cap —
- * cycles background-size so the arrow appears to gently breathe.
- * Same rhythm (2.4s) as the existing pulsing-dot indicator on
- * hero CTAs so the two pulses feel of-a-family. Pauses on hover
- * so the user isn't tracking motion right as they're aiming the
- * click. Accessibility-safe: wrapped in prefers-reduced-motion. */
+/* Transition the arrow's background-position so the hover-shift below
+ * eases in instead of jumping. Pulse animates background-size; this
+ * targets background-position only, so the two don't fight. */
+nav .btn-cta::after {
+  transition:
+    background-color    var(--dur-fast) var(--ease-snappy),
+    background-position var(--dur-snap) var(--ease-snappy);
+}
+/* Idle pulse on the indigo arrow + desktop-only hover behavior. The
+ * pulse cycles background-size so the arrow gently breathes; on hover
+ * the pulse pauses and the arrow translates ~3px to the right via a
+ * background-position shift. Whole CTA also scales 1.02 in the parent
+ * .btn-cta hover rule above. Both wrapped in @media (hover: hover) so
+ * touch devices never get sticky hover states. */
 @media (prefers-reduced-motion: no-preference) {
-  nav .btn-cta:hover { transform: translateY(-1px); }
   nav .btn-cta::after {
     animation: navCtaArrowPulse 2.4s var(--ease-default) infinite;
   }
-  nav .btn-cta:hover::after { animation-play-state: paused; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  nav .btn-cta:hover { transform: scale(1.02); }
+  nav .btn-cta:hover::after {
+    animation-play-state: paused;
+    /* Shift the arrow ~3px right within its 26px circle — feels like
+     * the arrow is "leaning forward into the click." */
+    background-position: calc(50% + 3px) center;
+  }
 }
 @keyframes navCtaArrowPulse {
   0%, 100% { background-size: 14px 14px; }
@@ -570,7 +642,8 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
   .nav-cta::before {
     animation: ctaDotPulse 2.2s var(--ease-default) infinite;
   }
-  .btn-cta:hover { transform: translateY(-1px); }
+  /* (.btn-cta:hover transform moved to the new @media (hover: hover)
+   *  block above so it doesn't stick on touch devices.) */
 }
 @keyframes ctaDotPulse {
   0%   { box-shadow: 0 0 0 0 rgba(45, 48, 104, 0.45); }
@@ -1356,7 +1429,8 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
   /* Bring back the apricot-tinted "Guides" pill so it reads as a
    * tappable secondary action ranking just under the primary CTA.
    * 40px tap target matches the CTA pill height for a unified
-   * right-side row rhythm. */
+   * right-side row rhythm. Inherits the same snappy hover/active
+   * micro-interactions as .btn (see below). */
   nav .ds-nav-link.always-visible {
     display: inline-flex;
     align-items: center;
@@ -1369,7 +1443,15 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
     border-radius: 100px;
     letter-spacing: -0.005em;
     line-height: 1;
+    outline: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-snappy),
+      border-color     var(--dur-fast) var(--ease-snappy),
+      transform        var(--dur-press) var(--ease-snappy);
   }
+  nav .ds-nav-link.always-visible:active { transform: scale(0.96); }
+  /* No hover styling here — pill is mobile-only (≤700px) where
+   * hover doesn't apply on touch devices anyway. */
 
   /* Mobile CTA — shrink visible text to "CHECK" so the Guides pill,
    * Guides + CHECK button, and logo all fit on a single line at
