@@ -441,6 +441,15 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center
 .step2c-title { font-size: 13.5px; font-weight: 600; color: var(--cream); line-height: 1.35; }
 .step2c-sub { font-size: 11.5px; color: var(--cream-faint); line-height: 1.45; }
 .step2c-sub.is-rec-on { color: var(--green); }
+.step2c-sub.is-warn {
+  color: var(--apricot);
+  background: rgba(232, 148, 100, 0.10);
+  border-left: 3px solid var(--apricot);
+  padding: 8px 10px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 4px;
+}
+.step2c-sub.is-warn strong { color: var(--cream); font-weight: 600; }
 
 /* Collapsible advanced sections — dark */
 details.collapsible {
@@ -1336,11 +1345,13 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var agi = totalWages + Math.max(0, input.otherIncome || 0);
 
     // ── 3. Compute deduction (standard or itemized, whichever is higher)
+    //      Step 4(b) of the W-4 takes ONLY the amount above the standard
+    //      deduction — formula per IRS Pub 15-T: max(0, itemized - std).
     var stdDed = data.stdDeduction[input.status] || data.stdDeduction.single;
     var itemized = Math.max(0, input.itemized || 0);
-    var usingItemized = itemized > stdDed;
+    var dedAboveStd = Math.max(0, itemized - stdDed);   // ← Step 4(b) output
+    var usingItemized = dedAboveStd > 0;
     var deduction = usingItemized ? itemized : stdDed;
-    var dedAboveStd = usingItemized ? (itemized - stdDed) : 0;
 
     // ── 4. Taxable income + baseline tax (using FULL brackets for true liability)
     var taxable = Math.max(0, agi - deduction);
@@ -1756,16 +1767,30 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       toggleCb.checked = r.w4Step2cUsed;
     }
     if (recSpan) {
+      // Reset all states first
+      recSpan.classList.remove('is-rec-on');
+      recSpan.classList.remove('is-warn');
+
       if (r.w4Step2cRecommended) {
-        recSpan.textContent = (state.useStep2c === false)
+        // Incomes within 50% — recommendation is to check the box
+        recSpan.innerHTML = (state.useStep2c === false)
           ? '⚠ Manually unchecked — recommended is ✓ (incomes within 50%)'
           : 'Auto-applied — recommended (incomes within 50%)';
         recSpan.classList.add('is-rec-on');
+      } else if (r.isMFJ && r.withholdingSpouse > 0) {
+        // BOTH working but incomes asymmetric (ratio < 50%) — warn
+        var hi = Math.max(state.wage, state.spouseWage);
+        var lo = Math.min(state.wage, state.spouseWage);
+        var ratioPct = Math.round((lo / hi) * 100);
+        recSpan.innerHTML =
+          '<strong>⚠ Significantly different incomes</strong> (lower job is ' + ratioPct +
+          '% of higher). 2(c) won\'t balance the math here — leave blank and use ' +
+          '<strong>Step 4(c) extra withholding</strong> below (or the IRS multi-jobs ' +
+          'worksheet on page 3 of the W-4) for accurate per-paycheck math.';
+        recSpan.classList.add('is-warn');
       } else {
-        recSpan.textContent = (state.useStep2c === true)
-          ? 'Manually forced — recommended is leave blank (asymmetric incomes)'
-          : 'Recommended: leave blank (incomes too different — see Step 4(c))';
-        recSpan.classList.remove('is-rec-on');
+        // Default / single-income case
+        recSpan.innerHTML = 'Not applicable — only one job in this household';
       }
     }
   }
