@@ -392,29 +392,14 @@ nav .nav-link[aria-current="page"] {
 
 @media (max-width: 700px) {
   .ds-nav { padding: 13px 18px; height: 56px; }
+  /* Hide every nav text link on mobile — including .always-visible
+   * (Guides). At narrow widths the Guides pill crowded the wordmark
+   * and the primary CTA. Keep mobile nav minimal: logo + Check-my-
+   * hustle CTA only. Footer / inline content still link to /guides. */
   .ds-nav-link { display: none; }
-  .ds-nav-link.always-visible { display: inline-flex; font-size: 13px; }
-  .ds-nav-link-tag { display: none; }   /* hide pill at mobile widths */
+  .ds-nav-link-tag { display: none; }
   .logo-base, .logo-accent { font-size: 18px; }
   .ds-nav-right { gap: 10px; }
-
-  /* "Guides" link → soft apricot-tinted pill so it reads as a tappable
-   * secondary action, while still ranking below the primary apricot-
-   * filled CTA on the right. Padding tuned to match the CTA pill height
-   * (40px) for a unified right-side row rhythm. Moved here from
-   * index.html inline so every page gets the same treatment. */
-  nav .ds-nav-link.always-visible {
-    color: var(--apricot);
-    font-weight: 600;
-    background: rgba(232, 148, 100, 0.12);
-    border: 1px solid rgba(232, 148, 100, 0.22);
-    padding: 11px 14px;
-    border-radius: 100px;
-    letter-spacing: -0.005em;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-  }
 }
 
 /* ===== BUTTONS ===== */
@@ -1304,21 +1289,18 @@ nav .nav-link[aria-current="page"] {
     display: inline-flex;
     align-items: center;
   }
-  /* Hide non-essential nav links on mobile, regardless of which selector
-   * the page uses. The CTA + the Arc & Dot logo lockup are the only
-   * elements that should remain in the nav at ≤700px. */
-  nav .ds-nav-link:not(.always-visible):not(.btn) { display: none; }
-  /* And hide any nav link whose aria-current="page" is set — that's the
-   * directory-self-reference (e.g. "Guides" link while on /guides) and
-   * provides zero navigation value while crowding the nav. */
-  nav .ds-nav-link[aria-current="page"] { display: none; }
+  /* Hide every nav text link on mobile (including .always-visible
+   * "Guides") so only the logo lockup + primary CTA remain. The
+   * Guides destination is still reachable from inline content and
+   * the footer on every page. */
+  nav .ds-nav-link { display: none; }
 }
 
 /* ===== SMALL MOBILE NAV (≤420px) — extra compression =====
  * At iPhone SE / Galaxy A-series widths the nav still felt crowded.
- * Drop padding + shrink the CTA further; if the wordmark + always-visible
- * link + CTA still don't fit, the wordmark accent ("guard") truncates
- * gracefully via min-width:0 on .logo-text. */
+ * Drop padding + shrink the CTA further so the wordmark + CTA fit
+ * comfortably. (Nav text links are already hidden by the ≤700px
+ * block above.) */
 @media (max-width: 420px) {
   nav {
     padding-left: 14px !important;
@@ -1334,8 +1316,6 @@ nav .nav-link[aria-current="page"] {
   nav .logo-text { font-size: 12.5px; }
   nav .ds-nav-right,
   nav .nav-right { gap: 8px; }
-  /* Hide any remaining secondary nav links so only logo + CTA stay */
-  nav .ds-nav-link.always-visible { display: none; }
 }
 
 /* ===== RESPONSIVE TABLES =====
