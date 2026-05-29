@@ -560,6 +560,9 @@ nav .btn-cta {
   letter-spacing: -0.005em;
   padding: 5px 6px 5px 16px;   /* tight right edge — the apricot dot sits here */
   gap: 10px;
+  margin: 0;   /* defeat per-page `.btn-cta { margin-top: 16px }` rules on
+                * the 4 calculator pages (intended for in-form submit buttons
+                * but cascade to the nav CTA too) */
   box-shadow: none;
   font-size: 14px;
 }
@@ -1419,9 +1422,9 @@ nav .btn-cta::after {
 
   /* Bring back the apricot-tinted "Guides" pill so it reads as a
    * tappable secondary action ranking just under the primary CTA.
-   * 40px tap target matches the CTA pill height for a unified
-   * right-side row rhythm. Inherits the same snappy hover/active
-   * micro-interactions as .btn (see below). */
+   * Explicit 36px height so it lines up exactly with the CTA pill
+   * height — `align-items: center` on the nav flex container then
+   * handles vertical centering deterministically. */
   nav .ds-nav-link.always-visible {
     display: inline-flex;
     align-items: center;
@@ -1430,7 +1433,8 @@ nav .btn-cta::after {
     font-size: 13px;
     background: rgba(232, 148, 100, 0.12);
     border: 1px solid rgba(232, 148, 100, 0.22);
-    padding: 10px 13px;
+    padding: 0 13px;
+    height: 36px;
     border-radius: 100px;
     letter-spacing: -0.005em;
     line-height: 1;
@@ -1451,7 +1455,11 @@ nav .btn-cta::after {
    * and ::before injects the visible "CHECK" label. ::after still
    * renders the apricot circle with the pulsing indigo arrow. */
   nav .btn-cta {
-    padding: 4px 5px 4px 14px !important;
+    /* Explicit 36px height matches the Guides pill above so the two
+     * right-side pills line up perfectly. align-items: center on the
+     * nav flex parent handles vertical centering within the 56px nav. */
+    height: 36px;
+    padding: 0 5px 0 14px !important;
     gap: 8px;
     /* !important to win over the generic `nav .btn { font-size: 12.5px
      * !important }` above — without it the "Check my hustle" text
@@ -1459,6 +1467,7 @@ nav .btn-cta::after {
      * layout width, padding the pill out unnecessarily. */
     font-size: 0 !important;
     color: transparent;
+    line-height: 1;
   }
   nav .btn-cta::before {
     content: "CHECK";
@@ -1469,9 +1478,11 @@ nav .btn-cta::after {
     height: auto;
     border-radius: 0;
     background: transparent;
-    /* Visible label styling */
+    /* Visible label styling — line-height: 1 keeps the strut from
+     * pushing the pill taller than its declared 36px. */
     font-size: 12px;
     font-weight: 700;
+    line-height: 1;
     letter-spacing: 0.08em;
     color: var(--indigo);
     flex-shrink: 0;
@@ -1502,16 +1513,20 @@ nav .btn-cta::after {
     padding: 8px 12px !important;
   }
   /* Shrink the Guides pill so it + the CHECK CTA + the wordmark fit
-   * comfortably at iPhone SE / Galaxy A widths (~360–375px). */
+   * comfortably at iPhone SE / Galaxy A widths (~360–375px). Explicit
+   * 32px height so it stays locked to the CTA's height below. */
   nav .ds-nav-link.always-visible {
     font-size: 12px;
-    padding: 9px 11px;
+    padding: 0 11px;
+    height: 32px;
   }
   /* Re-apply compact pill geometry at ≤420px too, same reason as the
    * ≤700px block — the generic .btn padding above would otherwise add
    * 12px of right margin and float the apricot end-cap. */
   nav .btn-cta {
-    padding: 3px 4px 3px 11px !important;
+    height: 32px;
+    min-height: 0;   /* defeat the `nav .btn { min-height: 36px }` above */
+    padding: 0 4px 0 11px !important;
     gap: 7px;
     font-size: 0 !important;   /* keep the text node collapsed at ≤420 too */
   }
