@@ -184,6 +184,15 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
 .check-result-sub{font-size:13px;color:rgba(251,248,238,0.7);font-weight:300;line-height:1.5}
 .check-result-sub a{color:var(--apricot-hover);text-decoration:underline;text-underline-offset:2px}
 .check-result-sub a:hover{color:var(--paper)}
+/* State sub-message — appears below the main answer when a state is picked */
+.check-result-state{font-size:13px;font-weight:400;line-height:1.5;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.06);border-left:3px solid rgba(232,148,100,0.55);color:rgba(251,248,238,0.85)}
+.check-result-state strong{color:var(--paper);font-weight:600}
+.check-result-state.is-no-tax{border-left-color:#7bc89a;background:rgba(123,200,154,0.08)}
+.check-result-state.is-has-tax{border-left-color:#e89464;background:rgba(232,148,100,0.10)}
+/* Alert tints — applied to the whole .check-result when a status fires */
+.check-result.is-required{box-shadow:inset 0 0 0 1.5px rgba(232,148,100,0.45)}
+.check-result.is-clear{box-shadow:inset 0 0 0 1.5px rgba(123,200,154,0.40)}
+.check-result-line .alert-icon{display:inline-block;margin-right:6px;font-style:normal;font-family:'Inter',sans-serif;font-weight:600}
 
 /* Disclaimer */
 .disclaimer{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:14px}
@@ -333,7 +342,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     <div class="check-grid">
       <div>
         <label class="field-label" for="net-annual">Expected annual net income</label>
-        <div class="input-money"><input type="number" id="net-annual" min="0" placeholder="40000" inputmode="decimal" value=""/></div>
+        <div class="input-money"><input type="number" id="net-annual" min="0" placeholder="40000" inputmode="decimal" value="40000"/></div>
       </div>
       <div>
         <label class="field-label" for="check-state">State</label>
@@ -374,10 +383,11 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
         </select>
       </div>
     </div>
-    <div class="check-result">
+    <div class="check-result" id="check-result">
       <div class="check-result-head">What this means</div>
       <div class="check-result-line" id="check-line">Enter a number above to see your status.</div>
       <div class="check-result-sub" id="check-sub">For an exact quarterly amount that uses safe harbor + last-year-tax logic, use the <a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.</div>
+      <div class="check-result-state" id="check-state-msg" hidden></div>
     </div>
     <div class="disclaimer">
       <div class="disclaimer-label">Estimate only — not tax advice</div>
@@ -524,23 +534,41 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
   // ──────────────────────────────────────────────────────────────────────
   // Render: countdown + all-deadlines grid
+  //
+  // Live calculation against the browser's current date — no manual cut-over
+  // needed as deadlines pass. We include last-year, this-year, AND next-year
+  // deadlines in the search pool because:
+  //   • Q4 of tax-year N is due Jan 15 of calendar-year N+1 — so in early
+  //     January, last year's Q4 is still the upcoming deadline.
+  //   • Late December: next-year's Q1 (Apr 15) is still 4+ months out, but
+  //     this-year's Q4 (Jan 15 of next year) is right around the corner.
+  // The findIndex below picks the first deadline whose daysUntil is >= 0
+  // (i.e., today or later), so if you load the page ON a deadline the
+  // banner reads "0 days left" rather than skipping to the next one.
   // ──────────────────────────────────────────────────────────────────────
   var now = new Date();
   var year = now.getFullYear();
-  // Include both this-year + next-year deadlines so we can find "next" even
-  // late in the year when Q4 falls in January of the following year.
-  var all = quarterlyDeadlines(year).concat(quarterlyDeadlines(year + 1));
-  var nextIdx = all.findIndex(function (d) { return daysUntil(d.due, now) > 0; });
-  var next = nextIdx >= 0 ? all[nextIdx] : all[0];
+  var all = quarterlyDeadlines(year - 1)
+    .concat(quarterlyDeadlines(year))
+    .concat(quarterlyDeadlines(year + 1));
+  var nextIdx = all.findIndex(function (d) { return daysUntil(d.due, now) >= 0; });
+  var next = nextIdx >= 0 ? all[nextIdx] : all[all.length - 1];
 
-  // Hero countdown
+  // Hero countdown — robust against "today is the deadline" (0 days)
+  var daysLeft = daysUntil(next.due, now);
   document.getElementById('cd-q-label').textContent = next.q;
   document.getElementById('cd-q-name').textContent = next.label;
-  document.getElementById('cd-days').textContent = daysUntil(next.due, now);
+  document.getElementById('cd-days').textContent = daysLeft;
   document.getElementById('cd-date').textContent = formatDateLong(next.due);
 
-  // 4-deadline grid (current year's 4)
-  var thisYearDeadlines = quarterlyDeadlines(year);
+  // 4-deadline grid — pick the tax year whose 4 deadlines are most
+  // relevant to "now". Tax year N's Q4 falls in Jan of calendar year N+1,
+  // so if we're in early January before Q4 (year-1) has passed, the
+  // relevant tax year for the grid is year - 1.
+  var gridYear = year;
+  var lastYearQ4 = shiftWeekend(new Date(year, 0, 15)); // Jan 15 = Q4 of (year-1)
+  if (now < lastYearQ4) gridYear = year - 1;
+  var thisYearDeadlines = quarterlyDeadlines(gridYear);
   var gridEl = document.getElementById('deadlines-grid');
   gridEl.innerHTML = thisYearDeadlines.map(function (d) {
     var dleft = daysUntil(d.due, now);
@@ -602,9 +630,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // The .ics download is the core utility. Wrap it so it can be invoked from
   // either the modal's email path (after subscribe success) or the skip path.
   function triggerDownload() {
-    // Bundle this year's remaining + next year's Q1-Q2 (~9 months forward)
-    var bundle = thisYearDeadlines.filter(function (d) { return daysUntil(d.due, now) >= 0; })
-      .concat(quarterlyDeadlines(year + 1).slice(0, 2));
+    // Bundle the next 6 upcoming deadlines (~18 months forward coverage),
+    // drawn from the full year-1/year/year+1 pool. Always starts at "next"
+    // regardless of where in the calendar we are.
+    var bundle = all.filter(function (d) { return daysUntil(d.due, now) >= 0; }).slice(0, 6);
     var ics = buildICS(bundle);
     try {
       var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
@@ -732,42 +761,104 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   });
 
   // ──────────────────────────────────────────────────────────────────────
-  // Threshold check
+  // Threshold check — flat-25% federal estimate vs. the $1,000 IRC § 6654
+  // trigger. State affects the sub-message, not the federal threshold math.
   // ──────────────────────────────────────────────────────────────────────
+  var stateSelect = document.getElementById('check-state');
+
+  function stateName(code) {
+    if (!code) return '';
+    // Pull the canonical state name from the selected option's text and
+    // strip the "(no income tax)" parenthetical, if present.
+    var opt = stateSelect.options[stateSelect.selectedIndex];
+    if (!opt || opt.value !== code) return code;
+    return opt.text.replace(/\s*\(no income tax\)\s*$/, '').trim();
+  }
+
   function renderCheck() {
     var raw = parseFloat(document.getElementById('net-annual').value);
-    var state = document.getElementById('check-state').value;
+    var state = stateSelect.value;
+    var resultBox = document.getElementById('check-result');
     var line = document.getElementById('check-line');
     var sub = document.getElementById('check-sub');
+    var stateMsg = document.getElementById('check-state-msg');
+
+    // Reset tints between renders
+    resultBox.classList.remove('is-required', 'is-clear');
+    stateMsg.classList.remove('is-no-tax', 'is-has-tax');
 
     if (!isFinite(raw) || raw <= 0) {
       line.innerHTML = 'Enter a number above to see your status.';
       sub.innerHTML = 'For an exact quarterly amount that uses safe harbor + last-year-tax logic, use the <a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.';
+      stateMsg.hidden = true;
+      stateMsg.innerHTML = '';
       return;
     }
 
-    // Rough estimate: 15.3% SE tax on net × 0.9235 + ~10% federal income tax = ~25% effective
-    var federalTax = raw * 0.25;
-    var stateTax = (state && NO_TAX_STATES.indexOf(state) === -1) ? raw * 0.05 : 0;
-    var totalTax = federalTax + stateTax;
+    // Flat 25% rule (≈15.3% SE tax + ~10% federal income tax). State tax is
+    // surfaced as a separate sub-message rather than rolled into the federal
+    // threshold check, since IRC § 6654's $1,000 trigger is federal-only.
+    var totalTax = raw * 0.25;
     var perQuarter = totalTax / 4;
-
     var required = totalTax >= 1000;
+
     if (required) {
-      line.innerHTML = "<em>Yes</em> — you're likely required to make estimated payments.";
-      sub.innerHTML = 'Set aside roughly <strong>' + fmtMoney(perQuarter) + '/quarter</strong> ('
-        + fmtMoney(totalTax) + ' total/year) to stay clean. '
-        + 'For an exact figure that accounts for safe harbor + your specific situation, use the '
+      resultBox.classList.add('is-required');
+      line.innerHTML =
+        '<span class="alert-icon" aria-hidden="true">⚠️</span>'
+        + 'You will likely owe around <em>' + fmtMoney(totalTax) + '</em> in tax this year.';
+      sub.innerHTML =
+        'Because this is over the <strong>$1,000 IRS threshold</strong>, you '
+        + '<strong>ARE</strong> required to make quarterly payments. Your estimated payment is roughly '
+        + '<strong>' + fmtMoney(perQuarter) + ' per quarter</strong>. '
+        + 'For an exact figure that uses safe harbor + your specific situation, see the '
         + '<a href="/quarterly-tax-calculator">full quarterly tax calculator</a>.';
     } else {
-      line.innerHTML = "<em>Probably not</em> — estimated tax owed (" + fmtMoney(totalTax) + ") is under the $1,000 trigger.";
-      sub.innerHTML = "You can probably just pay this when you file your annual return in April. "
-        + "But set aside <strong>" + fmtMoney(totalTax) + "</strong> now so it's not a surprise — open a separate savings account.";
+      resultBox.classList.add('is-clear');
+      line.innerHTML =
+        '<span class="alert-icon" aria-hidden="true">✅</span>'
+        + "You're likely <em>under</em> the $1,000 threshold.";
+      sub.innerHTML =
+        'You can likely wait and pay your full balance in April without penalty! '
+        + 'Estimated total tax: <strong>' + fmtMoney(totalTax) + '</strong> — '
+        + "still smart to set this aside in a separate savings account so it's not a surprise.";
     }
+
+    // ── State sub-message ──────────────────────────────────────────────
+    if (!state) {
+      stateMsg.hidden = true;
+      stateMsg.innerHTML = '';
+      return;
+    }
+    var name = stateName(state);
+    var isNoTax = NO_TAX_STATES.indexOf(state) !== -1;
+
+    if (isNoTax) {
+      stateMsg.classList.add('is-no-tax');
+      stateMsg.innerHTML =
+        '<strong>Great news:</strong> ' + name + ' has no state income tax, '
+        + 'so you only need to pay the federal deadlines above!';
+    } else {
+      stateMsg.classList.add('is-has-tax');
+      // California-specific callout for the Franchise Tax Board portal;
+      // generic Department-of-Revenue phrasing for every other state.
+      var portalCopy;
+      if (state === 'CA') {
+        portalCopy = 'Check your CA Franchise Tax Board portal to avoid state-level penalties.';
+      } else {
+        portalCopy = 'Check your ' + name + ' Department of Revenue portal to avoid state-level penalties.';
+      }
+      stateMsg.innerHTML =
+        '<strong>Note:</strong> ' + name + ' requires state estimated payments on the same dates. '
+        + portalCopy;
+    }
+    stateMsg.hidden = false;
   }
 
   document.getElementById('net-annual').addEventListener('input', renderCheck);
-  document.getElementById('check-state').addEventListener('change', renderCheck);
+  stateSelect.addEventListener('change', renderCheck);
+  // Initial paint — input is seeded to 40000 so the result is visible on load
+  renderCheck();
 })();
 </script>
 <script src="/assets/js/newsletter-widget.js" defer></script></body>
