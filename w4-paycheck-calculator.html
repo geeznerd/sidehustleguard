@@ -556,15 +556,14 @@ details.collapsible summary .sub-hint {
   margin-top: 4px; line-height: 1.4;
 }
 .pp-sub strong { color: var(--cream-dim); font-weight: 600; }
-/* When dependents are claimed, highlight the benefit cell */
-#dep-benefit-cell.is-active {
-  background: linear-gradient(180deg, rgba(125,214,164,0.10), transparent);
-  margin: -18px 0;
-  padding: 18px 16px;
-  border-radius: 0;
-}
+/* When dependents are claimed, highlight the benefit cell — keep the
+ * highlight contained WITHIN the cell's natural bounds (no negative
+ * margin or extra padding that would break the band's grid layout) */
 #dep-benefit-cell.is-active .refund-val em {
   text-shadow: 0 0 24px rgba(125,214,164,0.45);
+}
+#dep-benefit-cell.is-active .refund-lbl {
+  color: var(--green);
 }
 /* Fallback when no dependents — mute the benefit cell */
 #dep-benefit-cell.is-zero { opacity: 0.55; }
