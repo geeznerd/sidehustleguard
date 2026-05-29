@@ -142,8 +142,15 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .calc-wrap{max-width:1020px;margin:24px auto 0;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 .calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:26px}
-.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.calc-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase}
 .calc-sub{font-size:13px;color:var(--indigo-70);margin-bottom:18px;font-weight:300;line-height:1.55}
+
+/* Year toggle — light variant (matches paper bg of this calc card) */
+.year-seg{display:inline-flex;background:var(--cream);border:1px solid var(--indigo-12);border-radius:100px;padding:3px;gap:2px}
+.year-opt{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--indigo-55);padding:5px 12px;border-radius:100px;cursor:pointer;border:0;background:transparent;font-family:inherit;font-variant-numeric:tabular-nums;transition:color .15s,background .15s,box-shadow .25s}
+.year-opt:hover{color:var(--indigo)}
+.year-opt.is-active{background:var(--apricot);color:var(--indigo);box-shadow:0 2px 8px rgba(232,148,100,.20)}
 
 .field{margin-bottom:16px}
 .field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
@@ -294,7 +301,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   <svg class="hero-backdrop tool-drift" viewBox="0 0 2000 2000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="400" cy="1600" rx="680" ry="280" transform="rotate(-12 400 1600)"/><ellipse cx="408" cy="1576" rx="620" ry="248" transform="rotate(-10 408 1576)"/><ellipse cx="416" cy="1552" rx="560" ry="216" transform="rotate(-8 416 1552)"/><ellipse cx="424" cy="1528" rx="500" ry="184" transform="rotate(-6 424 1528)"/><ellipse cx="432" cy="1504" rx="440" ry="152" transform="rotate(-4 432 1504)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1600" cy="400" rx="540" ry="220" transform="rotate(18 1600 400)"/><ellipse cx="1608" cy="388" rx="480" ry="194" transform="rotate(16 1608 388)"/><ellipse cx="1616" cy="376" rx="416" ry="166" transform="rotate(14 1616 376)"/><ellipse cx="1624" cy="364" rx="354" ry="138" transform="rotate(12 1624 364)"/><ellipse cx="1632" cy="352" rx="290" ry="110" transform="rotate(10 1632 352)"/></g><g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1"><ellipse cx="1000" cy="1000" rx="780" ry="360" transform="rotate(30 1000 1000)"/><ellipse cx="1000" cy="1000" rx="680" ry="320" transform="rotate(45 1000 1000)"/><ellipse cx="1000" cy="1000" rx="580" ry="280" transform="rotate(60 1000 1000)"/><ellipse cx="1000" cy="1000" rx="480" ry="240" transform="rotate(75 1000 1000)"/></g></svg>
 <div class="tool-aurora" aria-hidden="true"></div>
   <div class="hero-content">
-    <span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free · The W-4 hack · 2025</span>
+    <span class="tool-eye"><span class="pulse" aria-hidden="true"></span> Free · The W-4 hack · <span id="hero-year">2025</span></span>
     <h1>Skip the <em>quarterlies.</em> Just up your W-2 withholding.</h1>
     <p class="hero-sub">If you have a day job <strong>and</strong> a side hustle, you can have your employer withhold enough extra to cover everything. No quarterly forms. No deadlines. Two inputs in, one number out.</p>
   </div>
@@ -303,7 +310,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="calc-wrap">
   <div class="calc-grid">
     <div class="calc-card">
-      <div class="calc-title">Your numbers</div>
+      <div class="calc-card-head">
+        <div class="calc-title">Your numbers</div>
+        <!-- Tax year toggle — switching here re-runs the whole engine
+             with that year's brackets, std deduction, SS wage base. -->
+        <div class="year-seg" id="seg-year" role="radiogroup" aria-label="Tax year">
+          <button class="year-opt is-active" type="button" data-val="2025">2025</button>
+          <button class="year-opt" type="button" data-val="2026">2026</button>
+        </div>
+      </div>
       <div class="calc-sub">Drop in your W-2 salary, your expected net hustle profit (after expenses), and your filing situation. We'll do the bracket math.</div>
 
       <div class="field">
@@ -379,7 +394,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
       <div class="disclaimer">
         <div class="disclaimer-label">Estimate only — not tax advice</div>
-        <p>Uses <strong>2025 federal brackets</strong> + standard deduction + 15.3% SE tax. Real liability depends on credits, other deductions, retirement contributions, and your exact W-4 setup. The IRS provides the <a href="https://www.irs.gov/individuals/tax-withholding-estimator" rel="noopener" target="_blank">Tax Withholding Estimator</a> for higher-precision math. <strong>Verify with a tax pro before changing your W-4</strong>.</p>
+        <p>Uses <strong><span id="disc-year">2025</span> federal brackets</strong> + standard deduction + 15.3% SE tax. Real liability depends on credits, other deductions, retirement contributions, and your exact W-4 setup. The IRS provides the <a href="https://www.irs.gov/individuals/tax-withholding-estimator" rel="noopener" target="_blank">Tax Withholding Estimator</a> for higher-precision math. <strong>Verify with a tax pro before changing your W-4</strong>.</p>
       </div>
     </div>
 
@@ -451,7 +466,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
   <h2>How to <em>fill out</em> the W-4</h2>
   <ol style="padding-left:20px;margin-bottom:14px">
-    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Download <strong>Form W-4 (2025)</strong> from <a href="https://www.irs.gov/forms-pubs/about-form-w-4" rel="noopener" target="_blank">irs.gov</a>, or get a fresh copy from your HR portal.</li>
+    <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Download <strong>Form W-4 (<span id="dl-year">2025</span>)</strong> from <a href="https://www.irs.gov/forms-pubs/about-form-w-4" rel="noopener" target="_blank">irs.gov</a>, or get a fresh copy from your HR portal.</li>
     <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Fill out <strong>Steps 1 and 5</strong> (name, address, filing status, signature) as usual.</li>
     <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Skip Steps 2 and 3 unless you have multiple jobs or dependents you want to claim.</li>
     <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">In <strong>Step 4(c)</strong> — labeled "Extra withholding" — enter the per-paycheck dollar amount from the tool above.</li>
@@ -470,7 +485,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   <ul>
     <li><strong>You don't have a W-2 job.</strong> If side hustling is your only income, you have no paycheck to withhold from. Use <a href="/quarterly-tax-calculator">the quarterly tax calculator</a> instead.</li>
     <li><strong>Your hustle dwarfs your day job.</strong> If your side income is much larger than your W-2 salary, the extra withholding may exceed your take-home pay. Mix: partial withholding bump + some quarterly payments.</li>
-    <li><strong>You're already maxed out at FICA.</strong> If your W-2 is over the Social Security wage base (~$176k for 2025), employer withholding only covers the federal income tax portion of your SE tax obligation — Medicare still works, but it gets complicated. Worth a CPA review.</li>
+    <li><strong>You're already maxed out at FICA.</strong> If your W-2 is over the Social Security wage base (<span id="wb-warn-text">~$176,100 for 2025</span>), employer withholding only covers the federal income tax portion of your SE tax obligation — Medicare still works, but it gets complicated. Worth a CPA review.</li>
     <li><strong>You're a high earner with NIIT exposure.</strong> Net Investment Income Tax (3.8% on certain income over $200k single / $250k MFJ) isn't modeled here — verify with a tax pro.</li>
   </ul>
 
@@ -519,21 +534,44 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   'use strict';
 
   // ──────────────────────────────────────────────────────────────────────
-  // 2025 federal tax brackets + standard deduction. SE tax = 12.4% SS
-  // (capped at the Social Security wage base, after subtracting W-2 wages)
-  // + 2.9% Medicare (uncapped) + 0.9% Additional Medicare on combined
-  // wages+SE above filing-status threshold. Half of regular SE tax is
-  // deductible against income tax (above-the-line). Additional Medicare
-  // is NOT part of the SE tax deduction.
+  // Year-keyed tax config. SE tax = 12.4% SS (capped at Social Security
+  // wage base, after subtracting W-2 wages) + 2.9% Medicare (uncapped)
+  // + 0.9% Additional Medicare on combined wages+SE above filing-status
+  // threshold. Half of regular SE tax is deductible against income tax
+  // (above-the-line). Additional Medicare is NOT part of SE tax deduction.
+  //
+  // Adding a future year (2027+) = drop in a new key, no logic changes.
   // ──────────────────────────────────────────────────────────────────────
-  var BRACKETS = {
-    single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
-    mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
-    hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  var TAX_DATA = {
+    2025: {
+      // Source: IRS Rev. Proc. 2024-40 (Oct 2024)
+      brackets: {
+        single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+        mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+        hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+      },
+      stdDeduction: { single: 15000, mfj: 30000, hoh: 22500 },
+      ssWageBase:   176100,
+      addlMedThreshold: { single: 200000, mfj: 250000, hoh: 200000 }
+    },
+    2026: {
+      // Brackets: projected 2.8% chained-CPI from 2025 (refine when IRS
+      // releases real numbers Nov 2025). Std deductions + SS wage base
+      // per OBBBA spec / SSA projections.
+      brackets: {
+        single: [[12275,.10],[49850,.12],[106250,.22],[202825,.24],[257550,.32],[643900,.35],[Infinity,.37]],
+        mfj:    [[24525,.10],[99675,.12],[212500,.22],[405650,.24],[515100,.32],[772650,.35],[Infinity,.37]],
+        hoh:    [[17475,.10],[66675,.12],[106250,.22],[202825,.24],[257525,.32],[643900,.35],[Infinity,.37]]
+      },
+      stdDeduction: { single: 16100, mfj: 32200, hoh: 24150 },
+      ssWageBase:   181800,        // SSA 2026 projected ($176,100 → $181,800)
+      addlMedThreshold: { single: 200000, mfj: 250000, hoh: 200000 }   // unchanged
+    }
   };
-  var STD_DED = { single: 15000, mfj: 30000, hoh: 22500 };
-  var SS_WAGE_BASE_2026 = 176100;
-  var ADDL_MED_THRESHOLD = { single: 200000, mfj: 250000, hoh: 200000 };
+  function dataFor(year) { return TAX_DATA[year] || TAX_DATA[2025]; }
+
+  // Active tax year — switches via the year-seg toggle. Default 2025.
+  var taxYear = 2025;
 
   // No-income-tax states (state buffer = 0)
   var NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
@@ -561,8 +599,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
   };
 
-  function marginalRate(taxable, status) {
-    var bkts = BRACKETS[status] || BRACKETS.single;
+  function marginalRate(taxable, status, data) {
+    var bkts = data.brackets[status] || data.brackets.single;
     for (var i = 0; i < bkts.length; i++) {
       if (taxable <= bkts[i][0]) return bkts[i][1];
     }
@@ -585,6 +623,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // Calculation — accurate SE tax accounting for SS wage base + Add'l Medicare
   // ──────────────────────────────────────────────────────────────────────
   function calc() {
+    // Pull all year-specific values from the active year's config block
+    var data       = dataFor(taxYear);
+    var ssWageBase = data.ssWageBase;
+
     var w2 = Math.max(0, parseFloat(document.getElementById('w2').value.replace(/,/g,'')) || 0);
     var se = Math.max(0, parseFloat(document.getElementById('se').value.replace(/,/g,'')) || 0);
     var status = document.getElementById('filing').value;
@@ -594,9 +636,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     // SE base: net SE × 0.9235 (the standard SE tax reduction)
     var seBase = se * 0.9235;
 
-    // Social Security: 12.4%, but capped at the SS wage base AFTER subtracting W-2 wages.
-    // If W-2 already exceeds the wage base, SS portion on SE is $0.
-    var ssRoomLeft = Math.max(0, SS_WAGE_BASE_2026 - w2);
+    // Social Security: 12.4%, but capped at the year's SS wage base AFTER
+    // subtracting W-2 wages. If W-2 already exceeds the wage base, SS
+    // portion on SE is $0.
+    var ssRoomLeft = Math.max(0, ssWageBase - w2);
     var ssTaxableFromSE = Math.min(seBase, ssRoomLeft);
     var ssTax = ssTaxableFromSE * 0.124;
 
@@ -604,15 +647,13 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     var medicareTax = seBase * 0.029;
 
     // Additional Medicare: 0.9% on combined wages + SE above filing-status threshold
-    var addlMedThreshold = ADDL_MED_THRESHOLD[status] || 200000;
+    var addlMedThreshold = data.addlMedThreshold[status] || 200000;
     var combinedForAddlMed = w2 + seBase;
     var addlMedTax = 0;
     if (combinedForAddlMed > addlMedThreshold) {
       if (w2 >= addlMedThreshold) {
-        // All SE base is above threshold for purposes of additional Medicare
         addlMedTax = seBase * 0.009;
       } else {
-        // Only the portion above threshold (after W-2 fills the room below) counts
         addlMedTax = (combinedForAddlMed - addlMedThreshold) * 0.009;
       }
     }
@@ -621,10 +662,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     var seTaxDeduction = (ssTax + medicareTax) / 2;
 
     // Income tax delta from the SE chunk
-    var stdDed = STD_DED[status] || STD_DED.single;
+    var stdDed = data.stdDeduction[status] || data.stdDeduction.single;
     var taxableWithSE = Math.max(0, w2 + se - seTaxDeduction - stdDed);
     var taxableW2Only = Math.max(0, w2 - stdDed);
-    var marg = marginalRate(taxableWithSE, status);
+    var marg = marginalRate(taxableWithSE, status, data);
     var addlTaxableFromSE = Math.max(0, taxableWithSE - taxableW2Only);
     var addlFedTax = addlTaxableFromSE * marg;
 
@@ -666,7 +707,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
       }
       prevW.pp = perPaycheck;
       var freqLabel = ({26:'biweekly',24:'semimonthly',52:'weekly',12:'monthly'})[freq] || 'pay period';
-      var ssNote = (w2 >= SS_WAGE_BASE_2026) ? ' (Social Security portion zeroed out — you\'re past the wage base via your W-2)' : '';
+      var ssNote = (w2 >= ssWageBase) ? ' (Social Security portion zeroed out — you\'re past the wage base via your W-2)' : '';
       ctxEl.innerHTML = 'Adds <strong>' + fmtMoney(totalExtraTax) + '</strong> total over the year (' + freqLabel + '). Covers your ' + fmtMoney(se) + ' of side hustle profit at your ' + Math.round(marg * 100) + '% marginal bracket' + ssNote + '.';
     }
 
@@ -683,8 +724,8 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     } else {
       document.getElementById('r-sstax').textContent = fmtMoney(ssTax);
     }
-    document.getElementById('r-sstax-meta').textContent = (w2 >= SS_WAGE_BASE_2026)
-      ? 'W-2 already exceeds 2026 wage base ($176,100) — no SS owed on SE'
+    document.getElementById('r-sstax-meta').textContent = (w2 >= ssWageBase)
+      ? 'W-2 already exceeds ' + taxYear + ' wage base (' + fmtMoney(ssWageBase) + ') — no SS owed on SE'
       : (ssRoomLeft < seBase
           ? 'Only ' + fmtMoney(ssRoomLeft) + ' of SE wages fits below the wage base'
           : 'Full SE base subject to SS');
@@ -736,9 +777,9 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     // ────────────── FICA wage-base warning (conditional) ──────────────
     var ficaWarn = document.getElementById('r-fica-warn');
     var ficaBody = document.getElementById('r-fica-warn-body');
-    if (w2 > SS_WAGE_BASE_2026) {
+    if (w2 > ssWageBase) {
       ficaWarn.classList.add('is-show');
-      var msg = "Your W-2 salary exceeds the <strong>2026 Social Security wage base ($176,100)</strong>. You won't owe the 12.4% Social Security portion of SE tax on your hustle income — only Medicare (2.9%)";
+      var msg = "Your W-2 salary exceeds the <strong>" + taxYear + " Social Security wage base (" + fmtMoney(ssWageBase) + ")</strong>. You won't owe the 12.4% Social Security portion of SE tax on your hustle income — only Medicare (2.9%)";
       if (addlMedTax > 0) {
         msg += ", plus 0.9% Additional Medicare on combined income above $" + addlMedThreshold.toLocaleString('en-US');
       }
@@ -781,7 +822,38 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     el.addEventListener('change', calc);
   });
 
+  // ────────────── Tax-year toggle ──────────────
+  // Updates the year, all year-aware text strings, and re-runs calc().
+  // Inputs (W-2, SE, state, filing) are preserved across year switches.
+  function updateYearText() {
+    var data = dataFor(taxYear);
+    var wb = data.ssWageBase;
+    var byId = function (id, fn) {
+      var el = document.getElementById(id);
+      if (el) fn(el);
+    };
+    byId('hero-year',     function (e) { e.textContent = taxYear; });
+    byId('disc-year',     function (e) { e.textContent = taxYear; });
+    byId('dl-year',       function (e) { e.textContent = taxYear; });
+    byId('wb-warn-text',  function (e) {
+      // "~$181,800 for 2026"
+      e.textContent = '~$' + wb.toLocaleString('en-US') + ' for ' + taxYear;
+    });
+  }
+
+  document.getElementById('seg-year').addEventListener('click', function (e) {
+    var btn = e.target.closest('.year-opt');
+    if (!btn) return;
+    var children = e.currentTarget.children;
+    for (var i = 0; i < children.length; i++) children[i].classList.remove('is-active');
+    btn.classList.add('is-active');
+    taxYear = parseInt(btn.dataset.val, 10) || 2025;
+    updateYearText();
+    calc();
+  });
+
   // Initial render
+  updateYearText();
   calc();
 })();
 </script>
