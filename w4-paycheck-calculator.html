@@ -265,6 +265,36 @@ button { font: inherit; border: 0; background: transparent; cursor: pointer; col
   font-variant-numeric: tabular-nums;
 }
 
+/* Year toggle — polished pill segmented control in the panel header.
+ * Two states: 2025 (default) | 2026 (OBBBA-updated). */
+.year-seg {
+  display: inline-flex;
+  background: rgba(22, 24, 58, 0.6);
+  border: 1px solid var(--indigo-line-2);
+  border-radius: 100px;
+  padding: 3px;
+  gap: 2px;
+}
+.year-opt {
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cream-faint);
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  transition: color .15s var(--ease), background .15s var(--ease), box-shadow .25s var(--ease);
+}
+.year-opt:hover { color: var(--cream); }
+.year-opt.is-active {
+  background: var(--apricot);
+  color: var(--indigo-darker);
+  box-shadow: 0 0 18px var(--apricot-glow-soft);
+}
+
 /* ─── Inputs ─── */
 .field { margin-bottom: 18px; }
 .field:last-child { margin-bottom: 0; }
@@ -832,8 +862,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
   <div class="hero-inner">
     <div class="hero-head">
-      <span class="hero-eye"><span class="pulse"></span> Free · 2025 tax year · W-4 line-by-line</span>
-      <h1 class="hero-h1">How should I set up my <em>W-4 for 2025</em>?</h1>
+      <span class="hero-eye"><span class="pulse"></span> Free · <span id="hero-year">2025</span> tax year · W-4 line-by-line</span>
+      <h1 class="hero-h1">How should I set up my <em>W-4 for <span id="h1-year">2025</span></em>?</h1>
       <p class="hero-sub">Enter your job, family, and any other income. We'll calculate your federal tax, compare it to your withholding, and tell you exactly what to write on every line of the W-4.</p>
     </div>
 
@@ -843,7 +873,12 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <div class="panel" role="form" aria-labelledby="inputs-title">
         <div class="panel-h">
           <span class="title" id="inputs-title">Your <em>situation</em></span>
-          <span class="year">2025</span>
+          <!-- Tax year toggle — replaces static year badge. Switching
+               here re-runs the whole engine with that year's params. -->
+          <div class="year-seg" id="seg-year" role="radiogroup" aria-label="Tax year">
+            <button class="year-opt is-active" type="button" data-val="2025">2025</button>
+            <button class="year-opt" type="button" data-val="2026">2026</button>
+          </div>
         </div>
 
         <div class="field">
@@ -939,7 +974,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
         <div class="field">
           <details class="collapsible">
-            <summary>Step 4(a) — Other income <span class="sub-hint">side hustle, interest, dividends · optional</span></summary>
+            <summary>Step 4(a) — Other income <span class="sub-hint" id="hint-4a">side hustle, interest, dividends · optional</span></summary>
             <div class="inner">
               <div class="field" style="margin-top:14px;margin-bottom:0">
                 <div class="field-label">
@@ -957,7 +992,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
         <div class="field">
           <details class="collapsible">
-            <summary>Step 4(b) — Itemized deductions <span class="sub-hint">if you itemize · optional</span></summary>
+            <summary>Step 4(b) — Itemized deductions <span class="sub-hint" id="hint-4b">if you itemize · optional</span></summary>
             <div class="inner">
               <div class="field" style="margin-top:14px;margin-bottom:0">
                 <div class="field-label">
@@ -967,7 +1002,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
                   <span class="prefix">$</span>
                   <input type="text" inputmode="decimal" id="in-itemized" value="0" autocomplete="off"/>
                 </div>
-                <div class="field-help">Mortgage interest + state/local tax (capped $10k) + charitable + medical &gt; 7.5% AGI. Enter $0 to use standard.</div>
+                <div class="field-help" id="help-4b">Mortgage interest + state/local tax (capped $10k) + charitable + medical &gt; 7.5% AGI. Enter $0 to use standard.</div>
               </div>
             </div>
           </details>
@@ -1209,7 +1244,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
    * ═══════════════════════════════════════════════════════════════════ */
   var TAX_DATA = {
     2025: {
-      // Each bracket is [top_of_bracket_taxable_income, marginal_rate]
+      // Source: IRS Rev. Proc. 2024-40 (Oct 2024)
       brackets: {
         single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
         mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
@@ -1220,8 +1255,22 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       ctcPerKid:    2000,
       odcPerDep:    500,
       ctcThreshold: { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 }
+    },
+    2026: {
+      // Brackets: projected via 2.8% chained-CPI inflation adjustment from 2025
+      // (IRS typically releases real 2026 numbers in Nov 2025 — refine then).
+      // Std deductions + CTC bumped per One Big Beautiful Bill Act (OBBBA).
+      brackets: {
+        single: [[12275,.10],[49850,.12],[106250,.22],[202825,.24],[257550,.32],[643900,.35],[Infinity,.37]],
+        mfj:    [[24525,.10],[99675,.12],[212500,.22],[405650,.24],[515100,.32],[772650,.35],[Infinity,.37]],
+        mfs:    [[12275,.10],[49850,.12],[106250,.22],[202825,.24],[257550,.32],[386325,.35],[Infinity,.37]],
+        hoh:    [[17475,.10],[66675,.12],[106250,.22],[202825,.24],[257525,.32],[643900,.35],[Infinity,.37]]
+      },
+      stdDeduction: { single: 16100, mfj: 32200, mfs: 16100, hoh: 24150 },
+      ctcPerKid:    2200,    // OBBBA bump from $2,000
+      odcPerDep:    500,
+      ctcThreshold: { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 }
     }
-    // 2026: { ... } // append when IRS releases (typically Nov of prior year)
   };
 
   function dataFor(year) { return TAX_DATA[year] || TAX_DATA[2025]; }
@@ -1675,19 +1724,16 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     }
 
     // Step 3 — dependent credits dollar amount
+    // (Note text — "X kids × $2,000/$2,200" — is set in the year-aware
+    // block below so it stays correct when toggling years.)
     var step3 = $('#w4-step3');
     var coordEl = $('#w4-3-coord');
     if (r.rawCredits > 0) {
       step3.classList.remove('is-zero');
       anim($('#w4-3-val'), 'w43', r.credits, 500, { isHTML: true, fmt: fmtRich });
-      $('#w4-3-note').textContent =
-        r.kids + ' child' + (r.kids === 1 ? '' : 'ren') + ' × $2,000 + ' +
-        r.others + ' other × $500' +
-        (r.credits < r.rawCredits ? ' (phase-out applied)' : '');
     } else {
       step3.classList.add('is-zero');
       $('#w4-3-val').innerHTML = '<em>$</em>0';
-      $('#w4-3-note').textContent = '0 kids × $2,000 + 0 dependents × $500';
       prev.w43 = 0;
     }
     // Coordination warning: show when MFJ + both working + dependents claimed
@@ -1744,6 +1790,54 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       $('#w4-4c-val').innerHTML = '<em>$</em>0';
       $('#w4-4c-note').textContent = 'No extra withholding needed — default covers your tax';
       prev.w44c = 0;
+    }
+
+    // ── Year-aware dynamic text — updates H1, eye-pill, descriptors,
+    //    "optional" labels per active year. Centralized here so toggling
+    //    the year instantly re-paints every year-sensitive label.
+    var yearData = dataFor(state.taxYear);
+    var ctcPerKid = yearData.ctcPerKid;
+    var stdDed = yearData.stdDeduction[r.status] || yearData.stdDeduction.single;
+
+    var hYear = $('#hero-year'), h1Year = $('#h1-year');
+    if (hYear)  hYear.textContent  = state.taxYear;
+    if (h1Year) h1Year.textContent = state.taxYear;
+
+    // Step 3 descriptor — show year-specific CTC ($2,000 in 2025, $2,200 in 2026)
+    var step3Note = $('#w4-3-note');
+    if (step3Note) {
+      if (r.rawCredits > 0) {
+        var noteText = r.kids + ' child' + (r.kids === 1 ? '' : 'ren') +
+          ' × $' + ctcPerKid.toLocaleString() + ' + ' +
+          r.others + ' other × $500' +
+          (r.credits < r.rawCredits ? ' (phase-out applied)' : '');
+        step3Note.textContent = noteText;
+      } else {
+        step3Note.textContent =
+          '0 kids × $' + ctcPerKid.toLocaleString() + ' + 0 dependents × $500';
+      }
+    }
+
+    // Step 4(a) + 4(b) summary hints — drop "· optional" in 2026 (new W-4 layout)
+    var hint4a = $('#hint-4a'), hint4b = $('#hint-4b');
+    if (hint4a) {
+      hint4a.textContent = (state.taxYear === 2026)
+        ? 'side hustle, interest, dividends'
+        : 'side hustle, interest, dividends · optional';
+    }
+    if (hint4b) {
+      hint4b.textContent = (state.taxYear === 2026)
+        ? 'if you itemize'
+        : 'if you itemize · optional';
+    }
+
+    // Step 4(b) help text — add tip/OT worksheet note in 2026 (OBBBA additions)
+    var help4b = $('#help-4b');
+    if (help4b) {
+      var baseHelp = 'Mortgage interest + state/local tax (capped $10k) + charitable + medical &gt; 7.5% AGI. Enter $0 to use standard.';
+      help4b.innerHTML = (state.taxYear === 2026)
+        ? baseHelp + ' <span style="color:var(--apricot)">New for 2026: include qualified tip + overtime worksheet totals if applicable.</span>'
+        : baseHelp;
     }
 
     // ── Update the Step 2(c) toggle UI (visibility + auto-sync to effective state)
@@ -1839,6 +1933,19 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   //   false = force off (override — user wants to see the worst case)
   document.getElementById('in-step2c').addEventListener('change', function (e) {
     state.useStep2c = !!e.target.checked;
+    render();
+  });
+
+  // Tax year toggle — instantly re-runs the engine with the selected year's
+  // brackets, std deductions, CTC. User's wage/dependent/etc inputs are
+  // preserved (state survives the year switch).
+  document.getElementById('seg-year').addEventListener('click', function (e) {
+    var btn = e.target.closest('.year-opt');
+    if (!btn) return;
+    var children = e.currentTarget.children;
+    for (var i = 0; i < children.length; i++) children[i].classList.remove('is-active');
+    btn.classList.add('is-active');
+    state.taxYear = parseInt(btn.dataset.val, 10) || 2025;
     render();
   });
 
