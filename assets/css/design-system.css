@@ -595,29 +595,20 @@ nav .btn-cta::after {
     background-color    var(--dur-fast) var(--ease-snappy),
     background-position var(--dur-snap) var(--ease-snappy);
 }
-/* Idle pulse on the indigo arrow + desktop-only hover behavior. The
- * pulse cycles background-size so the arrow gently breathes; on hover
- * the pulse pauses and the arrow translates ~3px to the right via a
- * background-position shift. Whole CTA also scales 1.02 in the parent
- * .btn-cta hover rule above. Both wrapped in @media (hover: hover) so
- * touch devices never get sticky hover states. */
-@media (prefers-reduced-motion: no-preference) {
-  nav .btn-cta::after {
-    animation: navCtaArrowPulse 2.4s var(--ease-default) infinite;
-  }
-}
+/* Desktop-only hover: parent pill scales 1.02, arrow inside the
+ * apricot end-cap shifts ~3px right via background-position so it
+ * "leans forward into the click." Wrapped in @media (hover: hover)
+ * so touch devices never get sticky hover states.
+ *
+ * (Idle pulse was removed — animating background-size on the SVG
+ * background-image forced a full re-rasterization every frame and
+ * tanked framerate on lower-end mobile GPUs.) */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   nav .btn-cta:hover { transform: scale(1.02); }
   nav .btn-cta:hover::after {
-    animation-play-state: paused;
-    /* Shift the arrow ~3px right within its 26px circle — feels like
-     * the arrow is "leaning forward into the click." */
+    /* Shift the arrow ~3px right within its 26px circle. */
     background-position: calc(50% + 3px) center;
   }
-}
-@keyframes navCtaArrowPulse {
-  0%, 100% { background-size: 14px 14px; }
-  50%      { background-size: 17px 17px; }
 }
 
 /* Article-page nav CTA pulse: dot pseudo + flex layout shared via this stylesheet
@@ -1491,22 +1482,6 @@ nav .btn-cta::after {
     height: 24px;
     background-size: 13px 13px;
   }
-  /* Scale the pulse keyframe values to the mobile arrow size so
-   * the animation stays in proportion (otherwise it'd snap back
-   * to the desktop 14→17 range on each loop). */
-  @media (prefers-reduced-motion: no-preference) {
-    nav .btn-cta::after {
-      animation-name: navCtaArrowPulseSm;
-    }
-  }
-}
-@keyframes navCtaArrowPulseSm {
-  0%, 100% { background-size: 13px 13px; }
-  50%      { background-size: 15.5px 15.5px; }
-}
-@keyframes navCtaArrowPulseXs {
-  0%, 100% { background-size: 12px 12px; }
-  50%      { background-size: 14px 14px; }
 }
 
 /* ===== SMALL MOBILE NAV (≤420px) — extra compression =====
@@ -1553,12 +1528,6 @@ nav .btn-cta::after {
     width: 22px;
     height: 22px;
     background-size: 12px 12px;
-  }
-  /* Tiny-mobile pulse, scaled to the 12px arrow. */
-  @media (prefers-reduced-motion: no-preference) {
-    nav .btn-cta::after {
-      animation-name: navCtaArrowPulseXs;
-    }
   }
   nav .logo-text { font-size: 12.5px; }
   nav .ds-nav-right,
