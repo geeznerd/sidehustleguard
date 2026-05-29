@@ -488,34 +488,48 @@ nav .nav-link[aria-current="page"] {
 }
 .btn-cta:active { box-shadow: 0 2px 6px rgba(45, 48, 104, 0.10); }
 
-/* ═══ Nav CTA — topographic pill variant ═══
- * Per the Direction E "Topo-line surface" button reference: cream pill
- * with a 1.5px apricot border and a subtle stack of indigo ellipses
- * inlined as an SVG background-image. Quieter than the hero apricot
- * squircle while still reading as the primary action. Scoped to <nav>
- * so hero/CTA-band/sticky-bar CTAs keep their pulsing apricot look. */
+/* ═══ Nav CTA — compact pill with apricot arrow circle ═══
+ * Cream pill with a 1.5px apricot border, indigo text, and an apricot-
+ * filled circle on the right containing a 14px indigo arrow. Tighter
+ * padding than the hero squircle so the nav cluster has more room.
+ * Scoped to <nav> so hero/CTA-band/sticky-bar CTAs keep the pulsing
+ * apricot squircle. */
 nav .btn-cta {
-  background-color: var(--paper);
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%232d3068' stroke-opacity='0.10' stroke-width='1'%3E%3Cellipse cx='120' cy='32' rx='120' ry='26'/%3E%3Cellipse cx='120' cy='32' rx='108' ry='22'/%3E%3Cellipse cx='120' cy='32' rx='96' ry='18'/%3E%3Cellipse cx='120' cy='32' rx='84' ry='14'/%3E%3Cellipse cx='120' cy='32' rx='72' ry='10'/%3E%3Cellipse cx='120' cy='32' rx='60' ry='6'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--paper);
   border: 1.5px solid var(--apricot);
   border-radius: 100px;
   color: var(--indigo);
   font-weight: 600;
   letter-spacing: -0.005em;
+  padding: 5px 6px 5px 16px;   /* tight right edge — the apricot dot sits here */
   gap: 10px;
   box-shadow: none;
+  font-size: 14px;
 }
-/* Suppress the pulsing-dot ::before — the topo line stack is the
- * visual interest for this variant. */
+/* Suppress the pulsing-dot ::before — the apricot ::after dot is the
+ * visual end-cap for this variant. */
 nav .btn-cta::before { display: none; }
+/* The apricot arrow circle on the right. Pure CSS — the arrow is an
+ * inlined SVG background-image so no per-page markup changes needed. */
+nav .btn-cta::after {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--apricot);
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8 H12 M8 4 L12 8 L8 12' stroke='%232d3068' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 nav .btn-cta:hover {
-  background-color: var(--paper);
+  background: var(--paper);
   border-color: var(--apricot-hover);
   box-shadow: 0 4px 12px rgba(45, 48, 104, 0.08);
 }
+nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
 @media (prefers-reduced-motion: no-preference) {
   nav .btn-cta:hover { transform: translateY(-1px); }
 }
