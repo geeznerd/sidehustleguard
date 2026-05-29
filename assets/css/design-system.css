@@ -16,6 +16,10 @@
 :root {
   /* Primary palette */
   --indigo:        #2d3068;
+  /* --indigo-85 added per impeccable audit P1 — body copy at --indigo-70
+   * measures exactly 4.51:1 on cream (passing WCAG AA by 0.01).
+   * --indigo-85 measures ~6.8:1, giving real-world headroom. */
+  --indigo-85:     rgba(45, 48, 104, 0.85);
   --indigo-70:     rgba(45, 48, 104, 0.7);
   --indigo-55:     rgba(45, 48, 104, 0.55);
   --indigo-35:     rgba(45, 48, 104, 0.35);
@@ -24,7 +28,16 @@
   --indigo-08:     rgba(45, 48, 104, 0.08);
   --indigo-hover:  #393d80;  /* primary button hover only */
 
+  /* --apricot is the FILL color (button bgs, borders, end-cap circles).
+   * UI components only need 3:1 contrast — apricot/cream passes that.
+   *
+   * --apricot-text is a darker burnt-amber for any place apricot is
+   * used as TYPE on cream. Plain apricot/cream measures 2.01:1 —
+   * fails WCAG AA for body (4.5:1) AND for large text (3:1).
+   * #9c4517 measures ~5.3:1 on cream. Use it for eyebrows, em
+   * italics, meta text, anywhere apricot is the type color.    */
   --apricot:       #e89464;
+  --apricot-text:  #9c4517;
   --apricot-hover: #f0a075;
   --apricot-pale:  #fde8d5;
   --apricot-soft:  rgba(232, 148, 100, 0.18);
@@ -714,7 +727,9 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
   width: 100%;
   background: transparent;
   border: none;
-  padding: 0;
+  /* Vertical padding gives the FAQ button a 56px hit area (44px text +
+   * 12px padding) — meets WCAG 2.5.5 + Apple HIG on touch. */
+  padding: 16px 0;
   text-align: left;
 }
 
@@ -801,7 +816,10 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
   font-style: italic;
   font-weight: 500;
   font-size: 22px;
-  color: var(--indigo-35);
+  /* Was --indigo-35 (~1.8:1 on cream — fails even 3:1 large-text floor).
+   * Bumped to --indigo-70 (~4.5:1) so the inactive number is still soft
+   * but legible to low-vision users. */
+  color: var(--indigo-70);
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
   transition: color var(--dur-default) var(--ease-default);
 }
@@ -817,16 +835,20 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
 .sliding-list-meta {
   font-family: 'Inter', sans-serif;
   font-size: 12.5px;
-  color: var(--indigo-55);
+  /* Was --indigo-55 (~3.0:1 — fails 4.5:1 for small text).
+   * Bumped to --indigo-85 (~6.8:1) for comfortable reading at 12.5px. */
+  color: var(--indigo-85);
   transition: color var(--dur-default) var(--ease-default);
 }
 
+/* Active / hover / focus state — uses --apricot-text (the darker readable
+ * apricot variant) instead of plain --apricot which was 2.01:1 on cream. */
 .sliding-list-row[aria-current="true"] .sliding-list-num,
 .sliding-list-row:hover .sliding-list-num,
 .sliding-list-row:focus-visible .sliding-list-num,
 .sliding-list-row[aria-current="true"] .sliding-list-meta,
 .sliding-list-row:hover .sliding-list-meta {
-  color: var(--apricot);
+  color: var(--apricot-text);
 }
 
 /* ===== GUIDE CARD (Pattern G3) ===== */
@@ -1425,21 +1447,21 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
    * "Guides" link so it stays reachable from the header. */
   nav .ds-nav-link:not(.always-visible) { display: none; }
 
-  /* Bring back the apricot-tinted "Guides" pill so it reads as a
-   * tappable secondary action ranking just under the primary CTA.
-   * Explicit 36px height so it lines up exactly with the CTA pill
-   * height — `align-items: center` on the nav flex container then
-   * handles vertical centering deterministically. */
+  /* Apricot-tinted "Guides" pill — tappable secondary action ranking
+   * just under the primary CTA. 40px height matches the CTA pill for
+   * unified row rhythm AND meets Apple HIG's 40pt tap-target floor.
+   * Text uses --apricot-text (the darker readable variant); the soft
+   * apricot tint background still telegraphs "apricot pill." */
   nav .ds-nav-link.always-visible {
     display: inline-flex;
     align-items: center;
-    color: var(--apricot);
+    color: var(--apricot-text);
     font-weight: 600;
     font-size: 13px;
     background: rgba(232, 148, 100, 0.12);
-    border: 1px solid rgba(232, 148, 100, 0.22);
-    padding: 0 13px;
-    height: 36px;
+    border: 1px solid rgba(232, 148, 100, 0.32);
+    padding: 0 14px;
+    height: 40px;
     border-radius: 100px;
     letter-spacing: -0.005em;
     line-height: 1;
@@ -1460,12 +1482,14 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
    * and ::before injects the visible "CHECK" label. ::after still
    * renders the apricot circle with the pulsing indigo arrow. */
   nav .btn-cta {
-    /* Explicit 36px height matches the Guides pill above so the two
-     * right-side pills line up perfectly. align-items: center on the
-     * nav flex parent handles vertical centering within the 56px nav. */
-    height: 36px;
-    padding: 0 5px 0 14px !important;
-    gap: 5px;   /* tight gap between "Check" label and apricot end-cap */
+    /* Explicit 40px height — restored from 36 to hit Apple HIG's 40pt
+     * floor (and approach WCAG 2.5.5 AAA's 44×44 target). Pairs with
+     * the Guides pill height below so the two right-side pills line
+     * up perfectly. align-items: center on the nav flex parent handles
+     * vertical centering within the 56px nav. */
+    height: 40px;
+    padding: 0 6px 0 16px !important;
+    gap: 6px;   /* tight gap between "Check" label and apricot end-cap */
     /* !important to win over the generic `nav .btn { font-size: 12.5px
      * !important }` above — without it the "Check my hustle" text
      * stays invisible (color: transparent) but still takes ~95px of
@@ -1519,22 +1543,20 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
     font-size: 11.5px !important;
     padding: 8px 12px !important;
   }
-  /* Shrink the Guides pill so it + the CHECK CTA + the wordmark fit
-   * comfortably at iPhone SE / Galaxy A widths (~360–375px). Explicit
-   * 32px height so it stays locked to the CTA's height below. */
+  /* iPhone SE / Galaxy A widths (~360–375px). Heights match the ≤700px
+   * block (40px) — WCAG 2.5.5 + Apple HIG tap-target floor. The
+   * previous 32px compression was cosmetic and shipped tap-target
+   * failures (impeccable audit P0). */
   nav .ds-nav-link.always-visible {
     font-size: 12px;
-    padding: 0 11px;
-    height: 32px;
+    padding: 0 12px;
+    height: 40px;
   }
-  /* Re-apply compact pill geometry at ≤420px too, same reason as the
-   * ≤700px block — the generic .btn padding above would otherwise add
-   * 12px of right margin and float the apricot end-cap. */
   nav .btn-cta {
-    height: 32px;
+    height: 40px;
     min-height: 0;   /* defeat the `nav .btn { min-height: 36px }` above */
-    padding: 0 4px 0 11px !important;
-    gap: 4px;        /* even tighter at iPhone-class widths */
+    padding: 0 5px 0 13px !important;
+    gap: 5px;
     font-size: 0 !important;   /* keep the text node collapsed at ≤420 too */
   }
   nav .btn-cta::before {
