@@ -848,7 +848,7 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
 .sliding-list-row:focus-visible .sliding-list-num,
 .sliding-list-row[aria-current="true"] .sliding-list-meta,
 .sliding-list-row:hover .sliding-list-meta {
-  color: var(--apricot-text);
+  color: var(--apricot);
 }
 
 /* ===== GUIDE CARD (Pattern G3) ===== */
@@ -1455,7 +1455,7 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
   nav .ds-nav-link.always-visible {
     display: inline-flex;
     align-items: center;
-    color: var(--apricot-text);
+    color: var(--apricot);
     font-weight: 600;
     font-size: 13px;
     background: rgba(232, 148, 100, 0.12);
