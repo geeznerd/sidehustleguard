@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Free W-4 Paycheck Calculator 2025 — Optimize Your Withholding | SideHustleGuard</title>
+<meta content="Free W-4 calculator for 2025. Calculate exact federal withholding, child tax credit, dependent credit, and side hustle adjustment. Outputs every W-4 line: Step 2(c), Step 3, Step 4(a), 4(b), 4(c). No signup." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://www.sidehustleguard.com/w4-paycheck-calculator" rel="canonical"/>
+
+<link rel="icon" type="image/svg+xml" href="/assets/logos/arc-dot-favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/arc-dot.favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/logos/arc-dot.favicon-64.png"/>
+<link rel="apple-touch-icon" href="/assets/logos/arc-dot.favicon-192.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link href="/assets/css/design-system.css" rel="stylesheet"/>
+<script src="/assets/js/calc-kit.js"></script>
+
+<meta content="Free W-4 Paycheck Calculator 2025 — Optimize Your Withholding" property="og:title"/>
+<meta content="Calculate exact federal withholding, child tax credit, dependent credit, and W-4 line-by-line entries. Free, no signup." property="og:description"/>
+<meta content="https://www.sidehustleguard.com/w4-paycheck-calculator" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.sidehustleguard.com/og-image.png" property="og:image"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "W-4 Paycheck Calculator 2025",
+  "description": "Free comprehensive W-4 calculator covering filing status, spouse's job, dependents (CTC + ODC), itemized deductions, other income, and exact W-4 line-by-line outputs (Step 2c, Step 3, Step 4a, 4b, 4c).",
+  "url": "https://www.sidehustleguard.com/w4-paycheck-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the W-4 form?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS Form W-4 tells your employer how much federal income tax to withhold from each paycheck. Getting it right means no surprise tax bill in April — and no giant interest-free loan to the IRS via over-withholding. The W-4 was redesigned in 2020 and uses a different structure than the old allowances-based form."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I claim my children on my W-4?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On Step 3 of your W-4, multiply your number of qualifying children under 17 by $2,000 and add $500 for each other dependent (older children, parents, etc.). Enter the total dollar amount on Step 3. Important: this is a tax CREDIT, not a deduction — it reduces your withholding dollar-for-dollar. The Child Tax Credit phases out above $200,000 (single) or $400,000 (MFJ) AGI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is W-4 Step 2(c) and when should I check it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Step 2(c) is the simplest way to handle multiple jobs — you check the box if you AND your spouse work and your incomes are roughly similar (within ~half of each other). This applies the standard deduction and tax brackets across both jobs, preventing under-withholding. If your incomes are very different, use the official IRS multiple-jobs worksheet on page 3 of the W-4 instead. This calculator tells you which option fits your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I check Step 2(c) or do the multiple jobs worksheet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Step 2(c) when both jobs pay similar amounts (within roughly 50% of each other). It's simpler and the math works out close enough. Use the worksheet (or this calculator's output) when one job pays significantly more — the worksheet calculates a specific extra-withholding amount to enter on Step 4(c), which is more accurate for asymmetric incomes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What goes on W-4 Step 4(a), 4(b), and 4(c)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Step 4(a) is for OTHER INCOME — interest, dividends, retirement distributions, side hustle income you want covered. Step 4(b) is for DEDUCTIONS above the standard amount (large mortgage interest, big charitable gifts, etc.). Step 4(c) is EXTRA WITHHOLDING per paycheck — useful when you need to cover side income, a second job, or want a buffer. This calculator outputs exact dollar amounts for each."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I update my W-4?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Major life events: marriage, divorce, new baby, new job, spouse starting/ending work, buying a house (large mortgage interest), large bonus, starting a side hustle, or a child aging past 17. Also update if you got a big refund or surprise bill last year. There's no annual deadline — you can submit a new W-4 to HR anytime, and it usually takes 1-2 pay periods to take effect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between this and the side-hustle W-4 calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator is comprehensive — it handles standard W-2 withholding for any filer (single, married, with or without dependents). Our other tool at /w4-withholding-calculator is laser-focused on a specific hack: have a W-2 job AND side hustle income? Use that one to calculate just the extra withholding to add to Step 4(c) so you can skip quarterly estimated payments."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sidehustleguard.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://www.sidehustleguard.com/guides"},
+    {"@type": "ListItem", "position": 3, "name": "W-4 Paycheck Calculator", "item": "https://www.sidehustleguard.com/w4-paycheck-calculator"}
+  ]
+}
+</script>
+
+<style>
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
+*,*::before,*::after{box-sizing:border-box}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:32px;height:32px}
+.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
+.logo-text span{color:var(--apricot)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-link:hover{color:var(--indigo)}
+.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}
+.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}
+@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
+
+/* HERO */
+.hero{padding:64px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero-content{position:relative;z-index:1;max-width:780px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--apricot);font-weight:500}
+.hero-sub{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.7;max-width:620px;margin:0 auto}
+
+/* TOOL LAYOUT */
+.tool-wrap{max-width:1100px;margin:0 auto;padding:0 24px 64px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:880px){.tool-wrap{grid-template-columns:1fr;padding:0 18px 48px}}
+
+/* FORM CARD */
+.form-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:18px;padding:28px 28px 24px;box-shadow:0 2px 14px rgba(45,48,104,.04)}
+@media(max-width:560px){.form-card{padding:22px 18px 20px}}
+
+.form-section{margin-bottom:24px;padding-bottom:24px;border-bottom:1px dashed var(--indigo-12)}
+.form-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:0}
+
+.section-eye{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--apricot);text-transform:uppercase;margin-bottom:8px;line-height:1}
+.section-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--apricot)}
+.section-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:500;color:var(--indigo);margin-bottom:18px;letter-spacing:-0.01em;font-variation-settings:'opsz' 144,'SOFT' 30}
+
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.field-row{grid-template-columns:1fr;gap:14px}}
+.field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
+.field-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--apricot);font-weight:500}
+.field-help{font-size:11.5px;color:var(--indigo-55);margin-top:5px;line-height:1.4;font-weight:300}
+
+/* tool-input pattern (apricot italic $ prefix, bare input) */
+.tool-input{position:relative;display:flex;align-items:center;background:var(--cream);border:1px solid var(--indigo-12);border-radius:11px;transition:border-color .2s,background .2s,box-shadow .2s}
+.tool-input:hover{border-color:rgba(232,148,100,.35)}
+.tool-input:focus-within{border-color:var(--apricot);background:var(--paper);box-shadow:0 0 0 3px rgba(232,148,100,.12)}
+.tool-input .prefix{padding-left:14px;padding-right:2px;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--apricot);font-size:16px;line-height:1;user-select:none;font-variation-settings:'opsz' 144,'SOFT' 30}
+.tool-input.tool-input input,
+.tool-input.tool-input select{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:12px 14px 12px 4px;font-size:16px;color:var(--indigo);font-variant-numeric:tabular-nums;font-weight:500;font-family:inherit;-webkit-appearance:none;appearance:none}
+.tool-input.no-prefix input,
+.tool-input.no-prefix select{padding-left:14px}
+.tool-input.select{position:relative}
+.tool-input.select::after{content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;border-right:2px solid var(--indigo-55);border-bottom:2px solid var(--indigo-55);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.tool-input.tool-input select{padding-right:32px;cursor:pointer}
+
+/* Segmented control */
+.seg{display:grid;gap:4px;background:var(--cream);border:1px solid var(--indigo-12);border-radius:11px;padding:4px}
+.seg-opt{padding:10px 8px;text-align:center;font-size:13px;font-weight:600;color:var(--indigo-70);border-radius:8px;transition:background .15s,color .15s;cursor:pointer;border:0;background:transparent;font-family:inherit;white-space:nowrap}
+.seg-opt:hover{color:var(--indigo)}
+.seg-opt.is-active{background:var(--apricot);color:var(--indigo)}
+
+/* Counter input (for dependents) */
+.counter{display:inline-flex;align-items:center;background:var(--cream);border:1px solid var(--indigo-12);border-radius:11px;overflow:hidden}
+.counter button{width:38px;height:42px;border:0;background:transparent;font-size:18px;font-weight:600;color:var(--indigo);cursor:pointer;transition:background .15s,color .15s;font-family:inherit}
+.counter button:hover{background:var(--apricot-soft);color:var(--apricot)}
+.counter button:disabled{opacity:.35;cursor:not-allowed}
+.counter .count{min-width:38px;text-align:center;font-size:16px;font-weight:600;color:var(--indigo);font-variant-numeric:tabular-nums}
+
+/* Collapsible advanced sections */
+details.collapsible{border:1px dashed var(--indigo-12);border-radius:11px;padding:0;background:var(--cream);transition:border-color .2s}
+details.collapsible[open]{border-color:var(--indigo-12);background:var(--paper)}
+details.collapsible summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;color:var(--indigo);user-select:none}
+details.collapsible summary::-webkit-details-marker{display:none}
+details.collapsible summary::after{content:'+';font-size:20px;font-weight:300;color:var(--apricot);line-height:1}
+details.collapsible[open] summary::after{content:'−'}
+details.collapsible .inner{padding:0 16px 16px}
+
+/* ─────── RESULTS PANEL ─────── */
+.result-card{background:var(--indigo-darker,#16183a);color:var(--paper);border-radius:18px;padding:28px;position:sticky;top:88px;box-shadow:0 12px 32px rgba(45,48,104,.18)}
+@media(max-width:880px){.result-card{position:static;padding:24px 22px}}
+
+.r-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(232,224,200,.10)}
+.r-head .title{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:20px;letter-spacing:-0.012em;font-variation-settings:'opsz' 144,'SOFT' 30}
+.r-head .title em{font-style:italic;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30}
+.r-head .yr{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,236,225,.55)}
+
+.r-totals{margin-bottom:22px}
+.r-row{display:flex;align-items:baseline;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(232,224,200,.10);font-size:13.5px}
+.r-row:last-child{border-bottom:0}
+.r-row .l{color:rgba(240,236,225,.72)}
+.r-row .v{font-family:'Inter',sans-serif;font-weight:600;color:var(--paper);font-variant-numeric:tabular-nums}
+.r-row.is-big{padding:14px 0}
+.r-row.is-big .l{font-size:14px;color:var(--paper);font-weight:600}
+.r-row.is-big .v{font-size:22px}
+
+.r-refund{margin-top:16px;padding:14px 16px;border-radius:12px;background:rgba(125,214,164,.16);border:1px solid rgba(125,214,164,.32);text-align:center}
+.r-refund.is-owe{background:rgba(232,148,100,.16);border-color:rgba(232,148,100,.32)}
+.r-refund .lbl{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,236,225,.62);margin-bottom:5px}
+.r-refund .num{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:36px;letter-spacing:-0.022em;line-height:1;color:#7dd6a4;font-variation-settings:'opsz' 144,'SOFT' 30;font-variant-numeric:tabular-nums}
+.r-refund.is-owe .num{color:var(--apricot)}
+
+/* W-4 step-by-step output box */
+.w4-out{margin-top:22px;padding-top:20px;border-top:1px solid rgba(232,224,200,.10)}
+.w4-out-title{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:16px;color:var(--apricot);margin-bottom:14px;font-variation-settings:'opsz' 144,'SOFT' 30}
+.w4-step{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:10px;background:rgba(232,224,200,.04);border:1px solid rgba(232,224,200,.08);margin-bottom:8px}
+.w4-step .step-id{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:13px;color:var(--apricot);min-width:54px;line-height:1.3;flex-shrink:0;font-variation-settings:'opsz' 144,'SOFT' 30}
+.w4-step .step-body{flex:1;min-width:0}
+.w4-step .step-name{font-size:12.5px;color:rgba(240,236,225,.85);font-weight:600;margin-bottom:3px;line-height:1.3}
+.w4-step .step-val{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:18px;color:var(--paper);font-variant-numeric:tabular-nums;letter-spacing:-0.01em;font-variation-settings:'opsz' 144,'SOFT' 30}
+.w4-step .step-val em{font-style:italic;color:var(--apricot)}
+.w4-step.is-zero{opacity:.55}
+.w4-step.is-zero .step-val{font-size:15px;color:rgba(240,236,225,.5)}
+.w4-step .step-note{font-size:11px;color:rgba(240,236,225,.5);margin-top:4px;line-height:1.4}
+
+/* disclaimer */
+.disc{margin-top:18px;padding:12px 14px;border-radius:10px;background:rgba(22,24,58,.4);border:1px solid rgba(232,224,200,.08);font-size:11.5px;color:rgba(240,236,225,.6);line-height:1.5}
+.disc strong{color:rgba(240,236,225,.8);font-weight:600}
+
+/* ═════════════ EDUCATIONAL CONTENT ═════════════ */
+.below{background:var(--cream);padding:64px 24px;color:var(--indigo)}
+.below-inner{max-width:760px;margin:0 auto}
+.below h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:26px;color:var(--indigo);margin:36px 0 12px;line-height:1.2;letter-spacing:-0.02em;font-variation-settings:'opsz' 144,'SOFT' 30}
+.below h2:first-child{margin-top:0}
+.below h2 em{font-style:italic;color:var(--apricot)}
+.below p{font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:14px}
+.below p strong{color:var(--indigo);font-weight:600}
+.below ul{color:var(--indigo-70);line-height:1.7;padding-left:22px;margin:0 0 14px}
+.below ul li{margin-bottom:6px}
+.below ul li strong{color:var(--indigo);font-weight:600}
+
+.related-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--indigo-08)}
+.related-label{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--indigo-55);text-transform:uppercase;margin-bottom:14px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.related-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:12px;padding:14px 16px;text-decoration:none;transition:border-color .15s,transform .15s}
+.related-card:hover{border-color:var(--apricot)}
+@media(prefers-reduced-motion:no-preference){.related-card:hover{transform:translateY(-1px)}}
+.related-card-title{font-size:13.5px;font-weight:600;color:var(--indigo);margin-bottom:3px}
+.related-card-desc{font-size:12px;color:var(--indigo-55);line-height:1.45}
+
+footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}
+.footer-logo span{color:var(--apricot)}
+.footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
+.footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
+
+@media(max-width:720px){
+  nav,footer{padding:13px 18px}
+  .hero{padding:48px 18px 28px}
+  .nav-link{display:none}
+  .nav-cta{font-size:12px;padding:8px 14px}
+  .logo-text{font-size:13px}
+  .nav-right{gap:12px}
+  .below{padding:48px 18px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+      </svg>
+    </div>
+    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="/guides">Guides</a>
+    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">Free · 2025 tax year</span>
+    <h1>How should I set up my <em>W-4 for 2025</em>?</h1>
+    <p class="hero-sub">Enter your job, family, and any other income. We'll calculate your federal tax, compare it to your withholding, and tell you exactly what to write on every line of the W-4.</p>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+  <!-- ────────── FORM ────────── -->
+  <div class="form-card">
+
+    <!-- Section 1: Filing status -->
+    <div class="form-section">
+      <span class="section-eye">Step 1</span>
+      <div class="section-title">Filing <em style="font-family:Fraunces,serif;font-style:italic;color:var(--apricot)">status</em></div>
+      <div class="seg" id="seg-status" role="radiogroup" aria-label="Filing status" style="grid-template-columns:repeat(4,1fr)">
+        <button class="seg-opt is-active" type="button" data-val="single">Single</button>
+        <button class="seg-opt" type="button" data-val="mfj">Married &mdash; jointly</button>
+        <button class="seg-opt" type="button" data-val="mfs">Married &mdash; separately</button>
+        <button class="seg-opt" type="button" data-val="hoh">Head of household</button>
+      </div>
+    </div>
+
+    <!-- Section 2: Your job -->
+    <div class="form-section">
+      <span class="section-eye">Step 2 · Your job</span>
+      <div class="section-title">Your <em style="font-family:Fraunces,serif;font-style:italic;color:var(--apricot)">paycheck</em></div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="in-wage">Annual <em>salary</em> (gross)</label>
+          <div class="tool-input"><span class="prefix">$</span><input type="text" inputmode="decimal" id="in-wage" value="75,000" autocomplete="off"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="in-freq">Pay <em>frequency</em></label>
+          <div class="tool-input select no-prefix">
+            <select id="in-freq">
+              <option value="52">Weekly (52)</option>
+              <option value="26" selected>Biweekly (26)</option>
+              <option value="24">Semimonthly (24)</option>
+              <option value="12">Monthly (12)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field-help">Your salary before any deductions. If your employer withholds for 401(k) or HSA pre-tax, enter your full gross wage anyway.</div>
+    </div>
+
+    <!-- Section 3: Spouse's job (conditional) -->
+    <div class="form-section" id="spouse-section" style="display:none">
+      <span class="section-eye">Step 2(b) · Spouse's job</span>
+      <div class="section-title">Your <em style="font-family:Fraunces,serif;font-style:italic;color:var(--apricot)">spouse's</em> paycheck</div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="in-spouse-wage">Spouse's annual <em>salary</em></label>
+          <div class="tool-input"><span class="prefix">$</span><input type="text" inputmode="decimal" id="in-spouse-wage" value="0" autocomplete="off"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="in-spouse-freq">Spouse's pay <em>frequency</em></label>
+          <div class="tool-input select no-prefix">
+            <select id="in-spouse-freq">
+              <option value="52">Weekly</option>
+              <option value="26" selected>Biweekly</option>
+              <option value="24">Semimonthly</option>
+              <option value="12">Monthly</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field-help">Enter $0 if your spouse doesn't work. If both jobs pay similar amounts, we'll suggest checking Step 2(c) on your W-4 instead of using the worksheet.</div>
+    </div>
+
+    <!-- Section 4: Dependents -->
+    <div class="form-section">
+      <span class="section-eye">Step 3 · Dependents</span>
+      <div class="section-title">Children &amp; other <em style="font-family:Fraunces,serif;font-style:italic;color:var(--apricot)">dependents</em></div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Children under 17 <span style="color:var(--indigo-55);font-weight:400">($2,000 each)</span></label>
+          <div class="counter" data-counter="kids" role="group" aria-label="Number of children under 17">
+            <button type="button" data-step="-1" aria-label="Decrease">−</button>
+            <span class="count" id="ct-kids">0</span>
+            <button type="button" data-step="1" aria-label="Increase">+</button>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Other dependents <span style="color:var(--indigo-55);font-weight:400">($500 each)</span></label>
+          <div class="counter" data-counter="other" role="group" aria-label="Number of other dependents">
+            <button type="button" data-step="-1" aria-label="Decrease">−</button>
+            <span class="count" id="ct-other">0</span>
+            <button type="button" data-step="1" aria-label="Increase">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-help">"Other dependents" includes children 17+, parents you support, or anyone else who qualifies as a dependent on your tax return. Credits phase out above $200,000 (single) or $400,000 (MFJ) AGI.</div>
+    </div>
+
+    <!-- Section 5: Other income (collapsible) -->
+    <div class="form-section">
+      <details class="collapsible">
+        <summary>Step 4(a) — Other income &nbsp;<span style="color:var(--indigo-55);font-weight:400;font-size:11.5px">(side hustle, interest, dividends — optional)</span></summary>
+        <div class="inner">
+          <div class="field" style="margin-top:14px">
+            <label class="field-label" for="in-other-income">Other annual <em>income</em></label>
+            <div class="tool-input"><span class="prefix">$</span><input type="text" inputmode="decimal" id="in-other-income" value="0" autocomplete="off"/></div>
+            <div class="field-help">Non-W-2 income you want covered through paycheck withholding: side hustle profit, interest, dividends, retirement distributions, rental income. If you have substantial side hustle income, also see our <a href="/w4-withholding-calculator" style="color:var(--apricot);font-weight:600">side-hustle W-4 hack tool</a>.</div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Section 6: Itemized (collapsible) -->
+    <div class="form-section">
+      <details class="collapsible">
+        <summary>Step 4(b) — Itemized deductions &nbsp;<span style="color:var(--indigo-55);font-weight:400;font-size:11.5px">(if you itemize — optional)</span></summary>
+        <div class="inner">
+          <div class="field" style="margin-top:14px">
+            <label class="field-label" for="in-itemized">Total <em>itemized</em> deductions</label>
+            <div class="tool-input"><span class="prefix">$</span><input type="text" inputmode="decimal" id="in-itemized" value="0" autocomplete="off"/></div>
+            <div class="field-help">Mortgage interest + state/local taxes (capped at $10k) + charitable gifts + medical (above 7.5% AGI). Only use if total exceeds the standard deduction for your filing status. Enter $0 to use the standard deduction.</div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+  </div><!-- /.form-card -->
+
+
+  <!-- ────────── RESULTS ────────── -->
+  <div class="result-card">
+    <div class="r-head">
+      <span class="title">Your <em>W-4 plan</em></span>
+      <span class="yr">2025</span>
+    </div>
+
+    <div class="r-totals" id="r-totals">
+      <div class="r-row">
+        <span class="l">Total income</span>
+        <span class="v" id="r-gross">$0</span>
+      </div>
+      <div class="r-row">
+        <span class="l">Deduction (standard or itemized)</span>
+        <span class="v" id="r-ded">$0</span>
+      </div>
+      <div class="r-row">
+        <span class="l">Taxable income</span>
+        <span class="v" id="r-taxable">$0</span>
+      </div>
+      <div class="r-row">
+        <span class="l">Tax before credits</span>
+        <span class="v" id="r-tax-pre">$0</span>
+      </div>
+      <div class="r-row">
+        <span class="l">Less: dependent credits</span>
+        <span class="v" id="r-credits">$0</span>
+      </div>
+      <div class="r-row is-big">
+        <span class="l">Total federal tax owed</span>
+        <span class="v" id="r-tax-owed">$0</span>
+      </div>
+      <div class="r-row">
+        <span class="l">Default withholding (no W-4 adj)</span>
+        <span class="v" id="r-wh-default">$0</span>
+      </div>
+    </div>
+
+    <!-- Refund / owe summary -->
+    <div class="r-refund" id="r-refund-box">
+      <div class="lbl" id="r-refund-lbl">Estimated refund</div>
+      <div class="num" id="r-refund-num">$0</div>
+    </div>
+
+    <!-- W-4 step-by-step outputs -->
+    <div class="w4-out">
+      <div class="w4-out-title">Write this on your W-4 →</div>
+
+      <div class="w4-step" id="w4-step2c">
+        <div class="step-id">Step 2(c)</div>
+        <div class="step-body">
+          <div class="step-name">Multiple jobs checkbox</div>
+          <div class="step-val" id="w4-2c-val">Leave blank</div>
+          <div class="step-note" id="w4-2c-note">No spouse working</div>
+        </div>
+      </div>
+
+      <div class="w4-step" id="w4-step3">
+        <div class="step-id">Step 3</div>
+        <div class="step-body">
+          <div class="step-name">Claim dependents</div>
+          <div class="step-val" id="w4-3-val"><em>$</em>0</div>
+          <div class="step-note" id="w4-3-note">0 children × $2,000 + 0 dependents × $500</div>
+        </div>
+      </div>
+
+      <div class="w4-step" id="w4-step4a">
+        <div class="step-id">Step 4(a)</div>
+        <div class="step-body">
+          <div class="step-name">Other income (annual)</div>
+          <div class="step-val" id="w4-4a-val"><em>$</em>0</div>
+          <div class="step-note">Side hustle, interest, dividends — added to wages for withholding math</div>
+        </div>
+      </div>
+
+      <div class="w4-step" id="w4-step4b">
+        <div class="step-id">Step 4(b)</div>
+        <div class="step-body">
+          <div class="step-name">Deductions above standard</div>
+          <div class="step-val" id="w4-4b-val"><em>$</em>0</div>
+          <div class="step-note" id="w4-4b-note">Only enter if itemizing exceeds standard</div>
+        </div>
+      </div>
+
+      <div class="w4-step" id="w4-step4c">
+        <div class="step-id">Step 4(c)</div>
+        <div class="step-body">
+          <div class="step-name">Extra withholding per paycheck</div>
+          <div class="step-val" id="w4-4c-val"><em>$</em>0</div>
+          <div class="step-note" id="w4-4c-note">No extra withholding needed at this income</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disc">
+      <strong>Estimate only — not tax advice.</strong> Uses 2025 federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (varies by state — file a separate state W-4 if your state has income tax) or 401(k)/HSA pre-tax contributions. Verify with a CPA before filing.
+    </div>
+  </div>
+
+</div><!-- /.tool-wrap -->
+
+
+<!-- ═══════════════ EDUCATIONAL CONTENT ═══════════════ -->
+<section class="below">
+  <div class="below-inner">
+
+    <h2>What the <em>W-4 actually does</em></h2>
+    <p>Your W-4 tells your employer how much federal income tax to withhold from each paycheck. The IRS redesigned the form in 2020 — no more "allowances." Instead, you enter dollar amounts directly: your dependents (as credits), your other income, your itemized deductions (if any), and any extra you want held back per paycheck.</p>
+    <p>If you under-withhold, you owe in April plus possible underpayment penalties. If you over-withhold, you get a refund — which is just the IRS giving back your own money interest-free. Getting the W-4 right means landing close to zero in either direction.</p>
+
+    <h2>How to <em>fill out</em> the W-4, step by step</h2>
+    <p><strong>Step 1:</strong> Your name, address, SSN, filing status. The status determines which tax brackets and standard deduction apply.</p>
+    <p><strong>Step 2:</strong> Multiple jobs — for couples where both spouses work, or single people with two jobs. Three options:</p>
+    <ul>
+      <li><strong>2(a)</strong> — Use the IRS online estimator (slowest, most accurate).</li>
+      <li><strong>2(b)</strong> — Use the worksheet on page 3 (math-heavy, accurate for asymmetric incomes).</li>
+      <li><strong>2(c)</strong> — Just check the box. Works when both jobs pay roughly similar amounts. Simplest.</li>
+    </ul>
+    <p><strong>Step 3:</strong> Dependents. Multiply children under 17 by $2,000 and other dependents (parents, older kids you support) by $500. Enter the total as a dollar amount — this directly reduces your withholding.</p>
+    <p><strong>Step 4(a):</strong> Other income that won't be on a W-2 — side hustle profit, dividends, interest, retirement distributions. If you want this covered through paycheck withholding instead of quarterly payments, enter the annual amount here.</p>
+    <p><strong>Step 4(b):</strong> Deductions above the standard deduction. Only fill this in if you're itemizing (big mortgage, charitable gifts, etc.) and the total exceeds the standard amount.</p>
+    <p><strong>Step 4(c):</strong> Extra withholding per paycheck. The dollar amount your employer holds back ON TOP of normal withholding. Useful for covering shortfalls from a second job, side income, or large bonus.</p>
+    <p><strong>Step 5:</strong> Sign and date. Hand to HR.</p>
+
+    <h2>Common <em>mistakes</em></h2>
+    <ul>
+      <li><strong>Married couples not coordinating.</strong> If both spouses claim dependents on Step 3 of their separate W-4s, the employer doubles the credit. Pick ONE W-4 to claim the dependents on (usually the higher earner's).</li>
+      <li><strong>Side hustle income forgotten.</strong> Your day job withholds based on day-job wages only. Side hustle = no withholding by default. Use Step 4(a) or our <a href="/w4-withholding-calculator">side-hustle W-4 hack</a> to cover it.</li>
+      <li><strong>Not updating after life changes.</strong> New baby, marriage, second job, house — all require a W-4 update. There's no annual deadline; submit anytime.</li>
+      <li><strong>Confusing credits with deductions.</strong> Step 3 dependents are CREDITS (reduce tax dollar-for-dollar). Step 4(b) itemized deductions reduce TAXABLE INCOME (worth your marginal rate × the amount). Credits are stronger.</li>
+      <li><strong>Not accounting for spouse's income.</strong> If MFJ and both work, leaving Step 2 blank means each employer withholds as if you were single with that one income — you'll under-withhold dramatically.</li>
+    </ul>
+
+    <h2>When to <em>update</em> your W-4</h2>
+    <ul>
+      <li>You got married, divorced, or separated</li>
+      <li>You had a baby or adopted a child</li>
+      <li>A child aged past 17 (lose the $2,000 CTC, get the $500 ODC instead)</li>
+      <li>Your spouse started or stopped working</li>
+      <li>You took a second job or started a side hustle</li>
+      <li>You bought a house and now have significant mortgage interest</li>
+      <li>Your income changed materially (big raise, lost a job)</li>
+      <li>Last year's return surprised you — big refund or surprise bill</li>
+    </ul>
+
+    <h2>2025 <em>numbers</em> to know</h2>
+    <ul>
+      <li><strong>Standard deduction:</strong> Single $15,000 · MFJ $30,000 · HoH $22,500</li>
+      <li><strong>Child Tax Credit:</strong> $2,000 per child under 17 (up to $1,700 refundable)</li>
+      <li><strong>Other Dependent Credit:</strong> $500 per qualifying other dependent</li>
+      <li><strong>CTC/ODC phase-out:</strong> begins $200,000 single / $400,000 MFJ AGI ($50 per $1,000 over)</li>
+      <li><strong>Brackets:</strong> 10% / 12% / 22% / 24% / 32% / 35% / 37%</li>
+    </ul>
+
+    <h2>What this calculator <em>doesn't</em> handle</h2>
+    <ul>
+      <li><strong>State withholding</strong> — varies wildly by state. Most states use their own W-4 equivalent (e.g. CA DE-4, NY IT-2104). File separately with your state if you have state income tax.</li>
+      <li><strong>401(k) / HSA / FSA contributions</strong> — these reduce your taxable wages but the math depends on your specific plan. Use your annual gross salary in this calculator, then check your plan's "tax-adjusted" wage with HR.</li>
+      <li><strong>Self-employment tax</strong> — if you have substantial 1099 income, you owe 15.3% SE tax on top of income tax. See our <a href="/quarterly-tax-calculator">quarterly tax calculator</a> or <a href="/self-employment-tax-calculator">SE tax calculator</a>.</li>
+      <li><strong>Capital gains</strong> — long-term gains use different brackets. See the <a href="/stock-tax-calculator">stock tax calculator</a>.</li>
+      <li><strong>Multiple non-spouse jobs</strong> — if you (single) have two jobs, combine the wages and use the multi-jobs worksheet on the W-4. This calc assumes one job + (optional) spouse.</li>
+    </ul>
+
+    <div class="related-section">
+      <div class="related-label">Other free tools</div>
+      <div class="related-grid">
+        <a class="related-card" href="/w4-withholding-calculator">
+          <div class="related-card-title">Side-hustle W-4 hack →</div>
+          <div class="related-card-desc">Skip quarterlies by bumping Step 4(c) for SE income.</div>
+        </a>
+        <a class="related-card" href="/quarterly-tax-calculator">
+          <div class="related-card-title">Quarterly tax calculator →</div>
+          <div class="related-card-desc">Per-quarter math for 1099 + side hustle income.</div>
+        </a>
+        <a class="related-card" href="/self-employment-tax-calculator">
+          <div class="related-card-title">SE tax calculator →</div>
+          <div class="related-card-desc">15.3% self-employment tax broken out.</div>
+        </a>
+        <a class="related-card" href="/tool">
+          <div class="related-card-title">Free compliance check →</div>
+          <div class="related-card-desc">60-second tax + legal scan for your situation.</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <div>
+    <span class="footer-logo">SideHustle<span>guard</span></span>
+    <div class="footer-disc">SideHustleGuard provides educational tools, not tax or legal advice. Verify all calculations with a licensed tax professional before filing or adjusting withholding.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/guides">Guides</a>
+    <a href="/tool">Free check</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ────── 2025 federal tax constants ──────
+  var BRACKETS = {
+    single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+    mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+    mfs:    [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+    hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  };
+  var STD_DED = { single: 15000, mfj: 30000, mfs: 15000, hoh: 22500 };
+
+  // Child Tax Credit + Other Dependent Credit phase-out
+  // $50 reduction per $1,000 (or fraction) of AGI over the threshold
+  var CTC_THRESHOLD = { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 };
+  var CTC_PER_KID = 2000;     // children under 17
+  var ODC_PER_DEP = 500;      // other dependents
+
+  // ────── State ──────
+  var state = {
+    status: 'single',
+    wage: 75000,
+    freq: 26,
+    spouseWage: 0,
+    spouseFreq: 26,
+    kids: 0,
+    other: 0,
+    otherIncome: 0,
+    itemized: 0
+  };
+
+  // ────── Helpers ──────
+  function $(s) { return document.querySelector(s); }
+  function parseMoney(v) {
+    var n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+    return isFinite(n) ? Math.max(0, n) : 0;
+  }
+  function fmtMoney(n) {
+    if (!isFinite(n)) n = 0;
+    var sign = n < 0 ? '-' : '';
+    return sign + '$' + Math.round(Math.abs(n)).toLocaleString('en-US');
+  }
+  function fmtRich(n) {
+    if (!isFinite(n)) n = 0;
+    var sign = n < 0 ? '-' : '';
+    return sign + '<em>$</em>' + Math.round(Math.abs(n)).toLocaleString('en-US');
+  }
+
+  function taxOnOrdinary(taxable, status) {
+    var bkts = BRACKETS[status] || BRACKETS.single;
+    var tax = 0, prev = 0;
+    for (var i = 0; i < bkts.length; i++) {
+      var top = bkts[i][0], rate = bkts[i][1];
+      if (taxable <= top) { tax += (taxable - prev) * rate; return tax; }
+      tax += (top - prev) * rate; prev = top;
+    }
+    return tax;
+  }
+
+  // CTC + ODC with phase-out
+  function dependentCredits(kids, other, agi, status) {
+    var rawCTC = kids * CTC_PER_KID;
+    var rawODC = other * ODC_PER_DEP;
+    var totalRaw = rawCTC + rawODC;
+    if (totalRaw === 0) return 0;
+    var threshold = CTC_THRESHOLD[status] || CTC_THRESHOLD.single;
+    if (agi <= threshold) return totalRaw;
+    // Reduce $50 per $1,000 (or fraction) over threshold
+    var excess = agi - threshold;
+    var reduction = Math.ceil(excess / 1000) * 50;
+    return Math.max(0, totalRaw - reduction);
+  }
+
+  // ────── Main compute + render ──────
+  function render() {
+    var isMFJ = (state.status === 'mfj');
+    var spouseW = isMFJ ? state.spouseWage : 0;
+    var totalWages = state.wage + spouseW;
+    var totalIncome = totalWages + state.otherIncome;
+
+    // Pick deduction: itemized if > standard, otherwise standard
+    var stdDed = STD_DED[state.status] || STD_DED.single;
+    var deduction = state.itemized > stdDed ? state.itemized : stdDed;
+    var usingItemized = state.itemized > stdDed;
+    var dedAboveStd = usingItemized ? (state.itemized - stdDed) : 0;
+
+    var taxable = Math.max(0, totalIncome - deduction);
+    var taxPreCredits = taxOnOrdinary(taxable, state.status);
+    var credits = dependentCredits(state.kids, state.other, totalIncome, state.status);
+    var taxOwed = Math.max(0, taxPreCredits - credits);
+
+    // Estimate DEFAULT withholding (no W-4 adjustments — assume single, no dependents)
+    // Simplified: withholding ≈ tax on wages-only at user's filing status with standard deduction
+    var defaultWHTaxable = Math.max(0, totalWages - stdDed);
+    var defaultWH = taxOnOrdinary(defaultWHTaxable, state.status);
+
+    // Refund or owe (positive = refund, negative = owe)
+    var diff = defaultWH - taxOwed;
+
+    // ───── Render totals ─────
+    $('#r-gross').textContent = fmtMoney(totalIncome);
+    $('#r-ded').textContent = fmtMoney(deduction) + (usingItemized ? ' (itemized)' : ' (std)');
+    $('#r-taxable').textContent = fmtMoney(taxable);
+    $('#r-tax-pre').textContent = fmtMoney(taxPreCredits);
+    $('#r-credits').textContent = '-' + fmtMoney(credits);
+    $('#r-tax-owed').textContent = fmtMoney(taxOwed);
+    $('#r-wh-default').textContent = fmtMoney(defaultWH);
+
+    // ───── Refund / owe box ─────
+    var refundBox = $('#r-refund-box');
+    var refundLbl = $('#r-refund-lbl');
+    var refundNum = $('#r-refund-num');
+    if (diff >= 0) {
+      refundBox.classList.remove('is-owe');
+      refundLbl.textContent = 'Estimated refund';
+      refundNum.textContent = fmtMoney(diff);
+    } else {
+      refundBox.classList.add('is-owe');
+      refundLbl.textContent = 'You\'ll owe';
+      refundNum.textContent = fmtMoney(Math.abs(diff));
+    }
+
+    // ───── W-4 step-by-step outputs ─────
+
+    // Step 2(c): "Check this box" only if MFJ with both incomes similar
+    var step2c = $('#w4-step2c');
+    var s2cVal = $('#w4-2c-val');
+    var s2cNote = $('#w4-2c-note');
+    if (isMFJ && spouseW > 0) {
+      var ratio = Math.min(state.wage, spouseW) / Math.max(state.wage, spouseW);
+      if (ratio >= 0.5) {
+        step2c.classList.remove('is-zero');
+        s2cVal.textContent = '✓ Check the box';
+        s2cNote.textContent = 'Both incomes within 50% of each other — Step 2(c) handles it simply';
+      } else {
+        step2c.classList.remove('is-zero');
+        s2cVal.textContent = 'Leave blank';
+        s2cNote.textContent = 'Incomes differ too much — use the worksheet (or our extra-withholding output in Step 4(c) below)';
+      }
+    } else {
+      step2c.classList.add('is-zero');
+      s2cVal.textContent = 'Leave blank';
+      s2cNote.textContent = isMFJ ? 'Only one spouse working' : 'No spouse — not applicable';
+    }
+
+    // Step 3: Dependents
+    var rawDepCredits = (state.kids * CTC_PER_KID) + (state.other * ODC_PER_DEP);
+    var step3 = $('#w4-step3');
+    if (rawDepCredits > 0) {
+      step3.classList.remove('is-zero');
+      $('#w4-3-val').innerHTML = fmtRich(credits);
+      $('#w4-3-note').textContent =
+        state.kids + ' child' + (state.kids === 1 ? '' : 'ren') + ' × $2,000 + ' +
+        state.other + ' other × $500' +
+        (credits < rawDepCredits ? ' (phase-out applied — high income)' : '');
+    } else {
+      step3.classList.add('is-zero');
+      $('#w4-3-val').innerHTML = '<em>$</em>0';
+      $('#w4-3-note').textContent = '0 children × $2,000 + 0 dependents × $500';
+    }
+
+    // Step 4(a): Other income
+    var step4a = $('#w4-step4a');
+    if (state.otherIncome > 0) {
+      step4a.classList.remove('is-zero');
+      $('#w4-4a-val').innerHTML = fmtRich(state.otherIncome);
+    } else {
+      step4a.classList.add('is-zero');
+      $('#w4-4a-val').innerHTML = '<em>$</em>0';
+    }
+
+    // Step 4(b): Itemized above standard
+    var step4b = $('#w4-step4b');
+    if (dedAboveStd > 0) {
+      step4b.classList.remove('is-zero');
+      $('#w4-4b-val').innerHTML = fmtRich(dedAboveStd);
+      $('#w4-4b-note').textContent = fmtMoney(state.itemized) + ' itemized − ' + fmtMoney(stdDed) + ' standard';
+    } else {
+      step4b.classList.add('is-zero');
+      $('#w4-4b-val').innerHTML = '<em>$</em>0';
+      $('#w4-4b-note').textContent = 'Using standard deduction ' + fmtMoney(stdDed);
+    }
+
+    // Step 4(c): Extra withholding per paycheck
+    // If user will OWE money (diff < 0), suggest extra withholding split across remaining paychecks of the year
+    var step4c = $('#w4-step4c');
+    var extra4c = 0;
+    if (diff < -100) {
+      // We owe — bump withholding to close the gap
+      // Assume full year of paychecks remaining (simplest, most conservative)
+      extra4c = Math.abs(diff) / state.freq;
+      step4c.classList.remove('is-zero');
+      $('#w4-4c-val').innerHTML = fmtRich(extra4c) + '<span style="font-size:13px;color:rgba(240,236,225,.6)">/paycheck</span>';
+      $('#w4-4c-note').textContent =
+        'Bumps withholding by ' + fmtMoney(Math.abs(diff)) + '/year across ' + state.freq +
+        ' paychecks — closes the gap so you don\'t owe in April';
+    } else {
+      step4c.classList.add('is-zero');
+      $('#w4-4c-val').innerHTML = '<em>$</em>0';
+      $('#w4-4c-note').textContent = 'No extra withholding needed — default covers your tax';
+    }
+  }
+
+  // ────── Wire inputs ──────
+  function bindMoney(el, key) {
+    el.addEventListener('input', function () {
+      var raw = el.value.replace(/[^0-9.\-]/g, '');
+      var num = parseFloat(raw);
+      if (isFinite(num) && raw !== '') {
+        var fmt = Math.round(num).toLocaleString('en-US');
+        if (fmt !== el.value) {
+          el.value = fmt;
+          try { el.setSelectionRange(fmt.length, fmt.length); } catch (e) {}
+        }
+        state[key] = num;
+      } else {
+        state[key] = 0;
+      }
+      render();
+    });
+  }
+  bindMoney(document.getElementById('in-wage'), 'wage');
+  bindMoney(document.getElementById('in-spouse-wage'), 'spouseWage');
+  bindMoney(document.getElementById('in-other-income'), 'otherIncome');
+  bindMoney(document.getElementById('in-itemized'), 'itemized');
+
+  document.getElementById('in-freq').addEventListener('change', function (e) {
+    state.freq = parseInt(e.target.value, 10) || 26;
+    render();
+  });
+  document.getElementById('in-spouse-freq').addEventListener('change', function (e) {
+    state.spouseFreq = parseInt(e.target.value, 10) || 26;
+    render();
+  });
+
+  // Segmented: filing status (also toggles spouse section)
+  document.getElementById('seg-status').addEventListener('click', function (e) {
+    var btn = e.target.closest('.seg-opt');
+    if (!btn) return;
+    var children = e.currentTarget.children;
+    for (var i = 0; i < children.length; i++) {
+      children[i].classList.remove('is-active');
+    }
+    btn.classList.add('is-active');
+    state.status = btn.dataset.val;
+    document.getElementById('spouse-section').style.display = (state.status === 'mfj') ? '' : 'none';
+    render();
+  });
+
+  // Counter inputs (dependents)
+  document.querySelectorAll('.counter').forEach(function (counter) {
+    var key = counter.dataset.counter;
+    var stateKey = (key === 'kids') ? 'kids' : 'other';
+    var countEl = counter.querySelector('.count');
+    counter.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-step]');
+      if (!btn) return;
+      var step = parseInt(btn.dataset.step, 10);
+      var next = Math.max(0, Math.min(20, state[stateKey] + step));
+      state[stateKey] = next;
+      countEl.textContent = next;
+      render();
+    });
+  });
+
+  // Initial paint
+  render();
+})();
+</script>
+<script src="/assets/js/newsletter-widget.js" defer></script>
+</body>
+</html>
