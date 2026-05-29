@@ -66,15 +66,6 @@
 <style>
 /* Page-specific styles only — tokens come from design-system.css. */
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.65;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:32px;height:32px}
-.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}.logo-text span{color:var(--apricot)}
-.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translate(2px,2px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--indigo)}
 .hero{padding:64px 48px 48px;position:relative;overflow:hidden}
 .hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:820px;margin:0 auto}
@@ -150,7 +141,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:22p
 .footer-logo{font-size:13px;font-weight:600;color:var(--indigo)}.footer-logo span{color:var(--apricot)}
 .footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
 .footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
-@media(max-width:700px){nav,footer{padding:13px 18px}.hero{padding:44px 18px 32px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}.breadcrumb{font-size:11px;margin-bottom:14px}.hero-eyebrow{margin-bottom:14px;font-size:11px;padding:6px 12px}h1{font-size:26px;margin-bottom:14px;line-height:1.08}.hero-meta{margin-bottom:14px;font-size:12px}.article-disc{margin:-6px 0 14px}.hero-intro{font-size:15.5px;margin-bottom:20px;line-height:1.55}.answer-box{padding:18px 20px;margin-bottom:28px;font-size:14px;border-radius:14px}.answer-box-inner{gap:10px}.answer-box-icon svg{width:17px;height:17px}h2{font-size:22px;margin:36px 0 12px;line-height:1.18}.content{padding-top:24px;padding-bottom:56px}.callout{padding:14px 16px;margin:18px 0;border-radius:12px}.cta-box{padding:36px 24px;margin:32px 0;border-radius:18px}.cta-box h3{font-size:24px;margin-bottom:8px}.cta-box p{font-size:14px;margin-bottom:18px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}@media(max-width:420px){.hero{padding-top:32px;padding-bottom:24px}h1{font-size:24px}.hero-intro{font-size:14.5px;margin-bottom:16px}.answer-box{padding:14px 16px;font-size:13.5px}.product-card{padding:18px 20px;margin:24px 0;flex-direction:column;gap:12px;align-items:flex-start}.product-card-cta-row{flex-direction:column;align-items:stretch;gap:8px}.product-card-btn{width:100%;text-align:center}}
+@media(max-width:700px){nav,footer{padding:13px 18px}.hero{padding:44px 18px 32px}.hero,.content,.related-section{padding-left:18px;padding-right:18px}.breadcrumb{font-size:11px;margin-bottom:14px}.hero-eyebrow{margin-bottom:14px;font-size:11px;padding:6px 12px}h1{font-size:26px;margin-bottom:14px;line-height:1.08}.hero-meta{margin-bottom:14px;font-size:12px}.article-disc{margin:-6px 0 14px}.hero-intro{font-size:15.5px;margin-bottom:20px;line-height:1.55}.answer-box{padding:18px 20px;margin-bottom:28px;font-size:14px;border-radius:14px}.answer-box-inner{gap:10px}.answer-box-icon svg{width:17px;height:17px}h2{font-size:22px;margin:36px 0 12px;line-height:1.18}.content{padding-top:24px;padding-bottom:56px}.callout{padding:14px 16px;margin:18px 0;border-radius:12px}.cta-box{padding:36px 24px;margin:32px 0;border-radius:18px}.cta-box h3{font-size:24px;margin-bottom:8px}.cta-box p{font-size:14px;margin-bottom:18px}.nav-guides{display:inline-flex;font-size:13px}}@media(max-width:420px){.hero{padding-top:32px;padding-bottom:24px}h1{font-size:24px}.hero-intro{font-size:14.5px;margin-bottom:16px}.answer-box{padding:14px 16px;font-size:13.5px}.product-card{padding:18px 20px;margin:24px 0;flex-direction:column;gap:12px;align-items:flex-start}.product-card-cta-row{flex-direction:column;align-items:stretch;gap:8px}.product-card-btn{width:100%;text-align:center}}
 
 .toc-box li{break-inside:avoid;-webkit-column-break-inside:avoid}@media(max-width:640px){.toc-box ol{columns:1!important}}
 
@@ -211,18 +202,24 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:22p
 </script>
 </head>
 <body>
-<nav>
-<a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
-<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
-</a>
-<div class="nav-right">
-<a class="nav-link" href="/#how-it-works">How it works</a>
-<a class="nav-link" href="/#pricing">Pricing</a>
-<a class="nav-link" href="/#faq">FAQ</a>
-<a class="nav-link nav-guides" href="/guides">Guides</a>
-<a class="nav-cta" href="/tool">Check my hustle →</a>
-</div>
+<nav class="ds-nav">
+  <a class="logo" href="/">
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-base">SideHustle</span><span class="logo-accent">guard</span>
+    </span>
+  </a>
+  <div class="ds-nav-right">
+    <a class="ds-nav-link" href="/#how-it-works">How it works</a>
+    <a class="ds-nav-link" href="/#pricing">Pricing</a>
+    <a class="ds-nav-link" href="/#faq">FAQ</a>
+    <a class="ds-nav-link always-visible" href="/guides">Guides <span class="ds-nav-link-tag">75+ free</span></a>
+    <a class="btn btn-cta" href="/tool">Check my hustle →</a>
+  </div>
 </nav>
 <div class="hero">
 <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="articleHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="360" fill="url(#articleHeroGlow)"/><g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1"><ellipse cx="220" cy="280" rx="400" ry="170" transform="rotate(-12 220 280)"/><ellipse cx="214" cy="266" rx="365" ry="152" transform="rotate(-10.5 220 280)"/><ellipse cx="208" cy="252" rx="330" ry="134" transform="rotate(-9 220 280)" class="contour-inner-3"/><ellipse cx="202" cy="238" rx="295" ry="116" transform="rotate(-7.5 220 280)" class="contour-inner-3"/><ellipse cx="196" cy="224" rx="260" ry="98" transform="rotate(-6 220 280)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1040" cy="110" rx="240" ry="106" transform="rotate(14 1040 110)"/><ellipse cx="1044" cy="102" rx="210" ry="92" transform="rotate(12 1040 110)" class="contour-inner-3"/><ellipse cx="1048" cy="94" rx="180" ry="78" transform="rotate(10 1040 110)"/></g></svg>

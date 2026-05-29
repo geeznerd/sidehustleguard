@@ -34,16 +34,6 @@
 <meta content="website" property="og:type"/>
 <style>
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--indigo-08)}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:32px;height:32px}
-.logo-text{font-size:15px;font-weight:600;color:var(--indigo)}
-.logo-text span{color:var(--apricot)}
-.nav-cta{background:var(--apricot);color:var(--indigo);padding:9px 18px;border-radius:16px;font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(45,48,104,0.10);transition:background .2s,box-shadow .2s,transform .15s}.nav-cta:hover{background:var(--apricot-hover);box-shadow:0 5px 14px rgba(45,48,104,0.14)}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translate(2px,2px)}}@media(prefers-reduced-motion:no-preference){.nav-cta:hover{transform:translateY(-1px)}}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:13px;color:var(--indigo-70);text-decoration:none;font-weight:400;transition:color .2s}
-.nav-link:hover{color:var(--indigo)}
 .hero{padding:72px 24px 44px;text-align:center;position:relative;overflow:hidden}
 .hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:760px;margin:0 auto}
@@ -123,7 +113,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 .footer-links a{font-size:12px;color:var(--indigo-55);text-decoration:none;margin-left:18px}
 .footer-disc{font-size:11px;color:var(--indigo-55);margin-top:6px;width:100%}
 
-@media(max-width:800px){.calc-grid{grid-template-columns:1fr}.hero,.calc-wrap,.content,nav,footer{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-link{display:none}.nav-guides{display:inline-flex;font-size:13px}.logo-text{font-size:13px}.nav-cta{font-size:12px;padding:8px 14px;white-space:nowrap}.nav-right{gap:12px}}
+@media(max-width:800px){.calc-grid{grid-template-columns:1fr}.hero,.calc-wrap,.content,nav,footer{padding-left:18px;padding-right:18px}h1{font-size:30px}.nav-guides{display:inline-flex;font-size:13px}}
 
 .product-card{background:var(--cream);border:1.5px solid rgba(232,148,100,.25);border-radius:14px;padding:24px 28px;margin:32px 0;display:flex;gap:20px;align-items:flex-start}
 .product-card-icon{font-size:32px;line-height:1;flex-shrink:0;margin-top:2px}
@@ -138,7 +128,6 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 .product-card-btn:hover{background:var(--apricot-hover)}
 .product-card-meta{font-size:11px;color:var(--indigo-55)}
 @media(max-width:560px){.product-card{flex-direction:column;gap:10px}}
-
 
 /* Phase 6.9 — uniform mobile spacing across all 5 calculators */
 @media (max-width: 700px) {
@@ -162,7 +151,6 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   .inputs-card { padding: 20px 18px !important; }
   .field { margin-bottom: 16px; }
 }
-
 
 /* Phase 22.5 — extend the rotating topo SVG beyond the hero on all
  * sides so its rectangular corners stay outside the hero's overflow
@@ -282,18 +270,24 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </script>
 </head>
 <body>
-<nav>
-<a class="logo" href="/">
-<div class="logo-icon"><svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="24" cy="36" r="2.4" fill="#2d3068"/></svg></div>
-<span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
-</a>
-<div class="nav-right">
-<a class="nav-link" href="/#how-it-works">How it works</a>
-<a class="nav-link" href="/#pricing">Pricing</a>
-<a class="nav-link" href="/#faq">FAQ</a>
-<a class="nav-link nav-guides" href="/guides">Guides</a>
-<a class="nav-cta" href="/tool">Check my hustle →</a>
-</div>
+<nav class="ds-nav">
+  <a class="logo" href="/">
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-base">SideHustle</span><span class="logo-accent">guard</span>
+    </span>
+  </a>
+  <div class="ds-nav-right">
+    <a class="ds-nav-link" href="/#how-it-works">How it works</a>
+    <a class="ds-nav-link" href="/#pricing">Pricing</a>
+    <a class="ds-nav-link" href="/#faq">FAQ</a>
+    <a class="ds-nav-link always-visible" href="/guides">Guides <span class="ds-nav-link-tag">75+ free</span></a>
+    <a class="btn btn-cta" href="/tool">Check my hustle →</a>
+  </div>
 </nav>
 <div class="hero">
 <svg class="hero-backdrop tool-drift" viewBox="0 0 2000 2000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="400" cy="1600" rx="680" ry="280" transform="rotate(-12 400 1600)"/><ellipse cx="408" cy="1576" rx="620" ry="248" transform="rotate(-10 408 1576)"/><ellipse cx="416" cy="1552" rx="560" ry="216" transform="rotate(-8 416 1552)"/><ellipse cx="424" cy="1528" rx="500" ry="184" transform="rotate(-6 424 1528)"/><ellipse cx="432" cy="1504" rx="440" ry="152" transform="rotate(-4 432 1504)"/></g><g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1"><ellipse cx="1600" cy="400" rx="540" ry="220" transform="rotate(18 1600 400)"/><ellipse cx="1608" cy="388" rx="480" ry="194" transform="rotate(16 1608 388)"/><ellipse cx="1616" cy="376" rx="416" ry="166" transform="rotate(14 1616 376)"/><ellipse cx="1624" cy="364" rx="354" ry="138" transform="rotate(12 1624 364)"/><ellipse cx="1632" cy="352" rx="290" ry="110" transform="rotate(10 1632 352)"/></g><g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1"><ellipse cx="1000" cy="1000" rx="780" ry="360" transform="rotate(30 1000 1000)"/><ellipse cx="1000" cy="1000" rx="680" ry="320" transform="rotate(45 1000 1000)"/><ellipse cx="1000" cy="1000" rx="580" ry="280" transform="rotate(60 1000 1000)"/><ellipse cx="1000" cy="1000" rx="480" ry="240" transform="rotate(75 1000 1000)"/></g></svg>
@@ -596,7 +590,6 @@ function recalc(){
   p.fed = fedTax; p.state = stateTax; p.setaside = setAside;
 }
 recalc();
-
 
 // ── Phase 21.2 — Wire money inputs to CalcKit ──────────────
 // Live thousand-separator formatting + recalc on every keystroke.

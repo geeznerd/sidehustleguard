@@ -143,19 +143,6 @@ body {
 button { font: inherit; border: 0; background: transparent; cursor: pointer; color: inherit; padding: 0; }
 
 /* ─── Light nav (matches the rest of the site) ─── */
-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(250,248,244,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--indigo-08); }
-.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-.logo-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-.logo-icon svg { width: 32px; height: 32px; }
-.logo-text { font-size: 15px; font-weight: 600; color: var(--indigo); }
-.logo-text span { color: var(--apricot); }
-.nav-cta { background: var(--apricot); color: var(--indigo); padding: 9px 18px; border-radius: 16px; font-size: 13.5px; font-weight: 600; text-decoration: none; box-shadow: 0 3px 10px rgba(45,48,104,0.10); transition: background .2s,box-shadow .2s,transform .15s; }
-.nav-cta:hover { background: var(--apricot-hover); box-shadow: 0 5px 14px rgba(45,48,104,0.14); }
-@media(prefers-reduced-motion:no-preference){ .nav-cta:hover{ transform: translateY(-1px); } }
-.nav-right { display: flex; align-items: center; gap: 24px; }
-.nav-link { font-size: 13px; color: var(--indigo-70); text-decoration: none; font-weight: 400; transition: color .2s; }
-.nav-link:hover { color: var(--indigo); }
-
 /* ══════════════════════════════════════════════════════════════════
  * THE DARK HERO — the redesigned calculator zone
  * ══════════════════════════════════════════════════════════════════ */
@@ -735,33 +722,29 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   .breakdown { padding: 20px 18px 24px; }
   .below { padding: 48px 20px; }
   .nav-link { display: none; }
-  .nav-link.nav-guides { display: inline-flex; font-size: 13px; }
-  .nav-cta { font-size: 12px; padding: 8px 14px; }
-  .logo-text { font-size: 13px; }
-  .nav-right { gap: 12px; }
-}
+  }
 </style>
 </head>
 <body>
 
 <!-- Light nav (matches the rest of the site) -->
-<nav>
+<nav class="ds-nav">
   <a class="logo" href="/">
-    <div class="logo-icon">
-      <svg fill="none" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
-      </svg>
-    </div>
-    <span class="logo-text">SideHustle<span style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--apricot);font-variation-settings:'opsz' 144,'SOFT' 30">guard</span></span>
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 30 Q24 4 42 30" stroke="#2d3068" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M14 32 Q24 18 34 32" stroke="#e89464" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="#2d3068"/>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-base">SideHustle</span><span class="logo-accent">guard</span>
+    </span>
   </a>
-  <div class="nav-right">
-    <a class="nav-link" href="/#how-it-works">How it works</a>
-    <a class="nav-link" href="/#pricing">Pricing</a>
-    <a class="nav-link" href="/#faq">FAQ</a>
-    <a class="nav-link nav-guides" href="/guides">Guides</a>
-    <a class="nav-cta" href="/tool">Check my hustle →</a>
+  <div class="ds-nav-right">
+    <a class="ds-nav-link" href="/#how-it-works">How it works</a>
+    <a class="ds-nav-link" href="/#pricing">Pricing</a>
+    <a class="ds-nav-link" href="/#faq">FAQ</a>
+    <a class="ds-nav-link always-visible" href="/guides">Guides <span class="ds-nav-link-tag">75+ free</span></a>
+    <a class="btn btn-cta" href="/tool">Check my hustle →</a>
   </div>
 </nav>
 
