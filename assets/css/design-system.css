@@ -309,10 +309,31 @@ a {
   position: relative;
   padding: 2px 0 6px;
   transition: color var(--dur-default) var(--ease-default);
+  /* Prevent multi-word labels ("How it works") from wrapping to a second
+   * line at narrow desktop widths. The intermediate breakpoint below
+   * compresses padding + gap to keep the cluster fitting on one line. */
+  white-space: nowrap;
 }
 
 .ds-nav-link:hover {
   color: var(--indigo);
+}
+
+/* "75+ free" pill tag inside the Guides link. Was previously inline-only
+ * in index.html — now shared so every page renders the same pill. */
+.ds-nav-link-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--apricot);
+  background: rgba(232, 148, 100, 0.12);
+  padding: 2px 7px;
+  border-radius: 100px;
+  margin-left: 4px;
+  vertical-align: middle;
+  transform: translateY(-1px);
+  white-space: nowrap;
 }
 
 /* Animated apricot underline for nav text links — applies to both
@@ -357,12 +378,43 @@ nav .nav-link[aria-current="page"] {
   color: var(--indigo);
 }
 
+/* Intermediate breakpoint — narrow desktop / large tablet (700–980px).
+ * Without this, the four nav links + "75+ free" tag + CTA + logo run
+ * out of horizontal space and individual labels wrap to a second line
+ * ("How it" / "works"). Compress padding + gap + font slightly so the
+ * full cluster stays on one line all the way down to the 700px mobile
+ * breakpoint where secondary links collapse. */
+@media (max-width: 980px) {
+  .ds-nav { padding: 13px 24px; }
+  .ds-nav-right { gap: 14px; }
+  .ds-nav-link { font-size: 12.5px; }
+}
+
 @media (max-width: 700px) {
   .ds-nav { padding: 13px 18px; height: 56px; }
   .ds-nav-link { display: none; }
   .ds-nav-link.always-visible { display: inline-flex; font-size: 13px; }
+  .ds-nav-link-tag { display: none; }   /* hide pill at mobile widths */
   .logo-base, .logo-accent { font-size: 18px; }
-  .ds-nav-right { gap: 12px; }
+  .ds-nav-right { gap: 10px; }
+
+  /* "Guides" link → soft apricot-tinted pill so it reads as a tappable
+   * secondary action, while still ranking below the primary apricot-
+   * filled CTA on the right. Padding tuned to match the CTA pill height
+   * (40px) for a unified right-side row rhythm. Moved here from
+   * index.html inline so every page gets the same treatment. */
+  nav .ds-nav-link.always-visible {
+    color: var(--apricot);
+    font-weight: 600;
+    background: rgba(232, 148, 100, 0.12);
+    border: 1px solid rgba(232, 148, 100, 0.22);
+    padding: 11px 14px;
+    border-radius: 100px;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 /* ===== BUTTONS ===== */

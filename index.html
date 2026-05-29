@@ -853,48 +853,10 @@
     .ds-nav { padding: 13px 18px; }
   }
 
-  /* ═══ Nav "75+ free" tag on the Guides link ═══ */
-  .ds-nav-link-tag {
-    display: inline-block;
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--apricot);
-    background: rgba(232,148,100,0.12);
-    padding: 2px 7px;
-    border-radius: 100px;
-    margin-left: 4px;
-    vertical-align: middle;
-    transform: translateY(-1px);
-  }
-  /* On mobile the nav already collapses to logo + Guides + CTA;
-   * the depth-signal tag adds crowding without adding info, since
-   * tapping "Guides" is the same action with or without it. Hide
-   * the pill ≤700px to give the CTA breathing room. */
-  @media (max-width: 700px) {
-    .ds-nav-link-tag { display: none; }
-
-    /* "Guides" link → soft apricot-tinted pill (Option B) so it reads
-     * as a tappable secondary action, while still ranking below the
-     * primary apricot-filled CTA on the right.
-     * Padding tuned so the pill matches the CTA pill height (40px),
-     * giving the two right-side pills a unified row rhythm. */
-    nav .ds-nav-link.always-visible {
-      color: var(--apricot);
-      font-weight: 600;
-      background: rgba(232, 148, 100, 0.12);
-      border: 1px solid rgba(232, 148, 100, 0.22);
-      padding: 11px 14px;
-      border-radius: 100px;
-      letter-spacing: -0.005em;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-    }
-    /* Tight gap between nav items at ≤700px so the right cluster
-     * doesn't fight the wordmark for horizontal space. */
-    nav .ds-nav-right { gap: 10px; }
-  }
+  /* Nav "75+ free" pill tag + mobile "Guides" apricot-pill treatment +
+   * tight ≤700px nav-right gap all moved to assets/css/design-system.css
+   * so every page renders the same nav. (See .ds-nav-link-tag and the
+   * @media (max-width: 700px) nav rules there.) */
 
   /* ═══ MOBILE HORIZONTAL-SCROLL CARD ROWS ═══
    * On phones, the 3 card-grid sections (How it works, What we check,
