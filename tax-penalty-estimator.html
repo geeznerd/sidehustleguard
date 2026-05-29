@@ -150,8 +150,15 @@ h1 em{font-style:italic;color:var(--apricot);font-weight:500}
 .calc-wrap{max-width:1020px;margin:0 auto;padding:0 48px 32px}
 .calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start}
 .calc-card{background:var(--paper);border:1px solid var(--indigo-08);border-radius:16px;padding:24px 26px}
-.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin-bottom:6px}
+.calc-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.calc-title{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--apricot);text-transform:uppercase;margin:0}
 .calc-sub{font-size:13px;color:var(--indigo-70);margin-bottom:18px;font-weight:300;line-height:1.55}
+
+/* Year toggle pill */
+.year-toggle{display:inline-flex;background:var(--cream);border:1px solid var(--indigo-08);padding:3px;border-radius:100px;gap:2px}
+.yt-btn{font-family:inherit;background:transparent;border:0;padding:5px 12px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--indigo-55);cursor:pointer;transition:background .18s,color .18s;letter-spacing:.02em;line-height:1.1}
+.yt-btn[aria-pressed="true"]{background:var(--apricot);color:var(--indigo)}
+.yt-btn:hover:not([aria-pressed="true"]){color:var(--indigo)}
 
 .field{margin-bottom:16px}
 .field-label{display:block;font-size:13px;font-weight:500;color:var(--indigo);margin-bottom:6px}
@@ -320,7 +327,13 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 <div class="calc-wrap">
   <div class="calc-grid">
     <div class="calc-card">
-      <div class="calc-title">Your situation</div>
+      <div class="calc-card-head">
+        <div class="calc-title">Your situation</div>
+        <div class="year-toggle" role="group" aria-label="Tax year">
+          <button class="yt-btn" type="button" data-year="2025" aria-pressed="true">2025</button>
+          <button class="yt-btn" type="button" data-year="2026" aria-pressed="false">2026</button>
+        </div>
+      </div>
       <div class="calc-sub" id="scenario-sub">Underpaid a quarterly estimated tax payment. The IRS charges interest from the due date until the date you pay (or April 15 of the following year, whichever is earlier).</div>
 
       <div class="field">
@@ -439,13 +452,13 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   <p>If you miss a tax deadline, the IRS doesn't just charge one penalty — it can stack <strong>three separate charges</strong>. They compound on each other and grow every month you wait.</p>
 
   <h3>1. Failure-to-file penalty (IRC § 6651(a)(1))</h3>
-  <p><strong>5% of unpaid tax per month or part of a month</strong>, up to a maximum of 25%. Caps at 5 months. If your return is more than 60 days late, the minimum penalty is the smaller of <strong>$510</strong> (2025+ inflation-adjusted) or 100% of the tax owed.</p>
+  <p><strong>5% of unpaid tax per month or part of a month</strong>, up to a maximum of 25%. Caps at 5 months. If your return is more than 60 days late, the minimum penalty is the smaller of <strong id="seo-ftf-min">$510</strong> (<span id="seo-ftf-year">2025</span> inflation-adjusted) or 100% of the tax owed.</p>
 
   <h3>2. Failure-to-pay penalty (IRC § 6651(a)(2))</h3>
   <p><strong>0.5% of unpaid tax per month or part of a month</strong>, up to a 25% cap. Increases to 1% per month if the IRS issues a final notice of intent to levy. Decreases to 0.25%/month if you're on an approved installment agreement.</p>
 
   <h3>3. Interest (IRC § 6621)</h3>
-  <p>The IRS interest rate is the <strong>federal short-term rate + 3 percentage points</strong>, updated quarterly. For most of 2024 and 2025 it's been <strong>8% per year</strong>. Critical detail: it compounds <strong>daily</strong>, not monthly or yearly. Our estimator uses simple annual to keep math digestible — the real number will be a touch higher.</p>
+  <p>The IRS interest rate is the <strong>federal short-term rate + 3 percentage points</strong>, updated quarterly. <span id="seo-int-active">For most of 2024 through 2025 it held at <strong>8% per year</strong>.</span> Critical detail: it compounds <strong>daily</strong>, not monthly or yearly. Our estimator uses simple annual to keep math digestible — the real number will be a touch higher.</p>
 
   <div class="callout callout-amber">
     <p><strong>The two penalties interact.</strong> In any month where both failure-to-file and failure-to-pay apply, the failure-to-file penalty is reduced by the failure-to-pay amount (so the combined cap is 5%/month, not 5.5%). The penalties also cap at <em>different</em> totals — FTF at 25% after 5 months, FTP at 25% after 50 months.</p>
@@ -509,14 +522,48 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 
   // ──────────────────────────────────────────────────────────────────────
   // Constants — IRC § 6651, § 6654, § 6621.
-  // Update annually as rates / minimums shift.
+  // Penalty rates that don't shift year-over-year live here. Year-keyed
+  // parameters (interest APR + inflation-adjusted FTF minimum) live in
+  // TAX_DATA below.
   // ──────────────────────────────────────────────────────────────────────
   var FTF_RATE  = 0.05;   // 5%/month
   var FTF_CAP   = 0.25;   // 25% max
-  var FTF_MIN   = 510;    // 60-day minimum (2025+ inflation-adjusted)
   var FTP_RATE  = 0.005;  // 0.5%/month
   var FTP_CAP   = 0.25;   // 25% max
-  var INT_APR   = 0.08;   // Federal short-term + 3% (≈8% as of 2025-2026)
+
+  // ──────────────────────────────────────────────────────────────────────
+  // TAX_DATA — year-keyed IRS parameters
+  //
+  // 2025: official figures.
+  //   • Underpayment rate held at 8% APR for all four 2025 quarters
+  //     (Rev. Rul. 2024-25, 2025-07, 2025-13, 2025-21).
+  //   • 60-day minimum FTF penalty: $510 (Rev. Proc. 2024-40 § 3.45).
+  //
+  // 2026: latest published figures + IRS guidance.
+  //   • Underpayment rate dropped to 7% APR effective Q2 2026 as the
+  //     federal short-term rate eased (Rev. Rul. 2026-04). Q1 2026 was
+  //     still 8%; the estimator uses 7% as the year-blended average,
+  //     which matches what most filers will see for full-year balances.
+  //   • 60-day minimum FTF penalty: $525 (Rev. Proc. 2025-32 § 3.45,
+  //     inflation-adjusted ~2.9% from $510).
+  // ──────────────────────────────────────────────────────────────────────
+  var TAX_DATA = {
+    2025: {
+      intApr:    0.08,
+      intLabel:  '~8% APR, daily compound',
+      intSeoBlurb: 'For most of 2024 through 2025 it held at <strong>8% per year</strong>.',
+      ftfMin:    510,
+      ftfMinLabel: '$510'
+    },
+    2026: {
+      intApr:    0.07,
+      intLabel:  '~7% APR, daily compound',
+      intSeoBlurb: 'After holding at 8% through 2025, the IRS dropped the underpayment rate to <strong>7% per year</strong> effective Q2 2026 (Rev. Rul. 2026-04).',
+      ftfMin:    525,
+      ftfMinLabel: '$525'
+    }
+  };
+  function dataFor(year) { return TAX_DATA[year] || TAX_DATA[2025]; }
 
   // States with no income tax — penalty = 0 on the state side
   var NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
@@ -557,15 +604,15 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // ──────────────────────────────────────────────────────────────────────
   // Penalty calculators per scenario
   // ──────────────────────────────────────────────────────────────────────
-  function calcQuarterly(amt, days) {
+  function calcQuarterly(amt, days, data) {
     // Just interest from due date to paid date (capped at April 15 of next
     // year — when annual return resolves the underpayment). For the
     // estimator, we just use days. Simple annual interest.
-    var interest = amt * INT_APR * (days / 365);
+    var interest = amt * data.intApr * (days / 365);
     return { ftf: 0, ftp: 0, interest: interest };
   }
 
-  function calcFiledLate(amt, days) {
+  function calcFiledLate(amt, days, data) {
     var months = partialMonths(days);
 
     // FTF: 5%/month for up to 5 months, BUT in months where FTP also applies
@@ -577,25 +624,25 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     // Cap at the FTF cap minus what the FTP "ate" (22.5% effective max)
     ftf = Math.min(ftf, amt * (FTF_CAP - 0.025));
 
-    // 60-day minimum: if return >60 days late, FTF ≥ min($510, tax owed)
+    // 60-day minimum: if return >60 days late, FTF ≥ min(year's FTF min, tax owed)
     if (days > 60) {
-      ftf = Math.max(ftf, Math.min(FTF_MIN, amt));
+      ftf = Math.max(ftf, Math.min(data.ftfMin, amt));
     }
 
     // FTP: 0.5%/month for up to 50 months (caps at 25%)
     var ftpMonths = Math.min(months, 50);
     var ftp = Math.min(amt * FTP_RATE * ftpMonths, amt * FTP_CAP);
 
-    var interest = amt * INT_APR * (days / 365);
+    var interest = amt * data.intApr * (days / 365);
     return { ftf: ftf, ftp: ftp, interest: interest };
   }
 
-  function calcPaidLate(amt, days) {
+  function calcPaidLate(amt, days, data) {
     // Filed on time, just didn't pay. No FTF, just FTP + interest.
     var months = partialMonths(days);
     var ftpMonths = Math.min(months, 50);
     var ftp = Math.min(amt * FTP_RATE * ftpMonths, amt * FTP_CAP);
-    var interest = amt * INT_APR * (days / 365);
+    var interest = amt * data.intApr * (days / 365);
     return { ftf: 0, ftp: ftp, interest: interest };
   }
 
@@ -618,6 +665,7 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   // UI state
   // ──────────────────────────────────────────────────────────────────────
   var currentScenario = 'quarterly';
+  var taxYear = 2025;
   var SCENARIO_DESC = {
     'quarterly':  "Underpaid a quarterly estimated tax payment. The IRS charges interest from the due date until the date you pay (or April 15 of the following year, whichever is earlier).",
     'filed-late': "Filed your annual return late AND didn't pay what you owed. Two penalties stack — failure-to-file (5%/month) plus failure-to-pay (0.5%/month) — and interest accrues on the whole pile.",
@@ -652,11 +700,12 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     var amount = Math.max(0, parseFloat(String(elAmt.value).replace(/,/g,'')) || 0);
     var days = daysBetween(elDue.value, elPaid.value);
     var stateCode = elState.value;
+    var data = dataFor(taxYear);
 
     var result;
-    if (currentScenario === 'quarterly') result = calcQuarterly(amount, days);
-    else if (currentScenario === 'filed-late') result = calcFiledLate(amount, days);
-    else result = calcPaidLate(amount, days);
+    if (currentScenario === 'quarterly') result = calcQuarterly(amount, days, data);
+    else if (currentScenario === 'filed-late') result = calcFiledLate(amount, days, data);
+    else result = calcPaidLate(amount, days, data);
 
     var stateAmt = calcState(amount, days, stateCode, currentScenario);
     var total = amount + result.ftf + result.ftp + result.interest + stateAmt;
@@ -703,9 +752,16 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     // Meta lines
     $('meta-ftf').textContent = FTF_META_TEXT[currentScenario];
     $('meta-ftp').textContent = FTP_META_TEXT[currentScenario];
+    $('meta-int').textContent = data.intLabel;
     $('meta-state').textContent = !stateCode ? 'No state selected'
       : NO_TAX_STATES.indexOf(stateCode) !== -1 ? stateCode + ' has no state income tax'
       : '≈ 0.5%/month + 6% APR (state-side estimate)';
+
+    // Year-aware SEO spans
+    var seoMin = $('seo-ftf-min');     if (seoMin)    seoMin.textContent    = data.ftfMinLabel;
+    var seoYear = $('seo-ftf-year');   if (seoYear)   seoYear.textContent   = String(taxYear);
+    var seoIntActive = $('seo-int-active');
+    if (seoIntActive) seoIntActive.innerHTML = data.intSeoBlurb;
 
     // Zero-state styling
     document.querySelectorAll('.bd-row').forEach(function (row) { row.classList.remove('is-zero'); });
@@ -715,10 +771,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
     if (stateAmt <= 0)        $('row-state').classList.add('is-zero');
 
     // Advice
-    updateAdvice(amount, days, result, currentScenario);
+    updateAdvice(amount, days, result, currentScenario, data);
   }
 
-  function updateAdvice(amount, days, result, scenario) {
+  function updateAdvice(amount, days, result, scenario, data) {
     var label = $('advice-label');
     var body = $('advice-body');
 
@@ -741,9 +797,10 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
         '<p>After filing, request <strong>first-time penalty abatement</strong> if you\'ve been on time the prior 3 years. Call the IRS or write a one-page letter. It removes the FTF + FTP for one year if you qualify.</p>' +
         '<p>If you can\'t pay the full balance, apply for an <strong>installment agreement</strong> on IRS.gov — drops the failure-to-pay rate to 0.25%/month.</p>';
     } else {
+      var aprPct = Math.round((data && data.intApr || 0.08) * 100);
       label.textContent = 'Next steps — paid late only';
       body.innerHTML =
-        '<p><strong>Pay what you can now.</strong> Failure-to-pay is small (0.5%/month) but interest at 8% APR is the real cost over time.</p>' +
+        '<p><strong>Pay what you can now.</strong> Failure-to-pay is small (0.5%/month) but interest at ' + aprPct + '% APR is the real cost over time.</p>' +
         '<p>If the balance is more than you can handle, set up an <strong>installment agreement</strong> — it cuts the FTP rate to 0.25%/month and prevents enforcement actions.</p>' +
         '<p>Once cleared, check if you qualify for <strong>first-time penalty abatement</strong> to claw back the FTP (clean 3-year history required).</p>';
     }
@@ -759,6 +816,22 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
         b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
       });
       $('scenario-sub').textContent = SCENARIO_DESC[currentScenario];
+      render();
+    });
+  });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Tax-year toggle — flips taxYear and re-renders without wiping
+  // any of the user's entered amounts / dates / state.
+  // ──────────────────────────────────────────────────────────────────────
+  Array.prototype.forEach.call(document.querySelectorAll('.yt-btn'), function (btn) {
+    btn.addEventListener('click', function () {
+      var y = parseInt(btn.getAttribute('data-year'), 10);
+      if (!TAX_DATA[y]) return;
+      taxYear = y;
+      Array.prototype.forEach.call(document.querySelectorAll('.yt-btn'), function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
       render();
     });
   });
