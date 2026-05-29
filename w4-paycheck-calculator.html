@@ -402,6 +402,46 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
 }
 
+/* Step 2(c) checkbox — custom-styled to match the dark form */
+.step2c-toggle {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  background: rgba(22,24,58,0.6);
+  border: 1px solid var(--indigo-line-2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.step2c-toggle:hover { border-color: rgba(232,148,100,0.3); }
+.step2c-toggle input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+.step2c-box {
+  width: 20px; height: 20px;
+  border-radius: 5px;
+  border: 1.5px solid var(--cream-faint);
+  background: transparent;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: background .15s var(--ease), border-color .15s var(--ease);
+}
+.step2c-toggle input:checked ~ .step2c-box {
+  background: var(--apricot);
+  border-color: var(--apricot);
+}
+.step2c-toggle input:checked ~ .step2c-box::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 6px; height: 11px;
+  border-right: 2px solid var(--indigo-darker);
+  border-bottom: 2px solid var(--indigo-darker);
+  transform: rotate(45deg);
+}
+.step2c-body { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.step2c-title { font-size: 13.5px; font-weight: 600; color: var(--cream); line-height: 1.35; }
+.step2c-sub { font-size: 11.5px; color: var(--cream-faint); line-height: 1.45; }
+.step2c-sub.is-rec-on { color: var(--green); }
+
 /* Collapsible advanced sections — dark */
 details.collapsible {
   border: 1px dashed var(--indigo-line);
@@ -854,6 +894,19 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           </div>
         </div>
 
+        <!-- Step 2(c) checkbox — visible only when MFJ + spouse has wage. The
+             actual IRS "split brackets" math triggers off this state. -->
+        <div class="field" id="step2c-toggle-wrap" style="display:none">
+          <label class="step2c-toggle">
+            <input type="checkbox" id="in-step2c"/>
+            <span class="step2c-box" aria-hidden="true"></span>
+            <span class="step2c-body">
+              <span class="step2c-title">Step 2(c) — both spouses work, similar incomes</span>
+              <span class="step2c-sub" id="step2c-rec">Recommended: ✓ check (incomes within 50%)</span>
+            </span>
+          </label>
+        </div>
+
         <div class="field-row">
           <div class="field">
             <div class="field-label"><span class="l">Children <em>under 17</em></span><span class="hint">$2,000 ea</span></div>
@@ -1137,25 +1190,307 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 (function () {
   'use strict';
 
-  // ────── 2025 federal tax constants ──────
-  var BRACKETS = {
-    single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
-    mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
-    mfs:    [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
-    hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  /* ═══════════════════════════════════════════════════════════════════
+   * TAX DATA — separated from logic so we can add 2026 (and beyond)
+   * by appending a new year key without touching any compute functions.
+   * Sourced from IRS Rev. Proc. 2024-40 (October 2024) for tax year 2025.
+   * ═══════════════════════════════════════════════════════════════════ */
+  var TAX_DATA = {
+    2025: {
+      // Each bracket is [top_of_bracket_taxable_income, marginal_rate]
+      brackets: {
+        single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+        mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+        mfs:    [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+        hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+      },
+      stdDeduction: { single: 15000, mfj: 30000, mfs: 15000, hoh: 22500 },
+      ctcPerKid:    2000,
+      odcPerDep:    500,
+      ctcThreshold: { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 }
+    }
+    // 2026: { ... } // append when IRS releases (typically Nov of prior year)
   };
-  var STD_DED = { single: 15000, mfj: 30000, mfs: 15000, hoh: 22500 };
-  var CTC_THRESHOLD = { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 };
-  var CTC_PER_KID = 2000;
-  var ODC_PER_DEP = 500;
 
-  // ────── State ──────
+  function dataFor(year) { return TAX_DATA[year] || TAX_DATA[2025]; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * PURE TAX FUNCTIONS — no DOM, no side-effects, fully testable.
+   * ═══════════════════════════════════════════════════════════════════ */
+
+  /**
+   * Apply progressive marginal brackets to taxable income.
+   * @param {number} taxable — income after deductions (>= 0)
+   * @param {Array<[number,number]>} brackets — array of [top, rate] tuples
+   * @returns {number} tax owed
+   */
+  function taxOnBrackets(taxable, brackets) {
+    if (!isFinite(taxable) || taxable <= 0) return 0;
+    var tax = 0, prevTop = 0;
+    for (var i = 0; i < brackets.length; i++) {
+      var top = brackets[i][0], rate = brackets[i][1];
+      if (taxable <= top) { tax += (taxable - prevTop) * rate; return tax; }
+      tax += (top - prevTop) * rate;
+      prevTop = top;
+    }
+    return tax;
+  }
+
+  /**
+   * Halve every bracket-top in a brackets array — the IRS "Step 2(c)
+   * split brackets" mechanic. Cuts bracket widths exactly in half so
+   * dual-income MFJ households withhold correctly when each employer
+   * is unaware of the other spouse's wage.
+   * @param {Array<[number,number]>} brackets
+   * @returns {Array<[number,number]>} new array with halved tops
+   */
+  function splitBrackets(brackets) {
+    return brackets.map(function (b) {
+      return [b[0] === Infinity ? Infinity : b[0] / 2, b[1]];
+    });
+  }
+
+  /**
+   * Compute Child Tax Credit + Other Dependent Credit with phase-out.
+   * @param {number} kids — children under 17 (CTC eligible)
+   * @param {number} others — other dependents (ODC eligible)
+   * @param {number} agi — adjusted gross income (for phase-out calc)
+   * @param {string} status — single | mfj | mfs | hoh
+   * @param {object} data — tax data for the year
+   * @returns {number} credits after phase-out (>= 0)
+   */
+  function dependentCredits(kids, others, agi, status, data) {
+    var raw = (kids * data.ctcPerKid) + (others * data.odcPerDep);
+    if (raw <= 0) return 0;
+    var threshold = data.ctcThreshold[status] || data.ctcThreshold.single;
+    if (agi <= threshold) return raw;
+    // IRS phase-out: $50 reduction per $1,000 (or fraction) of AGI over threshold
+    var excess = agi - threshold;
+    var reduction = Math.ceil(excess / 1000) * 50;
+    return Math.max(0, raw - reduction);
+  }
+
+  /**
+   * Compute what a single employer would withhold from one paycheck's
+   * wage, given W-4 Step 2(c) state.
+   *
+   * When useStep2c is true, employer uses HALF the standard deduction
+   * AND HALF bracket widths — this is the IRS "split brackets" math.
+   * Without 2(c), employer uses full std ded + full brackets and
+   * effectively assumes this wage is the ONLY household income.
+   *
+   * @param {number} wage — annualized gross wage from THIS employer
+   * @param {string} status — single | mfj | mfs | hoh
+   * @param {boolean} useStep2c — Step 2(c) box checked on the W-4
+   * @param {object} data — tax data for the year
+   * @returns {number} annual federal withholding from this employer
+   */
+  function withholdingForJob(wage, status, useStep2c, data) {
+    var brackets = data.brackets[status] || data.brackets.single;
+    var stdDed = data.stdDeduction[status] || data.stdDeduction.single;
+    if (useStep2c) {
+      brackets = splitBrackets(brackets);
+      stdDed = stdDed / 2;
+    }
+    var taxable = Math.max(0, wage - stdDed);
+    return taxOnBrackets(taxable, brackets);
+  }
+
+  /**
+   * Main W-4 calculation engine. Takes a full state object and
+   * produces every output the UI needs.
+   *
+   * @param {object} input
+   *   - taxYear: 2025
+   *   - status: 'single' | 'mfj' | 'mfs' | 'hoh'
+   *   - wage: number (annual gross, primary job)
+   *   - freq: number (pay periods per year — 52/26/24/12)
+   *   - spouseWage: number (annual gross, spouse — only used if MFJ)
+   *   - kids: number (under 17)
+   *   - other: number (other dependents)
+   *   - otherIncome: number (Step 4(a) non-W-2 income)
+   *   - itemized: number (Step 4(b) total itemized; 0 = use standard)
+   *   - useStep2c: boolean (Step 2(c) checkbox state)
+   * @returns {object} computed values
+   */
+  function computeW4(input) {
+    var data = dataFor(input.taxYear);
+    var isMFJ = input.status === 'mfj';
+    var spouseW = isMFJ ? Math.max(0, input.spouseWage || 0) : 0;
+
+    // ── 1. Annualize total wages
+    var totalWages = Math.max(0, input.wage || 0) + spouseW;
+
+    // ── 2. Apply Step 4(a)
+    var agi = totalWages + Math.max(0, input.otherIncome || 0);
+
+    // ── 3. Compute deduction (standard or itemized, whichever is higher)
+    var stdDed = data.stdDeduction[input.status] || data.stdDeduction.single;
+    var itemized = Math.max(0, input.itemized || 0);
+    var usingItemized = itemized > stdDed;
+    var deduction = usingItemized ? itemized : stdDed;
+    var dedAboveStd = usingItemized ? (itemized - stdDed) : 0;
+
+    // ── 4. Taxable income + baseline tax (using FULL brackets for true liability)
+    var taxable = Math.max(0, agi - deduction);
+    var brackets = data.brackets[input.status] || data.brackets.single;
+    var taxPreCredits = taxOnBrackets(taxable, brackets);
+
+    // ── 5. Apply Step 3 credits (CTC + ODC with phase-out)
+    var kids = Math.max(0, Math.floor(input.kids || 0));
+    var others = Math.max(0, Math.floor(input.other || 0));
+    var credits = dependentCredits(kids, others, agi, input.status, data);
+    var rawCredits = (kids * data.ctcPerKid) + (others * data.odcPerDep);
+    var taxOwed = Math.max(0, taxPreCredits - credits);
+
+    // ── 6. Default per-employer withholding (what employers ACTUALLY do)
+    // Each employer is blind to the other spouse's wage; they each apply
+    // the full std deduction. When Step 2(c) is checked, they instead
+    // use split brackets + half std ded.
+    var useStep2c = !!input.useStep2c;
+    var withholdingPrimary = withholdingForJob(input.wage || 0, input.status, useStep2c, data);
+    var withholdingSpouse = isMFJ && spouseW > 0
+      ? withholdingForJob(spouseW, input.status, useStep2c, data)
+      : 0;
+    var defaultWithholding = withholdingPrimary + withholdingSpouse;
+
+    // ── 7. Per-paycheck targets
+    var freq = Math.max(1, input.freq || 26);
+    var targetPerPaycheck = taxOwed / freq;
+    var defaultPerPaycheck = withholdingPrimary / freq; // from THIS employer
+
+    // ── 8. Shortfall / surplus for Step 4(c) extra-withholding output
+    var annualShortfall = taxOwed - defaultWithholding; // > 0 means need MORE withholding
+    var step4cPerPaycheck = annualShortfall > 100 ? (annualShortfall / freq) : 0;
+
+    // ── 9. Step 2(c) recommendation (independent of user's actual choice)
+    var step2cRecommended = false;
+    if (isMFJ && spouseW > 0) {
+      var ratio = Math.min(input.wage, spouseW) / Math.max(input.wage, spouseW);
+      step2cRecommended = ratio >= 0.5;
+    }
+
+    return {
+      // Inputs echoed
+      taxYear:           input.taxYear || 2025,
+      status:            input.status,
+      freq:              freq,
+      kids:              kids,
+      others:            others,
+      isMFJ:             isMFJ,
+      // Annual numbers
+      totalWages:        totalWages,
+      otherIncome:       input.otherIncome || 0,
+      agi:               agi,
+      deduction:         deduction,
+      usingItemized:     usingItemized,
+      dedAboveStd:       dedAboveStd,
+      taxable:           taxable,
+      taxPreCredits:     taxPreCredits,
+      rawCredits:        rawCredits,
+      credits:           credits,
+      taxOwed:           taxOwed,
+      defaultWithholding: defaultWithholding,
+      withholdingPrimary: withholdingPrimary,
+      withholdingSpouse:  withholdingSpouse,
+      // Refund / owe (positive = refund, negative = owe)
+      diff:              defaultWithholding - taxOwed,
+      // Per-paycheck
+      targetPerPaycheck:    targetPerPaycheck,
+      defaultPerPaycheck:   defaultPerPaycheck,
+      depBenefitPerPaycheck: credits / freq,
+      // W-4 line outputs
+      w4Step2cRecommended: step2cRecommended,
+      w4Step2cUsed:        useStep2c,
+      w4Step3:             credits,      // dollar amount for Step 3
+      w4Step4a:            input.otherIncome || 0,
+      w4Step4b:            dedAboveStd,
+      w4Step4c:            step4cPerPaycheck
+    };
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * TEST SUITE — runs on page load, logs to browser console.
+   * Audits the three scenarios in the spec + key edge cases.
+   * ═══════════════════════════════════════════════════════════════════ */
+  function runTests() {
+    if (typeof console === 'undefined' || !console.log) return;
+    var pass = 0, fail = 0;
+    function assert(label, actual, expected, tol) {
+      tol = tol || 1; // default $1 tolerance for rounding
+      var ok = Math.abs(actual - expected) <= tol;
+      if (ok) { pass++; console.log('%c✓ ' + label, 'color:#7dd6a4'); }
+      else    { fail++; console.error('✗ ' + label + ' — got $' + Math.round(actual) + ', expected $' + expected); }
+    }
+
+    console.log('%c[W-4 calc] running tests…', 'color:#e89464;font-weight:bold');
+
+    // TEST 1 — Single filer, $75k, no dependents, standard deduction
+    // Taxable: $60,000 → 10%×$11,925 + 12%×$36,550 + 22%×$11,525 = $8,114
+    var t1 = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
+    assert('Test 1: Single $75k → tax owed',         t1.taxOwed, 8114);
+    assert('Test 1: Single $75k → per paycheck',     t1.targetPerPaycheck, 312, 2);
+
+    // TEST 2 — MFJ dual-income $100k + $50k = $150k, Step 2(c) CHECKED
+    // Actual tax: $120k taxable at MFJ = $2,385 + $8,772 + $5,071 = $16,228
+    // With 2(c): each employer uses split MFJ brackets (= Single brackets) + half std ded
+    //   Employer A ($100k): ($100k - $15k = $85k) at Single = $13,614
+    //   Employer B  ($50k): ( $50k - $15k = $35k) at Single =  $3,962
+    //   Total withholding: $17,576 (over-withholds by $1,348 = refund)
+    var t2 = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26, useStep2c: true });
+    assert('Test 2: MFJ $150k → actual tax owed',          t2.taxOwed, 16228);
+    assert('Test 2: MFJ Step 2(c) → withholding (split)',  t2.defaultWithholding, 17576);
+    assert('Test 2: MFJ Step 2(c) → refund (small)',       t2.diff, 1348);
+
+    // TEST 2b — Same couple WITHOUT Step 2(c) — should under-withhold dramatically
+    // Each employer uses FULL MFJ brackets + full $30k std ded:
+    //   Employer A ($100k): ($100k - $30k = $70k) at MFJ = $2,385 + $5,538 = $7,923
+    //   Employer B  ($50k): ( $50k - $30k = $20k) at MFJ = $2,000
+    //   Total withholding: $9,923 — under by $6,305!
+    var t2b = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26, useStep2c: false });
+    assert('Test 2b: MFJ no 2(c) → withholding (under)',   t2b.defaultWithholding, 9923);
+    assert('Test 2b: MFJ no 2(c) → shortfall (owe)',       t2b.diff, -6305, 5);
+    assert('Test 2b: MFJ no 2(c) → Step 4(c) extra/pp',    t2b.w4Step4c, 6305 / 26, 1);
+
+    // TEST 3 — HoH filer, $80k wages, 2 kids under 17
+    // HoH std ded: $22,500 → taxable $57,500
+    // Tax: 10%×$17,000 + 12%×$40,500 = $1,700 + $4,860 = $6,560
+    // CTC: 2 × $2,000 = $4,000 (no phase-out at $80k vs $200k threshold)
+    // Final tax: $6,560 - $4,000 = $2,560
+    var t3 = computeW4({ taxYear: 2025, status: 'hoh', wage: 80000, freq: 26, kids: 2 });
+    assert('Test 3: HoH $80k + 2 kids → tax pre-credits',  t3.taxPreCredits, 6560);
+    assert('Test 3: HoH $80k + 2 kids → credits',          t3.credits, 4000);
+    assert('Test 3: HoH $80k + 2 kids → final tax owed',   t3.taxOwed, 2560);
+    assert('Test 3: HoH $80k + 2 kids → dep benefit/pp',   t3.depBenefitPerPaycheck, 4000 / 26, 1);
+
+    // TEST 4 — CTC phase-out edge case: Single $300k, 1 kid
+    // Threshold $200k, excess $100k → $5,000 reduction
+    // Raw credit $2,000 - $5,000 = $0 after phase-out
+    var t4 = computeW4({ taxYear: 2025, status: 'single', wage: 300000, freq: 26, kids: 1 });
+    assert('Test 4: Single $300k + 1 kid → credit phased out', t4.credits, 0);
+
+    // TEST 5 — Itemized > standard: Single $100k with $25k itemized
+    // Std ded $15k, itemized $25k → uses itemized, dedAboveStd = $10k for Step 4(b)
+    var t5 = computeW4({ taxYear: 2025, status: 'single', wage: 100000, freq: 26, itemized: 25000 });
+    assert('Test 5: Itemized > std → Step 4(b) amount',    t5.w4Step4b, 10000);
+    assert('Test 5: Itemized > std → uses itemized',       t5.usingItemized ? 1 : 0, 1);
+
+    console.log('%c[W-4 calc] tests: ' + pass + ' passed, ' + fail + ' failed',
+      fail === 0 ? 'color:#7dd6a4;font-weight:bold' : 'color:#ff8e8e;font-weight:bold');
+  }
+  runTests();
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * STATE + UI helpers
+   * ═══════════════════════════════════════════════════════════════════ */
   var state = {
+    taxYear: 2025,
     status: 'single',
     wage: 75000, freq: 26,
     spouseWage: 0, spouseFreq: 26,
     kids: 0, other: 0,
-    otherIncome: 0, itemized: 0
+    otherIncome: 0, itemized: 0,
+    useStep2c: false
   };
   var prev = {
     total:0, refund:0, whDefault:0,
@@ -1165,7 +1500,6 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   };
   var FREQ_LABEL = { 52: 'Weekly', 26: 'Biweekly', 24: 'Semimonthly', 12: 'Monthly' };
 
-  // ────── Helpers ──────
   function $(s) { return document.querySelector(s); }
   function fmt(n) {
     if (!isFinite(n)) n = 0;
@@ -1177,28 +1511,6 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   }
   function fmtPct(r, d) { var n = (d == null) ? 1 : d; return (r * 100).toFixed(n) + '%'; }
 
-  function taxOnOrdinary(taxable, status) {
-    var b = BRACKETS[status] || BRACKETS.single;
-    var t = 0, p = 0;
-    for (var i = 0; i < b.length; i++) {
-      var top = b[i][0], r = b[i][1];
-      if (taxable <= top) { t += (taxable - p) * r; return t; }
-      t += (top - p) * r; p = top;
-    }
-    return t;
-  }
-
-  function dependentCredits(kids, other, agi, status) {
-    var raw = (kids * CTC_PER_KID) + (other * ODC_PER_DEP);
-    if (raw === 0) return 0;
-    var threshold = CTC_THRESHOLD[status] || CTC_THRESHOLD.single;
-    if (agi <= threshold) return raw;
-    var excess = agi - threshold;
-    var reduction = Math.ceil(excess / 1000) * 50;
-    return Math.max(0, raw - reduction);
-  }
-
-  // Animation helper — uses CalcKit if available, falls back to instant
   function anim(el, key, value, ms, opts) {
     if (!el) return;
     if (window.CalcKit && typeof CalcKit.animateNumber === 'function') {
@@ -1211,143 +1523,112 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     prev[key] = value;
   }
 
-  // ────── Main compute + render ──────
+  /* ═══════════════════════════════════════════════════════════════════
+   * RENDER — pulls from computeW4() and paints the dark result panel.
+   * No tax math lives here — it's all delegated to the pure engine above.
+   * ═══════════════════════════════════════════════════════════════════ */
   function render() {
-    var isMFJ = (state.status === 'mfj');
-    var spouseW = isMFJ ? state.spouseWage : 0;
-    var totalWages = state.wage + spouseW;
-    var totalIncome = totalWages + state.otherIncome;
+    var r = computeW4(state);
 
-    var stdDed = STD_DED[state.status] || STD_DED.single;
-    var deduction = state.itemized > stdDed ? state.itemized : stdDed;
-    var usingItemized = state.itemized > stdDed;
-    var dedAboveStd = usingItemized ? (state.itemized - stdDed) : 0;
-
-    var taxable = Math.max(0, totalIncome - deduction);
-    var taxPre = taxOnOrdinary(taxable, state.status);
-    var credits = dependentCredits(state.kids, state.other, totalIncome, state.status);
-    var taxOwed = Math.max(0, taxPre - credits);
-
-    var defaultWHTaxable = Math.max(0, totalWages - stdDed);
-    var defaultWH = taxOnOrdinary(defaultWHTaxable, state.status);
-    var diff = defaultWH - taxOwed;
-    var refundAmt = diff > 0 ? diff : 0;
-    var oweAmt = diff < 0 ? Math.abs(diff) : 0;
-
-    // ── Headline: total tax owed (big italic Fraunces with glow)
+    // ── Headline: total tax owed
     var glowEl = $('#result-glow'), orbitEl = $('#orbit');
-    if (window.CalcKit) {
-      CalcKit.animateNumber($('#result-total'), prev.total, taxOwed, 700, { isHTML: true, fmt: fmtRich });
-    } else {
-      $('#result-total').innerHTML = fmtRich(taxOwed);
-    }
-    prev.total = taxOwed;
-    glowEl.classList.toggle('is-active', taxOwed > 0);
-    orbitEl.classList.toggle('is-active', taxOwed > 0);
-    if (taxOwed > 0) {
-      var effRate = totalIncome > 0 ? taxOwed / totalIncome : 0;
-      $('#result-meta').innerHTML = 'on <strong>' + fmt(totalIncome) + '</strong> income · <strong>' + fmtPct(effRate) + '</strong> effective';
+    anim($('#result-total'), 'total', r.taxOwed, 700, { isHTML: true, fmt: fmtRich });
+    glowEl.classList.toggle('is-active', r.taxOwed > 0);
+    orbitEl.classList.toggle('is-active', r.taxOwed > 0);
+    if (r.taxOwed > 0) {
+      var effRate = r.agi > 0 ? r.taxOwed / r.agi : 0;
+      $('#result-meta').innerHTML = 'on <strong>' + fmt(r.agi) + '</strong> income · <strong>' + fmtPct(effRate) + '</strong> effective';
     } else {
       $('#result-meta').innerHTML = '<span class="result-empty">Enter your salary to see your W-4 plan.</span>';
     }
 
     // ── Refund / owe band
-    var refundEl = $('#r-refund');
-    var refundLbl = $('#r-refund-lbl');
-    if (diff >= 0) {
-      refundEl.classList.remove('is-owe');
-      refundEl.classList.add('is-good');
+    var refundEl = $('#r-refund'), refundLbl = $('#r-refund-lbl');
+    if (r.diff >= 0) {
+      refundEl.classList.remove('is-owe'); refundEl.classList.add('is-good');
       refundLbl.textContent = 'Refund';
-      anim(refundEl, 'refund', refundAmt, 600, { isHTML: true, fmt: fmtRich });
+      anim(refundEl, 'refund', r.diff, 600, { isHTML: true, fmt: fmtRich });
     } else {
-      refundEl.classList.remove('is-good');
-      refundEl.classList.add('is-owe');
+      refundEl.classList.remove('is-good'); refundEl.classList.add('is-owe');
       refundLbl.textContent = "You'll owe";
-      anim(refundEl, 'refund', oweAmt, 600, { isHTML: true, fmt: fmtRich });
+      anim(refundEl, 'refund', Math.abs(r.diff), 600, { isHTML: true, fmt: fmtRich });
     }
-    anim($('#r-wh-default'), 'whDefault', defaultWH, 500, { isHTML: true, fmt: fmtRich });
+    anim($('#r-wh-default'), 'whDefault', r.defaultWithholding, 500, { isHTML: true, fmt: fmtRich });
 
-    // ── Per-paycheck impact (the question users actually ask)
-    // Federal withholding per paycheck = annual tax owed / freq
-    // Dependent benefit per paycheck = credits / freq (what you'd see MORE
-    //   in each paycheck by claiming dependents on Step 3 vs leaving blank)
-    var ppWithholding = state.freq > 0 ? (taxOwed / state.freq) : 0;
-    var ppDepBenefit = state.freq > 0 ? (credits / state.freq) : 0;
-    anim($('#r-pp-withholding'), 'ppWh', ppWithholding, 600, { isHTML: true, fmt: fmtRich });
-    $('#r-pp-sub').textContent = FREQ_LABEL[state.freq] || 'per paycheck';
+    // ── Per-paycheck impact band
+    anim($('#r-pp-withholding'), 'ppWh', r.targetPerPaycheck, 600, { isHTML: true, fmt: fmtRich });
+    $('#r-pp-sub').textContent = FREQ_LABEL[r.freq] || 'per paycheck';
 
     var depCell = $('#dep-benefit-cell');
-    if (ppDepBenefit > 0) {
-      depCell.classList.add('is-active');
-      depCell.classList.remove('is-zero');
+    if (r.depBenefitPerPaycheck > 0) {
+      depCell.classList.add('is-active'); depCell.classList.remove('is-zero');
       if (window.CalcKit) {
-        CalcKit.animateNumber($('#r-pp-dep'), prev.ppDep, ppDepBenefit, 600, {
+        CalcKit.animateNumber($('#r-pp-dep'), prev.ppDep, r.depBenefitPerPaycheck, 600, {
           isHTML: true,
           fmt: function (n) { return '<em>+$</em>' + Math.round(n).toLocaleString('en-US'); }
         });
       } else {
-        $('#r-pp-dep').innerHTML = '<em>+$</em>' + Math.round(ppDepBenefit).toLocaleString('en-US');
+        $('#r-pp-dep').innerHTML = '<em>+$</em>' + Math.round(r.depBenefitPerPaycheck).toLocaleString('en-US');
       }
-      prev.ppDep = ppDepBenefit;
-      var totalDeps = state.kids + state.other;
+      prev.ppDep = r.depBenefitPerPaycheck;
+      var totalDeps = r.kids + r.others;
       $('#r-pp-dep-lbl').textContent = 'Benefit from ' + totalDeps + ' dependent' + (totalDeps === 1 ? '' : 's');
-      $('#r-pp-dep-sub').innerHTML = '<strong>' + fmt(ppDepBenefit) + '</strong> more in every paycheck vs leaving Step 3 blank';
+      $('#r-pp-dep-sub').innerHTML = '<strong>' + fmt(r.depBenefitPerPaycheck) + '</strong> more in every paycheck vs leaving Step 3 blank';
     } else {
-      depCell.classList.remove('is-active');
-      depCell.classList.add('is-zero');
+      depCell.classList.remove('is-active'); depCell.classList.add('is-zero');
       $('#r-pp-dep').innerHTML = '<em>+$</em>0';
       $('#r-pp-dep-lbl').textContent = 'Dependent benefit';
       $('#r-pp-dep-sub').textContent = 'Add kids or dependents above to see the per-paycheck boost';
       prev.ppDep = 0;
     }
 
-    // ── Breakdown rows
-    anim($('#row-gross .val'), 'gross', totalIncome, 400);
-    anim($('#row-ded .val'), 'ded', deduction, 400);
-    $('#row-ded-lbl').textContent = usingItemized ? 'Itemized deduction' : 'Standard deduction';
-    anim($('#row-taxable .val'), 'taxable', taxable, 400);
-    anim($('#row-tax-pre .val'), 'taxPre', taxPre, 400);
-    $('#row-credits-lbl').textContent = 'Dependent credits' + (state.kids + state.other === 0 ? ' (none)' : '');
+    // ── Tax breakdown rows
+    anim($('#row-gross .val'), 'gross', r.agi, 400);
+    anim($('#row-ded .val'), 'ded', r.deduction, 400);
+    $('#row-ded-lbl').textContent = r.usingItemized ? 'Itemized deduction' : 'Standard deduction';
+    anim($('#row-taxable .val'), 'taxable', r.taxable, 400);
+    anim($('#row-tax-pre .val'), 'taxPre', r.taxPreCredits, 400);
+    $('#row-credits-lbl').textContent = 'Dependent credits' + (r.kids + r.others === 0 ? ' (none)' : '');
     var creditsEl = $('#row-credits .val');
     if (window.CalcKit) {
-      CalcKit.animateNumber(creditsEl, prev.credits, credits, 400, { fmt: function(n) { return '-' + fmt(n); } });
+      CalcKit.animateNumber(creditsEl, prev.credits, r.credits, 400, { fmt: function(n) { return '-' + fmt(n); } });
     } else {
-      creditsEl.textContent = '-' + fmt(credits);
+      creditsEl.textContent = '-' + fmt(r.credits);
     }
-    prev.credits = credits;
+    prev.credits = r.credits;
 
-    // ── W-4 step outputs
+    // ── W-4 step outputs — reflect ACTUAL user choices + computed amounts
 
-    // Step 2(c)
-    var step2c = $('#w4-step2c');
-    var s2c = $('#w4-2c-val');
-    var s2cNote = $('#w4-2c-note');
-    if (isMFJ && spouseW > 0) {
-      var ratio = Math.min(state.wage, spouseW) / Math.max(state.wage, spouseW);
+    // Step 2(c) — reflects user's actual checkbox + recommendation
+    var step2c = $('#w4-step2c'), s2c = $('#w4-2c-val'), s2cNote = $('#w4-2c-note');
+    if (r.isMFJ && r.withholdingSpouse > 0) {
       step2c.classList.remove('is-zero');
-      if (ratio >= 0.5) {
-        s2c.innerHTML = '<em>✓</em> Check the box';
-        s2cNote.textContent = 'Both incomes within 50% — Step 2(c) handles it simply';
+      if (r.w4Step2cUsed) {
+        s2c.innerHTML = '<em>✓</em> Checked';
+        s2cNote.textContent = r.w4Step2cRecommended
+          ? 'Recommended — incomes within 50% of each other'
+          : 'Both jobs use split brackets (good — closes the dual-income gap)';
       } else {
-        s2c.textContent = 'Use worksheet';
-        s2cNote.textContent = 'Incomes differ too much — our Step 4(c) output below has the extra-withholding amount';
+        s2c.textContent = r.w4Step2cRecommended ? 'Recommended: check' : 'Leave blank';
+        s2cNote.textContent = r.w4Step2cRecommended
+          ? 'Both incomes are within 50% — checking 2(c) is the simplest fix'
+          : 'Incomes differ too much for 2(c) — see Step 4(c) extra withholding below';
       }
     } else {
       step2c.classList.add('is-zero');
       s2c.textContent = 'Leave blank';
-      s2cNote.textContent = isMFJ ? 'Only one spouse working' : 'Single — not applicable';
+      s2cNote.textContent = r.isMFJ ? 'Only one spouse working' : 'Single — not applicable';
     }
 
-    // Step 3
-    var rawDepCredits = (state.kids * CTC_PER_KID) + (state.other * ODC_PER_DEP);
+    // Step 3 — dependent credits dollar amount
     var step3 = $('#w4-step3');
-    if (rawDepCredits > 0) {
+    if (r.rawCredits > 0) {
       step3.classList.remove('is-zero');
-      anim($('#w4-3-val'), 'w43', credits, 500, { isHTML: true, fmt: fmtRich });
+      anim($('#w4-3-val'), 'w43', r.credits, 500, { isHTML: true, fmt: fmtRich });
       $('#w4-3-note').textContent =
-        state.kids + ' child' + (state.kids === 1 ? '' : 'ren') + ' × $2,000 + ' +
-        state.other + ' other × $500' +
-        (credits < rawDepCredits ? ' (phase-out applied)' : '');
+        r.kids + ' child' + (r.kids === 1 ? '' : 'ren') + ' × $2,000 + ' +
+        r.others + ' other × $500' +
+        (r.credits < r.rawCredits ? ' (phase-out applied)' : '');
     } else {
       step3.classList.add('is-zero');
       $('#w4-3-val').innerHTML = '<em>$</em>0';
@@ -1355,37 +1636,36 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       prev.w43 = 0;
     }
 
-    // Step 4(a)
+    // Step 4(a) — non-W-2 income (raw passthrough)
     var step4a = $('#w4-step4a');
-    if (state.otherIncome > 0) {
+    if (r.w4Step4a > 0) {
       step4a.classList.remove('is-zero');
-      anim($('#w4-4a-val'), 'w44a', state.otherIncome, 500, { isHTML: true, fmt: fmtRich });
+      anim($('#w4-4a-val'), 'w44a', r.w4Step4a, 500, { isHTML: true, fmt: fmtRich });
     } else {
       step4a.classList.add('is-zero');
       $('#w4-4a-val').innerHTML = '<em>$</em>0';
       prev.w44a = 0;
     }
 
-    // Step 4(b)
+    // Step 4(b) — itemized amount ABOVE standard
     var step4b = $('#w4-step4b');
-    if (dedAboveStd > 0) {
+    if (r.w4Step4b > 0) {
       step4b.classList.remove('is-zero');
-      anim($('#w4-4b-val'), 'w44b', dedAboveStd, 500, { isHTML: true, fmt: fmtRich });
-      $('#w4-4b-note').textContent = fmt(state.itemized) + ' itemized − ' + fmt(stdDed) + ' standard';
+      anim($('#w4-4b-val'), 'w44b', r.w4Step4b, 500, { isHTML: true, fmt: fmtRich });
+      $('#w4-4b-note').textContent = fmt(state.itemized) + ' itemized − ' + fmt(r.deduction - r.w4Step4b) + ' standard';
     } else {
       step4b.classList.add('is-zero');
       $('#w4-4b-val').innerHTML = '<em>$</em>0';
-      $('#w4-4b-note').textContent = 'Using standard deduction ' + fmt(stdDed);
+      $('#w4-4b-note').textContent = 'Using standard deduction ' + fmt(r.deduction);
       prev.w44b = 0;
     }
 
-    // Step 4(c) — extra withholding per paycheck (the action line)
+    // Step 4(c) — extra withholding per paycheck (the action item)
     var step4c = $('#w4-step4c');
     step4c.classList.remove('is-action');
-    if (diff < -100) {
-      var extra = Math.abs(diff) / state.freq;
-      step4c.classList.remove('is-zero');
-      step4c.classList.add('is-action');
+    if (r.w4Step4c > 0) {
+      var extra = r.w4Step4c;
+      step4c.classList.remove('is-zero'); step4c.classList.add('is-action');
       if (window.CalcKit) {
         CalcKit.animateNumber($('#w4-4c-val'), prev.w44c, extra, 600, {
           isHTML: true,
@@ -1395,14 +1675,31 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
         $('#w4-4c-val').innerHTML = '<em>' + fmt(extra) + '</em><span class="per">/paycheck</span>';
       }
       prev.w44c = extra;
+      var annualGap = extra * r.freq;
       $('#w4-4c-note').textContent =
-        'Bumps withholding by ' + fmt(Math.abs(diff)) + '/year across ' + state.freq +
+        'Bumps withholding by ' + fmt(annualGap) + '/year across ' + r.freq +
         ' paychecks — closes the gap so you don\'t owe in April';
     } else {
       step4c.classList.add('is-zero');
       $('#w4-4c-val').innerHTML = '<em>$</em>0';
       $('#w4-4c-note').textContent = 'No extra withholding needed — default covers your tax';
       prev.w44c = 0;
+    }
+
+    // ── Update the Step 2(c) toggle UI (visibility + auto-recommendation badge)
+    var toggleWrap = $('#step2c-toggle-wrap');
+    var recSpan = $('#step2c-rec');
+    if (toggleWrap) {
+      toggleWrap.style.display = (r.isMFJ && r.withholdingSpouse > 0) ? '' : 'none';
+    }
+    if (recSpan) {
+      if (r.w4Step2cRecommended) {
+        recSpan.textContent = 'Recommended: ✓ check (incomes within 50%)';
+        recSpan.classList.add('is-rec-on');
+      } else {
+        recSpan.textContent = 'Recommended: leave blank (incomes too different — use Step 4(c) instead)';
+        recSpan.classList.remove('is-rec-on');
+      }
     }
   }
 
@@ -1442,6 +1739,18 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     btn.classList.add('is-active');
     state.status = btn.dataset.val;
     document.getElementById('spouse-section').style.display = (state.status === 'mfj') ? '' : 'none';
+    // Reset Step 2(c) when leaving MFJ
+    if (state.status !== 'mfj') {
+      state.useStep2c = false;
+      var cb = document.getElementById('in-step2c');
+      if (cb) cb.checked = false;
+    }
+    render();
+  });
+
+  // Step 2(c) checkbox — drives the IRS split-brackets math
+  document.getElementById('in-step2c').addEventListener('change', function (e) {
+    state.useStep2c = !!e.target.checked;
     render();
   });
 
