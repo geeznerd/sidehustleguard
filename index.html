@@ -302,7 +302,9 @@
   .ds-section.is-dark { background: var(--indigo); color: var(--paper); }
   .ds-section.is-dark .display-l,
   .ds-section.is-dark .display-m { color: var(--paper); }
-  .ds-section.is-dark .display-l em { color: var(--apricot-text); }
+  /* Dark section: keep original apricot — dark bg already gives high contrast.
+   * --apricot-text was tuned for cream bg only (WCAG 4.5:1 requirement). */
+  .ds-section.is-dark .display-l em { color: var(--apricot); }
 
   .section-head {
     margin-bottom: 48px;
@@ -1021,7 +1023,7 @@
 
   /* Override base section-head colors for dark mode */
   .library-section .ds-eyebrow {
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     display: inline-flex;
     align-items: center;
     gap: 9px;
@@ -1055,7 +1057,7 @@
     color: var(--paper);
   }
   .library-section .display-l em {
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     font-style: italic;
     text-shadow: 0 0 32px rgba(232,148,100,0.45);
   }
@@ -1097,7 +1099,7 @@
   }
   .library-stat-num em {
     font-style: italic;
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     font-variation-settings: 'opsz' 144, 'SOFT' 30;
     text-shadow: 0 0 24px rgba(232,148,100,0.45);
   }
@@ -1167,7 +1169,7 @@
     font-weight: 700;
     letter-spacing: 0.10em;
     text-transform: uppercase;
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     background: rgba(232,148,100,0.16);
     padding: 3px 9px;
     border-radius: 100px;
@@ -1184,7 +1186,7 @@
     height: 32px;
     border-radius: 10px;
     background: rgba(232,148,100,0.18);
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     font-family: 'Fraunces', Georgia, serif;
     font-style: italic;
     font-weight: 500;
@@ -1210,7 +1212,7 @@
   }
   .library-card-arrow {
     font-size: 14px;
-    color: var(--apricot-text);
+    color: var(--apricot);   /* dark bg — keep original apricot */
     margin-top: auto;
     transition: transform .15s;
   }

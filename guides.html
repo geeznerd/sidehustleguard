@@ -157,7 +157,9 @@
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    padding: 7px 14px;
+    /* Vertical padding bumped 7px → 12px so the tap target hits 44px —
+     * WCAG 2.5.5 + Apple HIG. Was failing the floor at 34px height. */
+    padding: 12px 14px;
     border-radius: 12px;
     border: 1.5px solid transparent;
     background: transparent;
