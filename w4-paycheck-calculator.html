@@ -1009,7 +1009,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
         </div>
 
         <div class="disclaimer-dark">
-          <strong>Estimate only — not tax advice.</strong> Uses 2025 federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (file a separate state W-4) or 401(k)/HSA pre-tax contributions. Verify with a CPA.
+          <strong>Estimate only — not tax advice.</strong> Uses <span id="disc-year">2025</span> federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (file a separate state W-4) or 401(k)/HSA pre-tax contributions. Verify with a CPA.
         </div>
       </div>
 
@@ -1799,9 +1799,10 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var ctcPerKid = yearData.ctcPerKid;
     var stdDed = yearData.stdDeduction[r.status] || yearData.stdDeduction.single;
 
-    var hYear = $('#hero-year'), h1Year = $('#h1-year');
-    if (hYear)  hYear.textContent  = state.taxYear;
-    if (h1Year) h1Year.textContent = state.taxYear;
+    var hYear = $('#hero-year'), h1Year = $('#h1-year'), discYear = $('#disc-year');
+    if (hYear)    hYear.textContent    = state.taxYear;
+    if (h1Year)   h1Year.textContent   = state.taxYear;
+    if (discYear) discYear.textContent = state.taxYear;
 
     // Step 3 descriptor — show year-specific CTC ($2,000 in 2025, $2,200 in 2026)
     var step3Note = $('#w4-3-note');
