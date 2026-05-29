@@ -65,17 +65,16 @@
   --radius-container: 22px;
   --radius-pill:      100px;
 
-  /* Motion */
-  --ease-default:    cubic-bezier(0.4, 0, 0.2, 1);
-  /* Snappy / tactile curves for micro-interactions. ease-snappy is
-   * the Linear-style "spring out fast, decelerate gently" curve used
-   * for hover scales + arrow shifts. ease-out-snap lands focus rings
-   * and active sinks crisply without overshoot. */
-  --ease-snappy:     cubic-bezier(0.32, 0.72, 0, 1);
-  --ease-out-snap:   cubic-bezier(0.25, 1, 0.5, 1);
-  --dur-press:       80ms;
+  /* Motion — strong, intentional curves per Emil Kowalski's
+   * design-engineering playbook. The built-in CSS easings lack
+   * the punch that signals "the interface heard you." */
+  --ease-default:    cubic-bezier(0.23, 1, 0.32, 1);   /* strong ease-out */
+  --ease-snappy:     cubic-bezier(0.32, 0.72, 0, 1);   /* iOS-drawer curve */
+  --ease-out-snap:   cubic-bezier(0.25, 1, 0.5, 1);    /* focus-ring landing */
+  --dur-press:       100ms;    /* button press DOWN — deliberate */
   --dur-fast:        150ms;
-  --dur-snap:        180ms;
+  --dur-snap:        180ms;    /* button hover-in scale */
+  --dur-release:     220ms;    /* press/hover release back — slightly slower */
   --dur-default:     250ms;
   --dur-slow:        350ms;
   --dur-entry:       450ms;
@@ -441,35 +440,39 @@ nav .nav-link[aria-current="page"] {
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  outline: none;   /* custom :focus-visible ring below */
-  /* Color/border on snappy timing; transform on press-fast for tactility.
-   * Separate transitions so a hover scale doesn't drag the bg color along
-   * for the same duration. */
+  /* Custom outline-based focus ring (set color + offset in :focus-visible).
+   * Animating `outline-color` + `outline-offset` is GPU-cheap; the previous
+   * box-shadow keyframe approach repainted on every frame. */
+  outline: 2.5px solid transparent;
+  outline-offset: 0;
+  /* Asymmetric transform timing — the transition duration on each STATE
+   * determines the speed of getting TO that state, so we can give hover-in,
+   * press-down, and release-back distinct timings without JS:
+   *   • Rest (default block):  220ms ease-snappy  — release back ("flop up")
+   *   • :hover override:       180ms              — hover-in (read below)
+   *   • :active override:      100ms ease-out-snap — press-down (snappy) */
   transition:
-    background-color var(--dur-fast) var(--ease-snappy),
-    border-color     var(--dur-fast) var(--ease-snappy),
-    box-shadow       var(--dur-snap) var(--ease-snappy),
-    transform        var(--dur-press) var(--ease-snappy);
+    background-color var(--dur-fast)    var(--ease-snappy),
+    border-color     var(--dur-fast)    var(--ease-snappy),
+    transform        var(--dur-release) var(--ease-snappy),
+    outline-color    240ms              var(--ease-out-snap),
+    outline-offset   240ms              var(--ease-out-snap);
 }
 
-/* Active sink — works for both desktop click + mobile tap. Snappier
- * than hover (80ms) so the press registers immediately. */
-.btn:active { transform: scale(0.96); }
+/* Active sink — tactile press feedback. 0.97 (not 0.96) matches the
+ * Sonner-tuned sweet spot: perceptible without feeling like collapse.
+ * Press timing 100ms (deliberate); release inherits the 220ms default. */
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-out-snap);
+}
 
-/* Custom focus ring — expands outward from the pill via box-shadow.
- * `apricot @ 32% alpha` reads as primary brand color without clashing
- * with the apricot border on the nav CTA variant. */
+/* Custom focus ring — outline expands outward (offset 0 → 3px) while
+ * its color fades in. Both properties composite cheaply on the GPU. */
 .btn:focus-visible {
-  box-shadow:
-    0 0 0 4px rgba(232, 148, 100, 0.35),
-    0 4px 12px rgba(45, 48, 104, 0.10);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .btn:focus-visible { animation: btnFocusRing 320ms var(--ease-out-snap); }
-}
-@keyframes btnFocusRing {
-  0%   { box-shadow: 0 0 0 0 rgba(232, 148, 100, 0),    0 4px 12px rgba(45, 48, 104, 0.10); }
-  100% { box-shadow: 0 0 0 4px rgba(232, 148, 100, 0.35), 0 4px 12px rgba(45, 48, 104, 0.10); }
+  outline-color: rgba(232, 148, 100, 0.60);
+  outline-offset: 3px;
 }
 
 .btn-primary {
@@ -478,7 +481,10 @@ nav .nav-link[aria-current="page"] {
 }
 .btn-primary:hover { background: var(--indigo-hover); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .btn-primary:hover { transform: scale(1.02); }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    transition-duration: var(--dur-snap);   /* hover-in: 180ms (deliberate) */
+  }
 }
 
 .btn-accent {
@@ -487,7 +493,10 @@ nav .nav-link[aria-current="page"] {
 }
 .btn-accent:hover { background: var(--apricot-hover); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .btn-accent:hover { transform: scale(1.02); }
+  .btn-accent:hover {
+    transform: scale(1.02);
+    transition-duration: var(--dur-snap);
+  }
 }
 
 /* High-conversion CTA — apricot squircle with pulsing indigo dot indicator.
@@ -497,9 +506,7 @@ nav .nav-link[aria-current="page"] {
 .btn-cta {
   /* Override the .btn base — pill → squircle, slightly bigger padding.
    * Re-declares display + gap so the class works STANDALONE (without the
-   * .btn base class). Without this, ::before pulse dot rendered as an
-   * inline-block butting right up against the text — readable but ugly
-   * (the dot visually bled into the first letter on apricot backgrounds). */
+   * .btn base class). */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -514,15 +521,17 @@ nav .nav-link[aria-current="page"] {
   text-decoration: none;
   border: 0;
   cursor: pointer;
-  outline: none;
+  outline: 2.5px solid transparent;
+  outline-offset: 0;
   box-shadow: 0 4px 12px rgba(45, 48, 104, 0.10);
-  /* Same snappy interaction model as .btn — bg/border on fast snappy,
-   * shadow on snap, transform on press. Transform stays at press timing
-   * so hover scale + active sink feel immediate. */
+  /* Same asymmetric model as .btn — transform default = release (220ms),
+   * overridden per state. Box-shadow stays STATIC (Emil: animating shadow
+   * is paint-heavy + the scale alone is the signal). */
   transition:
-    background-color var(--dur-fast) var(--ease-snappy),
-    box-shadow       var(--dur-snap) var(--ease-snappy),
-    transform        var(--dur-press) var(--ease-snappy);
+    background-color var(--dur-fast)    var(--ease-snappy),
+    transform        var(--dur-release) var(--ease-snappy),
+    outline-color    240ms              var(--ease-out-snap),
+    outline-offset   240ms              var(--ease-out-snap);
 }
 .btn-cta::before {
   content: '';
@@ -534,14 +543,22 @@ nav .nav-link[aria-current="page"] {
   flex-shrink: 0;
 }
 .btn-cta:hover { background: var(--apricot-hover); }
-.btn-cta:active { transform: scale(0.96); box-shadow: 0 2px 6px rgba(45, 48, 104, 0.10); }
+.btn-cta:active {
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-out-snap);
+}
+.btn-cta:focus-visible {
+  outline-color: rgba(232, 148, 100, 0.60);
+  outline-offset: 3px;
+}
 /* Desktop-only hover micro-interaction. @media (hover: hover) keeps
  * this from firing on touch devices, where it would stick after a tap
- * and read as a stuck state. */
+ * and read as a stuck state. Static box-shadow stays put. */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .btn-cta:hover {
     transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(45, 48, 104, 0.14);
+    transition-duration: var(--dur-snap);   /* hover-in: 180ms */
   }
 }
 
@@ -557,9 +574,8 @@ nav .btn-cta {
   border-radius: 100px;
   color: var(--indigo);
   font-weight: 600;
-  letter-spacing: -0.005em;
   padding: 5px 6px 5px 16px;   /* tight right edge — the apricot dot sits here */
-  gap: 10px;
+  gap: 7px;                    /* label + end-cap read as a unit */
   margin: 0;   /* defeat per-page `.btn-cta { margin-top: 16px }` rules on
                 * the 4 calculator pages (intended for in-form submit buttons
                 * but cascade to the nav CTA too) */
@@ -631,15 +647,12 @@ nav .btn-cta::after {
   flex-shrink: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .btn-cta::before,
-  .nav-cta::before {
-    animation: ctaDotPulse 2.2s var(--ease-default) infinite;
-  }
-  /* (.btn-cta:hover transform moved to the new @media (hover: hover)
-   *  block above so it doesn't stick on touch devices.) */
-}
+/* (Idle pulse-dot animation removed per Emil's frequency rule:
+ *  100+ views/day → no animation, ever. The static dot still reads
+ *  as a "live" indicator without animating on every page load.) */
 @keyframes ctaDotPulse {
+  /* Kept as a no-op so any inline page CSS that references the
+   * keyframe name doesn't error. Safe to delete in a future cleanup. */
   0%   { box-shadow: 0 0 0 0 rgba(45, 48, 104, 0.45); }
   70%  { box-shadow: 0 0 0 8px rgba(45, 48, 104, 0); }
   100% { box-shadow: 0 0 0 0 rgba(45, 48, 104, 0); }
@@ -1479,13 +1492,10 @@ nav .btn-cta::after {
     border-radius: 0;
     background: transparent;
     /* Visible label styling — line-height: 1 keeps the strut from
-     * pushing the pill taller than its declared 36px. Title-case
-     * "Check" gets a slightly bigger font + neutral letter-spacing
-     * (caps-tracked 0.08em looked wrong on lowercase). */
+     * pushing the pill taller than its declared 36px. */
     font-size: 13px;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.005em;
     color: var(--indigo);
     flex-shrink: 0;
     animation: none;
