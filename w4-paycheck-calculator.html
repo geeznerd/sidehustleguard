@@ -690,6 +690,16 @@ details.collapsible summary .sub-hint {
   font-size: 11.5px; color: var(--cream-faint);
   margin-top: 4px; line-height: 1.45;
 }
+.w4-step .step-coord {
+  font-size: 11.5px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(232, 148, 100, 0.10);
+  border: 1px solid rgba(232, 148, 100, 0.22);
+  color: var(--apricot);
+  line-height: 1.45;
+}
 
 /* Hero foot */
 .hero-foot {
@@ -1048,6 +1058,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
               <div class="step-name">Claim dependents</div>
               <div class="step-val" id="w4-3-val"><em>$</em>0</div>
               <div class="step-note" id="w4-3-note">0 kids × $2,000 + 0 dependents × $500</div>
+              <div class="step-coord" id="w4-3-coord" style="display:none">⚠ If MFJ + both working: claim on the HIGHER earner's W-4 only. Double-claiming doubles the credit.</div>
             </div>
           </div>
 
@@ -1343,32 +1354,48 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var rawCredits = (kids * data.ctcPerKid) + (others * data.odcPerDep);
     var taxOwed = Math.max(0, taxPreCredits - credits);
 
-    // ── 6. Default per-employer withholding (what employers ACTUALLY do)
-    // Each employer is blind to the other spouse's wage; they each apply
-    // the full std deduction. When Step 2(c) is checked, they instead
-    // use split brackets + half std ded.
-    var useStep2c = !!input.useStep2c;
-    var withholdingPrimary = withholdingForJob(input.wage || 0, input.status, useStep2c, data);
-    var withholdingSpouse = isMFJ && spouseW > 0
-      ? withholdingForJob(spouseW, input.status, useStep2c, data)
-      : 0;
-    var defaultWithholding = withholdingPrimary + withholdingSpouse;
-
-    // ── 7. Per-paycheck targets
-    var freq = Math.max(1, input.freq || 26);
-    var targetPerPaycheck = taxOwed / freq;
-    var defaultPerPaycheck = withholdingPrimary / freq; // from THIS employer
-
-    // ── 8. Shortfall / surplus for Step 4(c) extra-withholding output
-    var annualShortfall = taxOwed - defaultWithholding; // > 0 means need MORE withholding
-    var step4cPerPaycheck = annualShortfall > 100 ? (annualShortfall / freq) : 0;
-
-    // ── 9. Step 2(c) recommendation (independent of user's actual choice)
+    // ── 6. Step 2(c) recommendation (computed FIRST so it can drive the
+    //      withholding math). Triggers when MFJ + spouse working +
+    //      incomes within 50% of each other (IRS guidance for 2(c)).
     var step2cRecommended = false;
     if (isMFJ && spouseW > 0) {
       var ratio = Math.min(input.wage, spouseW) / Math.max(input.wage, spouseW);
       step2cRecommended = ratio >= 0.5;
     }
+
+    // ── 7. EFFECTIVE Step 2(c) state — recommendation drives the math
+    //      by default. User can manually override via input.useStep2c
+    //      (e.g., to force 2(c) on when incomes are very different, or
+    //      to see the worst-case "didn't check the box" scenario).
+    var effectiveStep2c = (input.useStep2c === false)
+      ? false                                  // user explicitly unchecked → respect
+      : (input.useStep2c === true || step2cRecommended);
+
+    // ── 8. Per-employer withholding using effective Step 2(c) state
+    //      When Step 2(c) is on, each employer uses split brackets
+    //      (half std ded + half bracket widths) — matches IRS Pub 15-T.
+    var withholdingPrimary = withholdingForJob(input.wage || 0, input.status, effectiveStep2c, data);
+    var withholdingSpouse = isMFJ && spouseW > 0
+      ? withholdingForJob(spouseW, input.status, effectiveStep2c, data)
+      : 0;
+    var grossWithholding = withholdingPrimary + withholdingSpouse;
+
+    // ── 9. ADJUSTED withholding — subtract Step 3 dependent credits.
+    //      The W-4 Step 3 mechanic: employer reduces withholding by
+    //      this amount. Assumes Step 3 is claimed on ONE spouse's W-4
+    //      (the higher earner — see coordination note in UI).
+    var adjustedWithholding = Math.max(0, grossWithholding - credits);
+
+    // ── 10. Per-paycheck targets
+    var freq = Math.max(1, input.freq || 26);
+    var targetPerPaycheck = taxOwed / freq;
+    var defaultPerPaycheck = adjustedWithholding / freq;
+
+    // ── 11. Step 4(c) RESIDUAL shortfall — only what 2(c) + Step 3
+    //       couldn't solve (typically asymmetric incomes, large other
+    //       income, etc.). NOT the raw "did nothing" gap.
+    var annualShortfall = taxOwed - adjustedWithholding;
+    var step4cPerPaycheck = annualShortfall > 100 ? (annualShortfall / freq) : 0;
 
     return {
       // Inputs echoed
@@ -1390,22 +1417,25 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       rawCredits:        rawCredits,
       credits:           credits,
       taxOwed:           taxOwed,
-      defaultWithholding: defaultWithholding,
-      withholdingPrimary: withholdingPrimary,
-      withholdingSpouse:  withholdingSpouse,
+      // Withholding figures — both raw + post-W-4-adjustment
+      grossWithholding:     grossWithholding,     // pre-Step-3 credit
+      defaultWithholding:   adjustedWithholding,  // post-Step-3 credit (realistic projection)
+      withholdingPrimary:   withholdingPrimary,
+      withholdingSpouse:    withholdingSpouse,
       // Refund / owe (positive = refund, negative = owe)
-      diff:              defaultWithholding - taxOwed,
+      diff:              adjustedWithholding - taxOwed,
       // Per-paycheck
-      targetPerPaycheck:    targetPerPaycheck,
-      defaultPerPaycheck:   defaultPerPaycheck,
+      targetPerPaycheck:     targetPerPaycheck,
+      defaultPerPaycheck:    defaultPerPaycheck,
       depBenefitPerPaycheck: credits / freq,
       // W-4 line outputs
-      w4Step2cRecommended: step2cRecommended,
-      w4Step2cUsed:        useStep2c,
-      w4Step3:             credits,      // dollar amount for Step 3
-      w4Step4a:            input.otherIncome || 0,
-      w4Step4b:            dedAboveStd,
-      w4Step4c:            step4cPerPaycheck
+      w4Step2cRecommended:   step2cRecommended,
+      w4Step2cUsed:          effectiveStep2c,        // what the math actually used
+      w4Step2cUserChoice:    input.useStep2c,        // raw user input (null/true/false)
+      w4Step3:               credits,                // dollar amount for Step 3
+      w4Step4a:              input.otherIncome || 0,
+      w4Step4b:              dedAboveStd,
+      w4Step4c:              step4cPerPaycheck
     };
   }
 
@@ -1431,26 +1461,46 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     assert('Test 1: Single $75k → tax owed',         t1.taxOwed, 8114);
     assert('Test 1: Single $75k → per paycheck',     t1.targetPerPaycheck, 312, 2);
 
-    // TEST 2 — MFJ dual-income $100k + $50k = $150k, Step 2(c) CHECKED
+    // TEST 2 — MFJ dual-income $100k + $50k = $150k (2(c) auto-applied since ratio 0.5)
     // Actual tax: $120k taxable at MFJ = $2,385 + $8,772 + $5,071 = $16,228
-    // With 2(c): each employer uses split MFJ brackets (= Single brackets) + half std ded
-    //   Employer A ($100k): ($100k - $15k = $85k) at Single = $13,614
-    //   Employer B  ($50k): ( $50k - $15k = $35k) at Single =  $3,962
-    //   Total withholding: $17,576 (over-withholds by $1,348 = refund)
-    var t2 = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26, useStep2c: true });
-    assert('Test 2: MFJ $150k → actual tax owed',          t2.taxOwed, 16228);
-    assert('Test 2: MFJ Step 2(c) → withholding (split)',  t2.defaultWithholding, 17576);
-    assert('Test 2: MFJ Step 2(c) → refund (small)',       t2.diff, 1348);
+    // With 2(c) (auto-recommended): each employer uses split MFJ brackets
+    //   Employer A ($100k): ($100k - $15k = $85k) at split = $13,614
+    //   Employer B  ($50k): ( $50k - $15k = $35k) at split =  $3,962
+    //   Gross withholding: $17,576 (over-withholds by $1,348 = refund)
+    var t2 = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26 });
+    assert('Test 2: MFJ $150k → tax owed',                t2.taxOwed, 16228);
+    assert('Test 2: MFJ → 2(c) auto-recommended',         t2.w4Step2cRecommended ? 1 : 0, 1);
+    assert('Test 2: MFJ → 2(c) auto-applied (math)',      t2.w4Step2cUsed ? 1 : 0, 1);
+    assert('Test 2: MFJ → withholding (split applied)',   t2.defaultWithholding, 17576);
+    assert('Test 2: MFJ → refund (small over-withhold)',  t2.diff, 1348);
 
-    // TEST 2b — Same couple WITHOUT Step 2(c) — should under-withhold dramatically
-    // Each employer uses FULL MFJ brackets + full $30k std ded:
-    //   Employer A ($100k): ($100k - $30k = $70k) at MFJ = $2,385 + $5,538 = $7,923
+    // TEST 2b — Same couple, user EXPLICITLY un-checks 2(c) (the override path)
+    // Each employer falls back to FULL MFJ brackets:
+    //   Employer A ($100k): ($100k - $30k = $70k) at MFJ = $7,923
     //   Employer B  ($50k): ( $50k - $30k = $20k) at MFJ = $2,000
-    //   Total withholding: $9,923 — under by $6,305!
+    //   Total: $9,923 — under by $6,305 (= big shortfall)
     var t2b = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26, useStep2c: false });
-    assert('Test 2b: MFJ no 2(c) → withholding (under)',   t2b.defaultWithholding, 9923);
-    assert('Test 2b: MFJ no 2(c) → shortfall (owe)',       t2b.diff, -6305, 5);
-    assert('Test 2b: MFJ no 2(c) → Step 4(c) extra/pp',    t2b.w4Step4c, 6305 / 26, 1);
+    assert('Test 2b: MFJ no 2(c) → withholding (under)',  t2b.defaultWithholding, 9923);
+    assert('Test 2b: MFJ no 2(c) → Step 4(c) extra/pp',   t2b.w4Step4c, 6305 / 26, 1);
+
+    // TEST 2c — USER'S REPORTED SCENARIO: MFJ $150k + $100k, 2 kids + 2 other
+    // Tax: $250k - $30k = $220k taxable at MFJ
+    //   $2,385 + $8,772 + ($109,750 × 22%) + ($13,300 × 24%) = $38,494 pre-credit
+    //   Credits: 2 kids × $2,000 + 2 other × $500 = $5,000
+    //   Tax owed: $38,494 - $5,000 = $33,494 ✓
+    // With 2(c) auto-applied (ratio 0.667):
+    //   Employer A ($150k): ($150k - $15k = $135k) at split MFJ = $25,248
+    //   Employer B ($100k): ($100k - $15k =  $85k) at split MFJ = $13,614
+    //   Gross withholding: $38,862
+    //   Adjusted (minus $5k Step 3 credit on higher earner): $33,862
+    //   Diff: $33,862 - $33,494 = +$368 over-withhold (tiny refund) ✓
+    //   Step 4(c): $0 — no extra needed
+    var t2c = computeW4({ taxYear: 2025, status: 'mfj', wage: 150000, spouseWage: 100000, freq: 26, kids: 2, other: 2 });
+    assert('Test 2c: MFJ $250k + $5k credits → tax owed',     t2c.taxOwed, 33494);
+    assert('Test 2c: MFJ $250k → gross withholding (2c)',     t2c.grossWithholding, 38862);
+    assert('Test 2c: MFJ $250k → adjusted (post-Step-3)',     t2c.defaultWithholding, 33862);
+    assert('Test 2c: MFJ $250k → tiny refund (not $9k owe)',  t2c.diff, 368);
+    assert('Test 2c: MFJ $250k → Step 4(c) is $0',            t2c.w4Step4c, 0);
 
     // TEST 3 — HoH filer, $80k wages, 2 kids under 17
     // HoH std ded: $22,500 → taxable $57,500
@@ -1490,7 +1540,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     spouseWage: 0, spouseFreq: 26,
     kids: 0, other: 0,
     otherIncome: 0, itemized: 0,
-    useStep2c: false
+    useStep2c: null  // null = follow recommendation; true/false = explicit override
   };
   var prev = {
     total:0, refund:0, whDefault:0,
@@ -1599,29 +1649,31 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
     // ── W-4 step outputs — reflect ACTUAL user choices + computed amounts
 
-    // Step 2(c) — reflects user's actual checkbox + recommendation
+    // Step 2(c) — reflects what the math is ACTUALLY using
     var step2c = $('#w4-step2c'), s2c = $('#w4-2c-val'), s2cNote = $('#w4-2c-note');
     if (r.isMFJ && r.withholdingSpouse > 0) {
       step2c.classList.remove('is-zero');
       if (r.w4Step2cUsed) {
-        s2c.innerHTML = '<em>✓</em> Checked';
+        s2c.innerHTML = '<em>✓</em> Check the box';
         s2cNote.textContent = r.w4Step2cRecommended
-          ? 'Recommended — incomes within 50% of each other'
-          : 'Both jobs use split brackets (good — closes the dual-income gap)';
+          ? 'Recommended — both incomes within 50%. Math above uses split brackets on both jobs.'
+          : 'Manually enabled — using split brackets on both jobs';
       } else {
-        s2c.textContent = r.w4Step2cRecommended ? 'Recommended: check' : 'Leave blank';
+        // User explicitly unchecked despite recommendation
+        s2c.textContent = 'Leave blank';
         s2cNote.textContent = r.w4Step2cRecommended
-          ? 'Both incomes are within 50% — checking 2(c) is the simplest fix'
-          : 'Incomes differ too much for 2(c) — see Step 4(c) extra withholding below';
+          ? '⚠ You manually unchecked despite recommendation. Step 4(c) below covers the resulting shortfall.'
+          : 'Incomes differ too much — use Step 4(c) extra withholding instead';
       }
     } else {
       step2c.classList.add('is-zero');
       s2c.textContent = 'Leave blank';
-      s2cNote.textContent = r.isMFJ ? 'Only one spouse working' : 'Single — not applicable';
+      s2cNote.textContent = r.isMFJ ? 'Only one spouse working — not applicable' : 'Single — not applicable';
     }
 
     // Step 3 — dependent credits dollar amount
     var step3 = $('#w4-step3');
+    var coordEl = $('#w4-3-coord');
     if (r.rawCredits > 0) {
       step3.classList.remove('is-zero');
       anim($('#w4-3-val'), 'w43', r.credits, 500, { isHTML: true, fmt: fmtRich });
@@ -1634,6 +1686,11 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       $('#w4-3-val').innerHTML = '<em>$</em>0';
       $('#w4-3-note').textContent = '0 kids × $2,000 + 0 dependents × $500';
       prev.w43 = 0;
+    }
+    // Coordination warning: show when MFJ + both working + dependents claimed
+    // (this is the "claim on ONE W-4 only" trap that doubles the credit)
+    if (coordEl) {
+      coordEl.style.display = (r.isMFJ && r.withholdingSpouse > 0 && r.rawCredits > 0) ? '' : 'none';
     }
 
     // Step 4(a) — non-W-2 income (raw passthrough)
@@ -1686,18 +1743,28 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       prev.w44c = 0;
     }
 
-    // ── Update the Step 2(c) toggle UI (visibility + auto-recommendation badge)
+    // ── Update the Step 2(c) toggle UI (visibility + auto-sync to effective state)
     var toggleWrap = $('#step2c-toggle-wrap');
-    var recSpan = $('#step2c-rec');
+    var toggleCb   = $('#in-step2c');
+    var recSpan    = $('#step2c-rec');
     if (toggleWrap) {
       toggleWrap.style.display = (r.isMFJ && r.withholdingSpouse > 0) ? '' : 'none';
     }
+    if (toggleCb && toggleCb.checked !== r.w4Step2cUsed) {
+      // Sync the visible checkbox to whatever the math is actually using.
+      // (When user hasn't touched it, this reflects the auto-recommendation.)
+      toggleCb.checked = r.w4Step2cUsed;
+    }
     if (recSpan) {
       if (r.w4Step2cRecommended) {
-        recSpan.textContent = 'Recommended: ✓ check (incomes within 50%)';
+        recSpan.textContent = (state.useStep2c === false)
+          ? '⚠ Manually unchecked — recommended is ✓ (incomes within 50%)'
+          : 'Auto-applied — recommended (incomes within 50%)';
         recSpan.classList.add('is-rec-on');
       } else {
-        recSpan.textContent = 'Recommended: leave blank (incomes too different — use Step 4(c) instead)';
+        recSpan.textContent = (state.useStep2c === true)
+          ? 'Manually forced — recommended is leave blank (asymmetric incomes)'
+          : 'Recommended: leave blank (incomes too different — see Step 4(c))';
         recSpan.classList.remove('is-rec-on');
       }
     }
@@ -1748,7 +1815,11 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     render();
   });
 
-  // Step 2(c) checkbox — drives the IRS split-brackets math
+  // Step 2(c) checkbox — when changed, becomes an explicit override
+  // (overrides the auto-recommendation). Three-state model:
+  //   null  = follow recommendation (default — checkbox reflects rec)
+  //   true  = force on (override)
+  //   false = force off (override — user wants to see the worst case)
   document.getElementById('in-step2c').addEventListener('change', function (e) {
     state.useStep2c = !!e.target.checked;
     render();
