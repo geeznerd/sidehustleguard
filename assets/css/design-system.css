@@ -153,6 +153,7 @@ a {
   letter-spacing: -0.025em;
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
   color: var(--indigo);
+  text-wrap: balance;
 }
 
 .display-l {
@@ -163,6 +164,7 @@ a {
   letter-spacing: -0.022em;
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
   color: var(--indigo);
+  text-wrap: balance;
 }
 
 .display-m {
