@@ -1349,21 +1349,60 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
     display: inline-flex;
     align-items: center;
   }
-  /* Hide every nav text link on mobile (including .always-visible
-   * "Guides") so only the logo lockup + primary CTA remain. The
-   * Guides destination is still reachable from inline content and
-   * the footer on every page. */
-  nav .ds-nav-link { display: none; }
+  /* Hide secondary nav text links on mobile but KEEP the .always-visible
+   * "Guides" link so it stays reachable from the header. */
+  nav .ds-nav-link:not(.always-visible) { display: none; }
 
-  /* The generic `nav .btn !important` rule above bumps padding to
-   * 9px 14px on mobile — that gives the apricot end-cap circle a
-   * floating-in-space look with too much right margin. Re-apply the
-   * compact pill geometry so the circle sits flush against the right
-   * edge like it does on desktop, and shrink it slightly so it's
-   * proportional to the smaller 12.5px nav text. */
+  /* Bring back the apricot-tinted "Guides" pill so it reads as a
+   * tappable secondary action ranking just under the primary CTA.
+   * 40px tap target matches the CTA pill height for a unified
+   * right-side row rhythm. */
+  nav .ds-nav-link.always-visible {
+    display: inline-flex;
+    align-items: center;
+    color: var(--apricot);
+    font-weight: 600;
+    font-size: 13px;
+    background: rgba(232, 148, 100, 0.12);
+    border: 1px solid rgba(232, 148, 100, 0.22);
+    padding: 10px 13px;
+    border-radius: 100px;
+    letter-spacing: -0.005em;
+    line-height: 1;
+  }
+
+  /* Mobile CTA — shrink visible text to "CHECK" so the Guides pill,
+   * Guides + CHECK button, and logo all fit on a single line at
+   * iPhone widths. The actual text "Check my hustle" is hidden via
+   * font-size: 0 (preserved for screen readers + the aria-label),
+   * and ::before injects the visible "CHECK" label. ::after still
+   * renders the apricot circle with the pulsing indigo arrow. */
   nav .btn-cta {
     padding: 4px 5px 4px 14px !important;
     gap: 8px;
+    /* !important to win over the generic `nav .btn { font-size: 12.5px
+     * !important }` above — without it the "Check my hustle" text
+     * stays invisible (color: transparent) but still takes ~95px of
+     * layout width, padding the pill out unnecessarily. */
+    font-size: 0 !important;
+    color: transparent;
+  }
+  nav .btn-cta::before {
+    content: "CHECK";
+    display: inline-flex;
+    align-items: center;
+    /* Reset the inherited pulse-dot styles from .btn-cta::before */
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    /* Visible label styling */
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--indigo);
+    flex-shrink: 0;
+    animation: none;
   }
   nav .btn-cta::after {
     width: 24px;
@@ -1395,8 +1434,8 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
  * block above.) */
 @media (max-width: 420px) {
   nav {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
   nav .nav-cta,
   nav .ds-nav-cta,
@@ -1405,12 +1444,28 @@ nav .btn-cta:hover::after { background-color: var(--apricot-hover); }
     font-size: 11.5px !important;
     padding: 8px 12px !important;
   }
+  /* Shrink the Guides pill so it + the CHECK CTA + the wordmark fit
+   * comfortably at iPhone SE / Galaxy A widths (~360–375px). */
+  nav .ds-nav-link.always-visible {
+    font-size: 12px;
+    padding: 9px 11px;
+  }
   /* Re-apply compact pill geometry at ≤420px too, same reason as the
    * ≤700px block — the generic .btn padding above would otherwise add
    * 12px of right margin and float the apricot end-cap. */
   nav .btn-cta {
-    padding: 3px 4px 3px 12px !important;
+    padding: 3px 4px 3px 11px !important;
     gap: 7px;
+    font-size: 0 !important;   /* keep the text node collapsed at ≤420 too */
+  }
+  nav .btn-cta::before {
+    /* Re-state the ::before content here so the ≤420 cascade picks
+     * up the override cleanly (some browsers reset pseudo content
+     * when a new font-size cascades in via the .btn !important rule
+     * above). Slightly smaller label so the whole cluster fits. */
+    content: "CHECK";
+    font-size: 11px;
+    letter-spacing: 0.08em;
   }
   nav .btn-cta::after {
     width: 22px;
