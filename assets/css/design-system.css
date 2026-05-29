@@ -1460,7 +1460,7 @@ nav .btn-cta::after {
      * nav flex parent handles vertical centering within the 56px nav. */
     height: 36px;
     padding: 0 5px 0 14px !important;
-    gap: 8px;
+    gap: 5px;   /* tight gap between "Check" label and apricot end-cap */
     /* !important to win over the generic `nav .btn { font-size: 12.5px
      * !important }` above — without it the "Check my hustle" text
      * stays invisible (color: transparent) but still takes ~95px of
@@ -1470,7 +1470,7 @@ nav .btn-cta::after {
     line-height: 1;
   }
   nav .btn-cta::before {
-    content: "CHECK";
+    content: "Check";
     display: inline-flex;
     align-items: center;
     /* Reset the inherited pulse-dot styles from .btn-cta::before */
@@ -1479,11 +1479,13 @@ nav .btn-cta::after {
     border-radius: 0;
     background: transparent;
     /* Visible label styling — line-height: 1 keeps the strut from
-     * pushing the pill taller than its declared 36px. */
-    font-size: 12px;
+     * pushing the pill taller than its declared 36px. Title-case
+     * "Check" gets a slightly bigger font + neutral letter-spacing
+     * (caps-tracked 0.08em looked wrong on lowercase). */
+    font-size: 13px;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: 0.08em;
+    letter-spacing: -0.005em;
     color: var(--indigo);
     flex-shrink: 0;
     animation: none;
@@ -1527,7 +1529,7 @@ nav .btn-cta::after {
     height: 32px;
     min-height: 0;   /* defeat the `nav .btn { min-height: 36px }` above */
     padding: 0 4px 0 11px !important;
-    gap: 7px;
+    gap: 4px;        /* even tighter at iPhone-class widths */
     font-size: 0 !important;   /* keep the text node collapsed at ≤420 too */
   }
   nav .btn-cta::before {
@@ -1535,9 +1537,9 @@ nav .btn-cta::after {
      * up the override cleanly (some browsers reset pseudo content
      * when a new font-size cascades in via the .btn !important rule
      * above). Slightly smaller label so the whole cluster fits. */
-    content: "CHECK";
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    content: "Check";
+    font-size: 12px;
+    letter-spacing: -0.005em;
   }
   nav .btn-cta::after {
     width: 22px;
