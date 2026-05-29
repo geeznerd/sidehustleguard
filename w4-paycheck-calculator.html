@@ -538,6 +538,43 @@ details.collapsible summary .sub-hint {
 .refund-val.is-good em { color: var(--green); }
 .refund-val.is-owe em { color: #ff8e8e; }
 
+/* Per-paycheck band — slightly different background to distinguish
+ * from the annual refund band above it */
+.paycheck-band {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 18px 32px;
+  background:
+    radial-gradient(60% 100% at 50% 100%, rgba(125,214,164,0.08), transparent 70%),
+    rgba(22,24,58,0.5);
+  border-bottom: 1px solid var(--indigo-line);
+}
+.paycheck-cell { padding: 0 16px; }
+.paycheck-cell + .paycheck-cell { border-left: 1px solid var(--indigo-line); }
+.pp-sub {
+  font-size: 11px; color: var(--cream-faint);
+  margin-top: 4px; line-height: 1.4;
+}
+.pp-sub strong { color: var(--cream-dim); font-weight: 600; }
+/* When dependents are claimed, highlight the benefit cell */
+#dep-benefit-cell.is-active {
+  background: linear-gradient(180deg, rgba(125,214,164,0.10), transparent);
+  margin: -18px 0;
+  padding: 18px 16px;
+  border-radius: 0;
+}
+#dep-benefit-cell.is-active .refund-val em {
+  text-shadow: 0 0 24px rgba(125,214,164,0.45);
+}
+/* Fallback when no dependents — mute the benefit cell */
+#dep-benefit-cell.is-zero { opacity: 0.55; }
+#dep-benefit-cell.is-zero .refund-val em { color: var(--cream-faint); }
+
+@media (max-width: 540px) {
+  .paycheck-band { grid-template-columns: 1fr; padding: 16px 18px; gap: 14px; }
+  .paycheck-cell + .paycheck-cell { border-left: 0; border-top: 1px solid var(--indigo-line); padding-top: 14px; }
+}
+
 /* Tax breakdown rows */
 .breakdown { padding: 24px 32px 22px; }
 .breakdown-h {
@@ -914,6 +951,20 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           </div>
         </div>
 
+        <!-- Per-paycheck impact (the question people actually ask) -->
+        <div class="paycheck-band">
+          <div class="paycheck-cell">
+            <div class="refund-lbl">Fed withholding / paycheck</div>
+            <div class="refund-val" id="r-pp-withholding"><em>$</em>0</div>
+            <div class="pp-sub" id="r-pp-sub">Biweekly</div>
+          </div>
+          <div class="paycheck-cell" id="dep-benefit-cell">
+            <div class="refund-lbl" id="r-pp-dep-lbl">Dependent benefit</div>
+            <div class="refund-val is-good" id="r-pp-dep"><em>+$</em>0</div>
+            <div class="pp-sub" id="r-pp-dep-sub">More in each paycheck</div>
+          </div>
+        </div>
+
         <!-- Tax breakdown -->
         <div class="breakdown">
           <div class="breakdown-h"><span class="name">Tax <em>breakdown</em></span></div>
@@ -1110,8 +1161,10 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   var prev = {
     total:0, refund:0, whDefault:0,
     gross:0, ded:0, taxable:0, taxPre:0, credits:0,
-    w43:0, w44a:0, w44b:0, w44c:0
+    w43:0, w44a:0, w44b:0, w44c:0,
+    ppWh:0, ppDep:0
   };
+  var FREQ_LABEL = { 52: 'Weekly', 26: 'Biweekly', 24: 'Semimonthly', 12: 'Monthly' };
 
   // ────── Helpers ──────
   function $(s) { return document.querySelector(s); }
@@ -1214,6 +1267,40 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       anim(refundEl, 'refund', oweAmt, 600, { isHTML: true, fmt: fmtRich });
     }
     anim($('#r-wh-default'), 'whDefault', defaultWH, 500, { isHTML: true, fmt: fmtRich });
+
+    // ── Per-paycheck impact (the question users actually ask)
+    // Federal withholding per paycheck = annual tax owed / freq
+    // Dependent benefit per paycheck = credits / freq (what you'd see MORE
+    //   in each paycheck by claiming dependents on Step 3 vs leaving blank)
+    var ppWithholding = state.freq > 0 ? (taxOwed / state.freq) : 0;
+    var ppDepBenefit = state.freq > 0 ? (credits / state.freq) : 0;
+    anim($('#r-pp-withholding'), 'ppWh', ppWithholding, 600, { isHTML: true, fmt: fmtRich });
+    $('#r-pp-sub').textContent = FREQ_LABEL[state.freq] || 'per paycheck';
+
+    var depCell = $('#dep-benefit-cell');
+    if (ppDepBenefit > 0) {
+      depCell.classList.add('is-active');
+      depCell.classList.remove('is-zero');
+      if (window.CalcKit) {
+        CalcKit.animateNumber($('#r-pp-dep'), prev.ppDep, ppDepBenefit, 600, {
+          isHTML: true,
+          fmt: function (n) { return '<em>+$</em>' + Math.round(n).toLocaleString('en-US'); }
+        });
+      } else {
+        $('#r-pp-dep').innerHTML = '<em>+$</em>' + Math.round(ppDepBenefit).toLocaleString('en-US');
+      }
+      prev.ppDep = ppDepBenefit;
+      var totalDeps = state.kids + state.other;
+      $('#r-pp-dep-lbl').textContent = 'Benefit from ' + totalDeps + ' dependent' + (totalDeps === 1 ? '' : 's');
+      $('#r-pp-dep-sub').innerHTML = '<strong>' + fmt(ppDepBenefit) + '</strong> more in every paycheck vs leaving Step 3 blank';
+    } else {
+      depCell.classList.remove('is-active');
+      depCell.classList.add('is-zero');
+      $('#r-pp-dep').innerHTML = '<em>+$</em>0';
+      $('#r-pp-dep-lbl').textContent = 'Dependent benefit';
+      $('#r-pp-dep-sub').textContent = 'Add kids or dependents above to see the per-paycheck boost';
+      prev.ppDep = 0;
+    }
 
     // ── Breakdown rows
     anim($('#row-gross .val'), 'gross', totalIncome, 400);
