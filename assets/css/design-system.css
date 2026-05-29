@@ -410,18 +410,20 @@ nav .nav-link[aria-current="page"] {
 
 /* ===== BUTTONS =====
  *
- * Interaction model (overhauled per the Emil-Kowalski playbook):
+ * Interaction model (per the Emil-Kowalski playbook):
  *
- *   • Hover (desktop only — `@media (hover: hover)`): subtle scale(1.02)
- *     via the snappy cubic-bezier(0.32, 0.72, 0, 1). Never fires on
- *     touch devices, so no sticky-after-tap hover state.
- *   • Active (all devices): scale(0.96) tactile sink at 80ms. Gives
- *     desktop click + mobile touch the same "physical press" feel.
- *   • Focus: outline:none + custom expanding apricot box-shadow ring
- *     (320ms ease-out-snap). High-visibility for keyboard nav without
- *     the chunky browser default.
+ *   • Hover (desktop only — `@media (hover: hover)`): scale(1.02) on
+ *     hover-in at 180ms, via the snappy cubic-bezier(0.32, 0.72, 0, 1).
+ *     Wrapped so touch devices never see sticky-after-tap hover state.
+ *   • Active (all devices): scale(0.97) tactile press feedback at
+ *     100ms. Same physical press feel for desktop click + mobile tap.
+ *   • Release (default transition): 220ms — slightly slower so the
+ *     button "flops back up" with grace rather than snapping rigidly.
+ *   • Focus: outline:transparent + expanding apricot outline-color +
+ *     outline-offset at 240ms ease-out-snap. Composited on the GPU
+ *     instead of paint-heavy box-shadow keyframes.
  *
- * Per-element extras (icon shifts, pulse coordination) live on each
+ * Per-element extras (arrow shifts on nav CTA, etc.) live on each
  * variant block below.
  */
 .btn {
@@ -643,16 +645,10 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
   flex-shrink: 0;
 }
 
-/* (Idle pulse-dot animation removed per Emil's frequency rule:
+/* (Idle pulse-dot animation removed per Emil's frequency rule —
  *  100+ views/day → no animation, ever. The static dot still reads
- *  as a "live" indicator without animating on every page load.) */
-@keyframes ctaDotPulse {
-  /* Kept as a no-op so any inline page CSS that references the
-   * keyframe name doesn't error. Safe to delete in a future cleanup. */
-  0%   { box-shadow: 0 0 0 0 rgba(45, 48, 104, 0.45); }
-  70%  { box-shadow: 0 0 0 8px rgba(45, 48, 104, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(45, 48, 104, 0); }
-}
+ *  as a "live" indicator. ctaDotPulse keyframe deleted in the
+ *  Emil-pass cleanup once confirmed unreferenced everywhere.) */
 
 .btn-outline {
   background: transparent;
