@@ -307,12 +307,6 @@
     margin-bottom: 18px;
   }
 
-  /* Show-more (G6) */
-  .show-more-row {
-    margin-top: 18px;
-    text-align: center;
-  }
-
   /* No-results state for search */
   .no-results {
     display: none;
@@ -2098,12 +2092,6 @@
           <span class="guide-arrow">→</span>
         </a>
       </div>
-
-      <!-- Show-more (G6) — initially hidden because we now show all 28 by default;
-           If we want to show only 12 initially, JS will toggle visibility on cards beyond the first 12. -->
-      <div class="show-more-row">
-        <button class="show-more" id="str-show-more" type="button" aria-expanded="false">Show 16 more →</button>
-      </div>
     </section>
 
   </div>
@@ -2164,35 +2152,6 @@
   if (tc) tc.textContent = tools;
   if (gc) gc.textContent = guides;
   if (totalEl) totalEl.textContent = total;
-})();
-
-/* ===== STR show-more (G6) — show first 12, reveal rest on click ===== */
-(function () {
-  var section = document.getElementById('cat-str');
-  if (!section) return;
-  var cards = Array.from(section.querySelectorAll('.guide-card'));
-  var btn = document.getElementById('str-show-more');
-  if (!btn) return;
-  var INITIAL = 12;
-  if (cards.length <= INITIAL) { btn.parentElement.style.display = 'none'; return; }
-  function setExpanded(expanded) {
-    cards.forEach(function (c, i) {
-      c.dataset.hiddenByShowMore = (i >= INITIAL && !expanded) ? 'true' : 'false';
-    });
-    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    btn.textContent = expanded ? 'Show fewer ↑' : ('Show ' + (cards.length - INITIAL) + ' more →');
-    applyVisibility();
-  }
-  /* applyVisibility is defined in the filter IIFE below; we reference via window */
-  window.__strApplyVisibility = null;
-  function applyVisibility() {
-    if (window.__strApplyVisibility) window.__strApplyVisibility();
-  }
-  btn.addEventListener('click', function () {
-    var expanded = btn.getAttribute('aria-expanded') === 'true';
-    setExpanded(!expanded);
-  });
-  setExpanded(false);
 })();
 
 /* ===== Category tabs filter (G2) — filter sections in place ===== */
@@ -2276,10 +2235,9 @@
     var q = raw.trim().toLowerCase();
     if (searchWrap) searchWrap.classList.toggle('has-query', !!q);
 
-    /* When searching, mark mega-cards, chip rows, and show-more buttons as hidden */
+    /* When searching, hide mega-cards and the chip row */
     var megas = document.querySelectorAll('.mega-card');
     var chipsRow = document.getElementById('str-filter-chips');
-    var smRow = document.querySelector('.show-more-row');
 
     document.querySelectorAll('.guide-card, .mega-card').forEach(function (c) {
       var match = !q || cardText(c).includes(q);
@@ -2291,7 +2249,6 @@
       megas.forEach(function (m) { m.dataset.hiddenBySearch = 'false'; });
     }
     if (chipsRow) chipsRow.style.display = q ? 'none' : '';
-    if (smRow) smRow.style.display = q ? 'none' : '';
 
     if (typeof runCombined === 'function') runCombined();
 
@@ -2326,7 +2283,7 @@
 /* ===== Combined visibility runner — all filters AND together ===== */
 function runCombined() {
   document.querySelectorAll('.guide-card, .mega-card').forEach(function (c) {
-    var hiddenBy = ['hiddenBySearch', 'hiddenByChip', 'hiddenByTab', 'hiddenByShowMore']
+    var hiddenBy = ['hiddenBySearch', 'hiddenByChip', 'hiddenByTab']
       .some(function (k) { return c.dataset[k] === 'true'; });
     c.style.display = hiddenBy ? 'none' : '';
     c.dataset.visible = hiddenBy ? 'false' : 'true';
