@@ -138,7 +138,10 @@ a:hover{color:var(--apricot-hover)}
 .article-card:hover .article-arrow{opacity:1}
 /* Callout boxes */
 .callout{border-radius:10px;padding:20px 24px;margin:28px 0}
-.callout-navy{background:#edf0f7;border-left:4px solid var(--indigo)}
+/* Override shared .callout flex layout — this legacy decision-tree pattern
+ * uses sibling option blocks separated by .callout-divider top-borders,
+ * not the icon + body row pattern the shared rule was built for. */
+.callout.callout-navy{display:block;background:#edf0f7;border-left:4px solid var(--indigo);padding:24px 28px}
 .callout p{font-size:15px;color:var(--indigo-70);line-height:1.75;margin-bottom:10px}
 .callout p:last-child{margin-bottom:0}
 .callout p strong{color:var(--indigo);font-weight:600}
@@ -172,9 +175,17 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 @media(max-width:760px){
   nav,footer{padding:13px 18px}
   .hero{padding:48px 18px 32px}
+  h1{font-size:clamp(30px,7.5vw,40px)}
+  .hero-sub{font-size:16px}
   .content{padding:24px 18px 60px}
   .article-grid>.article-card{flex:0 0 calc((100% - 10px) / 2)}
+  /* Stack section heads vertically so the tool-callout and "N guides"
+   * count don't crowd the H2. Count is decorative — hide on mobile. */
+  .hub-section-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .hub-count{display:none}
+  h2{font-size:20px}
   .cta-box{padding:32px 24px}
+  .cta-box h2{font-size:22px}
 }
 @media(max-width:480px){
   .article-grid>.article-card{flex:0 0 100%}
@@ -260,56 +271,49 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/vrbo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">V</span>
+<a class="article-card" href="/vrbo-host-taxes"><span aria-hidden="true" class="article-icon">V</span>
 <div class="article-body">
 <span class="article-title">Vrbo Host Taxes</span>
 <span class="article-sub">Host fees, 1099s, and how Vrbo's tax collection works</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/booking-com-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">B</span>
+<a class="article-card" href="/booking-com-host-taxes"><span aria-hidden="true" class="article-icon">B</span>
 <div class="article-body">
 <span class="article-title">Booking.com Host Taxes</span>
 <span class="article-sub">What Booking.com collects vs. what you still owe</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/turo-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">T</span>
+<a class="article-card" href="/turo-host-taxes"><span aria-hidden="true" class="article-icon">T</span>
 <div class="article-body">
 <span class="article-title">Turo Host Taxes</span>
 <span class="article-sub">Car-sharing income, depreciation, and the 1099-K threshold</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/hipcamp-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">H</span>
+<a class="article-card" href="/hipcamp-host-taxes"><span aria-hidden="true" class="article-icon">H</span>
 <div class="article-body">
 <span class="article-title">Hipcamp Host Taxes</span>
 <span class="article-sub">Campsite and outdoor hosting income explained</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/rv-rental-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">RV</span>
+<a class="article-card" href="/rv-rental-host-taxes"><span aria-hidden="true" class="article-icon">RV</span>
 <div class="article-body">
 <span class="article-title">RV Rental Host Taxes</span>
 <span class="article-sub">RV rental income, depreciation, and 1099 reporting</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/furnished-finder-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">FF</span>
+<a class="article-card" href="/furnished-finder-taxes"><span aria-hidden="true" class="article-icon">FF</span>
 <div class="article-body">
 <span class="article-title">Furnished Finder Host Taxes</span>
 <span class="article-sub">Mid-term rentals, the 30-day rule, and tax treatment</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/neighbor-storage-host-taxes" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">N</span>
+<a class="article-card" href="/neighbor-storage-host-taxes"><span aria-hidden="true" class="article-icon">N</span>
 <div class="article-body">
 <span class="article-title">Neighbor Storage Host Taxes</span>
 <span class="article-sub">Storage rental income — Schedule E or Schedule C?</span>
@@ -328,16 +332,14 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
 </div>
 <p class="section-intro">The framework that governs how short-term rental income is taxed, regardless of which platform you use — passive vs. active, the 14-day exemption, depreciation, and the loophole strategies that can make STR one of the most tax-efficient income streams available.</p>
 <div class="article-grid">
-<a class="article-card" data-expanding="true" href="/airbnb-14-day-rule" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">14</span>
+<a class="article-card" href="/airbnb-14-day-rule"><span aria-hidden="true" class="article-icon">14</span>
 <div class="article-body">
 <span class="article-title">The 14-Day Rule</span>
 <span class="article-sub">The Augusta Rule — how to earn tax-free rental income</span>
 </div>
 <span aria-hidden="true" class="article-arrow">→</span>
 </a>
-<a class="article-card" data-expanding="true" href="/schedule-c-vs-schedule-e-str" style="position:relative"><span class="article-expanding" style="position:absolute;top:8px;right:8px;background:rgba(201,138,58,0.12);color:#c98a3a;border:1px solid rgba(201,138,58,0.25);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;line-height:1.4">Expanding</span>
-<span aria-hidden="true" class="article-icon">C/E</span>
+<a class="article-card" href="/schedule-c-vs-schedule-e-str"><span aria-hidden="true" class="article-icon">C/E</span>
 <div class="article-body">
 <span class="article-title">Schedule C vs. Schedule E</span>
 <span class="article-sub">Passive vs. active — which form saves you 15.3%?</span>
