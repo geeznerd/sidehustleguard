@@ -183,7 +183,7 @@
   /* Top row: eyebrow + headline + body + CTA, capped for readable line-length */
   .hero-intro { display: flex; flex-direction: column; gap: 22px; max-width: 880px; }
   /* Bottom row: picker (left) + preview card (right).
-   * align-items: start lets each card take its natural height — the picker is
+   * align-items: start lets each card take its natural height, the picker is
    * intrinsically tall (9 rows), the preview compact. Forcing equal height
    * just creates void inside the preview, so we don't. */
   .hero-pair {
@@ -238,7 +238,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 11px; font-weight: 600;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--apricot);   /* dark .hero-preview bg — keep original apricot */
+    color: var(--apricot);   /* dark .hero-preview bg, keep original apricot */
     margin-bottom: 12px;
   }
   .hero-preview-title {
@@ -302,7 +302,7 @@
   .ds-section.is-dark { background: var(--indigo); color: var(--paper); }
   .ds-section.is-dark .display-l,
   .ds-section.is-dark .display-m { color: var(--paper); }
-  /* Dark section: keep original apricot — dark bg already gives high contrast.
+  /* Dark section: keep original apricot, dark bg already gives high contrast.
    * --apricot-text was tuned for cream bg only (WCAG 4.5:1 requirement). */
   .ds-section.is-dark .display-l em { color: var(--apricot); }
 
@@ -371,29 +371,48 @@
     color: var(--indigo-85);
   }
 
-  /* WHAT WE CHECK — 2×3 grid of pattern #4 cards */
-  .checks-grid {
+  /* WHAT WE CHECK, editorial 2-column typographic list (no card chrome).
+   * Breaks the three-equal-cards layout family that "How it works" and
+   * "Free library" both use; section-layout-repetition fix per the
+   * design-taste-frontend skill. */
+  .checks-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+    row-gap: 0;
   }
-  .check-card {
-    background: var(--paper);
-    border: 1px solid var(--indigo-08);
-    border-radius: var(--radius-card);
-    padding: 26px 24px;
-    transition: border-color var(--dur-default) var(--ease-default),
-                transform var(--dur-default) var(--ease-default);
+  .check-row {
+    display: flex;
+    gap: 16px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--indigo-12);
+    align-items: flex-start;
   }
-  .check-card:hover { border-color: var(--apricot); transform: translateY(-3px); }
-  .check-card .step-num { font-size: 32px; margin-bottom: 10px; }
-  .check-card .step-desc { margin-bottom: 12px; }
+  /* Desktop: kill the bottom rule under the last row of each column */
+  .check-row:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 8px; }
+  .check-mono {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: var(--apricot-12);
+    color: var(--apricot);
+    border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic; font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-size: 22px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .check-body { flex: 1; min-width: 0; }
+  .check-row .step-title { font-size: 20px; margin-bottom: 6px; }
+  .check-row .step-desc { font-size: 14px; margin-bottom: 8px; color: var(--indigo-85); }
   .check-link {
     font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
     color: var(--apricot); text-decoration: none;
     display: inline-flex; align-items: center; gap: 5px;
     /* Vertical padding extends the tappable hit area to ~44px without
-     * adding visual height — meets WCAG 2.5.5 + Apple HIG on touch. */
+     * adding visual height, meets WCAG 2.5.5 + Apple HIG on touch. */
     padding: 12px 0;
     transition: gap var(--dur-default) var(--ease-default);
   }
@@ -483,7 +502,7 @@
   }
   .cpa-price.is-accent {
     font-style: italic; font-weight: 500;
-    color: var(--apricot);   /* dark .cpa-compare bg — keep original apricot */
+    color: var(--apricot);   /* dark .cpa-compare bg, keep original apricot */
   }
   .cpa-note {
     font-family: 'Inter', sans-serif;
@@ -836,7 +855,7 @@
     .cta-band { padding: 56px 24px; }
     .bottom-bar { padding: 28px 24px; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
-    .checks-grid { grid-template-columns: 1fr 1fr; }
+    .checks-list { column-gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
     .preview-inline { grid-template-columns: 1fr; gap: 32px; }
     .faq-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -848,7 +867,11 @@
   @media (max-width: 560px) {
     .hero { padding: 48px 20px 56px; }
     .steps-grid { grid-template-columns: 1fr; }
-    .checks-grid { grid-template-columns: 1fr; }
+    .checks-list { grid-template-columns: 1fr; }
+    /* In single-column, the desktop "last-2" rule undoes more than we want;
+     * restore the divider for every row except the absolute last. */
+    .check-row { border-bottom: 1px solid var(--indigo-12); padding-bottom: 24px; }
+    .check-row:last-child { border-bottom: none; }
     .ds-section { padding: 48px 20px; }
     .intro-context { padding: 32px 20px; }
     .faq-section { padding: 48px 20px; }
@@ -867,7 +890,7 @@
    * On phones, the 3 card-grid sections (How it works, What we check,
    * Free Library) become horizontal swipe carousels with scroll-snap.
    * Each card takes ~85% of viewport width so the next card peeks past
-   * the right edge — natural "swipe me" affordance, no extra UI needed.
+   * the right edge, natural "swipe me" affordance, no extra UI needed.
    * Desktop layouts (3-col grids) are untouched. */
   @media (max-width: 700px) {
     .steps-grid,
@@ -875,7 +898,7 @@
     .library-grid {
       /* !important here because LATER source-order rules at
        * @media (max-width: 580px) set grid-template-columns: 1fr which
-       * would otherwise override and break the carousel layout — card 1
+       * would otherwise override and break the carousel layout, card 1
        * would be full-width and card 2+ would peek messily on the left */
       display: grid !important;
       grid-template-columns: none !important;
@@ -892,26 +915,26 @@
       scroll-padding-left: 20px;
       -webkit-overflow-scrolling: touch;
       gap: 14px;
-      /* Stay inside the section's natural padding — previous bleed
+      /* Stay inside the section's natural padding, previous bleed
        * (margin: 0 -20px) caused the previous card to peek awkwardly
        * on the left when scrolled past card 1, showing a fragmented
        * sliver of text. Without bleed, prev card is fully off-screen. */
       padding: 4px 0 10px;
       margin: 0;
       /* Each card slightly wider since we lost the bleed (90% instead
-       * of 84%) — keeps a deliberate right-side peek without the
+       * of 84%), keeps a deliberate right-side peek without the
        * messy left peek. */
       grid-auto-columns: 90%;
       /* Snap-stop always so the user can only advance one card at a
        * time, never landing in an awkward mid-scroll state. */
       scroll-snap-stop: always;
       scroll-padding-left: 0;
-      /* Contain horizontal momentum within the carousel — without this,
+      /* Contain horizontal momentum within the carousel, without this,
        * a fast swipe could bleed into page-level scroll on iOS Safari */
       overscroll-behavior-x: contain;
       /* Smooth-snap on iOS instead of the rubber-band feel */
       scroll-behavior: smooth;
-      /* Hide the scrollbar — peek + snap is the affordance */
+      /* Hide the scrollbar, peek + snap is the affordance */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -925,13 +948,13 @@
     .library-grid > * {
       scroll-snap-align: start;
     }
-    /* Uniform card heights per carousel — sized to the longest
+    /* Uniform card heights per carousel, sized to the longest
      * content in each section so nothing clips, no empty space. */
     .steps-grid    > * { height: 210px; min-height: 0; }
     .checks-grid   > * { height: 240px; min-height: 0; }
     .library-grid  > * { height: 175px; min-height: 0; }
 
-    /* Compact internal sizing for the cards in carousel mode —
+    /* Compact internal sizing for the cards in carousel mode ,
      * smaller padding, tighter type so longer descs fit comfortably
      * without ballooning the card or leaving empty space. */
     .steps-grid .step-card,
@@ -954,7 +977,7 @@
       font-size: 13px;
       line-height: 1.5;
     }
-    /* Check cards also have a "→ link" at the bottom — let it sit
+    /* Check cards also have a "→ link" at the bottom, let it sit
      * close to the desc, not pushed away by the card's flex layout */
     .checks-grid .check-link {
       font-size: 13px;
@@ -968,11 +991,11 @@
     .library-grid .library-card-arrow { margin-top: 0; }
   }
 
-  /* (Old NAV CTA MOBILE VARIANT — "60s arc + ✓" was removed when the
+  /* (Old NAV CTA MOBILE VARIANT, "60s arc + ✓" was removed when the
    * site-wide nav CTA adopted the cream pill + apricot end-cap pattern.
    * Mobile text/label swapping now lives entirely in shared CSS.) */
 
-  /* ═══ FREE LIBRARY SECTION — dark "crypto-calc" treatment ═══
+  /* ═══ FREE LIBRARY SECTION, dark "crypto-calc" treatment ═══
    * Sits between "What we check" and "Pricing". Dark indigo BG with
    * rotating topo SVG + aurora glow + italic-Fraunces numbers with
    * apricot text-shadow. Same vocabulary as the crypto/stock calcs
@@ -986,7 +1009,7 @@
     overflow: hidden;
   }
 
-  /* Rotating topo SVG backdrop — same overscan technique as calc heroes */
+  /* Rotating topo SVG backdrop, same overscan technique as calc heroes */
   .library-section .library-topo {
     position: absolute;
     inset: -10% -10% -10% -10%;
@@ -1008,7 +1031,7 @@
     to   { transform: rotate(360deg); }
   }
 
-  /* Aurora gradient — adds depth, breaks up the flat indigo */
+  /* Aurora gradient, adds depth, breaks up the flat indigo */
   .library-section::before {
     content: "";
     position: absolute;
@@ -1023,7 +1046,7 @@
 
   /* Override base section-head colors for dark mode */
   .library-section .ds-eyebrow {
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     display: inline-flex;
     align-items: center;
     gap: 9px;
@@ -1057,7 +1080,7 @@
     color: var(--paper);
   }
   .library-section .display-l em {
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     font-style: italic;
     text-shadow: 0 0 32px rgba(232,148,100,0.45);
   }
@@ -1065,7 +1088,7 @@
     color: rgba(240,236,225,0.72);
   }
 
-  /* Stats strip — same paper-glass card pattern as crypto eye-pill area */
+  /* Stats strip, same paper-glass card pattern as crypto eye-pill area */
   .library-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1099,7 +1122,7 @@
   }
   .library-stat-num em {
     font-style: italic;
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     font-variation-settings: 'opsz' 144, 'SOFT' 30;
     text-shadow: 0 0 24px rgba(232,148,100,0.45);
   }
@@ -1116,7 +1139,7 @@
     font-weight: 400;
   }
 
-  /* 6-card grid — indigo gradient cards with satin sheen */
+  /* 6-card grid, indigo gradient cards with satin sheen */
   .library-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1138,7 +1161,7 @@
     isolation: isolate;
     transition: border-color .25s, transform .25s, box-shadow .25s;
   }
-  /* Satin sheen overlay — diagonal cream gradient at low opacity */
+  /* Satin sheen overlay, diagonal cream gradient at low opacity */
   .library-card::before {
     content: "";
     position: absolute;
@@ -1153,7 +1176,7 @@
     transition: transform .3s ease;
   }
   .library-card:hover {
-    border-color: var(--apricot);   /* dark library card — keep original apricot */
+    border-color: var(--apricot);   /* dark library card, keep original apricot */
     background: linear-gradient(135deg, #353878 0%, #252862 55%, #1a1c44 100%);
     box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   }
@@ -1169,7 +1192,7 @@
     font-weight: 700;
     letter-spacing: 0.10em;
     text-transform: uppercase;
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     background: rgba(232,148,100,0.16);
     padding: 3px 9px;
     border-radius: 100px;
@@ -1186,7 +1209,7 @@
     height: 32px;
     border-radius: 10px;
     background: rgba(232,148,100,0.18);
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     font-family: 'Fraunces', Georgia, serif;
     font-style: italic;
     font-weight: 500;
@@ -1212,7 +1235,7 @@
   }
   .library-card-arrow {
     font-size: 14px;
-    color: var(--apricot);   /* dark bg — keep original apricot */
+    color: var(--apricot);   /* dark bg, keep original apricot */
     margin-top: auto;
     transition: transform .15s;
   }
@@ -1318,7 +1341,7 @@
       </radialGradient>
     </defs>
     <rect width="1200" height="700" fill="url(#heroGlow)"/>
-    <!-- Primary contour cluster (lower-left, indigo) — 9 nested ovals -->
+    <!-- Primary contour cluster (lower-left, indigo), 9 nested ovals -->
     <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
       <ellipse cx="300" cy="520" rx="460" ry="220" transform="rotate(-12 300 520)"/>
       <ellipse cx="294" cy="506" rx="425" ry="202" transform="rotate(-10.5 300 520)"/>
@@ -1330,7 +1353,7 @@
       <ellipse cx="258" cy="422" rx="215" ry="94" transform="rotate(-1.5 300 520)"/>
       <ellipse cx="252" cy="408" rx="180" ry="76" transform="rotate(0 300 520)"/>
     </g>
-    <!-- Secondary contour cluster (upper-right, apricot) — 6 nested ovals -->
+    <!-- Secondary contour cluster (upper-right, apricot), 6 nested ovals -->
     <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
       <ellipse cx="1050" cy="180" rx="300" ry="140" transform="rotate(18 1050 180)"/>
       <ellipse cx="1054" cy="172" rx="270" ry="126" transform="rotate(16 1050 180)"/>
@@ -1438,7 +1461,7 @@
         </div>
         </div><!-- /.hero-pair-picker -->
 
-        <!-- RIGHT: indigo preview card — swapped by JS when picker selection changes -->
+        <!-- RIGHT: indigo preview card, swapped by JS when picker selection changes -->
         <div class="hero-pair-preview">
           <div class="hero-preview" id="hero-preview">
             <div class="hero-preview-eyebrow" id="hp-eyebrow">For digital sellers</div>
@@ -1502,42 +1525,60 @@
     <div class="section-head">
       <h2 class="display-l">Everything you actually need to <em>know.</em></h2>
     </div>
-    <div class="checks-grid">
-      <div class="check-card">
-        <div class="step-title">Tax obligations</div>
-        <p class="step-desc">Self-employment tax, quarterly payments, 1099 thresholds: exactly what applies to you and when. Side hustlers owe 15.3% SE tax on any net profit above $400, whether or not they received a 1099.</p>
-        <a class="check-link" href="/quarterly-taxes-self-employed">Quarterly tax guide →</a>
+    <div class="checks-list">
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">T</div>
+        <div class="check-body">
+          <div class="step-title">Tax obligations</div>
+          <p class="step-desc">Self-employment tax, quarterly payments, and 1099 thresholds, with the dollar numbers for your income range.</p>
+          <a class="check-link" href="/quarterly-taxes-self-employed">Quarterly tax guide →</a>
+        </div>
       </div>
-      <div class="check-card">
-        <div class="step-title">Business structure</div>
-        <p class="step-desc">Sole prop, LLC, or S-corp? We explain which structure fits your income level and what it means for taxes and liability.</p>
-        <a class="check-link" href="/llc-vs-sole-proprietor">LLC vs Sole Proprietor →</a>
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">B</div>
+        <div class="check-body">
+          <div class="step-title">Business structure</div>
+          <p class="step-desc">Sole prop, LLC, or S-corp: which fits your income, and what it means for taxes and liability.</p>
+          <a class="check-link" href="/llc-vs-sole-proprietor">LLC vs Sole Proprietor →</a>
+        </div>
       </div>
-      <div class="check-card">
-        <div class="step-title">Licenses &amp; permits</div>
-        <p class="step-desc">Some states require licenses even for digital sellers and Etsy shops. Requirements vary by state and hustle type, and operating without the right license can mean fines or forced closure.</p>
-        <a class="check-link" href="/tool">Check your requirements →</a>
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">L</div>
+        <div class="check-body">
+          <div class="step-title">Licenses &amp; permits</div>
+          <p class="step-desc">State and city license rules for digital sellers, Etsy shops, and freelancers, and what missing one actually costs.</p>
+          <a class="check-link" href="/tool">Check your requirements →</a>
+        </div>
       </div>
-      <div class="check-card">
-        <div class="step-title">Sales tax rules</div>
-        <p class="step-desc">Does Etsy collect sales tax for you? Marketplace facilitator laws cover most Etsy and Amazon sales, but your own store or direct sales can still create an obligation in certain states.</p>
-        <a class="check-link" href="/etsy-taxes">Etsy seller tax guide →</a>
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">S</div>
+        <div class="check-body">
+          <div class="step-title">Sales tax rules</div>
+          <p class="step-desc">Marketplace facilitator coverage on Etsy and Amazon, and where your own store still owes.</p>
+          <a class="check-link" href="/etsy-taxes">Etsy seller tax guide →</a>
+        </div>
       </div>
-      <div class="check-card">
-        <div class="step-title">Missed deductions</div>
-        <p class="step-desc">Home office, equipment, software: we flag deductions side hustlers commonly overlook. The health insurance deduction and QBI deduction are two of the most frequently missed.</p>
-        <a class="check-link" href="/tax-checklist">Full deduction checklist →</a>
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">M</div>
+        <div class="check-body">
+          <div class="step-title">Missed deductions</div>
+          <p class="step-desc">Home office, health insurance, QBI, and the everyday deductions side hustlers leave on the table.</p>
+          <a class="check-link" href="/tax-checklist">Full deduction checklist →</a>
+        </div>
       </div>
-      <div class="check-card">
-        <div class="step-title">Deadlines &amp; due dates</div>
-        <p class="step-desc">Quarterly tax dates, annual filings: we surface what's coming so you're never caught off guard. Estimated payments are due April 15, June 15, September 15, and January 15.</p>
-        <a class="check-link" href="/quarterly-taxes-self-employed">Quarterly tax guide →</a>
+      <div class="check-row">
+        <div class="check-mono" aria-hidden="true">D</div>
+        <div class="check-body">
+          <div class="step-title">Deadlines &amp; due dates</div>
+          <p class="step-desc">Quarterly tax dates and annual filings, surfaced before they hit so nothing's a surprise.</p>
+          <a class="check-link" href="/quarterly-taxes-self-employed">Quarterly tax guide →</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FREE LIBRARY — surfaces /guides depth for visitors + affiliates (dark crypto-calc treatment) -->
+<!-- FREE LIBRARY, surfaces /guides depth for visitors + affiliates (dark crypto-calc treatment) -->
 <section class="ds-section library-section" id="library">
 
   <svg class="library-topo" viewBox="0 0 2000 2000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -1854,7 +1895,7 @@
   </div>
 </div>
 
-<!-- AUTHOR BIO — Schema.org Person; anchor target for byline links across the site -->
+<!-- AUTHOR BIO, Schema.org Person; anchor target for byline links across the site -->
 <section class="author-bio" id="author" itemscope="" itemtype="https://schema.org/Person">
   <div class="author-inner">
     <div class="author-avatar" aria-hidden="true">R</div>
