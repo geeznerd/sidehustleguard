@@ -712,7 +712,10 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
 /* ===== FAQ ACCORDION (Pattern 9) ===== */
 .ds-faq-item {
   border-bottom: 1px solid var(--indigo-08);
-  padding: 16px 0;
+  /* Outer padding halved (16 -> 8) per the mobile-density pass; the
+   * inner .ds-faq-q button keeps its 16px to preserve the 56px tap
+   * target. Net: ~16px saved per item without crowding. */
+  padding: 8px 0;
 }
 
 .ds-faq-q {

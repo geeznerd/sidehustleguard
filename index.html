@@ -712,7 +712,7 @@
   .faq-left p {
     font-family: 'Inter', sans-serif;
     font-size: 15.5px; line-height: 1.65; color: var(--indigo-85);
-    margin-top: 18px;
+    margin-top: 12px;
   }
 
   /* Author bio */
@@ -842,41 +842,82 @@
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
-    .hero { padding: 56px 24px 64px; }
+    /* Mobile + tablet spacing scale (Phase 6.20 — impeccable /adapt
+     * mobile-density pass). Tightens vertical padding to remove dead
+     * space without crowding. Horizontal padding unchanged. */
+    .hero { padding: 32px 24px 40px; }
     .hero-grid { gap: 32px; }
     .hero-pair { grid-template-columns: 1fr; gap: 24px; }
     /* Mobile order: headline → preview → picker */
     .hero-pair-preview { order: 1; }
     .hero-pair-picker  { order: 2; }
-    .ds-section { padding: 56px 24px; }
-    .intro-context { padding: 40px 24px; }
-    .faq-section { padding: 56px 24px; }
-    .author-bio { padding: 56px 24px; }
-    .cta-band { padding: 56px 24px; }
+    .ds-section { padding: 40px 24px; }
+    .intro-context { padding: 28px 24px; }
+    .faq-section { padding: 40px 24px; }
+    .author-bio { padding: 28px 24px; }
+    .cta-band { padding: 40px 24px; }
+    .check-row { padding: 18px 0; }
     .bottom-bar { padding: 28px 24px; }
-    .steps-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Tighten the gap between section H2 and its content on mobile.
+     * Affects "How it works", "What we check", "Free library". */
+    .section-head { margin-bottom: 24px; }
+
+    /* "How it works" becomes an editorial 1-col list on mobile.
+     * Drops the carousel + card chrome (empty cream space inside
+     * each card was wasted budget). Verbs lead the sequence. */
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step-card {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--indigo-12);
+      border-radius: 0;
+      padding: 12px 0;
+      transition: none;
+    }
+    .step-card:last-child { border-bottom: none; padding-bottom: 4px; }
+    .step-card:hover {
+      transform: none;
+      border-color: transparent;
+      border-bottom-color: var(--indigo-12);
+    }
+    .step-card:last-child:hover { border-bottom-color: transparent; }
+    .step-card .step-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .step-card .step-desc { font-size: 14px; line-height: 1.55; }
     .checks-list { column-gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
     .preview-inline { grid-template-columns: 1fr; gap: 32px; }
-    .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+    .faq-grid { grid-template-columns: 1fr; gap: 20px; }
+    /* Hide the "Still not sure?" intro paragraph on mobile — the H2 alone
+     * is self-explanatory and saves another ~40px before the first item. */
+    .faq-left p { display: none; }
     .cta-inner { grid-template-columns: 1fr; gap: 24px; align-items: start; }
     .cpa-compare { grid-template-columns: 1fr; gap: 18px; padding: 28px 24px; }
     .cpa-divider { flex-direction: row; justify-content: center; }
     .cpa-vs-line { width: 32px; height: 1px; }
   }
   @media (max-width: 560px) {
-    .hero { padding: 48px 20px 56px; }
+    .hero { padding: 32px 20px 40px; }
     .steps-grid { grid-template-columns: 1fr; }
     .checks-list { grid-template-columns: 1fr; }
     /* In single-column, the desktop "last-2" rule undoes more than we want;
-     * restore the divider for every row except the absolute last. */
-    .check-row { border-bottom: 1px solid var(--indigo-12); padding-bottom: 24px; }
+     * restore the divider for every row except the absolute last.
+     * Padding inherited from the ≤960px .check-row rule (18px 0). */
+    .check-row { border-bottom: 1px solid var(--indigo-12); }
     .check-row:last-child { border-bottom: none; }
-    .ds-section { padding: 48px 20px; }
-    .intro-context { padding: 32px 20px; }
-    .faq-section { padding: 48px 20px; }
-    .author-bio { padding: 48px 20px; }
-    .cta-band { padding: 48px 20px; }
+    .ds-section { padding: 32px 20px; }
+    .intro-context { padding: 28px 20px; }
+    .faq-section { padding: 32px 20px; }
+    .author-bio { padding: 28px 20px; }
+    .cta-band { padding: 32px 20px; }
     .bottom-bar { padding: 22px 20px; }
     .ds-nav { padding: 13px 18px; }
   }
@@ -893,7 +934,9 @@
    * the right edge, natural "swipe me" affordance, no extra UI needed.
    * Desktop layouts (3-col grids) are untouched. */
   @media (max-width: 700px) {
-    .steps-grid,
+    /* .steps-grid intentionally NOT in this selector: "How it works"
+     * is now an editorial 1-col list on mobile (see the ≤960 override
+     * a few rules above), not a horizontal carousel. */
     .checks-grid,
     .library-grid {
       /* !important here because LATER source-order rules at
@@ -938,41 +981,34 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-    .steps-grid::-webkit-scrollbar,
     .checks-grid::-webkit-scrollbar,
     .library-grid::-webkit-scrollbar {
       display: none;
     }
-    .steps-grid > *,
     .checks-grid > *,
     .library-grid > * {
       scroll-snap-align: start;
     }
     /* Uniform card heights per carousel, sized to the longest
      * content in each section so nothing clips, no empty space. */
-    .steps-grid    > * { height: 210px; min-height: 0; }
     .checks-grid   > * { height: 240px; min-height: 0; }
-    .library-grid  > * { height: 175px; min-height: 0; }
+    .library-grid  > * { height: 120px; min-height: 0; }
 
     /* Compact internal sizing for the cards in carousel mode ,
      * smaller padding, tighter type so longer descs fit comfortably
      * without ballooning the card or leaving empty space. */
-    .steps-grid .step-card,
     .checks-grid .check-card {
       padding: 18px 18px 20px;
     }
-    .steps-grid .step-num,
     .checks-grid .step-num {
       font-size: 34px;
       margin-bottom: 8px;
     }
-    .steps-grid .step-title,
     .checks-grid .step-title {
       font-size: 19px;
       margin-bottom: 6px;
       line-height: 1.2;
     }
-    .steps-grid .step-desc,
     .checks-grid .step-desc {
       font-size: 13px;
       line-height: 1.5;
@@ -984,11 +1020,30 @@
       margin-top: 8px;
     }
 
-    /* On the library cards specifically, drop the margin-top:auto on
-     * the arrow so it follows the desc instead of pushing to the bottom
-     * of a stretched card. With a tighter fixed height, this looks
-     * cleaner. */
-    .library-grid .library-card-arrow { margin-top: 0; }
+    /* Library carousel cards: shrink the chrome and drop the arrow.
+     * The whole card is a link with hover transform — the arrow added
+     * vertical chunk without adding information. */
+    .library-grid .library-card {
+      padding: 14px 14px 14px;
+      gap: 8px;
+    }
+    .library-grid .library-mono {
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    .library-grid .library-card-head {
+      gap: 9px;
+      padding-right: 60px;
+    }
+    .library-grid .library-card-arrow {
+      display: none;
+    }
+    .library-grid .library-card-tag {
+      top: 12px;
+      right: 12px;
+    }
   }
 
   /* (Old NAV CTA MOBILE VARIANT, "60s arc + ✓" was removed when the
@@ -1246,7 +1301,10 @@
   .library-cta-row { text-align: center; margin-top: 14px; }
 
   @media (max-width: 920px) {
-    .library-stats { grid-template-columns: 1fr 1fr; gap: 20px; padding: 28px 24px; }
+    /* Tighten the vertical margins around the stats block on mobile.
+     * Desktop has 44/56 which feels generous on a 1200px viewport;
+     * on a 375px viewport it reads as a gap. */
+    .library-stats { grid-template-columns: 1fr 1fr; gap: 20px; padding: 28px 24px; margin: 24px auto 24px; }
     .library-stat + .library-stat { border-left: 0; }
     .library-stat:nth-child(odd) { border-right: 1px solid rgba(232,224,200,0.10); }
     .library-stat-num { font-size: 52px; }
@@ -1501,19 +1559,19 @@
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-title">Tell us your hustle</div>
-        <p class="step-desc">Pick your hustle type, state, and income range. No account or sign-up, takes about 30 seconds.</p>
+        <p class="step-desc">Pick your hustle, state, and income. No account, no signup.</p>
       </div>
       <div class="step-card">
         <div class="step-title">We analyze it</div>
-        <p class="step-desc">Your situation runs against tax law, licensing rules, and structure requirements for your specific state, not generic advice.</p>
+        <p class="step-desc">Your situation runs against the actual rules for your state and platform.</p>
       </div>
       <div class="step-card">
         <div class="step-title">Get your score</div>
-        <p class="step-desc">A color-coded compliance score (0 to 100), your top 3 risk areas, and a plain-English explanation of each issue found.</p>
+        <p class="step-desc">Color-coded compliance score, your top 3 issues, plain-English explanations.</p>
       </div>
       <div class="step-card">
         <div class="step-title">Unlock your plan</div>
-        <p class="step-desc">The $5 report adds an action plan, deadline calendar, and deduction checklist, ready to share with your CPA.</p>
+        <p class="step-desc">The $5 report adds an action plan, deadlines, and a deduction checklist.</p>
       </div>
     </div>
   </div>
