@@ -1118,6 +1118,33 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           </details>
         </div>
 
+        <div class="field">
+          <details class="collapsible">
+            <summary>Age 65 or older? <span class="sub-hint">Senior Bonus Deduction, OBBBA · optional</span></summary>
+            <div class="inner">
+              <div class="field" style="margin-top:14px;margin-bottom:0">
+                <label class="step2c-toggle">
+                  <input type="checkbox" id="in-senior-self"/>
+                  <span class="step2c-box" aria-hidden="true"></span>
+                  <span class="step2c-body">
+                    <span class="step2c-title">I am 65 or older</span>
+                    <span class="step2c-sub">Adds $6,000 to your deduction. Phases out 6% per dollar above $75,000 AGI (single) or $150,000 AGI (MFJ).</span>
+                  </span>
+                </label>
+                <label class="step2c-toggle" id="senior-spouse-wrap" style="display:none; margin-top:8px;">
+                  <input type="checkbox" id="in-senior-spouse"/>
+                  <span class="step2c-box" aria-hidden="true"></span>
+                  <span class="step2c-body">
+                    <span class="step2c-title">My spouse is also 65 or older</span>
+                    <span class="step2c-sub">Adds another $6,000 deduction ($12,000 total before any phase-out).</span>
+                  </span>
+                </label>
+                <div class="field-help" style="margin-top:10px">The Senior Bonus Deduction is a new OBBBA provision running 2025 through 2028. Lowers your taxable income, which reduces what you owe and what gets withheld each paycheck. Flows into Step 4(b) on the W-4 automatically.</div>
+              </div>
+            </div>
+          </details>
+        </div>
+
         <div class="disclaimer-dark">
           <strong>Estimate only — not tax advice.</strong> Uses <span id="disc-year">2025</span> federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (file a separate state W-4). Verify with a CPA.
         </div>
@@ -1326,6 +1353,12 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Not accounting for spouse's income.</strong> If MFJ and both work, leaving Step 2 blank means each employer withholds as if you were single — you'll under-withhold dramatically.</li>
     </ul>
 
+    <h2>Are you <em>65 or older</em>? Senior Bonus Deduction</h2>
+    <p>The One Big Beautiful Bill Act added a new $6,000 deduction for filers age 65 or older, on top of the standard or itemized deduction you'd otherwise take. It runs for tax years 2025 through 2028 and then sunsets unless Congress extends it.</p>
+    <p>Open the "Age 65 or older?" toggle in the calculator above and check the box if it applies. If you're filing jointly and your spouse is also 65 or older, a second checkbox appears so you can claim $12,000 instead of $6,000.</p>
+    <p><strong>Phase-out at higher incomes.</strong> The bonus shrinks by 6 cents for every dollar of AGI above $75,000 (single) or $150,000 (MFJ), and fully disappears at $175,000 single / $250,000 MFJ. The calculator handles this automatically; the "Step 4(b)" output panel shows the remaining bonus after any phase-out.</p>
+    <p><strong>Where it lands on the W-4.</strong> The Senior Bonus shows up on Step 4(b) (Deductions). That's because Step 4(b) is the place where any extra deduction above standard gets recorded so your employer can adjust your withholding for it. If you're also itemizing, the calculator stacks both pieces on Step 4(b) and the displayed value shows both contributions.</p>
+
     <h2>When to <em>update</em> your W-4</h2>
     <ul>
       <li>Got married, divorced, or separated</li>
@@ -1344,7 +1377,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Child Tax Credit:</strong> $2,200 per child under 17, up to $1,700 refundable (OBBBA permanently bumped the credit from $2,000 starting in 2025)</li>
       <li><strong>Other Dependent Credit:</strong> $500 per qualifying other dependent</li>
       <li><strong>CTC/ODC phase-out:</strong> begins $200,000 single / $400,000 MFJ AGI ($50 per $1,000 over)</li>
-      <li><strong>Senior Bonus Deduction (new, 2025 to 2028):</strong> additional $6,000 deduction for filers age 65 or older, phased out at higher incomes. This calculator does not yet handle the senior bonus; if you're 65+, expect your real federal tax to be lower than what's shown here.</li>
+      <li><strong>Senior Bonus Deduction (new, 2025 to 2028):</strong> additional $6,000 deduction per filer age 65 or older ($12,000 if MFJ and both spouses qualify). Phases out 6% per dollar of AGI above $75,000 single / $150,000 MFJ, fully gone at $175,000 / $250,000. Use the "Age 65 or older?" toggle in the calculator above to enable it.</li>
       <li><strong>Brackets:</strong> 10% / 12% / 22% / 24% / 32% / 35% / 37%</li>
       <li><strong>401(k) / 403(b) / 457(b) employee limit:</strong> $23,500 (under 50) · $31,000 (50+) · $34,750 (60-63 super catch-up)</li>
       <li><strong>HSA limits:</strong> $4,300 self-only · $8,550 family · +$1,000 catch-up if 55+</li>
@@ -1562,12 +1595,36 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
     // ── 3. Compute deduction (standard or itemized, whichever is higher)
     //      Step 4(b) of the W-4 takes ONLY the amount above the standard
-    //      deduction — formula per IRS Pub 15-T: max(0, itemized - std).
+    //      deduction. Formula per IRS Pub 15-T: max(0, totalDeduction - std).
+    //
+    //      OBBBA Senior Bonus Deduction adds $6,000 per filer age 65+
+    //      (2025 through 2028), with a 6% phase-out above $75k single /
+    //      $150k MFJ AGI. The bonus stacks ON TOP of the base deduction
+    //      (whether standard or itemized) and flows into Step 4(b) so
+    //      the employer's withholding accounts for it.
     var stdDed = data.stdDeduction[input.status] || data.stdDeduction.single;
     var itemized = Math.max(0, input.itemized || 0);
-    var dedAboveStd = Math.max(0, itemized - stdDed);   // ← Step 4(b) output
-    var usingItemized = dedAboveStd > 0;
-    var deduction = usingItemized ? itemized : stdDed;
+    var baseDeduction = Math.max(stdDed, itemized);
+    var usingItemized = itemized > stdDed;
+
+    // Senior Bonus Deduction (OBBBA, 2025 through 2028)
+    var seniorCount = 0;
+    if (input.senior65plus)                        seniorCount += 1;
+    if (isMFJ && input.seniorSpouse65plus)         seniorCount += 1;
+    var seniorBonusRaw = seniorCount * 6000;
+    var seniorBonus = seniorBonusRaw;
+    var seniorThreshold = isMFJ ? 150000 : 75000;
+    if (seniorBonusRaw > 0 && totalWages + Math.max(0, input.otherIncome || 0) > seniorThreshold) {
+      // Phase-out: 6% of MAGI above threshold reduces the bonus.
+      // (We approximate MAGI as AGI; for W-4 estimation purposes the
+      // distinction is academic in nearly all cases.)
+      var seniorExcess = (totalWages + Math.max(0, input.otherIncome || 0)) - seniorThreshold;
+      var seniorReduction = seniorExcess * 0.06;
+      seniorBonus = Math.max(0, seniorBonusRaw - seniorReduction);
+    }
+
+    var deduction = baseDeduction + seniorBonus;
+    var dedAboveStd = Math.max(0, deduction - stdDed);   // ← Step 4(b) output
 
     // ── 4. Taxable income + baseline tax (using FULL brackets for true liability)
     // Pre-tax payroll deductions (traditional 401(k), HSA, FSA, etc.) come off
@@ -1700,6 +1757,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       otherIncome:       input.otherIncome || 0,
       agi:               agi,
       deduction:         deduction,
+      stdDed:            stdDed,
       usingItemized:     usingItemized,
       dedAboveStd:       dedAboveStd,
       taxable:           taxable,
@@ -1708,6 +1766,11 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       credits:           credits,
       taxOwed:           taxOwed,
       preTax:            preTax,
+      // Senior Bonus Deduction (OBBBA)
+      seniorCount:       seniorCount,
+      seniorBonusRaw:    seniorBonusRaw,
+      seniorBonus:       seniorBonus,
+      seniorPhaseOut:    seniorBonusRaw - seniorBonus,
       // Withholding figures — both raw + post-W-4-adjustment
       grossWithholding:     grossWithholding,     // pre-Step-3 credit
       defaultWithholding:   adjustedWithholding,  // post-Step-3 credit (realistic projection)
@@ -1894,6 +1957,92 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     assert('Test 7d: Disabled → matches baseline step 4(c)',
       t7d.w4Step4c, t1.w4Step4c);
 
+    // ─── TEST 8 — Senior Bonus Deduction (OBBBA, 2025 through 2028) ───
+    // Single 65+, $75k AGI, std ded. AGI exactly at $75k threshold so no
+    // phase-out. Bonus is full $6k. Total deduction $15,750 + $6,000 = $21,750
+    //   taxable = $75,000 - $21,750 = $53,250
+    //   Tax: 10% × $11,925 + 12% × $36,550 + 22% × $4,775 = $6,630
+    var t8a = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26, senior65plus: true
+    });
+    assert('Test 8a: Single 65+ at threshold → seniorBonus full',
+      t8a.seniorBonus, 6000);
+    assert('Test 8a: Single 65+ → taxable drops by $6k',
+      t8a.taxable, 53250);
+    assert('Test 8a: Single 65+ → tax owed',
+      t8a.taxOwed, 6630, 3);
+    assert('Test 8a: Single 65+ → flows into Step 4(b)',
+      t8a.w4Step4b, 6000);
+
+    // TEST 8b — Single 65+ at $100k AGI, phase-out kicks in
+    // Excess = $25k, reduction = $25k × 6% = $1,500, bonus = $4,500
+    var t8b = computeW4({
+      taxYear: 2025, status: 'single', wage: 100000, freq: 26, senior65plus: true
+    });
+    assert('Test 8b: Single 65+ $100k → phased bonus',
+      t8b.seniorBonus, 4500);
+    assert('Test 8b: Single 65+ → phase-out reduction tracked',
+      t8b.seniorPhaseOut, 1500);
+
+    // TEST 8c — Single 65+ at $200k, fully phased out
+    // Excess = $125k, reduction = $7,500 > $6k → clamped to $0
+    var t8c = computeW4({
+      taxYear: 2025, status: 'single', wage: 200000, freq: 26, senior65plus: true
+    });
+    assert('Test 8c: Single 65+ $200k → fully phased out',
+      t8c.seniorBonus, 0);
+    assert('Test 8c: Single 65+ $200k → Step 4(b) is $0',
+      t8c.w4Step4b, 0);
+
+    // TEST 8d — MFJ both 65+, $150k AGI at MFJ threshold, no phase-out
+    // Bonus = 2 × $6k = $12k, total ded = $31,500 + $12,000 = $43,500
+    var t8d = computeW4({
+      taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26,
+      senior65plus: true, seniorSpouse65plus: true
+    });
+    assert('Test 8d: MFJ both 65+ → $12k bonus',
+      t8d.seniorBonus, 12000);
+    assert('Test 8d: MFJ both 65+ → seniorCount = 2',
+      t8d.seniorCount, 2);
+
+    // TEST 8e — MFJ only ONE spouse 65+, $150k. seniorSpouse65plus ignored
+    // (single-spouse path), bonus = $6k.
+    var t8e = computeW4({
+      taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26,
+      senior65plus: true, seniorSpouse65plus: false
+    });
+    assert('Test 8e: MFJ one 65+ → $6k bonus',
+      t8e.seniorBonus, 6000);
+
+    // TEST 8f — Single (not MFJ) with seniorSpouse65plus accidentally set:
+    // gracefully ignores it (single doesn't have a spouse to count).
+    var t8f = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26,
+      senior65plus: true, seniorSpouse65plus: true
+    });
+    assert('Test 8f: Single ignores spouse-65+ flag',
+      t8f.seniorBonus, 6000);
+
+    // TEST 8g — No senior flags → bonus = 0, matches baseline.
+    var t8g = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
+    assert('Test 8g: No senior flag → bonus = 0',
+      t8g.seniorBonus, 0);
+    assert('Test 8g: No senior flag → taxable matches t1',
+      t8g.taxable, t1.taxable);
+
+    // TEST 8h — Itemized + senior bonus stacks. Single 65+, $100k wage,
+    // $25k itemized. Base = $25k (itemized > $15,750 std), + $4,500 bonus
+    // (phased from $6k at $100k AGI) = $29,500 total deduction.
+    // Step 4(b) = $29,500 - $15,750 = $13,750.
+    var t8h = computeW4({
+      taxYear: 2025, status: 'single', wage: 100000, freq: 26,
+      itemized: 25000, senior65plus: true
+    });
+    assert('Test 8h: Itemized + senior → bonus phased',
+      t8h.seniorBonus, 4500);
+    assert('Test 8h: Itemized + senior → Step 4(b) stacks both',
+      t8h.w4Step4b, 13750);
+
     console.log('%c[W-4 calc] tests: ' + pass + ' passed, ' + fail + ' failed',
       fail === 0 ? 'color:#7dd6a4;font-weight:bold' : 'color:#ff8e8e;font-weight:bold');
   }
@@ -1911,6 +2060,11 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     otherIncome: 0, itemized: 0,
     preTax: 0,        // 401(k) / HSA / FSA / traditional IRA via payroll
     useStep2c: null, // null = follow recommendation; true/false = explicit override
+    // OBBBA Senior Bonus Deduction: $6,000 extra deduction per filer age 65+,
+    // for tax years 2025 through 2028. Income-based phase-out at higher AGI.
+    // Math lives in computeW4(); these flags drive the count.
+    senior65plus: false,        // primary filer is 65 or older
+    seniorSpouse65plus: false,  // spouse is 65 or older (MFJ only)
     // Mid-year catch-up override. When enabled=true, Step 4(c) switches
     // from full-year annualized residual to a catch-up over remaining
     // paychecks (math branches at tail of computeW4). Defaults to June
@@ -2022,7 +2176,10 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       preTaxRow.style.display = 'none';
     }
     anim($('#row-ded .val'), 'ded', r.deduction, 400);
-    $('#row-ded-lbl').textContent = r.usingItemized ? 'Itemized deduction' : 'Standard deduction';
+    var dedBase = r.usingItemized ? 'Itemized' : 'Standard';
+    $('#row-ded-lbl').textContent = r.seniorBonus > 0
+      ? dedBase + ' + Senior Bonus'
+      : dedBase + ' deduction';
     anim($('#row-taxable .val'), 'taxable', r.taxable, 400);
     anim($('#row-tax-pre .val'), 'taxPre', r.taxPreCredits, 400);
     $('#row-credits-lbl').textContent = 'Dependent credits' + (r.kids + r.others === 0 ? ' (none)' : '');
@@ -2089,12 +2246,19 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       prev.w44a = 0;
     }
 
-    // Step 4(b) — itemized amount ABOVE standard
+    // Step 4(b) — amount ABOVE standard (includes Senior Bonus when active).
+    // Note text reflects which pieces stacked into Step 4(b):
+    //   itemized over standard + senior bonus, OR
+    //   senior bonus only (standard filer 65+), OR
+    //   no extra (default).
     var step4b = $('#w4-step4b');
     if (r.w4Step4b > 0) {
       step4b.classList.remove('is-zero');
       anim($('#w4-4b-val'), 'w44b', r.w4Step4b, 500, { isHTML: true, fmt: fmtRich });
-      $('#w4-4b-note').textContent = fmt(state.itemized) + ' itemized − ' + fmt(r.deduction - r.w4Step4b) + ' standard';
+      var notePieces = [];
+      if (r.usingItemized)    notePieces.push(fmt(r.deduction - r.seniorBonus - r.stdDed) + ' itemized over standard');
+      if (r.seniorBonus > 0)  notePieces.push(fmt(r.seniorBonus) + ' Senior Bonus (OBBBA)' + (r.seniorPhaseOut > 0 ? ', after $' + Math.round(r.seniorPhaseOut).toLocaleString('en-US') + ' phase-out' : ''));
+      $('#w4-4b-note').textContent = notePieces.join(' + ');
     } else {
       step4b.classList.add('is-zero');
       $('#w4-4b-val').innerHTML = '<em>$</em>0';
@@ -2320,6 +2484,29 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   bindMoney(document.getElementById('in-itemized'), 'itemized');
   bindMoney(document.getElementById('in-pretax'), 'preTax');
 
+  // ────── Senior Bonus Deduction inputs ──────
+  // Primary toggle: filer is 65+. When MFJ filing status is active and
+  // the primary is checked, also reveal the spouse toggle. Spouse box
+  // is auto-hidden + cleared when filing status leaves MFJ.
+  document.getElementById('in-senior-self').addEventListener('change', function (e) {
+    state.senior65plus = e.target.checked;
+    updateSeniorSpouseVisibility();
+    render();
+  });
+  document.getElementById('in-senior-spouse').addEventListener('change', function (e) {
+    state.seniorSpouse65plus = e.target.checked;
+    render();
+  });
+  function updateSeniorSpouseVisibility() {
+    var wrap = document.getElementById('senior-spouse-wrap');
+    var show = (state.status === 'mfj') && state.senior65plus;
+    wrap.style.display = show ? '' : 'none';
+    if (!show && state.seniorSpouse65plus) {
+      state.seniorSpouse65plus = false;
+      document.getElementById('in-senior-spouse').checked = false;
+    }
+  }
+
   // ────── Mid-year catch-up inputs ──────
   // Toggle reveals/hides the month+YTD inputs and triggers a recompute.
   document.getElementById('in-midyear-on').addEventListener('change', function (e) {
@@ -2384,6 +2571,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       var cb = document.getElementById('in-step2c');
       if (cb) cb.checked = false;
     }
+    // Auto-hide / clear spouse senior box if filing status leaves MFJ
+    updateSeniorSpouseVisibility();
     render();
   });
 
