@@ -59,7 +59,7 @@
       "name": "How do I claim my children on my W-4?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "On Step 3 of your W-4, multiply your number of qualifying children under 17 by $2,000 and add $500 for each other dependent (older children, parents, etc.). Enter the total dollar amount on Step 3. Important: this is a tax CREDIT, not a deduction — it reduces your withholding dollar-for-dollar. The Child Tax Credit phases out above $200,000 (single) or $400,000 (MFJ) AGI."
+        "text": "On Step 3 of your W-4, multiply your number of qualifying children under 17 by $2,200 (the post-OBBBA Child Tax Credit, up from $2,000) and add $500 for each other dependent (older children, parents, etc.). Enter the total dollar amount on Step 3. Important: this is a tax CREDIT, not a deduction, so it reduces your withholding dollar-for-dollar. The Child Tax Credit phases out above $200,000 (single) or $400,000 (MFJ) AGI."
       }
     },
     {
@@ -1047,7 +1047,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
         <div class="field-row">
           <div class="field">
-            <div class="field-label"><span class="l">Children <em>under 17</em></span><span class="hint">$2,000 ea</span></div>
+            <div class="field-label"><span class="l">Children <em>under 17</em></span><span class="hint">$2,200 ea</span></div>
             <div class="counter" data-counter="kids">
               <button type="button" data-step="-1" aria-label="Decrease">−</button>
               <span class="count" id="ct-kids">0</span>
@@ -1204,7 +1204,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
             <div class="step-body">
               <div class="step-name">Claim dependents</div>
               <div class="step-val" id="w4-3-val"><em>$</em>0</div>
-              <div class="step-note" id="w4-3-note">0 kids × $2,000 + 0 dependents × $500</div>
+              <div class="step-note" id="w4-3-note">0 kids × $2,200 + 0 dependents × $500</div>
               <div class="step-coord" id="w4-3-coord" style="display:none">⚠ If MFJ + both working: claim on the HIGHER earner's W-4 only. Double-claiming doubles the credit.</div>
             </div>
           </div>
@@ -1274,7 +1274,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>2(b)</strong> — Use the worksheet on page 3 (math-heavy, accurate for asymmetric incomes).</li>
       <li><strong>2(c)</strong> — Just check the box. Works when both jobs pay roughly similar amounts.</li>
     </ul>
-    <p><strong>Step 3:</strong> Dependents. Multiply children under 17 by $2,000 and other dependents (parents, older kids) by $500. Enter the total as a dollar amount — this directly reduces your withholding.</p>
+    <p><strong>Step 3:</strong> Dependents. Multiply children under 17 by $2,200 (post-OBBBA) and other dependents (parents, older kids) by $500. Enter the total as a dollar amount, which directly reduces your withholding.</p>
     <p><strong>Step 4(a):</strong> Other income that won't be on a W-2 — side hustle profit, dividends, interest, retirement distributions.</p>
     <p><strong>Step 4(b):</strong> Deductions above the standard deduction. Only fill in if you're itemizing.</p>
     <p><strong>Step 4(c):</strong> Extra withholding per paycheck. ON TOP of normal withholding.</p>
@@ -1330,7 +1330,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     <ul>
       <li>Got married, divorced, or separated</li>
       <li>Had a baby or adopted a child</li>
-      <li>A child aged past 17 (lose the $2,000 CTC, get the $500 ODC instead)</li>
+      <li>A child aged past 17 (lose the $2,200 CTC, get the $500 ODC instead)</li>
       <li>Spouse started or stopped working</li>
       <li>Took a second job or started a side hustle</li>
       <li>Bought a house with significant mortgage interest</li>
@@ -1338,12 +1338,13 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li>Last year's return surprised you — big refund or surprise bill</li>
     </ul>
 
-    <h2>2025 <em>numbers</em> to know</h2>
+    <h2>2025 <em>numbers</em> to know <span style="font-size:14px;font-weight:400;color:var(--indigo-55);">(post-OBBBA)</span></h2>
     <ul>
-      <li><strong>Standard deduction:</strong> Single $15,000 · MFJ $30,000 · HoH $22,500</li>
-      <li><strong>Child Tax Credit:</strong> $2,000 per child under 17 (up to $1,700 refundable)</li>
+      <li><strong>Standard deduction:</strong> Single $15,750 · MFJ $31,500 · HoH $23,625 (OBBBA bumped these from $15,000 / $30,000 / $22,500 retroactively for 2025)</li>
+      <li><strong>Child Tax Credit:</strong> $2,200 per child under 17, up to $1,700 refundable (OBBBA permanently bumped the credit from $2,000 starting in 2025)</li>
       <li><strong>Other Dependent Credit:</strong> $500 per qualifying other dependent</li>
       <li><strong>CTC/ODC phase-out:</strong> begins $200,000 single / $400,000 MFJ AGI ($50 per $1,000 over)</li>
+      <li><strong>Senior Bonus Deduction (new, 2025 to 2028):</strong> additional $6,000 deduction for filers age 65 or older, phased out at higher incomes. This calculator does not yet handle the senior bonus; if you're 65+, expect your real federal tax to be lower than what's shown here.</li>
       <li><strong>Brackets:</strong> 10% / 12% / 22% / 24% / 32% / 35% / 37%</li>
       <li><strong>401(k) / 403(b) / 457(b) employee limit:</strong> $23,500 (under 50) · $31,000 (50+) · $34,750 (60-63 super catch-up)</li>
       <li><strong>HSA limits:</strong> $4,300 self-only · $8,550 family · +$1,000 catch-up if 55+</li>
@@ -1358,7 +1359,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Submission month.</strong> When you'll actually hand the W-4 to HR. We use this to figure out how many paychecks are left in the calendar year.</li>
       <li><strong>Federal tax withheld YTD.</strong> Find this on your most recent pay stub, usually labeled "Federal Income Tax YTD" or "Fed Withholding YTD". Don't include FICA, Medicare, or state tax.</li>
     </ul>
-    <p>The calculator then subtracts what you've already paid from your full-year tax owed, divides the remainder over your remaining paychecks, and shows the catch-up Step 4(c) for the rest of the year. If you've already over-withheld, it tells you to leave Step 4(c) blank and projects your refund.</p>
+    <p>The calculator then takes your full-year tax owed, subtracts what you've already paid YTD AND what your employer will keep withholding at the default rate for the rest of the year, and divides whatever's left over your remaining paychecks. That's your Step 4(c) catch-up — the EXTRA per-paycheck amount on top of the default. If the math works out to zero or negative, you're already on track or over-withheld; the calculator tells you to leave Step 4(c) blank and projects your refund.</p>
     <div class="callout-note"><strong>One critical step in January.</strong> The catch-up number is intentionally higher than a full-year residual because it has fewer paychecks to spread across. If you leave it on your W-4 into next year, you'll over-withhold by a lot. Submit a fresh W-4 in early January with the annualized number.</div>
 
     <h2>What this calculator <em>doesn't</em> handle</h2>
@@ -1418,30 +1419,30 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
    * ═══════════════════════════════════════════════════════════════════ */
   var TAX_DATA = {
     2025: {
-      // Source: IRS Rev. Proc. 2024-40 (Oct 2024)
+      // Brackets: IRS Rev. Proc. 2024-40 (Oct 2024).
+      // Std deductions + CTC reflect One Big Beautiful Bill Act (OBBBA)
+      // bumps, signed July 2025 and retroactive to tax year 2025.
       brackets: {
         single: [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
         mfj:    [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
         mfs:    [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
         hoh:    [[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
       },
-      stdDeduction: { single: 15000, mfj: 30000, mfs: 15000, hoh: 22500 },
-      ctcPerKid:    2000,
+      stdDeduction: { single: 15750, mfj: 31500, mfs: 15750, hoh: 23625 },
+      ctcPerKid:    2200,    // OBBBA bump from $2,000
       odcPerDep:    500,
       ctcThreshold: { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 }
     },
     2026: {
-      // Brackets: projected via 2.8% chained-CPI inflation adjustment from 2025
-      // (IRS typically releases real 2026 numbers in Nov 2025 — refine then).
-      // Std deductions + CTC bumped per One Big Beautiful Bill Act (OBBBA).
+      // Source: IRS Rev. Proc. 2025-32 (Oct 2025).
       brackets: {
-        single: [[12275,.10],[49850,.12],[106250,.22],[202825,.24],[257550,.32],[643900,.35],[Infinity,.37]],
-        mfj:    [[24525,.10],[99675,.12],[212500,.22],[405650,.24],[515100,.32],[772650,.35],[Infinity,.37]],
-        mfs:    [[12275,.10],[49850,.12],[106250,.22],[202825,.24],[257550,.32],[386325,.35],[Infinity,.37]],
-        hoh:    [[17475,.10],[66675,.12],[106250,.22],[202825,.24],[257525,.32],[643900,.35],[Infinity,.37]]
+        single: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]],
+        mfj:    [[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]],
+        mfs:    [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[384350,.35],[Infinity,.37]],
+        hoh:    [[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[Infinity,.37]]
       },
       stdDeduction: { single: 16100, mfj: 32200, mfs: 16100, hoh: 24150 },
-      ctcPerKid:    2200,    // OBBBA bump from $2,000
+      ctcPerKid:    2200,
       odcPerDep:    500,
       ctcThreshold: { single: 200000, mfj: 400000, mfs: 200000, hoh: 200000 }
     }
@@ -1648,28 +1649,40 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       midYearRemainingPaychecks = remainingPaychecks;
 
       midYearYtdWithheld = Math.max(0, midYear.ytdWithheld || 0);
-      var remainingTaxOwed = taxOwed - midYearYtdWithheld;
+
+      // Step 4(c) is EXTRA withholding on top of what the employer will
+      // continue withholding from Steps 1-3 by default. So the gap to
+      // close is: full-year tax owed MINUS what's already been withheld
+      // YTD MINUS what the employer will keep withholding by default for
+      // the remaining paychecks. Without subtracting the default-remaining
+      // piece, Step 4(c) double-counts and the user over-withholds.
+      var defaultRemaining = defaultPerPaycheck * remainingPaychecks;
+      var remainingTaxOwed = taxOwed - midYearYtdWithheld - defaultRemaining;
       midYearRemainingTaxOwed = remainingTaxOwed;
 
       if (remainingTaxOwed <= 0) {
-        // Already over-withheld. No extra needed, clamp to zero.
+        // Already on track or over-withheld for the year. Project the
+        // refund using YTD plus the default-remaining piece.
+        var projectedTotalWithholding = midYearYtdWithheld + defaultRemaining;
+        var projectedRefund = projectedTotalWithholding - taxOwed;
         step4cPerPaycheck = 0;
         midYearOverWithheld = true;
-        midYearHeadline = 'Already withheld enough';
+        midYearHeadline = 'Already on track';
         midYearMessage =
-          'Expect about ' +
-          '$' + Math.round(Math.abs(remainingTaxOwed)).toLocaleString('en-US') +
+          'Your YTD withholding plus what your employer will keep withholding by default covers your full-year tax. ' +
+          'Expect about $' + Math.round(Math.max(0, projectedRefund)).toLocaleString('en-US') +
           ' refund on next year\'s return. Leave Step 4(c) blank for the rest of ' +
           (input.taxYear || 2025) + ', then submit a fresh W-4 in January.';
       } else {
         step4cPerPaycheck = remainingTaxOwed / remainingPaychecks;
         midYearHeadline = 'Catch-up per paycheck';
         midYearMessage =
-          'Splits the remaining ' +
-          '$' + Math.round(remainingTaxOwed).toLocaleString('en-US') +
-          ' you still owe across ' + remainingPaychecks +
+          'On top of the ' +
+          '$' + Math.round(defaultPerPaycheck).toLocaleString('en-US') +
+          '/paycheck your employer will keep withholding by default, add this Step 4(c) extra across the last ' +
+          remainingPaychecks +
           ' paycheck' + (remainingPaychecks === 1 ? '' : 's') +
-          ' left in ' + (input.taxYear || 2025) +
+          ' of ' + (input.taxYear || 2025) +
           '. Submit a fresh W-4 in January with the annualized number so you don\'t over-withhold next year.';
       }
     }
@@ -1741,111 +1754,115 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
     console.log('%c[W-4 calc] running tests…', 'color:#e89464;font-weight:bold');
 
-    // TEST 1 — Single filer, $75k, no dependents, standard deduction
-    // Taxable: $60,000 → 10%×$11,925 + 12%×$36,550 + 22%×$11,525 = $8,114
+    // TEST 1 — Single filer, $75k, no dependents (post-OBBBA 2025)
+    // Std ded $15,750 → taxable $59,250
+    // Tax: 10%×$11,925 + 12%×$36,550 + 22%×$10,775 = $7,949
     var t1 = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
-    assert('Test 1: Single $75k → tax owed',         t1.taxOwed, 8114);
-    assert('Test 1: Single $75k → per paycheck',     t1.targetPerPaycheck, 312, 2);
+    assert('Test 1: Single $75k → tax owed',         t1.taxOwed, 7949);
+    assert('Test 1: Single $75k → per paycheck',     t1.targetPerPaycheck, 306, 2);
 
     // TEST 2 — MFJ dual-income $100k + $50k = $150k (2(c) auto-applied since ratio 0.5)
-    // Actual tax: $120k taxable at MFJ = $2,385 + $8,772 + $5,071 = $16,228
-    // With 2(c) (auto-recommended): each employer uses split MFJ brackets
-    //   Employer A ($100k): ($100k - $15k = $85k) at split = $13,614
-    //   Employer B  ($50k): ( $50k - $15k = $35k) at split =  $3,962
-    //   Gross withholding: $17,576 (over-withholds by $1,348 = refund)
+    // Actual tax: $118.5k taxable at MFJ (post-OBBBA std ded $31,500)
+    //   $2,385 + $8,772 + $4,741 = $15,898
+    // With 2(c): each employer uses half std ded ($15,750) + split MFJ brackets
+    //   Employer A ($100k): taxable $84,250 → $13,449
+    //   Employer B  ($50k): taxable $34,250 →  $3,872
+    //   Gross withholding: $17,321 (over-withholds by $1,423 = refund)
     var t2 = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26 });
-    assert('Test 2: MFJ $150k → tax owed',                t2.taxOwed, 16228);
+    assert('Test 2: MFJ $150k → tax owed',                t2.taxOwed, 15898);
     assert('Test 2: MFJ → 2(c) auto-recommended',         t2.w4Step2cRecommended ? 1 : 0, 1);
     assert('Test 2: MFJ → 2(c) auto-applied (math)',      t2.w4Step2cUsed ? 1 : 0, 1);
-    assert('Test 2: MFJ → withholding (split applied)',   t2.defaultWithholding, 17576);
-    assert('Test 2: MFJ → refund (small over-withhold)',  t2.diff, 1348);
+    assert('Test 2: MFJ → withholding (split applied)',   t2.defaultWithholding, 17321, 2);
+    assert('Test 2: MFJ → refund (small over-withhold)',  t2.diff, 1423, 2);
 
     // TEST 2b — Same couple, user EXPLICITLY un-checks 2(c) (the override path)
-    // Each employer falls back to FULL MFJ brackets:
-    //   Employer A ($100k): ($100k - $30k = $70k) at MFJ = $7,923
-    //   Employer B  ($50k): ( $50k - $30k = $20k) at MFJ = $2,000
-    //   Total: $9,923 — under by $6,305 (= big shortfall)
+    // Each employer falls back to FULL MFJ brackets + full std ded ($31,500):
+    //   Employer A ($100k): taxable $68,500 → $7,743
+    //   Employer B  ($50k): taxable $18,500 → $1,850
+    //   Gross: $9,593, short by $6,305 → Step 4(c) catches up
     var t2b = computeW4({ taxYear: 2025, status: 'mfj', wage: 100000, spouseWage: 50000, freq: 26, useStep2c: false });
-    assert('Test 2b: MFJ no 2(c) → withholding (under)',  t2b.defaultWithholding, 9923);
+    assert('Test 2b: MFJ no 2(c) → withholding (under)',  t2b.defaultWithholding, 9593);
     assert('Test 2b: MFJ no 2(c) → Step 4(c) extra/pp',   t2b.w4Step4c, 6305 / 26, 1);
 
-    // TEST 2c — USER'S REPORTED SCENARIO: MFJ $150k + $100k, 2 kids + 2 other
-    // Tax: $250k - $30k = $220k taxable at MFJ
-    //   $2,385 + $8,772 + ($109,750 × 22%) + ($13,300 × 24%) = $38,494 pre-credit
-    //   Credits: 2 kids × $2,000 + 2 other × $500 = $5,000
-    //   Tax owed: $38,494 - $5,000 = $33,494 ✓
-    // With 2(c) auto-applied (ratio 0.667):
-    //   Employer A ($150k): ($150k - $15k = $135k) at split MFJ = $25,248
-    //   Employer B ($100k): ($100k - $15k =  $85k) at split MFJ = $13,614
-    //   Gross withholding: $38,862
-    //   Adjusted (minus $5k Step 3 credit on higher earner): $33,862
-    //   Diff: $33,862 - $33,494 = +$368 over-withhold (tiny refund) ✓
-    //   Step 4(c): $0 — no extra needed
+    // TEST 2c — USER'S REPORTED SCENARIO: MFJ $150k + $100k, 2 kids + 2 other (post-OBBBA)
+    // Tax: $250k - $31,500 = $218,500 taxable at MFJ
+    //   $2,385 + $8,772 + $24,145 + $2,832 = $38,134 pre-credit
+    //   Credits: 2 × $2,200 + 2 × $500 = $5,400 (no phase-out at $250k vs $400k MFJ)
+    //   Tax owed: $38,134 - $5,400 = $32,734
+    // With 2(c) auto-applied:
+    //   Employer A ($150k): taxable $134,250 → $25,067
+    //   Employer B ($100k): taxable  $84,250 → $13,449
+    //   Gross withholding: $38,516
+    //   Adjusted (minus $5,400 Step 3 credit): $33,116
+    //   Diff: $33,116 - $32,734 = $382 tiny over-withhold
     var t2c = computeW4({ taxYear: 2025, status: 'mfj', wage: 150000, spouseWage: 100000, freq: 26, kids: 2, other: 2 });
-    assert('Test 2c: MFJ $250k + $5k credits → tax owed',     t2c.taxOwed, 33494);
-    assert('Test 2c: MFJ $250k → gross withholding (2c)',     t2c.grossWithholding, 38862);
-    assert('Test 2c: MFJ $250k → adjusted (post-Step-3)',     t2c.defaultWithholding, 33862);
-    assert('Test 2c: MFJ $250k → tiny refund (not $9k owe)',  t2c.diff, 368);
+    assert('Test 2c: MFJ $250k + $5,400 credits → tax owed',  t2c.taxOwed, 32734);
+    assert('Test 2c: MFJ $250k → gross withholding (2c)',     t2c.grossWithholding, 38516, 2);
+    assert('Test 2c: MFJ $250k → adjusted (post-Step-3)',     t2c.defaultWithholding, 33116, 2);
+    assert('Test 2c: MFJ $250k → tiny refund (not $9k owe)',  t2c.diff, 382, 2);
     assert('Test 2c: MFJ $250k → Step 4(c) is $0',            t2c.w4Step4c, 0);
 
-    // TEST 3 — HoH filer, $80k wages, 2 kids under 17
-    // HoH std ded: $22,500 → taxable $57,500
-    // Tax: 10%×$17,000 + 12%×$40,500 = $1,700 + $4,860 = $6,560
-    // CTC: 2 × $2,000 = $4,000 (no phase-out at $80k vs $200k threshold)
-    // Final tax: $6,560 - $4,000 = $2,560
+    // TEST 3 — HoH filer, $80k wages, 2 kids under 17 (post-OBBBA 2025)
+    // HoH std ded $23,625 → taxable $56,375
+    // Tax: 10%×$17,000 + 12%×$39,375 = $1,700 + $4,725 = $6,425
+    // CTC: 2 × $2,200 = $4,400 (no phase-out at $80k vs $200k threshold)
+    // Final tax: $6,425 - $4,400 = $2,025
     var t3 = computeW4({ taxYear: 2025, status: 'hoh', wage: 80000, freq: 26, kids: 2 });
-    assert('Test 3: HoH $80k + 2 kids → tax pre-credits',  t3.taxPreCredits, 6560);
-    assert('Test 3: HoH $80k + 2 kids → credits',          t3.credits, 4000);
-    assert('Test 3: HoH $80k + 2 kids → final tax owed',   t3.taxOwed, 2560);
-    assert('Test 3: HoH $80k + 2 kids → dep benefit/pp',   t3.depBenefitPerPaycheck, 4000 / 26, 1);
+    assert('Test 3: HoH $80k + 2 kids → tax pre-credits',  t3.taxPreCredits, 6425);
+    assert('Test 3: HoH $80k + 2 kids → credits',          t3.credits, 4400);
+    assert('Test 3: HoH $80k + 2 kids → final tax owed',   t3.taxOwed, 2025);
+    assert('Test 3: HoH $80k + 2 kids → dep benefit/pp',   t3.depBenefitPerPaycheck, 4400 / 26, 1);
 
     // TEST 4 — CTC phase-out edge case: Single $300k, 1 kid
     // Threshold $200k, excess $100k → $5,000 reduction
-    // Raw credit $2,000 - $5,000 = $0 after phase-out
+    // Raw credit $2,200 - $5,000 = $0 after phase-out
     var t4 = computeW4({ taxYear: 2025, status: 'single', wage: 300000, freq: 26, kids: 1 });
     assert('Test 4: Single $300k + 1 kid → credit phased out', t4.credits, 0);
 
-    // TEST 5 — Itemized > standard: Single $100k with $25k itemized
-    // Std ded $15k, itemized $25k → uses itemized, dedAboveStd = $10k for Step 4(b)
+    // TEST 5 — Itemized > standard: Single $100k with $25k itemized (post-OBBBA)
+    // Std ded $15,750, itemized $25,000 → uses itemized
+    // dedAboveStd = $25,000 - $15,750 = $9,250 for Step 4(b)
     var t5 = computeW4({ taxYear: 2025, status: 'single', wage: 100000, freq: 26, itemized: 25000 });
-    assert('Test 5: Itemized > std → Step 4(b) amount',    t5.w4Step4b, 10000);
+    assert('Test 5: Itemized > std → Step 4(b) amount',    t5.w4Step4b, 9250);
     assert('Test 5: Itemized > std → uses itemized',       t5.usingItemized ? 1 : 0, 1);
 
-    // TEST 6a — Pre-tax deduction lowers taxable income
-    //   Single $75k - $15k 401(k) - $15k std ded = $45k taxable
-    //   Single 2025 brackets at $45k: 10% × $11,925 + 12% × $33,075 = $5,162
+    // TEST 6a — Pre-tax deduction lowers taxable income (post-OBBBA 2025)
+    //   Single $75k - $15k 401(k) - $15,750 std ded = $44,250 taxable
+    //   Tax at $44,250: 10%×$11,925 + 12%×$32,325 = $1,193 + $3,879 = $5,072
     var t6a = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26, preTax: 15000 });
-    assert('Test 6a: Pre-tax → taxable income drops',     t6a.taxable, 45000);
-    assert('Test 6a: Pre-tax → tax owed (12% bracket)',   t6a.taxOwed, 5162, 5);
+    assert('Test 6a: Pre-tax → taxable income drops',     t6a.taxable, 44250);
+    assert('Test 6a: Pre-tax → tax owed (12% bracket)',   t6a.taxOwed, 5072, 5);
     assert('Test 6a: Pre-tax → echoed in result',         t6a.preTax, 15000);
 
-    // TEST 6b — Pre-tax + side income: confirms preTax reduces ONLY federal taxable
-    //   $75k wage + $20k side = $95k, less $10k 401(k) less $15k std = $70k taxable
-    //   Single 2025 brackets: 10% × $11,925 + 12% × $36,550 + 22% × $21,525 = $10,314
+    // TEST 6b — Pre-tax + side income: preTax reduces only federal taxable (post-OBBBA)
+    //   $95k AGI - $10k 401(k) - $15,750 std = $69,250 taxable
+    //   Tax: 10%×$11,925 + 12%×$36,550 + 22%×$20,775 = $1,193 + $4,386 + $4,571 = $10,149
     var t6b = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26, otherIncome: 20000, preTax: 10000 });
-    assert('Test 6b: Pre-tax + side → taxable',           t6b.taxable, 70000);
-    assert('Test 6b: Pre-tax + side → tax owed',          t6b.taxOwed, 10314, 5);
+    assert('Test 6b: Pre-tax + side → taxable',           t6b.taxable, 69250);
+    assert('Test 6b: Pre-tax + side → tax owed',          t6b.taxOwed, 10149, 5);
 
-    // TEST 6c — Default 0 pre-tax matches pre-pre-tax-feature behavior
-    //   Same as Test 1 — must be identical to baseline.
+    // TEST 6c — Default 0 pre-tax matches no-preTax-arg behavior.
     var t6c = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
     var t1 = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
     assert('Test 6c: preTax default 0 → matches baseline taxable', t6c.taxable, t1.taxable);
     assert('Test 6c: preTax default 0 → matches baseline tax owed', t6c.taxOwed, t1.taxOwed);
 
-    // ─── TEST 7 — Mid-year catch-up math ───
-    // Baseline: $75k single biweekly = $8,114 owed (from Test 1).
-    // Submitting in July (month 7) with $3,000 YTD already withheld:
-    //   monthsRemaining = 12 - (7-1) = 6
-    //   remainingPaychecks = round(26 * 6 / 12) = 13
-    //   remainingTaxOwed = 8114 - 3000 = 5114
-    //   step4c = 5114 / 13 = ~$393/paycheck
+    // ─── TEST 7 — Mid-year catch-up math (post-fix) ───
+    // Baseline: $75k single biweekly, post-OBBBA tax owed $7,949.
+    // No 2(c) for single, no credits → adjustedWithholding = $7,949
+    // defaultPerPaycheck = $7,949 / 26 ≈ $305.73
+    //
+    // 7a: July submission, $3,000 YTD withheld:
+    //   monthsRemaining = 6, remainingPaychecks = round(13) = 13
+    //   defaultRemaining = $305.73 × 13 ≈ $3,975
+    //   remainingTaxOwed = $7,949 - $3,000 - $3,975 ≈ $974
+    //   step4c = $974 / 13 ≈ $75/paycheck (extra on top of the $306 default)
     var t7a = computeW4({
       taxYear: 2025, status: 'single', wage: 75000, freq: 26,
       midYear: { enabled: true, submitMonth: 7, ytdWithheld: 3000 }
     });
-    assert('Test 7a: Mid-year July, $3k YTD → catch-up amount',
-      t7a.w4Step4c, 393, 2);
+    assert('Test 7a: Mid-year July, $3k YTD → catch-up extra',
+      t7a.w4Step4c, 75, 3);
     assert('Test 7a: Mid-year → remaining paychecks',
       t7a.midYearRemainingPaychecks, 13);
     assert('Test 7a: Mid-year → not over-withheld',
@@ -2041,9 +2058,10 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       s2cNote.textContent = r.isMFJ ? 'Only one spouse working — not applicable' : 'Single — not applicable';
     }
 
-    // Step 3 — dependent credits dollar amount
-    // (Note text — "X kids × $2,000/$2,200" — is set in the year-aware
-    // block below so it stays correct when toggling years.)
+    // Step 3 — dependent credits dollar amount.
+    // (Note text "X kids × $2,200 + Y dependents × $500" is set in the
+    // year-aware block below so the per-kid figure follows the active
+    // tax year's data without drifting from TAX_DATA.)
     var step3 = $('#w4-step3');
     var coordEl = $('#w4-3-coord');
     if (r.rawCredits > 0) {
@@ -2160,7 +2178,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     if (h1Year)   h1Year.textContent   = state.taxYear;
     if (discYear) discYear.textContent = state.taxYear;
 
-    // Step 3 descriptor — show year-specific CTC ($2,000 in 2025, $2,200 in 2026)
+    // Step 3 descriptor. Pulls ctcPerKid from the active year's TAX_DATA
+    // so the per-kid figure follows OBBBA (2025+) and future bumps.
     var step3Note = $('#w4-3-note');
     if (step3Note) {
       if (r.rawCredits > 0) {
@@ -2251,8 +2270,10 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
         taxYear:        state.taxYear || 2025,
         filing:         state.status,
         step2c:         !!r.w4Step2cUsed,
-        // Step 3 — fill all 3 fields if the user has dependents
-        step3Kids:      r.kids > 0 ? Math.round(r.kids * (state.taxYear === 2026 ? 2200 : 2000)) : 0,
+        // Step 3 — fill all 3 fields if the user has dependents. Pulls
+        // ctcPerKid from the active year's data so the dollar amount
+        // automatically follows OBBBA / future bumps.
+        step3Kids:      r.kids > 0 ? Math.round(r.kids * dataFor(state.taxYear).ctcPerKid) : 0,
         step3OtherDeps: r.others > 0 ? r.others * 500 : 0,
         step3Total:     Math.round(r.w4Step3 || 0),
         step4a:         Math.round(r.w4Step4a || 0),
