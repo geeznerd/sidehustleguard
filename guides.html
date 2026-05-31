@@ -44,10 +44,13 @@
 
   .ds-fixed-header { position: sticky; top: 0; z-index: 100; }
 
-  /* HERO (smaller than index.html — this is a hub page).
-   * Compressed to keep the first card above-the-fold on 768x viewports. */
+  /* HERO. Dark indigo with rotating topo backdrop, matching the
+     homepage and crypto-calc treatment so the brand reads cohesive
+     across landing pages. Compressed proportions because this is a
+     hub page that needs to keep the first guide card near the fold. */
   .guides-hero {
-    background: var(--cream);
+    background: #16183a;
+    color: var(--paper);
     padding: 44px 60px 28px;
     position: relative;
     overflow: hidden;
@@ -58,14 +61,35 @@
     position: relative; z-index: 1;
     max-width: 760px; margin: 0 auto;
   }
-  .guides-hero h1 {
-    margin: 12px 0 10px;
-  }
+  .guides-hero h1 { margin: 12px 0 10px; color: var(--paper); }
   .guides-hero-sub {
     font-family: 'Inter', sans-serif;
     font-size: 16px; line-height: 1.65; font-weight: 400;
-    color: var(--indigo-70);
+    color: rgba(240, 236, 225, 0.74);
     max-width: 540px; margin: 0 auto 18px;
+  }
+
+  /* Slow-rotating topographic backdrop. Square viewBox so it never
+     clips on the wide-but-short guides hero. */
+  .guides-hero .hero-topo {
+    position: absolute; inset: -10%;
+    width: 120%; height: 120%;
+    pointer-events: none; z-index: 0;
+    opacity: 0.55;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .guides-hero .hero-topo { animation: guides-hero-spiral 140s linear infinite; }
+  }
+  @keyframes guides-hero-spiral {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .guides-hero .hero-aurora {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(60% 50% at 82% 20%, rgba(232,148,100,0.20), transparent 70%),
+      radial-gradient(50% 45% at 14% 84%, rgba(125,214,164,0.10), transparent 70%);
   }
 
   /* Live search (G1) */
@@ -79,7 +103,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 14.5px; font-weight: 400;
     background: var(--paper);
-    border: 1px solid var(--indigo-12);
+    border: 1px solid rgba(240, 236, 225, 0.18);
     border-radius: var(--radius-pill);
     padding: 14px 44px;
     color: var(--indigo);
@@ -89,7 +113,7 @@
   .live-search input::placeholder { color: var(--indigo-55); }
   .live-search input:focus {
     border-color: var(--apricot);
-    box-shadow: 0 0 0 4px rgba(232,148,100,0.12);
+    box-shadow: 0 0 0 4px rgba(232,148,100,0.20);
   }
   .live-search-icon {
     position: absolute;
@@ -1363,33 +1387,31 @@
 <!-- HERO (G1) — topographic SVG backdrop matches the homepage + every
      article page so the brand backdrop is consistent across the site. -->
 <section class="guides-hero hero-relative" id="main-content">
-  <svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <radialGradient id="guidesHeroGlow" cx="20%" cy="80%" r="55%">
-        <stop offset="0%" stop-color="#e89464" stop-opacity="0.18"/>
-        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <rect width="1200" height="360" fill="url(#guidesHeroGlow)"/>
-    <!-- Primary contour cluster (lower-left, indigo) — 7 nested ovals -->
-    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
-      <ellipse cx="240" cy="280" rx="420" ry="180" transform="rotate(-12 240 280)"/>
-      <ellipse cx="234" cy="266" rx="385" ry="162" transform="rotate(-10.5 240 280)"/>
-      <ellipse cx="228" cy="252" rx="350" ry="144" transform="rotate(-9 240 280)" class="contour-inner-3"/>
-      <ellipse cx="222" cy="238" rx="315" ry="126" transform="rotate(-7.5 240 280)" class="contour-inner-3"/>
-      <ellipse cx="216" cy="224" rx="280" ry="108" transform="rotate(-6 240 280)" class="contour-inner-3"/>
-      <ellipse cx="210" cy="210" rx="245" ry="90" transform="rotate(-4.5 240 280)"/>
-      <ellipse cx="204" cy="196" rx="210" ry="72" transform="rotate(-3 240 280)"/>
+  <svg class="hero-topo" viewBox="0 0 1600 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- Lower-left apricot cluster (primary) -->
+    <g fill="none" stroke="#e89464" stroke-opacity="0.16" stroke-width="1">
+      <ellipse cx="380" cy="1180" rx="640" ry="260" transform="rotate(-12 380 1180)"/>
+      <ellipse cx="386" cy="1160" rx="580" ry="230" transform="rotate(-10 386 1160)"/>
+      <ellipse cx="392" cy="1138" rx="520" ry="200" transform="rotate(-8 392 1138)"/>
+      <ellipse cx="400" cy="1114" rx="460" ry="170" transform="rotate(-6 400 1114)"/>
+      <ellipse cx="408" cy="1088" rx="396" ry="140" transform="rotate(-4 408 1088)"/>
+      <ellipse cx="416" cy="1060" rx="330" ry="112" transform="rotate(-2 416 1060)"/>
     </g>
-    <!-- Secondary contour cluster (upper-right, apricot) — 5 nested ovals -->
-    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
-      <ellipse cx="1020" cy="110" rx="270" ry="120" transform="rotate(18 1020 110)"/>
-      <ellipse cx="1024" cy="102" rx="240" ry="106" transform="rotate(16 1020 110)"/>
-      <ellipse cx="1028" cy="94" rx="210" ry="92" transform="rotate(14 1020 110)" class="contour-inner-3"/>
-      <ellipse cx="1032" cy="86" rx="180" ry="78" transform="rotate(12 1020 110)" class="contour-inner-3"/>
-      <ellipse cx="1036" cy="78" rx="150" ry="64" transform="rotate(10 1020 110)"/>
+    <!-- Upper-right cream cluster (secondary) -->
+    <g fill="none" stroke="#f0ece1" stroke-opacity="0.09" stroke-width="1">
+      <ellipse cx="1280" cy="380" rx="460" ry="170" transform="rotate(18 1280 380)"/>
+      <ellipse cx="1288" cy="370" rx="410" ry="150" transform="rotate(16 1288 370)"/>
+      <ellipse cx="1296" cy="360" rx="356" ry="128" transform="rotate(14 1296 360)"/>
+      <ellipse cx="1304" cy="350" rx="298" ry="106" transform="rotate(12 1304 350)"/>
+    </g>
+    <!-- Mid-right green cluster (accent) -->
+    <g fill="none" stroke="#7dd6a4" stroke-opacity="0.10" stroke-width="1">
+      <ellipse cx="1180" cy="940" rx="320" ry="120" transform="rotate(8 1180 940)"/>
+      <ellipse cx="1188" cy="932" rx="270" ry="100" transform="rotate(6 1188 932)"/>
+      <ellipse cx="1196" cy="924" rx="216" ry="80" transform="rotate(4 1196 924)"/>
     </g>
   </svg>
+  <div class="hero-aurora"></div>
   <div class="guides-hero-inner hero-content">
     <div class="ds-eyebrow">Free tax guides · <span id="js-total-count">75</span> in total</div>
     <h1 class="display-l">Every side hustle.<br/><em>Every state.</em></h1>

@@ -95,20 +95,23 @@
 </script>
 <style>
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--indigo);line-height:1.7;font-size:16px;overflow-x:clip}
-/* Hero */
-.hero{padding:72px 48px 48px;position:relative;overflow:hidden}
-.hero .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+/* Hero. Dark indigo with rotating topo, matches the homepage family. */
+.hero{background:#16183a;color:var(--paper);padding:72px 48px 48px;position:relative;overflow:hidden}
+.hero .hero-topo{position:absolute;inset:-10%;width:120%;height:120%;pointer-events:none;z-index:0;opacity:.55;transform-origin:center}
+@media(prefers-reduced-motion:no-preference){.hero .hero-topo{animation:str-hero-spiral 140s linear infinite}}
+@keyframes str-hero-spiral{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero .hero-aurora{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(60% 50% at 82% 18%, rgba(232,148,100,.20), transparent 70%), radial-gradient(50% 45% at 14% 86%, rgba(125,214,164,.10), transparent 70%)}
 .hero-content{position:relative;z-index:1;max-width:820px;margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--indigo-08);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(240,236,225,.06);border:1px solid rgba(232,148,100,.32);padding:8px 16px;border-radius:100px;font-size:11.5px;font-weight:600;color:var(--apricot);letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;line-height:1}
 .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--apricot);flex-shrink:0}
-.breadcrumb{font-size:12px;color:var(--indigo-55);margin-bottom:20px}
-.breadcrumb a{color:var(--indigo-55);text-decoration:none}
-.breadcrumb a:hover{color:var(--indigo)}
-h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(40px,5.4vw,64px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--indigo);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
+.breadcrumb{font-size:12px;color:rgba(240,236,225,.58);margin-bottom:20px}
+.breadcrumb a{color:rgba(240,236,225,.58);text-decoration:none}
+.breadcrumb a:hover{color:var(--paper)}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(40px,5.4vw,64px);font-weight:400;line-height:1.04;letter-spacing:-0.022em;color:var(--paper);font-variation-settings:'opsz' 144,'SOFT' 30;margin-bottom:18px}
 h1 em{font-style:italic;color:var(--apricot)}
 .hero-sub{font-family:'Fraunces',Georgia,serif;font-size:18px;font-style:italic;color:var(--apricot);line-height:1.5;margin-bottom:18px}
-.hero-intro{font-size:16px;color:var(--indigo-70);font-weight:300;line-height:1.75;max-width:680px}
-.article-disc{font-size:11px;color:var(--indigo-55);margin-top:10px;font-style:italic}
+.hero-intro{font-size:16px;color:rgba(240,236,225,.76);font-weight:300;line-height:1.75;max-width:680px}
+.article-disc{font-size:11px;color:rgba(240,236,225,.55);margin-top:10px;font-style:italic}
 /* Content */
 .content{max-width:1060px;margin:0 auto;padding:36px 48px 80px}
 h2{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:700;color:var(--indigo)}
@@ -213,22 +216,28 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   </div>
 </nav>
 <div class="hero">
-<svg class="hero-backdrop" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <defs><radialGradient id="strHeroGlow" cx="20%" cy="80%" r="55%"><stop offset="0%" stop-color="#e89464" stop-opacity="0.16"/><stop offset="100%" stop-color="#e89464" stop-opacity="0"/></radialGradient></defs>
-  <rect width="1200" height="360" fill="url(#strHeroGlow)"/>
-  <g fill="none" stroke="#2d3068" stroke-opacity="0.06" stroke-width="1">
-    <ellipse cx="220" cy="280" rx="400" ry="170" transform="rotate(-12 220 280)"/>
-    <ellipse cx="214" cy="266" rx="365" ry="152" transform="rotate(-10.5 220 280)"/>
-    <ellipse cx="208" cy="252" rx="330" ry="134" transform="rotate(-9 220 280)" class="contour-inner-3"/>
-    <ellipse cx="202" cy="238" rx="295" ry="116" transform="rotate(-7.5 220 280)" class="contour-inner-3"/>
-    <ellipse cx="196" cy="224" rx="260" ry="98" transform="rotate(-6 220 280)"/>
+<svg class="hero-topo" viewBox="0 0 1600 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g fill="none" stroke="#e89464" stroke-opacity="0.16" stroke-width="1">
+    <ellipse cx="380" cy="1180" rx="640" ry="260" transform="rotate(-12 380 1180)"/>
+    <ellipse cx="386" cy="1160" rx="580" ry="230" transform="rotate(-10 386 1160)"/>
+    <ellipse cx="392" cy="1138" rx="520" ry="200" transform="rotate(-8 392 1138)"/>
+    <ellipse cx="400" cy="1114" rx="460" ry="170" transform="rotate(-6 400 1114)"/>
+    <ellipse cx="408" cy="1088" rx="396" ry="140" transform="rotate(-4 408 1088)"/>
+    <ellipse cx="416" cy="1060" rx="330" ry="112" transform="rotate(-2 416 1060)"/>
   </g>
-  <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
-    <ellipse cx="1040" cy="110" rx="240" ry="106" transform="rotate(14 1040 110)"/>
-    <ellipse cx="1044" cy="102" rx="210" ry="92" transform="rotate(12 1040 110)" class="contour-inner-3"/>
-    <ellipse cx="1048" cy="94" rx="180" ry="78" transform="rotate(10 1040 110)"/>
+  <g fill="none" stroke="#f0ece1" stroke-opacity="0.09" stroke-width="1">
+    <ellipse cx="1280" cy="380" rx="460" ry="170" transform="rotate(18 1280 380)"/>
+    <ellipse cx="1288" cy="370" rx="410" ry="150" transform="rotate(16 1288 370)"/>
+    <ellipse cx="1296" cy="360" rx="356" ry="128" transform="rotate(14 1296 360)"/>
+    <ellipse cx="1304" cy="350" rx="298" ry="106" transform="rotate(12 1304 350)"/>
+  </g>
+  <g fill="none" stroke="#7dd6a4" stroke-opacity="0.10" stroke-width="1">
+    <ellipse cx="1180" cy="940" rx="320" ry="120" transform="rotate(8 1180 940)"/>
+    <ellipse cx="1188" cy="932" rx="270" ry="100" transform="rotate(6 1188 932)"/>
+    <ellipse cx="1196" cy="924" rx="216" ry="80" transform="rotate(4 1196 924)"/>
   </g>
 </svg>
+<div class="hero-aurora"></div>
 <div class="hero-content">
 <div class="breadcrumb"><a href="/">SideHustleGuard</a> → <a href="/guides">Guides</a> → Short-Term Rentals</div>
 <span class="hero-eyebrow">Short-term rentals &middot; 28 guides</span>
