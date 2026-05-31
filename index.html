@@ -167,13 +167,47 @@
   /* Sticky header wrapper. Holds the nav. */
   .ds-fixed-header { position: sticky; top: 0; z-index: 100; }
 
-  /* HERO */
+  /* HERO. Dark indigo to contrast with the cream nav and the cream
+     content sections below. Mirrors the crypto calculator hero
+     treatment so the brand feels cohesive across surfaces. */
   .hero {
-    background: var(--cream);
+    background: #16183a; /* indigo-darker, scoped to hero only */
+    color: var(--paper);
     padding: 80px 60px 96px;
     position: relative;
     overflow: hidden;
   }
+
+  /* Rotating topographic backdrop. Same overscan + square viewBox
+     technique as the library section below so rotation never clips. */
+  .hero-topo {
+    position: absolute;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-topo { animation: hero-spiral 120s linear infinite; }
+  }
+  @keyframes hero-spiral {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Aurora wash for color richness in the corners. Static, layered
+     under content but above the rotating topo. */
+  .hero-aurora {
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(60% 45% at 82% 18%, rgba(232,148,100,0.20), transparent 70%),
+      radial-gradient(50% 40% at 14% 86%, rgba(125,214,164,0.10), transparent 70%);
+  }
+
   .hero-content { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
   .hero-grid {
     display: grid;
@@ -205,10 +239,14 @@
     }
     .hero-pair-picker .sliding-list-num { font-size: 20px; }
   }
+  /* Headline + italic accent. Display headlines default to indigo
+     elsewhere on the site, so we re-color to cream within the hero. */
+  .hero .display-xl { color: var(--paper); }
+
   .hero-body {
     font-family: 'Inter', sans-serif;
     font-size: 16.5px; line-height: 1.65; font-weight: 400;
-    color: var(--indigo-85);
+    color: rgba(240, 236, 225, 0.78);
     max-width: 480px;
     margin: 0;
   }
@@ -216,41 +254,44 @@
   .hero-ghost-link {
     font-family: 'Inter', sans-serif;
     font-size: 14px; font-weight: 500;
-    color: var(--indigo-85);
+    color: rgba(240, 236, 225, 0.82);
     text-decoration: none;
-    border-bottom: 1px solid var(--indigo-18);
+    border-bottom: 1px solid rgba(240, 236, 225, 0.20);
     padding-bottom: 2px;
     transition: color var(--dur-default) var(--ease-default), border-color var(--dur-default) var(--ease-default);
   }
-  .hero-ghost-link:hover { color: var(--indigo); border-color: var(--indigo); }
+  .hero-ghost-link:hover { color: var(--paper); border-color: var(--apricot); }
 
-  /* Small trust line below the CTA row. Uses existing color tokens so
-     it sits comfortably on the cream hero background without pulling
-     focus from the headline or the picker. */
+  /* Small trust line below the CTA row. Cream-faint on dark indigo,
+     apricot dot retains its pulse-style glow. */
   .hero-microtrust {
     display: inline-flex; align-items: center; gap: 8px;
     margin: 0;
     font-family: 'Inter', sans-serif;
     font-size: 13px; line-height: 1.4;
-    color: var(--indigo-55);
+    color: rgba(240, 236, 225, 0.58);
     letter-spacing: 0.005em;
   }
   .hero-microtrust-dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--apricot);
-    box-shadow: 0 0 0 3px rgba(232,148,100,0.18);
+    box-shadow: 0 0 0 3px rgba(232,148,100,0.28);
     flex-shrink: 0;
   }
 
-  /* Hero indigo preview card */
+  /* Hero indigo preview card. Sits on the darker hero indigo so the
+     fainter --indigo bg already gives it lift; a hairline edge gives
+     the card a defined boundary. */
   .hero-preview {
     background: var(--indigo);
     color: var(--paper);
+    border: 1px solid rgba(232,224,200,0.10);
     border-radius: var(--radius-container);
     padding: 26px 28px;
     position: relative;
     overflow: hidden;
     margin-top: 6px;
+    box-shadow: 0 16px 48px -20px rgba(0,0,0,0.55);
   }
   .hero-preview-eyebrow {
     font-family: 'Inter', sans-serif;
@@ -1386,38 +1427,34 @@
   </nav>
 </div>
 
-<!-- HERO: paired layout with topographic backdrop -->
+<!-- HERO: paired layout, dark indigo with slow-rotating topographic
+     backdrop. Square viewBox so rotation never clips. -->
 <section class="hero hero-relative" id="main-content">
-  <svg class="hero-backdrop" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <radialGradient id="heroGlow" cx="20%" cy="80%" r="55%">
-        <stop offset="0%" stop-color="#e89464" stop-opacity="0.20"/>
-        <stop offset="100%" stop-color="#e89464" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <rect width="1200" height="700" fill="url(#heroGlow)"/>
-    <!-- Primary contour cluster (lower-left, indigo), 9 nested ovals -->
-    <g fill="none" stroke="#2d3068" stroke-opacity="0.07" stroke-width="1">
-      <ellipse cx="300" cy="520" rx="460" ry="220" transform="rotate(-12 300 520)"/>
-      <ellipse cx="294" cy="506" rx="425" ry="202" transform="rotate(-10.5 300 520)"/>
-      <ellipse cx="288" cy="492" rx="390" ry="184" transform="rotate(-9 300 520)"/>
-      <ellipse cx="282" cy="478" rx="355" ry="166" transform="rotate(-7.5 300 520)" class="contour-inner-3"/>
-      <ellipse cx="276" cy="464" rx="320" ry="148" transform="rotate(-6 300 520)" class="contour-inner-3"/>
-      <ellipse cx="270" cy="450" rx="285" ry="130" transform="rotate(-4.5 300 520)" class="contour-inner-3"/>
-      <ellipse cx="264" cy="436" rx="250" ry="112" transform="rotate(-3 300 520)"/>
-      <ellipse cx="258" cy="422" rx="215" ry="94" transform="rotate(-1.5 300 520)"/>
-      <ellipse cx="252" cy="408" rx="180" ry="76" transform="rotate(0 300 520)"/>
+  <svg class="hero-topo" viewBox="0 0 1600 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- Lower-left apricot cluster (primary) -->
+    <g fill="none" stroke="#e89464" stroke-opacity="0.16" stroke-width="1">
+      <ellipse cx="380" cy="1180" rx="640" ry="260" transform="rotate(-12 380 1180)"/>
+      <ellipse cx="386" cy="1160" rx="580" ry="230" transform="rotate(-10 386 1160)"/>
+      <ellipse cx="392" cy="1138" rx="520" ry="200" transform="rotate(-8 392 1138)"/>
+      <ellipse cx="400" cy="1114" rx="460" ry="170" transform="rotate(-6 400 1114)"/>
+      <ellipse cx="408" cy="1088" rx="396" ry="140" transform="rotate(-4 408 1088)"/>
+      <ellipse cx="416" cy="1060" rx="330" ry="112" transform="rotate(-2 416 1060)"/>
     </g>
-    <!-- Secondary contour cluster (upper-right, apricot), 6 nested ovals -->
-    <g fill="none" stroke="#e89464" stroke-opacity="0.18" stroke-width="1">
-      <ellipse cx="1050" cy="180" rx="300" ry="140" transform="rotate(18 1050 180)"/>
-      <ellipse cx="1054" cy="172" rx="270" ry="126" transform="rotate(16 1050 180)"/>
-      <ellipse cx="1058" cy="164" rx="240" ry="112" transform="rotate(14 1050 180)" class="contour-inner-3"/>
-      <ellipse cx="1062" cy="156" rx="210" ry="98" transform="rotate(12 1050 180)" class="contour-inner-3"/>
-      <ellipse cx="1066" cy="148" rx="180" ry="84" transform="rotate(10 1050 180)" class="contour-inner-3"/>
-      <ellipse cx="1070" cy="140" rx="150" ry="70" transform="rotate(8 1050 180)"/>
+    <!-- Upper-right cream cluster (secondary) -->
+    <g fill="none" stroke="#f0ece1" stroke-opacity="0.09" stroke-width="1">
+      <ellipse cx="1280" cy="380" rx="460" ry="170" transform="rotate(18 1280 380)"/>
+      <ellipse cx="1288" cy="370" rx="410" ry="150" transform="rotate(16 1288 370)"/>
+      <ellipse cx="1296" cy="360" rx="356" ry="128" transform="rotate(14 1296 360)"/>
+      <ellipse cx="1304" cy="350" rx="298" ry="106" transform="rotate(12 1304 350)"/>
+    </g>
+    <!-- Mid-right green cluster (accent) -->
+    <g fill="none" stroke="#7dd6a4" stroke-opacity="0.10" stroke-width="1">
+      <ellipse cx="1180" cy="940" rx="320" ry="120" transform="rotate(8 1180 940)"/>
+      <ellipse cx="1188" cy="932" rx="270" ry="100" transform="rotate(6 1188 932)"/>
+      <ellipse cx="1196" cy="924" rx="216" ry="80" transform="rotate(4 1196 924)"/>
     </g>
   </svg>
+  <div class="hero-aurora"></div>
 
   <div class="hero-content">
     <div class="hero-grid">
