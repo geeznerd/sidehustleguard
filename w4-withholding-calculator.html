@@ -49,7 +49,7 @@
       "name": "Can I skip quarterly estimated taxes by adjusting my W-4?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, if you have a W-2 job. Per IRC \u00a7 6654(g)(1), payroll withholding is considered paid evenly throughout the year regardless of when it's actually withheld. So bumping your W-2 employer's withholding by enough to cover both your day-job tax AND your side hustle tax satisfies the quarterly safe harbor automatically \u2014 no estimated payments needed."
+        "text": "Yes, if you have a W-2 job. Per IRC \u00a7 6654(g)(1), payroll withholding is considered paid evenly throughout the year regardless of when it's actually withheld. So bumping your W-2 employer's withholding by enough to cover both your day-job tax AND your side hustle tax satisfies the quarterly safe harbor automatically. No estimated payments needed."
       }
     },
     {
@@ -65,7 +65,7 @@
       "name": "Should I use W-4 Line 4(a) or 4(c) for side hustle income?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use 4(c). Line 4(a) ('Other income') tells your employer to use standard withholding tables as if you had a higher salary \u2014 which can over-withhold because of graduated bracket logic. Line 4(c) ('Extra withholding') is a predictable, exact dollar amount per pay period."
+        "text": "Use 4(c). Line 4(a) ('Other income') tells your employer to use standard withholding tables as if you had a higher salary, which can over-withhold because of graduated bracket logic. Line 4(c) ('Extra withholding') is a predictable, exact dollar amount per pay period."
       }
     },
     {
@@ -73,7 +73,7 @@
       "name": "When does the W-4 withholding hack NOT work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When you don't have a W-2 job (no paycheck to withhold from \u2014 use quarterly estimates instead), when your side hustle dwarfs your day job (the extra withholding could exceed take-home), when your W-2 exceeds the Social Security wage base (FICA math changes), or when you're a high earner with Net Investment Income Tax exposure."
+        "text": "When you don't have a W-2 job (no paycheck to withhold from, so use quarterly estimates instead), when your side hustle dwarfs your day job (the extra withholding could exceed take-home), when your W-2 exceeds the Social Security wage base (FICA math changes), or when you're a high earner with Net Investment Income Tax exposure."
       }
     },
     {
@@ -81,7 +81,7 @@
       "name": "Does this work for state taxes too?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, but state withholding is handled separately. Each state with income tax has its own W-4 equivalent \u2014 California DE-4, New York IT-2104, etc. Bump your state withholding similarly via the state-specific form. No-income-tax states (AK, FL, NV, NH, SD, TN, TX, WA, WY) require no state withholding adjustment."
+        "text": "Yes, but state withholding is handled separately. Each state with income tax has its own W-4 equivalent (California DE-4, New York IT-2104, etc.). Bump your state withholding similarly via the state-specific form. No-income-tax states (AK, FL, NV, NH, SD, TN, TX, WA, WY) require no state withholding adjustment."
       }
     }
   ]
@@ -472,8 +472,32 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   </ul>
 
   <h2>What about <em>state</em> taxes?</h2>
-  <p>Most states with income tax have their own W-4 equivalent. The tool above adds a ~5% buffer to the federal recommendation as a rough estimate — but state withholding is handled separately, typically via a state-specific form (California DE-4, New York IT-2104, etc.). Increase your state withholding similarly using whatever form your state uses.</p>
-  <p>If you're in a <strong>no-income-tax state</strong> (AK, FL, NV, NH, SD, TN, TX, WA, WY), toggle that off in the tool — the state buffer drops to zero.</p>
+  <p>Most states with income tax have their own W-4 equivalent. The tool above adds a ~5% buffer to the federal recommendation as a rough estimate, but state withholding is handled separately, typically via a state-specific form (California DE-4, New York IT-2104, etc.). Increase your state withholding similarly using whatever form your state uses.</p>
+  <p>If you're in a <strong>no-income-tax state</strong> (AK, FL, NV, NH, SD, TN, TX, WA, WY), toggle that off in the tool: the state buffer drops to zero.</p>
+
+  <h2>Common <em>questions</em></h2>
+  <div class="faq-list">
+    <div class="ds-faq-item">
+      <button class="ds-faq-q" aria-controls="w4-faq-1" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Can I skip quarterly estimated taxes by adjusting my W-4? <span class="ds-faq-toggle" aria-hidden="true">+</span></button>
+      <div class="ds-faq-a" id="w4-faq-1">Yes, if you have a W-2 job. Per IRC § 6654(g)(1), payroll withholding is considered paid evenly throughout the year regardless of when it's actually withheld. So bumping your W-2 employer's withholding by enough to cover both your day-job tax AND your side hustle tax satisfies the quarterly safe harbor automatically. No estimated payments needed.</div>
+    </div>
+    <div class="ds-faq-item">
+      <button class="ds-faq-q" aria-controls="w4-faq-2" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">How do I fill out my W-4 to cover side hustle income? <span class="ds-faq-toggle" aria-hidden="true">+</span></button>
+      <div class="ds-faq-a" id="w4-faq-2">On Form W-4, go to Step 4(c) labeled 'Extra withholding'. Enter the dollar amount you want withheld per pay period in addition to standard withholding. Sign and date the form, hand it to HR. New withholding starts the next pay cycle. Do not change Step 4(a) for this purpose.</div>
+    </div>
+    <div class="ds-faq-item">
+      <button class="ds-faq-q" aria-controls="w4-faq-3" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Should I use W-4 Line 4(a) or 4(c) for side hustle income? <span class="ds-faq-toggle" aria-hidden="true">+</span></button>
+      <div class="ds-faq-a" id="w4-faq-3">Use 4(c). Line 4(a) ('Other income') tells your employer to use standard withholding tables as if you had a higher salary, which can over-withhold because of graduated bracket logic. Line 4(c) ('Extra withholding') is a predictable, exact dollar amount per pay period.</div>
+    </div>
+    <div class="ds-faq-item">
+      <button class="ds-faq-q" aria-controls="w4-faq-4" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">When does the W-4 withholding hack NOT work? <span class="ds-faq-toggle" aria-hidden="true">+</span></button>
+      <div class="ds-faq-a" id="w4-faq-4">When you don't have a W-2 job (no paycheck to withhold from, so use quarterly estimates instead), when your side hustle dwarfs your day job (the extra withholding could exceed take-home), when your W-2 exceeds the Social Security wage base (FICA math changes), or when you're a high earner with Net Investment Income Tax exposure.</div>
+    </div>
+    <div class="ds-faq-item">
+      <button class="ds-faq-q" aria-controls="w4-faq-5" aria-expanded="false" onclick="var p=this.closest('.ds-faq-item');p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'))">Does this work for state taxes too? <span class="ds-faq-toggle" aria-hidden="true">+</span></button>
+      <div class="ds-faq-a" id="w4-faq-5">Yes, but state withholding is handled separately. Each state with income tax has its own W-4 equivalent (California DE-4, New York IT-2104, etc.). Bump your state withholding similarly via the state-specific form. No-income-tax states (AK, FL, NV, NH, SD, TN, TX, WA, WY) require no state withholding adjustment.</div>
+    </div>
+  </div>
 
   <div class="related-section">
     <div class="related-label">Related tools &amp; guides</div>
