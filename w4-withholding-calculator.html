@@ -20,6 +20,8 @@
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
 <!-- Interactive tool kit — shared utilities (Phase 21) -->
 <script src="/assets/js/calc-kit.js"></script>
+<!-- Shared W-4 PDF generator (also used by /w4-paycheck-calculator) -->
+<script src="/assets/js/w4-pdf-generator.js" defer></script>
 
 <meta content="W-4 Withholding Calculator — Skip Quarterly Estimated Taxes" property="og:title"/>
 <meta content="The W-4 hack: have your W-2 employer withhold enough extra to cover your side hustle profit. No quarterly forms." property="og:description"/>
@@ -904,123 +906,34 @@ footer{background:var(--cream);border-top:1px solid var(--indigo-08);padding:24p
   calc();
 
   // ══════════════════════════════════════════════════════════════════════
-  // Pre-filled W-4 PDF download (Path A: real IRS form, client-side fill)
-  // pdf-lib is loaded lazily on the first click so the ~525KB asset only
-  // hits users who actually use the feature. Form fields discovered via
-  // pypdf inspection: f1_11 = Step 4(c) extra withholding (the headline),
-  // c1_1[0/1/2] = Step 1(c) filing status radios (Single/MFJ/HoH).
+  // Pre-filled W-4 PDF download
+  // Heavy lifting (pdf-lib load, form field map, fill, blob trigger) lives
+  // in the shared module at /assets/js/w4-pdf-generator.js. This wrapper
+  // owns the page-specific bits: button + status messages, error display.
   // ══════════════════════════════════════════════════════════════════════
-  var pdfLibPromise = null;
-  function loadPdfLib() {
-    if (pdfLibPromise) return pdfLibPromise;
-    pdfLibPromise = new Promise(function (resolve, reject) {
-      if (window.PDFLib) return resolve(window.PDFLib);
-      var s = document.createElement('script');
-      s.src = '/assets/js/vendor/pdf-lib.min.js';
-      s.onload = function () { resolve(window.PDFLib); };
-      s.onerror = function () { reject(new Error('Failed to load pdf-lib')); };
-      document.head.appendChild(s);
-    });
-    return pdfLibPromise;
-  }
-
-  // Filing status -> IRS W-4 radio index
-  // The W-4 Step 1(c) has 3 radio options stacked top-to-bottom:
-  //   index 0: Single or Married filing separately
-  //   index 1: Married filing jointly (or Qualifying surviving spouse)
-  //   index 2: Head of household
-  // The calc supports 5 internal statuses; we collapse to the 3 W-4 options.
-  var FILING_TO_RADIO = {
-    single: 0, mfs: 0,
-    mfj: 1, qss: 1,
-    hoh: 2
-  };
-
   async function generateW4Pdf() {
     var state = window.__w4State || {};
     if (!state.ready) throw new Error('Calc not ready');
+    if (!window.W4PdfGenerator) throw new Error('PDF generator not loaded');
     var btn = document.getElementById('w4-dl-btn');
-    var status = document.getElementById('w4-dl-status');
+    var statusEl = document.getElementById('w4-dl-status');
     var origLabel = btn.innerHTML;
     btn.disabled = true;
-    status.classList.remove('err');
-    status.textContent = 'Preparing PDF…';
+    statusEl.classList.remove('err');
+    statusEl.textContent = 'Preparing PDF…';
 
     try {
-      var PDFLib = await loadPdfLib();
-      status.textContent = 'Fetching form…';
-      var formUrl = '/assets/forms/fw4-' + (state.taxYear || 2025) + '.pdf';
-      var resp = await fetch(formUrl);
-      if (!resp.ok) throw new Error('Form fetch failed: ' + resp.status);
-      var bytes = await resp.arrayBuffer();
-      status.textContent = 'Filling in your numbers…';
-      var pdfDoc = await PDFLib.PDFDocument.load(bytes);
-      var form = pdfDoc.getForm();
-
-      // Step 4(c): Extra withholding per pay period.
-      // Field tooltip in the IRS PDF is "Extra withholding..." — value is a
-      // plain numeric string (the form renders it with $ in the visible layout).
-      try {
-        var f4c = form.getTextField('topmostSubform[0].Page1[0].f1_11[0]');
-        f4c.setText(String(state.perPaycheck));
-      } catch (e) {
-        console.warn('W-4 4c fill failed', e);
-      }
-
-      // Step 1(c): Filing status — check the right radio.
-      // pdf-lib treats grouped radios as a RadioGroup; here they are 3
-      // independent checkboxes (c1_1[0], c1_1[1], c1_1[2]). We tick the one
-      // matching the user's filing status; the others remain unchecked.
-      var radioIdx = FILING_TO_RADIO[state.filing];
-      if (radioIdx !== undefined) {
-        try {
-          var cb = form.getCheckBox('topmostSubform[0].Page1[0].c1_1[' + radioIdx + ']');
-          cb.check();
-        } catch (e) {
-          console.warn('W-4 filing status check failed', e);
-        }
-      }
-
-      // Stamp a small footer credit on Page 1 so anyone who shares the PDF
-      // sees where it came from. Uses Helvetica (built-in) at small size,
-      // positioned in the bottom margin (out of the form data area).
-      try {
-        var pages = pdfDoc.getPages();
-        var page1 = pages[0];
-        var font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
-        page1.drawText('Generated by SideHustleGuard.com  ·  Sign + add your name, address, and SSN before submitting to HR.', {
-          x: 36,
-          y: 18,
-          size: 7,
-          font: font,
-          color: PDFLib.rgb(0.45, 0.45, 0.50)
-        });
-      } catch (e) {
-        console.warn('W-4 footer stamp failed', e);
-      }
-
-      // Don't flatten — leave the form interactive so HR can edit fields
-      // if their workflow needs that. Most HR systems prefer this.
-      var outBytes = await pdfDoc.save();
-      var blob = new Blob([outBytes], { type: 'application/pdf' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'W-4-prefilled-' + (state.taxYear || 2025) + '.pdf';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function () {
-        URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      }, 120);
-
-      status.textContent = '✓ Downloaded. Add your name, address, SSN, sign, and hand to HR.';
-      btn.innerHTML = origLabel;
-      btn.disabled = false;
+      await window.W4PdfGenerator.download({
+        taxYear: state.taxYear || 2025,
+        filing:  state.filing,
+        step4c:  state.perPaycheck
+      });
+      statusEl.textContent = '✓ Downloaded. Add your name, address, SSN, sign, and hand to HR.';
     } catch (err) {
       console.error('W-4 PDF generation failed', err);
-      status.classList.add('err');
-      status.textContent = 'Sorry — PDF generation failed. Refresh and try again.';
+      statusEl.classList.add('err');
+      statusEl.textContent = 'Sorry — PDF generation failed. Refresh and try again.';
+    } finally {
       btn.innerHTML = origLabel;
       btn.disabled = !window.__w4State || !window.__w4State.ready;
     }

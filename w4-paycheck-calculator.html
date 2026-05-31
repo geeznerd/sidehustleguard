@@ -19,6 +19,8 @@
 
 <link href="/assets/css/design-system.css" rel="stylesheet"/>
 <script src="/assets/js/calc-kit.js"></script>
+<!-- Shared W-4 PDF generator (also used by /w4-withholding-calculator) -->
+<script src="/assets/js/w4-pdf-generator.js" defer></script>
 
 <meta content="Free W-4 Paycheck Calculator 2025 — Optimize Your Withholding" property="og:title"/>
 <meta content="Calculate exact federal withholding, child tax credit, dependent credit, and W-4 line-by-line entries. Free, no signup." property="og:description"/>
@@ -773,6 +775,43 @@ details.collapsible summary .sub-hint {
 .below ul li strong { color: var(--indigo); font-weight: 600; }
 .below a { color: var(--apricot); font-weight: 600; }
 
+/* ───── Pre-filled W-4 PDF download (Phase 24, shared module) ───── */
+.w4-dl-block {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: rgba(232, 148, 100, 0.12);
+  border: 1px solid rgba(232, 148, 100, 0.28);
+  border-radius: 12px;
+}
+.w4-dl-headline {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--apricot); text-transform: uppercase; margin-bottom: 6px;
+}
+.w4-dl-copy {
+  font-size: 13.5px; color: var(--cream-faint, rgba(251,248,238,0.78));
+  line-height: 1.55; margin-bottom: 10px;
+}
+.w4-dl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--apricot); color: var(--indigo);
+  border: none; border-radius: 10px; padding: 10px 16px;
+  font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
+  cursor: pointer; transition: background .2s, transform .15s, opacity .2s;
+  font-feature-settings: 'tnum' on;
+}
+.w4-dl-btn:hover:not(:disabled) { background: var(--apricot-hover); }
+@media (prefers-reduced-motion: no-preference) {
+  .w4-dl-btn:hover:not(:disabled) { transform: translateY(-1px); }
+}
+.w4-dl-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.w4-dl-btn svg { width: 14px; height: 14px; stroke-width: 2; }
+.w4-dl-status {
+  margin-top: 8px; font-size: 11.5px;
+  color: var(--cream-faint, rgba(251,248,238,0.65));
+  min-height: 14px; line-height: 1.4;
+}
+.w4-dl-status.err { color: #ffc4a8; }
+
 .related-section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--indigo-08); }
 .related-label {
   font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
@@ -1125,6 +1164,18 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
               <div class="step-val" id="w4-4c-val"><em>$</em>0</div>
               <div class="step-note" id="w4-4c-note">No extra withholding needed</div>
             </div>
+          </div>
+
+          <div class="w4-dl-block">
+            <div class="w4-dl-headline">Skip the copy-paste</div>
+            <div class="w4-dl-copy">Get the official IRS Form W-4 with every line above already filled in. Add your name, address, and SSN, sign, hand to HR.</div>
+            <button class="w4-dl-btn" id="w4-dl-btn" type="button" disabled aria-describedby="w4-dl-status">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 1v10m-4-4l4 4 4-4M2 14h12"/>
+              </svg>
+              Download pre-filled W-4 (PDF)
+            </button>
+            <div class="w4-dl-status" id="w4-dl-status">Enter your salary to enable the download.</div>
           </div>
         </div>
       </div>
@@ -1882,6 +1933,45 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
         recSpan.innerHTML = 'Not applicable — only one job in this household';
       }
     }
+
+    // ────── Sync the W-4 PDF download button state ──────
+    // Stash all line values on window.__w4State so the click handler can
+    // hand them to the shared generator without re-running the calc.
+    // The button enables only when there's at least one fillable line.
+    var dlBtn = document.getElementById('w4-dl-btn');
+    var dlStatus = document.getElementById('w4-dl-status');
+    if (dlBtn && dlStatus) {
+      var anyLine = (r.w4Step3 > 0) || (r.w4Step4a > 0) || (r.w4Step4b > 0) ||
+                    (r.w4Step4c > 0) || (r.w4Step2cUsed === true);
+      var hasSalary = state.wage > 0;
+      window.__w4State = {
+        taxYear:        state.taxYear || 2025,
+        filing:         state.status,
+        step2c:         !!r.w4Step2cUsed,
+        // Step 3 — fill all 3 fields if the user has dependents
+        step3Kids:      r.kids > 0 ? Math.round(r.kids * (state.taxYear === 2026 ? 2200 : 2000)) : 0,
+        step3OtherDeps: r.others > 0 ? r.others * 500 : 0,
+        step3Total:     Math.round(r.w4Step3 || 0),
+        step4a:         Math.round(r.w4Step4a || 0),
+        step4b:         Math.round(r.w4Step4b || 0),
+        step4c:         Math.round(r.w4Step4c || 0),
+        ready:          hasSalary
+      };
+      dlBtn.disabled = !hasSalary;
+      dlStatus.classList.remove('err');
+      if (!hasSalary) {
+        dlStatus.textContent = 'Enter your salary to enable the download.';
+      } else if (!anyLine) {
+        dlStatus.textContent = 'Standard W-4 — only Step 1(c) filing status will be pre-filled.';
+      } else {
+        dlStatus.textContent = 'Ready: filing status' +
+          (r.w4Step2cUsed ? ', Step 2(c) ☑' : '') +
+          (r.w4Step3 > 0 ? ', Step 3' : '') +
+          (r.w4Step4a > 0 ? ', Step 4(a)' : '') +
+          (r.w4Step4b > 0 ? ', Step 4(b)' : '') +
+          (r.w4Step4c > 0 ? ', Step 4(c)' : '') + '.';
+      }
+    }
   }
 
   // ────── Wire inputs ──────
@@ -1966,6 +2056,48 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   });
 
   render();
+
+  // ══════════════════════════════════════════════════════════════════════
+  // Pre-filled W-4 PDF download — wraps the shared W4PdfGenerator module
+  // (defined in /assets/js/w4-pdf-generator.js). Click handler reads from
+  // window.__w4State which render() keeps in sync after every recompute.
+  // ══════════════════════════════════════════════════════════════════════
+  async function generateW4Pdf() {
+    var s = window.__w4State || {};
+    if (!s.ready) return;
+    if (!window.W4PdfGenerator) throw new Error('PDF generator not loaded');
+    var btn = document.getElementById('w4-dl-btn');
+    var statusEl = document.getElementById('w4-dl-status');
+    var origLabel = btn.innerHTML;
+    btn.disabled = true;
+    statusEl.classList.remove('err');
+    statusEl.textContent = 'Preparing PDF…';
+
+    try {
+      await window.W4PdfGenerator.download({
+        taxYear:        s.taxYear,
+        filing:         s.filing,
+        step2c:         s.step2c,
+        step3Kids:      s.step3Kids,
+        step3OtherDeps: s.step3OtherDeps,
+        step3Total:     s.step3Total,
+        step4a:         s.step4a,
+        step4b:         s.step4b,
+        step4c:         s.step4c
+      });
+      statusEl.textContent = '✓ Downloaded. Add your name, address, SSN, sign, and hand to HR.';
+    } catch (err) {
+      console.error('W-4 PDF generation failed', err);
+      statusEl.classList.add('err');
+      statusEl.textContent = 'Sorry — PDF generation failed. Refresh and try again.';
+    } finally {
+      btn.innerHTML = origLabel;
+      btn.disabled = !window.__w4State || !window.__w4State.ready;
+    }
+  }
+
+  var dlBtn = document.getElementById('w4-dl-btn');
+  if (dlBtn) dlBtn.addEventListener('click', function () { generateW4Pdf(); });
 })();
 </script>
 <script src="/assets/js/newsletter-widget.js" defer></script>
