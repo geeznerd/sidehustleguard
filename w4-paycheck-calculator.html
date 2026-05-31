@@ -1229,6 +1229,43 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     <p><strong>Step 4(c):</strong> Extra withholding per paycheck. ON TOP of normal withholding.</p>
     <p><strong>Step 5:</strong> Sign and date. Hand to HR.</p>
 
+    <h2>Finding your <em>pre-tax</em> payroll deductions</h2>
+    <p>The W-4 doesn't ask about pre-tax contributions directly, but they change how much federal income tax your employer should withhold. Our calculator handles this for you, but the number has to come from your pay stub. Here's how to find it.</p>
+
+    <p><strong>What counts as pre-tax (enter this in the field):</strong></p>
+    <ul>
+      <li><strong>Traditional 401(k), 403(b), 457(b)</strong> — the workhorse retirement deferrals. Look for "401(k)", "Pre-Tax 401k", "Trad 401k", or your plan's vendor name (Fidelity, Vanguard, etc.) on your pay stub.</li>
+      <li><strong>Health Savings Account (HSA)</strong> contributions made through payroll — labeled "HSA", "Health Savings", or similar.</li>
+      <li><strong>Flexible Spending Account (FSA)</strong> — both health FSA and dependent-care FSA. Labeled "FSA", "Healthcare FSA", "Dependent Care".</li>
+      <li><strong>Traditional IRA via payroll deduction</strong> (rare but exists in some plans).</li>
+      <li><strong>Commuter benefits</strong> (transit / parking) — typically up to $325/month each in 2025.</li>
+    </ul>
+
+    <p><strong>What does NOT count (leave it out):</strong></p>
+    <ul>
+      <li><strong>Roth 401(k) / Roth 403(b)</strong> — already post-tax. Look for "Roth" in the label. Roth contributions go in your taxable wages, not pre-tax.</li>
+      <li><strong>Roth IRA</strong> — same reason.</li>
+      <li><strong>After-tax contributions</strong> — voluntary contributions above the 401(k) limit, usually labeled "AT 401k" or "After-Tax".</li>
+      <li><strong>Employer match</strong> — that's the employer's money, not yours. Don't add it.</li>
+      <li><strong>Health insurance premiums</strong> — some are pre-tax (most), but most pay stubs already remove them from your displayed taxable wages, so don't double-count. If your stub shows two "Gross" columns ("Total Gross" and "Federal Taxable Gross"), the difference is already accounted for.</li>
+    </ul>
+
+    <p><strong>How to find the annual number on your pay stub:</strong></p>
+    <ol style="padding-left:20px;margin-bottom:14px">
+      <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Open your most recent pay stub.</li>
+      <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Look in the <strong>"Deductions" or "Pre-Tax"</strong> column. Each item will show "Current" (this paycheck) and "YTD" (year-to-date).</li>
+      <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Add up the YTD totals for everything in the "What counts" list above.</li>
+      <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300"><strong>Annualize it</strong> — multiply by (12 / months elapsed). If your most recent stub is dated June 30 (6 months in), multiply by 2. If it's December 15 (~11.5 months in), multiply by ~1.04.</li>
+      <li style="font-size:15px;color:var(--indigo-70);line-height:1.7;margin-bottom:6px;font-weight:300">Round to the nearest hundred. Enter that number in the calculator's <em>Pre-tax payroll deductions</em> field.</li>
+    </ol>
+
+    <p><strong>If you're planning ahead (not looking at a stub):</strong> use your intended annual contribution. If you've told HR to defer 10% of a $80,000 salary into a traditional 401(k), enter <code>$8,000</code>. If you also max your HSA ($4,150 individual coverage), add it — enter <code>$12,150</code>.</p>
+
+    <div class="callout-note" style="background:rgba(232,148,100,0.08);border-left:3px solid var(--apricot);padding:14px 18px;margin:18px 0;border-radius:6px;">
+      <p style="margin:0 0 8px 0;color:var(--indigo);font-weight:500"><strong>Important:</strong> pre-tax contributions reduce federal income tax only.</p>
+      <p style="margin:0;font-size:14px;color:var(--indigo-70);">Your Social Security and Medicare tax (FICA, 7.65%) still applies to your gross wages — Congress designed it that way so Social Security benefits aren't reduced by retirement contributions. Most states follow the federal rule (Pennsylvania and New Jersey are notable exceptions for 401(k) — they still tax it). The calculator handles federal income tax only.</p>
+    </div>
+
     <h2>Common <em>mistakes</em></h2>
     <ul>
       <li><strong>Married couples not coordinating.</strong> If both spouses claim dependents on Step 3 of their separate W-4s, the employer doubles the credit. Pick ONE W-4 to claim the dependents on (usually the higher earner's).</li>
@@ -1257,15 +1294,20 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Other Dependent Credit:</strong> $500 per qualifying other dependent</li>
       <li><strong>CTC/ODC phase-out:</strong> begins $200,000 single / $400,000 MFJ AGI ($50 per $1,000 over)</li>
       <li><strong>Brackets:</strong> 10% / 12% / 22% / 24% / 32% / 35% / 37%</li>
+      <li><strong>401(k) / 403(b) / 457(b) employee limit:</strong> $23,500 (under 50) · $31,000 (50+) · $34,750 (60-63 super catch-up)</li>
+      <li><strong>HSA limits:</strong> $4,300 self-only · $8,550 family · +$1,000 catch-up if 55+</li>
+      <li><strong>Health FSA limit:</strong> $3,300 · <strong>Dependent-care FSA limit:</strong> $5,000 (or $2,500 MFS)</li>
+      <li><strong>Commuter benefits:</strong> $325/month each for transit and parking</li>
     </ul>
 
     <h2>What this calculator <em>doesn't</em> handle</h2>
     <ul>
-      <li><strong>State withholding</strong> — varies wildly by state. File separately with your state if it has income tax.</li>
-      <li><strong>401(k) / HSA / FSA contributions</strong> — these reduce your taxable wages. Use your annual gross salary here, then check the "tax-adjusted" wage with HR.</li>
+      <li><strong>State withholding</strong> — varies wildly by state. File separately with your state if it has income tax. (Pennsylvania and New Jersey notably tax 401(k) contributions even though the federal government doesn't.)</li>
+      <li><strong>FICA withholding</strong> — Social Security (6.2%) and Medicare (1.45%) come off your gross pay regardless of W-4 settings. Your employer handles them automatically.</li>
       <li><strong>Self-employment tax</strong> — if you have substantial 1099 income, see our <a href="/quarterly-tax-calculator">quarterly tax calculator</a> or <a href="/self-employment-tax-calculator">SE tax calculator</a>.</li>
       <li><strong>Capital gains</strong> — long-term gains use different brackets. See the <a href="/stock-tax-calculator">stock tax calculator</a>.</li>
       <li><strong>Multiple non-spouse jobs</strong> — combine wages and use the W-4 worksheet on page 3.</li>
+      <li><strong>Mid-year filing math</strong> — the calculator assumes you're setting up withholding for a full calendar year. If you're submitting a W-4 mid-year and have already had withholding YTD, your per-paycheck Step 4(c) needs to be higher to catch up over the remaining paychecks. We're shipping that as a separate feature soon.</li>
     </ul>
 
     <div class="related-section">
