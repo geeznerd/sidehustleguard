@@ -922,6 +922,57 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           </div>
         </div>
 
+        <!-- ════════════════════════════════════════════════════════════════
+             MID-YEAR ADJUSTMENT MODULE. Catch-up mode.
+
+             When toggled on, Step 4(c) below switches from a full-year
+             annualized residual to a per-paycheck catch-up over only the
+             remaining paychecks of the calendar year. Math branches at the
+             tail of computeW4(); upstream tax-owed numbers stay intact.
+             ════════════════════════════════════════════════════════════════ -->
+        <div class="field">
+          <label class="step2c-toggle">
+            <input type="checkbox" id="in-midyear-on"/>
+            <span class="step2c-box" aria-hidden="true"></span>
+            <span class="step2c-body">
+              <span class="step2c-title">Updating your W-4 mid-year? <em>Catch-up mode</em></span>
+              <span class="step2c-sub">Distributes the rest of the year's tax over your remaining paychecks instead of a full 12 months. Tell us when you're submitting and what's already been withheld.</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="field-row" id="midyear-inputs" style="display:none">
+          <div class="field">
+            <div class="field-label"><label class="l" for="in-midyear-month">Submission <em>month</em></label></div>
+            <div class="field-input select no-prefix">
+              <select id="in-midyear-month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6" selected>June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label class="l" for="in-midyear-ytd">Federal tax <em>withheld YTD</em></label>
+              <span class="hint">pay-stub</span>
+            </div>
+            <div class="field-input">
+              <span class="prefix">$</span>
+              <input type="text" inputmode="decimal" id="in-midyear-ytd" value="0" autocomplete="off"/>
+            </div>
+          </div>
+        </div>
+
         <div class="field">
           <div class="field-label"><span class="l">Filing <em>status</em></span></div>
           <div class="seg" id="seg-status" role="radiogroup" aria-label="Filing status" style="grid-template-columns:1fr 1fr">
@@ -1300,6 +1351,16 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Commuter benefits:</strong> $325/month each for transit and parking</li>
     </ul>
 
+    <h2>Submitting a W-4 <em>mid-year</em>? Use catch-up mode</h2>
+    <p>By default this calculator assumes you're setting withholding up at the start of the year. If you're filing a new W-4 in June, September, or November, that math is wrong: a full-year Step 4(c) number gets averaged across paychecks you've already received, so you under-withhold for the rest of the year.</p>
+    <p>Flip on <strong>"Updating your W-4 mid-year?"</strong> at the top of the calculator. Two inputs appear:</p>
+    <ul>
+      <li><strong>Submission month.</strong> When you'll actually hand the W-4 to HR. We use this to figure out how many paychecks are left in the calendar year.</li>
+      <li><strong>Federal tax withheld YTD.</strong> Find this on your most recent pay stub, usually labeled "Federal Income Tax YTD" or "Fed Withholding YTD". Don't include FICA, Medicare, or state tax.</li>
+    </ul>
+    <p>The calculator then subtracts what you've already paid from your full-year tax owed, divides the remainder over your remaining paychecks, and shows the catch-up Step 4(c) for the rest of the year. If you've already over-withheld, it tells you to leave Step 4(c) blank and projects your refund.</p>
+    <div class="callout-note"><strong>One critical step in January.</strong> The catch-up number is intentionally higher than a full-year residual because it has fewer paychecks to spread across. If you leave it on your W-4 into next year, you'll over-withhold by a lot. Submit a fresh W-4 in early January with the annualized number.</div>
+
     <h2>What this calculator <em>doesn't</em> handle</h2>
     <ul>
       <li><strong>State withholding</strong> — varies wildly by state. File separately with your state if it has income tax. (Pennsylvania and New Jersey notably tax 401(k) contributions even though the federal government doesn't.)</li>
@@ -1307,7 +1368,6 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       <li><strong>Self-employment tax</strong> — if you have substantial 1099 income, see our <a href="/quarterly-tax-calculator">quarterly tax calculator</a> or <a href="/self-employment-tax-calculator">SE tax calculator</a>.</li>
       <li><strong>Capital gains</strong> — long-term gains use different brackets. See the <a href="/stock-tax-calculator">stock tax calculator</a>.</li>
       <li><strong>Multiple non-spouse jobs</strong> — combine wages and use the W-4 worksheet on page 3.</li>
-      <li><strong>Mid-year filing math</strong> — the calculator assumes you're setting up withholding for a full calendar year. If you're submitting a W-4 mid-year and have already had withholding YTD, your per-paycheck Step 4(c) needs to be higher to catch up over the remaining paychecks. We're shipping that as a separate feature soon.</li>
     </ul>
 
     <div class="related-section">
@@ -1568,6 +1628,52 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var annualShortfall = taxOwed - adjustedWithholding;
     var step4cPerPaycheck = annualShortfall > 100 ? (annualShortfall / freq) : 0;
 
+    // ── 12. MID-YEAR adjustment. When enabled, Step 4(c) becomes a
+    //       catch-up over the remaining paychecks of the year (not a
+    //       full-year residual). All upstream tax-owed numbers stay
+    //       intact, only step4cPerPaycheck is replaced.
+    var midYear = input.midYear || {};
+    var midYearActive = !!midYear.enabled;
+    var midYearOverWithheld = false;
+    var midYearRemainingPaychecks = freq;
+    var midYearRemainingTaxOwed = taxOwed;
+    var midYearYtdWithheld = 0;
+    var midYearMessage = '';
+    var midYearHeadline = '';
+
+    if (midYearActive) {
+      var submitMonth = Math.max(1, Math.min(12, parseInt(midYear.submitMonth, 10) || 1));
+      var monthsRemaining = 12 - (submitMonth - 1);
+      var remainingPaychecks = Math.max(1, Math.round(freq * monthsRemaining / 12));
+      midYearRemainingPaychecks = remainingPaychecks;
+
+      midYearYtdWithheld = Math.max(0, midYear.ytdWithheld || 0);
+      var remainingTaxOwed = taxOwed - midYearYtdWithheld;
+      midYearRemainingTaxOwed = remainingTaxOwed;
+
+      if (remainingTaxOwed <= 0) {
+        // Already over-withheld. No extra needed, clamp to zero.
+        step4cPerPaycheck = 0;
+        midYearOverWithheld = true;
+        midYearHeadline = 'Already withheld enough';
+        midYearMessage =
+          'Expect about ' +
+          '$' + Math.round(Math.abs(remainingTaxOwed)).toLocaleString('en-US') +
+          ' refund on next year\'s return. Leave Step 4(c) blank for the rest of ' +
+          (input.taxYear || 2025) + ', then submit a fresh W-4 in January.';
+      } else {
+        step4cPerPaycheck = remainingTaxOwed / remainingPaychecks;
+        midYearHeadline = 'Catch-up per paycheck';
+        midYearMessage =
+          'Splits the remaining ' +
+          '$' + Math.round(remainingTaxOwed).toLocaleString('en-US') +
+          ' you still owe across ' + remainingPaychecks +
+          ' paycheck' + (remainingPaychecks === 1 ? '' : 's') +
+          ' left in ' + (input.taxYear || 2025) +
+          '. Submit a fresh W-4 in January with the annualized number so you don\'t over-withhold next year.';
+      }
+    }
+
     return {
       // Inputs echoed
       taxYear:           input.taxYear || 2025,
@@ -1607,7 +1713,15 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       w4Step3:               credits,                // dollar amount for Step 3
       w4Step4a:              input.otherIncome || 0,
       w4Step4b:              dedAboveStd,
-      w4Step4c:              step4cPerPaycheck
+      w4Step4c:              step4cPerPaycheck,
+      // Mid-year catch-up. Render layer reads these for Step 4(c) UI.
+      midYearActive:               midYearActive,
+      midYearOverWithheld:         midYearOverWithheld,
+      midYearRemainingPaychecks:   midYearRemainingPaychecks,
+      midYearRemainingTaxOwed:     midYearRemainingTaxOwed,
+      midYearYtdWithheld:          midYearYtdWithheld,
+      midYearHeadline:             midYearHeadline,
+      midYearMessage:              midYearMessage
     };
   }
 
@@ -1719,6 +1833,50 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     assert('Test 6c: preTax default 0 → matches baseline taxable', t6c.taxable, t1.taxable);
     assert('Test 6c: preTax default 0 → matches baseline tax owed', t6c.taxOwed, t1.taxOwed);
 
+    // ─── TEST 7 — Mid-year catch-up math ───
+    // Baseline: $75k single biweekly = $8,114 owed (from Test 1).
+    // Submitting in July (month 7) with $3,000 YTD already withheld:
+    //   monthsRemaining = 12 - (7-1) = 6
+    //   remainingPaychecks = round(26 * 6 / 12) = 13
+    //   remainingTaxOwed = 8114 - 3000 = 5114
+    //   step4c = 5114 / 13 = ~$393/paycheck
+    var t7a = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26,
+      midYear: { enabled: true, submitMonth: 7, ytdWithheld: 3000 }
+    });
+    assert('Test 7a: Mid-year July, $3k YTD → catch-up amount',
+      t7a.w4Step4c, 393, 2);
+    assert('Test 7a: Mid-year → remaining paychecks',
+      t7a.midYearRemainingPaychecks, 13);
+    assert('Test 7a: Mid-year → not over-withheld',
+      t7a.midYearOverWithheld ? 1 : 0, 0);
+
+    // TEST 7b — already over-withheld scenario clamps to $0
+    var t7b = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26,
+      midYear: { enabled: true, submitMonth: 7, ytdWithheld: 12000 }
+    });
+    assert('Test 7b: Over-withheld → step 4(c) clamped to 0',
+      t7b.w4Step4c, 0);
+    assert('Test 7b: Over-withheld → flag set',
+      t7b.midYearOverWithheld ? 1 : 0, 1);
+
+    // TEST 7c — December submission (month 12) → ~2 paychecks remaining
+    var t7c = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26,
+      midYear: { enabled: true, submitMonth: 12, ytdWithheld: 0 }
+    });
+    assert('Test 7c: December submission → 2 paychecks left',
+      t7c.midYearRemainingPaychecks, 2);
+
+    // TEST 7d — disabled mid-year → identical to baseline step 4(c)
+    var t7d = computeW4({
+      taxYear: 2025, status: 'single', wage: 75000, freq: 26,
+      midYear: { enabled: false, submitMonth: 7, ytdWithheld: 5000 }
+    });
+    assert('Test 7d: Disabled → matches baseline step 4(c)',
+      t7d.w4Step4c, t1.w4Step4c);
+
     console.log('%c[W-4 calc] tests: ' + pass + ' passed, ' + fail + ' failed',
       fail === 0 ? 'color:#7dd6a4;font-weight:bold' : 'color:#ff8e8e;font-weight:bold');
   }
@@ -1735,7 +1893,16 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     kids: 0, other: 0,
     otherIncome: 0, itemized: 0,
     preTax: 0,        // 401(k) / HSA / FSA / traditional IRA via payroll
-    useStep2c: null  // null = follow recommendation; true/false = explicit override
+    useStep2c: null, // null = follow recommendation; true/false = explicit override
+    // Mid-year catch-up override. When enabled=true, Step 4(c) switches
+    // from full-year annualized residual to a catch-up over remaining
+    // paychecks (math branches at tail of computeW4). Defaults to June
+    // as a baseline; init script below bumps to current month.
+    midYear: {
+      enabled:     false,
+      submitMonth: 6,
+      ytdWithheld: 0
+    }
   };
   var prev = {
     total:0, refund:0, whDefault:0,
@@ -1917,30 +2084,68 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       prev.w44b = 0;
     }
 
-    // Step 4(c) — extra withholding per paycheck (the action item)
+    // Step 4(c). Extra withholding per paycheck (the action item).
+    // When mid-year catch-up is active, the headline label, value format,
+    // and note all switch to catch-up phrasing. Over-withheld scenario
+    // still has val=0 but the card stays active-styled.
     var step4c = $('#w4-step4c');
+    var step4cName = step4c.querySelector('.step-name');
     step4c.classList.remove('is-action');
-    if (r.w4Step4c > 0) {
-      var extra = r.w4Step4c;
-      step4c.classList.remove('is-zero'); step4c.classList.add('is-action');
-      if (window.CalcKit) {
-        CalcKit.animateNumber($('#w4-4c-val'), prev.w44c, extra, 600, {
-          isHTML: true,
-          fmt: function (n) { return '<em>' + fmt(n) + '</em><span class="per">/paycheck</span>'; }
-        });
+
+    if (r.midYearActive) {
+      step4cName.textContent = r.midYearHeadline;
+      if (r.midYearOverWithheld) {
+        step4c.classList.remove('is-zero');
+        step4c.classList.add('is-action');
+        if (window.CalcKit) {
+          CalcKit.animateNumber($('#w4-4c-val'), prev.w44c, 0, 400, {
+            isHTML: true,
+            fmt: function () { return '<em>$</em>0<span class="per">/paycheck</span>'; }
+          });
+        } else {
+          $('#w4-4c-val').innerHTML = '<em>$</em>0<span class="per">/paycheck</span>';
+        }
+        prev.w44c = 0;
       } else {
-        $('#w4-4c-val').innerHTML = '<em>' + fmt(extra) + '</em><span class="per">/paycheck</span>';
+        var extra = r.w4Step4c;
+        step4c.classList.remove('is-zero');
+        step4c.classList.add('is-action');
+        if (window.CalcKit) {
+          CalcKit.animateNumber($('#w4-4c-val'), prev.w44c, extra, 600, {
+            isHTML: true,
+            fmt: function (n) { return '<em>' + fmt(n) + '</em><span class="per">/paycheck</span>'; }
+          });
+        } else {
+          $('#w4-4c-val').innerHTML = '<em>' + fmt(extra) + '</em><span class="per">/paycheck</span>';
+        }
+        prev.w44c = extra;
       }
-      prev.w44c = extra;
-      var annualGap = extra * r.freq;
-      $('#w4-4c-note').textContent =
-        'Bumps withholding by ' + fmt(annualGap) + '/year across ' + r.freq +
-        ' paychecks — closes the gap so you don\'t owe in April';
+      $('#w4-4c-note').textContent = r.midYearMessage;
     } else {
-      step4c.classList.add('is-zero');
-      $('#w4-4c-val').innerHTML = '<em>$</em>0';
-      $('#w4-4c-note').textContent = 'No extra withholding needed — default covers your tax';
-      prev.w44c = 0;
+      // Original full-year path. Behavior unchanged.
+      step4cName.textContent = 'Extra withholding per paycheck';
+      if (r.w4Step4c > 0) {
+        var extra = r.w4Step4c;
+        step4c.classList.remove('is-zero'); step4c.classList.add('is-action');
+        if (window.CalcKit) {
+          CalcKit.animateNumber($('#w4-4c-val'), prev.w44c, extra, 600, {
+            isHTML: true,
+            fmt: function (n) { return '<em>' + fmt(n) + '</em><span class="per">/paycheck</span>'; }
+          });
+        } else {
+          $('#w4-4c-val').innerHTML = '<em>' + fmt(extra) + '</em><span class="per">/paycheck</span>';
+        }
+        prev.w44c = extra;
+        var annualGap = extra * r.freq;
+        $('#w4-4c-note').textContent =
+          'Bumps withholding by ' + fmt(annualGap) + '/year across ' + r.freq +
+          ' paychecks, closing the gap so you don\'t owe in April.';
+      } else {
+        step4c.classList.add('is-zero');
+        $('#w4-4c-val').innerHTML = '<em>$</em>0';
+        $('#w4-4c-note').textContent = 'No extra withholding needed. Default covers your tax.';
+        prev.w44c = 0;
+      }
     }
 
     // ── Year-aware dynamic text — updates H1, eye-pill, descriptors,
@@ -2093,6 +2298,49 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   bindMoney(document.getElementById('in-other-income'), 'otherIncome');
   bindMoney(document.getElementById('in-itemized'), 'itemized');
   bindMoney(document.getElementById('in-pretax'), 'preTax');
+
+  // ────── Mid-year catch-up inputs ──────
+  // Toggle reveals/hides the month+YTD inputs and triggers a recompute.
+  document.getElementById('in-midyear-on').addEventListener('change', function (e) {
+    state.midYear.enabled = e.target.checked;
+    document.getElementById('midyear-inputs').style.display = e.target.checked ? '' : 'none';
+    render();
+  });
+
+  document.getElementById('in-midyear-month').addEventListener('change', function (e) {
+    state.midYear.submitMonth = parseInt(e.target.value, 10) || 1;
+    render();
+  });
+
+  // YTD withheld. Same digit-grouping behavior as bindMoney, but writes
+  // into the nested state.midYear.ytdWithheld key instead of state[key].
+  (function () {
+    var el = document.getElementById('in-midyear-ytd');
+    el.addEventListener('input', function () {
+      var raw = el.value.replace(/[^0-9.\-]/g, '');
+      var num = parseFloat(raw);
+      if (isFinite(num) && raw !== '') {
+        var f = Math.round(num).toLocaleString('en-US');
+        if (f !== el.value) {
+          el.value = f;
+          try { el.setSelectionRange(f.length, f.length); } catch (e) {}
+        }
+        state.midYear.ytdWithheld = num;
+      } else {
+        state.midYear.ytdWithheld = 0;
+      }
+      render();
+    });
+  })();
+
+  // One-time: default the month dropdown to the current month so the
+  // user doesn't have to set it. Browser-only, fine in SHG (no SSR).
+  (function () {
+    var current = (new Date()).getMonth() + 1;
+    state.midYear.submitMonth = current;
+    var sel = document.getElementById('in-midyear-month');
+    if (sel) sel.value = String(current);
+  })();
 
   document.getElementById('in-freq').addEventListener('change', function (e) {
     state.freq = parseInt(e.target.value, 10) || 26; render();
