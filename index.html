@@ -224,6 +224,24 @@
   }
   .hero-ghost-link:hover { color: var(--indigo); border-color: var(--indigo); }
 
+  /* Small trust line below the CTA row. Uses existing color tokens so
+     it sits comfortably on the cream hero background without pulling
+     focus from the headline or the picker. */
+  .hero-microtrust {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; line-height: 1.4;
+    color: var(--indigo-55);
+    letter-spacing: 0.005em;
+  }
+  .hero-microtrust-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--apricot);
+    box-shadow: 0 0 0 3px rgba(232,148,100,0.18);
+    flex-shrink: 0;
+  }
+
   /* Hero indigo preview card */
   .hero-preview {
     background: var(--indigo);
@@ -1436,6 +1454,10 @@
           <a class="btn btn-cta" href="/tool">Check my hustle →</a>
           <a class="hero-ghost-link" href="#how-it-works">See how it works</a>
         </div>
+        <p class="hero-microtrust">
+          <span class="hero-microtrust-dot" aria-hidden="true"></span>
+          Updated May 2026 for the latest IRS tax codes and OBBBA regulations.
+        </p>
       </div>
 
       <!-- BOTTOM ROW: paired cards, level. Picker LEFT, preview RIGHT. -->
