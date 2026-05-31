@@ -1049,8 +1049,26 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           </details>
         </div>
 
+        <div class="field">
+          <details class="collapsible">
+            <summary>Pre-tax payroll deductions <span class="sub-hint">401(k), HSA, FSA · optional</span></summary>
+            <div class="inner">
+              <div class="field" style="margin-top:14px;margin-bottom:0">
+                <div class="field-label">
+                  <label class="l" for="in-pretax">Annual <em>pre-tax</em> contributions</label>
+                </div>
+                <div class="field-input">
+                  <span class="prefix">$</span>
+                  <input type="text" inputmode="decimal" id="in-pretax" value="0" autocomplete="off"/>
+                </div>
+                <div class="field-help">Traditional 401(k), HSA, FSA, traditional IRA via payroll. These reduce your federal taxable wages but do <strong>not</strong> reduce FICA wages. Roth 401(k) contributions don't go here (already post-tax).</div>
+              </div>
+            </div>
+          </details>
+        </div>
+
         <div class="disclaimer-dark">
-          <strong>Estimate only — not tax advice.</strong> Uses <span id="disc-year">2025</span> federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (file a separate state W-4) or 401(k)/HSA pre-tax contributions. Verify with a CPA.
+          <strong>Estimate only — not tax advice.</strong> Uses <span id="disc-year">2025</span> federal brackets, standard deductions, and CTC/ODC rules. Does not include state withholding (file a separate state W-4). Verify with a CPA.
         </div>
       </div>
 
@@ -1109,6 +1127,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           <div class="breakdown-h"><span class="name">Tax <em>breakdown</em></span></div>
           <div class="breakdown-rows">
             <div class="breakdown-row" id="row-gross"><span class="lbl">Total income</span><span class="val">$0</span></div>
+            <div class="breakdown-row is-credit" id="row-pretax" style="display:none"><span class="lbl">Pre-tax deductions</span><span class="val">$0</span></div>
             <div class="breakdown-row" id="row-ded"><span class="lbl" id="row-ded-lbl">Standard deduction</span><span class="val">$0</span></div>
             <div class="breakdown-row" id="row-taxable"><span class="lbl">Taxable income</span><span class="val">$0</span></div>
             <div class="breakdown-row" id="row-tax-pre"><span class="lbl">Tax before credits</span><span class="val">$0</span></div>
@@ -1448,7 +1467,12 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var deduction = usingItemized ? itemized : stdDed;
 
     // ── 4. Taxable income + baseline tax (using FULL brackets for true liability)
-    var taxable = Math.max(0, agi - deduction);
+    // Pre-tax payroll deductions (traditional 401(k), HSA, FSA, etc.) come off
+    // BEFORE federal income tax. They do NOT affect FICA wages — but we don't
+    // compute FICA here anyway (employer payroll handles that). Roth 401(k)
+    // contributions are post-tax and should NOT be entered here.
+    var preTax = Math.max(0, input.preTax || 0);
+    var taxable = Math.max(0, agi - deduction - preTax);
     var brackets = data.brackets[input.status] || data.brackets.single;
     var taxPreCredits = taxOnBrackets(taxable, brackets);
 
@@ -1522,6 +1546,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       rawCredits:        rawCredits,
       credits:           credits,
       taxOwed:           taxOwed,
+      preTax:            preTax,
       // Withholding figures — both raw + post-W-4-adjustment
       grossWithholding:     grossWithholding,     // pre-Step-3 credit
       defaultWithholding:   adjustedWithholding,  // post-Step-3 credit (realistic projection)
@@ -1630,6 +1655,28 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     assert('Test 5: Itemized > std → Step 4(b) amount',    t5.w4Step4b, 10000);
     assert('Test 5: Itemized > std → uses itemized',       t5.usingItemized ? 1 : 0, 1);
 
+    // TEST 6a — Pre-tax deduction lowers taxable income
+    //   Single $75k - $15k 401(k) - $15k std ded = $45k taxable
+    //   Single 2025 brackets at $45k: 10% × $11,925 + 12% × $33,075 = $5,162
+    var t6a = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26, preTax: 15000 });
+    assert('Test 6a: Pre-tax → taxable income drops',     t6a.taxable, 45000);
+    assert('Test 6a: Pre-tax → tax owed (12% bracket)',   t6a.taxOwed, 5162, 5);
+    assert('Test 6a: Pre-tax → echoed in result',         t6a.preTax, 15000);
+
+    // TEST 6b — Pre-tax + side income: confirms preTax reduces ONLY federal taxable
+    //   $75k wage + $20k side = $95k, less $10k 401(k) less $15k std = $70k taxable
+    //   Single 2025 brackets: 10% × $11,925 + 12% × $36,550 + 22% × $21,525 = $10,314
+    var t6b = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26, otherIncome: 20000, preTax: 10000 });
+    assert('Test 6b: Pre-tax + side → taxable',           t6b.taxable, 70000);
+    assert('Test 6b: Pre-tax + side → tax owed',          t6b.taxOwed, 10314, 5);
+
+    // TEST 6c — Default 0 pre-tax matches pre-pre-tax-feature behavior
+    //   Same as Test 1 — must be identical to baseline.
+    var t6c = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
+    var t1 = computeW4({ taxYear: 2025, status: 'single', wage: 75000, freq: 26 });
+    assert('Test 6c: preTax default 0 → matches baseline taxable', t6c.taxable, t1.taxable);
+    assert('Test 6c: preTax default 0 → matches baseline tax owed', t6c.taxOwed, t1.taxOwed);
+
     console.log('%c[W-4 calc] tests: ' + pass + ' passed, ' + fail + ' failed',
       fail === 0 ? 'color:#7dd6a4;font-weight:bold' : 'color:#ff8e8e;font-weight:bold');
   }
@@ -1645,11 +1692,12 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     spouseWage: 0, spouseFreq: 26,
     kids: 0, other: 0,
     otherIncome: 0, itemized: 0,
+    preTax: 0,        // 401(k) / HSA / FSA / traditional IRA via payroll
     useStep2c: null  // null = follow recommendation; true/false = explicit override
   };
   var prev = {
     total:0, refund:0, whDefault:0,
-    gross:0, ded:0, taxable:0, taxPre:0, credits:0,
+    gross:0, pretax:0, ded:0, taxable:0, taxPre:0, credits:0,
     w43:0, w44a:0, w44b:0, w44c:0,
     ppWh:0, ppDep:0
   };
@@ -1739,6 +1787,14 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
 
     // ── Tax breakdown rows
     anim($('#row-gross .val'), 'gross', r.agi, 400);
+    // Pre-tax deductions row (only shown when > 0)
+    var preTaxRow = $('#row-pretax');
+    if (r.preTax > 0) {
+      preTaxRow.style.display = '';
+      anim($('#row-pretax .val'), 'pretax', r.preTax, 400, { fmt: function(n){ return '-' + fmt(n); } });
+    } else {
+      preTaxRow.style.display = 'none';
+    }
     anim($('#row-ded .val'), 'ded', r.deduction, 400);
     $('#row-ded-lbl').textContent = r.usingItemized ? 'Itemized deduction' : 'Standard deduction';
     anim($('#row-taxable .val'), 'taxable', r.taxable, 400);
@@ -1994,6 +2050,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
   bindMoney(document.getElementById('in-spouse-wage'), 'spouseWage');
   bindMoney(document.getElementById('in-other-income'), 'otherIncome');
   bindMoney(document.getElementById('in-itemized'), 'itemized');
+  bindMoney(document.getElementById('in-pretax'), 'preTax');
 
   document.getElementById('in-freq').addEventListener('change', function (e) {
     state.freq = parseInt(e.target.value, 10) || 26; render();
