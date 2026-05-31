@@ -981,6 +981,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
             <button class="seg-opt" type="button" data-val="mfs">Married — separately</button>
             <button class="seg-opt" type="button" data-val="hoh">Head of household</button>
           </div>
+          <div class="field-help" id="mfj-notice" style="display:none; margin-top:10px"><strong>Dual-income households:</strong> If both you and your spouse work, ensure you check Box 2(c) on your actual W-4 forms or run this calculator using the higher earner's profile to prevent under-withholding.</div>
         </div>
 
         <div class="field-row">
@@ -1697,6 +1698,7 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     var midYearRemainingTaxOwed = taxOwed;
     var midYearYtdWithheld = 0;
     var midYearMessage = '';
+    var midYearWarning = '';
     var midYearHeadline = '';
 
     if (midYearActive) {
@@ -1733,14 +1735,20 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       } else {
         step4cPerPaycheck = remainingTaxOwed / remainingPaychecks;
         midYearHeadline = 'Catch-up per paycheck';
+        // Main note describes the math the user is acting on.
         midYearMessage =
           'On top of the ' +
           '$' + Math.round(defaultPerPaycheck).toLocaleString('en-US') +
           '/paycheck your employer will keep withholding by default, add this Step 4(c) extra across the last ' +
           remainingPaychecks +
           ' paycheck' + (remainingPaychecks === 1 ? '' : 's') +
-          ' of ' + (input.taxYear || 2025) +
-          '. Submit a fresh W-4 in January with the annualized number so you don\'t over-withhold next year.';
+          ' of ' + (input.taxYear || 2025) + '.';
+        // Separate warning string. Render layer paints this with extra
+        // emphasis so users don't keep the catch-up number into next year.
+        midYearWarning =
+          'Important: This higher catch-up number is for the rest of this year only. ' +
+          'You must submit a fresh W-4 in January with your regular annualized baseline ' +
+          'so you do not over-withhold next year.';
       }
     }
 
@@ -1797,7 +1805,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
       midYearRemainingTaxOwed:     midYearRemainingTaxOwed,
       midYearYtdWithheld:          midYearYtdWithheld,
       midYearHeadline:             midYearHeadline,
-      midYearMessage:              midYearMessage
+      midYearMessage:              midYearMessage,
+      midYearWarning:              midYearWarning
     };
   }
 
@@ -2288,6 +2297,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           $('#w4-4c-val').innerHTML = '<em>$</em>0<span class="per">/paycheck</span>';
         }
         prev.w44c = 0;
+        // Over-withheld scenario has no catch-up warning to surface.
+        $('#w4-4c-note').textContent = r.midYearMessage;
       } else {
         var extra = r.w4Step4c;
         step4c.classList.remove('is-zero');
@@ -2301,8 +2312,15 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
           $('#w4-4c-val').innerHTML = '<em>' + fmt(extra) + '</em><span class="per">/paycheck</span>';
         }
         prev.w44c = extra;
+        // Paint the main message plus the bold apricot warning so users
+        // visually catch the "January reset" instruction. Strings are all
+        // computed from internal numeric values, no untrusted input.
+        $('#w4-4c-note').innerHTML =
+          r.midYearMessage +
+          '<br><br><strong style="color:var(--apricot)">' +
+          r.midYearWarning +
+          '</strong>';
       }
-      $('#w4-4c-note').textContent = r.midYearMessage;
     } else {
       // Original full-year path. Behavior unchanged.
       step4cName.textContent = 'Extra withholding per paycheck';
@@ -2565,6 +2583,8 @@ footer { background: var(--cream); border-top: 1px solid var(--indigo-08); paddi
     btn.classList.add('is-active');
     state.status = btn.dataset.val;
     document.getElementById('spouse-section').style.display = (state.status === 'mfj') ? '' : 'none';
+    // Show / hide the dual-income contextual notice based on MFJ selection.
+    document.getElementById('mfj-notice').style.display = (state.status === 'mfj') ? '' : 'none';
     // Reset Step 2(c) when leaving MFJ
     if (state.status !== 'mfj') {
       state.useStep2c = false;
