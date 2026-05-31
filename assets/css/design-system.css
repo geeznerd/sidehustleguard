@@ -1300,48 +1300,6 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
   color: var(--indigo-55);
 }
 
-/* ===== TICKER (Pattern 8) ===== */
-.ticker {
-  background: var(--indigo);
-  color: var(--paper-55);
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 10px 0;
-}
-
-.ticker-track {
-  display: inline-flex;
-  gap: 48px;
-  animation: ticker-scroll 22s linear infinite;
-}
-
-.ticker-item {
-  font-family: 'Inter', sans-serif;
-  font-size: 12.5px;
-  font-weight: 500;
-  transition: opacity var(--dur-default) var(--ease-default);
-}
-.ticker-item:nth-child(even) { color: var(--apricot); }
-/* Interactive ticker items (hydrated by JS, only those mapped to an
- * anchor) get a hover affordance so users see they're clickable. */
-.ticker-item[data-anchor]:hover {
-  opacity: 0.78;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: currentColor;
-  text-decoration-thickness: 1px;
-}
-.ticker-item[data-anchor]:focus-visible {
-  outline: 2px solid var(--apricot);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 /* ===== ACCENT BLOB ===== */
 .blob {
   position: absolute;
@@ -1612,7 +1570,6 @@ nav .btn-cta:hover .cta-arrow-cap { background: var(--apricot-hover); }
     scroll-behavior: auto !important;
   }
   .sliding-list-indicator { transition: none; }
-  .ticker-track { animation: none; }
 }
 
 /* Legacy alias block removed at end of Phase 4, every page is now tokenized
