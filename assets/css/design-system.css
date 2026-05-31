@@ -550,15 +550,11 @@ nav .nav-link[aria-current="page"] {
     outline-color    240ms              var(--ease-out-snap),
     outline-offset   240ms              var(--ease-out-snap);
 }
-.btn-cta::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--indigo);
-  flex-shrink: 0;
-}
+/* (Indigo pulsing dot ::before removed sitewide. Was Phase 9.6's
+ * "live-ready" indicator; on review it reads as chunky next to longer
+ * CTA labels and the apricot squircle + scale animation already carry
+ * the "live" signal. The nav-CTA suppression rule below is now dead
+ * code but kept as a no-op safety in case the dot returns later.) */
 .btn-cta:hover { background: var(--apricot-hover); }
 .btn-cta:active {
   transform: scale(0.97);
